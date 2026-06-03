@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  background: #f5f7fa;
+  color: #0f2438;
+}
+
+@layer components {
+  .card {
+    @apply bg-card border border-line rounded-xl2 shadow-card transition-all duration-200;
+  }
+  .card-p {
+    @apply card p-5;
+  }
+  .lift:hover {
+    @apply -translate-y-0.5 shadow-[0_12px_30px_rgba(16,36,56,0.10)];
+  }
+  .seg {
+    @apply inline-flex rounded-lg border border-line bg-bg p-0.5;
+  }
+  .seg-btn {
+    @apply rounded-md px-2.5 py-1 text-xs font-semibold text-muted transition-colors hover:text-ink;
+  }
+  .seg-btn-active {
+    @apply bg-white text-ink shadow-sm;
+  }
+  .row-hover tbody tr {
+    @apply transition-colors hover:bg-bg/70;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2 text-sm font-semibold
+      border border-line bg-white text-ink hover:bg-bg transition-colors disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply border-transparent text-white bg-brand hover:bg-brand-600 shadow-glow;
+  }
+  .btn-ghost {
+    @apply border-transparent bg-transparent hover:bg-bg;
+  }
+  .input {
+    @apply w-full rounded-lg bg-white border border-line px-3 py-2 text-sm text-ink
+      placeholder:text-muted/70 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium;
+  }
+  .label {
+    @apply text-[11px] font-semibold uppercase tracking-wide text-muted;
+  }
+  .kpi {
+    @apply text-3xl font-bold tracking-tight tabular-nums;
+  }
+}
+
+.up {
+  @apply text-brand;
+}
+.down {
+  @apply text-danger;
+}
+
+/* Markdown du brief */
+.prose-hi h1 { @apply text-xl font-bold mt-4 mb-2 text-ink; }
+.prose-hi h2 { @apply text-lg font-semibold mt-5 mb-2 text-ink; }
+.prose-hi h3 { @apply text-base font-semibold mt-3 mb-1 text-ink; }
+.prose-hi p { @apply my-2 text-sm leading-relaxed text-slate-600; }
+.prose-hi ul { @apply list-disc pl-5 my-2 text-sm text-slate-600; }
+.prose-hi li { @apply my-1; }
+.prose-hi strong { @apply text-ink; }
+.prose-hi table { @apply w-full text-sm my-3 border-collapse; }
+.prose-hi th, .prose-hi td { @apply border border-line px-2 py-1 text-left; }
+.prose-hi th { @apply bg-bg; }
+.prose-hi code { @apply bg-bg px-1 py-0.5 rounded text-xs; }
+.prose-hi hr { @apply my-4 border-line; }
+.prose-hi a { @apply text-brand underline; }
+
+/* scrollbar discret */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #d4dae3; border-radius: 8px; }

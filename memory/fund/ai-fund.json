@@ -1,0 +1,8 @@
+{
+  "as_of": "2026-06-03",
+  "start_capital": 1000,
+  "cash": 1000,
+  "positions": [],
+  "trades": [],
+  "note": "Book fictif (paper) géré par la routine du vendredi. 100% fictif — aucun ordre réel. Le capital de départ et le cash doivent être alignés sur le pot commun du groupe (à ajuster). Démarre 100% cash ; le vendredi alloue selon les convictions validées."
+}
