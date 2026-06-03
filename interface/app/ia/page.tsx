@@ -51,22 +51,22 @@ export default async function IaPage() {
                 <thead>
                   <tr className="label border-b border-line">
                     <th className="py-2 text-left font-semibold">Titre</th>
-                    <th className="text-right font-semibold">Qté</th>
+                    <th className="text-right font-semibold hidden sm:table-cell">Qté</th>
                     <th className="text-right font-semibold">Cours</th>
-                    <th className="text-right font-semibold">Poids</th>
+                    <th className="text-right font-semibold hidden sm:table-cell">Poids</th>
                     <th className="text-right font-semibold">P&L</th>
-                    <th className="text-left font-semibold pl-4">Thèse</th>
+                    <th className="text-left font-semibold pl-4 hidden lg:table-cell">Thèse</th>
                   </tr>
                 </thead>
                 <tbody>
                   {f.holdings.map((h) => (
                     <tr key={h.ticker} className="border-b border-line/60 align-top">
-                      <td className="py-2 font-semibold">{h.ticker}</td>
-                      <td className="text-right tabular-nums">{h.quantity}</td>
+                      <td className="py-2.5 font-semibold">{h.ticker}</td>
+                      <td className="text-right tabular-nums hidden sm:table-cell">{h.quantity}</td>
                       <td className="text-right tabular-nums">{h.price != null ? `${h.price} €` : "—"}</td>
-                      <td className="text-right tabular-nums text-muted">{pct(h.weight).replace("+", "")}</td>
+                      <td className="text-right tabular-nums text-muted hidden sm:table-cell">{pct(h.weight).replace("+", "")}</td>
                       <td className={`text-right tabular-nums ${h.pnlPct >= 0 ? "up" : "down"}`}>{pct(h.pnlPct)}</td>
-                      <td className="pl-4 text-slate-600">{h.thesis ?? "—"}</td>
+                      <td className="pl-4 text-slate-600 hidden lg:table-cell">{h.thesis ?? "—"}</td>
                     </tr>
                   ))}
                 </tbody>
