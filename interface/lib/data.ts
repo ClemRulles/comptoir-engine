@@ -88,16 +88,21 @@ function demoData(): AppData {
   const group = enrich("group", DEMO_GROUP.name, DEMO_GROUP.startCapital, DEMO_GROUP.cash, DEMO_GROUP.holdings, prices);
   const ai = enrich("ai", "Fonds IA", DEMO_AI.start_capital, DEMO_AI.cash, DEMO_AI.positions, prices);
   const series = demoSeries();
-  const last = series[series.length - 1];
-  const prev = series[series.length - 2] ?? last;
+  const win = (sel: (p: { group: number; ai: number }) => number) => {
+    const i = series.length - 1;
+    const j = Math.max(0, i - 7);
+    const a = sel(series[i]);
+    const b = sel(series[j]);
+    return b ? (a - b) / b : 0;
+  };
   return {
     configured: false,
     demo: true,
     group,
     ai,
     series,
-    weekDeltaGroup: prev.group ? (last.group - prev.group) / prev.group : 0,
-    weekDeltaAi: prev.ai ? (last.ai - prev.ai) / prev.ai : 0,
+    weekDeltaGroup: win((p) => p.group),
+    weekDeltaAi: win((p) => p.ai),
     brief: DEMO_BRIEF,
   };
 }
@@ -148,9 +153,9 @@ export async function getAppData(): Promise<AppData> {
     const gSnaps = snaps.filter((s) => s.fund_id === groupFund?.id);
     const aSnaps = snaps.filter((s) => s.fund_id === aiFundRow?.id);
     const byDate = new Map<string, { date: string; group: number; ai: number }>();
-    for (const s of gSnaps) byDate.set(s.date, { date: s.date.slice(5), group: s.nav, ai: NaN });
+    for (const s of gSnaps) byDate.set(s.date, { date: s.date, group: s.nav, ai: NaN });
     for (const s of aSnaps) {
-      const r = byDate.get(s.date) ?? { date: s.date.slice(5), group: NaN, ai: NaN };
+      const r = byDate.get(s.date) ?? { date: s.date, group: NaN, ai: NaN };
       r.ai = s.nav;
       byDate.set(s.date, r);
     }
@@ -158,8 +163,10 @@ export async function getAppData(): Promise<AppData> {
 
     const weekDelta = (arr: NavSnapshot[]) => {
       if (arr.length < 2) return 0;
-      const a = arr[arr.length - 1].nav;
-      const b = arr[arr.length - 2].nav;
+      const i = arr.length - 1;
+      const j = Math.max(0, i - 5);
+      const a = arr[i].nav;
+      const b = arr[j].nav;
       return b ? (a - b) / b : 0;
     };
 

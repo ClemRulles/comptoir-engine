@@ -14,21 +14,41 @@ export function Delta({ value, className = "" }: { value: number; className?: st
   );
 }
 
+export function Reveal({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  return (
+    <div className={`animate-fade-up ${className}`} style={{ animationDelay: `${delay}ms` }}>
+      {children}
+    </div>
+  );
+}
+
 export function KpiCard({
   label,
   value,
   sub,
   accent,
+  delay = 0,
 }: {
   label: string;
-  value: string;
+  value: React.ReactNode;
   sub?: React.ReactNode;
   accent?: "group" | "ai" | "neutral";
+  delay?: number;
 }) {
-  const bar =
-    accent === "group" ? "bg-brand" : accent === "ai" ? "bg-ai" : "bg-slate-300";
+  const bar = accent === "group" ? "bg-brand" : accent === "ai" ? "bg-ai" : "bg-slate-300";
   return (
-    <div className="card-p relative overflow-hidden">
+    <div
+      className="card-p lift relative overflow-hidden animate-fade-up"
+      style={{ animationDelay: `${delay}ms` }}
+    >
       <div className={`absolute left-0 top-0 h-full w-1 ${bar}`} />
       <div className="label">{label}</div>
       <div className="kpi mt-1">{value}</div>

@@ -14,10 +14,25 @@ body {
 
 @layer components {
   .card {
-    @apply bg-card border border-line rounded-xl2 shadow-card;
+    @apply bg-card border border-line rounded-xl2 shadow-card transition-all duration-200;
   }
   .card-p {
     @apply card p-5;
+  }
+  .lift:hover {
+    @apply -translate-y-0.5 shadow-[0_12px_30px_rgba(16,36,56,0.10)];
+  }
+  .seg {
+    @apply inline-flex rounded-lg border border-line bg-bg p-0.5;
+  }
+  .seg-btn {
+    @apply rounded-md px-2.5 py-1 text-xs font-semibold text-muted transition-colors hover:text-ink;
+  }
+  .seg-btn-active {
+    @apply bg-white text-ink shadow-sm;
+  }
+  .row-hover tbody tr {
+    @apply transition-colors hover:bg-bg/70;
   }
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2 text-sm font-semibold

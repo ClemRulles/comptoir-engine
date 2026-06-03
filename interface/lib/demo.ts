@@ -43,23 +43,29 @@ export const DEMO_AI: AiFundFile = {
   note: "Données de démonstration.",
 };
 
-// Série NAV hebdomadaire déterministe (14 points) — l'IA finit devant le groupe.
+// Série NAV JOURNALIÈRE déterministe (~400 jours) — l'IA finit devant le groupe.
+// Dates complètes YYYY-MM-DD pour permettre le filtre par période (1J/1S/1M/3M/1A/Max).
 export function demoSeries(): { date: string; group: number; ai: number }[] {
   const pts: { date: string; group: number; ai: number }[] = [];
+  const start = 10000;
   const groupEnd = 11273;
   const aiEnd = 12289;
-  const start = 10000;
-  const n = 14;
-  for (let i = 0; i < n; i++) {
-    const t = i / (n - 1);
-    const wobbleG = Math.sin(i * 1.1) * 130 * (1 - t);
-    const wobbleA = Math.sin(i * 1.4 + 1) * 180 * (1 - t);
-    const d = new Date(2026, 2, 2);
-    d.setDate(d.getDate() + i * 7);
+  const N = 400;
+  const today = new Date();
+  for (let i = 0; i < N; i++) {
+    const t = i / (N - 1);
+    // tendance + harmoniques + une correction au milieu (réalisme)
+    const dip = -Math.exp(-Math.pow((t - 0.55) * 6, 2)) * 700;
+    const noiseG = Math.sin(i * 0.21) * 120 + Math.sin(i * 0.045) * 220 + Math.sin(i * 0.6) * 50;
+    const noiseA = Math.sin(i * 0.18 + 1) * 160 + Math.sin(i * 0.05 + 2) * 300 + Math.sin(i * 0.5 + 1) * 70;
+    const d = new Date(today);
+    d.setDate(today.getDate() - (N - 1 - i));
+    const group = start + (groupEnd - start) * t + noiseG + dip * 0.8;
+    const ai = start + (aiEnd - start) * t + noiseA + dip;
     pts.push({
-      date: d.toISOString().slice(5, 10),
-      group: Math.round(start + (groupEnd - start) * t + wobbleG),
-      ai: Math.round(start + (aiEnd - start) * t + wobbleA),
+      date: d.toISOString().slice(0, 10),
+      group: Math.round(i === N - 1 ? groupEnd : group),
+      ai: Math.round(i === N - 1 ? aiEnd : ai),
     });
   }
   return pts;

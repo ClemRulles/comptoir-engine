@@ -34,6 +34,28 @@ const config: Config = {
       backgroundImage: {
         "brand-gradient": "linear-gradient(135deg, #84cc16 0%, #16a34a 55%, #0d9488 100%)",
       },
+      keyframes: {
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        shimmer: {
+          "100%": { transform: "translateX(100%)" },
+        },
+        "pop-in": {
+          "0%": { opacity: "0", transform: "scale(0.96)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+      },
+      animation: {
+        "fade-up": "fade-up 0.5s cubic-bezier(0.22,1,0.36,1) both",
+        "fade-in": "fade-in 0.4s ease-out both",
+        "pop-in": "pop-in 0.4s cubic-bezier(0.22,1,0.36,1) both",
+      },
     },
   },
   plugins: [],
