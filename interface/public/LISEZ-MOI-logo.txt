@@ -1,0 +1,16 @@
+DÉPOSE TON LOGO ICI
+====================
+
+1) Logo affiché dans l'app (sidebar + page de connexion)
+   → enregistre ton image sous :  interface/public/logo.png
+   (PNG ou JPG ; idéalement avec fond transparent. Format paysage ou carré, ça s'adapte.)
+   Dès que le fichier "logo.png" est présent, il remplace automatiquement le logo
+   vectoriel par défaut. Aucun code à toucher.
+
+2) Favicon (la petite icône de l'onglet du navigateur)
+   → enregistre une version carrée (512x512 conseillé) sous :
+     interface/app/icon.png
+   Next.js la détecte automatiquement.
+
+Astuce : l'image que tu m'as montrée dans le chat fait très bien l'affaire pour les deux —
+enregistre-la une fois en logo.png et une fois (carrée) en app/icon.png.

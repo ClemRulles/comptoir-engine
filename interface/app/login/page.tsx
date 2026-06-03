@@ -32,7 +32,7 @@ export default function LoginPage() {
     <div className="min-h-screen grid lg:grid-cols-2">
       {/* panneau marque */}
       <div className="hidden lg:flex flex-col justify-between bg-brand-gradient p-10 text-white">
-        <Brand size={34} />
+        <Brand size={36} variant="light" />
         <div>
           <h2 className="text-3xl font-extrabold leading-tight">
             Votre fonds commun.<br />Le fonds de l&apos;IA.<br />Qui gagne ?
