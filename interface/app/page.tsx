@@ -1,108 +1,134 @@
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { createClient } from "@/lib/supabase/server";
-import { fetchMemoryMarkdown } from "@/lib/github";
-import { NavChart } from "@/components/NavChart";
-import { eur, pct, perfSinceInception, mergeSeries } from "@/lib/fund";
-import type { Fund, NavSnapshot } from "@/lib/types";
+import { getAppData } from "@/lib/data";
+import { eur, pct } from "@/lib/fund";
+import { PerfAreaChart, AllocationDonut } from "@/components/Charts";
+import { KpiCard, Delta, SectionTitle } from "@/components/Kpi";
 
 export const dynamic = "force-dynamic";
 
-function SetupNotice() {
-  return (
-    <div className="card">
-      <h2 className="mb-2 text-lg font-semibold">Configuration requise</h2>
-      <p className="text-sm text-gray-400">
-        Renseigne les variables Supabase (<code>NEXT_PUBLIC_SUPABASE_URL</code>,{" "}
-        <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code>) puis lance la migration SQL. Voir le
-        README du dossier <code>interface/</code>.
-      </p>
-    </div>
-  );
-}
-
 export default async function DashboardPage() {
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return <SetupNotice />;
+  const data = await getAppData();
+  const { group, ai } = data;
+  const spread = ai.perf - group.perf;
+  const leader = Math.abs(spread) < 0.0001 ? "Égalité" : spread > 0 ? "L'IA mène" : "Le groupe mène";
 
-  const supabase = await createClient();
-  const { data: funds } = await supabase.from("funds").select("*");
-  const { data: snaps } = await supabase
-    .from("nav_snapshots")
-    .select("*")
-    .order("date", { ascending: true });
+  const slices = [
+    ...group.holdings.map((h) => ({ name: h.ticker, value: h.marketValue })),
+    { name: "Cash", value: group.cash },
+  ].filter((s) => s.value > 0);
 
-  const fundList = (funds ?? []) as Fund[];
-  const group = fundList.find((f) => f.kind === "group");
-  const ai = fundList.find((f) => f.kind === "ai");
-  const allSnaps = (snaps ?? []) as NavSnapshot[];
-  const groupSnaps = allSnaps.filter((s) => s.fund_id === group?.id);
-  const aiSnaps = allSnaps.filter((s) => s.fund_id === ai?.id);
-
-  const latest = (arr: NavSnapshot[]) => (arr.length ? arr[arr.length - 1] : null);
-  const groupNav = latest(groupSnaps)?.nav ?? group?.start_capital ?? 0;
-  const aiNav = latest(aiSnaps)?.nav ?? ai?.start_capital ?? 0;
-  const groupPerf = perfSinceInception(groupNav, group?.start_capital ?? 0);
-  const aiPerf = perfSinceInception(aiNav, ai?.start_capital ?? 0);
-  const series = mergeSeries(groupSnaps, aiSnaps);
-
-  const brief = await fetchMemoryMarkdown("morning-brief.md");
-  const leader = aiPerf === groupPerf ? "égalité" : aiPerf > groupPerf ? "L'IA mène" : "Le groupe mène";
+  const movers = [...group.holdings].sort((a, b) => b.pnlPct - a.pnlPct);
+  const best = movers[0];
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <div className="card">
-          <div className="text-xs uppercase tracking-wide text-group">Fonds groupe</div>
-          <div className="mt-1 text-2xl font-semibold">{eur(groupNav)}</div>
-          <div className={`text-sm ${groupPerf >= 0 ? "text-green-400" : "text-red-400"}`}>
-            {pct(groupPerf)} depuis l&apos;origine
-          </div>
+      {/* KPI */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <KpiCard
+          label="Fonds du groupe"
+          value={eur(group.nav)}
+          accent="group"
+          sub={<Delta value={group.perf} />}
+        />
+        <KpiCard
+          label="Fonds IA (fictif)"
+          value={eur(ai.nav)}
+          accent="ai"
+          sub={<Delta value={ai.perf} />}
+        />
+        <KpiCard
+          label="Classement"
+          value={leader}
+          accent="neutral"
+          sub={<span className="text-muted">écart {pct(spread)} (IA − groupe)</span>}
+        />
+        <KpiCard
+          label="Meilleure position (groupe)"
+          value={best ? best.ticker : "—"}
+          accent="neutral"
+          sub={best ? <Delta value={best.pnlPct} /> : <span className="text-muted">aucune</span>}
+        />
+      </div>
+
+      {/* Courbe + allocation */}
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <div className="card-p lg:col-span-2">
+          <SectionTitle
+            right={
+              <div className="flex gap-3 text-xs">
+                <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-brand" /> Groupe</span>
+                <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-ai" /> IA</span>
+              </div>
+            }
+          >
+            Performance — Groupe vs IA
+          </SectionTitle>
+          <PerfAreaChart data={data.series} />
         </div>
-        <div className="card">
-          <div className="text-xs uppercase tracking-wide text-ai">Fonds IA (fictif)</div>
-          <div className="mt-1 text-2xl font-semibold">{eur(aiNav)}</div>
-          <div className={`text-sm ${aiPerf >= 0 ? "text-green-400" : "text-red-400"}`}>
-            {pct(aiPerf)} depuis l&apos;origine
-          </div>
-        </div>
-        <div className="card">
-          <div className="text-xs uppercase tracking-wide text-gray-400">Classement</div>
-          <div className="mt-1 text-2xl font-semibold">{leader}</div>
-          <div className="text-sm text-gray-400">
-            écart {pct(aiPerf - groupPerf)} (IA − groupe)
+
+        <div className="card-p">
+          <SectionTitle>Allocation du fonds groupe</SectionTitle>
+          <AllocationDonut slices={slices} />
+          <div className="mt-2 flex justify-between text-sm">
+            <span className="text-muted">Cash</span>
+            <span className="font-semibold">{eur(group.cash)} · {pct(group.nav ? group.cash / group.nav : 0).replace("+", "")}</span>
           </div>
         </div>
       </div>
 
-      <div className="card">
-        <h2 className="mb-3 text-lg font-semibold">Performance — Groupe vs IA</h2>
-        <NavChart data={series} />
-        <p className="mt-2 text-xs text-gray-500">
-          Valeurs fictives à des fins de comparaison. Aucun ordre réel n&apos;est passé.
-        </p>
+      {/* Top positions + brief */}
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <div className="card-p">
+          <SectionTitle right={<Link href="/groupe" className="text-sm text-brand hover:underline">Gérer →</Link>}>
+            Positions du groupe
+          </SectionTitle>
+          {group.holdings.length === 0 ? (
+            <p className="text-sm text-muted">Aucune position. Ajoutez-en dans « Fonds groupe ».</p>
+          ) : (
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="label border-b border-line">
+                  <th className="py-2 text-left font-semibold">Titre</th>
+                  <th className="text-right font-semibold">Valeur</th>
+                  <th className="text-right font-semibold">Poids</th>
+                  <th className="text-right font-semibold">+/-</th>
+                </tr>
+              </thead>
+              <tbody>
+                {group.holdings.slice(0, 6).map((h) => (
+                  <tr key={h.ticker} className="border-b border-line/60">
+                    <td className="py-2 font-semibold">{h.ticker}</td>
+                    <td className="text-right tabular-nums">{eur(h.marketValue)}</td>
+                    <td className="text-right tabular-nums text-muted">{pct(h.weight).replace("+", "")}</td>
+                    <td className={`text-right tabular-nums ${h.pnlPct >= 0 ? "up" : "down"}`}>{pct(h.pnlPct)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+
+        <div className="card-p">
+          <SectionTitle right={<Link href="/brief" className="text-sm text-brand hover:underline">Lire →</Link>}>
+            🎯 Brief de la semaine
+          </SectionTitle>
+          {data.brief ? (
+            <div className="prose-hi max-h-72 overflow-hidden">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{data.brief.slice(0, 1100)}</ReactMarkdown>
+            </div>
+          ) : (
+            <p className="text-sm text-muted">
+              Le brief sera généré par la routine du vendredi.
+            </p>
+          )}
+        </div>
       </div>
 
-      <div className="card">
-        <div className="mb-2 flex items-center justify-between">
-          <h2 className="text-lg font-semibold">🎯 Brief de la semaine</h2>
-          <Link href="/brief" className="text-sm text-group hover:underline">
-            Voir en entier →
-          </Link>
-        </div>
-        {brief ? (
-          <div className="prose-comptoir max-h-80 overflow-hidden">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {brief.slice(0, 1500)}
-            </ReactMarkdown>
-          </div>
-        ) : (
-          <p className="text-sm text-gray-500">
-            Le brief apparaîtra ici après le premier passage de la routine du vendredi
-            (lecture de <code>memory/morning-brief.md</code> — nécessite le token GitHub).
-          </p>
-        )}
-      </div>
+      <p className="text-center text-xs text-muted">
+        Valeurs à des fins de comparaison. Paper trading — aucun ordre réel n&apos;est passé.
+      </p>
     </div>
   );
 }

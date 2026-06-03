@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { isConfigured } from "@/lib/data";
 
 async function groupFund(supabase: Awaited<ReturnType<typeof createClient>>) {
   const { data } = await supabase
@@ -20,6 +21,7 @@ async function adjustCash(
 }
 
 export async function GET() {
+  if (!isConfigured()) return NextResponse.json({ holdings: [], demo: true });
   const supabase = await createClient();
   const {
     data: { user },
@@ -39,6 +41,12 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  if (!isConfigured()) {
+    return NextResponse.json(
+      { error: "Mode démo : connecte Supabase (déploiement) pour enregistrer." },
+      { status: 503 }
+    );
+  }
   const supabase = await createClient();
   const {
     data: { user },

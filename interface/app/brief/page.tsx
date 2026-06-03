@@ -1,34 +1,35 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { getAppData, isConfigured } from "@/lib/data";
 import { fetchMemoryMarkdown } from "@/lib/github";
+import { SectionTitle } from "@/components/Kpi";
 
 export const dynamic = "force-dynamic";
 
 export default async function BriefPage() {
-  const brief = await fetchMemoryMarkdown("morning-brief.md");
-  const trends = await fetchMemoryMarkdown("trends.md");
+  const data = await getAppData();
+  const trends = isConfigured() ? await fetchMemoryMarkdown("trends.md") : null;
 
   return (
     <div className="space-y-4">
-      <h1 className="text-xl font-semibold">Brief & tendance de la semaine</h1>
-
-      <div className="card">
-        {brief ? (
-          <div className="prose-comptoir">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{brief}</ReactMarkdown>
+      <div className="card-p">
+        <SectionTitle>Brief de la semaine</SectionTitle>
+        {data.brief ? (
+          <div className="prose-hi">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{data.brief}</ReactMarkdown>
           </div>
         ) : (
-          <p className="text-sm text-gray-500">
-            Aucun brief pour l&apos;instant. Il sera généré par la routine du vendredi dans{" "}
-            <code>memory/morning-brief.md</code> (lecture via le token GitHub).
+          <p className="text-sm text-muted">
+            Le brief sera généré chaque vendredi par le moteur dans{" "}
+            <code>memory/morning-brief.md</code>.
           </p>
         )}
       </div>
 
       {trends && (
-        <div className="card">
-          <h2 className="mb-2 text-lg font-semibold">Détail de la tendance</h2>
-          <div className="prose-comptoir">
+        <div className="card-p">
+          <SectionTitle>Détail de la tendance</SectionTitle>
+          <div className="prose-hi">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>{trends}</ReactMarkdown>
           </div>
         </div>

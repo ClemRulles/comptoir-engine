@@ -8,11 +8,31 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#0f1115",
-        panel: "#171a21",
-        edge: "#262b36",
-        group: "#3b82f6",
+        // HypeInvest — fond clair, accents verts du logo
+        bg: "#f5f7fa",
+        card: "#ffffff",
+        line: "#e7ebf1",
+        ink: "#0f2438",
+        muted: "#6b7a90",
+        brand: {
+          DEFAULT: "#16a34a",
+          600: "#15803d",
+          500: "#22c55e",
+          lime: "#84cc16",
+          emerald: "#10b981",
+        },
         ai: "#f59e0b",
+        danger: "#ef4444",
+      },
+      boxShadow: {
+        card: "0 1px 2px rgba(16,36,56,0.04), 0 8px 24px rgba(16,36,56,0.06)",
+        glow: "0 10px 30px rgba(22,163,74,0.25)",
+      },
+      borderRadius: {
+        xl2: "1rem",
+      },
+      backgroundImage: {
+        "brand-gradient": "linear-gradient(135deg, #84cc16 0%, #16a34a 55%, #0d9488 100%)",
       },
     },
   },

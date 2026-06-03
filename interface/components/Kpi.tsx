@@ -1,0 +1,47 @@
+import { pct } from "@/lib/fund";
+
+export function Delta({ value, className = "" }: { value: number; className?: string }) {
+  const up = value >= 0;
+  return (
+    <span
+      className={`chip ${up ? "bg-brand/10 text-brand-600" : "bg-danger/10 text-danger"} ${className}`}
+    >
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+        {up ? <path d="M7 14l5-5 5 5z" /> : <path d="M7 10l5 5 5-5z" />}
+      </svg>
+      {pct(value)}
+    </span>
+  );
+}
+
+export function KpiCard({
+  label,
+  value,
+  sub,
+  accent,
+}: {
+  label: string;
+  value: string;
+  sub?: React.ReactNode;
+  accent?: "group" | "ai" | "neutral";
+}) {
+  const bar =
+    accent === "group" ? "bg-brand" : accent === "ai" ? "bg-ai" : "bg-slate-300";
+  return (
+    <div className="card-p relative overflow-hidden">
+      <div className={`absolute left-0 top-0 h-full w-1 ${bar}`} />
+      <div className="label">{label}</div>
+      <div className="kpi mt-1">{value}</div>
+      {sub && <div className="mt-2 text-sm text-muted">{sub}</div>}
+    </div>
+  );
+}
+
+export function SectionTitle({ children, right }: { children: React.ReactNode; right?: React.ReactNode }) {
+  return (
+    <div className="mb-3 flex items-center justify-between">
+      <h2 className="text-base font-bold tracking-tight">{children}</h2>
+      {right}
+    </div>
+  );
+}

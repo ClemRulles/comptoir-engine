@@ -3,39 +3,69 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
+html,
 body {
-  background: #0f1115;
-  color: #e7e9ee;
+  background: #f5f7fa;
+  color: #0f2438;
 }
 
-.card {
-  @apply bg-panel border border-edge rounded-xl p-4;
+@layer components {
+  .card {
+    @apply bg-card border border-line rounded-xl2 shadow-card;
+  }
+  .card-p {
+    @apply card p-5;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2 text-sm font-semibold
+      border border-line bg-white text-ink hover:bg-bg transition-colors disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply border-transparent text-white bg-brand hover:bg-brand-600 shadow-glow;
+  }
+  .btn-ghost {
+    @apply border-transparent bg-transparent hover:bg-bg;
+  }
+  .input {
+    @apply w-full rounded-lg bg-white border border-line px-3 py-2 text-sm text-ink
+      placeholder:text-muted/70 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium;
+  }
+  .label {
+    @apply text-[11px] font-semibold uppercase tracking-wide text-muted;
+  }
+  .kpi {
+    @apply text-3xl font-bold tracking-tight tabular-nums;
+  }
 }
 
-.btn {
-  @apply inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-medium
-    bg-edge hover:bg-[#313846] transition-colors disabled:opacity-50;
+.up {
+  @apply text-brand;
+}
+.down {
+  @apply text-danger;
 }
 
-.btn-primary {
-  @apply bg-group hover:bg-blue-500 text-white;
-}
+/* Markdown du brief */
+.prose-hi h1 { @apply text-xl font-bold mt-4 mb-2 text-ink; }
+.prose-hi h2 { @apply text-lg font-semibold mt-5 mb-2 text-ink; }
+.prose-hi h3 { @apply text-base font-semibold mt-3 mb-1 text-ink; }
+.prose-hi p { @apply my-2 text-sm leading-relaxed text-slate-600; }
+.prose-hi ul { @apply list-disc pl-5 my-2 text-sm text-slate-600; }
+.prose-hi li { @apply my-1; }
+.prose-hi strong { @apply text-ink; }
+.prose-hi table { @apply w-full text-sm my-3 border-collapse; }
+.prose-hi th, .prose-hi td { @apply border border-line px-2 py-1 text-left; }
+.prose-hi th { @apply bg-bg; }
+.prose-hi code { @apply bg-bg px-1 py-0.5 rounded text-xs; }
+.prose-hi hr { @apply my-4 border-line; }
+.prose-hi a { @apply text-brand underline; }
 
-.input {
-  @apply w-full rounded-lg bg-ink border border-edge px-3 py-2 text-sm
-    focus:outline-none focus:ring-2 focus:ring-group/50;
-}
-
-.prose-comptoir h1 { @apply text-xl font-semibold mt-4 mb-2; }
-.prose-comptoir h2 { @apply text-lg font-semibold mt-4 mb-2; }
-.prose-comptoir h3 { @apply text-base font-semibold mt-3 mb-1; }
-.prose-comptoir p { @apply my-2 text-sm leading-relaxed text-gray-300; }
-.prose-comptoir ul { @apply list-disc pl-5 my-2 text-sm text-gray-300; }
-.prose-comptoir li { @apply my-1; }
-.prose-comptoir table { @apply w-full text-sm my-3 border-collapse; }
-.prose-comptoir th, .prose-comptoir td { @apply border border-edge px-2 py-1 text-left; }
-.prose-comptoir code { @apply bg-ink px-1 py-0.5 rounded text-xs; }
-.prose-comptoir hr { @apply my-4 border-edge; }
+/* scrollbar discret */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #d4dae3; border-radius: 8px; }

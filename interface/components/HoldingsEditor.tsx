@@ -13,10 +13,16 @@ export function HoldingsEditor() {
 
   async function load() {
     setLoading(true);
-    const res = await fetch("/api/holdings");
-    if (res.ok) {
-      const { holdings } = await res.json();
-      setHoldings(holdings ?? []);
+    try {
+      const res = await fetch("/api/holdings");
+      if (res.ok) {
+        const { holdings } = await res.json();
+        setHoldings(holdings ?? []);
+      } else {
+        setHoldings([]);
+      }
+    } catch {
+      setHoldings([]);
     }
     setLoading(false);
   }
@@ -35,7 +41,7 @@ export function HoldingsEditor() {
     });
     if (!res.ok) {
       const j = await res.json().catch(() => ({}));
-      setError(j.error ?? "Erreur");
+      setError(j.error ?? "Connexion requise (déploiement).");
       return;
     }
     setTicker("");
@@ -55,46 +61,46 @@ export function HoldingsEditor() {
 
   return (
     <div className="space-y-4">
-      <form onSubmit={save} className="card grid grid-cols-1 gap-3 sm:grid-cols-4 sm:items-end">
+      <form onSubmit={save} className="card-p grid grid-cols-1 gap-3 sm:grid-cols-4 sm:items-end">
         <div>
-          <label className="mb-1 block text-xs text-gray-400">Ticker</label>
-          <input className="input" value={ticker} onChange={(e) => setTicker(e.target.value)} placeholder="AAPL" required />
+          <label className="label">Ticker</label>
+          <input className="input mt-1" value={ticker} onChange={(e) => setTicker(e.target.value)} placeholder="AAPL" required />
         </div>
         <div>
-          <label className="mb-1 block text-xs text-gray-400">Quantité</label>
-          <input className="input" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder="10" inputMode="decimal" required />
+          <label className="label">Quantité</label>
+          <input className="input mt-1" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder="10" inputMode="decimal" required />
         </div>
         <div>
-          <label className="mb-1 block text-xs text-gray-400">Prix de revient (€)</label>
-          <input className="input" value={avgCost} onChange={(e) => setAvgCost(e.target.value)} placeholder="180" inputMode="decimal" required />
+          <label className="label">Prix de revient (€)</label>
+          <input className="input mt-1" value={avgCost} onChange={(e) => setAvgCost(e.target.value)} placeholder="180" inputMode="decimal" required />
         </div>
         <button className="btn btn-primary" type="submit">Enregistrer</button>
-        {error && <p className="text-sm text-red-400 sm:col-span-4">{error}</p>}
+        {error && <p className="text-sm text-danger sm:col-span-4">{error}</p>}
       </form>
 
-      <div className="card overflow-x-auto">
+      <div className="card-p overflow-x-auto">
         {loading ? (
-          <p className="text-sm text-gray-500">Chargement…</p>
+          <p className="text-sm text-muted">Chargement…</p>
         ) : holdings.length === 0 ? (
-          <p className="text-sm text-gray-500">Aucune position. Ajoute-en une ci-dessus.</p>
+          <p className="text-sm text-muted">Aucune position enregistrée pour l&apos;instant.</p>
         ) : (
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-left text-gray-400">
-                <th className="py-2">Ticker</th>
-                <th>Quantité</th>
-                <th>Prix de revient</th>
+              <tr className="label border-b border-line">
+                <th className="py-2 text-left font-semibold">Ticker</th>
+                <th className="text-right font-semibold">Quantité</th>
+                <th className="text-right font-semibold">PRU</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               {holdings.map((h) => (
-                <tr key={h.id} className="border-t border-edge">
-                  <td className="py-2 font-medium">{h.ticker}</td>
-                  <td>{h.quantity}</td>
-                  <td>{h.avg_cost} €</td>
+                <tr key={h.id} className="border-b border-line/60">
+                  <td className="py-2 font-semibold">{h.ticker}</td>
+                  <td className="text-right tabular-nums">{h.quantity}</td>
+                  <td className="text-right tabular-nums text-muted">{h.avg_cost} €</td>
                   <td className="text-right">
-                    <button onClick={() => sell(h.ticker, h.avg_cost)} className="text-sm text-red-400 hover:underline">
+                    <button onClick={() => sell(h.ticker, h.avg_cost)} className="text-sm text-danger hover:underline">
                       Vendre / retirer
                     </button>
                   </td>
