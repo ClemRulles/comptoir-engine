@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background: #0f1115;
+  color: #e7e9ee;
+}
+
+.card {
+  @apply bg-panel border border-edge rounded-xl p-4;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-medium
+    bg-edge hover:bg-[#313846] transition-colors disabled:opacity-50;
+}
+
+.btn-primary {
+  @apply bg-group hover:bg-blue-500 text-white;
+}
+
+.input {
+  @apply w-full rounded-lg bg-ink border border-edge px-3 py-2 text-sm
+    focus:outline-none focus:ring-2 focus:ring-group/50;
+}
+
+.prose-comptoir h1 { @apply text-xl font-semibold mt-4 mb-2; }
+.prose-comptoir h2 { @apply text-lg font-semibold mt-4 mb-2; }
+.prose-comptoir h3 { @apply text-base font-semibold mt-3 mb-1; }
+.prose-comptoir p { @apply my-2 text-sm leading-relaxed text-gray-300; }
+.prose-comptoir ul { @apply list-disc pl-5 my-2 text-sm text-gray-300; }
+.prose-comptoir li { @apply my-1; }
+.prose-comptoir table { @apply w-full text-sm my-3 border-collapse; }
+.prose-comptoir th, .prose-comptoir td { @apply border border-edge px-2 py-1 text-left; }
+.prose-comptoir code { @apply bg-ink px-1 py-0.5 rounded text-xs; }
+.prose-comptoir hr { @apply my-4 border-edge; }
