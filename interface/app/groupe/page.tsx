@@ -47,23 +47,23 @@ export default async function GroupePage() {
                 <thead>
                   <tr className="label border-b border-line">
                     <th className="py-2 text-left font-semibold">Titre</th>
-                    <th className="text-right font-semibold">Qté</th>
-                    <th className="text-right font-semibold">PRU</th>
+                    <th className="text-right font-semibold hidden sm:table-cell">Qté</th>
+                    <th className="text-right font-semibold hidden sm:table-cell">PRU</th>
                     <th className="text-right font-semibold">Cours</th>
                     <th className="text-right font-semibold">Valeur</th>
-                    <th className="text-right font-semibold">Poids</th>
+                    <th className="text-right font-semibold hidden sm:table-cell">Poids</th>
                     <th className="text-right font-semibold">P&L</th>
                   </tr>
                 </thead>
                 <tbody>
                   {f.holdings.map((h) => (
                     <tr key={h.ticker} className="border-b border-line/60">
-                      <td className="py-2 font-semibold">{h.ticker}</td>
-                      <td className="text-right tabular-nums">{h.quantity}</td>
-                      <td className="text-right tabular-nums text-muted">{h.avgCost} €</td>
+                      <td className="py-2.5 font-semibold">{h.ticker}</td>
+                      <td className="text-right tabular-nums hidden sm:table-cell">{h.quantity}</td>
+                      <td className="text-right tabular-nums text-muted hidden sm:table-cell">{h.avgCost} €</td>
                       <td className="text-right tabular-nums">{h.price != null ? `${h.price} €` : "—"}</td>
                       <td className="text-right tabular-nums">{eur(h.marketValue)}</td>
-                      <td className="text-right tabular-nums text-muted">{pct(h.weight).replace("+", "")}</td>
+                      <td className="text-right tabular-nums text-muted hidden sm:table-cell">{pct(h.weight).replace("+", "")}</td>
                       <td className={`text-right tabular-nums ${h.pnlPct >= 0 ? "up" : "down"}`}>{pct(h.pnlPct)}</td>
                     </tr>
                   ))}
