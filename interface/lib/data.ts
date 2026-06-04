@@ -1,26 +1,38 @@
 import { createClient } from "@/lib/supabase/server";
-import { fetchAiFund, fetchCalibration, fetchDecisions, fetchMemoryMarkdown } from "@/lib/github";
+import {
+  fetchAiFund,
+  fetchCalibration,
+  fetchCatalysts,
+  fetchDecisions,
+  fetchMemoryMarkdown,
+} from "@/lib/github";
 import { fetchPrices } from "@/lib/prices";
 import {
   DEMO_AI,
+  DEMO_AI_TRADES,
   DEMO_BRIEF,
   DEMO_CALIBRATION,
+  DEMO_CATALYSTS,
   DEMO_CONTRIBUTIONS,
   DEMO_DECISIONS,
   DEMO_GROUP,
+  DEMO_GROUP_TRADES,
   DEMO_LESSONS,
   DEMO_MEMBERS,
   DEMO_PRICES,
   demoSeries,
 } from "@/lib/demo";
 import type {
+  ActivityItem,
   Calibration,
+  CatalystRow,
   ClubMember,
   Contribution,
   Decision,
   Fund,
   Holding,
   NavSnapshot,
+  Trade,
 } from "@/lib/types";
 
 export interface EnrichedHolding {
@@ -286,6 +298,120 @@ export async function getClubData(): Promise<ClubData> {
     return buildClub(false, members, contributions, monthlyPerMember);
   } catch {
     return buildClub(true, DEMO_MEMBERS, DEMO_CONTRIBUTIONS, 25);
+  }
+}
+
+// ── Calendrier des catalyseurs ────────────────────────────────────────
+// Parse les tableaux markdown de catalysts.md en lignes structurées.
+export function parseCatalysts(markdown: string): CatalystRow[] {
+  const out: CatalystRow[] = [];
+  for (const raw of markdown.split("\n")) {
+    const line = raw.trim();
+    if (!line.startsWith("|")) continue;
+    const cells = line.split("|").slice(1, -1).map((c) => c.trim());
+    if (cells.length < 8) continue;
+    const [date, event, type, affects, risk, positioning, confidence, status] = cells;
+    // saute l'en-tête, le séparateur (---) et la ligne placeholder vide
+    if (/^date$/i.test(date) || /^[-: ]+$/.test(date) || date === "—" || !event || event === "—") continue;
+    out.push({ date, event, type, affects, risk, positioning, confidence, status });
+  }
+  return out;
+}
+
+export interface CatalystsData {
+  demo: boolean;
+  upcoming: CatalystRow[];
+  past: CatalystRow[];
+}
+
+function splitCatalysts(demo: boolean, rows: CatalystRow[]): CatalystsData {
+  const isPast = (r: CatalystRow) => /pass/i.test(r.status);
+  const upcoming = rows
+    .filter((r) => !isPast(r))
+    .sort((a, b) => a.date.localeCompare(b.date));
+  const past = rows.filter(isPast).sort((a, b) => b.date.localeCompare(a.date));
+  return { demo, upcoming, past };
+}
+
+export async function getCatalysts(): Promise<CatalystsData> {
+  if (!isConfigured()) return splitCatalysts(true, parseCatalysts(DEMO_CATALYSTS));
+  const md = await fetchCatalysts();
+  if (!md) return splitCatalysts(true, parseCatalysts(DEMO_CATALYSTS));
+  const rows = parseCatalysts(md);
+  if (rows.length === 0) return splitCatalysts(true, parseCatalysts(DEMO_CATALYSTS));
+  return splitCatalysts(false, rows);
+}
+
+// ── Flux d'activité (mouvements réalisés des deux fonds) ───────────────
+export interface ActivityData {
+  demo: boolean;
+  ai: ActivityItem[];
+  group: ActivityItem[];
+}
+
+const isRealTrade = (t: { ticker?: string; quantity?: number }) =>
+  Boolean(t.ticker) && t.ticker !== "SEED" && Number(t.quantity) > 0;
+
+export async function getActivity(limit = 8): Promise<ActivityData> {
+  const toItem = (
+    fund: "ai" | "group",
+    t: { ts: string; side: "buy" | "sell"; ticker: string; quantity: number; price: number; rationale?: string | null; confidence?: ActivityItem["confidence"] }
+  ): ActivityItem => ({
+    fund,
+    ts: t.ts,
+    side: t.side,
+    ticker: t.ticker.toUpperCase(),
+    quantity: t.quantity,
+    price: t.price,
+    amount: t.quantity * t.price,
+    rationale: t.rationale ?? null,
+    confidence: t.confidence,
+  });
+
+  if (!isConfigured()) {
+    return {
+      demo: true,
+      ai: DEMO_AI_TRADES.map((t) => toItem("ai", t)).slice(0, limit),
+      group: DEMO_GROUP_TRADES.map((t) => toItem("group", t)).slice(0, limit),
+    };
+  }
+
+  try {
+    const aiFile = await fetchAiFund();
+    const aiItems = (aiFile?.trades ?? [])
+      .filter(isRealTrade)
+      .map((t) => toItem("ai", t))
+      .reverse()
+      .slice(0, limit);
+
+    const supabase = await createClient();
+    const { data: fundsData } = await supabase.from("funds").select("id, kind");
+    const groupId = ((fundsData ?? []) as { id: string; kind: string }[]).find((f) => f.kind === "group")?.id;
+    let groupItems: ActivityItem[] = [];
+    if (groupId) {
+      const { data: tr } = await supabase
+        .from("trades")
+        .select("*")
+        .eq("fund_id", groupId)
+        .order("ts", { ascending: false })
+        .limit(limit);
+      groupItems = ((tr ?? []) as Trade[]).filter(isRealTrade).map((t) => toItem("group", t));
+    }
+
+    if (aiItems.length === 0 && groupItems.length === 0) {
+      return {
+        demo: true,
+        ai: (DEMO_AI.trades ?? []).filter(isRealTrade).map((t) => toItem("ai", t)).reverse().slice(0, limit),
+        group: DEMO_GROUP_TRADES.map((t) => toItem("group", t)).slice(0, limit),
+      };
+    }
+    return { demo: false, ai: aiItems, group: groupItems };
+  } catch {
+    return {
+      demo: true,
+      ai: DEMO_AI_TRADES.map((t) => toItem("ai", t)).slice(0, limit),
+      group: DEMO_GROUP_TRADES.map((t) => toItem("group", t)).slice(0, limit),
+    };
   }
 }
 

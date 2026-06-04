@@ -58,3 +58,7 @@ export async function fetchCalibration(): Promise<Calibration | null> {
 export async function fetchMemoryMarkdown(file: string): Promise<string | null> {
   return fetchRepoFile(`memory/${file}`);
 }
+
+export async function fetchCatalysts(): Promise<string | null> {
+  return fetchRepoFile("memory/catalysts.md");
+}

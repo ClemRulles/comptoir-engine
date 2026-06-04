@@ -45,3 +45,37 @@ export async function fetchPrices(tickers: string[]): Promise<Record<string, num
 
   return out;
 }
+
+// Clôtures historiques par ticker (FMP). Renvoie { TICKER: { "YYYY-MM-DD": close } }.
+// Sert à reconstituer la courbe NAV passée d'un panier (backcast). Tickers introuvables omis.
+export async function fetchHistoricalCloses(
+  tickers: string[],
+  fromDate: string
+): Promise<Record<string, Record<string, number>>> {
+  const unique = Array.from(new Set(tickers.map((t) => t.trim().toUpperCase()))).filter(Boolean);
+  const fmpKey = process.env.FMP_API_KEY;
+  const out: Record<string, Record<string, number>> = {};
+  if (!fmpKey || unique.length === 0) return out;
+
+  const today = new Date().toISOString().slice(0, 10);
+  await Promise.all(
+    unique.map(async (t) => {
+      try {
+        const url = `https://financialmodelingprep.com/api/v3/historical-price-full/${encodeURIComponent(
+          t
+        )}?from=${fromDate}&to=${today}&apikey=${fmpKey}`;
+        const res = await fetch(url, { cache: "no-store" });
+        if (!res.ok) return;
+        const data = (await res.json()) as { historical?: { date: string; close: number }[] };
+        const map: Record<string, number> = {};
+        for (const row of data.historical ?? []) {
+          if (row?.date && typeof row.close === "number") map[row.date] = row.close;
+        }
+        if (Object.keys(map).length) out[t] = map;
+      } catch {
+        // ignore individual failures
+      }
+    })
+  );
+  return out;
+}
