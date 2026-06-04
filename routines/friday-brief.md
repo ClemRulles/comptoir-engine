@@ -3,7 +3,7 @@
 
 Lis `CLAUDE.md`, `skills/engine-method.md` (surtout §H sizing/risque, §I calibration),
 `skills/trend-gate.md`, `memory/trends.md`, `memory/convictions.md`, `memory/portfolio.md`,
-`memory/market-regime.md`, `memory/lessons.md`, `memory/fund/ai-fund.json`,
+`memory/market-regime.md`, `memory/lessons.md`, `memory/catalysts.md`, `memory/fund/ai-fund.json`,
 `memory/fund/decisions.json`, `memory/fund/calibration.json`.
 
 C'est la routine la plus chargée : elle **apprend**, **gère le book IA**, puis **packagé** la semaine.
@@ -67,7 +67,17 @@ selon le régime, garde-fou drawdown). **Ordre des sources** :
 1. Exécute d'abord les **verdicts Opus du mercredi** (bloc `## Revue book IA` de `convictions.md` :
    RENFORCER / GARDER / ALLÉGER / SORTIR) et les **alertes du jeudi** (bloc `## Alertes book IA`
    de `portfolio.md`). Ce sont des décisions déjà instruites — applique-les en priorité.
-2. Puis traite les nouvelles `convictions.md` (candidats ★ analysés mercredi).
+2. **Re-valide les catalyseurs** (`memory/catalysts.md`, détectés lundi) — la boucle anticipation :
+   pour chaque ligne dont la date approche (≤ ~2 semaines) et qui portait un pré-positionnement,
+   demande « ça vaut toujours le coup ? » → (a) l'événement est-il toujours au calendrier (pas
+   annulé/déplacé) ? (b) le marché l'a-t-il déjà pricé (le move a eu lieu) ? (c) le régime + la
+   valo laissent-ils encore une marge pour le jouer ? Si **oui et crédible** → entrée tactique
+   sizée §H (demi-taille, **date de l'événement = déclencheur de sortie/décision**, stop serré),
+   ou geste de risque sur une position détenue (alléger/couvrir avant un risque binaire). Si
+   l'événement est **PASSÉ** → score-le en PASSE 1 (l'anticipation a-t-elle aidé ? leçon datée)
+   puis déplace la ligne en « Archives » de `catalysts.md`. Sinon retire-la, note pourquoi.
+   **On ne parie jamais sur le contenu d'une annonce surprise** (method §J).
+3. Puis traite les nouvelles `convictions.md` (candidats ★ analysés mercredi).
 
 - **Sorties** d'abord : toute position dont la règle de sortie est touchée ou la thèse cassée.
 - **Entrées** ensuite : alloue le cash disponible aux meilleures convictions, **taille selon §H**.
@@ -106,6 +116,12 @@ Max 3, triés par confiance puis score (depuis convictions.md). Pour chacun : th
 
 ## Idées tactiques (court terme)
 Max 2, catalyseur daté + stop serré. Taille plus petite. Surchauffe = risque, pas feu vert.
+
+## 📅 Catalyseurs à l'horizon
+Reprends de `memory/catalysts.md` les 2-4 événements datés les plus importants des prochaines
+semaines (FOMC, résultats d'une de nos positions, échéance tarifaire…), avec en une ligne :
+ce qui est en jeu et notre posture (anticipé / risque à surveiller / rien à faire). On prévient,
+on ne réagit pas dans la panique.
 
 ## Vos positions — ce qui a changé
 Reprends de portfolio.md tout statut À SURVEILLER / SORTIE avec la raison. Si tout INTACT, une ligne.

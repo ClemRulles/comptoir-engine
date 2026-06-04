@@ -2,7 +2,7 @@
 # Cron : 0 22 * * 4   ·   Modèle : Sonnet
 
 Lis `CLAUDE.md`, `skills/engine-method.md`, `skills/data-sources.md`,
-`memory/portfolio.md`, `memory/fund/ai-fund.json`, `memory/market-regime.md`.
+`memory/portfolio.md`, `memory/fund/ai-fund.json`, `memory/market-regime.md`, `memory/catalysts.md`.
 
 Objectif : confronter **chaque position des deux books** (le groupe via `portfolio.md` ET le
 book IA via `ai-fund.json`) à sa thèse et sa règle de sortie écrites. Ainsi le vendredi gère le
@@ -11,6 +11,10 @@ book IA sur des alertes datées de la veille, pas de la semaine passée.
 Pour chaque position (groupe **et** book IA) :
 1. News récentes : Finnhub (résultats, guidance), EDGAR 8-K (événements), recherche web,
    mouvement de cours notable.
+   **Catalyseur imminent** : croise avec `memory/catalysts.md` — si la position a un événement
+   daté cette semaine ou la prochaine (résultats, FOMC sur du growth/REIT, échéance tarifaire sur
+   son secteur), signale le **risque binaire** : faut-il alléger/couvrir avant ? Note-le pour le
+   vendredi (method §J — on gère le risque connu, on ne parie pas sur l'issue).
 2. La thèse écrite tient-elle ? La règle de sortie écrite est-elle touchée ou proche ?
 3. Valorisation : DCF inversé express — la marge de sécurité a-t-elle disparu ?
 4. Statut : `INTACT` / `À SURVEILLER` / `SORTIE` (sortie = règle touchée, thèse cassée,

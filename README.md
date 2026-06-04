@@ -14,7 +14,7 @@ Paper trading d'abord. Ce n'est pas un conseil en investissement.
 
 | Jour | Routine | Modèle | Ce qu'elle produit |
 |------|---------|--------|--------------------|
-| Lun | `monday-trend-radar` | Sonnet | Régime de marché + **LA tendance de la semaine** (validée ou « aucune ») |
+| Lun | `monday-trend-radar` | Sonnet | Régime + **LA tendance de la semaine** + **calendrier des catalyseurs datés** (FOMC, résultats, tarifs…) à anticiper |
 | Mar | `tuesday-scout` | Sonnet | Sociétés cotées exposées à la tendance + filtres qualité |
 | Mer | `wednesday-deepdive` | **Opus** | Débat haussier/baissier sur ≤3 candidats **+ revue de risque Opus de ≤2 positions du book IA** |
 | Jeu | `thursday-portfolio-doctor` | Sonnet | État des **deux books** (groupe + IA) vs leur règle de sortie |
