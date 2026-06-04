@@ -43,6 +43,17 @@ S'il n'y a eu aucune fermeture, écris-le et ne fabrique pas de leçon.
 
 ---
 
+## PASSE 1bis — Normalisation du seed (une seule fois)
+
+Le seed initial stocke chaque position héritée avec `quantity:1` et `avg_cost` = sa **valeur €**
+à t0 (faute de nombre de parts). Tant qu'une position est dans cet état, **convertis-la en vraies
+parts** dès cette passe, pour que la valorisation live soit juste :
+- `cours_live` = prix actuel (FMP/Finnhub/web) du ticker.
+- nouvelle `quantity` = `valeur€_t0 / cours_live` ; nouveau `avg_cost` = `cours_live`.
+- La valeur de la ligne reste ≈ identique (on ne change pas l'exposition, juste la représentation).
+Si le cours d'un ticker est introuvable (ETF/européen), garde la ligne telle quelle et note-le.
+Une fois fait, les lignes ne sont plus en mode « seed » : ne reconvertis pas.
+
 ## PASSE 2 — Gestion du book IA (entrées/sorties)
 
 En appliquant **method §H** (sizing pondéré conviction × calibration, plafonds, plancher de cash
