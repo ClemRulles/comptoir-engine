@@ -169,3 +169,38 @@ critères, jusqu'à ce que confiance annoncée et réussite réelle se rejoignen
    (une « Haute » mal calibrée vaut une « Moyenne » dans le brief).
 3. Le brief cite ce qui a changé (« 🔧 Ce que je corrige ») : la correction est **publique**,
    donc traçable. Une erreur qui produit une leçon appliquée n'est pas une perte, c'est un edge.
+
+---
+
+## J. Catalyseurs datés — anticiper le connu, jamais deviner le surprise
+
+Le moteur est lent par choix (cadence hebdo) et **anti-réaction** : courir après un gros titre
+est un jeu perdant, le marché l'a pricé en minutes. Mais il y a un terrain sain entre « réagir »
+et « subir » : **anticiper les événements publics et datés**. C'est le rôle de `memory/catalysts.md`,
+rempli le lundi (Trend Radar §C) et re-validé le vendredi (Brief).
+
+**Ce qu'on note (uniquement) :** des dates au calendrier — FOMC, CPI/PCE, emploi, BCE, OPEP
+(macro) ; élections, échéances tarifaires/douanières, votes, deadlines (politique) ; FDA, antitrust
+(réglementaire) ; résultats de nos positions ou de la watchlist, IPO d'un thème (micro).
+**Ce qu'on ne note jamais :** « X pourrait annoncer Y ». Un catalyseur sans date au calendrier
+n'existe pas pour le moteur.
+
+**Deux usages, deux disciplines distinctes :**
+1. **Risque sur une position détenue** (gestion du risque, prioritaire). Un événement binaire
+   (résultats, décision tarifaire sur le secteur) sur un titre qu'on porte = on **réduit
+   l'incertitude** : alléger, ou simplement décider à l'avance la réaction (« si guidance coupée
+   → sortie »). Le but est de **ne pas se faire surprendre**, pas de parier sur l'issue.
+2. **Vent favorable à une thèse qu'on a déjà avec marge** (offensif, secondaire). Si le débat
+   (§D) a déjà validé un nom **avec marge de sécurité**, un catalyseur daté proche peut justifier
+   une **entrée tactique** : demi-taille (§G/§H), **date de l'événement = déclencheur de
+   décision/sortie**, stop serré. Le catalyseur est un *bonus de timing sur une bonne thèse*,
+   jamais la thèse elle-même.
+
+**Le test de survie lundi → vendredi.** Un catalyseur repéré lundi n'est joué que s'il **survit au
+vendredi** : toujours au calendrier (non annulé/déplacé), pas déjà pricé par le marché, et le
+régime + la valo laissent encore une marge. Sinon on n'y touche pas. Après l'événement, on le
+**score** (l'anticipation a-t-elle aidé ?) → leçon datée (§I) → archive. C'est une boucle
+d'apprentissage de plus, appliquée au *timing*, pas seulement au *choix de titre*.
+
+Garde-fou : un catalyseur **ne relève jamais** une confiance Basse en Haute, et ne contourne
+jamais la checklist bulle (§B). Un mauvais dossier avec un bon catalyseur reste un mauvais dossier.

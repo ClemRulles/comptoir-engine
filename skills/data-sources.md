@@ -48,7 +48,7 @@ Si une clé manque ou une API plafonne → bascule sur la recherche web native e
 
 | Routine | Sources principales |
 |---------|---------------------|
-| Lun · Trend Radar | FRED, FMP sector-performance, Finnhub IPO+earnings calendar, EDGAR full-text, web |
+| Lun · Trend Radar | FRED (+ release calendar), FMP sector-performance, Finnhub IPO+earnings calendar, EDGAR full-text, web (calendrier macro/politique → `catalysts.md`) |
 | Mar · Scout | FMP screener, Finnhub fundamentals+peers, web |
 | Mer · Deep-dive | EDGAR companyfacts, Finnhub financials, FMP ratios/DCF, web |
 | Jeu · Portfolio Doctor | Finnhub news+earnings, EDGAR 8-K, web |

@@ -24,5 +24,31 @@ valorisation indice, zones de bulle, largeur, macro en 3 lignes, sources).
 5. Note dans `memory/watchlist.md` les tickers « manières de la jouer » avec un tag
    `[tendance]` pour que le Scout de mardi les reprenne.
 
-Commit : `trend-radar: {date} — tendance: {nom ou AUCUNE}`.
+## Partie C — Calendrier des catalyseurs (anticiper le connu, pas deviner le surprise)
+But : repérer les **événements DATÉS et publics** des ~6 prochaines semaines qui peuvent bouger
+nos secteurs/titres, pour s'y préparer **avant**, jamais courir après une annonce surprise.
+On n'invente pas un catalyseur (« Trump pourrait dire X ») — on ne liste que des dates au calendrier.
+
+Sources (toutes gratuites) :
+- **Macro** : FRED release calendar + web → FOMC (décision + minutes), CPI/PCE, emploi (NFP),
+  réunions BCE/BoE, OPEP, réunions de banques centrales.
+- **Politique / réglementaire** : recherche web → élections, votes clés, **échéances tarifaires /
+  douanières**, deadlines budgétaires, décisions antitrust/FDA, expirations de moratoires.
+- **Micro** : Finnhub `/calendar/earnings` → dates de résultats de **nos positions** (`portfolio.md`,
+  `ai-fund.json`) et des noms de la watchlist ; `/calendar/ipo` pour les IPO d'un thème.
+
+Pour chaque événement retenu, juge : qu'est-ce qui bouge, le **sens du risque** (binaire / directionnel),
+et **comment se positionner proprement** (voir method §J). Écris/rafraîchis `memory/catalysts.md` :
+```
+# Calendrier des catalyseurs — maj {date}
+| Date | Événement | Type | Ce qui bouge (secteurs/tickers) | Sens du risque | Pré-positionnement | Confiance | Statut |
+```
+Règles : ajoute les événements qui entrent dans la fenêtre 6 semaines ; passe en `Statut: PASSÉ`
+ceux dont la date est dépassée (le vendredi les score puis les archive) ; **ne double pas** une
+ligne existante, mets-la à jour. Distingue bien *risque sur une position détenue* (gestion du
+risque : alléger/couvrir avant) de *catalyseur favorable à une thèse qu'on a déjà avec marge*
+(éventuel pari tactique, taillé §H, date de l'événement = déclencheur). Pas de pari directionnel
+sur le contenu d'une annonce surprise.
+
+Commit : `trend-radar: {date} — tendance: {nom ou AUCUNE}, {n} catalyseurs`.
 Reste léger : c'est un travail de tri et de validation, pas une analyse titre par titre.

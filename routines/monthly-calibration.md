@@ -1,6 +1,7 @@
-# MENSUEL — REVUE DE CALIBRATION (l'IA se corrige en profondeur)
-# Cron : 0 22 1 * *   ·   Modèle : Sonnet
-# (le 1er de chaque mois ; une nuit de plus, hors rotation Lun-Ven — reste léger côté Pro)
+# REVUE DE CALIBRATION PROFONDE (l'IA se corrige en profondeur)
+# ⚠️ PAS une routine planifiée séparée (on tient dans 5 tâches).
+# Invoquée PAR `routines/friday-brief.md` le **1er vendredi de chaque mois** (PASSE 1).
+# Modèle : Sonnet (s'exécute dans la nuit du vendredi, pas de nuit supplémentaire).
 
 Lis `CLAUDE.md`, `skills/engine-method.md` (§H sizing, §I calibration),
 `memory/fund/decisions.json`, `memory/fund/calibration.json`, `memory/lessons.md`.
