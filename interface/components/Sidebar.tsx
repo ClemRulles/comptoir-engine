@@ -18,12 +18,16 @@ const ICONS: Record<string, React.ReactNode> = {
   brief: (
     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm2 16H8v-2h8v2Zm0-4H8v-2h8v2Zm-3-5V3.5L18.5 9H13Z" />
   ),
+  bulb: (
+    <path d="M9 21h6v-1H9v1Zm3-19a7 7 0 0 0-4 12.74V17h8v-2.26A7 7 0 0 0 12 2Zm-1 16v-2h2v2h-2Z" />
+  ),
 };
 
 const LINKS = [
   { href: "/", label: "Tableau de bord", icon: "dash" },
   { href: "/groupe", label: "Fonds groupe", icon: "group" },
   { href: "/ia", label: "Fonds IA", icon: "ai" },
+  { href: "/propositions", label: "Propositions", icon: "bulb" },
   { href: "/brief", label: "Brief & tendance", icon: "brief" },
 ];
 
