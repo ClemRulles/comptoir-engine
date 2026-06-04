@@ -1,15 +1,16 @@
-import { getAppData } from "@/lib/data";
+import { getAppData, getClubData } from "@/lib/data";
 import { eur, pct } from "@/lib/fund";
 import { AllocationDonut } from "@/components/Charts";
 import { PerfChart } from "@/components/PerfChart";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { KpiCard, Delta, SectionTitle, Reveal } from "@/components/Kpi";
 import { HoldingsEditor } from "@/components/HoldingsEditor";
+import { MembersManager } from "@/components/MembersManager";
 
 export const dynamic = "force-dynamic";
 
 export default async function GroupePage() {
-  const data = await getAppData();
+  const [data, club] = await Promise.all([getAppData(), getClubData()]);
   const f = data.group;
   const slices = [
     ...f.holdings.map((h) => ({ name: h.ticker, value: h.marketValue })),
@@ -88,6 +89,17 @@ export default async function GroupePage() {
           </div>
         )}
         <HoldingsEditor />
+      </div>
+
+      <div>
+        <SectionTitle right={<span className="label">{eur(club.monthlyTotal)} / mois</span>}>
+          Membres &amp; apports
+        </SectionTitle>
+        <p className="mb-3 text-sm text-muted">
+          Ajoutez les membres du pot et enregistrez leurs apports (25 €/mois/personne par défaut).
+          Chaque apport augmente le cash du fonds — l&apos;IA reçoit la même somme pour rester à armes égales.
+        </p>
+        <MembersManager club={club} />
       </div>
     </div>
   );

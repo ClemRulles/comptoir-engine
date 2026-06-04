@@ -1,0 +1,4 @@
+{
+  "_doc": "Registre APPEND-ONLY des décisions de book IA CLÔTURÉES. La passe d'apprentissage du vendredi y ajoute une entrée à chaque position fermée. C'est l'historique sur lequel se calcule la calibration. Ne jamais réécrire le passé : on corrige par une nouvelle leçon, pas en effaçant. Schéma d'une entrée : { thesis_id, ticker, horizon (coeur|tactique), confidence (Haute|Moyenne|Basse), opened (YYYY-MM-DD), closed (YYYY-MM-DD), entry (prix moyen), exit (prix), realized_pnl_pct (nombre, ex 0.124 = +12.4%), outcome ('thèse confirmée'|'thèse cassée'|'neutre'), hit (true si le résultat valide la confiance annoncée), lesson (1 phrase actionnable) }.",
+  "decisions": []
+}

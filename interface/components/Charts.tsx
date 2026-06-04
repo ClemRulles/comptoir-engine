@@ -1,6 +1,18 @@
 "use client";
 
-import { Cell, Pie, PieChart, Tooltip } from "recharts";
+import {
+  Bar,
+  BarChart,
+  Cell,
+  Pie,
+  PieChart,
+  ReferenceLine,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+import type { CalibrationBucket } from "@/lib/types";
 
 const euro = (v: number) => `${Math.round(v).toLocaleString("fr-FR")} €`;
 
@@ -54,6 +66,61 @@ export function AllocationDonut({ slices }: { slices: { name: string; value: num
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+// Couleur du hit-rate : vert si la confiance est méritée, rouge si sur-confiance.
+const calibColor = (b: CalibrationBucket) => {
+  if (b.n === 0) return "#cbd5e1";
+  if (b.hit_rate >= 0.6) return "#16a34a";
+  if (b.hit_rate >= 0.45) return "#f59e0b";
+  return "#dc2626";
+};
+
+// Courbe de calibration : par niveau de confiance annoncé, le taux de réussite RÉEL.
+// Une IA honnête a des barres qui montent de Basse → Haute.
+export function CalibrationChart({ buckets }: { buckets: CalibrationBucket[] }) {
+  // Ordonne Basse → Moyenne → Haute (sens de lecture de la calibration).
+  const order = ["Basse", "Moyenne", "Haute"];
+  const data = [...buckets]
+    .sort((a, b) => order.indexOf(a.confidence) - order.indexOf(b.confidence))
+    .map((b) => ({ ...b, hitPct: Math.round(b.hit_rate * 100) }));
+
+  if (data.every((d) => d.n === 0)) {
+    return (
+      <div className="flex h-56 items-center justify-center text-sm text-muted">
+        Pas encore de décisions clôturées — la calibration apparaîtra ici.
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ width: "100%", height: 240 }}>
+      <ResponsiveContainer>
+        <BarChart data={data} margin={{ top: 16, right: 8, left: -16, bottom: 0 }}>
+          <XAxis dataKey="confidence" tickLine={false} axisLine={false} fontSize={12} stroke="#64748b" />
+          <YAxis
+            domain={[0, 100]}
+            tickFormatter={(v) => `${v}%`}
+            tickLine={false}
+            axisLine={false}
+            fontSize={12}
+            stroke="#94a3b8"
+          />
+          <ReferenceLine y={50} stroke="#cbd5e1" strokeDasharray="4 4" />
+          <Tooltip
+            cursor={{ fill: "rgba(148,163,184,0.08)" }}
+            contentStyle={{ background: "#fff", border: "1px solid #e7ebf1", borderRadius: 12 }}
+            formatter={(v: number, _n, p) => [`${v}% réussite · ${p.payload.n} décision(s)`, "Taux réel"]}
+          />
+          <Bar dataKey="hitPct" radius={[8, 8, 0, 0]} maxBarSize={64} isAnimationActive={false}>
+            {data.map((d) => (
+              <Cell key={d.confidence} fill={calibColor(d)} />
+            ))}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 }

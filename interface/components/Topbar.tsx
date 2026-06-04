@@ -9,6 +9,8 @@ const TITLES: Record<string, string> = {
   "/": "Tableau de bord",
   "/groupe": "Fonds du groupe",
   "/ia": "Fonds IA (fictif)",
+  "/apprentissages": "Apprentissages de l'IA",
+  "/propositions": "Propositions",
   "/brief": "Brief & tendance",
 };
 

@@ -1,8 +1,27 @@
 import { createClient } from "@/lib/supabase/server";
-import { fetchAiFund, fetchMemoryMarkdown } from "@/lib/github";
+import { fetchAiFund, fetchCalibration, fetchDecisions, fetchMemoryMarkdown } from "@/lib/github";
 import { fetchPrices } from "@/lib/prices";
-import { DEMO_AI, DEMO_BRIEF, DEMO_GROUP, DEMO_PRICES, demoSeries } from "@/lib/demo";
-import type { Fund, Holding, NavSnapshot } from "@/lib/types";
+import {
+  DEMO_AI,
+  DEMO_BRIEF,
+  DEMO_CALIBRATION,
+  DEMO_CONTRIBUTIONS,
+  DEMO_DECISIONS,
+  DEMO_GROUP,
+  DEMO_LESSONS,
+  DEMO_MEMBERS,
+  DEMO_PRICES,
+  demoSeries,
+} from "@/lib/demo";
+import type {
+  Calibration,
+  ClubMember,
+  Contribution,
+  Decision,
+  Fund,
+  Holding,
+  NavSnapshot,
+} from "@/lib/types";
 
 export interface EnrichedHolding {
   ticker: string;
@@ -123,7 +142,12 @@ export async function getAppData(): Promise<AppData> {
 
     const aiFile = await fetchAiFund();
     const aiPositions = aiFile?.positions ?? [];
-    const aiCash = aiFile?.cash ?? aiFundRow?.cash ?? aiFundRow?.start_capital ?? 0;
+
+    // Apports membres : le pot commun (group.cash) est déjà incrémenté à chaque apport.
+    // Le book IA reçoit la même somme pour rester à armes égales (cash de trading + apports cumulés).
+    const { data: contribData } = await supabase.from("contributions").select("amount");
+    const apportsTotal = (contribData ?? []).reduce((s, c) => s + Number(c.amount ?? 0), 0);
+    const aiCash = (aiFile?.cash ?? aiFundRow?.cash ?? aiFundRow?.start_capital ?? 0) + apportsTotal;
 
     const tickers = [...groupHoldings.map((h) => h.ticker), ...aiPositions.map((p) => p.ticker)];
     const prices = await fetchPrices(tickers);
@@ -186,4 +210,106 @@ export async function getAppData(): Promise<AppData> {
     // si la base n'est pas encore prête, on retombe proprement sur la démo
     return demoData();
   }
+}
+
+// ── Apprentissages de l'IA ────────────────────────────────────────────
+export interface LessonEntry {
+  date: string;
+  text: string;
+}
+
+export interface LearningData {
+  demo: boolean;
+  calibration: Calibration;
+  decisions: Decision[];
+  lessons: LessonEntry[];
+}
+
+// Extrait les lignes datées (YYYY-MM-DD · texte) de lessons.md, plus récentes d'abord.
+export function parseLessons(markdown: string): LessonEntry[] {
+  const out: LessonEntry[] = [];
+  for (const raw of markdown.split("\n")) {
+    const m = raw.match(/^\s*-?\s*(\d{4}-\d{2}-\d{2})\s*[·:\-–—]?\s*(.+)$/);
+    if (m && m[2].trim()) out.push({ date: m[1], text: m[2].trim() });
+  }
+  return out.sort((a, b) => b.date.localeCompare(a.date));
+}
+
+// ── Membres & apports ─────────────────────────────────────────────────
+export interface ClubData {
+  demo: boolean;
+  members: ClubMember[];
+  contributions: Contribution[];
+  monthlyPerMember: number;
+  activeMembers: number;
+  monthlyTotal: number; // activeMembers × monthlyPerMember
+  contributedTotal: number; // somme des apports enregistrés
+}
+
+function buildClub(
+  demo: boolean,
+  members: ClubMember[],
+  contributions: Contribution[],
+  monthlyPerMember: number
+): ClubData {
+  const active = members.filter((m) => m.active);
+  const monthlyTotal = active.reduce((s, m) => s + (m.monthly_amount || monthlyPerMember), 0);
+  return {
+    demo,
+    members,
+    contributions,
+    monthlyPerMember,
+    activeMembers: active.length,
+    monthlyTotal,
+    contributedTotal: contributions.reduce((s, c) => s + c.amount, 0),
+  };
+}
+
+export async function getClubData(): Promise<ClubData> {
+  if (!isConfigured()) {
+    return buildClub(true, DEMO_MEMBERS, DEMO_CONTRIBUTIONS, 25);
+  }
+  try {
+    const supabase = await createClient();
+    const [{ data: mem }, { data: contrib }, { data: setting }] = await Promise.all([
+      supabase.from("club_members").select("*").order("created_at", { ascending: true }),
+      supabase.from("contributions").select("*").order("ts", { ascending: false }).limit(100),
+      supabase.from("settings").select("value").eq("key", "monthly_per_member").maybeSingle(),
+    ]);
+    const members = (mem ?? []) as ClubMember[];
+    const byId = new Map(members.map((m) => [m.id, m.name]));
+    const contributions = ((contrib ?? []) as Contribution[]).map((c) => ({
+      ...c,
+      member_name: c.member_id ? byId.get(c.member_id) ?? null : null,
+    }));
+    const monthlyPerMember = Number(setting?.value ?? 25) || 25;
+    return buildClub(false, members, contributions, monthlyPerMember);
+  } catch {
+    return buildClub(true, DEMO_MEMBERS, DEMO_CONTRIBUTIONS, 25);
+  }
+}
+
+export async function getLearningData(): Promise<LearningData> {
+  if (!isConfigured()) {
+    return {
+      demo: true,
+      calibration: DEMO_CALIBRATION,
+      decisions: DEMO_DECISIONS,
+      lessons: parseLessons(DEMO_LESSONS),
+    };
+  }
+
+  const [calibration, decisions, lessonsMd] = await Promise.all([
+    fetchCalibration(),
+    fetchDecisions(),
+    fetchMemoryMarkdown("lessons.md"),
+  ]);
+
+  // Repli démo champ par champ si le repo n'a pas encore produit de données.
+  return {
+    demo: !calibration && !decisions && !lessonsMd,
+    calibration: calibration ?? DEMO_CALIBRATION,
+    decisions: decisions ?? DEMO_DECISIONS,
+    lessons: lessonsMd ? parseLessons(lessonsMd) : parseLessons(DEMO_LESSONS),
+  };
 }

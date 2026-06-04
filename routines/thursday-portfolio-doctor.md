@@ -14,13 +14,17 @@ Pour chaque position :
 4. Statut : `INTACT` / `À SURVEILLER` / `SORTIE` (sortie = règle touchée, thèse cassée,
    ou valorisation devenue extrême).
 
-Sortie → réécris la section « État » de `memory/portfolio.md` :
+Sortie → réécris la section « État » de `memory/portfolio.md` en **gardant les colonnes
+existantes** (Valeur, Poids, Depuis achat, Coût base) et en mettant à jour Statut / Règle de
+sortie / Vérifié le :
 ```
-# Portefeuille — état au {date}
-| Ticker | Taille % | Horizon | Statut | Raison (1 phrase) | Règle de sortie | Vérifié le |
+# Portefeuille du groupe — état au {date}
+| Ticker | Nom | Valeur € | Poids % | Depuis achat | Coût base € | Horizon | Statut | Règle de sortie | Vérifié le |
 ```
 Sous le tableau, 2-3 lignes d'explication pour chaque `SORTIE`/`À SURVEILLER` (repris
 dans le brief de vendredi). Ajoute une leçon si une thèse s'est confirmée ou cassée.
+Note : ces positions sont aussi le book hérité par l'IA (clone à t0) — cohérence avec
+`memory/fund/ai-fund.json`.
 
 Commit : `portfolio-doctor: {date} — {n} positions, {k} alertes`.
 Rappel : tu signales, tu ne vends pas. Le groupe décide.
