@@ -18,18 +18,20 @@ Paper trading d'abord. Ce n'est pas un conseil en investissement.
 | Mar | `tuesday-scout` | Sonnet | Sociétés cotées exposées à la tendance + filtres qualité |
 | Mer | `wednesday-deepdive` | **Opus** | Débat haussier/baissier sur 2-3 noms → conviction + confiance |
 | Jeu | `thursday-portfolio-doctor` | Sonnet | État de vos positions vs leur règle de sortie |
-| Ven | `friday-brief` | Sonnet | Synthèse + tendance packagée + revue hebdo |
+| Ven | `friday-brief` | Sonnet | Apprentissage (trades clôturés) + gestion du book IA + synthèse + revue hebdo |
+| 1er du mois | `monthly-calibration` | Sonnet | Revue de calibration : hit-rate par confiance → ajuste le sizing |
 
 Une nuit = un job léger → tu restes dans Pro. Opus n'est sollicité que le mercredi,
 sur 2-3 titres. Surveille Réglages → Usage la première semaine et ajuste les plafonds.
 
 Crons (à adapter à ton fuseau ; heures de nuit = hors throttling) :
 ```
-monday-trend-radar       0 22 * * 1
-tuesday-scout            0 22 * * 2
-wednesday-deepdive       0 22 * * 3
+monday-trend-radar        0 22 * * 1
+tuesday-scout             0 22 * * 2
+wednesday-deepdive        0 22 * * 3
 thursday-portfolio-doctor 0 22 * * 4
-friday-brief             0 22 * * 5
+friday-brief              0 22 * * 5
+monthly-calibration       0 22 1 * *
 ```
 
 ---
@@ -69,3 +71,26 @@ honnête qu'une tendance fabriquée.
 - Vos positions → `memory/portfolio.md` (export JSON de Comptoir, collé/synchronisé).
 - Le moteur → vous : `memory/morning-brief.md` chaque matin, `memory/trends.md` pour la
   tendance de la semaine, `memory/watchlist.md` au format prêt à importer dans Comptoir.
+
+---
+
+## Le fonds IA apprend de son passé
+
+Le book IA (`memory/fund/ai-fund.json`) est un portefeuille **fictif** qu'on cherche à faire
+**battre le groupe**. Sa boucle d'apprentissage :
+
+- Chaque vendredi, la routine **score les positions clôturées** (P&L réalisé, thèse
+  confirmée/cassée) → registre `memory/fund/decisions.json` + **leçons datées** dans
+  `memory/lessons.md`.
+- La **calibration** (`memory/fund/calibration.json`) suit le **hit-rate par niveau de confiance**.
+  Une IA honnête réussit *plus souvent* quand elle est « Haute » que « Basse ». Sinon la revue
+  mensuelle **réduit le sizing** du niveau mal calibré et **durcit ses critères** (method §H/§I).
+- L'interface expose tout ça dans l'onglet **« Apprentissages de l'IA »** (`/apprentissages`).
+
+### Départ à armes égales (seed clone-à-t0)
+Pour que la comparaison soit juste, l'IA **démarre avec le même capital + les mêmes positions**
+que le groupe :
+1. Encodez vos positions dans `memory/portfolio.md` (et via l'éditeur de l'interface).
+2. Tant que `ai-fund.json` a `seeded:false`, la **1re passe du vendredi** recopie ces positions,
+   aligne `start_capital`/`cash` sur votre pot commun, puis passe `seeded:true`.
+3. Ensuite l'IA **gère seule** selon ses convictions — on mesure qui surperforme.

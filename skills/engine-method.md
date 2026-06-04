@@ -105,3 +105,67 @@ faits priment en marché baissier.
   de catalyseur immédiat. On vend quand la thèse se casse, pas quand le prix bouge.
 - **Court terme (tactique)** : on exige un catalyseur daté + une règle de sortie
   serrée. Taille de position plus petite. La surchauffe est un risque, pas un feu vert.
+
+---
+
+## H. Gestion du book IA (sizing & risque) — pour battre le groupe, pas pour parier
+
+Le fonds IA est un vrai portefeuille (fictif) qu'on cherche à faire **surperformer** sans
+le faire sauter. Évaluer un titre (A-G) ne suffit pas : il faut **dimensionner** et **gérer
+le risque**. Règles, appliquées de façon cohérente :
+
+**Sizing — pondéré par conviction ET par calibration.**
+- Taille cible de base par niveau de confiance : **Haute ≈ 12 %**, **Moyenne ≈ 7 %**,
+  **Basse ≈ 3 %** du NAV. Le tactique (court terme) prend la **moitié** de ces tailles.
+- **Ajustement calibration** (lis `memory/fund/calibration.json`) : si le hit_rate réel d'un
+  bucket est nettement < à ce que la confiance prétend (ex. « Haute » qui ne réussit qu'à 45 %),
+  **réduis** la taille cible de ce bucket jusqu'à ce que la calibration revienne. L'IA gagne le
+  droit de parier gros en **prouvant** qu'elle a raison, pas en l'affirmant.
+
+**Plafonds (non négociables).**
+- **≤ 20 % du NAV** sur une seule position. **≤ 40 %** sur un même secteur/thème (ex. « infra IA »).
+- **Plancher de cash modulé par le régime** (lis `memory/market-regime.md`) : RISK-ON sain ≥ 5 %,
+  vigilance ≥ 15 %, surchauffe ≥ 30 %. En surchauffe on n'est jamais tout investi.
+
+**Sorties & stop (systématiques, écrits à l'entrée).**
+- Toute entrée fixe sa **règle de sortie** (`exit_rule`) et son **hypothèse pivot** AVANT l'achat.
+  Pas de règle de sortie = pas de position.
+- **Cœur** : on vend quand la **thèse casse** (pivot faux), pas sur un mouvement de prix.
+- **Tactique** : stop serré sur invalidation du catalyseur OU −15 à −20 % vs entrée, au plus tôt.
+- **On ne moyenne JAMAIS à la baisse une thèse cassée.** Ajouter ne se fait que si la thèse se
+  *renforce*, pas pour « réparer » une perte.
+
+**Garde-fou de drawdown.** Si le drawdown du book (vs son plus haut) dépasse **−15 %**, la passe
+suivante **réduit le risque** (remonte le cash, coupe d'abord les tactiques et les thèses les plus
+fragiles) avant toute nouvelle prise de risque. Survivre d'abord, performer ensuite.
+
+---
+
+## I. Calibration & apprentissage (la boucle qui rend l'IA meilleure)
+
+L'avantage de l'IA n'est pas de « deviner » : c'est de **tenir un registre honnête** et de
+**corriger** plus vite qu'un humain. Mécanique :
+
+**Scorer une décision clôturée.** Quand une position est fermée, écris une entrée dans
+`memory/fund/decisions.json` : `confidence` annoncée à l'entrée, `realized_pnl_pct`, `outcome`
+(« thèse confirmée / cassée / neutre ») et `hit` (la confiance était-elle méritée ?).
+- `hit = true` si : confiance **Haute/Moyenne** ET thèse confirmée (ou sortie disciplinée gagnante) ;
+  OU confiance **Basse** correctement traitée comme telle (petite taille, pas de casse).
+- `hit = false` si le baissier avait raison sur un point que le haussier avait « oublié »
+  (dossier unilatéral, cf. §D) — c'est l'erreur la plus instructive.
+
+**Recalculer la calibration** (`memory/fund/calibration.json`) : par bucket de confiance,
+`hit_rate = hits / n` et `avg_return`. Plus les `global` : win_rate, avg_win, avg_loss,
+**profit_factor** (= somme des gains / somme des pertes ; > 1.5 = sain), max_drawdown.
+
+**Honnêteté façon Brier.** Une IA bien calibrée a un hit_rate qui **croît** avec la confiance :
+Basse < Moyenne < Haute. Si ce n'est pas le cas, la confiance est du bruit → la passe mensuelle
+(`routines/monthly-calibration.md`) **rétrograde le sizing** du bucket fautif et **durcit** ses
+critères, jusqu'à ce que confiance annoncée et réussite réelle se rejoignent.
+
+**Boucle de feedback (concrète).**
+1. Vendredi : score les fermetures → leçons datées dans `lessons.md` → maj des 2 JSON.
+2. Mensuel : lis la calibration → ajuste les **tailles cibles §H** et le **ton des conseils**
+   (une « Haute » mal calibrée vaut une « Moyenne » dans le brief).
+3. Le brief cite ce qui a changé (« 🔧 Ce que je corrige ») : la correction est **publique**,
+   donc traçable. Une erreur qui produit une leçon appliquée n'est pas une perte, c'est un edge.

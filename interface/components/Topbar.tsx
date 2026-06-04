@@ -3,11 +3,14 @@
 import { usePathname } from "next/navigation";
 import { Brand } from "./Brand";
 import { LiveRefresher } from "./LiveRefresher";
+import { NotificationBell } from "./NotificationBell";
 
 const TITLES: Record<string, string> = {
   "/": "Tableau de bord",
   "/groupe": "Fonds du groupe",
   "/ia": "Fonds IA (fictif)",
+  "/apprentissages": "Apprentissages de l'IA",
+  "/propositions": "Propositions",
   "/brief": "Brief & tendance",
 };
 
@@ -24,6 +27,7 @@ export function Topbar({ demo }: { demo: boolean }) {
         <h1 className="hidden md:block text-lg font-bold tracking-tight">{title}</h1>
         <div className="ml-auto flex items-center gap-2">
           <LiveRefresher />
+          <NotificationBell />
           {demo && (
             <span className="chip bg-ai/10 text-ai">
               <span className="h-1.5 w-1.5 rounded-full bg-ai" /> Démo

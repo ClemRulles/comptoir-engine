@@ -1,55 +1,93 @@
-import type { AiFundFile } from "./types";
+import type { AiFundFile, Calibration, ClubMember, Contribution, Decision } from "./types";
 
 // Données de DÉMONSTRATION (affichées tant que Supabase n'est pas branché).
 // Clairement étiquetées « Démo » dans l'UI — remplacées par les vraies données en prod.
 
+// Cours = valeur actuelle de la ligne (quantité 1 par position → valeur = cours).
 export const DEMO_PRICES: Record<string, number> = {
-  NVDA: 135.4,
-  MSFT: 432.1,
-  ASML: 690.0,
-  VRT: 95.2,
-  TSM: 178.3,
-  CEG: 235.6,
+  "SAF.PA": 732.81,
+  "HO.PA": 723.41,
+  AMZN: 703.31,
+  NFLX: 632.58,
+  EIMI: 449.46,
+  AI: 436.31,
+  LOTB: 418.88,
+  BYD: 407.08,
+  CI2: 359.69,
+  "BNP.PA": 333.83,
+  "SGO.PA": 294.06,
+  SAP: 238.15,
+  NOVOB: 234.11,
+  MSTR: 200.39,
+  "RMS.PA": 145.18,
 };
+
+// Positions réelles du groupe (Trade Republic), encodées au 2026-06-04.
+// quantity 1 + avg_cost = coût base € → la perf par ligne reproduit le « depuis achat » TR.
+const REAL_BOOK = [
+  { ticker: "SAF.PA", quantity: 1, avg_cost: 805.20 },
+  { ticker: "HO.PA", quantity: 1, avg_cost: 805.04 },
+  { ticker: "AMZN", quantity: 1, avg_cost: 602.00 },
+  { ticker: "NFLX", quantity: 1, avg_cost: 742.03 },
+  { ticker: "EIMI", quantity: 1, avg_cost: 401.00 },
+  { ticker: "AI", quantity: 1, avg_cost: 402.54 },
+  { ticker: "LOTB", quantity: 1, avg_cost: 300.99 },
+  { ticker: "BYD", quantity: 1, avg_cost: 401.08 },
+  { ticker: "CI2", quantity: 1, avg_cost: 401.00 },
+  { ticker: "BNP.PA", quantity: 1, avg_cost: 252.00 },
+  { ticker: "SGO.PA", quantity: 1, avg_cost: 352.46 },
+  { ticker: "SAP", quantity: 1, avg_cost: 401.00 },
+  { ticker: "NOVOB", quantity: 1, avg_cost: 301.15 },
+  { ticker: "MSTR", quantity: 1, avg_cost: 402.00 },
+  { ticker: "RMS.PA", quantity: 1, avg_cost: 201.81 },
+];
 
 export const DEMO_GROUP = {
   name: "Fonds du groupe",
-  startCapital: 10000,
-  cash: 3213,
-  holdings: [
-    { ticker: "NVDA", quantity: 18, avg_cost: 92 },
-    { ticker: "MSFT", quantity: 5, avg_cost: 395 },
-    { ticker: "ASML", quantity: 2, avg_cost: 720 },
-    { ticker: "VRT", quantity: 22, avg_cost: 78 },
-  ],
+  startCapital: 6309.28,
+  cash: 0,
+  holdings: REAL_BOOK,
 };
 
+const AI_THESES: Record<string, string> = {
+  "SAF.PA": "Aéronautique + défense, qualité industrielle. Hérité du groupe à t0.",
+  "HO.PA": "Cycle défense européen structurel. Hérité du groupe à t0.",
+  AMZN: "AWS + levier marge retail/pub. Hérité du groupe à t0.",
+  NFLX: "Leader streaming, pricing power + pub. Hérité du groupe à t0.",
+  EIMI: "Diversification marchés émergents (ETF). Hérité du groupe à t0.",
+  AI: "Compounder gaz industriels, défensif. Hérité du groupe à t0.",
+  LOTB: "Marque premium (Biscoff), valo tendue. Hérité du groupe à t0.",
+  BYD: "Leader EV intégré verticalement. Hérité du groupe à t0.",
+  CI2: "Croissance structurelle Inde (ETF). Hérité du groupe à t0.",
+  "BNP.PA": "Banque diversifiée, valo basse. Hérité du groupe à t0.",
+  "SGO.PA": "Matériaux, levier rénovation. Cyclique. Hérité du groupe à t0.",
+  SAP: "Bascule cloud (RISE). Forte perte, à réévaluer. Hérité du groupe à t0.",
+  NOVOB: "Leader GLP-1, concurrence en hausse. Hérité du groupe à t0.",
+  MSTR: "Proxy bitcoin à levier, très volatil. Hérité du groupe à t0.",
+  "RMS.PA": "Luxe ultra-premium, pricing power. Hérité du groupe à t0.",
+};
+
+// Book IA = clone du groupe à t0 (mêmes positions, même coût base).
 export const DEMO_AI: AiFundFile = {
-  as_of: "2026-06-03",
-  start_capital: 10000,
-  cash: 2740,
-  positions: [
-    { ticker: "NVDA", quantity: 26, avg_cost: 90, thesis: "Cycle capex IA, pricing power datacenter." },
-    { ticker: "TSM", quantity: 18, avg_cost: 140, thesis: "Goulot d'étranglement fonderie, pioches & pelles." },
-    { ticker: "VRT", quantity: 15, avg_cost: 80, thesis: "Refroidissement/énergie datacenter — second ordre IA." },
-    { ticker: "CEG", quantity: 6, avg_cost: 200, thesis: "Électricité bas-carbone pour datacenters." },
-  ],
+  as_of: "2026-06-04",
+  seeded: true,
+  start_capital: 6309.28,
+  cash: 0,
+  positions: REAL_BOOK.map((h) => ({ ...h, thesis: AI_THESES[h.ticker] })),
   trades: [
-    { ts: "2026-05-29", side: "buy", ticker: "CEG", quantity: 6, price: 200, rationale: "Conviction haute : demande électrique IA." },
-    { ts: "2026-05-22", side: "buy", ticker: "VRT", quantity: 15, price: 80, rationale: "Exposition infra, valorisation raisonnable." },
-    { ts: "2026-05-15", side: "buy", ticker: "TSM", quantity: 18, price: 140, rationale: "Marge de sécurité vs pairs, catalyseur résultats." },
-    { ts: "2026-05-08", side: "buy", ticker: "NVDA", quantity: 26, price: 90, rationale: "Cœur de la tendance, confiance haute." },
+    { ts: "2026-06-04", side: "buy", ticker: "SEED", quantity: 0, price: 0, rationale: "SEED t0 : le book IA hérite des 15 positions du groupe à l'identique (course à armes égales). L'IA gère seule à partir d'ici." },
   ],
-  note: "Données de démonstration.",
+  note: "Données de démonstration — clone du groupe au 2026-06-04.",
 };
 
-// Série NAV JOURNALIÈRE déterministe (~400 jours) — l'IA finit devant le groupe.
+// Série NAV JOURNALIÈRE déterministe (~400 jours), centrée sur la NAV de seed (~6 309 €).
+// La course IA vs groupe démarre aujourd'hui : les deux fonds sont quasi confondus au départ.
 // Dates complètes YYYY-MM-DD pour permettre le filtre par période (1J/1S/1M/3M/1A/Max).
 export function demoSeries(): { date: string; group: number; ai: number }[] {
   const pts: { date: string; group: number; ai: number }[] = [];
-  const start = 10000;
-  const groupEnd = 11273;
-  const aiEnd = 12289;
+  const start = 6309;
+  const groupEnd = 6309;
+  const aiEnd = 6309;
   const N = 400;
   const today = new Date();
   for (let i = 0; i < N; i++) {
@@ -89,3 +127,56 @@ d'énergie signés, guidance relevée chez les équipementiers.
 
 ## En une phrase
 La meilleure façon de jouer l'IA cette semaine, c'est l'**énergie** qui l'alimente.`;
+
+// ── Données démo de l'onglet « Apprentissages de l'IA » ───────────────
+export const DEMO_DECISIONS: Decision[] = [
+  { thesis_id: "smci-2025q4", ticker: "SMCI", horizon: "tactique", confidence: "Haute", opened: "2025-11-03", closed: "2026-01-12", entry: 38, exit: 29, realized_pnl_pct: -0.237, outcome: "thèse cassée", hit: false, lesson: "Confiance Haute sur un momentum parabolique : le baissier (gouvernance, marges) avait raison. Trop gros, trop tôt." },
+  { thesis_id: "asml-cycle", ticker: "ASML", horizon: "coeur", confidence: "Haute", opened: "2025-09-15", closed: "2026-02-28", entry: 620, exit: 712, realized_pnl_pct: 0.148, outcome: "thèse confirmée", hit: true, lesson: "Monopole EUV + carnet de commandes : thèse cœur qui tient. La marge de sécurité a payé." },
+  { thesis_id: "vrt-secondordre", ticker: "VRT", horizon: "coeur", confidence: "Moyenne", opened: "2025-10-20", closed: "2026-03-10", entry: 78, exit: 96, realized_pnl_pct: 0.231, outcome: "thèse confirmée", hit: true, lesson: "Pioches & pelles (refroidissement datacenter) : meilleur rapport risque/rendement que le nom parabolique." },
+  { thesis_id: "pltr-valo", ticker: "PLTR", horizon: "tactique", confidence: "Basse", opened: "2025-12-01", closed: "2026-01-20", entry: 71, exit: 66, realized_pnl_pct: -0.07, outcome: "neutre", hit: true, lesson: "Confiance Basse correctement traitée : petite taille, stop respecté, perte limitée. Pas d'erreur de process." },
+  { thesis_id: "tsm-marge", ticker: "TSM", horizon: "coeur", confidence: "Moyenne", opened: "2025-08-12", closed: "2026-02-05", entry: 140, exit: 168, realized_pnl_pct: 0.20, outcome: "thèse confirmée", hit: true, lesson: "Goulot fonderie + valo vs pairs raisonnable : catalyseur résultats joué proprement." },
+  { thesis_id: "arm-hype", ticker: "ARM", horizon: "tactique", confidence: "Haute", opened: "2025-11-18", closed: "2026-01-30", entry: 145, exit: 132, realized_pnl_pct: -0.09, outcome: "thèse cassée", hit: false, lesson: "Encore une Haute sur une valo tendue : narratif > chiffres. Le bucket Haute est sur-confiant → sizing réduit." },
+];
+
+export const DEMO_CALIBRATION: Calibration = {
+  updated: "2026-03-31",
+  buckets: [
+    { confidence: "Haute", n: 3, hits: 1, hit_rate: 0.33, avg_return: -0.033 },
+    { confidence: "Moyenne", n: 2, hits: 2, hit_rate: 1.0, avg_return: 0.216 },
+    { confidence: "Basse", n: 1, hits: 1, hit_rate: 1.0, avg_return: -0.07 },
+  ],
+  global: {
+    closed_decisions: 6,
+    win_rate: 0.5,
+    avg_win: 0.193,
+    avg_loss: -0.132,
+    profit_factor: 1.46,
+    max_drawdown: -0.118,
+  },
+};
+
+// ── Membres & apports (démo) ──────────────────────────────────────────
+export const DEMO_MEMBERS: ClubMember[] = [
+  { id: "m1", name: "Clément", joined_on: "2025-09-01", monthly_amount: 25, active: true },
+  { id: "m2", name: "Henri", joined_on: "2025-09-01", monthly_amount: 25, active: true },
+  { id: "m3", name: "Alex", joined_on: "2025-11-01", monthly_amount: 25, active: true },
+  { id: "m4", name: "Sam", joined_on: "2026-02-01", monthly_amount: 25, active: true },
+];
+
+export const DEMO_CONTRIBUTIONS: Contribution[] = [
+  { id: "c1", member_id: "m1", member_name: "Clément", ts: "2026-05-01", amount: 25, note: "Apport mensuel" },
+  { id: "c2", member_id: "m2", member_name: "Henri", ts: "2026-05-01", amount: 25, note: "Apport mensuel" },
+  { id: "c3", member_id: "m3", member_name: "Alex", ts: "2026-05-01", amount: 25, note: "Apport mensuel" },
+  { id: "c4", member_id: "m4", member_name: "Sam", ts: "2026-05-01", amount: 50, note: "Rattrapage + mensuel" },
+];
+
+export const DEMO_LESSONS = `# Journal d'apprentissage
+
+## Leçons vives
+
+2026-03-31 · CALIBRATION · Le bucket « Haute » ne réussit qu'à 33 % (vs 100 % pour « Moyenne ») → taille cible Haute réduite de 12 % à 8 % du NAV, critères « Haute » durcis (valo tendue exclue).
+2026-03-10 · VRT · Thèse pioches & pelles confirmée (+23 %) → privilégier le second ordre quand le nom direct est parabolique.
+2026-02-28 · ASML · Thèse cœur confirmée (+15 %) : monopole EUV, la marge de sécurité a payé. La patience sur le cœur est un edge.
+2026-01-30 · ARM · Haute sur valo tendue, cassée (−9 %) : narratif > chiffres. 2e Haute fautive du trimestre → problème de calibration, pas de malchance.
+2026-01-20 · PLTR · Confiance Basse bien gérée : petite taille, stop respecté. Le process protège même quand on a tort.
+2026-01-12 · SMCI · Haute sur momentum parabolique, cassée (−24 %) : le baissier (gouvernance) avait raison. Ne jamais sizer gros sur un momentum non confirmé par les bénéfices.`;

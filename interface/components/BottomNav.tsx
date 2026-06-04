@@ -14,12 +14,20 @@ const ICONS: Record<string, React.ReactNode> = {
   brief: (
     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm2 16H8v-2h8v2Zm0-4H8v-2h8v2Zm-3-5V3.5L18.5 9H13Z" />
   ),
+  bulb: (
+    <path d="M9 21h6v-1H9v1Zm3-19a7 7 0 0 0-4 12.74V17h8v-2.26A7 7 0 0 0 12 2Zm-1 16v-2h2v2h-2Z" />
+  ),
+  learn: (
+    <path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3Zm-6 9.18v3.5L12 19l6-3.32v-3.5L12 15l-6-2.82Z" />
+  ),
 };
 
 const LINKS = [
   { href: "/", label: "Accueil", icon: "dash" },
   { href: "/groupe", label: "Groupe", icon: "group" },
   { href: "/ia", label: "IA", icon: "ai" },
+  { href: "/apprentissages", label: "Appr.", icon: "learn" },
+  { href: "/propositions", label: "Idées", icon: "bulb" },
   { href: "/brief", label: "Brief", icon: "brief" },
 ];
 
@@ -32,19 +40,19 @@ export function BottomNav() {
       className="md:hidden fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 backdrop-blur"
       style={{ paddingBottom: "max(env(safe-area-inset-bottom), 0px)" }}
     >
-      <div className="grid grid-cols-4">
+      <div className="grid grid-cols-6">
         {LINKS.map((l) => {
           const active = l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
           return (
             <Link
               key={l.href}
               href={l.href}
-              className={`flex flex-col items-center gap-1 py-2.5 text-[11px] font-medium transition-colors ${
+              className={`flex flex-col items-center gap-1 py-2.5 text-[10px] font-medium transition-colors ${
                 active ? "text-brand-600" : "text-muted"
               }`}
             >
               <span
-                className={`flex h-8 w-12 items-center justify-center rounded-full transition-colors ${
+                className={`flex h-8 w-11 items-center justify-center rounded-full transition-colors ${
                   active ? "bg-brand/10" : ""
                 }`}
               >

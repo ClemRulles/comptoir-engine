@@ -29,7 +29,14 @@ export async function GET(request: NextRequest) {
   const groupHoldings = (ghData ?? []) as Holding[];
   const aiFund = await fetchAiFund();
   const aiPositions = aiFund?.positions ?? [];
-  const aiCash = aiFund?.cash ?? ai.cash ?? ai.start_capital;
+
+  // Apports membres reflétés dans le book IA (mêmes apports que le groupe).
+  const { data: contribData } = await supabase.from("contributions").select("amount");
+  const apportsTotal = ((contribData ?? []) as { amount: number }[]).reduce(
+    (s, c) => s + Number(c.amount ?? 0),
+    0
+  );
+  const aiCash = (aiFund?.cash ?? ai.cash ?? ai.start_capital) + apportsTotal;
 
   const tickers = [
     ...groupHoldings.map((h) => h.ticker),

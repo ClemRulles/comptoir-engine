@@ -1,0 +1,17 @@
+{
+  "_doc": "Agrégats recalculés à chaque passe (vendredi + revue mensuelle) à partir de decisions.json. 'buckets' = un objet par niveau de confiance annoncé : n (décisions clôturées), hits (résultats qui valident la confiance), hit_rate (hits/n), avg_return (rendement réalisé moyen). 'global' = stats du book IA. Une IA bien calibrée a un hit_rate qui CROÎT avec la confiance (Basse < Moyenne < Haute) ; sinon la passe mensuelle corrige le sizing (method §I).",
+  "updated": "2026-06-03",
+  "buckets": [
+    { "confidence": "Haute", "n": 0, "hits": 0, "hit_rate": 0, "avg_return": 0 },
+    { "confidence": "Moyenne", "n": 0, "hits": 0, "hit_rate": 0, "avg_return": 0 },
+    { "confidence": "Basse", "n": 0, "hits": 0, "hit_rate": 0, "avg_return": 0 }
+  ],
+  "global": {
+    "closed_decisions": 0,
+    "win_rate": 0,
+    "avg_win": 0,
+    "avg_loss": 0,
+    "profit_factor": 0,
+    "max_drawdown": 0
+  }
+}

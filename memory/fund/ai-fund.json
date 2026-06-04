@@ -1,8 +1,27 @@
 {
-  "as_of": "2026-06-03",
-  "start_capital": 1000,
-  "cash": 1000,
-  "positions": [],
-  "trades": [],
-  "note": "Book fictif (paper) géré par la routine du vendredi. 100% fictif — aucun ordre réel. Le capital de départ et le cash doivent être alignés sur le pot commun du groupe (à ajuster). Démarre 100% cash ; le vendredi alloue selon les convictions validées."
+  "as_of": "2026-06-04",
+  "seeded": true,
+  "start_capital": 6309.28,
+  "cash": 0,
+  "positions": [
+    { "ticker": "SAF.PA", "quantity": 1, "avg_cost": 805.20, "confidence": "Moyenne", "horizon": "coeur", "thesis_id": "saf-aero", "entry_date": "2026-06-04", "target": null, "exit_rule": "thèse cassée si cycle aéro/MRO se retourne", "thesis": "Aéronautique + défense, qualité industrielle. Hérité du groupe à t0." },
+    { "ticker": "HO.PA", "quantity": 1, "avg_cost": 805.04, "confidence": "Moyenne", "horizon": "coeur", "thesis_id": "ho-defense", "entry_date": "2026-06-04", "target": null, "exit_rule": "sortie si budgets défense EU décélèrent nettement", "thesis": "Cycle défense européen structurel. Hérité du groupe à t0." },
+    { "ticker": "AMZN", "quantity": 1, "avg_cost": 602.00, "confidence": "Haute", "horizon": "coeur", "thesis_id": "amzn-aws", "entry_date": "2026-06-04", "target": null, "exit_rule": "sortie si croissance AWS + marge retail se cassent", "thesis": "AWS + levier marge retail/pub. Hérité du groupe à t0." },
+    { "ticker": "NFLX", "quantity": 1, "avg_cost": 742.03, "confidence": "Moyenne", "horizon": "coeur", "thesis_id": "nflx-pricing", "entry_date": "2026-06-04", "target": null, "exit_rule": "sortie si stagnation abonnés + pricing power perdu", "thesis": "Leader streaming, pricing power + pub. Hérité du groupe à t0." },
+    { "ticker": "EIMI", "quantity": 1, "avg_cost": 401.00, "confidence": "Moyenne", "horizon": "coeur", "thesis_id": "em-etf", "entry_date": "2026-06-04", "target": null, "exit_rule": "rebalancement, pas de thèse single-stock", "thesis": "Diversification marchés émergents (ETF). Hérité du groupe à t0." },
+    { "ticker": "AI", "quantity": 1, "avg_cost": 402.54, "confidence": "Haute", "horizon": "coeur", "thesis_id": "airliquide-compounder", "entry_date": "2026-06-04", "target": null, "exit_rule": "sortie si ROIC/volumes se dégradent durablement", "thesis": "Compounder gaz industriels, défensif. Hérité du groupe à t0." },
+    { "ticker": "LOTB", "quantity": 1, "avg_cost": 300.99, "confidence": "Moyenne", "horizon": "coeur", "thesis_id": "lotus-quality", "entry_date": "2026-06-04", "target": null, "exit_rule": "alléger si DCF inversé devient irréaliste (valo tendue)", "thesis": "Marque premium (Biscoff), croissance + marge. Valo tendue. Hérité du groupe à t0." },
+    { "ticker": "BYD", "quantity": 1, "avg_cost": 401.08, "confidence": "Moyenne", "horizon": "coeur", "thesis_id": "byd-ev", "entry_date": "2026-06-04", "target": null, "exit_rule": "sortie si guerre des prix EV écrase les marges", "thesis": "Leader EV intégré verticalement. Hérité du groupe à t0." },
+    { "ticker": "CI2", "quantity": 1, "avg_cost": 401.00, "confidence": "Moyenne", "horizon": "coeur", "thesis_id": "india-etf", "entry_date": "2026-06-04", "target": null, "exit_rule": "rebalancement, exposition macro Inde", "thesis": "Croissance structurelle Inde (ETF swap). Hérité du groupe à t0." },
+    { "ticker": "BNP.PA", "quantity": 1, "avg_cost": 252.00, "confidence": "Moyenne", "horizon": "coeur", "thesis_id": "bnp-bank", "entry_date": "2026-06-04", "target": null, "exit_rule": "sortie si taux/risque crédit cassent la thèse banque", "thesis": "Banque diversifiée, valo basse, +32% depuis achat. Hérité du groupe à t0." },
+    { "ticker": "SGO.PA", "quantity": 1, "avg_cost": 352.46, "confidence": "Basse", "horizon": "coeur", "thesis_id": "saintgobain-cyclique", "entry_date": "2026-06-04", "target": null, "exit_rule": "sortie si cycle construction/rénovation se retourne", "thesis": "Matériaux, levier rénovation énergétique. Cyclique. Hérité du groupe à t0." },
+    { "ticker": "SAP", "quantity": 1, "avg_cost": 401.00, "confidence": "Moyenne", "horizon": "coeur", "thesis_id": "sap-cloud", "entry_date": "2026-06-04", "target": null, "exit_rule": "revoir la thèse cloud/RISE — grosse moins-value (−41%)", "thesis": "Bascule cloud (RISE). Position en forte perte, thèse à réévaluer. Hérité du groupe à t0." },
+    { "ticker": "NOVOB", "quantity": 1, "avg_cost": 301.15, "confidence": "Moyenne", "horizon": "coeur", "thesis_id": "novo-glp1", "entry_date": "2026-06-04", "target": null, "exit_rule": "réévaluer : thèse GLP-1 sous pression concurrence", "thesis": "Leader GLP-1 (obésité/diabète). Concurrence en hausse, −22%. Hérité du groupe à t0." },
+    { "ticker": "MSTR", "quantity": 1, "avg_cost": 402.00, "confidence": "Basse", "horizon": "tactique", "thesis_id": "mstr-btc", "entry_date": "2026-06-04", "target": null, "exit_rule": "stop si prime sur NAV bitcoin s'effondre — très volatil (−50%)", "thesis": "Proxy bitcoin à effet de levier. Risque élevé, plus grosse perte du book. Hérité du groupe à t0." },
+    { "ticker": "RMS.PA", "quantity": 1, "avg_cost": 201.81, "confidence": "Haute", "horizon": "coeur", "thesis_id": "hermes-luxe", "entry_date": "2026-06-04", "target": null, "exit_rule": "sortie si pricing power / désir de marque faiblit", "thesis": "Luxe ultra-premium, pricing power exceptionnel. Hérité du groupe à t0." }
+  ],
+  "trades": [
+    { "ts": "2026-06-04", "side": "buy", "ticker": "SEED", "quantity": 0, "price": 0, "confidence": "Moyenne", "horizon": "coeur", "thesis_id": "t0-clone", "rationale": "SEED t0 : le book IA hérite des 15 positions du groupe à l'identique (clone à armes égales). À partir d'ici l'IA gère seule selon ses convictions (method §H)." }
+  ],
+  "note": "Book CLONÉ depuis le groupe au 2026-06-04 (course dès aujourd'hui). start_capital = NAV des positions à t0 (6309,28 €), cash = 0 (les apports membres l'alimenteront). Chaque position porte sa confidence/horizon/exit_rule pour rendre l'apprentissage mesurable. quantity=1 + avg_cost = coût base € hérité du groupe (1 lot par ligne) ; le moteur refetch les cours live pour valoriser. La 1re passe du vendredi peut rebalancer selon les convictions validées."
 }

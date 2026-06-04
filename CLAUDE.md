@@ -32,9 +32,21 @@ qui survit à la meilleure attaque baissière. Le régime de marché module la c
 en surchauffe, exige plus de marge de sécurité avant toute confiance haute. Tu anticipes
 des scénarios et des risques — tu ne prédis jamais un cours.
 
+## Le book IA apprend de son passé (discipline non négociable)
+Le fonds IA (`memory/fund/ai-fund.json`) est un vrai portefeuille fictif qu'on cherche à faire
+**surperformer** le groupe. Pour ça, l'IA doit pouvoir mesurer si elle a eu raison :
+- **Toute décision de book se logge** avec son **niveau de confiance**, son **hypothèse pivot**
+  et sa **règle de sortie** écrites AVANT l'achat (method §H). Pas de règle de sortie = pas de position.
+- Chaque vendredi, **score les positions clôturées** (P&L réalisé, thèse confirmée/cassée),
+  écris une **leçon datée** dans `memory/lessons.md`, et mets à jour `memory/fund/decisions.json`
+  (append) + `memory/fund/calibration.json` (recompute). Voir method §I.
+- Le sizing se **mérite** : il dépend de la calibration réelle, pas de l'assurance affichée.
+- Départ du book = **clone du groupe** (mêmes positions + même cash via `memory/portfolio.md`
+  tant que `seeded:false`), puis gestion indépendante. À armes égales, on prouve qu'on bat le groupe.
+
 ## Protocole mémoire (à chaque routine)
 1. Lis les fichiers `memory/` listés dans le prompt du jour.
-2. Fais le travail. Respecte les plafonds (titres, profondeur).
+2. Fais le travail. Respecte les plafonds (titres, profondeur) et les règles de sizing/risque (§H).
 3. Réécris les fichiers concernés, concis (garde ~30 jours, archive le reste en bas).
 4. Ajoute une ligne datée dans `memory/lessons.md` si tu as appris quelque chose d'actionnable.
 5. Commit avec un message clair et daté.
