@@ -16,13 +16,13 @@ Paper trading d'abord. Ce n'est pas un conseil en investissement.
 |------|---------|--------|--------------------|
 | Lun | `monday-trend-radar` | Sonnet | Régime de marché + **LA tendance de la semaine** (validée ou « aucune ») |
 | Mar | `tuesday-scout` | Sonnet | Sociétés cotées exposées à la tendance + filtres qualité |
-| Mer | `wednesday-deepdive` | **Opus** | Débat haussier/baissier sur 2-3 noms → conviction + confiance |
-| Jeu | `thursday-portfolio-doctor` | Sonnet | État de vos positions vs leur règle de sortie |
-| Ven | `friday-brief` | Sonnet | Apprentissage (trades clôturés) + gestion du book IA + synthèse + revue hebdo |
-| 1er du mois | `monthly-calibration` | Sonnet | Revue de calibration : hit-rate par confiance → ajuste le sizing |
+| Mer | `wednesday-deepdive` | **Opus** | Débat haussier/baissier sur ≤3 candidats **+ revue de risque Opus de ≤2 positions du book IA** |
+| Jeu | `thursday-portfolio-doctor` | Sonnet | État des **deux books** (groupe + IA) vs leur règle de sortie |
+| Ven | `friday-brief` | Sonnet | Apprentissage + gestion du book IA + synthèse + revue hebdo ; **1er vendredi du mois = calibration profonde** |
 
-Une nuit = un job léger → tu restes dans Pro. Opus n'est sollicité que le mercredi,
-sur 2-3 titres. Surveille Réglages → Usage la première semaine et ajuste les plafonds.
+**5 tâches planifiées, point.** La revue de calibration mensuelle n'est PAS une 6ᵉ tâche : elle
+est repliée dans le `friday-brief` du 1er vendredi du mois. Opus n'est sollicité que le mercredi
+(≤5 titres : ≤3 candidats + ≤2 positions du book). Surveille Réglages → Usage la 1re semaine.
 
 Crons (à adapter à ton fuseau ; heures de nuit = hors throttling) :
 ```
@@ -31,7 +31,6 @@ tuesday-scout             0 22 * * 2
 wednesday-deepdive        0 22 * * 3
 thursday-portfolio-doctor 0 22 * * 4
 friday-brief              0 22 * * 5
-monthly-calibration       0 22 1 * *
 ```
 
 ---

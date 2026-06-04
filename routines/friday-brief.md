@@ -41,6 +41,12 @@ semaine d'après le Portfolio Doctor) :
 
 S'il n'y a eu aucune fermeture, écris-le et ne fabrique pas de leçon.
 
+**Si c'est le 1er vendredi du mois → fais aussi la revue de calibration PROFONDE** décrite dans
+`routines/monthly-calibration.md` (recompute sur TOUT l'historique de `decisions.json`, test
+d'honnêteté Brier Basse < Moyenne < Haute, patterns par type de thèse, ajustement explicite du
+sizing §H si un bucket est mal calibré, bloc daté `CALIBRATION` dans `lessons.md`). Les autres
+vendredis, la calibration reste hebdo (légère) : juste le recompute des buckets ci-dessus.
+
 ---
 
 ## PASSE 1bis — Normalisation du seed (une seule fois)
@@ -57,7 +63,12 @@ Une fois fait, les lignes ne sont plus en mode « seed » : ne reconvertis pas.
 ## PASSE 2 — Gestion du book IA (entrées/sorties)
 
 En appliquant **method §H** (sizing pondéré conviction × calibration, plafonds, plancher de cash
-selon le régime, garde-fou drawdown) et en partant des `convictions.md` validées cette semaine :
+selon le régime, garde-fou drawdown). **Ordre des sources** :
+1. Exécute d'abord les **verdicts Opus du mercredi** (bloc `## Revue book IA` de `convictions.md` :
+   RENFORCER / GARDER / ALLÉGER / SORTIR) et les **alertes du jeudi** (bloc `## Alertes book IA`
+   de `portfolio.md`). Ce sont des décisions déjà instruites — applique-les en priorité.
+2. Puis traite les nouvelles `convictions.md` (candidats ★ analysés mercredi).
+
 - **Sorties** d'abord : toute position dont la règle de sortie est touchée ou la thèse cassée.
 - **Entrées** ensuite : alloue le cash disponible aux meilleures convictions, **taille selon §H**.
 - **Chaque trade est loggé** dans `ai-fund.json.trades` avec `side, ticker, quantity, price,
