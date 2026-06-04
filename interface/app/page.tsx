@@ -1,17 +1,18 @@
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { getAppData } from "@/lib/data";
+import { getActivity, getAppData } from "@/lib/data";
 import { eur, pct } from "@/lib/fund";
 import { PerfChart } from "@/components/PerfChart";
 import { AllocationDonut } from "@/components/Charts";
+import { ActivityFeed } from "@/components/ActivityFeed";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { KpiCard, Delta, SectionTitle, Reveal } from "@/components/Kpi";
 
 export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
-  const data = await getAppData();
+  const [data, activity] = await Promise.all([getAppData(), getActivity(6)]);
   const { group, ai } = data;
   const spread = ai.perf - group.perf;
   const leader = Math.abs(spread) < 0.0001 ? "Égalité" : spread > 0 ? "L'IA mène" : "Le groupe mène";
@@ -118,6 +119,20 @@ export default async function DashboardPage() {
           </div>
         </Reveal>
       </div>
+
+      <Reveal delay={150}>
+        <div className="card-p">
+          <SectionTitle right={<span className="text-xs text-muted">derniers changements réalisés</span>}>
+            Activité récente
+          </SectionTitle>
+          <ActivityFeed
+            ai={activity.ai}
+            group={activity.group}
+            aiNav={ai.nav}
+            groupNav={group.nav}
+          />
+        </div>
+      </Reveal>
 
       <p className="text-center text-xs text-muted">
         Valeurs à des fins de comparaison. Paper trading — aucun ordre réel n&apos;est passé.

@@ -58,6 +58,32 @@ export interface NavSnapshot {
 export type Confidence = "Haute" | "Moyenne" | "Basse";
 export type Horizon = "coeur" | "tactique";
 
+// memory/catalysts.md — calendrier des événements datés (rempli le lundi, re-validé le vendredi).
+export interface CatalystRow {
+  date: string;        // "2026-06-18" ou texte libre si non normalisé
+  event: string;
+  type: string;        // Macro | Politique | Réglementaire | Micro
+  affects: string;     // secteurs / tickers concernés
+  risk: string;        // binaire | directionnel
+  positioning: string; // pré-positionnement / posture
+  confidence: string;  // Haute | Moyenne | Basse | —
+  status: string;      // À surveiller | ACTIF | PASSÉ
+}
+
+// Mouvement réalisé (achat/vente) d'un des deux fonds, pour le flux d'activité.
+export interface ActivityItem {
+  fund: "ai" | "group";
+  ts: string;
+  side: "buy" | "sell";
+  ticker: string;
+  quantity: number;
+  price: number;
+  amount: number;            // quantity × price (montant de l'opération)
+  weightPct?: number | null; // part du fonds que représente l'opération, si connue
+  rationale?: string | null;
+  confidence?: Confidence;
+}
+
 // Shape of memory/fund/ai-fund.json maintained by the Friday routine.
 export interface AiFundFile {
   as_of: string;

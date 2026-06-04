@@ -180,3 +180,35 @@ export const DEMO_LESSONS = `# Journal d'apprentissage
 2026-01-30 · ARM · Haute sur valo tendue, cassée (−9 %) : narratif > chiffres. 2e Haute fautive du trimestre → problème de calibration, pas de malchance.
 2026-01-20 · PLTR · Confiance Basse bien gérée : petite taille, stop respecté. Le process protège même quand on a tort.
 2026-01-12 · SMCI · Haute sur momentum parabolique, cassée (−24 %) : le baissier (gouvernance) avait raison. Ne jamais sizer gros sur un momentum non confirmé par les bénéfices.`;
+
+// ── Calendrier des catalyseurs (démo) — même format que memory/catalysts.md ──
+export const DEMO_CATALYSTS = `# Calendrier des catalyseurs
+
+## Catalyseurs à venir
+
+| Date | Événement | Type | Ce qui bouge (secteurs/tickers) | Sens du risque | Pré-positionnement | Confiance | Statut |
+|------|-----------|------|--------------------------------|----------------|--------------------|-----------|--------|
+| 2026-06-12 | Emploi US (NFP) | Macro | taux, growth/tech, banques | binaire | rien — on observe la réaction des taux | Moyenne | À surveiller |
+| 2026-06-18 | Décision FOMC (taux) | Macro | growth, REIT, or, USD | binaire | on tient déjà AMZN/SAP avec marge : garder, pas de pari directionnel | Moyenne | À surveiller |
+| 2026-06-24 | Résultats NOVOB | Micro | NOVOB (GLP-1) | binaire | position détenue : risque guidance — alléger avant si le doute persiste | Haute | ACTIF |
+| 2026-07-01 | Échéance tarifaire UE–US | Politique | auto, SGO.PA, industriels | directionnel | exposition cyclique : surveiller SGO.PA, stop défini | Basse | À surveiller |
+| 2026-07-09 | Résultats NFLX | Micro | NFLX | binaire | cœur, on garde ; le baissier surveille le coût d'acquisition | Moyenne | À surveiller |
+
+## Archives (événements passés + ce qu'on en a tiré)
+
+| 2026-05-28 | Résultats AMZN | Micro | AMZN | binaire | anticipé : guidance AWS solide, thèse confirmée → gardé | Haute | PASSÉ |
+`;
+
+// Mouvements récents du book IA (démo) — pour illustrer le flux d'activité.
+export const DEMO_AI_TRADES = [
+  { ts: "2026-06-04", side: "buy" as const, ticker: "VRT", quantity: 6, price: 96.0, rationale: "Pioches & pelles de l'infra IA (refroidissement) — meilleur risque/rendement que le nom direct.", confidence: "Moyenne" as const },
+  { ts: "2026-06-04", side: "sell" as const, ticker: "MSTR", quantity: 1, price: 200.39, rationale: "Allègement proxy bitcoin à levier : trop volatil pour la taille héritée.", confidence: "Basse" as const },
+  { ts: "2026-05-30", side: "buy" as const, ticker: "ASML", quantity: 1, price: 712.0, rationale: "Monopole EUV + carnet de commandes, marge de sécurité après repli.", confidence: "Haute" as const },
+];
+
+// Trades récents du groupe (démo) — saisis via l'interface par les membres.
+export const DEMO_GROUP_TRADES = [
+  { ts: "2026-06-03", side: "buy" as const, ticker: "AMZN", quantity: 1, price: 602.0, rationale: "Renfort avant résultats AWS — saisi par un membre." },
+  { ts: "2026-05-20", side: "sell" as const, ticker: "MSTR", quantity: 1, price: 415.0, rationale: "Prise de bénéfice partielle, volatilité bitcoin." },
+  { ts: "2026-05-12", side: "buy" as const, ticker: "RMS.PA", quantity: 1, price: 201.81, rationale: "Initiation luxe premium." },
+];
