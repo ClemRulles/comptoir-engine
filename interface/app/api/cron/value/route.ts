@@ -3,7 +3,6 @@ import { createAdminClient } from "@/lib/supabase/server";
 import { authorizeMaintenance } from "@/lib/cron-auth";
 import { fetchAiFund } from "@/lib/github";
 import { fetchPrices } from "@/lib/prices";
-import { positionsValue } from "@/lib/fund";
 import type { Fund, Holding } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -43,17 +42,30 @@ export async function GET(request: NextRequest) {
   ];
   const prices = await fetchPrices(tickers);
 
-  // Normalise les positions IA en mode seed (quantity=1 + value_t0) en parts réelles via le cours.
-  const aiNorm = aiPositions.map((p) => {
+  // Valorise avec REPLI : si le cours manque (source throttlée), on retombe sur la valeur
+  // de repli (coût de revient pour le groupe ; value_t0/coût pour l'IA) au lieu de 0 — la
+  // NAV reste juste même si Stooq/FMP ne renvoient qu'une partie des cours.
+  const valueWithFallback = (items: { ticker: string; quantity: number; fallback: number }[]) =>
+    items.reduce((s, h) => {
+      const p = prices[h.ticker.toUpperCase()];
+      return s + (typeof p === "number" && p > 0 ? p * h.quantity : h.fallback);
+    }, 0);
+
+  const groupItems = groupHoldings.map((h) => ({
+    ticker: h.ticker,
+    quantity: h.quantity,
+    fallback: h.avg_cost * h.quantity,
+  }));
+  const aiItems = aiPositions.map((p) => {
     const price = prices[p.ticker.toUpperCase()];
-    if (p.quantity === 1 && typeof p.value_t0 === "number" && p.value_t0 > 0 && typeof price === "number" && price > 0) {
-      return { ticker: p.ticker, quantity: p.value_t0 / price };
-    }
-    return { ticker: p.ticker, quantity: p.quantity };
+    const seed = p.quantity === 1 && typeof p.value_t0 === "number" && p.value_t0 > 0;
+    const quantity = seed && typeof price === "number" && price > 0 ? p.value_t0! / price : p.quantity;
+    const fallback = typeof p.value_t0 === "number" ? p.value_t0 : p.avg_cost * p.quantity;
+    return { ticker: p.ticker, quantity, fallback };
   });
 
-  const groupPosVal = positionsValue(groupHoldings, prices);
-  const aiPosVal = positionsValue(aiNorm, prices);
+  const groupPosVal = valueWithFallback(groupItems);
+  const aiPosVal = valueWithFallback(aiItems);
   const groupCash = group.cash ?? group.start_capital;
   const groupNav = groupCash + groupPosVal;
   const aiNav = aiCash + aiPosVal;
