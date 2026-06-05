@@ -7,6 +7,7 @@ import {
   fetchMemoryMarkdown,
 } from "@/lib/github";
 import { fetchPrices } from "@/lib/prices";
+import { fetchYahooChanges } from "@/lib/yahoo";
 import {
   DEMO_AI,
   DEMO_AI_TRADES,
@@ -426,6 +427,50 @@ export async function getActivity(limit = 8): Promise<ActivityData> {
       ai: DEMO_AI_TRADES.map((t) => toItem("ai", t)).slice(0, limit),
       group: DEMO_GROUP_TRADES.map((t) => toItem("group", t)).slice(0, limit),
     };
+  }
+}
+
+// ── Top mouvements du jour (variation des positions détenues) ─────────
+export interface Mover {
+  ticker: string;
+  changePct: number;
+}
+export interface MoversData {
+  demo: boolean;
+  gainers: Mover[];
+  losers: Mover[];
+}
+
+const DEMO_MOVERS: MoversData = {
+  demo: true,
+  gainers: [
+    { ticker: "BNP.PA", changePct: 0.021 },
+    { ticker: "AMZN", changePct: 0.014 },
+    { ticker: "LOTB", changePct: 0.009 },
+  ],
+  losers: [
+    { ticker: "MSTR", changePct: -0.038 },
+    { ticker: "NOVOB", changePct: -0.017 },
+    { ticker: "SAP", changePct: -0.011 },
+  ],
+};
+
+// Top 3 hausses / 3 baisses du jour parmi les titres détenus (groupe ∪ IA = mêmes titres).
+export async function getMovers(tickers: string[]): Promise<MoversData> {
+  const unique = Array.from(new Set(tickers.map((t) => t.toUpperCase()))).filter(Boolean);
+  if (!isConfigured() || unique.length === 0) return DEMO_MOVERS;
+  try {
+    const changes = await fetchYahooChanges(unique);
+    const arr = Object.entries(changes).map(([ticker, changePct]) => ({ ticker, changePct }));
+    if (arr.length === 0) return DEMO_MOVERS;
+    const sorted = [...arr].sort((a, b) => b.changePct - a.changePct);
+    return {
+      demo: false,
+      gainers: sorted.filter((m) => m.changePct >= 0).slice(0, 3),
+      losers: sorted.filter((m) => m.changePct < 0).slice(-3).reverse(),
+    };
+  } catch {
+    return { demo: false, gainers: [], losers: [] };
   }
 }
 

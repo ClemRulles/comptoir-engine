@@ -10,7 +10,7 @@ function nextLabel(date: string): string {
   return m ? `${m[3]} ${MONTHS[Number(m[2]) - 1] ?? m[2]}` : date;
 }
 
-export default async function CatalystsPage() {
+export default async function IndicateursPage() {
   const { demo, upcoming, past } = await getCatalysts();
   const next = upcoming[0];
   const anticipated = upcoming.filter((r) => /actif/i.test(r.status)).length;
@@ -19,13 +19,14 @@ export default async function CatalystsPage() {
     <div className="space-y-6">
       <div>
         <div className="flex items-center gap-2">
-          <h1 className="text-xl font-bold tracking-tight">📅 Catalyseurs</h1>
+          <h1 className="text-xl font-bold tracking-tight">📈 Indicateurs</h1>
           {demo && <span className="chip bg-slate-100 text-slate-500">Démo</span>}
         </div>
         <p className="mt-1 text-sm text-muted">
-          Les événements <strong>datés et publics</strong> que l&apos;IA surveille pour anticiper —
-          jamais réagir à une surprise. Repérés le lundi, re-validés le vendredi. C&apos;est ici
-          qu&apos;on comprend <em>pourquoi</em> l&apos;IA prend (ou évite) certaines positions.
+          Les <strong>indicateurs et événements datés</strong> que l&apos;IA surveille. Pour chacun,
+          elle écrit <strong>pourquoi c&apos;est important</strong>, <strong>comment elle le prend en
+          compte</strong> et <strong>vers quoi elle s&apos;orienterait</strong> pour investir. Repérés
+          le lundi, re-validés le vendredi.
         </p>
       </div>
 
@@ -44,7 +45,7 @@ export default async function CatalystsPage() {
 
       <Reveal delay={150}>
         <div className="card-p">
-          <SectionTitle>Calendrier</SectionTitle>
+          <SectionTitle>Calendrier & analyses de l&apos;IA</SectionTitle>
           <CatalystsList upcoming={upcoming} past={past} />
         </div>
       </Reveal>
@@ -53,7 +54,7 @@ export default async function CatalystsPage() {
         <p className="font-semibold">Comment le lire</p>
         <ul className="mt-2 space-y-1 text-slate-500">
           <li>• <span className="text-sky-700">Macro</span> (FOMC, inflation), <span className="text-violet-700">Politique</span> (tarifs, élections), <span className="text-teal-700">Réglementaire</span> (FDA), <span className="text-brand-600">Micro</span> (résultats d&apos;une de nos positions).</li>
-          <li>• <strong>Risque binaire</strong> = l&apos;issue peut surprendre dans les deux sens → on gère le risque, on ne parie pas dessus.</li>
+          <li>• <strong>💡 Analyse de l&apos;IA</strong> = pourquoi c&apos;est important, comment elle le prend en compte, et vers quoi elle s&apos;orienterait.</li>
           <li>• <strong>Anticipé</strong> = l&apos;IA s&apos;est déjà positionnée (ou allégée) avant l&apos;événement.</li>
         </ul>
       </div>

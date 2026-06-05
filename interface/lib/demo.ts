@@ -182,21 +182,21 @@ export const DEMO_LESSONS = `# Journal d'apprentissage
 2026-01-12 · SMCI · Haute sur momentum parabolique, cassée (−24 %) : le baissier (gouvernance) avait raison. Ne jamais sizer gros sur un momentum non confirmé par les bénéfices.`;
 
 // ── Calendrier des catalyseurs (démo) — même format que memory/catalysts.md ──
-export const DEMO_CATALYSTS = `# Calendrier des catalyseurs
+export const DEMO_CATALYSTS = `# Indicateurs & catalyseurs
 
-## Catalyseurs à venir
+## Indicateurs à venir
 
-| Date | Événement | Type | Ce qui bouge (secteurs/tickers) | Sens du risque | Pré-positionnement | Confiance | Statut |
-|------|-----------|------|--------------------------------|----------------|--------------------|-----------|--------|
-| 2026-06-12 | Emploi US (NFP) | Macro | taux, growth/tech, banques | binaire | rien — on observe la réaction des taux | Moyenne | À surveiller |
-| 2026-06-18 | Décision FOMC (taux) | Macro | growth, REIT, or, USD | binaire | on tient déjà AMZN/SAP avec marge : garder, pas de pari directionnel | Moyenne | À surveiller |
-| 2026-06-24 | Résultats NOVOB | Micro | NOVOB (GLP-1) | binaire | position détenue : risque guidance — alléger avant si le doute persiste | Haute | ACTIF |
-| 2026-07-01 | Échéance tarifaire UE–US | Politique | auto, SGO.PA, industriels | directionnel | exposition cyclique : surveiller SGO.PA, stop défini | Basse | À surveiller |
-| 2026-07-09 | Résultats NFLX | Micro | NFLX | binaire | cœur, on garde ; le baissier surveille le coût d'acquisition | Moyenne | À surveiller |
+| Date | Événement | Type | Ce qui bouge (secteurs/tickers) | Sens du risque | Analyse de l'IA | Confiance | Statut |
+|------|-----------|------|--------------------------------|----------------|-----------------|-----------|--------|
+| 2026-06-12 | Emploi US (NFP) | Macro | taux, growth/tech, banques | binaire | Pourquoi : un marché de l'emploi chaud repousse les baisses de taux et pèse sur le growth · Prise en compte : je n'augmente pas la tech avant le chiffre · Orientation : si l'emploi ralentit, je renforcerais le growth de qualité ; sinon je reste neutre | Moyenne | À surveiller |
+| 2026-06-18 | Décision FOMC (taux) | Macro | growth, REIT, or, USD | binaire | Pourquoi : le coût du capital pilote la valo du growth et des REIT · Prise en compte : je garde AMZN/SAP (déjà avec marge), pas de pari directionnel avant la décision · Orientation : si dovish, tech de qualité ; si hawkish, value/défensif (banques, défense) | Moyenne | À surveiller |
+| 2026-06-24 | Résultats NOVOB | Micro | NOVOB (GLP-1) | binaire | Pourquoi : la guidance GLP-1 face à la concurrence peut casser la thèse · Prise en compte : risque binaire sur une position détenue → j'allège avant si le doute domine · Orientation : si guidance solide, je garde ; sinon je sors et redéploie vers la santé défensive | Haute | ACTIF |
+| 2026-07-01 | Échéance tarifaire UE–US | Politique | auto, SGO.PA, industriels | directionnel | Pourquoi : des tarifs frappent les industriels cycliques exportateurs · Prise en compte : je surveille SGO.PA avec un stop défini · Orientation : en cas de tarifs durs, je réduis le cyclique au profit du défensif domestique | Basse | À surveiller |
+| 2026-07-09 | Résultats NFLX | Micro | NFLX | binaire | Pourquoi : croissance abonnés + pricing power = cœur de la thèse · Prise en compte : position cœur, je garde et regarde le coût d'acquisition · Orientation : si pricing power confirmé, je renforcerais ; sinon j'allège | Moyenne | À surveiller |
 
 ## Archives (événements passés + ce qu'on en a tiré)
 
-| 2026-05-28 | Résultats AMZN | Micro | AMZN | binaire | anticipé : guidance AWS solide, thèse confirmée → gardé | Haute | PASSÉ |
+| 2026-05-28 | Résultats AMZN | Micro | AMZN | binaire | Pourquoi : AWS pilote la marge du groupe · Prise en compte : anticipé, gardé avec marge · Orientation : guidance AWS solide → thèse confirmée, conservé | Haute | PASSÉ |
 `;
 
 // Mouvements récents du book IA (démo) — pour illustrer le flux d'activité.

@@ -29,7 +29,7 @@ const LINKS = [
   { href: "/", label: "Accueil", icon: "dash" },
   { href: "/groupe", label: "Groupe", icon: "group" },
   { href: "/ia", label: "IA", icon: "ai" },
-  { href: "/catalyseurs", label: "Catal.", icon: "cal" },
+  { href: "/indicateurs", label: "Indic.", icon: "cal" },
   { href: "/apprentissages", label: "Appr.", icon: "learn" },
   { href: "/propositions", label: "Idées", icon: "bulb" },
   { href: "/brief", label: "Brief", icon: "brief" },
