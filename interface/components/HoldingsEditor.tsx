@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from "react";
 import type { Holding } from "@/lib/types";
+import { TickerSearch } from "@/components/TickerSearch";
 
 export function HoldingsEditor() {
   const [holdings, setHoldings] = useState<Holding[]>([]);
   const [ticker, setTicker] = useState("");
+  const [tickerName, setTickerName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [avgCost, setAvgCost] = useState("");
   const [loading, setLoading] = useState(true);
@@ -45,6 +47,7 @@ export function HoldingsEditor() {
       return;
     }
     setTicker("");
+    setTickerName("");
     setQuantity("");
     setAvgCost("");
     load();
@@ -63,8 +66,21 @@ export function HoldingsEditor() {
     <div className="space-y-4">
       <form onSubmit={save} className="card-p grid grid-cols-1 gap-3 sm:grid-cols-4 sm:items-end">
         <div>
-          <label className="label">Ticker</label>
-          <input className="input mt-1" value={ticker} onChange={(e) => setTicker(e.target.value)} placeholder="AAPL" required />
+          <label className="label">Titre</label>
+          <TickerSearch
+            value={ticker}
+            onChange={(text) => {
+              setTicker(text);
+              setTickerName("");
+            }}
+            onSelect={(symbol, name) => {
+              setTicker(symbol);
+              setTickerName(name);
+            }}
+          />
+          {tickerName && (
+            <p className="mt-1 text-xs text-brand-600">✓ {ticker} — {tickerName}</p>
+          )}
         </div>
         <div>
           <label className="label">Quantité</label>

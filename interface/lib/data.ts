@@ -418,13 +418,7 @@ export async function getActivity(limit = 8): Promise<ActivityData> {
       groupItems = ((tr ?? []) as Trade[]).filter(isRealTrade).map((t) => toItem("group", t));
     }
 
-    if (aiItems.length === 0 && groupItems.length === 0) {
-      return {
-        demo: true,
-        ai: (DEMO_AI.trades ?? []).filter(isRealTrade).map((t) => toItem("ai", t)).reverse().slice(0, limit),
-        group: DEMO_GROUP_TRADES.map((t) => toItem("group", t)).slice(0, limit),
-      };
-    }
+    // En prod : on montre le réel (même vide) — pas de mouvements de démo trompeurs.
     return { demo: false, ai: aiItems, group: groupItems };
   } catch {
     return {

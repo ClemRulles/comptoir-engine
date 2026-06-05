@@ -24,7 +24,9 @@ export const YAHOO_MAP: Record<string, string> = {
 const UA = {
   "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
 };
-const yahooSym = (t: string): string | null => YAHOO_MAP[t.toUpperCase()] ?? null;
+// Symbole Yahoo : la map pour nos tickers historiques, sinon le ticker tel quel
+// (les positions ajoutées via la recherche stockent déjà un symbole Yahoo valide).
+const yahooSym = (t: string): string => YAHOO_MAP[t.toUpperCase()] ?? t.toUpperCase();
 
 interface ChartMeta {
   price: number | null;
