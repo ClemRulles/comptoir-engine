@@ -73,12 +73,32 @@ export function isConfigured() {
   return Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 }
 
+// Convertit les positions en mode « seed » (quantity=1 + value_t0 = valeur € à t0) en
+// parts fractionnaires réelles via le cours live, pour une valorisation correcte qui suit
+// le marché. Sans cours (ticker non couvert) : ancrage à la valeur t0 (stable, pnl 0).
+// Les positions déjà en vraies parts (quantity ≠ 1) passent inchangées.
+function normalizeBook<
+  T extends { ticker: string; quantity: number; avg_cost: number; value_t0?: number }
+>(positions: T[], prices: Record<string, number>): T[] {
+  return positions.map((p) => {
+    if (p.quantity === 1 && typeof p.value_t0 === "number" && p.value_t0 > 0) {
+      const price = prices[p.ticker.toUpperCase()];
+      if (typeof price === "number" && price > 0) {
+        const shares = p.value_t0 / price;
+        return { ...p, quantity: shares, avg_cost: p.avg_cost / shares };
+      }
+      return { ...p, quantity: 1, avg_cost: p.value_t0 };
+    }
+    return p;
+  });
+}
+
 function enrich(
   kind: "group" | "ai",
   name: string,
   startCapital: number,
   cash: number,
-  raw: { ticker: string; quantity: number; avg_cost: number; thesis?: string }[],
+  raw: { ticker: string; quantity: number; avg_cost: number; value_t0?: number; thesis?: string }[],
   prices: Record<string, number>
 ): FundView {
   const holdings: EnrichedHolding[] = raw.map((h) => {
@@ -177,7 +197,7 @@ export async function getAppData(): Promise<AppData> {
       aiFundRow?.name ?? "Fonds IA",
       aiFile?.start_capital ?? aiFundRow?.start_capital ?? 0,
       aiCash,
-      aiPositions,
+      normalizeBook(aiPositions, prices),
       prices
     );
 

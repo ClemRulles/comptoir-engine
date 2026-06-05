@@ -36,27 +36,43 @@ export async function GET(request: NextRequest) {
   const { data: ghData } = await supabase.from("holdings").select("*").eq("fund_id", group.id);
   const groupHoldings = ((ghData ?? []) as Holding[]).map((h) => ({ ticker: h.ticker, quantity: h.quantity }));
   const aiFund = await fetchAiFund();
-  const aiPositions = (aiFund?.positions ?? []).map((p) => ({ ticker: p.ticker, quantity: p.quantity }));
+  const aiRaw = aiFund?.positions ?? [];
 
   const { data: contribData } = await supabase.from("contributions").select("amount");
   const apportsTotal = ((contribData ?? []) as { amount: number }[]).reduce((s, c) => s + Number(c.amount ?? 0), 0);
   const groupCash = group.cash ?? group.start_capital ?? 0;
   const aiCash = (aiFund?.cash ?? ai.cash ?? ai.start_capital ?? 0) + apportsTotal;
 
-  const tickers = Array.from(new Set([...groupHoldings, ...aiPositions].map((h) => h.ticker)));
+  const tickers = Array.from(new Set([...groupHoldings.map((h) => h.ticker), ...aiRaw.map((p) => p.ticker)]));
   if (tickers.length === 0) {
     return NextResponse.json({ error: "aucune position à reconstituer" }, { status: 400 });
   }
   const hist = await fetchHistoricalCloses(tickers, fromStr);
   const covered = Object.keys(hist);
   if (covered.length === 0) {
-    return NextResponse.json({ error: "pas de données historiques (FMP) pour ces tickers" }, { status: 502 });
+    return NextResponse.json({ error: "pas de données historiques pour ces tickers" }, { status: 502 });
   }
 
   // Axe de dates = union des dates disponibles, triées, bornées à hier (le cron possède aujourd'hui).
   const dateSet = new Set<string>();
   for (const t of covered) for (const d of Object.keys(hist[t])) if (d < today) dateSet.add(d);
   const dates = Array.from(dateSet).sort();
+
+  // Cours « actuel » = dernière clôture connue (pour normaliser les positions IA seed → parts).
+  const latestClose = (ticker: string): number | null => {
+    const m = hist[ticker.toUpperCase()];
+    if (!m) return null;
+    const ds = Object.keys(m).sort();
+    return ds.length ? m[ds[ds.length - 1]] : null;
+  };
+  // Positions IA : convertit quantity=1 + value_t0 en parts réelles via le dernier cours.
+  const aiPositions = aiRaw.map((p) => {
+    if (p.quantity === 1 && typeof p.value_t0 === "number" && p.value_t0 > 0) {
+      const price = latestClose(p.ticker);
+      if (price) return { ticker: p.ticker, quantity: p.value_t0 / price };
+    }
+    return { ticker: p.ticker, quantity: p.quantity };
+  });
 
   // NAV(date) = cash + Σ quantité × dernière clôture connue ≤ date (forward-fill par ticker).
   const navFor = (holdings: { ticker: string; quantity: number }[], cash: number) => {

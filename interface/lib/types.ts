@@ -94,6 +94,7 @@ export interface AiFundFile {
     ticker: string;
     quantity: number;
     avg_cost: number;
+    value_t0?: number; // valeur € de la ligne à t0 (pour normaliser quantity=1 → parts réelles)
     thesis?: string;
     confidence?: Confidence;
     thesis_id?: string;
