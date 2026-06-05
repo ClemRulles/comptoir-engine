@@ -1,8 +1,8 @@
 {
   "as_of": "2026-06-05",
   "seeded": true,
-  "start_capital": 6309.28,
-  "cash": 0,
+  "start_capital": 7009.28,
+  "cash": 700,
   "positions": [
     { "ticker": "SAF.PA", "quantity": 2.4427, "avg_cost": 329.6352396937815, "confidence": "Moyenne", "horizon": "coeur", "thesis_id": "saf-aero", "entry_date": "2026-06-04", "target": null, "exit_rule": "thèse cassée si cycle aéro/MRO se retourne", "thesis": "Aéronautique + défense, qualité industrielle. Hérité du groupe à t0." },
     { "ticker": "HO.PA", "quantity": 3.1127796901893285, "avg_cost": 258.6241495141068, "confidence": "Moyenne", "horizon": "coeur", "thesis_id": "ho-defense", "entry_date": "2026-06-04", "target": null, "exit_rule": "sortie si budgets défense EU décélèrent nettement", "thesis": "Cycle défense européen structurel. Hérité du groupe à t0." },
