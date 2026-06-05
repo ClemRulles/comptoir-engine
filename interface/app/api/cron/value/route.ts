@@ -44,8 +44,17 @@ export async function GET(request: NextRequest) {
   ];
   const prices = await fetchPrices(tickers);
 
+  // Normalise les positions IA en mode seed (quantity=1 + value_t0) en parts réelles via le cours.
+  const aiNorm = aiPositions.map((p) => {
+    const price = prices[p.ticker.toUpperCase()];
+    if (p.quantity === 1 && typeof p.value_t0 === "number" && p.value_t0 > 0 && typeof price === "number" && price > 0) {
+      return { ticker: p.ticker, quantity: p.value_t0 / price };
+    }
+    return { ticker: p.ticker, quantity: p.quantity };
+  });
+
   const groupPosVal = positionsValue(groupHoldings, prices);
-  const aiPosVal = positionsValue(aiPositions, prices);
+  const aiPosVal = positionsValue(aiNorm, prices);
   const groupCash = group.cash ?? group.start_capital;
   const groupNav = groupCash + groupPosVal;
   const aiNav = aiCash + aiPosVal;
