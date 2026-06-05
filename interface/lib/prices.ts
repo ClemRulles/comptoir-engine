@@ -1,7 +1,8 @@
-// Récupère les derniers prix pour une liste de tickers.
-// Priorité FMP (batch), repli Finnhub (US), puis Stooq (Europe + EOD).
-// Renvoie une map { TICKER: prix par action }. Les tickers introuvables sont omis.
+// Récupère les derniers prix pour une liste de tickers, en EUR.
+// Priorité Yahoo (couverture EU+US+ETF, conversion FX), repli FMP/Finnhub (US), puis Stooq.
+// Renvoie une map { TICKER: prix par action en EUR }. Les tickers introuvables sont omis.
 import { fetchStooqCloses, fetchStooqHistory } from "./stooq";
+import { fetchYahooQuotes, fetchYahooHistory } from "./yahoo";
 
 export async function fetchPrices(tickers: string[]): Promise<Record<string, number>> {
   const unique = Array.from(new Set(tickers.map((t) => t.trim().toUpperCase()))).filter(Boolean);
@@ -11,9 +12,18 @@ export async function fetchPrices(tickers: string[]): Promise<Record<string, num
   const finnhubKey = process.env.FINNHUB_API_KEY;
   const out: Record<string, number> = {};
 
-  if (fmpKey) {
+  // 1. Yahoo en priorité (prix ramenés en EUR, meilleure couverture).
+  try {
+    Object.assign(out, await fetchYahooQuotes(unique));
+  } catch {
+    // bascule sur les autres sources
+  }
+
+  // 2. FMP (batch) pour les tickers restants seulement (prix bruts, sans conversion FX).
+  const fmpMissing = unique.filter((t) => !(t in out));
+  if (fmpKey && fmpMissing.length) {
     try {
-      const url = `https://financialmodelingprep.com/api/v3/quote/${unique.join(",")}?apikey=${fmpKey}`;
+      const url = `https://financialmodelingprep.com/api/v3/quote/${fmpMissing.join(",")}?apikey=${fmpKey}`;
       const res = await fetch(url, { cache: "no-store" });
       if (res.ok) {
         const data = (await res.json()) as Array<{ symbol: string; price: number }>;
@@ -65,10 +75,18 @@ export async function fetchHistoricalCloses(
   const out: Record<string, Record<string, number>> = {};
   if (unique.length === 0) return out;
 
+  // 1. Yahoo en priorité (historique EU+US converti en EUR).
+  try {
+    Object.assign(out, await fetchYahooHistory(unique, fromDate));
+  } catch {
+    // bascule sur FMP/Stooq
+  }
+
   const today = new Date().toISOString().slice(0, 10);
-  if (fmpKey) {
+  const fmpTargets = unique.filter((t) => !(t in out));
+  if (fmpKey && fmpTargets.length) {
     await Promise.all(
-      unique.map(async (t) => {
+      fmpTargets.map(async (t) => {
         try {
           const url = `https://financialmodelingprep.com/api/v3/historical-price-full/${encodeURIComponent(
             t

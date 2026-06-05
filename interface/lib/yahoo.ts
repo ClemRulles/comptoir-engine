@@ -1,0 +1,124 @@
+// Yahoo Finance (endpoint chart non officiel, gratuit, sans clé) — meilleure couverture
+// que Stooq/FMP : actions européennes + ETF + historique. Cours différés ~15 min (comme
+// toute source gratuite). Tout est ramené en EUR via les taux de change Yahoo.
+
+// Map ticker de l'app → symbole Yahoo (place + devise gérées via la conversion FX).
+export const YAHOO_MAP: Record<string, string> = {
+  "SAF.PA": "SAF.PA",
+  "HO.PA": "HO.PA",
+  AMZN: "AMZN",
+  NFLX: "NFLX",
+  EIMI: "EIMI.L", // iShares EM IMI (LSE, USD)
+  AI: "AI.PA", // Air Liquide (≠ C3.ai)
+  LOTB: "LOTB.BR", // Lotus Bakeries (Bruxelles)
+  BYD: "1211.HK", // BYD Co (Hong Kong, HKD)
+  CI2: "CI2.MI", // Amundi MSCI India (Milan, EUR)
+  "BNP.PA": "BNP.PA",
+  "SGO.PA": "SGO.PA",
+  SAP: "SAP.DE", // SAP (Xetra, EUR)
+  NOVOB: "NOVO-B.CO", // Novo Nordisk B (Copenhague, DKK)
+  MSTR: "MSTR",
+  "RMS.PA": "RMS.PA",
+};
+
+const UA = {
+  "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+};
+const yahooSym = (t: string): string | null => YAHOO_MAP[t.toUpperCase()] ?? null;
+
+interface ChartMeta {
+  price: number | null;
+  currency: string;
+  timestamps: number[];
+  closes: (number | null)[];
+}
+
+async function fetchChart(symbol: string, params: string, revalidate: number): Promise<ChartMeta | null> {
+  try {
+    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?${params}`;
+    const res = await fetch(url, { headers: UA, next: { revalidate } });
+    if (!res.ok) return null;
+    const json = (await res.json()) as {
+      chart?: { result?: { meta?: { regularMarketPrice?: number; currency?: string }; timestamp?: number[]; indicators?: { quote?: { close?: (number | null)[] }[] } }[] };
+    };
+    const r = json.chart?.result?.[0];
+    if (!r?.meta) return null;
+    return {
+      price: typeof r.meta.regularMarketPrice === "number" ? r.meta.regularMarketPrice : null,
+      currency: r.meta.currency ?? "EUR",
+      timestamps: r.timestamp ?? [],
+      closes: r.indicators?.quote?.[0]?.close ?? [],
+    };
+  } catch {
+    return null;
+  }
+}
+
+// Taux de change → euros : renvoie { CCY: unités de CCY pour 1 EUR }. EUR = 1.
+async function fetchEurRates(currencies: string[]): Promise<Record<string, number>> {
+  const out: Record<string, number> = { EUR: 1 };
+  const need = Array.from(new Set(currencies)).filter((c) => c && c !== "EUR" && !(c in out));
+  await Promise.all(
+    need.map(async (ccy) => {
+      const r = await fetchChart(`EUR${ccy}=X`, "interval=1d&range=1d", 900);
+      if (r?.price && r.price > 0) out[ccy] = r.price;
+    })
+  );
+  return out;
+}
+
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+// Cours du jour, convertis en EUR. { TICKER: prix_eur }.
+export async function fetchYahooQuotes(tickers: string[]): Promise<Record<string, number>> {
+  const mapped = tickers.map((t) => ({ t: t.toUpperCase(), y: yahooSym(t) })).filter((x) => x.y);
+  const raw: { t: string; price: number; currency: string }[] = [];
+  for (const { t, y } of mapped) {
+    const c = await fetchChart(y as string, "interval=1d&range=1d", 900);
+    if (c?.price && c.price > 0) raw.push({ t, price: c.price, currency: c.currency });
+    await sleep(120);
+  }
+  const rates = await fetchEurRates(raw.map((r) => r.currency));
+  const out: Record<string, number> = {};
+  for (const { t, price, currency } of raw) {
+    const rate = rates[currency];
+    if (rate && rate > 0) out[t] = price / rate; // CCY → EUR
+  }
+  return out;
+}
+
+// Historique EOD converti en EUR (FX courant appliqué — backcast approximatif).
+// { TICKER: { "YYYY-MM-DD": close_eur } }.
+export async function fetchYahooHistory(
+  tickers: string[],
+  fromDate: string
+): Promise<Record<string, Record<string, number>>> {
+  const mapped = tickers.map((t) => ({ t: t.toUpperCase(), y: yahooSym(t) })).filter((x) => x.y);
+  const p1 = Math.floor(new Date(fromDate).getTime() / 1000);
+  const p2 = Math.floor(Date.now() / 1000);
+  const series: { t: string; currency: string; points: Record<string, number> }[] = [];
+  for (const { t, y } of mapped) {
+    const c = await fetchChart(y as string, `interval=1d&period1=${p1}&period2=${p2}`, 3600);
+    if (c && c.timestamps.length) {
+      const points: Record<string, number> = {};
+      c.timestamps.forEach((ts, i) => {
+        const close = c.closes[i];
+        if (typeof close === "number" && close > 0) {
+          points[new Date(ts * 1000).toISOString().slice(0, 10)] = close;
+        }
+      });
+      if (Object.keys(points).length) series.push({ t, currency: c.currency, points });
+    }
+    await sleep(120);
+  }
+  const rates = await fetchEurRates(series.map((s) => s.currency));
+  const out: Record<string, Record<string, number>> = {};
+  for (const { t, currency, points } of series) {
+    const rate = rates[currency];
+    if (!rate || rate <= 0) continue;
+    const conv: Record<string, number> = {};
+    for (const [d, v] of Object.entries(points)) conv[d] = v / rate;
+    out[t] = conv;
+  }
+  return out;
+}
