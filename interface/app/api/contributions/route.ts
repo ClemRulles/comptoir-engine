@@ -50,8 +50,14 @@ export async function POST(request: NextRequest) {
     .insert({ fund_id: group.id, member_id, amount, note, kind: "apport" });
   if (insErr) return NextResponse.json({ error: insErr.message }, { status: 500 });
 
-  const newCash = Number(group.cash ?? group.start_capital ?? 0) + amount;
-  const { error: updErr } = await supabase.from("funds").update({ cash: newCash }).eq("id", group.id);
+  // L'apport augmente le cash ET le capital injecté (start_capital) → il n'est pas compté
+  // comme du rendement. Le book IA reçoit la même somme côté interface (armes égales).
+  const newCash = Number(group.cash ?? 0) + amount;
+  const newStartCapital = Number(group.start_capital ?? 0) + amount;
+  const { error: updErr } = await supabase
+    .from("funds")
+    .update({ cash: newCash, start_capital: newStartCapital })
+    .eq("id", group.id);
   if (updErr) return NextResponse.json({ error: updErr.message }, { status: 500 });
 
   return NextResponse.json({ ok: true, cash: newCash });

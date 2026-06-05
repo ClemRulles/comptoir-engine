@@ -196,7 +196,9 @@ export async function getAppData(): Promise<AppData> {
     const ai = enrich(
       "ai",
       aiFundRow?.name ?? "Fonds IA",
-      aiFile?.start_capital ?? aiFundRow?.start_capital ?? 0,
+      // Capital injecté IA = capital t0 du book + apports (mêmes apports que le groupe) →
+      // les apports ne comptent pas comme du rendement.
+      (aiFile?.start_capital ?? aiFundRow?.start_capital ?? 0) + apportsTotal,
       aiCash,
       normalizeBook(aiPositions, prices),
       prices

@@ -7,6 +7,7 @@ import { KpiCard, Delta, SectionTitle, Reveal } from "@/components/Kpi";
 import { HoldingsEditor } from "@/components/HoldingsEditor";
 import { MembersManager } from "@/components/MembersManager";
 import { MaintenancePanel } from "@/components/MaintenancePanel";
+import { CashEditor } from "@/components/CashEditor";
 
 export const dynamic = "force-dynamic";
 
@@ -91,6 +92,10 @@ export default async function GroupePage() {
         )}
         <HoldingsEditor />
       </div>
+
+      <Reveal delay={120}>
+        <CashEditor currentCash={f.cash} demo={data.demo} />
+      </Reveal>
 
       <div>
         <SectionTitle right={<span className="label">{eur(club.monthlyTotal)} / mois</span>}>
