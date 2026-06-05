@@ -62,6 +62,13 @@ export async function GET(request: NextRequest) {
     .update({ start_capital: SEED_START_CAPITAL, cash: 0 })
     .eq("id", group.id);
 
+  // Encoder le book = repartir d'une courbe propre : on efface les snapshots NAV
+  // antérieurs (points « placeholder » à 1 000 € d'avant l'encodage). Relancer ensuite
+  // « Valoriser le jour » écrit le 1er point réel, et la courbe grandit jour après jour.
+  const ai = ((fundsData ?? []) as (Fund & { cash: number })[]).find((f) => f.kind === "ai");
+  const fundIds = [group.id, ...(ai ? [ai.id] : [])];
+  await supabase.from("nav_snapshots").delete().in("fund_id", fundIds);
+
   return NextResponse.json({
     ok: true,
     positions: rows.length,
