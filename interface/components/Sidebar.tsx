@@ -33,7 +33,7 @@ const LINKS = [
   { href: "/", label: "Tableau de bord", icon: "dash" },
   { href: "/groupe", label: "Fonds groupe", icon: "group" },
   { href: "/ia", label: "Fonds IA", icon: "ai" },
-  { href: "/catalyseurs", label: "Catalyseurs", icon: "cal" },
+  { href: "/indicateurs", label: "Indicateurs", icon: "cal" },
   { href: "/apprentissages", label: "Apprentissages", icon: "learn" },
   { href: "/propositions", label: "Propositions", icon: "bulb" },
   { href: "/brief", label: "Brief & tendance", icon: "brief" },

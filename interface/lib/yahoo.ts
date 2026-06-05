@@ -30,6 +30,7 @@ const yahooSym = (t: string): string => YAHOO_MAP[t.toUpperCase()] ?? t.toUpperC
 
 interface ChartMeta {
   price: number | null;
+  prevClose: number | null;
   currency: string;
   timestamps: number[];
   closes: (number | null)[];
@@ -49,12 +50,14 @@ async function fetchChart(symbol: string, params: string, revalidate: number): P
     }
     if (!res.ok) return null;
     const json = (await res.json()) as {
-      chart?: { result?: { meta?: { regularMarketPrice?: number; currency?: string }; timestamp?: number[]; indicators?: { quote?: { close?: (number | null)[] }[] } }[] };
+      chart?: { result?: { meta?: { regularMarketPrice?: number; currency?: string; chartPreviousClose?: number; previousClose?: number }; timestamp?: number[]; indicators?: { quote?: { close?: (number | null)[] }[] } }[] };
     };
     const r = json.chart?.result?.[0];
     if (!r?.meta) return null;
+    const prev = r.meta.chartPreviousClose ?? r.meta.previousClose;
     return {
       price: typeof r.meta.regularMarketPrice === "number" ? r.meta.regularMarketPrice : null,
+      prevClose: typeof prev === "number" ? prev : null,
       currency: r.meta.currency ?? "EUR",
       timestamps: r.timestamp ?? [],
       closes: r.indicators?.quote?.[0]?.close ?? [],
@@ -93,6 +96,24 @@ export async function fetchYahooQuotes(tickers: string[]): Promise<Record<string
     const rate = rates[currency];
     if (rate && rate > 0) out[t] = price / rate; // CCY → EUR
   }
+  return out;
+}
+
+// Variation du jour en % par ticker (price vs clôture précédente). Sans FX (un % est neutre).
+// { TICKER: changePct } (ex. 0.023 = +2,3 %).
+export async function fetchYahooChanges(tickers: string[]): Promise<Record<string, number>> {
+  const mapped = tickers.map((t) => ({ t: t.toUpperCase(), y: yahooSym(t) }));
+  const settled = await Promise.all(
+    mapped.map(async ({ t, y }) => {
+      const c = await fetchChart(y, "interval=1d&range=1d", 900);
+      if (c?.price && c.prevClose && c.prevClose > 0) {
+        return { t, change: (c.price - c.prevClose) / c.prevClose };
+      }
+      return null;
+    })
+  );
+  const out: Record<string, number> = {};
+  for (const x of settled) if (x) out[x.t] = x.change;
   return out;
 }
 

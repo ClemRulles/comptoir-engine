@@ -1,18 +1,21 @@
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { getActivity, getAppData } from "@/lib/data";
+import { getActivity, getAppData, getMovers } from "@/lib/data";
 import { eur, pct } from "@/lib/fund";
 import { PerfChart } from "@/components/PerfChart";
 import { AllocationDonut } from "@/components/Charts";
 import { ActivityFeed } from "@/components/ActivityFeed";
+import { TopMovers } from "@/components/TopMovers";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { KpiCard, Delta, SectionTitle, Reveal } from "@/components/Kpi";
 
 export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
-  const [data, activity] = await Promise.all([getAppData(), getActivity(6)]);
+  const data = await getAppData();
+  const heldTickers = [...data.group.holdings, ...data.ai.holdings].map((h) => h.ticker);
+  const [activity, movers] = await Promise.all([getActivity(6), getMovers(heldTickers)]);
   const { group, ai } = data;
   const spread = ai.perf - group.perf;
   const leader = Math.abs(spread) < 0.0001 ? "Égalité" : spread > 0 ? "L'IA mène" : "Le groupe mène";
@@ -71,6 +74,15 @@ export default async function DashboardPage() {
           </div>
         </Reveal>
       </div>
+
+      <Reveal delay={140}>
+        <div className="card-p">
+          <SectionTitle right={<span className="text-xs text-muted">variation du jour</span>}>
+            Top mouvements du jour
+          </SectionTitle>
+          <TopMovers gainers={movers.gainers} losers={movers.losers} />
+        </div>
+      </Reveal>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <Reveal delay={120}>

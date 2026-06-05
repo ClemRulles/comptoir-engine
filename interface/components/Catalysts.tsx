@@ -59,8 +59,9 @@ function CatalystCard({ row }: { row: CatalystRow }) {
           )}
         </div>
         {row.positioning && row.positioning !== "—" && (
-          <div className="mt-1 text-sm text-slate-500">
-            <span className="font-medium text-slate-600">Posture&nbsp;:</span> {row.positioning}
+          <div className="mt-1.5 rounded-lg bg-ai/5 px-2.5 py-1.5 text-sm text-slate-600">
+            <span className="font-semibold text-amber-700">💡 Analyse de l&apos;IA&nbsp;:</span>{" "}
+            {row.positioning}
           </div>
         )}
       </div>
