@@ -37,12 +37,21 @@ Sources (toutes gratuites) :
 - **Micro** : Finnhub `/calendar/earnings` → dates de résultats de **nos positions** (`portfolio.md`,
   `ai-fund.json`) et des noms de la watchlist ; `/calendar/ipo` pour les IPO d'un thème.
 
-Pour chaque événement retenu, juge : qu'est-ce qui bouge, le **sens du risque** (binaire / directionnel),
-et **comment se positionner proprement** (voir method §J). Écris/rafraîchis `memory/catalysts.md` :
+Pour chaque indicateur/événement retenu, juge : qu'est-ce qui bouge, le **sens du risque**
+(binaire / directionnel), et surtout écris une **analyse de l'IA** en une phrase dense qui dit
+les **trois** choses : (1) **pourquoi** c'est important, (2) **comment** l'IA le prend en compte,
+(3) **vers quoi** elle s'orienterait pour investir si ça se confirme. Format obligatoire de cette
+colonne : `Pourquoi : … · Prise en compte : … · Orientation : …`.
+Écris/rafraîchis `memory/catalysts.md` :
 ```
-# Calendrier des catalyseurs — maj {date}
-| Date | Événement | Type | Ce qui bouge (secteurs/tickers) | Sens du risque | Pré-positionnement | Confiance | Statut |
+# Indicateurs & catalyseurs — maj {date}
+| Date | Événement | Type | Ce qui bouge (secteurs/tickers) | Sens du risque | Analyse de l'IA (pourquoi · prise en compte · orientation) | Confiance | Statut |
 ```
+Exemple de cellule « Analyse de l'IA » : `Pourquoi : un FOMC hawkish renchérit le coût du capital
+et pèse sur le growth/REIT · Prise en compte : je n'augmente pas le growth avant la décision et
+garde du cash · Orientation : si dovish, je renforcerais la tech de qualité ; si hawkish, je
+privilégie value/défensif (banques, défense)`.
+
 Règles : ajoute les événements qui entrent dans la fenêtre 6 semaines ; passe en `Statut: PASSÉ`
 ceux dont la date est dépassée (le vendredi les score puis les archive) ; **ne double pas** une
 ligne existante, mets-la à jour. Distingue bien *risque sur une position détenue* (gestion du
