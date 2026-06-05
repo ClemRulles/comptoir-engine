@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createAdminClient } from "@/lib/supabase/server";
+import { authorizeMaintenance } from "@/lib/cron-auth";
 import { fetchAiFund } from "@/lib/github";
 import { fetchHistoricalCloses } from "@/lib/prices";
 import type { Fund, Holding } from "@/lib/types";
@@ -12,9 +13,7 @@ export const maxDuration = 60;
 // un snapshot déjà présent (les vrais relevés du cron quotidien priment). À lancer une fois,
 // après avoir encodé les positions du groupe. Param ?days=180 (défaut 180, max 365).
 export async function GET(request: NextRequest) {
-  const secret = process.env.CRON_SECRET;
-  const auth = request.headers.get("authorization");
-  if (secret && auth !== `Bearer ${secret}`) {
+  if (!(await authorizeMaintenance(request))) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 
