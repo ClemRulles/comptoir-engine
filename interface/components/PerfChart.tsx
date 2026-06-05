@@ -33,11 +33,16 @@ export function PerfChart({ data, mode = "both" }: { data: Point[]; mode?: Mode 
   const { filtered, days } = useMemo(() => {
     if (!data.length) return { filtered: [] as Point[], days: 0 };
     const r = RANGES.find((x) => x.key === range)!;
-    const lastDate = new Date(data[data.length - 1].date);
-    const cutoff = new Date(lastDate);
-    cutoff.setDate(cutoff.getDate() - r.days);
-    const cutoffStr = cutoff.toISOString().slice(0, 10);
-    const f = r.days >= 1e9 ? data : data.filter((p) => p.date >= cutoffStr);
+    let f: Point[];
+    if (r.days >= 1e9) {
+      // « Max » : toutes les données (ne pas calculer de date de coupe — 1e9 jours = date invalide).
+      f = data;
+    } else {
+      const cutoff = new Date(data[data.length - 1].date);
+      cutoff.setDate(cutoff.getDate() - r.days);
+      const cutoffStr = cutoff.toISOString().slice(0, 10);
+      f = data.filter((p) => p.date >= cutoffStr);
+    }
     return { filtered: f.length >= 2 ? f : data.slice(-2), days: r.days };
   }, [data, range]);
 

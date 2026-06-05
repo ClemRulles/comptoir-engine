@@ -31,10 +31,6 @@ export default async function GroupePage() {
         <KpiCard label="Δ cette semaine" accent="neutral" delay={180} value={pct(data.weekDeltaGroup)} sub={<span className="text-muted">vs ~1 semaine</span>} />
       </div>
 
-      <Reveal delay={100}>
-        <MaintenancePanel demo={data.demo} />
-      </Reveal>
-
       <Reveal delay={150}>
         <div className="card-p">
           <SectionTitle>Évolution du fonds</SectionTitle>
@@ -106,6 +102,13 @@ export default async function GroupePage() {
         </p>
         <MembersManager club={club} />
       </div>
+
+      <details>
+        <summary className="mb-2 cursor-pointer text-sm font-semibold text-muted">
+          ⚙️ Outils de synchronisation des données (avancé)
+        </summary>
+        <MaintenancePanel demo={data.demo} />
+      </details>
     </div>
   );
 }
