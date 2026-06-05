@@ -33,7 +33,12 @@ export async function GET(request: NextRequest) {
   }
 
   const { data: ghData } = await supabase.from("holdings").select("*").eq("fund_id", group.id);
-  const groupHoldings = ((ghData ?? []) as Holding[]).map((h) => ({ ticker: h.ticker, quantity: h.quantity }));
+  // anchor = valeur € à plat utilisée pour un ticker sans historique (positions ancrées).
+  const groupHoldings = ((ghData ?? []) as Holding[]).map((h) => ({
+    ticker: h.ticker,
+    quantity: h.quantity,
+    anchor: h.avg_cost * h.quantity,
+  }));
   const aiFund = await fetchAiFund();
   const aiRaw = aiFund?.positions ?? [];
 
@@ -65,16 +70,19 @@ export async function GET(request: NextRequest) {
     return ds.length ? m[ds[ds.length - 1]] : null;
   };
   // Positions IA : convertit quantity=1 + value_t0 en parts réelles via le dernier cours.
+  // anchor = valeur à plat si le ticker n'a pas d'historique.
   const aiPositions = aiRaw.map((p) => {
+    const anchor = typeof p.value_t0 === "number" ? p.value_t0 : p.avg_cost * p.quantity;
     if (p.quantity === 1 && typeof p.value_t0 === "number" && p.value_t0 > 0) {
       const price = latestClose(p.ticker);
-      if (price) return { ticker: p.ticker, quantity: p.value_t0 / price };
+      if (price) return { ticker: p.ticker, quantity: p.value_t0 / price, anchor };
     }
-    return { ticker: p.ticker, quantity: p.quantity };
+    return { ticker: p.ticker, quantity: p.quantity, anchor };
   });
 
-  // NAV(date) = cash + Σ quantité × dernière clôture connue ≤ date (forward-fill par ticker).
-  const navFor = (holdings: { ticker: string; quantity: number }[], cash: number) => {
+  // NAV(date) = cash + Σ (quantité × dernière clôture connue ≤ date), forward-fill par ticker.
+  // Ticker sans aucune clôture sur la période → on le maintient à plat à sa valeur (anchor).
+  const navFor = (holdings: { ticker: string; quantity: number; anchor?: number }[], cash: number) => {
     const last: Record<string, number> = {};
     const rows: { date: string; nav: number; pos: number }[] = [];
     for (const date of dates) {
@@ -86,6 +94,7 @@ export async function GET(request: NextRequest) {
       for (const h of holdings) {
         const c = last[h.ticker.toUpperCase()];
         if (typeof c === "number") pos += c * h.quantity;
+        else if (typeof h.anchor === "number") pos += h.anchor; // pas d'historique → valeur à plat
       }
       rows.push({ date, nav: cash + pos, pos });
     }
