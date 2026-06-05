@@ -36,7 +36,8 @@ export async function fetchStooqCloses(tickers: string[]): Promise<Record<string
     if (!sym) continue;
     try {
       const url = `https://stooq.com/q/l/?s=${sym}&f=sd2t2ohlcv&h&e=csv`;
-      const res = await fetch(url, { cache: "no-store", headers: UA });
+      // Cache 15 min : évite de re-taper Stooq (rate-limit) à chaque rendu de page.
+      const res = await fetch(url, { next: { revalidate: 900 }, headers: UA });
       if (res.ok) {
         const text = await res.text();
         const lines = text.trim().split("\n");
@@ -65,7 +66,7 @@ export async function fetchStooqHistory(
     if (!sym) continue;
     try {
       const url = `https://stooq.com/q/d/l/?s=${sym}&d1=${d1}&d2=${d2}&i=d`;
-      const res = await fetch(url, { cache: "no-store", headers: UA });
+      const res = await fetch(url, { next: { revalidate: 3600 }, headers: UA });
       if (res.ok) {
         const text = await res.text();
         const rows = text.trim().split("\n").slice(1); // skip header
