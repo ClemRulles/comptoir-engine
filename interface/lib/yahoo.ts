@@ -36,7 +36,15 @@ interface ChartMeta {
 async function fetchChart(symbol: string, params: string, revalidate: number): Promise<ChartMeta | null> {
   try {
     const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?${params}`;
-    const res = await fetch(url, { headers: UA, next: { revalidate } });
+    // Timeout par appel : un appel lent ne doit pas faire dépasser le maxDuration de la route.
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 7000);
+    let res: Response;
+    try {
+      res = await fetch(url, { headers: UA, next: { revalidate }, signal: ctrl.signal });
+    } finally {
+      clearTimeout(timer);
+    }
     if (!res.ok) return null;
     const json = (await res.json()) as {
       chart?: { result?: { meta?: { regularMarketPrice?: number; currency?: string }; timestamp?: number[]; indicators?: { quote?: { close?: (number | null)[] }[] } }[] };
@@ -67,17 +75,16 @@ async function fetchEurRates(currencies: string[]): Promise<Record<string, numbe
   return out;
 }
 
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-
-// Cours du jour, convertis en EUR. { TICKER: prix_eur }.
+// Cours du jour, convertis en EUR. { TICKER: prix_eur }. Appels en parallèle (durée bornée).
 export async function fetchYahooQuotes(tickers: string[]): Promise<Record<string, number>> {
   const mapped = tickers.map((t) => ({ t: t.toUpperCase(), y: yahooSym(t) })).filter((x) => x.y);
-  const raw: { t: string; price: number; currency: string }[] = [];
-  for (const { t, y } of mapped) {
-    const c = await fetchChart(y as string, "interval=1d&range=1d", 900);
-    if (c?.price && c.price > 0) raw.push({ t, price: c.price, currency: c.currency });
-    await sleep(120);
-  }
+  const settled = await Promise.all(
+    mapped.map(async ({ t, y }) => {
+      const c = await fetchChart(y as string, "interval=1d&range=1d", 900);
+      return c?.price && c.price > 0 ? { t, price: c.price, currency: c.currency } : null;
+    })
+  );
+  const raw = settled.filter((x): x is { t: string; price: number; currency: string } => x !== null);
   const rates = await fetchEurRates(raw.map((r) => r.currency));
   const out: Record<string, number> = {};
   for (const { t, price, currency } of raw) {
@@ -96,10 +103,10 @@ export async function fetchYahooHistory(
   const mapped = tickers.map((t) => ({ t: t.toUpperCase(), y: yahooSym(t) })).filter((x) => x.y);
   const p1 = Math.floor(new Date(fromDate).getTime() / 1000);
   const p2 = Math.floor(Date.now() / 1000);
-  const series: { t: string; currency: string; points: Record<string, number> }[] = [];
-  for (const { t, y } of mapped) {
-    const c = await fetchChart(y as string, `interval=1d&period1=${p1}&period2=${p2}`, 3600);
-    if (c && c.timestamps.length) {
+  const settled = await Promise.all(
+    mapped.map(async ({ t, y }) => {
+      const c = await fetchChart(y as string, `interval=1d&period1=${p1}&period2=${p2}`, 3600);
+      if (!c || !c.timestamps.length) return null;
       const points: Record<string, number> = {};
       c.timestamps.forEach((ts, i) => {
         const close = c.closes[i];
@@ -107,10 +114,12 @@ export async function fetchYahooHistory(
           points[new Date(ts * 1000).toISOString().slice(0, 10)] = close;
         }
       });
-      if (Object.keys(points).length) series.push({ t, currency: c.currency, points });
-    }
-    await sleep(120);
-  }
+      return Object.keys(points).length ? { t, currency: c.currency, points } : null;
+    })
+  );
+  const series = settled.filter(
+    (x): x is { t: string; currency: string; points: Record<string, number> } => x !== null
+  );
   const rates = await fetchEurRates(series.map((s) => s.currency));
   const out: Record<string, Record<string, number>> = {};
   for (const { t, currency, points } of series) {
