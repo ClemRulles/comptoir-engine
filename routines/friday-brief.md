@@ -51,14 +51,16 @@ vendredis, la calibration reste hebdo (légère) : juste le recompute des bucket
 
 ## PASSE 1bis — Normalisation du seed (une seule fois)
 
-Le seed initial stocke chaque position héritée avec `quantity:1` et `avg_cost` = sa **valeur €**
-à t0 (faute de nombre de parts). Tant qu'une position est dans cet état, **convertis-la en vraies
-parts** dès cette passe, pour que la valorisation live soit juste :
-- `cours_live` = prix actuel (FMP/Finnhub/web) du ticker.
-- nouvelle `quantity` = `valeur€_t0 / cours_live` ; nouveau `avg_cost` = `cours_live`.
-- La valeur de la ligne reste ≈ identique (on ne change pas l'exposition, juste la représentation).
-Si le cours d'un ticker est introuvable (ETF/européen), garde la ligne telle quelle et note-le.
-Une fois fait, les lignes ne sont plus en mode « seed » : ne reconvertis pas.
+Le seed initial stocke chaque position héritée avec `quantity:1`, `avg_cost` = son **coût de
+revient €** et `value_t0` = sa **valeur €** à t0 (faute de nombre de parts). Tant qu'une position
+est dans cet état (`quantity:1` + `value_t0` présent), **convertis-la en vraies parts** dès cette
+passe, pour que la valorisation live soit juste :
+- `cours_live` = prix actuel par action (FMP/Finnhub/**Stooq pour l'Europe**/web) du ticker.
+- nouvelle `quantity` = `value_t0 / cours_live` ; nouveau `avg_cost` = `avg_cost / quantity`
+  (coût de revient **par action**, pour préserver le P&L) ; retire `value_t0`.
+- L'exposition reste identique (on ne change que la représentation : 1 lot → N parts réelles).
+Si le cours d'un ticker est introuvable (ETF/européen non couvert), garde la ligne telle quelle
+(elle reste ancrée à `value_t0`) et note-le. Une fois converti (`quantity ≠ 1`), ne reconvertis pas.
 
 ## PASSE 2 — Gestion du book IA (entrées/sorties)
 
