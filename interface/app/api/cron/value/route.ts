@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createAdminClient } from "@/lib/supabase/server";
+import { authorizeMaintenance } from "@/lib/cron-auth";
 import { fetchAiFund } from "@/lib/github";
 import { fetchPrices } from "@/lib/prices";
 import { positionsValue } from "@/lib/fund";
@@ -10,9 +11,7 @@ export const maxDuration = 60;
 
 // Valorise les 2 fonds et écrit un snapshot NAV daté. Déclenché par le Vercel Cron.
 export async function GET(request: NextRequest) {
-  const secret = process.env.CRON_SECRET;
-  const auth = request.headers.get("authorization");
-  if (secret && auth !== `Bearer ${secret}`) {
+  if (!(await authorizeMaintenance(request))) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 

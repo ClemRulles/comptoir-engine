@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createAdminClient } from "@/lib/supabase/server";
+import { authorizeMaintenance } from "@/lib/cron-auth";
 import { fetchPrices } from "@/lib/prices";
 import { SEED_BOOK, SEED_START_CAPITAL } from "@/lib/seed-book";
 import type { Fund } from "@/lib/types";
@@ -13,9 +14,7 @@ export const maxDuration = 60;
 // signalé dans la réponse. Idempotent (upsert). À lancer une fois.
 // GET /api/cron/seed-group  (Authorization: Bearer $CRON_SECRET)
 export async function GET(request: NextRequest) {
-  const secret = process.env.CRON_SECRET;
-  const auth = request.headers.get("authorization");
-  if (secret && auth !== `Bearer ${secret}`) {
+  if (!(await authorizeMaintenance(request))) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 

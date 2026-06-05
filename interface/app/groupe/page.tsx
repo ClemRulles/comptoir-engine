@@ -6,6 +6,7 @@ import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { KpiCard, Delta, SectionTitle, Reveal } from "@/components/Kpi";
 import { HoldingsEditor } from "@/components/HoldingsEditor";
 import { MembersManager } from "@/components/MembersManager";
+import { MaintenancePanel } from "@/components/MaintenancePanel";
 
 export const dynamic = "force-dynamic";
 
@@ -29,6 +30,10 @@ export default async function GroupePage() {
         <KpiCard label="Cash" accent="neutral" delay={120} value={<AnimatedNumber value={f.cash} kind="eur" />} sub={<span className="text-muted">{pct(f.nav ? f.cash / f.nav : 0).replace("+", "")} du fonds</span>} />
         <KpiCard label="Δ cette semaine" accent="neutral" delay={180} value={pct(data.weekDeltaGroup)} sub={<span className="text-muted">vs ~1 semaine</span>} />
       </div>
+
+      <Reveal delay={100}>
+        <MaintenancePanel demo={data.demo} />
+      </Reveal>
 
       <Reveal delay={150}>
         <div className="card-p">
