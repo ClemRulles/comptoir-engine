@@ -30,9 +30,14 @@ Si une clé manque ou une API plafonne → bascule sur la recherche web native e
 - `/stock-screener`, `/sectors-performance`, `/ratios/{ticker}`.
 - Usage : Scout (filtrage), Trend Radar (quel secteur surperforme/sous-performe), Deep-dive (ratios).
 
+### Stooq — gratuit, sans clé (séries de prix)
+- Clôtures historiques (mensuelles via `?i=m`), US fiable + Europe best-effort.
+- Usage : **momentum 12-1** calculé par `engine/signals.js` (cf. `skills/quant-signals.md`),
+  sans consommer de quota. Si un ticker n'est pas mappé → data_gap, bascule web.
+
 ### Alpha Vantage — `ALPHAVANTAGE_API_KEY` (free 25 req/jour — économe !)
 - Indicateurs techniques (RSI, MACD, moyennes) et séries de prix.
-- Usage : momentum **plafonné** (method §A). À doses modérées vu le quota serré.
+- Usage : momentum **plafonné** (method §A) en appoint. À doses modérées vu le quota serré.
 
 ### Recherche web native — toujours disponible, gratuite
 - News, contexte qualitatif, vérification croisée, lecture de filings/articles.

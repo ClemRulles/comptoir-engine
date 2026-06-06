@@ -1,3 +1,6 @@
 .env
 .env.*
 .DS_Store
+
+# Fichiers d'état mis en quarantaine par engine/guard.js (à inspecter, pas à committer)
+memory/fund/*.corrupt-*

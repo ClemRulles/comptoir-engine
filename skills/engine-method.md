@@ -24,6 +24,12 @@ Chaque lentille est notée 0-20, puis pondérée selon l'horizon.
 Normalise le total pondéré sur 100. Un score n'est jamais publié seul : il
 s'accompagne toujours du **niveau de confiance** (section D).
 
+> **Ancrage quantitatif (non négociable).** Les lentilles Qualité, Momentum et
+> Risque/Bulle ne se notent pas « au feeling » : tu lis d'abord les signaux factuels de
+> `memory/fund/signals.json` (produits par `node engine/signals.js`, cf. `skills/quant-signals.md`) —
+> **F-Score Piotroski** (Qualité), **momentum 12-1 plafonné** (Momentum), **accruals/qualité
+> des earnings** (Risque/Bulle). Un score qui contredit ces chiffres doit s'expliquer.
+
 ---
 
 ## B. Checklist bulle / surévaluation (concret, pas du ressenti)
@@ -113,6 +119,17 @@ faits priment en marché baissier.
 Le fonds IA est un vrai portefeuille (fictif) qu'on cherche à faire **surperformer** sans
 le faire sauter. Évaluer un titre (A-G) ne suffit pas : il faut **dimensionner** et **gérer
 le risque**. Règles, appliquées de façon cohérente :
+
+**Gate quantitatif (préalable à toute entrée/sortie).** Lis `memory/fund/signals.json`
+(rafraîchis avec `node engine/signals.js {tickers}` si périmé). Le `gate` par titre garde-fou
+la décision avant même le sizing :
+- 🟢 **vert** → prise de position possible, sizing normal ci-dessous.
+- 🟠 **ambre** → **taille réduite** (un cran sous la cible), hypothèse pivot renforcée.
+- 🔴 **rouge** (F-Score ≤3, earnings rouges) → **n'ouvre pas / réduis**. Outrepasser exige
+  une thèse écrite qui bat le baissier (§D) ; sinon pas de position. Un titre **détenu** qui
+  passe au 🔴 est candidat sortie prioritaire.
+- ⚪ **indéterminé** (data_gaps) → droit au blanc : décide sur §A-§D et note l'absence de signal.
+Le **régime** (`signals.regime`) fixe le plancher de cash ci-dessous. Détail : `skills/quant-signals.md`.
 
 **Sizing — pondéré par conviction ET par calibration.**
 - Taille cible de base par niveau de confiance : **Haute ≈ 12 %**, **Moyenne ≈ 7 %**,

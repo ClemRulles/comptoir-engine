@@ -1,10 +1,13 @@
 # VENDREDI — BRIEF & REVUE HEBDO + GESTION DU BOOK IA
 # Cron : 0 22 * * 5   ·   Modèle : Sonnet
 
+**Étape 0 — garde-fou :** `node engine/guard.js` (cf. `skills/memory-guard.md`). Note le verdict :
+si un fichier a été `recreated`, dis-le dans la revue hebdo (un historique a pu être reconstruit).
+
 Lis `CLAUDE.md`, `skills/engine-method.md` (surtout §H sizing/risque, §I calibration),
-`skills/trend-gate.md`, `memory/trends.md`, `memory/convictions.md`, `memory/portfolio.md`,
-`memory/market-regime.md`, `memory/lessons.md`, `memory/fund/ai-fund.json`,
-`memory/fund/decisions.json`, `memory/fund/calibration.json`.
+`skills/trend-gate.md`, `skills/quant-signals.md`, `memory/trends.md`, `memory/convictions.md`,
+`memory/portfolio.md`, `memory/market-regime.md`, `memory/lessons.md`, `memory/fund/ai-fund.json`,
+`memory/fund/decisions.json`, `memory/fund/calibration.json`, `memory/fund/signals.json`.
 
 C'est la routine la plus chargée : elle **apprend**, **gère le book IA**, puis **packagé** la semaine.
 Fais les trois passes dans l'ordre.
@@ -56,10 +59,14 @@ Une fois fait, les lignes ne sont plus en mode « seed » : ne reconvertis pas.
 
 ## PASSE 2 — Gestion du book IA (entrées/sorties)
 
-En appliquant **method §H** (sizing pondéré conviction × calibration, plafonds, plancher de cash
+Rafraîchis les signaux : `node engine/signals.js` (positions + convictions retenues). En appliquant
+**method §H** (gate quantitatif → sizing pondéré conviction × calibration, plafonds, plancher de cash
 selon le régime, garde-fou drawdown) et en partant des `convictions.md` validées cette semaine :
-- **Sorties** d'abord : toute position dont la règle de sortie est touchée ou la thèse cassée.
-- **Entrées** ensuite : alloue le cash disponible aux meilleures convictions, **taille selon §H**.
+- **Sorties** d'abord : toute position dont la règle de sortie est touchée, la thèse cassée, **ou le
+  gate passé au 🔴**.
+- **Entrées** ensuite : alloue le cash disponible aux meilleures convictions, **taille selon §H**
+  (un gate 🟠 réduit la taille, un 🔴 exige une thèse écrite qui bat le baissier, sinon on s'abstient).
+- **Chaque trade cite son gate** (verdict + raison) dans le `rationale`.
 - **Chaque trade est loggé** dans `ai-fund.json.trades` avec `side, ticker, quantity, price,
   confidence, thesis_id, horizon, rationale`, et chaque position porte `entry_date, target,
   exit_rule, confidence, horizon, thesis_id`. Mets `as_of` à jour et garde `cash` cohérent.

@@ -2,6 +2,21 @@
 
 Idées validées à implémenter plus tard. Cocher au fur et à mesure.
 
+## 📐 Pipeline de signaux quantitatifs — ✅ FAIT
+But : que l'IA se confronte à des **signaux factuels** avant de raisonner librement.
+- ✅ `engine/signals.js` calcule **F-Score Piotroski**, **momentum 12-1 plafonné**, **qualité
+  des earnings (accruals)** et **régime macro FRED**, puis un `gate` 🟢/🟠/🔴/⚪ par titre.
+  Cache dans `memory/fund/signals.json`. Dégradation propre sans clé (data_gaps, jamais de plantage).
+- ✅ Branché dans `engine-method.md` §A (lentilles ancrées) et §H (gate avant sizing), et dans
+  les 6 routines (Lun régime, Mar pré-score, Mer débat, Jeu santé, Ven book). Doc : `skills/quant-signals.md`.
+- ↪ À enrichir : YoY inflation FRED (2e appel), couverture Stooq Europe, pondération du gate par calibration.
+
+## 🛡️ Robustesse de la boucle d'apprentissage — ✅ FAIT
+- ✅ `engine/guard.js` valide `memory/fund/*.json` en ouverture de chaque routine : recrée
+  proprement un fichier corrompu/absent (quarantaine de l'original), complète un fichier
+  incomplet **sans rien détruire**. Code 2 = recréation à signaler. Doc : `skills/memory-guard.md`.
+- ✅ Schémas canoniques + 24 smoke tests hors-ligne (`node engine/test.js`).
+
 ## 🧠 L'IA apprend de son passé — ✅ FAIT
 But : que le fonds IA **retienne ses erreurs et ses réussites** pour orienter ses prochaines
 décisions et conseils.

@@ -1,0 +1,244 @@
+{
+  "_doc": "Cache des signaux QUANTITATIFS calculés par engine/signals.js. 'regime' = score macro FRED agrégé (gate global). 'tickers' = map ticker -> { fscore, momentum_12_1, earnings_quality, gate } horodatés. L'IA LIT ce fichier avant d'ouvrir/fermer une position (method §A/§H) : les signaux sont des garde-fous factuels, pas une boîte noire. 'data_gaps' liste les sources indisponibles (clé manquante / quota) pour rester honnête sur l'incertitude. Régénéré par les routines ; ne pas éditer à la main.",
+  "updated": "2026-06-06T08:29:11.421Z",
+  "regime": {
+    "label": "inconnu",
+    "score": null,
+    "cash_floor": 0.15,
+    "flags": [
+      "aucune donnée FRED"
+    ],
+    "ok": false
+  },
+  "tickers": {
+    "SAF.PA": {
+      "ticker": "SAF.PA",
+      "asof": "2026-06-06",
+      "momentum_12_1": null,
+      "fscore": null,
+      "earnings_quality": null,
+      "gate": {
+        "verdict": "indéterminé",
+        "reasons": [
+          "aucun signal quantitatif disponible (voir data_gaps)"
+        ],
+        "note": "garde-fou INDÉTERMINÉ : pas de feu factuel. Ne te repose pas dessus — décide sur la méthode qualitative (§A-§D) et note l'absence de signal."
+      }
+    },
+    "HO.PA": {
+      "ticker": "HO.PA",
+      "asof": "2026-06-06",
+      "momentum_12_1": null,
+      "fscore": null,
+      "earnings_quality": null,
+      "gate": {
+        "verdict": "indéterminé",
+        "reasons": [
+          "aucun signal quantitatif disponible (voir data_gaps)"
+        ],
+        "note": "garde-fou INDÉTERMINÉ : pas de feu factuel. Ne te repose pas dessus — décide sur la méthode qualitative (§A-§D) et note l'absence de signal."
+      }
+    },
+    "AMZN": {
+      "ticker": "AMZN",
+      "asof": "2026-06-06",
+      "momentum_12_1": null,
+      "fscore": null,
+      "earnings_quality": null,
+      "gate": {
+        "verdict": "indéterminé",
+        "reasons": [
+          "aucun signal quantitatif disponible (voir data_gaps)"
+        ],
+        "note": "garde-fou INDÉTERMINÉ : pas de feu factuel. Ne te repose pas dessus — décide sur la méthode qualitative (§A-§D) et note l'absence de signal."
+      }
+    },
+    "NFLX": {
+      "ticker": "NFLX",
+      "asof": "2026-06-06",
+      "momentum_12_1": null,
+      "fscore": null,
+      "earnings_quality": null,
+      "gate": {
+        "verdict": "indéterminé",
+        "reasons": [
+          "aucun signal quantitatif disponible (voir data_gaps)"
+        ],
+        "note": "garde-fou INDÉTERMINÉ : pas de feu factuel. Ne te repose pas dessus — décide sur la méthode qualitative (§A-§D) et note l'absence de signal."
+      }
+    },
+    "EIMI": {
+      "ticker": "EIMI",
+      "asof": "2026-06-06",
+      "momentum_12_1": null,
+      "fscore": null,
+      "earnings_quality": null,
+      "gate": {
+        "verdict": "indéterminé",
+        "reasons": [
+          "aucun signal quantitatif disponible (voir data_gaps)"
+        ],
+        "note": "garde-fou INDÉTERMINÉ : pas de feu factuel. Ne te repose pas dessus — décide sur la méthode qualitative (§A-§D) et note l'absence de signal."
+      }
+    },
+    "AI": {
+      "ticker": "AI",
+      "asof": "2026-06-06",
+      "momentum_12_1": null,
+      "fscore": null,
+      "earnings_quality": null,
+      "gate": {
+        "verdict": "indéterminé",
+        "reasons": [
+          "aucun signal quantitatif disponible (voir data_gaps)"
+        ],
+        "note": "garde-fou INDÉTERMINÉ : pas de feu factuel. Ne te repose pas dessus — décide sur la méthode qualitative (§A-§D) et note l'absence de signal."
+      }
+    },
+    "LOTB": {
+      "ticker": "LOTB",
+      "asof": "2026-06-06",
+      "momentum_12_1": null,
+      "fscore": null,
+      "earnings_quality": null,
+      "gate": {
+        "verdict": "indéterminé",
+        "reasons": [
+          "aucun signal quantitatif disponible (voir data_gaps)"
+        ],
+        "note": "garde-fou INDÉTERMINÉ : pas de feu factuel. Ne te repose pas dessus — décide sur la méthode qualitative (§A-§D) et note l'absence de signal."
+      }
+    },
+    "BYD": {
+      "ticker": "BYD",
+      "asof": "2026-06-06",
+      "momentum_12_1": null,
+      "fscore": null,
+      "earnings_quality": null,
+      "gate": {
+        "verdict": "indéterminé",
+        "reasons": [
+          "aucun signal quantitatif disponible (voir data_gaps)"
+        ],
+        "note": "garde-fou INDÉTERMINÉ : pas de feu factuel. Ne te repose pas dessus — décide sur la méthode qualitative (§A-§D) et note l'absence de signal."
+      }
+    },
+    "CI2": {
+      "ticker": "CI2",
+      "asof": "2026-06-06",
+      "momentum_12_1": null,
+      "fscore": null,
+      "earnings_quality": null,
+      "gate": {
+        "verdict": "indéterminé",
+        "reasons": [
+          "aucun signal quantitatif disponible (voir data_gaps)"
+        ],
+        "note": "garde-fou INDÉTERMINÉ : pas de feu factuel. Ne te repose pas dessus — décide sur la méthode qualitative (§A-§D) et note l'absence de signal."
+      }
+    },
+    "BNP.PA": {
+      "ticker": "BNP.PA",
+      "asof": "2026-06-06",
+      "momentum_12_1": null,
+      "fscore": null,
+      "earnings_quality": null,
+      "gate": {
+        "verdict": "indéterminé",
+        "reasons": [
+          "aucun signal quantitatif disponible (voir data_gaps)"
+        ],
+        "note": "garde-fou INDÉTERMINÉ : pas de feu factuel. Ne te repose pas dessus — décide sur la méthode qualitative (§A-§D) et note l'absence de signal."
+      }
+    },
+    "SGO.PA": {
+      "ticker": "SGO.PA",
+      "asof": "2026-06-06",
+      "momentum_12_1": null,
+      "fscore": null,
+      "earnings_quality": null,
+      "gate": {
+        "verdict": "indéterminé",
+        "reasons": [
+          "aucun signal quantitatif disponible (voir data_gaps)"
+        ],
+        "note": "garde-fou INDÉTERMINÉ : pas de feu factuel. Ne te repose pas dessus — décide sur la méthode qualitative (§A-§D) et note l'absence de signal."
+      }
+    },
+    "SAP": {
+      "ticker": "SAP",
+      "asof": "2026-06-06",
+      "momentum_12_1": null,
+      "fscore": null,
+      "earnings_quality": null,
+      "gate": {
+        "verdict": "indéterminé",
+        "reasons": [
+          "aucun signal quantitatif disponible (voir data_gaps)"
+        ],
+        "note": "garde-fou INDÉTERMINÉ : pas de feu factuel. Ne te repose pas dessus — décide sur la méthode qualitative (§A-§D) et note l'absence de signal."
+      }
+    },
+    "NOVOB": {
+      "ticker": "NOVOB",
+      "asof": "2026-06-06",
+      "momentum_12_1": null,
+      "fscore": null,
+      "earnings_quality": null,
+      "gate": {
+        "verdict": "indéterminé",
+        "reasons": [
+          "aucun signal quantitatif disponible (voir data_gaps)"
+        ],
+        "note": "garde-fou INDÉTERMINÉ : pas de feu factuel. Ne te repose pas dessus — décide sur la méthode qualitative (§A-§D) et note l'absence de signal."
+      }
+    },
+    "MSTR": {
+      "ticker": "MSTR",
+      "asof": "2026-06-06",
+      "momentum_12_1": null,
+      "fscore": null,
+      "earnings_quality": null,
+      "gate": {
+        "verdict": "indéterminé",
+        "reasons": [
+          "aucun signal quantitatif disponible (voir data_gaps)"
+        ],
+        "note": "garde-fou INDÉTERMINÉ : pas de feu factuel. Ne te repose pas dessus — décide sur la méthode qualitative (§A-§D) et note l'absence de signal."
+      }
+    },
+    "RMS.PA": {
+      "ticker": "RMS.PA",
+      "asof": "2026-06-06",
+      "momentum_12_1": null,
+      "fscore": null,
+      "earnings_quality": null,
+      "gate": {
+        "verdict": "indéterminé",
+        "reasons": [
+          "aucun signal quantitatif disponible (voir data_gaps)"
+        ],
+        "note": "garde-fou INDÉTERMINÉ : pas de feu factuel. Ne te repose pas dessus — décide sur la méthode qualitative (§A-§D) et note l'absence de signal."
+      }
+    }
+  },
+  "data_gaps": [
+    "FMP (clé absente) -> F-Score & qualité des earnings non calculés",
+    "FRED (clé absente) -> régime macro non calculé",
+    "SAF.PA: momentum indisponible (Stooq KO/non mappé)",
+    "HO.PA: momentum indisponible (Stooq KO/non mappé)",
+    "AMZN: momentum indisponible (Stooq KO/non mappé)",
+    "NFLX: momentum indisponible (Stooq KO/non mappé)",
+    "EIMI: momentum indisponible (Stooq KO/non mappé)",
+    "AI: momentum indisponible (Stooq KO/non mappé)",
+    "LOTB: momentum indisponible (Stooq KO/non mappé)",
+    "BYD: momentum indisponible (Stooq KO/non mappé)",
+    "CI2: momentum indisponible (Stooq KO/non mappé)",
+    "BNP.PA: momentum indisponible (Stooq KO/non mappé)",
+    "SGO.PA: momentum indisponible (Stooq KO/non mappé)",
+    "SAP: momentum indisponible (Stooq KO/non mappé)",
+    "NOVOB: momentum indisponible (Stooq KO/non mappé)",
+    "MSTR: momentum indisponible (Stooq KO/non mappé)",
+    "RMS.PA: momentum indisponible (Stooq KO/non mappé)"
+  ]
+}

@@ -2,6 +2,9 @@
 # Cron : 0 22 1 * *   ·   Modèle : Sonnet
 # (le 1er de chaque mois ; une nuit de plus, hors rotation Lun-Ven — reste léger côté Pro)
 
+**Étape 0 — garde-fou :** `node engine/guard.js` (cf. `skills/memory-guard.md`). La calibration se
+recompute à partir de `decisions.json` : un registre corrompu fausserait tout, le garde-fou l'empêche.
+
 Lis `CLAUDE.md`, `skills/engine-method.md` (§H sizing, §I calibration),
 `memory/fund/decisions.json`, `memory/fund/calibration.json`, `memory/lessons.md`.
 

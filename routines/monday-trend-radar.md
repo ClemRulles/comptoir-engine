@@ -1,12 +1,15 @@
 # LUNDI — TREND RADAR (régime + tendance de la semaine)
 # Cron : 0 22 * * 1   ·   Modèle : Sonnet
 
-Tu ouvres la semaine. Lis `CLAUDE.md`, `skills/engine-method.md`,
-`skills/trend-gate.md`, `skills/data-sources.md`, et `memory/trends.md` (semaine passée).
+**Étape 0 — garde-fou :** `node engine/guard.js` (cf. `skills/memory-guard.md`). Signale tout fichier recréé.
+
+Tu ouvres la semaine. Lis `CLAUDE.md`, `skills/engine-method.md`, `skills/trend-gate.md`,
+`skills/data-sources.md`, `skills/quant-signals.md`, et `memory/trends.md` (semaine passée).
 
 ## Partie A — Régime de marché
-Via FRED (taux, courbe 10Y-2Y, inflation, chômage) + FMP sector-performance + recherche web :
-juge le régime et règle le cadran : RISK-ON SAIN / NORMAL / SURCHAUFFE / STRESS.
+Joue `node engine/signals.js` : `signals.regime` te donne un **cadran chiffré** (courbe 10Y-2Y,
+chômage, inflation) + plancher de cash. Recoupe avec FMP sector-performance + recherche web, puis
+règle le cadran : RISK-ON SAIN / NORMAL / SURCHAUFFE / STRESS.
 Écris-le dans `memory/market-regime.md` (format : cadran, consigne au système,
 valorisation indice, zones de bulle, largeur, macro en 3 lignes, sources).
 
