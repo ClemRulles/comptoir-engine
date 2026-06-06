@@ -1,0 +1,12 @@
+{
+  "name": "comptoir-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Couche moteur du Comptoir : garde-fou JSON (guard) + pipeline de signaux quantitatifs (signals). Zéro dépendance — Node 18+ (fetch global).",
+  "scripts": {
+    "guard": "node guard.js",
+    "signals": "node signals.js",
+    "test": "node test.js"
+  }
+}
