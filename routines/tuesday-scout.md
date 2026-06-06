@@ -1,7 +1,9 @@
 # MARDI — SCOUT (candidats exposés à la tendance + filtres qualité)
 # Cron : 0 22 * * 2   ·   Modèle : Sonnet
 
-Lis `CLAUDE.md`, `skills/engine-method.md`, `skills/data-sources.md`,
+**Étape 0 — garde-fou :** `node engine/guard.js` (cf. `skills/memory-guard.md`).
+
+Lis `CLAUDE.md`, `skills/engine-method.md`, `skills/data-sources.md`, `skills/quant-signals.md`,
 `memory/trends.md` (la tendance validée lundi), `memory/watchlist.md`, `memory/market-regime.md`.
 
 Objectif : transformer la tendance de la semaine en **candidats cotés concrets**, et
@@ -14,15 +16,16 @@ ajouter quelques idées de qualité hors-tendance pour ne pas mettre tous les œ
    cap rentable sous le radar. Évite les noms déjà parabolitiques sauf pour les marquer « à éviter ».
 2. Si la tendance de la semaine = AUCUNE, bascule en mode qualité pur : screene des
    sociétés solides (bon FCF, bilan sain) en repli temporaire non structurel.
-3. Pour chaque candidat : pré-score rapide (method §A simplifiée), horizon (long/tactique),
-   thèse en une ligne, et un check express de la checklist bulle (drapeau rouge ou non).
+3. Joue `node engine/signals.js {tickers candidats}` : pré-score rapide (method §A simplifiée
+   **ancrée sur F-Score + momentum 12-1** du gate), horizon (long/tactique), thèse en une ligne,
+   et check express de la checklist bulle. Un candidat au gate 🔴 se marque « à éviter ».
 4. Marque les 2-3 meilleurs candidats non encore analysés d'un `★` : ce sont ceux que
    le Deep-dive de mercredi traitera (plafond strict de 3 pour rester dans Pro).
 
 Sortie → réécris `memory/watchlist.md` (max ~40 lignes, meilleurs scores en haut) :
 ```
 # Watchlist — maj {date}
-| ★ | Ticker | Nom | Tag | Horizon | Pré-score | Drapeau bulle | Thèse 1 ligne | Vu le |
+| ★ | Ticker | Nom | Tag | Horizon | Pré-score | Gate | Drapeau bulle | Thèse 1 ligne | Vu le |
 ```
 (Tag = [tendance] ou [qualité].)
 

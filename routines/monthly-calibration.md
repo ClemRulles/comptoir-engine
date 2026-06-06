@@ -3,6 +3,9 @@
 # Invoquée PAR `routines/friday-brief.md` le **1er vendredi de chaque mois** (PASSE 1).
 # Modèle : Sonnet (s'exécute dans la nuit du vendredi, pas de nuit supplémentaire).
 
+**Étape 0 — garde-fou :** `node engine/guard.js` (cf. `skills/memory-guard.md`). La calibration se
+recompute à partir de `decisions.json` : un registre corrompu fausserait tout, le garde-fou l'empêche.
+
 Lis `CLAUDE.md`, `skills/engine-method.md` (§H sizing, §I calibration),
 `memory/fund/decisions.json`, `memory/fund/calibration.json`, `memory/lessons.md`.
 

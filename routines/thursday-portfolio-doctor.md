@@ -1,12 +1,16 @@
 # JEUDI — PORTFOLIO DOCTOR (santé des positions détenues)
 # Cron : 0 22 * * 4   ·   Modèle : Sonnet
 
-Lis `CLAUDE.md`, `skills/engine-method.md`, `skills/data-sources.md`,
+**Étape 0 — garde-fou :** `node engine/guard.js` (cf. `skills/memory-guard.md`).
+
+Lis `CLAUDE.md`, `skills/engine-method.md`, `skills/data-sources.md`, `skills/quant-signals.md`,
 `memory/portfolio.md`, `memory/fund/ai-fund.json`, `memory/market-regime.md`, `memory/catalysts.md`.
 
 Objectif : confronter **chaque position des deux books** (le groupe via `portfolio.md` ET le
 book IA via `ai-fund.json`) à sa thèse et sa règle de sortie écrites. Ainsi le vendredi gère le
 book IA sur des alertes datées de la veille, pas de la semaine passée.
+
+Joue d'abord `node engine/signals.js` (positions du book) pour rafraîchir le gate de chaque ligne.
 
 Pour chaque position (groupe **et** book IA) :
 1. News récentes : Finnhub (résultats, guidance), EDGAR 8-K (événements), recherche web,
@@ -16,6 +20,8 @@ Pour chaque position (groupe **et** book IA) :
    son secteur), signale le **risque binaire** : faut-il alléger/couvrir avant ? Note-le pour le
    vendredi (method §J — on gère le risque connu, on ne parie pas sur l'issue).
 2. La thèse écrite tient-elle ? La règle de sortie écrite est-elle touchée ou proche ?
+   **Le gate quantitatif s'est-il dégradé ?** Un passage au 🔴 (F-Score qui s'effondre, earnings
+   rouges, momentum cassé) est un motif de passage en À SURVEILLER / SORTIE, même thèse intacte.
 3. Valorisation : DCF inversé express — la marge de sécurité a-t-elle disparu ?
 4. Statut : `INTACT` / `À SURVEILLER` / `SORTIE` (sortie = règle touchée, thèse cassée,
    ou valorisation devenue extrême).

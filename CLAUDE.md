@@ -41,10 +41,18 @@ Le fonds IA (`memory/fund/ai-fund.json`) est un vrai portefeuille fictif qu'on c
   écris une **leçon datée** dans `memory/lessons.md`, et mets à jour `memory/fund/decisions.json`
   (append) + `memory/fund/calibration.json` (recompute). Voir method §I.
 - Le sizing se **mérite** : il dépend de la calibration réelle, pas de l'assurance affichée.
+- **Signaux avant raisonnement** : avant d'ouvrir/fermer, l'IA se confronte aux signaux
+  factuels (F-Score, momentum 12-1, qualité des earnings, régime macro) via
+  `node engine/signals.js` → `memory/fund/signals.json`. Le `gate` (🟢/🟠/🔴/⚪) garde-fou
+  les décisions ; outrepasser un 🔴 se justifie par écrit. Voir `skills/quant-signals.md`.
 - Départ du book = **clone du groupe** (mêmes positions + même cash via `memory/portfolio.md`
   tant que `seeded:false`), puis gestion indépendante. À armes égales, on prouve qu'on bat le groupe.
 
 ## Protocole mémoire (à chaque routine)
+0. **Garde-fou d'abord** : joue `node engine/guard.js` avant toute lecture/écriture d'état.
+   Il garantit que `memory/fund/*.json` sont valides (recrée proprement un fichier corrompu
+   ou absent, complète un fichier incomplet sans rien détruire). Si sa sortie liste un fichier
+   `recreated`, signale-le dans le brief. Voir `skills/memory-guard.md`.
 1. Lis les fichiers `memory/` listés dans le prompt du jour.
 2. Fais le travail. Respecte les plafonds (titres, profondeur) et les règles de sizing/risque (§H).
 3. Réécris les fichiers concernés, concis (garde ~30 jours, archive le reste en bas).
