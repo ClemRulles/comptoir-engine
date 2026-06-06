@@ -120,16 +120,22 @@ Le fonds IA est un vrai portefeuille (fictif) qu'on cherche à faire **surperfor
 le faire sauter. Évaluer un titre (A-G) ne suffit pas : il faut **dimensionner** et **gérer
 le risque**. Règles, appliquées de façon cohérente :
 
-**Gate quantitatif (préalable à toute entrée/sortie).** Lis `memory/fund/signals.json`
-(rafraîchis avec `node engine/signals.js {tickers}` si périmé). Le `gate` par titre garde-fou
-la décision avant même le sizing :
-- 🟢 **vert** → prise de position possible, sizing normal ci-dessous.
-- 🟠 **ambre** → **taille réduite** (un cran sous la cible), hypothèse pivot renforcée.
-- 🔴 **rouge** (F-Score ≤3, earnings rouges) → **n'ouvre pas / réduis**. Outrepasser exige
-  une thèse écrite qui bat le baissier (§D) ; sinon pas de position. Un titre **détenu** qui
-  passe au 🔴 est candidat sortie prioritaire.
-- ⚪ **indéterminé** (data_gaps) → droit au blanc : décide sur §A-§D et note l'absence de signal.
+**Gate quantitatif — RÈGLE VERROUILLÉE (préalable à toute entrée/sortie).** Lis
+`memory/fund/signals.json` (rafraîchis avec `node engine/signals.js {tickers}` si périmé).
+Le `gate` par titre **commande** le sizing, sans exception côté book :
+
+- 🔴 **rouge** → **position INTERDITE**. Si le titre est détenu : **sortie forcée** à la passe.
+  **Pas de débat, pas d'override** côté book (un drapeau dur F-Score ≤3 / earnings rouges, ou un
+  composite ≤ −0.2, n'est pas négociable). On ne moyenne jamais à la baisse un 🔴.
+- 🟠 **ambre** → **taille MAX 5 % du book** ET **stop-loss obligatoire à −8 %** vs entrée, écrit
+  à l'achat. Hypothèse pivot renforcée.
+- 🟢 **vert** → **sizing normal** selon conviction × calibration ci-dessous, **plafond 20 %**.
+- ⚪ **indéterminé** (couverture insuffisante / data_gaps) → **traité comme 🟠** (droit au blanc =
+  prudence : max 5 % + stop −8 %).
+
 Le **régime** (`signals.regime`) fixe le plancher de cash ci-dessous. Détail : `skills/quant-signals.md`.
+> Cette règle prime sur tout le reste de §H : on calcule la taille « conviction × calibration »
+> puis on la **plafonne** par le verdict du gate (🟠/⚪ ⇒ ≤5 % + stop −8 % ; 🔴 ⇒ 0).
 
 **Sizing — pondéré par conviction ET par calibration.**
 - Taille cible de base par niveau de confiance : **Haute ≈ 12 %**, **Moyenne ≈ 7 %**,

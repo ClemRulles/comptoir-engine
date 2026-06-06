@@ -30,10 +30,15 @@ Si une clé manque ou une API plafonne → bascule sur la recherche web native e
 - `/stock-screener`, `/sectors-performance`, `/ratios/{ticker}`.
 - Usage : Scout (filtrage), Trend Radar (quel secteur surperforme/sous-performe), Deep-dive (ratios).
 
-### Stooq — gratuit, sans clé (séries de prix)
-- Clôtures historiques (mensuelles via `?i=m`), US fiable + Europe best-effort.
-- Usage : **momentum 12-1** calculé par `engine/signals.js` (cf. `skills/quant-signals.md`),
-  sans consommer de quota. Si un ticker n'est pas mappé → data_gap, bascule web.
+### Yahoo Finance — gratuit, sans clé (séries de prix, chart endpoint)
+- 1 appel `/v8/finance/chart/{sym}?range=1y&interval=1d` → closes + volumes + bornes 52 sem.
+- Bonne couverture EU/US/ETF (mapping `YAHOO_MAP` dans `engine/lib/sources.js`).
+- Usage : **momentum 12-1, RSI 14, volume relatif 20j, range 52 sem.** calculés par
+  `engine/signals.js` (cf. `skills/quant-signals.md`), sans clé ni quota.
+
+### OpenInsider — gratuit, sans clé (transactions d'initiés, **US uniquement**)
+- Scraping du screener ; ratio achats/ventes d'initiés sur 90j.
+- Usage : signal initiés du gate pour les titres US. Européens/HK → non couverts (data_gap).
 
 ### Alpha Vantage — `ALPHAVANTAGE_API_KEY` (free 25 req/jour — économe !)
 - Indicateurs techniques (RSI, MACD, moyennes) et séries de prix.

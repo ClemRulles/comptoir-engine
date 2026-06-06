@@ -1,0 +1,129 @@
+# Routines nocturnes du Comptoir Engine (alternative / filet de secours à GitHub Actions).
+#
+# IMPORTANT — modèle d'exécution :
+#  • Le runner CANONIQUE du moteur est constitué des 5 tâches planifiées Claude Code
+#    (Lun→Ven), sur l'abonnement, conformément à la topologie du projet. Ce workflow est
+#    une ALTERNATIVE versionnée : il exécute Claude Code en headless via l'API (FACTURÉE
+#    au token via ANTHROPIC_API_KEY). N'active PAS les deux en même temps (double run).
+#  • GitHub ne planifie les workflows que depuis la branche par défaut (main). Ce fichier
+#    doit donc vivre sur `main`, mais il CHECKOUT la branche moteur `claude/memory` pour
+#    lire/écrire routines + memory + engine, et y repousse l'état.
+#  • Tant que les secrets ne sont pas configurés, le job se termine proprement (no-op) :
+#    pas d'échec nocturne bruyant. Pour activer : ajoute les secrets ci-dessous.
+#
+# Secrets à définir (Settings → Secrets and variables → Actions) :
+#   ANTHROPIC_API_KEY  (obligatoire pour jouer la routine)
+#   FMP_API_KEY        (F-Score + qualité des earnings — sinon signaux dégradés)
+#   FRED_API_KEY       (régime macro + VIX/HY)
+#   ALPHAVANTAGE_API_KEY (EPS surprise + croissance CA)
+
+name: Routines nocturnes (moteur)
+
+on:
+  workflow_dispatch:
+    inputs:
+      routine:
+        description: "Fichier routine (ex: friday-brief.md). Vide = selon le jour UTC."
+        required: false
+        default: ""
+  schedule:
+    # 21:00 UTC = 23h Paris (été CEST) / 22h Paris (hiver CET), du lundi au vendredi.
+    - cron: "0 21 * * 1-5"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nightly-routines
+  cancel-in-progress: false
+
+jobs:
+  routine:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Secrets configurés ?
+        id: precheck
+        run: |
+          if [ -z "${{ secrets.ANTHROPIC_API_KEY }}" ]; then
+            echo "::warning::ANTHROPIC_API_KEY absent — runner non configuré, exécution ignorée (no-op). Ajoute les secrets pour activer."
+            echo "ready=0" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=1" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout (branche moteur claude/memory)
+        if: steps.precheck.outputs.ready == '1'
+        uses: actions/checkout@v4
+        with:
+          ref: claude/memory
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Node 20
+        if: steps.precheck.outputs.ready == '1'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Choisir la routine du jour
+        if: steps.precheck.outputs.ready == '1'
+        id: pick
+        run: |
+          R="${{ github.event.inputs.routine }}"
+          M="sonnet"
+          if [ -z "$R" ]; then
+            case "$(date -u +%u)" in
+              1) R="monday-trend-radar.md" ;;
+              2) R="tuesday-scout.md" ;;
+              3) R="wednesday-deepdive.md" ;;
+              4) R="thursday-portfolio-doctor.md" ;;
+              5) R="friday-brief.md" ;;
+              *) echo "Week-end — pas de routine."; echo "skip=1" >> "$GITHUB_OUTPUT"; exit 0 ;;
+            esac
+          fi
+          case "$R" in *deepdive*) M="opus" ;; esac
+          echo "file=routines/$R" >> "$GITHUB_OUTPUT"
+          echo "model=$M" >> "$GITHUB_OUTPUT"
+          echo "→ $R (modèle $M)"
+
+      - name: Garde-fou + signaux (déterministe, AVANT l'IA)
+        if: steps.precheck.outputs.ready == '1' && steps.pick.outputs.skip != '1'
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          FMP_API_KEY: ${{ secrets.FMP_API_KEY }}
+          ALPHAVANTAGE_API_KEY: ${{ secrets.ALPHAVANTAGE_API_KEY }}
+        run: |
+          node engine/guard.js || true
+          node engine/signals.js || true
+
+      - name: Installer Claude Code
+        if: steps.precheck.outputs.ready == '1' && steps.pick.outputs.skip != '1'
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Jouer la routine
+        if: steps.precheck.outputs.ready == '1' && steps.pick.outputs.skip != '1'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          FMP_API_KEY: ${{ secrets.FMP_API_KEY }}
+          ALPHAVANTAGE_API_KEY: ${{ secrets.ALPHAVANTAGE_API_KEY }}
+        run: |
+          PROMPT="Tu es l'analyste de nuit du Comptoir Engine. Lis CLAUDE.md, puis exécute INTÉGRALEMENT la routine du fichier ${{ steps.pick.outputs.file }} (le garde-fou guard et les signaux ont déjà été lancés). Lis les fichiers memory/ qu'elle demande, fais le travail, réécris les fichiers memory/ concernés. N'exécute aucun ordre réel. Ne fais PAS de git push : le workflow committe et pousse pour toi."
+          claude -p "$PROMPT" \
+            --model "${{ steps.pick.outputs.model }}" \
+            --permission-mode bypassPermissions \
+            --add-dir "$PWD" \
+            --max-turns 80 || echo "::warning::Routine Claude terminée en erreur (voir logs ci-dessus)."
+
+      - name: Committer & pousser l'état (claude/memory)
+        if: steps.precheck.outputs.ready == '1' && steps.pick.outputs.skip != '1'
+        run: |
+          git config user.name "comptoir-engine[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Aucun changement d'état à committer."
+          else
+            git commit -m "routine auto: $(basename '${{ steps.pick.outputs.file }}' .md) — $(date -u +%F)"
+            git push origin HEAD:claude/memory
+          fi
