@@ -6,7 +6,10 @@
 import { mkdtempSync, writeFileSync, existsSync, readdirSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { momentum12_1, piotroski, earningsQuality, regimeScore, gate } from "./lib/calc.js";
+import {
+  momentum12_1, momentumFromCloses, rsi, relativeVolume, range52w, insiderSignal,
+  piotroski, earningsQuality, regimeScore, gate, GATE_WEIGHTS,
+} from "./lib/calc.js";
 
 let pass = 0, fail = 0;
 const ok = (cond, label) => {
@@ -45,20 +48,66 @@ const ok = (cond, label) => {
   ok(earningsQuality({ netIncome: 1 }, {}, {}) === null, "earningsQuality: données absentes -> null");
 }
 
+// ---- calc: signaux de prix (Yahoo) ---------------------------------------
+{
+  const up = Array.from({ length: 260 }, (_, i) => 100 + i * 0.3); // tendance haussière
+  const m = momentumFromCloses(up);
+  ok(m && m.ok && m.value > 0, "momentumFromCloses: tendance haussière -> value>0");
+  ok(momentumFromCloses([1, 2, 3]) === null, "momentumFromCloses: trop court -> null");
+
+  const r = rsi(up, 14);
+  ok(r && r.ok && r.value > 70, "rsi: série monotone haussière -> RSI élevé");
+  ok(rsi([1, 2], 14) === null, "rsi: trop court -> null");
+
+  const vols = Array.from({ length: 25 }, (_, i) => (i === 24 ? 3000 : 1000));
+  const rv = relativeVolume(vols, 20);
+  ok(rv && rv.ok && rv.value > 2, "relativeVolume: pic de volume -> >2");
+
+  ok(range52w(150, 100, 200).value === 0.5, "range52w: milieu -> 0.5");
+  ok(range52w(190, 100, 200).zone === "près du haut", "range52w: proche haut");
+  ok(range52w(105, 100, 200).zone === "près du bas", "range52w: proche bas");
+  ok(range52w(150, 200, 100) === null, "range52w: bornes incohérentes -> null");
+
+  ok(insiderSignal({ ok: true, ratio: 0.8, buys: 8, sells: 2 }).zone === "achats nets", "insiderSignal: achats nets");
+  ok(insiderSignal(null) === null, "insiderSignal: pas de données -> null");
+}
+
 // ---- calc: regime ---------------------------------------------------------
 {
   ok(regimeScore({}).label === "inconnu", "regime: aucune donnée -> inconnu");
   ok(regimeScore({ t10y2y: -0.5 }).label === "STRESS", "regime: courbe inversée -> STRESS");
-  ok(regimeScore({ t10y2y: 1.5, cpi_yoy: 2 }).label === "RISK-ON SAIN", "regime: sain -> RISK-ON");
-  ok(regimeScore({ t10y2y: 1.5, cpi_yoy: 5 }).label === "SURCHAUFFE", "regime: inflation chaude -> SURCHAUFFE");
+  ok(regimeScore({ t10y2y: 1.5, cpi_yoy: 0.02 }).label === "RISK-ON SAIN", "regime: sain -> RISK-ON");
+  ok(regimeScore({ t10y2y: 1.5, cpi_yoy: 0.05 }).label === "SURCHAUFFE", "regime: inflation chaude -> SURCHAUFFE");
+  ok(regimeScore({ vix: 40 }).label === "STRESS", "regime: VIX panique -> STRESS");
+  ok(regimeScore({ vix: 32, hy_spread: 7 }).fear_greed === "peur", "regime: VIX+HY élevés -> peur");
+  ok(regimeScore({ vix: 12, hy_spread: 3 }).fear_greed === "avidité", "regime: VIX bas -> avidité");
 }
 
-// ---- calc: gate -----------------------------------------------------------
+// ---- calc: gate composite pondéré ----------------------------------------
 {
-  ok(gate({ fscore: { ok: true, score: 8 }, momentum: { ok: true, sign: "positif" }, eq: { ok: true, flag: "vert" } }).verdict === "vert", "gate: tout bon -> vert");
-  ok(gate({ fscore: { ok: true, score: 2 } }).verdict === "rouge", "gate: F-Score faible -> rouge");
-  ok(gate({ eq: { ok: true, flag: "ambre" }, momentum: { ok: true, overheated: true } }).verdict === "ambre", "gate: 2 oranges -> ambre");
-  ok(gate({ fscore: null, momentum: null, eq: null }).verdict === "indéterminé", "gate: aucun signal -> indéterminé (pas vert)");
+  const totalW = Object.values(GATE_WEIGHTS).reduce((a, b) => a + b, 0);
+  ok(Math.abs(totalW - 1) < 1e-9, "gate: somme des poids = 1.0");
+
+  const allGood = gate({
+    fscore: { ok: true, score: 8 }, eq: { ok: true, flag: "vert" },
+    momentum: { ok: true, value: 0.25, overheated: false }, rsi: { ok: true, value: 62 },
+    range52w: { ok: true, value: 0.7 }, insider: { ok: true, ratio: 0.8 },
+  });
+  ok(allGood.verdict === "vert", `gate: signaux bons -> vert (composite ${allGood.composite})`);
+
+  ok(gate({ fscore: { ok: true, score: 2 } }).verdict === "rouge", "gate: F-Score critique -> rouge (drapeau dur)");
+  ok(gate({ eq: { ok: true, flag: "rouge" }, momentum: { ok: true, value: 0.3 } }).verdict === "rouge", "gate: earnings rouges -> rouge (drapeau dur)");
+
+  // Que des signaux de prix (aucune clé) -> doit conclure, pas indéterminé.
+  const technicalsOnly = gate({
+    momentum: { ok: true, value: 0.2, overheated: false }, rsi: { ok: true, value: 58 },
+    range52w: { ok: true, value: 0.6 }, insider: { ok: true, ratio: 0.65 },
+  });
+  ok(technicalsOnly.verdict !== "indéterminé", `gate: signaux de prix seuls -> conclut (${technicalsOnly.verdict})`);
+
+  ok(gate({}).verdict === "indéterminé", "gate: aucun signal -> indéterminé (traité 🟠 par §H)");
+  const weak = gate({ momentum: { ok: true, value: -0.4, overheated: false }, rsi: { ok: true, value: 25 }, range52w: { ok: true, value: 0.05 } });
+  ok(weak.verdict === "rouge", `gate: prix très faibles -> rouge (composite ${weak.composite})`);
 }
 
 // ---- guard: réparation sur fichiers temporaires ---------------------------
