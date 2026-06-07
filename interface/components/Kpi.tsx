@@ -33,6 +33,7 @@ export function Reveal({
 
 export function KpiCard({
   label,
+  labelSub,
   value,
   sub,
   accent,
@@ -41,6 +42,7 @@ export function KpiCard({
   sparkColor,
 }: {
   label: string;
+  labelSub?: string;
   value: React.ReactNode;
   sub?: React.ReactNode;
   accent?: "group" | "ai" | "neutral";
@@ -56,14 +58,17 @@ export function KpiCard({
       style={{ animationDelay: `${delay}ms` }}
     >
       <div className={`absolute left-0 top-0 h-full w-1 ${bar}`} />
+      <div className="label leading-tight">
+        {label}
+        {labelSub && <span className="block text-[10px] text-muted font-normal">{labelSub}</span>}
+      </div>
+      <div className={`kpi mt-1${spark && spark.length > 1 ? " pr-14" : ""}`}>{value}</div>
+      {sub && <div className="mt-2 text-sm text-muted">{sub}</div>}
       {spark && spark.length > 1 && (
-        <div className="pointer-events-none absolute right-3 top-3 opacity-90">
+        <div className="pointer-events-none absolute right-2 bottom-3 opacity-80">
           <Sparkline data={spark} color={sColor} />
         </div>
       )}
-      <div className="label">{label}</div>
-      <div className="kpi mt-1">{value}</div>
-      {sub && <div className="mt-2 text-sm text-muted">{sub}</div>}
     </div>
   );
 }

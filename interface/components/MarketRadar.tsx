@@ -183,11 +183,6 @@ export function MarketRadar({ signals, demo }: { signals: MarketSignals; demo: b
             })}
           </tbody>
         </table>
-        {signals.data_gaps && signals.data_gaps.length > 0 && (
-          <p className="mt-3 text-xs text-muted">
-            Données partielles : {signals.data_gaps.join(" · ")}.
-          </p>
-        )}
       </div>
     </div>
   );
