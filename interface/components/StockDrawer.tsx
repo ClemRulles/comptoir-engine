@@ -18,6 +18,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { TickerLogo } from "@/components/TickerLogo";
 
 // ── Contexte global : permet à n'importe quelle cellule ticker d'ouvrir le tiroir ──
 type DrawerState = { symbol: string; name?: string } | null;
@@ -267,18 +268,21 @@ function Drawer({ state, onClose }: { state: DrawerState; onClose: () => void })
         <div className="flex h-[calc(92vh-1.75rem)] flex-col px-5 pb-6">
           {/* En-tête */}
           <div className="flex items-start justify-between gap-3 pb-4">
-            <div className="min-w-0">
-              <div className="flex items-center gap-2">
-                <h2 className="text-2xl font-extrabold tracking-tight">
-                  {state?.symbol ?? ""}
-                </h2>
-                {data?.exchange && (
-                  <span className="chip bg-bg text-muted text-xs">{data.exchange}</span>
-                )}
+            <div className="flex min-w-0 items-center gap-3">
+              {state?.symbol && <TickerLogo ticker={state.symbol} size={44} />}
+              <div className="min-w-0">
+                <div className="flex items-center gap-2">
+                  <h2 className="text-2xl font-extrabold tracking-tight">
+                    {state?.symbol ?? ""}
+                  </h2>
+                  {data?.exchange && (
+                    <span className="chip bg-bg text-muted text-xs">{data.exchange}</span>
+                  )}
+                </div>
+                <p className="truncate text-sm text-muted">
+                  {data?.name ?? state?.name ?? "Chargement…"}
+                </p>
               </div>
-              <p className="truncate text-sm text-muted">
-                {data?.name ?? state?.name ?? "Chargement…"}
-              </p>
             </div>
             <button
               onClick={onClose}
@@ -347,23 +351,29 @@ export function StockDrawerProvider({ children }: { children: React.ReactNode })
 }
 
 // Cellule ticker cliquable — à utiliser partout où un symbole est affiché.
+// Affiche le logo de l'entreprise (repli monogramme) + le symbole.
 export function TickerCell({
   ticker,
   name,
   className = "",
+  hideLogo = false,
+  logoSize = 22,
 }: {
   ticker: string;
   name?: string;
   className?: string;
+  hideLogo?: boolean;
+  logoSize?: number;
 }) {
   const openStock = useStockDrawer();
   return (
     <button
       type="button"
       onClick={() => openStock(ticker, name)}
-      className={`font-semibold text-ink transition-colors hover:text-brand hover:underline decoration-dotted underline-offset-2 ${className}`}
+      className={`group inline-flex items-center gap-1.5 align-middle font-semibold text-ink transition-colors hover:text-brand ${className}`}
     >
-      {ticker}
+      {!hideLogo && <TickerLogo ticker={ticker} size={logoSize} />}
+      <span className="decoration-dotted underline-offset-2 group-hover:underline">{ticker}</span>
     </button>
   );
 }
