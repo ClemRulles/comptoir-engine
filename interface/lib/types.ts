@@ -209,3 +209,32 @@ export interface MarketSignals {
   tickers: Record<string, TickerSignals>;
   data_gaps?: string[];
 }
+
+// memory/grok-pulse.json — pouls hebdo du marché (Grok, accès X).
+// Radar à corroborer : un thème non recoupé par une source dure ne crée aucun signal d'achat.
+export interface GrokPulseTheme {
+  title: string;
+  detail?: string;
+  tickers?: string[];
+  corroborated?: boolean; // true = recoupé par une source dure (SEC/FRED/chiffres)
+}
+export interface GrokPulseMover {
+  ticker: string;
+  direction: "up" | "down";
+  reason?: string;
+  held?: boolean; // détenu par le groupe / l'IA
+}
+export interface GrokPulseWeek {
+  week: string;       // "2026-W24"
+  date: string;       // "2026-06-08"
+  label?: string;     // "Semaine du 8 juin 2026"
+  headline?: string;  // synthèse en une ligne
+  themes?: GrokPulseTheme[];
+  movers?: GrokPulseMover[];
+  sources?: string[];
+}
+export interface GrokPulseFile {
+  _doc?: string;
+  updated?: string;
+  weeks: GrokPulseWeek[];
+}

@@ -1,4 +1,4 @@
-import type { AiFundFile, Calibration, Decision, DecisionsFile, MarketSignals } from "./types";
+import type { AiFundFile, Calibration, Decision, DecisionsFile, GrokPulseFile, MarketSignals } from "./types";
 
 const GH_REPO = process.env.GITHUB_REPO || "ClemRulles/comptoir-engine";
 const GH_BRANCH = process.env.GITHUB_BRANCH || "claude/memory";
@@ -111,6 +111,17 @@ export async function fetchSignals(): Promise<MarketSignals | null> {
   if (!raw) return null;
   try {
     return JSON.parse(raw) as MarketSignals;
+  } catch {
+    return null;
+  }
+}
+
+// Pouls hebdo du marché (Grok/X), écrit par la routine du lundi.
+export async function fetchGrokPulse(): Promise<GrokPulseFile | null> {
+  const raw = await fetchRepoFile("memory/grok-pulse.json");
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as GrokPulseFile;
   } catch {
     return null;
   }

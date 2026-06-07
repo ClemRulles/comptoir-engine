@@ -1,4 +1,4 @@
-import type { AiFundFile, Calibration, ClubMember, Contribution, Decision, MarketSignals } from "./types";
+import type { AiFundFile, Calibration, ClubMember, Contribution, Decision, GrokPulseWeek, MarketSignals } from "./types";
 
 // Données de DÉMONSTRATION (affichées tant que Supabase n'est pas branché).
 // Clairement étiquetées « Démo » dans l'UI — remplacées par les vraies données en prod.
@@ -278,3 +278,83 @@ export const DEMO_SIGNALS: MarketSignals = {
   },
   data_gaps: ["fscore/earnings indisponibles pour les valeurs EU (clé FMP)"],
 };
+
+// ── Pouls du marché (Grok/X) — démo, 3 semaines pour illustrer la navigation ──
+export const DEMO_GROK_PULSE: GrokPulseWeek[] = [
+  {
+    week: "2026-W24",
+    date: "2026-06-08",
+    label: "Semaine du 8 juin 2026",
+    headline: "L'infra IA garde la main ; la défense EU reste un fil conducteur, le GLP-1 sous pression.",
+    themes: [
+      {
+        title: "Rotation vers les « pioches et pelles » de l'IA",
+        detail: "Le marché délaisse les noms purs au profit de l'énergie, du refroidissement et des réseaux qui alimentent les data centers.",
+        tickers: ["VRT", "NVDA"],
+        corroborated: true,
+      },
+      {
+        title: "Budgets défense européens revus à la hausse",
+        detail: "Plusieurs annonces de commandes et de hausses de budget alimentent un cycle pluriannuel — porteur pour HO.PA et SAF.PA.",
+        tickers: ["HO.PA", "SAF.PA"],
+        corroborated: true,
+      },
+      {
+        title: "Buzz spéculatif autour des proxies bitcoin",
+        detail: "Forte agitation sur X autour des trésoreries bitcoin — narratif, pas de flux durs derrière. À traiter en contrarien.",
+        tickers: ["MSTR"],
+        corroborated: false,
+      },
+    ],
+    movers: [
+      { ticker: "NOVOB", direction: "down", reason: "Inquiétudes sur la concurrence GLP-1 et la guidance.", held: true },
+      { ticker: "BNP.PA", direction: "up", reason: "Pentification de la courbe favorable aux banques.", held: true },
+      { ticker: "VRT", direction: "up", reason: "Carnet de commandes data centers solide.", held: false },
+    ],
+    sources: ["Grok/X", "recoupé: FRED (courbe), communiqués défense"],
+  },
+  {
+    week: "2026-W23",
+    date: "2026-06-01",
+    label: "Semaine du 1er juin 2026",
+    headline: "Marché en attente du FOMC ; le luxe se stabilise, l'EV reste sous pression sur les prix.",
+    themes: [
+      {
+        title: "Attentisme avant la décision de taux",
+        detail: "Faible conviction directionnelle, volumes en baisse ; le growth de qualité tient mieux que la moyenne.",
+        tickers: ["AMZN"],
+        corroborated: true,
+      },
+      {
+        title: "Guerre des prix persistante sur l'EV",
+        detail: "Pression continue sur les marges des constructeurs ; BYD mieux placé grâce à son intégration verticale.",
+        tickers: ["BYD"],
+        corroborated: true,
+      },
+    ],
+    movers: [
+      { ticker: "RMS.PA", direction: "up", reason: "Rebond du luxe premium après des données de demande rassurantes.", held: true },
+      { ticker: "SAP", direction: "down", reason: "Doutes persistants sur le rythme de bascule cloud (RISE).", held: true },
+    ],
+    sources: ["Grok/X", "recoupé: FMP sector-performance"],
+  },
+  {
+    week: "2026-W22",
+    date: "2026-05-25",
+    label: "Semaine du 25 mai 2026",
+    headline: "Résultats AMZN bien reçus ; l'appétit pour le risque progresse sans euphorie.",
+    themes: [
+      {
+        title: "AWS rassure sur la marge",
+        detail: "La guidance cloud confirme la thèse de levier sur la marge du groupe — soutien pour le growth de qualité.",
+        tickers: ["AMZN"],
+        corroborated: true,
+      },
+    ],
+    movers: [
+      { ticker: "AMZN", direction: "up", reason: "Guidance AWS solide, thèse confirmée.", held: true },
+      { ticker: "MSTR", direction: "down", reason: "Repli du bitcoin, prime sur NAV qui se comprime.", held: true },
+    ],
+    sources: ["Grok/X", "recoupé: 8-K AMZN"],
+  },
+];
