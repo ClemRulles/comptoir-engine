@@ -33,7 +33,8 @@ export default async function DashboardPage() {
       {/* Mobile : graphique en premier (order-1). Desktop : KPIs en premier (md:order-1). */}
       <div className="grid grid-cols-2 gap-4 xl:grid-cols-4 order-2 md:order-1">
         <KpiCard
-          label="Fonds du groupe"
+          label="Fonds"
+          labelSub="Groupe"
           accent="group"
           delay={0}
           value={<AnimatedNumber value={group.nav} kind="eur" />}
@@ -41,7 +42,8 @@ export default async function DashboardPage() {
           spark={data.series.map((s) => s.group)}
         />
         <KpiCard
-          label="Fonds IA (fictif)"
+          label="Fonds IA"
+          labelSub="Fictif"
           accent="ai"
           delay={60}
           value={<AnimatedNumber value={ai.nav} kind="eur" />}

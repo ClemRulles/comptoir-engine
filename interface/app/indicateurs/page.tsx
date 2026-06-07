@@ -39,7 +39,23 @@ export default async function IndicateursPage() {
         <MarketPulse weeks={pulse.weeks} demo={pulse.demo} />
       </Reveal>
 
-      {/* Bandeau KPIs — calendrier des catalyseurs */}
+      {/* Radar de marché — signaux quantitatifs par titre */}
+      <Reveal delay={100}>
+        <SectionTitle>Radar de marché — signaux par titre</SectionTitle>
+        <MarketRadar signals={radar.signals} demo={radar.demo} />
+      </Reveal>
+
+      {/* Calendrier des catalyseurs */}
+      <Reveal delay={140}>
+        <div className="card-p">
+          <SectionTitle right={demo ? <span className="chip bg-slate-100 text-slate-500">Démo</span> : undefined}>
+            Calendrier & analyses de l&apos;IA
+          </SectionTitle>
+          <CatalystsList upcoming={upcoming} past={past} />
+        </div>
+      </Reveal>
+
+      {/* Bandeau KPIs — résumé du calendrier */}
       <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
         <KpiCard label="À venir" accent="neutral" delay={0} value={String(upcoming.length)} sub={<span className="text-muted">sur ~6 semaines</span>} />
         <KpiCard
@@ -52,22 +68,6 @@ export default async function IndicateursPage() {
         <KpiCard label="Anticipés" accent="group" delay={120} value={String(anticipated)} sub={<span className="text-muted">déjà pré-positionnés</span>} />
         <KpiCard label="Archivés" accent="neutral" delay={180} value={String(past.length)} sub={<span className="text-muted">événements passés</span>} />
       </div>
-
-      {/* Radar de marché — signaux quantitatifs par titre */}
-      <Reveal delay={120}>
-        <SectionTitle>Radar de marché — signaux par titre</SectionTitle>
-        <MarketRadar signals={radar.signals} demo={radar.demo} />
-      </Reveal>
-
-      {/* Calendrier des catalyseurs */}
-      <Reveal delay={160}>
-        <div className="card-p">
-          <SectionTitle right={demo ? <span className="chip bg-slate-100 text-slate-500">Démo</span> : undefined}>
-            Calendrier & analyses de l&apos;IA
-          </SectionTitle>
-          <CatalystsList upcoming={upcoming} past={past} />
-        </div>
-      </Reveal>
 
       <div className="card-p bg-bg/50 text-sm text-slate-600">
         <p className="font-semibold">Comment le lire</p>
