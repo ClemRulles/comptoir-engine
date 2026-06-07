@@ -20,19 +20,20 @@ export default async function GroupePage() {
   ].filter((s) => s.value > 0);
 
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col gap-6">
       <p className="text-sm text-muted">
         Le pot commun du groupe. Tenez les positions à jour ; la valorisation se rafraîchit chaque jour.
       </p>
 
-      <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
+      {/* Mobile : graphique en premier, KPIs après. Desktop : KPIs en premier (md:order-1). */}
+      <div className="grid grid-cols-2 gap-4 xl:grid-cols-4 order-2 md:order-1">
         <KpiCard label="Valeur (NAV)" accent="group" delay={0} value={<AnimatedNumber value={f.nav} kind="eur" />} sub={<Delta value={f.perf} />} />
         <KpiCard label="Investi" accent="neutral" delay={60} value={<AnimatedNumber value={f.positionsValue} kind="eur" />} sub={<span className="text-muted">{f.holdings.length} positions</span>} />
         <KpiCard label="Cash" accent="neutral" delay={120} value={<AnimatedNumber value={f.cash} kind="eur" />} sub={<span className="text-muted">{pct(f.nav ? f.cash / f.nav : 0).replace("+", "")} du fonds</span>} />
         <KpiCard label="Δ cette semaine" accent="neutral" delay={180} value={pct(data.weekDeltaGroup)} sub={<span className="text-muted">vs ~1 semaine</span>} />
       </div>
 
-      <Reveal delay={150}>
+      <Reveal delay={150} className="order-1 md:order-2">
         <div className="card-p">
           <SectionTitle>Évolution du fonds</SectionTitle>
           <PerfChart data={data.series} mode="group" />

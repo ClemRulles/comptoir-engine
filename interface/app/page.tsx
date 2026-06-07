@@ -28,8 +28,9 @@ export default async function DashboardPage() {
   const best = [...group.holdings].sort((a, b) => b.pnlPct - a.pnlPct)[0];
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    <div className="flex flex-col gap-6">
+      {/* Mobile : graphique en premier (order-1). Desktop : KPIs en premier (md:order-1). */}
+      <div className="grid grid-cols-2 gap-4 xl:grid-cols-4 order-2 md:order-1">
         <KpiCard
           label="Fonds du groupe"
           accent="group"
@@ -52,7 +53,7 @@ export default async function DashboardPage() {
           sub={<span className="text-muted">écart {pct(spread)} (IA − groupe)</span>}
         />
         <KpiCard
-          label="Meilleure position (groupe)"
+          label="Meilleure position"
           accent="neutral"
           delay={180}
           value={best ? best.ticker : "—"}
@@ -60,7 +61,7 @@ export default async function DashboardPage() {
         />
       </div>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 order-1 md:order-2">
         <Reveal delay={150} className="lg:col-span-2">
           <div className="card-p">
             <SectionTitle>Performance — Groupe vs IA</SectionTitle>
@@ -75,7 +76,7 @@ export default async function DashboardPage() {
         </Reveal>
       </div>
 
-      <Reveal delay={140}>
+      <Reveal delay={140} className="order-3">
         <div className="card-p">
           <SectionTitle right={<span className="text-xs text-muted">variation du jour</span>}>
             Top mouvements du jour
@@ -84,7 +85,7 @@ export default async function DashboardPage() {
         </div>
       </Reveal>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 order-4">
         <Reveal delay={120}>
           <div className="card-p">
             <SectionTitle right={<Link href="/groupe" className="text-sm text-brand hover:underline">Gérer →</Link>}>
@@ -132,7 +133,7 @@ export default async function DashboardPage() {
         </Reveal>
       </div>
 
-      <Reveal delay={150}>
+      <Reveal delay={150} className="order-5">
         <div className="card-p">
           <SectionTitle right={<span className="text-xs text-muted">derniers changements réalisés</span>}>
             Activité récente
@@ -146,7 +147,7 @@ export default async function DashboardPage() {
         </div>
       </Reveal>
 
-      <p className="text-center text-xs text-muted">
+      <p className="text-center text-xs text-muted order-6">
         Valeurs à des fins de comparaison. Paper trading — aucun ordre réel n&apos;est passé.
       </p>
     </div>

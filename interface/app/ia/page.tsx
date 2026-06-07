@@ -20,27 +20,28 @@ export default async function IaPage() {
   const trades = file?.trades ?? [];
 
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col gap-6">
       <p className="text-sm text-muted">
         Portefeuille <strong>fictif</strong> géré par l&apos;IA à partir de ses convictions. 100 % paper —
         aucun ordre réel. Mis à jour le vendredi par le moteur.
       </p>
 
-      <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
+      {/* Mobile : graphique en premier, KPIs après. Desktop : KPIs en premier (md:order-1). */}
+      <div className="grid grid-cols-2 gap-4 xl:grid-cols-4 order-2 md:order-1">
         <KpiCard label="Valeur (NAV)" accent="ai" delay={0} value={<AnimatedNumber value={f.nav} kind="eur" />} sub={<Delta value={f.perf} />} />
         <KpiCard label="Investi" accent="neutral" delay={60} value={<AnimatedNumber value={f.positionsValue} kind="eur" />} sub={<span className="text-muted">{f.holdings.length} positions</span>} />
         <KpiCard label="Cash" accent="neutral" delay={120} value={<AnimatedNumber value={f.cash} kind="eur" />} sub={<span className="text-muted">{pct(f.nav ? f.cash / f.nav : 0).replace("+", "")} du fonds</span>} />
         <KpiCard label="Δ cette semaine" accent="neutral" delay={180} value={pct(data.weekDeltaAi)} sub={<span className="text-muted">vs ~1 semaine</span>} />
       </div>
 
-      <Reveal delay={150}>
+      <Reveal delay={150} className="order-1 md:order-2">
         <div className="card-p">
           <SectionTitle>Évolution du fonds IA</SectionTitle>
           <PerfChart data={data.series} mode="ai" />
         </div>
       </Reveal>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 order-3">
         <Reveal delay={120} className="lg:col-span-2">
           <div className="card-p overflow-x-auto">
             <SectionTitle>Positions & thèses</SectionTitle>
@@ -82,7 +83,7 @@ export default async function IaPage() {
         </Reveal>
       </div>
 
-      <Reveal delay={120}>
+      <Reveal delay={120} className="order-4">
         <div className="card-p">
           <SectionTitle>Journal des décisions (fictif)</SectionTitle>
           {trades.length === 0 ? (
