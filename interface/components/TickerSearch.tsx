@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { TickerLogo } from "@/components/TickerLogo";
 
 type Result = { symbol: string; name: string; exchange: string; type: string };
 
@@ -86,9 +87,12 @@ export function TickerSearch({
                 onClick={() => pick(r)}
                 className="flex w-full items-center justify-between gap-3 px-3 py-2 text-left text-sm hover:bg-bg"
               >
-                <span className="min-w-0">
-                  <span className="font-semibold">{r.symbol}</span>{" "}
-                  <span className="text-muted">· {r.name}</span>
+                <span className="flex min-w-0 items-center gap-2">
+                  <TickerLogo ticker={r.symbol} size={22} />
+                  <span className="min-w-0 truncate">
+                    <span className="font-semibold">{r.symbol}</span>{" "}
+                    <span className="text-muted">· {r.name}</span>
+                  </span>
                 </span>
                 <span className="shrink-0 text-xs text-muted">{r.exchange}</span>
               </button>
