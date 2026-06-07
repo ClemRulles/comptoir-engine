@@ -75,14 +75,21 @@ export function TickerLogo({
   const base = (ticker || "").toUpperCase();
   const domain = LOGO_DOMAINS[base];
 
-  // Chaîne de repli : DuckDuckGo (icône HD) → favicon Google → monogramme.
-  // Deux CDN fiables et sans clé ; le monogramme garantit qu'aucune image n'est cassée.
+  // Logo par ticker (FMP) — couvre AUTOMATIQUEMENT tout nouveau titre acheté
+  // (US comme européen), sans avoir à compléter la map à la main.
+  const fmp = `https://financialmodelingprep.com/image-stock/${encodeURIComponent(base)}.png`;
+
+  // Chaîne de repli :
+  //  - Ticker curaté (map domaine) → DuckDuckGo → favicon Google  (logo garanti correct,
+  //    y compris pour les tickers ambigus type « AI » = Air Liquide ≠ C3.ai)
+  //  - Ticker inconnu → FMP par ticker (logo réel auto)
+  //  - Dans tous les cas, repli final sur le monogramme (jamais d'image cassée).
   const sources = domain
     ? [
         `https://icons.duckduckgo.com/ip3/${domain}.ico`,
         `https://www.google.com/s2/favicons?sz=64&domain=${domain}`,
       ]
-    : [];
+    : [fmp];
   const [attempt, setAttempt] = useState(0);
   const src = sources[attempt];
 
