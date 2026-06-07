@@ -35,7 +35,7 @@ const LINKS = [
   { href: "/ia", label: "Fonds IA", icon: "ai" },
   { href: "/indicateurs", label: "Indicateurs", icon: "cal" },
   { href: "/apprentissages", label: "Apprentissages", icon: "learn" },
-  { href: "/propositions", label: "Propositions", icon: "bulb" },
+  { href: "/propositions", label: "Chat", icon: "bulb" },
   { href: "/brief", label: "Brief & tendance", icon: "brief" },
 ];
 

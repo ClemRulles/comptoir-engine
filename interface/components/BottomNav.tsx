@@ -31,7 +31,7 @@ const LINKS = [
   { href: "/ia", label: "IA", icon: "ai" },
   { href: "/indicateurs", label: "Indic.", icon: "cal" },
   { href: "/apprentissages", label: "Appr.", icon: "learn" },
-  { href: "/propositions", label: "Idées", icon: "bulb" },
+  { href: "/propositions", label: "Chat", icon: "bulb" },
   { href: "/brief", label: "Brief", icon: "brief" },
 ];
 
