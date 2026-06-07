@@ -6,6 +6,7 @@ import { AllocationDonut } from "@/components/Charts";
 import { PerfChart } from "@/components/PerfChart";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { KpiCard, Delta, SectionTitle, Reveal } from "@/components/Kpi";
+import { TickerCell } from "@/components/StockDrawer";
 
 export const dynamic = "force-dynamic";
 
@@ -62,7 +63,7 @@ export default async function IaPage() {
                 <tbody>
                   {f.holdings.map((h) => (
                     <tr key={h.ticker} className="border-b border-line/60 align-top">
-                      <td className="py-2.5 font-semibold">{h.ticker}</td>
+                      <td className="py-2.5"><TickerCell ticker={h.ticker} /></td>
                       <td className="text-right tabular-nums hidden sm:table-cell">{h.quantity}</td>
                       <td className="text-right tabular-nums">{h.price != null ? `${h.price} €` : "—"}</td>
                       <td className="text-right tabular-nums text-muted hidden sm:table-cell">{pct(h.weight).replace("+", "")}</td>
@@ -97,7 +98,7 @@ export default async function IaPage() {
                   </span>
                   <div className="min-w-0">
                     <div className="text-sm">
-                      <strong>{t.ticker}</strong> · {t.quantity} @ {t.price} €{" "}
+                      <TickerCell ticker={t.ticker} /> · {t.quantity} @ {t.price} €{" "}
                       <span className="text-muted">· {t.ts}</span>
                     </div>
                     <div className="text-sm text-slate-600">{t.rationale}</div>

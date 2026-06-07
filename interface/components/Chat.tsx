@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { TickerSearch } from "@/components/TickerSearch";
+import { TickerCell } from "@/components/StockDrawer";
 
 interface Message {
   id: string;
@@ -78,6 +80,7 @@ export function Chat({ demo, currentUserId }: { demo: boolean; currentUserId?: s
   const [text, setText] = useState("");
   const [showProposalForm, setShowProposalForm] = useState(false);
   const [pTicker, setPTicker] = useState("");
+  const [pTickerName, setPTickerName] = useState("");
   const [pThesis, setPThesis] = useState("");
   const [pSize, setPSize] = useState("");
   const [pHorizon, setPHorizon] = useState("Long terme");
@@ -168,7 +171,7 @@ export function Chat({ demo, currentUserId }: { demo: boolean; currentUserId?: s
         setError(j.error ?? "Erreur");
       } else {
         setShowProposalForm(false);
-        setPTicker(""); setPThesis(""); setPSize(""); setPHorizon("Long terme");
+        setPTicker(""); setPTickerName(""); setPThesis(""); setPSize(""); setPHorizon("Long terme");
       }
     } catch {
       setError("Erreur réseau.");
@@ -194,7 +197,9 @@ export function Chat({ demo, currentUserId }: { demo: boolean; currentUserId?: s
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
                     <span className="chip bg-brand/10 text-brand-600 text-xs">💡 Proposition</span>
-                    <span className="font-bold">{msg.proposal_ticker}</span>
+                    {msg.proposal_ticker && (
+                      <TickerCell ticker={msg.proposal_ticker} className="text-base" />
+                    )}
                     {msg.proposal_horizon && (
                       <span className="chip bg-bg text-muted text-xs">{msg.proposal_horizon}</span>
                     )}
@@ -254,14 +259,24 @@ export function Chat({ demo, currentUserId }: { demo: boolean; currentUserId?: s
               ×
             </button>
           </div>
-          <input
-            value={pTicker}
-            onChange={(e) => setPTicker(e.target.value)}
-            placeholder="Ticker (ex : ASML, NVDA…)"
-            className="input"
-            required
-            maxLength={20}
-          />
+          <div>
+            <TickerSearch
+              value={pTicker}
+              onChange={(text) => {
+                setPTicker(text.toUpperCase());
+                setPTickerName("");
+              }}
+              onSelect={(symbol, name) => {
+                setPTicker(symbol);
+                setPTickerName(name);
+              }}
+            />
+            {pTickerName && (
+              <p className="mt-1 text-xs text-muted truncate">✓ {pTickerName}</p>
+            )}
+            {/* champ caché pour validation HTML required */}
+            <input type="text" value={pTicker} required readOnly className="sr-only" tabIndex={-1} />
+          </div>
           <textarea
             value={pThesis}
             onChange={(e) => setPThesis(e.target.value)}

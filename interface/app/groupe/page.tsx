@@ -8,6 +8,7 @@ import { HoldingsEditor } from "@/components/HoldingsEditor";
 import { MembersManager } from "@/components/MembersManager";
 import { MaintenancePanel } from "@/components/MaintenancePanel";
 import { CashEditor } from "@/components/CashEditor";
+import { TickerCell } from "@/components/StockDrawer";
 
 export const dynamic = "force-dynamic";
 
@@ -62,7 +63,7 @@ export default async function GroupePage() {
                 <tbody>
                   {f.holdings.map((h) => (
                     <tr key={h.ticker} className="border-b border-line/60">
-                      <td className="py-2.5 font-semibold">{h.ticker}</td>
+                      <td className="py-2.5"><TickerCell ticker={h.ticker} /></td>
                       <td className="text-right tabular-nums hidden sm:table-cell">{h.quantity}</td>
                       <td className="text-right tabular-nums text-muted hidden sm:table-cell">{h.avgCost} €</td>
                       <td className="text-right tabular-nums">{h.price != null ? `${h.price} €` : "—"}</td>
