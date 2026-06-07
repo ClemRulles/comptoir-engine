@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   Bar,
   BarChart,
@@ -8,6 +9,7 @@ import {
   PieChart,
   ReferenceLine,
   ResponsiveContainer,
+  Sector,
   Tooltip,
   XAxis,
   YAxis,
@@ -20,11 +22,31 @@ const SLICE_COLORS = ["#16a34a", "#22c55e", "#10b981", "#84cc16", "#0d9488", "#6
 const sliceColor = (name: string, i: number) =>
   name === "Cash" ? "#cbd5e1" : SLICE_COLORS[i % SLICE_COLORS.length];
 
+// Forme de la part survolée : elle ressort légèrement (anneau plus épais).
+type ActiveShape = {
+  cx: number; cy: number; innerRadius: number; outerRadius: number;
+  startAngle: number; endAngle: number; fill: string;
+};
+function renderActiveShape(props: unknown) {
+  const p = props as ActiveShape;
+  return (
+    <Sector
+      cx={p.cx} cy={p.cy}
+      innerRadius={p.innerRadius} outerRadius={p.outerRadius + 7}
+      startAngle={p.startAngle} endAngle={p.endAngle}
+      fill={p.fill}
+    />
+  );
+}
+
 export function AllocationDonut({ slices }: { slices: { name: string; value: number }[] }) {
   const total = slices.reduce((s, x) => s + x.value, 0);
+  const [active, setActive] = useState<number | null>(null);
   if (total <= 0) {
     return <div className="flex h-64 items-center justify-center text-sm text-muted">—</div>;
   }
+  const sel = active != null ? slices[active] : null;
+
   return (
     <div className="flex flex-col items-center">
       <div className="relative" style={{ width: 220, height: 220 }}>
@@ -36,34 +58,61 @@ export function AllocationDonut({ slices }: { slices: { name: string; value: num
             cx={110}
             cy={110}
             innerRadius={64}
-            outerRadius={95}
+            outerRadius={92}
             paddingAngle={2}
             stroke="none"
             isAnimationActive={false}
+            activeIndex={active ?? undefined}
+            activeShape={renderActiveShape}
+            onMouseEnter={(_, i) => setActive(i)}
+            onMouseLeave={() => setActive(null)}
           >
             {slices.map((s, i) => (
-              <Cell key={s.name} fill={sliceColor(s.name, i)} />
+              <Cell
+                key={s.name}
+                fill={sliceColor(s.name, i)}
+                opacity={active == null || active === i ? 1 : 0.3}
+                style={{ transition: "opacity 0.15s" }}
+              />
             ))}
           </Pie>
-          <Tooltip
-            contentStyle={{ background: "rgb(var(--chart-tooltip-bg))", border: "1px solid rgb(var(--c-line))", borderRadius: 12, color: "rgb(var(--c-ink))" }}
-            formatter={(v: number) => euro(v)}
-          />
         </PieChart>
-        <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-[11px] font-semibold uppercase tracking-wide text-muted">Total</span>
-          <span className="text-lg font-bold tabular-nums">{euro(total)}</span>
+        {/* Centre : détail de la part survolée, sinon le total. */}
+        <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-8 text-center">
+          {sel ? (
+            <>
+              <span className="flex items-center gap-1.5 text-sm font-semibold">
+                <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: sliceColor(sel.name, active!) }} />
+                {sel.name}
+              </span>
+              <span className="mt-0.5 text-lg font-bold tabular-nums">{euro(sel.value)}</span>
+              <span className="text-xs text-muted">{((sel.value / total) * 100).toFixed(1).replace(".", ",")}% du fonds</span>
+            </>
+          ) : (
+            <>
+              <span className="text-[11px] font-semibold uppercase tracking-wide text-muted">Total</span>
+              <span className="text-lg font-bold tabular-nums">{euro(total)}</span>
+            </>
+          )}
         </div>
       </div>
-      <div className="mt-3 grid w-full grid-cols-2 gap-x-4 gap-y-1.5 text-sm">
+      <div className="mt-3 grid w-full grid-cols-2 gap-x-4 gap-y-0.5 text-sm">
         {slices.map((s, i) => (
-          <div key={s.name} className="flex items-center justify-between">
-            <span className="flex items-center gap-2 text-slate-600">
+          <button
+            type="button"
+            key={s.name}
+            onMouseEnter={() => setActive(i)}
+            onMouseLeave={() => setActive(null)}
+            className={`-mx-1 flex items-center justify-between rounded-md px-1 py-0.5 transition-colors ${
+              active === i ? "bg-bg" : ""
+            }`}
+          >
+            <span className={`flex items-center gap-2 transition-opacity ${active != null && active !== i ? "opacity-45" : ""}`}>
               <span className="h-2.5 w-2.5 rounded-full" style={{ background: sliceColor(s.name, i) }} />
-              {s.name}
+              <span className="text-slate-600">{s.name}</span>
             </span>
             <span className="tabular-nums text-muted">{Math.round((s.value / total) * 100)}%</span>
-          </div>
+          </button>
         ))}
       </div>
     </div>

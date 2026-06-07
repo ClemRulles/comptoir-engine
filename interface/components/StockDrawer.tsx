@@ -310,8 +310,12 @@ function Drawer({ state, onClose }: { state: DrawerState; onClose: () => void })
           {/* Contenu */}
           <div className="flex-1 overflow-y-auto">
             {loading && (
-              <div className="flex h-64 items-center justify-center text-sm text-muted">
-                Chargement du graphique…
+              <div className="space-y-3 pt-1">
+                <div className="flex items-center justify-between">
+                  <div className="skeleton h-6 w-24" />
+                  <div className="skeleton h-7 w-40 rounded-lg" />
+                </div>
+                <div className="skeleton h-[260px] w-full rounded-xl" />
               </div>
             )}
             {err && !loading && (

@@ -45,20 +45,28 @@ export function LiveRefresher({ intervalMs = 120000 }: { intervalMs?: number }) 
       className="chip bg-brand/10 text-brand-600 hover:bg-brand/20 transition-colors"
       title="Rafraîchir les cours"
     >
-      <svg
-        width="13"
-        height="13"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className={spinning ? "animate-spin" : ""}
-      >
-        <path d="M21 12a9 9 0 1 1-2.64-6.36" />
-        <path d="M21 3v6h-6" />
-      </svg>
+      {spinning ? (
+        <svg
+          width="13"
+          height="13"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="animate-spin"
+        >
+          <path d="M21 12a9 9 0 1 1-2.64-6.36" />
+          <path d="M21 3v6h-6" />
+        </svg>
+      ) : (
+        // Pastille « live » qui pulse doucement
+        <span className="relative flex h-2 w-2" aria-hidden>
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-500 opacity-60" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-500" />
+        </span>
+      )}
       <span className="hidden sm:inline">Mis à jour {hh}</span>
       <span className="sm:hidden">{hh}</span>
     </button>
