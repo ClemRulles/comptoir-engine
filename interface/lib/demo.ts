@@ -1,4 +1,4 @@
-import type { AiFundFile, Calibration, ClubMember, Contribution, Decision } from "./types";
+import type { AiFundFile, Calibration, ClubMember, Contribution, Decision, MarketSignals } from "./types";
 
 // Données de DÉMONSTRATION (affichées tant que Supabase n'est pas branché).
 // Clairement étiquetées « Démo » dans l'UI — remplacées par les vraies données en prod.
@@ -212,3 +212,69 @@ export const DEMO_GROUP_TRADES = [
   { ts: "2026-05-20", side: "sell" as const, ticker: "MSTR", quantity: 1, price: 415.0, rationale: "Prise de bénéfice partielle, volatilité bitcoin." },
   { ts: "2026-05-12", side: "buy" as const, ticker: "RMS.PA", quantity: 1, price: 201.81, rationale: "Initiation luxe premium." },
 ];
+
+// ── Radar de marché (signaux quantitatifs par titre) — démo ───────────
+export const DEMO_SIGNALS: MarketSignals = {
+  updated: new Date().toISOString(),
+  regime: {
+    label: "RISK-ON SAIN",
+    score: 0.62,
+    cash_floor: 0.1,
+    fear_greed: 58,
+    flags: ["10Y-2Y positif", "spreads HY contenus"],
+    ok: true,
+  },
+  tickers: {
+    NVDA: {
+      ticker: "NVDA", asof: "2026-06-06", price: 1180, currency: "USD",
+      momentum_12_1: { value: 0.41, sign: "positif", overheated: true, ok: true },
+      rsi_14: { value: 78, zone: "suracheté", ok: true },
+      rel_volume: { value: 1.9, ok: true },
+      range_52w: { value: 0.96, zone: "proche plus-haut", ok: true },
+      insider_90d: { buys: 0, sells: 3, ratio: 0, ok: true },
+      fscore: { score: 8 }, eps_surprise: { value: 0.12 }, revenue_growth: { value: 0.42 },
+      gate: { verdict: "ambre", composite: 0.55, coverage: 0.9, reasons: ["momentum en surchauffe", "RSI suracheté"] },
+    },
+    VRT: {
+      ticker: "VRT", asof: "2026-06-06", price: 112, currency: "USD",
+      momentum_12_1: { value: 0.22, sign: "positif", overheated: false, ok: true },
+      rsi_14: { value: 61, zone: "fort", ok: true },
+      rel_volume: { value: 1.1, ok: true },
+      range_52w: { value: 0.71, zone: "moitié haute", ok: true },
+      insider_90d: { buys: 2, sells: 0, ratio: 1, ok: true },
+      fscore: { score: 7 }, eps_surprise: { value: 0.08 }, revenue_growth: { value: 0.24 },
+      gate: { verdict: "vert", composite: 0.68, coverage: 0.9, reasons: [] },
+    },
+    ASML: {
+      ticker: "ASML", asof: "2026-06-06", price: 690, currency: "EUR",
+      momentum_12_1: { value: -0.06, sign: "négatif", overheated: false, ok: true },
+      rsi_14: { value: 41, zone: "neutre", ok: true },
+      rel_volume: { value: 0.8, ok: true },
+      range_52w: { value: 0.38, zone: "moitié basse", ok: true },
+      insider_90d: null,
+      fscore: { score: 6 }, eps_surprise: { value: -0.03 }, revenue_growth: { value: 0.11 },
+      gate: { verdict: "vert", composite: 0.52, coverage: 0.8, reasons: [] },
+    },
+    MSTR: {
+      ticker: "MSTR", asof: "2026-06-06", price: 196, currency: "USD",
+      momentum_12_1: { value: 0.05, sign: "positif", overheated: false, ok: true },
+      rsi_14: { value: 28, zone: "survendu", ok: true },
+      rel_volume: { value: 2.4, ok: true },
+      range_52w: { value: 0.12, zone: "proche plus-bas", ok: true },
+      insider_90d: { buys: 1, sells: 1, ratio: 0.5, ok: true },
+      fscore: { score: 3 }, eps_surprise: null, revenue_growth: { value: -0.05 },
+      gate: { verdict: "rouge", composite: 0.28, coverage: 0.7, reasons: ["F-Score faible (3)", "près du plus-bas 52s"] },
+    },
+    SAF: {
+      ticker: "SAF.PA", asof: "2026-06-06", price: 298.5, currency: "EUR",
+      momentum_12_1: { value: 0.13, sign: "positif", overheated: false, ok: true },
+      rsi_14: { value: 67, zone: "fort", ok: true },
+      rel_volume: { value: 0.75, ok: true },
+      range_52w: { value: 0.47, zone: "moitié basse", ok: true },
+      insider_90d: null,
+      fscore: null, eps_surprise: null, revenue_growth: null,
+      gate: { verdict: "vert", composite: 0.27, coverage: 0.39, reasons: [] },
+    },
+  },
+  data_gaps: ["fscore/earnings indisponibles pour les valeurs EU (clé FMP)"],
+};

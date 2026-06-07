@@ -158,3 +158,54 @@ export interface Calibration {
     max_drawdown: number;
   };
 }
+
+// memory/fund/signals.json — signaux quantitatifs par titre (engine/signals.js).
+export interface SignalNum<Z = string> {
+  value: number | null;
+  zone?: Z;
+  sign?: string;
+  overheated?: boolean;
+  ok?: boolean;
+}
+export interface InsiderSignal {
+  buys?: number;
+  sells?: number;
+  ratio?: number | null;
+  ok?: boolean;
+}
+export interface TickerSignals {
+  ticker: string;
+  asof?: string;
+  price?: number | null;
+  currency?: string;
+  momentum_12_1?: SignalNum | null;
+  rsi_14?: SignalNum | null;
+  rel_volume?: SignalNum | null;
+  range_52w?: SignalNum | null;
+  insider_90d?: InsiderSignal | null;
+  fscore?: { score?: number | null } | null;
+  earnings_quality?: { flag?: string | null } | null;
+  eps_surprise?: SignalNum | null;
+  revenue_growth?: SignalNum | null;
+  gate?: {
+    verdict: "vert" | "ambre" | "rouge" | "indéterminé" | string;
+    composite?: number;
+    coverage?: number;
+    reasons?: string[];
+  } | null;
+}
+export interface MarketRegime {
+  label: string;
+  score: number | null;
+  cash_floor?: number;
+  fear_greed?: number | null;
+  flags?: string[];
+  ok?: boolean;
+}
+export interface MarketSignals {
+  _doc?: string;
+  updated?: string;
+  regime?: MarketRegime;
+  tickers: Record<string, TickerSignals>;
+  data_gaps?: string[];
+}

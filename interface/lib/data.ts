@@ -5,6 +5,7 @@ import {
   fetchCatalysts,
   fetchDecisions,
   fetchMemoryMarkdown,
+  fetchSignals,
 } from "@/lib/github";
 import { fetchPrices } from "@/lib/prices";
 import { fetchYahooChanges } from "@/lib/yahoo";
@@ -21,6 +22,7 @@ import {
   DEMO_LESSONS,
   DEMO_MEMBERS,
   DEMO_PRICES,
+  DEMO_SIGNALS,
   demoSeries,
 } from "@/lib/demo";
 import type {
@@ -32,6 +34,7 @@ import type {
   Decision,
   Fund,
   Holding,
+  MarketSignals,
   NavSnapshot,
   Trade,
 } from "@/lib/types";
@@ -363,6 +366,16 @@ export async function getCatalysts(): Promise<CatalystsData> {
   const rows = parseCatalysts(md);
   if (rows.length === 0) return splitCatalysts(true, parseCatalysts(DEMO_CATALYSTS));
   return splitCatalysts(false, rows);
+}
+
+// ── Radar de marché (signaux quantitatifs par titre) ──────────────────
+export async function getMarketRadar(): Promise<{ demo: boolean; signals: MarketSignals }> {
+  if (!isConfigured()) return { demo: true, signals: DEMO_SIGNALS };
+  const s = await fetchSignals();
+  if (!s || !s.tickers || Object.keys(s.tickers).length === 0) {
+    return { demo: true, signals: DEMO_SIGNALS };
+  }
+  return { demo: false, signals: s };
 }
 
 // ── Flux d'activité (mouvements réalisés des deux fonds) ───────────────

@@ -1,4 +1,4 @@
-import type { AiFundFile, Calibration, Decision, DecisionsFile } from "./types";
+import type { AiFundFile, Calibration, Decision, DecisionsFile, MarketSignals } from "./types";
 
 // Lit un fichier texte du repo privé via l'API GitHub (token lecture seule).
 export async function fetchRepoFile(path: string): Promise<string | null> {
@@ -61,4 +61,15 @@ export async function fetchMemoryMarkdown(file: string): Promise<string | null> 
 
 export async function fetchCatalysts(): Promise<string | null> {
   return fetchRepoFile("memory/catalysts.md");
+}
+
+// Signaux quantitatifs par titre, produits par le moteur (engine/signals.js).
+export async function fetchSignals(): Promise<MarketSignals | null> {
+  const raw = await fetchRepoFile("memory/fund/signals.json");
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as MarketSignals;
+  } catch {
+    return null;
+  }
 }
