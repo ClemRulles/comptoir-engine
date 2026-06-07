@@ -5,6 +5,7 @@ import { Brand } from "./Brand";
 import { LiveRefresher } from "./LiveRefresher";
 import { NotificationBell } from "./NotificationBell";
 import { PseudoEditor } from "./PseudoEditor";
+import { ThemeToggle } from "./ThemeToggle";
 
 const TITLES: Record<string, string> = {
   "/": "Tableau de bord",
@@ -22,7 +23,7 @@ export function Topbar({ demo }: { demo: boolean }) {
 
   return (
     <header
-      className="sticky top-0 z-20 border-b border-line bg-white/85 backdrop-blur"
+      className="sticky top-0 z-20 border-b border-line bg-card/85 backdrop-blur"
       style={{ paddingTop: "env(safe-area-inset-top)" }}
     >
       <div className="flex items-center gap-3 px-4 md:px-8 py-3">
@@ -33,6 +34,7 @@ export function Topbar({ demo }: { demo: boolean }) {
         <div className="ml-auto flex items-center gap-2">
           <PseudoEditor demo={demo} />
           <LiveRefresher />
+          <ThemeToggle />
           <NotificationBell />
           {demo && (
             <span className="chip bg-ai/10 text-ai">

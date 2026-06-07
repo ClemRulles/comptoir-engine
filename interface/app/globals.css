@@ -2,14 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Thème clair (défaut) ──────────────────────────────────────────────
+   Tokens en canaux RGB (espaces) pour le support des modificateurs d'opacité. */
 :root {
+  --c-bg: 245 247 250;     /* #f5f7fa */
+  --c-card: 255 255 255;   /* #ffffff */
+  --c-line: 231 235 241;   /* #e7ebf1 */
+  --c-ink: 15 36 56;       /* #0f2438 */
+  --c-muted: 107 122 144;  /* #6b7a90 */
+
+  --slate-100: 241 245 249; /* #f1f5f9 */
+  --slate-300: 203 213 225; /* #cbd5e1 */
+  --slate-500: 100 116 139; /* #64748b */
+  --slate-600: 71 85 105;   /* #475569 */
+  --slate-700: 51 65 85;    /* #334155 */
+
+  --chart-grid: 238 241 245;     /* #eef1f5 */
+  --chart-axis: 154 167 184;     /* #9aa7b8 */
+  --chart-tooltip-bg: 255 255 255;
+  --scrollbar: 212 218 227;      /* #d4dae3 */
+
   color-scheme: light;
+}
+
+/* ── Thème sombre (classe .dark sur <html>) ─────────────────────────────
+   Navy profond, texte clair. Les nuances slate sont « inversées » : ce qui
+   était un gris foncé devient un gris clair (texte secondaire lisible). */
+.dark {
+  --c-bg: 8 12 22;         /* #080c16 — navy quasi noir */
+  --c-card: 18 25 40;      /* #121928 */
+  --c-line: 33 43 61;      /* #212b3d */
+  --c-ink: 226 232 240;    /* #e2e8f0 */
+  --c-muted: 138 151 171;  /* #8a97ab */
+
+  --slate-100: 30 41 59;   /* #1e293b — surface subtile */
+  --slate-300: 51 65 85;   /* #334155 */
+  --slate-500: 148 163 184;/* #94a3b8 */
+  --slate-600: 176 190 210;/* texte secondaire clair */
+  --slate-700: 203 213 225;/* #cbd5e1 */
+
+  --chart-grid: 30 41 59;  /* #1e293b */
+  --chart-axis: 100 116 139;
+  --chart-tooltip-bg: 18 25 40;
+  --scrollbar: 51 65 85;
+
+  color-scheme: dark;
 }
 
 html,
 body {
-  background: #f5f7fa;
-  color: #0f2438;
+  background: rgb(var(--c-bg));
+  color: rgb(var(--c-ink));
+}
+
+/* Transition douce lors de la bascule de thème (pas sur les transforms). */
+html.theme-anim,
+html.theme-anim body,
+html.theme-anim .card,
+html.theme-anim aside,
+html.theme-anim header {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease;
 }
 
 @layer components {
@@ -29,14 +81,14 @@ body {
     @apply rounded-md px-2.5 py-1 text-xs font-semibold text-muted transition-colors hover:text-ink;
   }
   .seg-btn-active {
-    @apply bg-white text-ink shadow-sm;
+    @apply bg-card text-ink shadow-sm;
   }
   .row-hover tbody tr {
     @apply transition-colors hover:bg-bg/70;
   }
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2 text-sm font-semibold
-      border border-line bg-white text-ink hover:bg-bg transition-colors disabled:opacity-50;
+      border border-line bg-card text-ink hover:bg-bg transition-colors disabled:opacity-50;
   }
   .btn-primary {
     @apply border-transparent text-white bg-brand hover:bg-brand-600 shadow-glow;
@@ -45,7 +97,7 @@ body {
     @apply border-transparent bg-transparent hover:bg-bg;
   }
   .input {
-    @apply w-full rounded-lg bg-white border border-line px-3 py-2 text-sm text-ink
+    @apply w-full rounded-lg bg-card border border-line px-3 py-2 text-sm text-ink
       placeholder:text-muted/70 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand;
   }
   .chip {
@@ -56,6 +108,20 @@ body {
   }
   .kpi {
     @apply text-3xl font-bold tracking-tight tabular-nums;
+  }
+  /* Trame de points discrète pour le fond ambiant. */
+  .dot-grid {
+    background-image: radial-gradient(circle at center, rgb(var(--c-line) / 0.7) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  /* Skeleton shimmer (chargement). */
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-slate-100;
+  }
+  .skeleton::after {
+    content: "";
+    @apply absolute inset-0 -translate-x-full animate-shimmer;
+    background-image: linear-gradient(90deg, transparent, rgb(var(--c-card) / 0.55), transparent);
   }
 }
 
@@ -70,8 +136,8 @@ body {
 .prose-hi h1 { @apply text-xl font-bold mt-4 mb-2 text-ink; }
 .prose-hi h2 { @apply text-lg font-semibold mt-5 mb-2 text-ink; }
 .prose-hi h3 { @apply text-base font-semibold mt-3 mb-1 text-ink; }
-.prose-hi p { @apply my-2 text-sm leading-relaxed text-slate-600; }
-.prose-hi ul { @apply list-disc pl-5 my-2 text-sm text-slate-600; }
+.prose-hi p { @apply my-2 text-sm leading-relaxed text-muted; }
+.prose-hi ul { @apply list-disc pl-5 my-2 text-sm text-muted; }
 .prose-hi li { @apply my-1; }
 .prose-hi strong { @apply text-ink; }
 .prose-hi table { @apply w-full text-sm my-3 border-collapse; }
@@ -83,4 +149,9 @@ body {
 
 /* scrollbar discret */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-thumb { background: #d4dae3; border-radius: 8px; }
+::-webkit-scrollbar-thumb { background: rgb(var(--scrollbar)); border-radius: 8px; }
+
+/* Respecte la préférence « réduire les animations ». */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+}

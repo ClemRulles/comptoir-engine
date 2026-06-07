@@ -75,7 +75,7 @@ export function PseudoEditor({ demo }: { demo: boolean }) {
       {open && (
         <form
           onSubmit={save}
-          className="absolute right-0 z-30 mt-2 w-64 rounded-xl border border-line bg-white p-3 shadow-lg"
+          className="absolute right-0 z-30 mt-2 w-64 rounded-xl border border-line bg-card p-3 shadow-lg"
         >
           <label className="label">Mon pseudo</label>
           <input

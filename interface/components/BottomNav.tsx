@@ -41,7 +41,7 @@ export function BottomNav() {
 
   return (
     <nav
-      className="md:hidden fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 backdrop-blur"
+      className="md:hidden fixed inset-x-0 bottom-0 z-30 border-t border-line bg-card/95 backdrop-blur"
       style={{ paddingBottom: "max(env(safe-area-inset-bottom), 0px)" }}
     >
       <div className="grid grid-cols-7">

@@ -75,7 +75,7 @@ export function TickerSearch({
         required
       />
       {open && (results.length > 0 || loading) && (
-        <ul className="absolute z-30 mt-1 max-h-64 w-full overflow-auto rounded-xl border border-line bg-white shadow-lg">
+        <ul className="absolute z-30 mt-1 max-h-64 w-full overflow-auto rounded-xl border border-line bg-card shadow-lg">
           {loading && results.length === 0 && (
             <li className="px-3 py-2 text-sm text-muted">Recherche…</li>
           )}

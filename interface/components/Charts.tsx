@@ -46,7 +46,7 @@ export function AllocationDonut({ slices }: { slices: { name: string; value: num
             ))}
           </Pie>
           <Tooltip
-            contentStyle={{ background: "#fff", border: "1px solid #e7ebf1", borderRadius: 12 }}
+            contentStyle={{ background: "rgb(var(--chart-tooltip-bg))", border: "1px solid rgb(var(--c-line))", borderRadius: 12, color: "rgb(var(--c-ink))" }}
             formatter={(v: number) => euro(v)}
           />
         </PieChart>
@@ -99,19 +99,19 @@ export function CalibrationChart({ buckets }: { buckets: CalibrationBucket[] }) 
     <div style={{ width: "100%", height: 240 }}>
       <ResponsiveContainer>
         <BarChart data={data} margin={{ top: 16, right: 8, left: -16, bottom: 0 }}>
-          <XAxis dataKey="confidence" tickLine={false} axisLine={false} fontSize={12} stroke="#64748b" />
+          <XAxis dataKey="confidence" tickLine={false} axisLine={false} fontSize={12} stroke="rgb(var(--chart-axis))" />
           <YAxis
             domain={[0, 100]}
             tickFormatter={(v) => `${v}%`}
             tickLine={false}
             axisLine={false}
             fontSize={12}
-            stroke="#94a3b8"
+            stroke="rgb(var(--chart-axis))"
           />
-          <ReferenceLine y={50} stroke="#cbd5e1" strokeDasharray="4 4" />
+          <ReferenceLine y={50} stroke="rgb(var(--c-line))" strokeDasharray="4 4" />
           <Tooltip
             cursor={{ fill: "rgba(148,163,184,0.08)" }}
-            contentStyle={{ background: "#fff", border: "1px solid #e7ebf1", borderRadius: 12 }}
+            contentStyle={{ background: "rgb(var(--chart-tooltip-bg))", border: "1px solid rgb(var(--c-line))", borderRadius: 12, color: "rgb(var(--c-ink))" }}
             formatter={(v: number, _n, p) => [`${v}% réussite · ${p.payload.n} décision(s)`, "Taux réel"]}
           />
           <Bar dataKey="hitPct" radius={[8, 8, 0, 0]} maxBarSize={64} isAnimationActive={false}>
