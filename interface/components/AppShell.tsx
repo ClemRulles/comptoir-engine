@@ -8,7 +8,10 @@ import { StockDrawerProvider } from "./StockDrawer";
 
 export function AppShell({ demo, children }: { demo: boolean; children: React.ReactNode }) {
   const pathname = usePathname();
-  const bare = pathname.startsWith("/login") || pathname.startsWith("/auth");
+  const bare =
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/auth") ||
+    pathname.startsWith("/reset-password");
 
   if (bare) return <>{children}</>;
 
