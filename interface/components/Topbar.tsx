@@ -12,7 +12,7 @@ const TITLES: Record<string, string> = {
   "/ia": "Fonds IA (fictif)",
   "/indicateurs": "Indicateurs",
   "/apprentissages": "Apprentissages de l'IA",
-  "/propositions": "Propositions",
+  "/propositions": "Chat du groupe",
   "/brief": "Brief & tendance",
 };
 
