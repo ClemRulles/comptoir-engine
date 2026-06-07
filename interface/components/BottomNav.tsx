@@ -32,7 +32,6 @@ const LINKS = [
   { href: "/indicateurs", label: "Indic.", icon: "cal" },
   { href: "/apprentissages", label: "Appr.", icon: "learn" },
   { href: "/propositions", label: "Chat", icon: "bulb" },
-  { href: "/brief", label: "Brief", icon: "brief" },
 ];
 
 export function BottomNav() {
@@ -44,7 +43,7 @@ export function BottomNav() {
       className="md:hidden fixed inset-x-0 bottom-0 z-30 border-t border-line bg-card/95 backdrop-blur"
       style={{ paddingBottom: "max(env(safe-area-inset-bottom), 0px)" }}
     >
-      <div className="grid grid-cols-7">
+      <div className="grid grid-cols-6">
         {LINKS.map((l) => {
           const active = l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
           return (
