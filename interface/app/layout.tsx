@@ -1,7 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { AppShell } from "@/components/AppShell";
+import { AmbientBackground } from "@/components/AmbientBackground";
 import { isConfigured } from "@/lib/data";
+
+// Applique le thème mémorisé AVANT le rendu (évite le flash clair→sombre).
+const THEME_INIT = `(function(){try{var t=localStorage.getItem('theme');if(t==='dark')document.documentElement.classList.add('dark');}catch(e){}})();`;
 
 export const metadata: Metadata = {
   title: "HypeInvest — Groupe vs IA",
@@ -27,8 +31,12 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const demo = !isConfigured();
   return (
-    <html lang="fr">
+    <html lang="fr" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
+      </head>
       <body className="min-h-screen bg-bg text-ink antialiased">
+        <AmbientBackground />
         <AppShell demo={demo}>{children}</AppShell>
       </body>
     </html>

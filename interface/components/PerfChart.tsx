@@ -109,10 +109,10 @@ export function PerfChart({ data, mode = "both" }: { data: Point[]; mode?: Mode 
                 <stop offset="100%" stopColor="#f59e0b" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid stroke="#eef1f5" vertical={false} />
+            <CartesianGrid stroke="rgb(var(--chart-grid))" vertical={false} />
             <XAxis
               dataKey="date"
-              stroke="#9aa7b8"
+              stroke="rgb(var(--chart-axis))"
               fontSize={11}
               tickLine={false}
               axisLine={false}
@@ -120,7 +120,7 @@ export function PerfChart({ data, mode = "both" }: { data: Point[]; mode?: Mode 
               tickFormatter={fmtTick}
             />
             <YAxis
-              stroke="#9aa7b8"
+              stroke="rgb(var(--chart-axis))"
               fontSize={11}
               width={52}
               tickLine={false}
@@ -129,7 +129,7 @@ export function PerfChart({ data, mode = "both" }: { data: Point[]; mode?: Mode 
               tickFormatter={(v) => `${(v / 1000).toFixed(1)}k`}
             />
             <Tooltip
-              contentStyle={{ background: "#fff", border: "1px solid #e7ebf1", borderRadius: 12 }}
+              contentStyle={{ background: "rgb(var(--chart-tooltip-bg))", border: "1px solid rgb(var(--c-line))", borderRadius: 12, color: "rgb(var(--c-ink))" }}
               labelFormatter={(d) => String(d).split("-").reverse().join("/")}
               formatter={(v: number, name) => [euro(v), name === "group" ? "Groupe" : "IA"]}
             />

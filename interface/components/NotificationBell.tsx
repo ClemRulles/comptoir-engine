@@ -92,7 +92,7 @@ export function NotificationBell() {
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-80 max-w-[90vw] overflow-hidden rounded-xl border border-line bg-white shadow-card z-40">
+        <div className="absolute right-0 mt-2 w-80 max-w-[90vw] overflow-hidden rounded-xl border border-line bg-card shadow-card z-40">
           <div className="flex items-center justify-between border-b border-line px-4 py-2.5">
             <span className="text-sm font-semibold">Notifications</span>
             <Link href="/propositions" onClick={() => setOpen(false)} className="text-xs text-brand hover:underline">

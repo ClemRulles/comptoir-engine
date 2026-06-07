@@ -104,7 +104,7 @@ export default function LoginPage() {
                 type="button"
                 onClick={() => { setMode("signin"); setError(null); }}
                 className={`flex-1 rounded-md px-3 py-1.5 text-sm font-semibold transition-colors ${
-                  isSignin ? "bg-white shadow text-ink" : "text-muted hover:text-ink"
+                  isSignin ? "bg-card shadow text-ink" : "text-muted hover:text-ink"
                 }`}
               >
                 Connexion
@@ -113,7 +113,7 @@ export default function LoginPage() {
                 type="button"
                 onClick={() => { setMode("signup"); setError(null); }}
                 className={`flex-1 rounded-md px-3 py-1.5 text-sm font-semibold transition-colors ${
-                  isSignup ? "bg-white shadow text-ink" : "text-muted hover:text-ink"
+                  isSignup ? "bg-card shadow text-ink" : "text-muted hover:text-ink"
                 }`}
               >
                 Créer un compte

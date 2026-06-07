@@ -133,10 +133,10 @@ function StockChartInner({ data }: { data: HistoryData }) {
                 <stop offset="100%" stopColor="#ef4444" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid stroke="#eef1f5" vertical={false} />
+            <CartesianGrid stroke="rgb(var(--chart-grid))" vertical={false} />
             <XAxis
               dataKey="date"
-              stroke="#9aa7b8"
+              stroke="rgb(var(--chart-axis))"
               fontSize={11}
               tickLine={false}
               axisLine={false}
@@ -144,7 +144,7 @@ function StockChartInner({ data }: { data: HistoryData }) {
               tickFormatter={fmtTick}
             />
             <YAxis
-              stroke="#9aa7b8"
+              stroke="rgb(var(--chart-axis))"
               fontSize={11}
               width={56}
               tickLine={false}
@@ -153,7 +153,7 @@ function StockChartInner({ data }: { data: HistoryData }) {
               tickFormatter={(v) => `${Number(v).toLocaleString("fr-FR", { maximumFractionDigits: 0 })}`}
             />
             <Tooltip
-              contentStyle={{ background: "#fff", border: "1px solid #e7ebf1", borderRadius: 12 }}
+              contentStyle={{ background: "rgb(var(--chart-tooltip-bg))", border: "1px solid rgb(var(--c-line))", borderRadius: 12, color: "rgb(var(--c-ink))" }}
               labelFormatter={(d) => String(d).split("-").reverse().join("/")}
               formatter={(v: number) => [fmtMoney(v, data.currency), "Cours"]}
             />
@@ -245,7 +245,7 @@ function Drawer({ state, onClose }: { state: DrawerState; onClose: () => void })
       />
       {/* Sheet */}
       <div
-        className={`fixed inset-x-0 bottom-0 z-50 mx-auto max-w-2xl rounded-t-3xl bg-white shadow-2xl transition-transform duration-300 ${
+        className={`fixed inset-x-0 bottom-0 z-50 mx-auto max-w-2xl rounded-t-3xl bg-card shadow-2xl transition-transform duration-300 ${
           open ? "" : "pointer-events-none"
         }`}
         style={{
