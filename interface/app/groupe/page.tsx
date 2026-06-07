@@ -41,7 +41,7 @@ export default async function GroupePage() {
         </div>
       </Reveal>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 order-3">
         <Reveal delay={120} className="lg:col-span-2">
           <div className="card-p overflow-x-auto">
             <SectionTitle>Positions</SectionTitle>
@@ -85,7 +85,7 @@ export default async function GroupePage() {
         </Reveal>
       </div>
 
-      <div>
+      <div className="order-4">
         <SectionTitle>Saisir / mettre à jour une position</SectionTitle>
         {data.demo && (
           <div className="card-p mb-3 border-ai/30 bg-ai/5 text-sm text-ink">
@@ -95,11 +95,11 @@ export default async function GroupePage() {
         <HoldingsEditor />
       </div>
 
-      <Reveal delay={120}>
+      <Reveal delay={120} className="order-5">
         <CashEditor currentCash={f.cash} demo={data.demo} />
       </Reveal>
 
-      <div>
+      <div className="order-6">
         <SectionTitle right={<span className="label">{eur(club.monthlyTotal)} / mois</span>}>
           Membres &amp; apports
         </SectionTitle>
@@ -110,7 +110,7 @@ export default async function GroupePage() {
         <MembersManager club={club} />
       </div>
 
-      <details>
+      <details className="order-7">
         <summary className="mb-2 cursor-pointer text-sm font-semibold text-muted">
           ⚙️ Outils de synchronisation des données (avancé)
         </summary>
