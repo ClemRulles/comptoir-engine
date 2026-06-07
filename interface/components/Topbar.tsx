@@ -21,7 +21,10 @@ export function Topbar({ demo }: { demo: boolean }) {
   const title = TITLES[pathname] ?? "HypeInvest";
 
   return (
-    <header className="sticky top-0 z-20 border-b border-line bg-white/85 backdrop-blur">
+    <header
+      className="sticky top-0 z-20 border-b border-line bg-white/85 backdrop-blur"
+      style={{ paddingTop: "env(safe-area-inset-top)" }}
+    >
       <div className="flex items-center gap-3 px-4 md:px-8 py-3">
         <div className="md:hidden">
           <Brand size={28} />
