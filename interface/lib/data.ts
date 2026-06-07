@@ -4,6 +4,7 @@ import {
   fetchCalibration,
   fetchCatalysts,
   fetchDecisions,
+  fetchGrokPulse,
   fetchMemoryMarkdown,
   fetchSignals,
 } from "@/lib/github";
@@ -17,6 +18,7 @@ import {
   DEMO_CATALYSTS,
   DEMO_CONTRIBUTIONS,
   DEMO_DECISIONS,
+  DEMO_GROK_PULSE,
   DEMO_GROUP,
   DEMO_GROUP_TRADES,
   DEMO_LESSONS,
@@ -33,6 +35,7 @@ import type {
   Contribution,
   Decision,
   Fund,
+  GrokPulseWeek,
   Holding,
   MarketSignals,
   NavSnapshot,
@@ -376,6 +379,23 @@ export async function getMarketRadar(): Promise<{ demo: boolean; signals: Market
     return { demo: true, signals: DEMO_SIGNALS };
   }
   return { demo: false, signals: s };
+}
+
+// ── Pouls du marché (Grok/X), semaine par semaine ─────────────────────
+export interface GrokPulseData {
+  demo: boolean;
+  weeks: GrokPulseWeek[]; // plus récente d'abord
+}
+
+const byWeekDesc = (a: GrokPulseWeek, b: GrokPulseWeek) =>
+  (b.date || b.week).localeCompare(a.date || a.week);
+
+export async function getGrokPulse(): Promise<GrokPulseData> {
+  if (!isConfigured()) return { demo: true, weeks: [...DEMO_GROK_PULSE].sort(byWeekDesc) };
+  const file = await fetchGrokPulse();
+  const weeks = file?.weeks ?? [];
+  if (weeks.length === 0) return { demo: true, weeks: [...DEMO_GROK_PULSE].sort(byWeekDesc) };
+  return { demo: false, weeks: [...weeks].sort(byWeekDesc) };
 }
 
 // ── Flux d'activité (mouvements réalisés des deux fonds) ───────────────

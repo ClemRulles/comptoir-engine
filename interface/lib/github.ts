@@ -1,4 +1,4 @@
-import type { AiFundFile, Calibration, Decision, DecisionsFile, MarketSignals } from "./types";
+import type { AiFundFile, Calibration, Decision, DecisionsFile, GrokPulseFile, MarketSignals } from "./types";
 
 // Lit un fichier texte du repo privé via l'API GitHub (token lecture seule).
 export async function fetchRepoFile(path: string): Promise<string | null> {
@@ -69,6 +69,17 @@ export async function fetchSignals(): Promise<MarketSignals | null> {
   if (!raw) return null;
   try {
     return JSON.parse(raw) as MarketSignals;
+  } catch {
+    return null;
+  }
+}
+
+// Pouls hebdo du marché (Grok/X), écrit par la routine du lundi.
+export async function fetchGrokPulse(): Promise<GrokPulseFile | null> {
+  const raw = await fetchRepoFile("memory/grok-pulse.json");
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as GrokPulseFile;
   } catch {
     return null;
   }

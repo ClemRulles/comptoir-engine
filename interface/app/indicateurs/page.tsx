@@ -1,6 +1,7 @@
-import { getCatalysts, getMarketRadar } from "@/lib/data";
+import { getCatalysts, getGrokPulse, getMarketRadar } from "@/lib/data";
 import { CatalystsList } from "@/components/Catalysts";
 import { MarketRadar } from "@/components/MarketRadar";
+import { MarketPulse } from "@/components/MarketPulse";
 import { KpiCard, SectionTitle, Reveal } from "@/components/Kpi";
 
 export const dynamic = "force-dynamic";
@@ -12,30 +13,33 @@ function nextLabel(date: string): string {
 }
 
 export default async function IndicateursPage() {
-  const [{ demo, upcoming, past }, radar] = await Promise.all([getCatalysts(), getMarketRadar()]);
+  const [{ demo, upcoming, past }, radar, pulse] = await Promise.all([
+    getCatalysts(),
+    getMarketRadar(),
+    getGrokPulse(),
+  ]);
   const next = upcoming[0];
   const anticipated = upcoming.filter((r) => /actif/i.test(r.status)).length;
 
   return (
     <div className="space-y-6">
+      {/* Hero */}
       <div>
-        <div className="flex items-center gap-2">
-          <h1 className="text-xl font-bold tracking-tight">📈 Indicateurs</h1>
-          {demo && <span className="chip bg-slate-100 text-slate-500">Démo</span>}
-        </div>
+        <h1 className="text-xl font-bold tracking-tight">📈 Indicateurs</h1>
         <p className="mt-1 text-sm text-muted">
-          Le <strong>radar de marché</strong> de l&apos;IA : signaux quantitatifs par titre (RSI,
-          momentum, volume, position 52 sem., initiés, F-Score, gate) qui repèrent les{" "}
-          <strong>variations notables</strong>, plus les <strong>événements datés</strong> qu&apos;elle
-          surveille. Recalculé à chaque routine ; re-validé le vendredi.
+          Comment l&apos;IA lit le marché : le <strong>pouls de la semaine</strong> (thèmes & titres qui
+          bougent, via Grok/X — à corroborer), ses <strong>signaux quantitatifs</strong> par titre
+          (RSI, momentum, volume, 52 sem., initiés, F-Score, gate) et les <strong>événements
+          datés</strong> qu&apos;elle surveille.
         </p>
       </div>
 
-      {/* Radar de marché — signaux quantitatifs par titre (engine/signals.js) */}
-      <Reveal delay={80}>
-        <MarketRadar signals={radar.signals} demo={radar.demo} />
+      {/* Pouls du marché — pièce maîtresse, navigable semaine par semaine */}
+      <Reveal delay={60}>
+        <MarketPulse weeks={pulse.weeks} demo={pulse.demo} />
       </Reveal>
 
+      {/* Bandeau KPIs — calendrier des catalyseurs */}
       <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
         <KpiCard label="À venir" accent="neutral" delay={0} value={String(upcoming.length)} sub={<span className="text-muted">sur ~6 semaines</span>} />
         <KpiCard
@@ -49,9 +53,18 @@ export default async function IndicateursPage() {
         <KpiCard label="Archivés" accent="neutral" delay={180} value={String(past.length)} sub={<span className="text-muted">événements passés</span>} />
       </div>
 
-      <Reveal delay={150}>
+      {/* Radar de marché — signaux quantitatifs par titre */}
+      <Reveal delay={120}>
+        <SectionTitle>Radar de marché — signaux par titre</SectionTitle>
+        <MarketRadar signals={radar.signals} demo={radar.demo} />
+      </Reveal>
+
+      {/* Calendrier des catalyseurs */}
+      <Reveal delay={160}>
         <div className="card-p">
-          <SectionTitle>Calendrier & analyses de l&apos;IA</SectionTitle>
+          <SectionTitle right={demo ? <span className="chip bg-slate-100 text-slate-500">Démo</span> : undefined}>
+            Calendrier & analyses de l&apos;IA
+          </SectionTitle>
           <CatalystsList upcoming={upcoming} past={past} />
         </div>
       </Reveal>
@@ -59,6 +72,7 @@ export default async function IndicateursPage() {
       <div className="card-p bg-bg/50 text-sm text-slate-600">
         <p className="font-semibold">Comment le lire</p>
         <ul className="mt-2 space-y-1 text-slate-500">
+          <li>• <strong>📡 Pouls</strong> = ce dont le marché parle cette semaine (Grok/X). <span className="text-brand-600">✓ corroboré</span> = recoupé par une source dure ; sinon simple radar à confirmer.</li>
           <li>• <span className="text-sky-700">Macro</span> (FOMC, inflation), <span className="text-violet-700">Politique</span> (tarifs, élections), <span className="text-teal-700">Réglementaire</span> (FDA), <span className="text-brand-600">Micro</span> (résultats d&apos;une de nos positions).</li>
           <li>• <strong>💡 Analyse de l&apos;IA</strong> = pourquoi c&apos;est important, comment elle le prend en compte, et vers quoi elle s&apos;orienterait.</li>
           <li>• <strong>Anticipé</strong> = l&apos;IA s&apos;est déjà positionnée (ou allégée) avant l&apos;événement.</li>
