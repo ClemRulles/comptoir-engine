@@ -48,9 +48,16 @@ Si une clé manque ou une API plafonne → bascule sur la recherche web native e
 - News, contexte qualitatif, vérification croisée, lecture de filings/articles.
 - C'est ta couche news par défaut : pas besoin d'API de presse payante.
 
-### Grok — `GROK_API_KEY` (optionnel, déconseillé au départ)
-- Seul accès X temps réel. Usage UNIQUE : thermomètre de surchauffe (euphorie sociale =
-  drapeau contrarien) et radar de catalyseurs court terme. **Jamais** un signal d'achat.
+### Grok — `GROK_API_KEY` (accès X temps réel)
+- Seul accès X temps réel. Deux usages, tous deux **radar à corroborer, jamais un signal d'achat** :
+  1. **Thermomètre de surchauffe** : euphorie sociale = drapeau contrarien (checklist bulle §B).
+  2. **Pouls hebdo du marché** (lundi uniquement, Partie D) : 2-4 thèmes/tendances + tickers qui
+     ont bougé (priorité aux titres détenus). Sortie **JSON stricte**, écrite dans
+     `memory/grok-pulse.json`.
+- API : `POST https://api.x.ai/v1/chat/completions`, `Authorization: Bearer $GROK_API_KEY`.
+- **Règle de corroboration** : un thème n'influence une décision (ou ne devient une tendance
+  candidate) que s'il est **recoupé par une source dure** (SEC/FRED/FMP/chiffres) → `corroborated:true`.
+  Sinon il est gardé comme radar, marqué `false`. Repli recherche web si Grok plafonne.
 
 ---
 
@@ -58,7 +65,7 @@ Si une clé manque ou une API plafonne → bascule sur la recherche web native e
 
 | Routine | Sources principales |
 |---------|---------------------|
-| Lun · Trend Radar | FRED (+ release calendar), FMP sector-performance, Finnhub IPO+earnings calendar, EDGAR full-text, web (calendrier macro/politique → `catalysts.md`) |
+| Lun · Trend Radar | FRED (+ release calendar), FMP sector-performance, Finnhub IPO+earnings calendar, EDGAR full-text, web (calendrier macro/politique → `catalysts.md`), **Grok (pouls hebdo → `grok-pulse.json`)** |
 | Mar · Scout | FMP screener, Finnhub fundamentals+peers, web |
 | Mer · Deep-dive | EDGAR companyfacts, Finnhub financials, FMP ratios/DCF, web |
 | Jeu · Portfolio Doctor | Finnhub news+earnings, EDGAR 8-K, web |

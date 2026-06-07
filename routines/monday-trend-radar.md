@@ -62,5 +62,47 @@ risque : alléger/couvrir avant) de *catalyseur favorable à une thèse qu'on a 
 (éventuel pari tactique, taillé §H, date de l'événement = déclencheur). Pas de pari directionnel
 sur le contenu d'une annonce surprise.
 
-Commit : `trend-radar: {date} — tendance: {nom ou AUCUNE}, {n} catalyseurs`.
+## Partie D — Pouls Grok du marché (radar à corroborer)
+Une fois par semaine, prends le pouls du marché via Grok (seul accès X temps réel). C'est un
+**radar de thèmes/news, jamais un signal d'achat** (CLAUDE.md, method §F).
+
+1. Si `GROK_API_KEY` est présent, appelle l'API xAI (`POST https://api.x.ai/v1/chat/completions`,
+   en-tête `Authorization: Bearer $GROK_API_KEY`) avec un prompt structuré demandant, pour la
+   semaine écoulée :
+   - **2 à 4 thèmes/tendances** qui agitent réellement le marché sur X (rotations sectorielles,
+     narratifs émergents) — pas du bruit meme/penny ;
+   - **les tickers qui ont bougé et pourquoi**, en priorité ceux **détenus** (lis la liste dans
+     `memory/portfolio.md` et `memory/fund/ai-fund.json`).
+   Demande une **sortie JSON stricte** : `headline`, `themes[]` (`title`, `detail`, `tickers[]`),
+   `movers[]` (`ticker`, `direction` up/down, `reason`).
+2. **Corrobore** chaque thème avec une source dure déjà collectée en Partie A/B/C (FRED, FMP,
+   EDGAR, communiqués). Mets `corroborated:true` seulement si recoupé ; sinon `false` (gardé,
+   mais marqué). Un thème non corroboré **ne peut pas à lui seul** créer une tendance validée ni
+   une entrée de book.
+3. Marque `held:true` pour tout mover présent dans le portefeuille du groupe/IA.
+4. **Append** l'entrée de la semaine en tête de `memory/grok-pulse.json` (crée le fichier s'il
+   n'existe pas, format ci-dessous, garde ~12 semaines max, élague le reste). Mets `updated`.
+5. Les thèmes **corroborés** rejoignent les tendances candidates de la Partie B (passées au
+   `trend-gate`) — radar à corroborer, pas raccourci.
+6. Repli : si Grok plafonne/échoue, construis le pouls à partir de la recherche web native,
+   note-le dans `sources` (« repli web »), et ne bloque jamais la routine.
+
+Format `memory/grok-pulse.json` :
+```json
+{
+  "_doc": "Pouls hebdo du marché (Grok, accès X) — radar à corroborer, jamais un signal d'achat.",
+  "updated": "{date}",
+  "weeks": [
+    {
+      "week": "{ISO ex 2026-W24}", "date": "{date}", "label": "Semaine du …",
+      "headline": "…",
+      "themes": [{ "title": "…", "detail": "…", "tickers": ["XXX"], "corroborated": true }],
+      "movers": [{ "ticker": "XXX", "direction": "up", "reason": "…", "held": true }],
+      "sources": ["Grok/X", "recoupé: …"]
+    }
+  ]
+}
+```
+
+Commit : `trend-radar: {date} — tendance: {nom ou AUCUNE}, {n} catalyseurs · pouls maj`.
 Reste léger : c'est un travail de tri et de validation, pas une analyse titre par titre.
