@@ -94,11 +94,16 @@ en régime de surchauffe généralisée.
 
 ---
 
-## F. Sentiment / Grok (si un jour activé)
+## F. Sentiment / Grok (pouls hebdo)
 
 Le sentiment X n'entre **jamais** dans le score de conviction. Il alimente seulement :
 - la case « euphorie sociale » de la checklist bulle (contrarien) ;
-- le radar de catalyseurs court terme de la poche tactique (avec stop serré).
+- le radar de catalyseurs court terme de la poche tactique (avec stop serré) ;
+- le **pouls hebdo du marché** (`memory/grok-pulse.json`, écrit le lundi en Partie D) :
+  thèmes/tendances et titres qui ont bougé. C'est un **radar à corroborer** : un thème ne devient
+  une tendance candidate (ou n'influence une entrée de book) que s'il est **recoupé par une source
+  dure** (`corroborated:true`). Un thème `corroborated:false` reste affiché, mais ne justifie
+  **aucune** décision à lui seul.
 Pondération maximale du sentiment dans une décision : **témoin, pas juge.**
 Rappel de prudence : le sentiment subjectif aide surtout en marché haussier ; les
 faits priment en marché baissier.

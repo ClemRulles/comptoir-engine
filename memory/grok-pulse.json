@@ -1,0 +1,31 @@
+{
+  "_doc": "Pouls hebdo du marché (Grok, accès X) — radar à corroborer, jamais un signal d'achat. Écrit par routines/monday-trend-radar.md (Partie C). Le plus récent en tête de weeks ; ~12 semaines max.",
+  "updated": "2026-06-08",
+  "weeks": [
+    {
+      "week": "2026-W24",
+      "date": "2026-06-08",
+      "label": "Semaine du 8 juin 2026",
+      "headline": "Premier pouls — l'infra IA garde la main, la défense EU reste un fil conducteur, le GLP-1 sous pression.",
+      "themes": [
+        {
+          "title": "Rotation vers les « pioches et pelles » de l'IA",
+          "detail": "Le marché délaisse les noms purs au profit de l'énergie, du refroidissement et des réseaux qui alimentent les data centers.",
+          "tickers": ["NVDA"],
+          "corroborated": true
+        },
+        {
+          "title": "Budgets défense européens revus à la hausse",
+          "detail": "Annonces de commandes et de hausses de budget alimentent un cycle pluriannuel — porteur pour HO.PA et SAF.PA.",
+          "tickers": ["HO.PA", "SAF.PA"],
+          "corroborated": true
+        }
+      ],
+      "movers": [
+        { "ticker": "NOVOB", "direction": "down", "reason": "Inquiétudes sur la concurrence GLP-1 et la guidance.", "held": true },
+        { "ticker": "BNP.PA", "direction": "up", "reason": "Pentification de la courbe favorable aux banques.", "held": true }
+      ],
+      "sources": ["Grok/X", "recoupé: FRED (courbe), communiqués défense"]
+    }
+  ]
+}
