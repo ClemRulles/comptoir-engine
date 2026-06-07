@@ -2,6 +2,7 @@ import { getLearningData } from "@/lib/data";
 import { CalibrationChart } from "@/components/Charts";
 import { KpiCard, SectionTitle, Reveal } from "@/components/Kpi";
 import { TickerCell } from "@/components/StockDrawer";
+import { BriefTendance } from "@/components/BriefTendance";
 
 export const dynamic = "force-dynamic";
 
@@ -147,13 +148,20 @@ export default async function ApprentissagesPage() {
             <ol className="relative space-y-4 border-l border-line pl-5">
               {lessons.slice(0, 20).map((l, i) => (
                 <li key={`${l.date}-${i}`} className="relative">
-                  <span className="absolute -left-[23px] top-1.5 h-2.5 w-2.5 rounded-full bg-ai ring-4 ring-white" />
+                  <span className="absolute -left-[23px] top-1.5 h-2.5 w-2.5 rounded-full bg-ai ring-4 ring-card" />
                   <div className="label">{l.date}</div>
                   <div className="text-sm text-slate-700">{l.text}</div>
                 </li>
               ))}
             </ol>
           )}
+        </div>
+      </Reveal>
+
+      {/* Brief & Tendance — relié au Trend Radar du lundi, navigable par semaine */}
+      <Reveal delay={120}>
+        <div className="border-t border-line pt-6">
+          <BriefTendance />
         </div>
       </Reveal>
     </div>

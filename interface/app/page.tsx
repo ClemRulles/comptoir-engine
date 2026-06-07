@@ -125,7 +125,7 @@ export default async function DashboardPage() {
         </Reveal>
         <Reveal delay={180}>
           <div className="card-p">
-            <SectionTitle right={<Link href="/brief" className="text-sm text-brand hover:underline">Lire →</Link>}>
+            <SectionTitle right={<Link href="/apprentissages" className="text-sm text-brand hover:underline">Lire →</Link>}>
               🎯 Brief de la semaine
             </SectionTitle>
             {data.brief ? (
