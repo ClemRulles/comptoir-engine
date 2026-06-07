@@ -1,5 +1,6 @@
 import type { ActivityItem } from "@/lib/types";
 import { eur } from "@/lib/fund";
+import { TickerCell } from "@/components/StockDrawer";
 
 function fmtDate(ts: string): string {
   const m = ts.match(/^(\d{4})-(\d{2})-(\d{2})/);
@@ -21,7 +22,7 @@ function Row({ item, nav }: { item: ActivityItem; nav: number }) {
       </span>
       <div className="min-w-0 flex-1">
         <div className="text-sm">
-          <strong>{item.ticker}</strong>{" "}
+          <TickerCell ticker={item.ticker} />{" "}
           <span className="tabular-nums">· {eur(item.amount)}</span>
           {w && <span className="text-muted"> · {w} du fonds</span>}
           <span className="text-muted"> · {fmtDate(item.ts)}</span>

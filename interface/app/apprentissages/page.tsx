@@ -1,6 +1,7 @@
 import { getLearningData } from "@/lib/data";
 import { CalibrationChart } from "@/components/Charts";
 import { KpiCard, SectionTitle, Reveal } from "@/components/Kpi";
+import { TickerCell } from "@/components/StockDrawer";
 
 export const dynamic = "force-dynamic";
 
@@ -115,7 +116,7 @@ export default async function ApprentissagesPage() {
               <tbody>
                 {closed.map((d) => (
                   <tr key={d.thesis_id} className="border-b border-line/60 align-top">
-                    <td className="py-2.5 font-semibold">{d.ticker}</td>
+                    <td className="py-2.5"><TickerCell ticker={d.ticker} /></td>
                     <td className="hidden sm:table-cell">
                       <span className={`chip ${CONF_STYLE[d.confidence]}`}>{d.confidence}</span>
                     </td>

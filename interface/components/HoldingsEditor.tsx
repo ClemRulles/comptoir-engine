@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import type { Holding } from "@/lib/types";
 import { TickerSearch } from "@/components/TickerSearch";
+import { TickerCell } from "@/components/StockDrawer";
 
 export function HoldingsEditor() {
   const [holdings, setHoldings] = useState<Holding[]>([]);
@@ -112,7 +113,7 @@ export function HoldingsEditor() {
             <tbody>
               {holdings.map((h) => (
                 <tr key={h.id} className="border-b border-line/60">
-                  <td className="py-2 font-semibold">{h.ticker}</td>
+                  <td className="py-2"><TickerCell ticker={h.ticker} /></td>
                   <td className="text-right tabular-nums">{h.quantity}</td>
                   <td className="text-right tabular-nums text-muted">{h.avg_cost} €</td>
                   <td className="text-right">

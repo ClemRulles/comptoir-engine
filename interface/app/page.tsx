@@ -62,14 +62,17 @@ export default async function DashboardPage() {
         />
       </div>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 order-1 md:order-2">
-        <Reveal delay={150} className="lg:col-span-2">
+      {/* Mobile : le graphique remonte au-dessus des valeurs ; l'allocation passe après.
+          `contents` dissout la grille sur mobile pour que chart/donut s'ordonnent parmi les
+          KPIs (order). À partir de md, c'est une vraie grille (KPIs en tête via md:order-1). */}
+      <div className="contents md:grid md:grid-cols-1 lg:grid-cols-3 md:gap-4 md:order-2">
+        <Reveal delay={150} className="order-1 md:order-none lg:col-span-2">
           <div className="card-p">
             <SectionTitle>Performance — Groupe vs IA</SectionTitle>
             <PerfChart data={data.series} mode="both" />
           </div>
         </Reveal>
-        <Reveal delay={220}>
+        <Reveal delay={220} className="order-3 md:order-none">
           <div className="card-p">
             <SectionTitle>Allocation du groupe</SectionTitle>
             <AllocationDonut slices={slices} />
@@ -77,7 +80,7 @@ export default async function DashboardPage() {
         </Reveal>
       </div>
 
-      <Reveal delay={140} className="order-3">
+      <Reveal delay={140} className="order-4">
         <div className="card-p">
           <SectionTitle right={<span className="text-xs text-muted">variation du jour</span>}>
             Top mouvements du jour
@@ -86,7 +89,7 @@ export default async function DashboardPage() {
         </div>
       </Reveal>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 order-4">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 order-5">
         <Reveal delay={120}>
           <div className="card-p">
             <SectionTitle right={<Link href="/groupe" className="text-sm text-brand hover:underline">Gérer →</Link>}>
@@ -134,7 +137,7 @@ export default async function DashboardPage() {
         </Reveal>
       </div>
 
-      <Reveal delay={150} className="order-5">
+      <Reveal delay={150} className="order-6">
         <div className="card-p">
           <SectionTitle right={<span className="text-xs text-muted">derniers changements réalisés</span>}>
             Activité récente
@@ -148,7 +151,7 @@ export default async function DashboardPage() {
         </div>
       </Reveal>
 
-      <p className="text-center text-xs text-muted order-6">
+      <p className="text-center text-xs text-muted order-7">
         Valeurs à des fins de comparaison. Paper trading — aucun ordre réel n&apos;est passé.
       </p>
     </div>

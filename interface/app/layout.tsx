@@ -11,7 +11,9 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     title: "HypeInvest",
-    statusBarStyle: "black-translucent",
+    // "default" : la barre d'état iOS reste opaque et le contenu démarre EN DESSOUS
+    // (évite que l'heure/batterie chevauchent le header en mode plein écran PWA).
+    statusBarStyle: "default",
   },
 };
 
