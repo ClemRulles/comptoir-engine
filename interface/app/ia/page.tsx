@@ -29,7 +29,7 @@ export default async function IaPage() {
 
       {/* Mobile : graphique en premier, KPIs après. Desktop : KPIs en premier (md:order-1). */}
       <div className="grid grid-cols-2 gap-4 xl:grid-cols-4 order-2 md:order-1">
-        <KpiCard label="Valeur (NAV)" accent="ai" delay={0} value={<AnimatedNumber value={f.nav} kind="eur" />} sub={<Delta value={f.perf} />} />
+        <KpiCard label="Valeur (NAV)" accent="ai" delay={0} value={<AnimatedNumber value={f.nav} kind="eur" />} sub={<Delta value={f.perf} />} spark={data.series.map((s) => s.ai)} />
         <KpiCard label="Investi" accent="neutral" delay={60} value={<AnimatedNumber value={f.positionsValue} kind="eur" />} sub={<span className="text-muted">{f.holdings.length} positions</span>} />
         <KpiCard label="Cash" accent="neutral" delay={120} value={<AnimatedNumber value={f.cash} kind="eur" />} sub={<span className="text-muted">{pct(f.nav ? f.cash / f.nav : 0).replace("+", "")} du fonds</span>} />
         <KpiCard label="Δ cette semaine" accent="neutral" delay={180} value={pct(data.weekDeltaAi)} sub={<span className="text-muted">vs ~1 semaine</span>} />

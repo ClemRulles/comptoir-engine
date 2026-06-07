@@ -1,4 +1,5 @@
 import { pct } from "@/lib/fund";
+import { Sparkline } from "@/components/Sparkline";
 
 export function Delta({ value, className = "" }: { value: number; className?: string }) {
   const up = value >= 0;
@@ -36,20 +37,30 @@ export function KpiCard({
   sub,
   accent,
   delay = 0,
+  spark,
+  sparkColor,
 }: {
   label: string;
   value: React.ReactNode;
   sub?: React.ReactNode;
   accent?: "group" | "ai" | "neutral";
   delay?: number;
+  spark?: number[];
+  sparkColor?: string;
 }) {
   const bar = accent === "group" ? "bg-brand" : accent === "ai" ? "bg-ai" : "bg-slate-300";
+  const sColor = sparkColor ?? (accent === "ai" ? "#f59e0b" : "#16a34a");
   return (
     <div
       className="card-p lift relative overflow-hidden animate-fade-up"
       style={{ animationDelay: `${delay}ms` }}
     >
       <div className={`absolute left-0 top-0 h-full w-1 ${bar}`} />
+      {spark && spark.length > 1 && (
+        <div className="pointer-events-none absolute right-3 top-3 opacity-90">
+          <Sparkline data={spark} color={sColor} />
+        </div>
+      )}
       <div className="label">{label}</div>
       <div className="kpi mt-1">{value}</div>
       {sub && <div className="mt-2 text-sm text-muted">{sub}</div>}
