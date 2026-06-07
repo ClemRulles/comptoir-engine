@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { TickerSearch } from "@/components/TickerSearch";
+import { TickerCell } from "@/components/StockDrawer";
 
 interface Message {
   id: string;
@@ -196,7 +197,9 @@ export function Chat({ demo, currentUserId }: { demo: boolean; currentUserId?: s
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
                     <span className="chip bg-brand/10 text-brand-600 text-xs">💡 Proposition</span>
-                    <span className="font-bold">{msg.proposal_ticker}</span>
+                    {msg.proposal_ticker && (
+                      <TickerCell ticker={msg.proposal_ticker} className="text-base" />
+                    )}
                     {msg.proposal_horizon && (
                       <span className="chip bg-bg text-muted text-xs">{msg.proposal_horizon}</span>
                     )}

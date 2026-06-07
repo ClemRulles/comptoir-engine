@@ -9,6 +9,7 @@ import { ActivityFeed } from "@/components/ActivityFeed";
 import { TopMovers } from "@/components/TopMovers";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { KpiCard, Delta, SectionTitle, Reveal } from "@/components/Kpi";
+import { TickerCell } from "@/components/StockDrawer";
 
 export const dynamic = "force-dynamic";
 
@@ -106,7 +107,7 @@ export default async function DashboardPage() {
                 <tbody>
                   {group.holdings.slice(0, 6).map((h) => (
                     <tr key={h.ticker} className="border-b border-line/60">
-                      <td className="py-2 font-semibold">{h.ticker}</td>
+                      <td className="py-2"><TickerCell ticker={h.ticker} /></td>
                       <td className="text-right tabular-nums">{eur(h.marketValue)}</td>
                       <td className="text-right tabular-nums text-muted">{pct(h.weight).replace("+", "")}</td>
                       <td className={`text-right tabular-nums ${h.pnlPct >= 0 ? "up" : "down"}`}>{pct(h.pnlPct)}</td>
