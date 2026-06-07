@@ -1,4 +1,5 @@
 import type { Mover } from "@/lib/data";
+import { TickerCell } from "@/components/StockDrawer";
 
 function pctSigned(n: number): string {
   return `${n >= 0 ? "+" : ""}${(n * 100).toFixed(1).replace(".", ",")} %`;
@@ -8,7 +9,7 @@ function Row({ m }: { m: Mover }) {
   const up = m.changePct >= 0;
   return (
     <li className="flex items-center justify-between py-1.5 text-sm">
-      <span className="font-semibold">{m.ticker}</span>
+      <TickerCell ticker={m.ticker} />
       <span className={`chip ${up ? "bg-brand/10 text-brand-600" : "bg-danger/10 text-danger"}`}>
         {up ? "▲" : "▼"} {pctSigned(m.changePct)}
       </span>
