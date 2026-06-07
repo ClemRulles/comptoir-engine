@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Brand } from "@/components/Brand";
 
-type Mode = "signin" | "signup" | "magic";
+type Mode = "signin" | "signup" | "reset";
 
 const ERROR_MAP: Record<string, string> = {
   "Invalid login credentials": "Email ou mot de passe incorrect.",
@@ -36,10 +36,11 @@ export default function LoginPage() {
     try {
       const supabase = createClient();
 
-      if (mode === "magic") {
-        const { error } = await supabase.auth.signInWithOtp({
-          email,
-          options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
+      if (mode === "reset") {
+        // Envoie un email de réinitialisation → page /reset-password (via le callback
+        // qui échange le code contre une session de récupération).
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: `${window.location.origin}/auth/callback?next=/reset-password`,
         });
         if (error) setError(translate(error.message));
         else setSent(true);
@@ -71,7 +72,7 @@ export default function LoginPage() {
 
   const isSignin = mode === "signin";
   const isSignup = mode === "signup";
-  const isMagic = mode === "magic";
+  const isReset = mode === "reset";
 
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
@@ -98,7 +99,7 @@ export default function LoginPage() {
           </div>
 
           {/* Onglets Connexion / Créer un compte */}
-          {!sent && (
+          {!sent && !isReset && (
             <div className="seg mb-6 w-full">
               <button
                 type="button"
@@ -122,11 +123,11 @@ export default function LoginPage() {
           )}
 
           <h1 className="text-2xl font-bold">
-            {isMagic ? "Lien magique" : isSignup ? "Rejoindre le groupe" : "Bon retour"}
+            {isReset ? "Mot de passe oublié" : isSignup ? "Rejoindre le groupe" : "Bon retour"}
           </h1>
           <p className="mt-1 text-sm text-muted">
-            {isMagic
-              ? "On t'envoie un lien par email, sans mot de passe."
+            {isReset
+              ? "On t'envoie un email pour choisir un nouveau mot de passe."
               : isSignup
               ? "Crée ton compte pour accéder au tableau de bord."
               : "Connecte-toi avec ton email et ton mot de passe."}
@@ -134,14 +135,14 @@ export default function LoginPage() {
 
           {sent ? (
             <div className="card-p mt-6 space-y-2">
-              <p className="text-sm font-semibold">
-                {isSignup ? "✉️ Vérifie ta boîte mail" : "✉️ Lien envoyé !"}
-              </p>
+              <p className="text-sm font-semibold">✉️ Email envoyé !</p>
               <p className="text-sm text-muted">
                 Un email a été envoyé à <strong>{email}</strong>.{" "}
-                {isSignup
+                {isReset
+                  ? "Clique sur le lien pour définir ton nouveau mot de passe."
+                  : isSignup
                   ? "Clique sur le lien pour confirmer ton compte."
-                  : "Clique sur le lien pour entrer directement."}
+                  : "Clique sur le lien pour entrer."}
               </p>
               <button
                 type="button"
@@ -177,7 +178,7 @@ export default function LoginPage() {
                   className="input mt-1"
                 />
               </div>
-              {!isMagic && (
+              {!isReset && (
                 <div>
                   <label className="label">Mot de passe</label>
                   <input
@@ -195,8 +196,8 @@ export default function LoginPage() {
               <button type="submit" disabled={loading} className="btn btn-primary w-full mt-1">
                 {loading
                   ? "Chargement…"
-                  : isMagic
-                  ? "Envoyer le lien"
+                  : isReset
+                  ? "Envoyer le lien de réinitialisation"
                   : isSignup
                   ? "Créer mon compte"
                   : "Se connecter"}
@@ -204,26 +205,26 @@ export default function LoginPage() {
 
               {error && <p className="text-sm text-danger">{error}</p>}
 
-              {/* Lien vers magic link (mot de passe oublié) */}
-              {!isMagic && (
+              {/* Mot de passe oublié → réinitialisation */}
+              {isSignin && (
                 <p className="text-center text-xs text-muted pt-1">
                   <button
                     type="button"
-                    onClick={() => { setMode("magic"); setError(null); }}
+                    onClick={() => { setMode("reset"); setError(null); }}
                     className="underline hover:text-ink"
                   >
-                    {isSignin ? "Mot de passe oublié ? Connexion par lien email" : "Recevoir un lien d'inscription par email"}
+                    Mot de passe oublié ?
                   </button>
                 </p>
               )}
-              {isMagic && (
+              {isReset && (
                 <p className="text-center text-xs text-muted pt-1">
                   <button
                     type="button"
                     onClick={() => { setMode("signin"); setError(null); }}
                     className="underline hover:text-ink"
                   >
-                    ← Retour à la connexion par mot de passe
+                    ← Retour à la connexion
                   </button>
                 </p>
               )}
