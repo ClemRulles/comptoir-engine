@@ -13,6 +13,14 @@ règle le cadran : RISK-ON SAIN / NORMAL / SURCHAUFFE / STRESS.
 Écris-le dans `memory/market-regime.md` (format : cadran, consigne au système,
 valorisation indice, zones de bulle, largeur, macro en 3 lignes, sources).
 
+**Contexte crypto (radar, pas signal).** Joue `node engine/crypto.js` → `memory/fund/crypto.json`
+(CoinGecko : cap/dominance BTC-ETH/cours EUR ; alternative.me : Fear & Greed). Lis-le pour situer
+le climat crypto : sentiment (peur/avidité, lecture **contrarienne**), dominance BTC, variations
+24h/7j/30j des majors. Les signaux quantitatifs actions (F-Score, earnings, initiés) **n'ont aucun
+sens sur la crypto** : pour ces actifs, raisonne **momentum + régime macro + sentiment** uniquement.
+Le crypto reste un **radar à corroborer** (preuve dure on-chain/chiffres/catalyseur exigée) et **sans
+allocation forcée** — résume-le en 2 lignes dans `memory/market-regime.md` si pertinent cette semaine.
+
 ## Partie B — LA tendance de la semaine (anti-bullshit)
 1. Génère 3 à 6 tendances candidates, en croisant des **données dures**, pas du buzz :
    - secteurs qui surperforment/sous-performent (FMP) — et pourquoi (catalyseur réel) ;
@@ -72,9 +80,13 @@ Une fois par semaine, prends le pouls du marché via Grok (seul accès X temps r
    - **2 à 4 thèmes/tendances** qui agitent réellement le marché sur X (rotations sectorielles,
      narratifs émergents) — pas du bruit meme/penny ;
    - **les tickers qui ont bougé et pourquoi**, en priorité ceux **détenus** (lis la liste dans
-     `memory/portfolio.md` et `memory/fund/ai-fund.json`).
+     `memory/portfolio.md` et `memory/fund/ai-fund.json`) ;
+   - **les narratifs crypto** dominants de la semaine (BTC/ETH/alts) : y a-t-il un catalyseur, un
+     flux ETF, un changement de sentiment ? X est très crypto — recoupe avec `memory/fund/crypto.json`
+     (dominance, Fear & Greed). Reste **radar** : aucune entrée de book sur le seul narratif.
    Demande une **sortie JSON stricte** : `headline`, `themes[]` (`title`, `detail`, `tickers[]`),
-   `movers[]` (`ticker`, `direction` up/down, `reason`).
+   `movers[]` (`ticker`, `direction` up/down, `reason`). Un thème crypto suit les mêmes règles de
+   corroboration (preuve dure) que les autres.
 2. **Corrobore** chaque thème avec une source dure déjà collectée en Partie A/B/C (FRED, FMP,
    EDGAR, communiqués). Mets `corroborated:true` seulement si recoupé ; sinon `false` (gardé,
    mais marqué). Un thème non corroboré **ne peut pas à lui seul** créer une tendance validée ni

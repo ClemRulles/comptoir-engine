@@ -1,0 +1,76 @@
+{
+  "_doc": "Radar crypto (contexte, JAMAIS un signal d'achat seul — CLAUDE.md §F). Sources gratuites sans clé : CoinGecko (cap/dominance/cours EUR) + alternative.me (Fear & Greed). À corroborer par une preuve dure avant toute décision de book.",
+  "updated": "2026-06-08",
+  "market": {
+    "total_market_cap_eur": 1968453478911.445,
+    "total_volume_eur": 85093408879.84679,
+    "market_cap_change_24h_pct": 2.278024788968431,
+    "btc_dominance_pct": 56.184094795059835,
+    "eth_dominance_pct": 8.986073460233435
+  },
+  "fear_greed": {
+    "value": 8,
+    "classification": "Extreme Fear"
+  },
+  "sentiment_read": "peur extrême — zone contrarienne potentielle (à corroborer)",
+  "coins": [
+    {
+      "id": "bitcoin",
+      "symbol": "BTC",
+      "name": "Bitcoin",
+      "price_eur": 55037,
+      "market_cap_eur": 1103523531243,
+      "change_24h_pct": 2.244539777779557,
+      "change_7d_pct": -9.874979658560889,
+      "change_30d_pct": -19.41613745919251
+    },
+    {
+      "id": "ethereum",
+      "symbol": "ETH",
+      "name": "Ethereum",
+      "price_eur": 1460.26,
+      "market_cap_eur": 176580516180,
+      "change_24h_pct": 3.413003690497965,
+      "change_7d_pct": -13.628995162164648,
+      "change_30d_pct": -25.402153543922086
+    },
+    {
+      "id": "binancecoin",
+      "symbol": "BNB",
+      "name": "BNB",
+      "price_eur": 522.99,
+      "market_cap_eur": 70574937207,
+      "change_24h_pct": 1.5823197069847104,
+      "change_7d_pct": -10.305128364784654,
+      "change_30d_pct": -4.714048040758442
+    },
+    {
+      "id": "ripple",
+      "symbol": "XRP",
+      "name": "XRP",
+      "price_eur": 1.01,
+      "market_cap_eur": 62702816345,
+      "change_24h_pct": 2.1848614541306963,
+      "change_7d_pct": -8.608547457337448,
+      "change_30d_pct": -15.835931427368646
+    },
+    {
+      "id": "solana",
+      "symbol": "SOL",
+      "name": "Solana",
+      "price_eur": 58.1,
+      "market_cap_eur": 33700024196,
+      "change_24h_pct": 2.6847153230358565,
+      "change_7d_pct": -15.18176392080646,
+      "change_30d_pct": -26.279803583266766
+    }
+  ],
+  "watchlist_ids": [
+    "bitcoin",
+    "ethereum",
+    "solana",
+    "ripple",
+    "binancecoin"
+  ],
+  "data_gaps": []
+}
