@@ -51,10 +51,9 @@ export function KpiCard({
   sparkColor?: string;
 }) {
   const bar = accent === "group" ? "bg-brand" : accent === "ai" ? "bg-ai" : "bg-slate-300";
-  const sColor = sparkColor ?? (accent === "ai" ? "#f59e0b" : "#16a34a");
   return (
     <div
-      className="card-p lift relative overflow-hidden animate-fade-up"
+      className="group card-p lift relative overflow-hidden animate-fade-up"
       style={{ animationDelay: `${delay}ms` }}
     >
       <div className={`absolute left-0 top-0 h-full w-1 ${bar}`} />
@@ -65,8 +64,8 @@ export function KpiCard({
       <div className={`kpi mt-1${spark && spark.length > 1 ? " pr-14" : ""}`}>{value}</div>
       {sub && <div className="mt-2 text-sm text-muted">{sub}</div>}
       {spark && spark.length > 1 && (
-        <div className="pointer-events-none absolute right-2 bottom-3 opacity-80">
-          <Sparkline data={spark} color={sColor} />
+        <div className="pointer-events-none absolute right-2 bottom-3">
+          <Sparkline data={spark} color={sparkColor} interactive />
         </div>
       )}
     </div>
