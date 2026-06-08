@@ -1,11 +1,15 @@
 import { createClient } from "@/lib/supabase/server";
-import { isConfigured } from "@/lib/data";
+import { getAppData, isConfigured } from "@/lib/data";
 import { Chat } from "@/components/Chat";
 
 export const dynamic = "force-dynamic";
 
 export default async function PropositionsPage() {
   const demo = !isConfigured();
+
+  // NAV du fonds groupe → conversion % ↔ € en direct dans le formulaire de proposition.
+  const data = await getAppData();
+  const groupNav = data.group.nav;
 
   // Récupération de l'ID utilisateur courant (pour différencier mes bulles des autres)
   let currentUserId: string | undefined;
@@ -30,7 +34,7 @@ export default async function PropositionsPage() {
           une proposition structurée et notifie tout le groupe.
         </p>
       </div>
-      <Chat demo={demo} currentUserId={currentUserId} />
+      <Chat demo={demo} currentUserId={currentUserId} groupNav={groupNav} />
     </div>
   );
 }
