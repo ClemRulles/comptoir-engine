@@ -63,16 +63,23 @@ function hashStr(s: string): number {
   return Math.abs(h);
 }
 
+// Paire crypto Yahoo (BTC-EUR, ETH-USD…) → symbole de base pour l'icône (btc, eth…).
+const CRYPTO_RE = /^([A-Z0-9]{2,6})-(EUR|USD|USDT|USDC|BTC)$/;
+
 export function TickerLogo({
   ticker,
   size = 24,
   className = "",
+  kind,
 }: {
   ticker: string;
   size?: number;
   className?: string;
+  kind?: "equity" | "etf" | "crypto" | string;
 }) {
   const base = (ticker || "").toUpperCase();
+  const cryptoMatch = base.match(CRYPTO_RE);
+  const isCrypto = kind === "crypto" || !!cryptoMatch;
   const domain = LOGO_DOMAINS[base];
 
   // Logo par ticker (FMP) — couvre AUTOMATIQUEMENT tout nouveau titre acheté
@@ -80,11 +87,18 @@ export function TickerLogo({
   const fmp = `https://financialmodelingprep.com/image-stock/${encodeURIComponent(base)}.png`;
 
   // Chaîne de repli :
+  //  - Crypto → jeu d'icônes statique gratuit (cryptocurrency-icons via jsDelivr), par symbole.
   //  - Ticker curaté (map domaine) → DuckDuckGo → favicon Google  (logo garanti correct,
   //    y compris pour les tickers ambigus type « AI » = Air Liquide ≠ C3.ai)
   //  - Ticker inconnu → FMP par ticker (logo réel auto)
   //  - Dans tous les cas, repli final sur le monogramme (jamais d'image cassée).
-  const sources = domain
+  const cryptoSym = (cryptoMatch?.[1] ?? base.split("-")[0]).toLowerCase();
+  const sources = isCrypto
+    ? [
+        `https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/128/color/${cryptoSym}.png`,
+        `https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/128/color/generic.png`,
+      ]
+    : domain
     ? [
         `https://icons.duckduckgo.com/ip3/${domain}.ico`,
         `https://www.google.com/s2/favicons?sz=64&domain=${domain}`,

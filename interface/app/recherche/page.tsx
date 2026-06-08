@@ -16,9 +16,9 @@ export default async function RecherchePage() {
       <div>
         <h1 className="text-xl font-bold tracking-tight">🔍 Recherche</h1>
         <p className="mt-1 text-sm text-muted">
-          Cherche n&apos;importe quel actif (action ou ETF) et ouvre son <strong>graphique de
-          cours</strong>. En attendant, voici les <strong>plus forts mouvements du jour</strong> parmi
-          les titres suivis.
+          Cherche n&apos;importe quel actif — <strong>action, ETF ou crypto</strong> — et ouvre son{" "}
+          <strong>graphique de cours</strong>. En attendant, voici les{" "}
+          <strong>plus forts mouvements du jour</strong> parmi les titres suivis.
         </p>
       </div>
 
