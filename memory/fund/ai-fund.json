@@ -1,8 +1,8 @@
 {
-  "as_of": "2026-06-05",
+  "as_of": "2026-06-08",
   "seeded": true,
-  "start_capital": 7009.28,
-  "cash": 700,
+  "start_capital": 10417.28,
+  "cash": 4108,
   "positions": [
     { "ticker": "SAF.PA", "quantity": 2.4427, "avg_cost": 329.6352396937815, "confidence": "Moyenne", "horizon": "coeur", "thesis_id": "saf-aero", "entry_date": "2026-06-04", "target": null, "exit_rule": "thèse cassée si cycle aéro/MRO se retourne", "thesis": "Aéronautique + défense, qualité industrielle. Hérité du groupe à t0." },
     { "ticker": "HO.PA", "quantity": 3.1127796901893285, "avg_cost": 258.6241495141068, "confidence": "Moyenne", "horizon": "coeur", "thesis_id": "ho-defense", "entry_date": "2026-06-04", "target": null, "exit_rule": "sortie si budgets défense EU décélèrent nettement", "thesis": "Cycle défense européen structurel. Hérité du groupe à t0." },
@@ -23,5 +23,5 @@
   "trades": [
     { "ts": "2026-06-04", "side": "buy", "ticker": "SEED", "quantity": 0, "price": 0, "confidence": "Moyenne", "horizon": "coeur", "thesis_id": "t0-clone", "rationale": "SEED t0 : le book IA hérite des 15 positions du groupe à l'identique (clone à armes égales). À partir d'ici l'IA gère seule selon ses convictions (method §H)." }
   ],
-  "note": "Book CLONÉ depuis le groupe au 2026-06-04 (course dès aujourd'hui). PARTS RÉELLES FIGÉES : quantity = parts fractionnaires identiques au groupe, avg_cost = coût de revient PAR ACTION. Valorisation = quantity × cours live (EUR), exactement comme le fonds du groupe → les deux bougent ensemble tant que l'IA n'a pas divergé. Plus de convention seed value_t0 : la 1re passe du vendredi gère/rebalance selon §H."
+  "note": "Book CLONÉ depuis le groupe au 2026-06-04 (course dès aujourd'hui). PARTS RÉELLES FIGÉES : quantity = parts fractionnaires identiques au groupe, avg_cost = coût de revient PAR ACTION. Valorisation = quantity × cours live (EUR), exactement comme le fonds du groupe → les deux bougent ensemble tant que l'IA n'a pas divergé. Plus de convention seed value_t0 : la 1re passe du vendredi gère/rebalance selon §H. MAJ 2026-06-08 : cash de marge porté à 4108 € (mêmes fonds que le groupe, réserve à déployer cette semaine) ; start_capital = positions t0 (6309,28 €) + cash (4108 €) = 10417,28 € pour que le cash ne compte pas comme du rendement. Les apports membres mensuels (le 5, 10×25 €) s'ajouteront au cash ET au start_capital des deux fonds via l'interface."
 }
