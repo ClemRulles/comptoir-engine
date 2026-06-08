@@ -74,6 +74,22 @@ export interface AppData {
   weekDeltaGroup: number;
   weekDeltaAi: number;
   brief: string | null;
+  // Dates d'apports (cotisations) agrégées → marqueurs « apport » sur la courbe : un saut de
+  // NAV à ces dates vient d'un versement, pas de la performance.
+  contributions: { date: string; amount: number }[];
+}
+
+// Agrège les apports par date (somme du jour) → 1 marqueur par date sur la courbe.
+function aggregateContribsByDate(rows: { ts?: string | null; amount: number }[]): { date: string; amount: number }[] {
+  const byDate = new Map<string, number>();
+  for (const c of rows) {
+    const date = String(c.ts ?? "").slice(0, 10);
+    if (!date) continue;
+    byDate.set(date, (byDate.get(date) ?? 0) + Number(c.amount ?? 0));
+  }
+  return Array.from(byDate.entries())
+    .map(([date, amount]) => ({ date, amount }))
+    .sort((a, b) => a.date.localeCompare(b.date));
 }
 
 export function isConfigured() {
@@ -162,6 +178,7 @@ function demoData(): AppData {
     weekDeltaGroup: win((p) => p.group),
     weekDeltaAi: win((p) => p.ai),
     brief: DEMO_BRIEF,
+    contributions: aggregateContribsByDate(DEMO_CONTRIBUTIONS),
   };
 }
 
@@ -184,8 +201,10 @@ export async function getAppData(): Promise<AppData> {
 
     // Apports membres : le pot commun (group.cash) est déjà incrémenté à chaque apport.
     // Le book IA reçoit la même somme pour rester à armes égales (cash de trading + apports cumulés).
-    const { data: contribData } = await supabase.from("contributions").select("amount");
-    const apportsTotal = (contribData ?? []).reduce((s, c) => s + Number(c.amount ?? 0), 0);
+    const { data: contribData } = await supabase.from("contributions").select("ts, amount");
+    const contribRows = (contribData ?? []) as { ts?: string | null; amount: number }[];
+    const apportsTotal = contribRows.reduce((s, c) => s + Number(c.amount ?? 0), 0);
+    const contributions = aggregateContribsByDate(contribRows);
     const aiCash = (aiFile?.cash ?? aiFundRow?.cash ?? aiFundRow?.start_capital ?? 0) + apportsTotal;
 
     const tickers = [...groupHoldings.map((h) => h.ticker), ...aiPositions.map((p) => p.ticker)];
@@ -194,8 +213,11 @@ export async function getAppData(): Promise<AppData> {
     const group = enrich(
       "group",
       groupFund?.name ?? "Fonds du groupe",
-      groupFund?.start_capital ?? 0,
-      groupFund?.cash ?? groupFund?.start_capital ?? 0,
+      // Comme l'IA : les apports s'ajoutent au capital injecté ET au cash (ils ne comptent pas
+      // comme du rendement). funds.cash/start_capital = base ; apportsTotal vient de la table
+      // contributions. Les deux fonds reçoivent donc les apports à l'identique.
+      (groupFund?.start_capital ?? 0) + apportsTotal,
+      (groupFund?.cash ?? groupFund?.start_capital ?? 0) + apportsTotal,
       groupHoldings.map((h) => ({ ticker: h.ticker, quantity: h.quantity, avg_cost: h.avg_cost })),
       prices
     );
@@ -260,6 +282,7 @@ export async function getAppData(): Promise<AppData> {
       weekDeltaGroup: weekDelta(gSnaps),
       weekDeltaAi: weekDelta(aSnaps),
       brief,
+      contributions,
     };
   } catch {
     // si la base n'est pas encore prête, on retombe proprement sur la démo

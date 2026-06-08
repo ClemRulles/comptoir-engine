@@ -56,18 +56,14 @@ export async function GET(request: NextRequest) {
   const { error } = await supabase.from("holdings").upsert(rows, { onConflict: "fund_id,ticker" });
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
-  // Aligne le fonds groupe sans toucher au cash existant (4108 € de réserve, apports inclus) :
-  // start_capital = NAV des positions t0 + cash de marge + apports déjà reçus → le cash et les
-  // apports ne comptent pas comme du rendement. (Avant : cash remis à 0, ce qui effaçait la réserve.)
-  const { data: contribData } = await supabase.from("contributions").select("amount");
-  const contributed = ((contribData ?? []) as { amount: number }[]).reduce(
-    (s, c) => s + Number(c.amount ?? 0),
-    0
-  );
+  // Aligne le fonds groupe sans toucher au cash existant (4108 € de réserve) :
+  // start_capital BASE = NAV des positions t0 + cash de marge. Les apports (table contributions)
+  // sont ajoutés au cash ET au start_capital des deux fonds par getAppData (apportsTotal) → on ne
+  // les ajoute donc PAS ici (sinon double comptage). (Avant : cash remis à 0, ce qui l'effaçait.)
   const cash = Number(group.cash ?? 0);
   await supabase
     .from("funds")
-    .update({ start_capital: SEED_START_CAPITAL + cash + contributed, cash })
+    .update({ start_capital: SEED_START_CAPITAL + cash, cash })
     .eq("id", group.id);
 
   // Encoder le book = repartir d'une courbe propre : on efface les snapshots NAV

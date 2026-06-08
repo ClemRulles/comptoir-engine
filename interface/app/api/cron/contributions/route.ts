@@ -65,15 +65,7 @@ export async function GET(request: NextRequest) {
     .insert({ fund_id: group.id, member_id: null, amount, note, kind: "apport" });
   if (insErr) return NextResponse.json({ error: insErr.message }, { status: 500 });
 
-  // L'apport augmente le cash ET le capital injecté (start_capital) → il n'est pas compté
-  // comme du rendement. Même logique que /api/contributions (apport manuel).
-  const newCash = Number(group.cash ?? 0) + amount;
-  const newStartCapital = Number(group.start_capital ?? 0) + amount;
-  const { error: updErr } = await supabase
-    .from("funds")
-    .update({ cash: newCash, start_capital: newStartCapital })
-    .eq("id", group.id);
-  if (updErr) return NextResponse.json({ error: updErr.message }, { status: 500 });
-
-  return NextResponse.json({ ok: true, amount, activeMembers, perMember, cash: newCash, tag });
+  // On ne touche PAS funds.cash : getAppData ajoute le total des apports au cash ET au
+  // start_capital des DEUX fonds (groupe + IA) → armes égales, apport ≠ rendement.
+  return NextResponse.json({ ok: true, amount, activeMembers, perMember, tag });
 }

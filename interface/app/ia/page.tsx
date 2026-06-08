@@ -38,7 +38,7 @@ export default async function IaPage() {
       <Reveal delay={150} className="order-1 md:order-2">
         <div className="card-p">
           <SectionTitle>Évolution du fonds IA</SectionTitle>
-          <PerfChart data={data.series} mode="ai" />
+          <PerfChart data={data.series} mode="ai" contributions={data.contributions} />
         </div>
       </Reveal>
 
