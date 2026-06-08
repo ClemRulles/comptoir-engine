@@ -36,7 +36,7 @@ export default async function GroupePage() {
       <Reveal delay={150} className="order-1 md:order-2">
         <div className="card-p">
           <SectionTitle>Évolution du fonds</SectionTitle>
-          <PerfChart data={data.series} mode="group" />
+          <PerfChart data={data.series} mode="group" contributions={data.contributions} />
         </div>
       </Reveal>
 

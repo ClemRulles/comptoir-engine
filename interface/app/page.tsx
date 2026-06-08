@@ -73,7 +73,7 @@ export default async function DashboardPage() {
         <Reveal delay={150} className="order-1 md:order-none lg:col-span-2">
           <div className="card-p">
             <SectionTitle>Performance — Groupe vs IA</SectionTitle>
-            <PerfChart data={data.series} mode="both" />
+            <PerfChart data={data.series} mode="both" contributions={data.contributions} />
           </div>
         </Reveal>
         <Reveal delay={220} className="order-3 md:order-none">

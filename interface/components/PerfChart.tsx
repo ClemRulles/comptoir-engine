@@ -5,6 +5,7 @@ import {
   Area,
   AreaChart,
   CartesianGrid,
+  ReferenceLine,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -13,6 +14,7 @@ import {
 import { pct } from "@/lib/fund";
 
 type Point = { date: string; group: number; ai: number };
+type Contribution = { date: string; amount: number };
 type Mode = "both" | "group" | "ai";
 
 const RANGES: { key: string; label: string; days: number }[] = [
@@ -27,7 +29,15 @@ const RANGES: { key: string; label: string; days: number }[] = [
 const MONTHS = ["jan", "fév", "mar", "avr", "mai", "jun", "jul", "aoû", "sep", "oct", "nov", "déc"];
 const euro = (v: number) => `${Math.round(v).toLocaleString("fr-FR")} €`;
 
-export function PerfChart({ data, mode = "both" }: { data: Point[]; mode?: Mode }) {
+export function PerfChart({
+  data,
+  mode = "both",
+  contributions = [],
+}: {
+  data: Point[];
+  mode?: Mode;
+  contributions?: Contribution[];
+}) {
   const [range, setRange] = useState("3M");
 
   const { filtered, days } = useMemo(() => {
@@ -45,6 +55,23 @@ export function PerfChart({ data, mode = "both" }: { data: Point[]; mode?: Mode 
     }
     return { filtered: f.length >= 2 ? f : data.slice(-2), days: r.days };
   }, [data, range]);
+
+  // Marqueurs d'apport : un versement (cotisation / nouveau membre) fait monter la NAV sans
+  // que ce soit de la perf. On place un repère bleu à la 1re date visible ≥ date d'apport,
+  // mais seulement si le saut tombe DANS la fenêtre affichée (sinon ça collerait au bord).
+  const contribMarkers = useMemo(() => {
+    if (!contributions.length || filtered.length < 2) return [] as Contribution[];
+    const dates = filtered.map((p) => p.date);
+    const first = dates[0];
+    const last = dates[dates.length - 1];
+    const byX = new Map<string, number>();
+    for (const c of contributions) {
+      if (c.date <= first || c.date > last) continue; // saut hors fenêtre
+      const x = dates.find((d) => d >= c.date);
+      if (x) byX.set(x, (byX.get(x) ?? 0) + c.amount);
+    }
+    return Array.from(byX.entries()).map(([date, amount]) => ({ date, amount }));
+  }, [contributions, filtered]);
 
   const fmtTick = (d: string) => {
     const [, m, day] = d.split("-");
@@ -76,6 +103,11 @@ export function PerfChart({ data, mode = "both" }: { data: Point[]; mode?: Mode 
             <span className="flex items-center gap-1.5">
               <span className="h-2 w-2 rounded-full bg-ai" /> IA
               <b className={rangePerf((p) => p.ai) >= 0 ? "up" : "down"}>{pct(rangePerf((p) => p.ai))}</b>
+            </span>
+          )}
+          {contribMarkers.length > 0 && (
+            <span className="flex items-center gap-1.5 text-muted" title="Un versement (cotisation ou nouveau membre) fait monter la NAV — ce n'est pas de la performance.">
+              <span className="h-2 w-2 rounded-full" style={{ background: "#3b82f6" }} /> Apport
             </span>
           )}
         </div>
@@ -110,6 +142,22 @@ export function PerfChart({ data, mode = "both" }: { data: Point[]; mode?: Mode 
               </linearGradient>
             </defs>
             <CartesianGrid stroke="rgb(var(--chart-grid))" vertical={false} />
+            {contribMarkers.map((m) => (
+              <ReferenceLine
+                key={m.date}
+                x={m.date}
+                stroke="#3b82f6"
+                strokeDasharray="4 3"
+                strokeWidth={1.5}
+                label={{
+                  value: `apport +${Math.round(m.amount).toLocaleString("fr-FR")} €`,
+                  position: "insideTopLeft",
+                  fill: "#3b82f6",
+                  fontSize: 10,
+                  fontWeight: 600,
+                }}
+              />
+            ))}
             <XAxis
               dataKey="date"
               stroke="rgb(var(--chart-axis))"
