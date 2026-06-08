@@ -7,7 +7,6 @@ import { KpiCard, Delta, SectionTitle, Reveal } from "@/components/Kpi";
 import { HoldingsEditor } from "@/components/HoldingsEditor";
 import { MembersManager } from "@/components/MembersManager";
 import { MaintenancePanel } from "@/components/MaintenancePanel";
-import { CashEditor } from "@/components/CashEditor";
 import { TickerCell } from "@/components/StockDrawer";
 
 export const dynamic = "force-dynamic";
@@ -95,17 +94,14 @@ export default async function GroupePage() {
         <HoldingsEditor />
       </div>
 
-      <Reveal delay={120} className="order-5">
-        <CashEditor currentCash={f.cash} demo={data.demo} />
-      </Reveal>
-
       <div className="order-6">
         <SectionTitle right={<span className="label">{eur(club.monthlyTotal)} / mois</span>}>
           Membres &amp; apports
         </SectionTitle>
         <p className="mb-3 text-sm text-muted">
-          Ajoutez les membres du pot et enregistrez leurs apports (25 €/mois/personne par défaut).
-          Chaque apport augmente le cash du fonds — l&apos;IA reçoit la même somme pour rester à armes égales.
+          Les membres du pot cotisent 25 €/mois chacun. Le <strong>5 de chaque mois</strong>, l&apos;apport
+          collectif ({club.activeMembers} × 25 €) tombe automatiquement dans le cash du fonds — l&apos;IA
+          reçoit la même somme pour rester à armes égales. Tu peux aussi enregistrer un apport ponctuel ci-dessous.
         </p>
         <MembersManager club={club} />
       </div>
