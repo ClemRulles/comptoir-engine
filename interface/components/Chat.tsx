@@ -96,7 +96,7 @@ export function Chat({
   const [pSizeVal, setPSizeVal] = useState("");
   const [pSizeUnit, setPSizeUnit] = useState<"pct" | "eur">("pct");
   const [pHorizon, setPHorizon] = useState("Long terme");
-  const [pRange, setPRange] = useState("1M");
+  const [pRange, setPRange] = useState("3M");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -200,7 +200,7 @@ export function Chat({
         setError(j.error ?? "Erreur");
       } else {
         setShowProposalForm(false);
-        setPTicker(""); setPTickerName(""); setPThesis(""); setPSizeVal(""); setPSizeUnit("pct"); setPHorizon("Long terme"); setPRange("1M");
+        setPTicker(""); setPTickerName(""); setPThesis(""); setPSizeVal(""); setPSizeUnit("pct"); setPHorizon("Long terme"); setPRange("3M");
       }
     } catch {
       setError("Erreur réseau.");
@@ -239,8 +239,10 @@ export function Chat({
                   <span className="text-xs text-muted shrink-0">{timeAgo(msg.created_at)}</span>
                 </div>
                 <p className="text-sm text-slate-700">{msg.proposal_thesis}</p>
-                {msg.proposal_ticker && msg.proposal_range && (
-                  <ProposalChart ticker={msg.proposal_ticker} range={msg.proposal_range} />
+                {/* Le graphique accompagne toujours une proposition (la window vient de
+                    proposal_range si la colonne existe, sinon 3 mois par défaut). */}
+                {msg.proposal_ticker && (
+                  <ProposalChart ticker={msg.proposal_ticker} range={msg.proposal_range || "3M"} />
                 )}
                 <p className="text-xs text-muted">— {msg.author_name ?? "Membre"}</p>
               </div>
@@ -367,17 +369,10 @@ export function Chat({
               <p className="mt-1 h-4 text-[11px] text-muted">Horizon</p>
             </div>
           </div>
-          {/* Graphique à joindre pour justifier la thèse. */}
+          {/* Graphique joint pour justifier la thèse : on choisit seulement la fenêtre. */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs text-muted">📈 Graphique :</span>
+            <span className="text-xs text-muted">📈 Graphique joint :</span>
             <div className="seg">
-              <button
-                type="button"
-                onClick={() => setPRange("")}
-                className={`seg-btn ${!pRange ? "seg-btn-active" : ""}`}
-              >
-                Aucun
-              </button>
               {PROPOSAL_RANGES.map((r) => (
                 <button
                   key={r.key}
