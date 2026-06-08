@@ -33,3 +33,14 @@ export const SEED_BOOK: SeedPosition[] = [
 // réinitialiser la compétition). Les valeurs ci-dessus (≈ 6 279 € au 08/06) sont la valo
 // actuelle ; l'écart avec ce baseline = la perf depuis t0.
 export const SEED_START_CAPITAL = 6309.28;
+
+// Cash de marge RÉEL du pot au lancement (2026-06-08). C'est la SOURCE DE VÉRITÉ du cash
+// de base du groupe (le book IA est aligné dans memory/fund/ai-fund.json : cash 4108).
+// `seed-group` force cette valeur dans Supabase → plus besoin de lancer la migration SQL à
+// la main. Les apports mensuels (table contributions) viennent EN PLUS, ajoutés par getAppData.
+// Ce montant inclut déjà juin → 1er apport auto = 5 juillet 2026.
+export const SEED_BASE_CASH = 4108;
+
+// Roster initial du club : 10 membres à 25 €/mois = 250 €/mois d'apport collectif le 5.
+export const SEED_MEMBERS = 10;
+export const SEED_PER_MEMBER = 25;

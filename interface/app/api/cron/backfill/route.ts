@@ -44,7 +44,8 @@ export async function GET(request: NextRequest) {
 
   const { data: contribData } = await supabase.from("contributions").select("amount");
   const apportsTotal = ((contribData ?? []) as { amount: number }[]).reduce((s, c) => s + Number(c.amount ?? 0), 0);
-  const groupCash = group.cash ?? group.start_capital ?? 0;
+  // Symétrie : apports ajoutés au cash des deux fonds (cf. value/getAppData).
+  const groupCash = (group.cash ?? group.start_capital ?? 0) + apportsTotal;
   const aiCash = (aiFund?.cash ?? ai.cash ?? ai.start_capital ?? 0) + apportsTotal;
 
   const tickers = Array.from(new Set([...groupHoldings.map((h) => h.ticker), ...aiRaw.map((p) => p.ticker)]));
