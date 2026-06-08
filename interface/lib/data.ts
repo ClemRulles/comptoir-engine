@@ -226,6 +226,20 @@ export async function getAppData(): Promise<AppData> {
     }
     const series = Array.from(byDate.values()).sort((a, b) => a.date.localeCompare(b.date));
 
+    // Point « aujourd'hui » en temps réel : les snapshots ne sont écrits que par le cron
+    // (22:00 UTC, lun-ven) — la courbe resterait sinon figée à la dernière clôture (ex.
+    // vendredi) toute la journée. On prolonge jusqu'à la valeur live pour que la courbe
+    // colle toujours au grand chiffre affiché. Quand le cron écrira le snapshot du jour,
+    // il remplacera proprement ce point au prochain chargement.
+    const today = new Date().toISOString().slice(0, 10);
+    const last = series[series.length - 1];
+    if (!last || last.date < today) {
+      series.push({ date: today, group: group.nav, ai: ai.nav });
+    } else if (last.date === today) {
+      last.group = group.nav;
+      last.ai = ai.nav;
+    }
+
     const weekDelta = (arr: NavSnapshot[]) => {
       if (arr.length < 2) return 0;
       const i = arr.length - 1;

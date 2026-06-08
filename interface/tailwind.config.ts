@@ -76,6 +76,10 @@ const config: Config = {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.45" },
         },
+        "spark-draw": {
+          "0%": { strokeDashoffset: "1" },
+          "100%": { strokeDashoffset: "0" },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s cubic-bezier(0.22,1,0.36,1) both",
@@ -84,6 +88,7 @@ const config: Config = {
         shimmer: "shimmer 1.6s infinite",
         "drift-slow": "drift-slow 18s ease-in-out infinite",
         "pulse-soft": "pulse-soft 2s ease-in-out infinite",
+        "spark-draw": "spark-draw 0.7s cubic-bezier(0.22,1,0.36,1)",
       },
     },
   },
