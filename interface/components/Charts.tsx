@@ -39,8 +39,17 @@ function renderActiveShape(props: unknown) {
   );
 }
 
-export function AllocationDonut({ slices }: { slices: { name: string; value: number }[] }) {
-  const total = slices.reduce((s, x) => s + x.value, 0);
+export function AllocationDonut({
+  slices,
+  total: totalProp,
+}: {
+  slices: { name: string; value: number }[];
+  // Total faisant autorité (le `nav` du fonds). Sans lui, on retombe sur la somme des
+  // parts — mais celle-ci, sommée dans un ordre différent du `nav`, peut diverger d'1 €
+  // à l'arrondi (l'addition flottante n'est pas associative). On préfère donc le `nav`.
+  total?: number;
+}) {
+  const total = totalProp ?? slices.reduce((s, x) => s + x.value, 0);
   const [active, setActive] = useState<number | null>(null);
   if (total <= 0) {
     return <div className="flex h-64 items-center justify-center text-sm text-muted">—</div>;
