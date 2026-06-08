@@ -1,19 +1,32 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { TickerLogo } from "@/components/TickerLogo";
 import { useStockDrawer } from "@/components/StockDrawer";
 
-type Result = { symbol: string; name: string; exchange: string; type: string };
+type Kind = "equity" | "etf" | "crypto";
+type Result = { symbol: string; name: string; exchange: string; type: string; kind: Kind };
+type Filter = "all" | "stock" | "crypto";
 
-// Barre de recherche proéminente : cherche n'importe quel actif (Yahoo) et ouvre son
-// graphique de cours dans le tiroir partagé (même design que partout ailleurs).
+// Badge de type d'actif (différencie visuellement actions/ETF des cryptos).
+function KindBadge({ kind }: { kind: Kind }) {
+  if (kind === "crypto")
+    return <span className="chip bg-amber-100 text-amber-700 dark:bg-amber-400/15 dark:text-amber-300">Crypto</span>;
+  if (kind === "etf")
+    return <span className="chip bg-sky-100 text-sky-700 dark:bg-sky-400/15 dark:text-sky-300">ETF</span>;
+  return <span className="chip bg-slate-100 text-slate-600 dark:bg-slate-400/15 dark:text-slate-300">Action</span>;
+}
+
+// Barre de recherche proéminente : cherche n'importe quel actif (Yahoo : action, ETF, crypto)
+// et ouvre son graphique de cours dans le tiroir partagé. Pastilles Tous/Actions/Crypto pour
+// affiner, et un badge de type sur chaque résultat.
 export function AssetSearch() {
   const openStock = useStockDrawer();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Result[]>([]);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [filter, setFilter] = useState<Filter>("all");
   const boxRef = useRef<HTMLDivElement>(null);
 
   // Ferme le menu si on clique ailleurs.
@@ -47,12 +60,26 @@ export function AssetSearch() {
     return () => clearTimeout(id);
   }, [query]);
 
+  const shown = useMemo(
+    () =>
+      results.filter((r) =>
+        filter === "all" ? true : filter === "crypto" ? r.kind === "crypto" : r.kind !== "crypto"
+      ),
+    [results, filter]
+  );
+
   function pick(r: Result) {
     openStock(r.symbol, r.name);
     setOpen(false);
     setQuery("");
     setResults([]);
   }
+
+  const pills: { id: Filter; label: string }[] = [
+    { id: "all", label: "Tous" },
+    { id: "stock", label: "Actions & ETF" },
+    { id: "crypto", label: "Crypto" },
+  ];
 
   return (
     <div className="relative" ref={boxRef}>
@@ -68,7 +95,7 @@ export function AssetSearch() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => results.length && setOpen(true)}
-          placeholder="Rechercher un actif — nom ou ticker (ex. Nvidia, AAPL, Air Liquide)"
+          placeholder="Rechercher un actif — action, ETF ou crypto (ex. Nvidia, Air Liquide, Bitcoin)"
           autoComplete="off"
           aria-label="Rechercher un actif"
         />
@@ -92,12 +119,31 @@ export function AssetSearch() {
         )}
       </div>
 
-      {open && (results.length > 0 || loading) && (
+      {/* Pastilles de filtre (défaut : Tous → on ne masque jamais ce que l'utilisateur cherche). */}
+      <div className="mt-2.5 flex gap-1.5">
+        {pills.map((p) => (
+          <button
+            key={p.id}
+            type="button"
+            onClick={() => setFilter(p.id)}
+            className={`rounded-full px-3 py-1 text-xs font-semibold transition-colors ${
+              filter === p.id ? "bg-brand text-white" : "bg-bg text-muted hover:bg-line/60"
+            }`}
+          >
+            {p.label}
+          </button>
+        ))}
+      </div>
+
+      {open && (shown.length > 0 || loading) && (
         <ul className="absolute z-30 mt-2 max-h-72 w-full overflow-auto rounded-2xl border border-line bg-card shadow-lg">
-          {loading && results.length === 0 && (
+          {loading && shown.length === 0 && (
             <li className="px-4 py-3 text-sm text-muted">Recherche…</li>
           )}
-          {results.map((r) => (
+          {!loading && shown.length === 0 && (
+            <li className="px-4 py-3 text-sm text-muted">Aucun résultat pour ce filtre.</li>
+          )}
+          {shown.map((r) => (
             <li key={`${r.symbol}-${r.exchange}`}>
               <button
                 type="button"
@@ -105,13 +151,16 @@ export function AssetSearch() {
                 className="flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left text-sm transition-colors hover:bg-bg"
               >
                 <span className="flex min-w-0 items-center gap-2.5">
-                  <TickerLogo ticker={r.symbol} size={26} />
+                  <TickerLogo ticker={r.symbol} size={26} kind={r.kind} />
                   <span className="min-w-0 truncate">
                     <span className="font-semibold">{r.symbol}</span>{" "}
                     <span className="text-muted">· {r.name}</span>
                   </span>
                 </span>
-                <span className="shrink-0 text-xs text-muted">{r.exchange}</span>
+                <span className="flex shrink-0 items-center gap-2">
+                  <KindBadge kind={r.kind} />
+                  <span className="hidden text-xs text-muted sm:inline">{r.exchange}</span>
+                </span>
               </button>
             </li>
           ))}
