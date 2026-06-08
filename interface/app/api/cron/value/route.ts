@@ -66,7 +66,9 @@ export async function GET(request: NextRequest) {
 
   const groupPosVal = valueWithFallback(groupItems);
   const aiPosVal = valueWithFallback(aiItems);
-  const groupCash = group.cash ?? group.start_capital;
+  // Symétrie : les apports s'ajoutent au cash des DEUX fonds (comme l'IA ci-dessus et comme
+  // getAppData). Sinon le snapshot du groupe ignorerait les apports → courbe désynchronisée.
+  const groupCash = (group.cash ?? group.start_capital ?? 0) + apportsTotal;
   const groupNav = groupCash + groupPosVal;
   const aiNav = aiCash + aiPosVal;
 
