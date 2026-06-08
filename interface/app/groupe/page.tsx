@@ -80,7 +80,7 @@ export default async function GroupePage() {
         <Reveal delay={180}>
           <div className="card-p">
             <SectionTitle>Allocation</SectionTitle>
-            <AllocationDonut slices={slices} />
+            <AllocationDonut slices={slices} total={f.nav} />
           </div>
         </Reveal>
       </div>

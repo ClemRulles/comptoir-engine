@@ -79,7 +79,7 @@ export default async function DashboardPage() {
         <Reveal delay={220} className="order-3 md:order-none">
           <div className="card-p">
             <SectionTitle>Allocation du groupe</SectionTitle>
-            <AllocationDonut slices={slices} />
+            <AllocationDonut slices={slices} total={group.nav} />
           </div>
         </Reveal>
       </div>
