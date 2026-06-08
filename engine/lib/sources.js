@@ -37,6 +37,61 @@ async function fetchJson(url, opts) {
 }
 
 // ===========================================================================
+// Crypto — sources gratuites, sans clé (CoinGecko + alternative.me).
+// Radar uniquement : sert à raisonner le contexte crypto, jamais un signal d'achat
+// seul (CLAUDE.md, method §F). On ne JETTE jamais : indispo -> null.
+// ===========================================================================
+
+// Vue d'ensemble du marché crypto (CoinGecko /global) : cap totale, volume, dominance
+// BTC/ETH, variation 24h de la cap. Tout en EUR.
+export async function coinGeckoGlobal() {
+  const j = await fetchJson("https://api.coingecko.com/api/v3/global", { timeout: 10000 });
+  const d = j?.data;
+  if (!d) return null;
+  return {
+    total_market_cap_eur: d.total_market_cap?.eur ?? null,
+    total_volume_eur: d.total_volume?.eur ?? null,
+    market_cap_change_24h_pct: d.market_cap_change_percentage_24h_usd ?? null,
+    btc_dominance_pct: d.market_cap_percentage?.btc ?? null,
+    eth_dominance_pct: d.market_cap_percentage?.eth ?? null,
+  };
+}
+
+// Cours + variations (24h/7j/30j) pour une liste de coins CoinGecko (ids), en EUR.
+// ids ex. ["bitcoin","ethereum","solana"].
+export async function coinGeckoMarkets(ids) {
+  if (!Array.isArray(ids) || !ids.length) return null;
+  const url =
+    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&ids=" +
+    encodeURIComponent(ids.join(",")) +
+    "&order=market_cap_desc&price_change_percentage=24h,7d,30d";
+  const j = await fetchJson(url, { timeout: 10000 });
+  if (!Array.isArray(j)) return null;
+  return j.map((c) => ({
+    id: c.id,
+    symbol: (c.symbol || "").toUpperCase(),
+    name: c.name,
+    price_eur: c.current_price ?? null,
+    market_cap_eur: c.market_cap ?? null,
+    change_24h_pct: c.price_change_percentage_24h_in_currency ?? null,
+    change_7d_pct: c.price_change_percentage_7d_in_currency ?? null,
+    change_30d_pct: c.price_change_percentage_30d_in_currency ?? null,
+  }));
+}
+
+// Fear & Greed Index crypto (alternative.me) : 0 (peur extrême) -> 100 (avidité extrême).
+export async function cryptoFearGreed() {
+  const j = await fetchJson("https://api.alternative.me/fng/?limit=1", { timeout: 8000 });
+  const d = j?.data?.[0];
+  if (!d) return null;
+  const value = Number(d.value);
+  return {
+    value: Number.isFinite(value) ? value : null,
+    classification: d.value_classification ?? null,
+  };
+}
+
+// ===========================================================================
 // Mapping ticker "maison" -> symbole Yahoo (place + devise). Aligné sur
 // interface/lib/yahoo.ts pour rester cohérent avec la valorisation de l'interface.
 // ===========================================================================

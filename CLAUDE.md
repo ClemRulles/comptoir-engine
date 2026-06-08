@@ -18,6 +18,10 @@ solide** — argumentée, validée, jamais bidon.
 - Le sentiment social (X/Grok) n'est jamais un signal d'achat (method §F). Le **pouls hebdo Grok**
   (`memory/grok-pulse.json`) est un radar de thèmes/news **à corroborer** : rien n'influence une
   décision tant que ce n'est pas recoupé par une source dure.
+- **Crypto = radar, pas signal.** `memory/fund/crypto.json` (CoinGecko + Fear & Greed) sert à
+  raisonner le climat crypto (sentiment contrarien, dominance, momentum). Les signaux quant actions
+  (F-Score, earnings, initiés) **ne s'appliquent pas** à la crypto. Aucune entrée de book sur le seul
+  radar crypto (preuve dure exigée), et **pas d'allocation forcée**.
 
 ## Discipline de données
 Gratuit d'abord, signal d'abord. Ordre : recherche web native → SEC EDGAR (officiel) →

@@ -44,6 +44,16 @@ Si une clé manque ou une API plafonne → bascule sur la recherche web native e
 - Indicateurs techniques (RSI, MACD, moyennes) et séries de prix.
 - Usage : momentum **plafonné** (method §A) en appoint. À doses modérées vu le quota serré.
 
+### Crypto : CoinGecko + alternative.me — gratuit, sans clé (RADAR, pas signal)
+- `engine/crypto.js` → `memory/fund/crypto.json`. CoinGecko `/global` (cap totale, **dominance
+  BTC/ETH**, variation 24h, EUR) + `/coins/markets` (cours + variations 24h/7j/30j des majors, EUR)
+  + alternative.me `/fng` (**Fear & Greed Index** crypto, 0 peur extrême → 100 avidité extrême).
+- Usage : situer le **climat crypto** (sentiment contrarien, dominance, momentum). Les signaux
+  quantitatifs actions (F-Score, earnings, initiés) **ne s'appliquent PAS** à la crypto → momentum
+  + régime macro + sentiment uniquement.
+- **Discipline** : radar à corroborer (preuve dure on-chain/chiffres/catalyseur), **jamais un signal
+  d'achat seul**, **pas d'allocation forcée**. Sans réseau → champs `null` + `data_gaps`, ne bloque pas.
+
 ### Recherche web native — toujours disponible, gratuite
 - News, contexte qualitatif, vérification croisée, lecture de filings/articles.
 - C'est ta couche news par défaut : pas besoin d'API de presse payante.
@@ -65,7 +75,7 @@ Si une clé manque ou une API plafonne → bascule sur la recherche web native e
 
 | Routine | Sources principales |
 |---------|---------------------|
-| Lun · Trend Radar | FRED (+ release calendar), FMP sector-performance, Finnhub IPO+earnings calendar, EDGAR full-text, web (calendrier macro/politique → `catalysts.md`), **Grok (pouls hebdo → `grok-pulse.json`)** |
+| Lun · Trend Radar | FRED (+ release calendar), FMP sector-performance, Finnhub IPO+earnings calendar, EDGAR full-text, web (calendrier macro/politique → `catalysts.md`), **Grok (pouls hebdo → `grok-pulse.json`)**, **CoinGecko + alternative.me (radar crypto → `crypto.json`)** |
 | Mar · Scout | FMP screener, Finnhub fundamentals+peers, web |
 | Mer · Deep-dive | EDGAR companyfacts, Finnhub financials, FMP ratios/DCF, web |
 | Jeu · Portfolio Doctor | Finnhub news+earnings, EDGAR 8-K, web |
