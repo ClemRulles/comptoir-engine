@@ -58,13 +58,26 @@ export async function POST(request: NextRequest) {
     row.proposal_thesis = thesis;
     row.proposal_size = String(body?.proposal_size ?? "").trim() || null;
     row.proposal_horizon = String(body?.proposal_horizon ?? "").trim() || null;
+    // Plage du graphique joint (validée sur une liste blanche). Optionnelle.
+    const range = String(body?.proposal_range ?? "").trim().toUpperCase();
+    if (["1S", "1M", "3M", "1A"].includes(range)) row.proposal_range = range;
   }
 
-  const { data: message, error: insertErr } = await supabase
+  let { data: message, error: insertErr } = await supabase
     .from("messages")
     .insert(row)
     .select()
     .single();
+  // Repli : si la colonne proposal_range n'a pas encore été migrée (42703 / PGRST204),
+  // on réessaie sans elle pour ne jamais bloquer l'envoi d'une proposition.
+  if (
+    insertErr &&
+    "proposal_range" in row &&
+    (insertErr.code === "42703" || insertErr.code === "PGRST204" || /proposal_range/.test(insertErr.message))
+  ) {
+    delete row.proposal_range;
+    ({ data: message, error: insertErr } = await supabase.from("messages").insert(row).select().single());
+  }
   if (insertErr) return NextResponse.json({ error: insertErr.message }, { status: 500 });
 
   // Fan-out notifications pour les propositions uniquement

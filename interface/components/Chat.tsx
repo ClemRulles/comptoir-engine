@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { TickerSearch } from "@/components/TickerSearch";
 import { TickerCell } from "@/components/StockDrawer";
+import { ProposalChart, PROPOSAL_RANGES } from "@/components/ProposalChart";
 
 interface Message {
   id: string;
@@ -15,6 +16,7 @@ interface Message {
   proposal_thesis?: string | null;
   proposal_size?: string | null;
   proposal_horizon?: string | null;
+  proposal_range?: string | null;
   proposal_status?: string | null;
   created_at: string;
 }
@@ -28,8 +30,9 @@ const DEMO_MESSAGES: Message[] = [
     kind: "proposal",
     proposal_ticker: "ASML",
     proposal_thesis: "Quasi-monopole sur la litho EUV, carnet de commandes record. Le repli récent crée un bon point d'entrée.",
-    proposal_size: "5%",
+    proposal_size: "5 % · ≈ 315 €",
     proposal_horizon: "Long terme",
+    proposal_range: "3M",
     proposal_status: "open",
     created_at: new Date(Date.now() - 3 * 3600_000).toISOString(),
   },
@@ -75,15 +78,25 @@ function Avatar({ name }: { name: string | null }) {
   );
 }
 
-export function Chat({ demo, currentUserId }: { demo: boolean; currentUserId?: string }) {
+export function Chat({
+  demo,
+  currentUserId,
+  groupNav = 0,
+}: {
+  demo: boolean;
+  currentUserId?: string;
+  groupNav?: number;
+}) {
   const [messages, setMessages] = useState<Message[]>(demo ? DEMO_MESSAGES : []);
   const [text, setText] = useState("");
   const [showProposalForm, setShowProposalForm] = useState(false);
   const [pTicker, setPTicker] = useState("");
   const [pTickerName, setPTickerName] = useState("");
   const [pThesis, setPThesis] = useState("");
-  const [pSize, setPSize] = useState("");
+  const [pSizeVal, setPSizeVal] = useState("");
+  const [pSizeUnit, setPSizeUnit] = useState<"pct" | "eur">("pct");
   const [pHorizon, setPHorizon] = useState("Long terme");
+  const [pRange, setPRange] = useState("1M");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -148,6 +161,21 @@ export function Chat({ demo, currentUserId }: { demo: boolean; currentUserId?: s
     [text, demo, sending]
   );
 
+  // Conversion en direct : la taille saisie en % se traduit en € (et vice-versa) sur la base
+  // du NAV du fonds groupe, pour que chacun visualise le montant réel engagé.
+  const sizeNum = parseFloat(pSizeVal.replace(",", "."));
+  const sizeValid = Number.isFinite(sizeNum) && sizeNum > 0;
+  const eurFromPct = sizeValid ? Math.round((sizeNum / 100) * groupNav) : 0;
+  const pctFromEur = sizeValid && groupNav > 0 ? (sizeNum / groupNav) * 100 : 0;
+  const fmtEur = (n: number) => n.toLocaleString("fr-FR");
+  const fmtPct = (n: number) => n.toFixed(n < 10 ? 1 : 0).replace(".", ",");
+  // Chaîne stockée (lisible) : valeur saisie + équivalent. Ex. "10 % · ≈ 690 €".
+  const sizeLabel = !sizeValid
+    ? ""
+    : pSizeUnit === "pct"
+      ? `${fmtPct(sizeNum)} %${groupNav > 0 ? ` · ≈ ${fmtEur(eurFromPct)} €` : ""}`
+      : `${fmtEur(sizeNum)} €${groupNav > 0 ? ` · ≈ ${fmtPct(pctFromEur)} %` : ""}`;
+
   async function sendProposal(e: React.FormEvent) {
     e.preventDefault();
     if (!pTicker.trim() || !pThesis.trim() || demo || sending) return;
@@ -162,8 +190,9 @@ export function Chat({ demo, currentUserId }: { demo: boolean; currentUserId?: s
           content: `💡 Proposition : ${pTicker.trim().toUpperCase()}`,
           proposal_ticker: pTicker.trim().toUpperCase(),
           proposal_thesis: pThesis.trim(),
-          proposal_size: pSize.trim() || null,
+          proposal_size: sizeLabel || null,
           proposal_horizon: pHorizon.trim() || null,
+          proposal_range: pRange || null,
         }),
       });
       if (!res.ok) {
@@ -171,7 +200,7 @@ export function Chat({ demo, currentUserId }: { demo: boolean; currentUserId?: s
         setError(j.error ?? "Erreur");
       } else {
         setShowProposalForm(false);
-        setPTicker(""); setPTickerName(""); setPThesis(""); setPSize(""); setPHorizon("Long terme");
+        setPTicker(""); setPTickerName(""); setPThesis(""); setPSizeVal(""); setPSizeUnit("pct"); setPHorizon("Long terme"); setPRange("1M");
       }
     } catch {
       setError("Erreur réseau.");
@@ -210,6 +239,9 @@ export function Chat({ demo, currentUserId }: { demo: boolean; currentUserId?: s
                   <span className="text-xs text-muted shrink-0">{timeAgo(msg.created_at)}</span>
                 </div>
                 <p className="text-sm text-slate-700">{msg.proposal_thesis}</p>
+                {msg.proposal_ticker && msg.proposal_range && (
+                  <ProposalChart ticker={msg.proposal_ticker} range={msg.proposal_range} />
+                )}
                 <p className="text-xs text-muted">— {msg.author_name ?? "Membre"}</p>
               </div>
             );
@@ -286,24 +318,87 @@ export function Chat({ demo, currentUserId }: { demo: boolean; currentUserId?: s
             maxLength={500}
           />
           <div className="grid grid-cols-2 gap-2">
-            <input
-              value={pSize}
-              onChange={(e) => setPSize(e.target.value)}
-              placeholder="Taille suggérée (ex : 5%)"
-              className="input"
-              maxLength={20}
-            />
-            <select
-              value={pHorizon}
-              onChange={(e) => setPHorizon(e.target.value)}
-              className="input"
-            >
-              <option>Long terme</option>
-              <option>Tactique</option>
-              <option>Court terme</option>
-            </select>
+            {/* Taille suggérée : valeur + bascule %/€ avec équivalent calculé en direct. */}
+            <div>
+              <div className="flex gap-1.5">
+                <input
+                  value={pSizeVal}
+                  onChange={(e) => setPSizeVal(e.target.value.replace(/[^0-9.,]/g, ""))}
+                  placeholder={pSizeUnit === "pct" ? "Taille (ex : 5)" : "Montant (ex : 500)"}
+                  inputMode="decimal"
+                  className="input flex-1 min-w-0"
+                  maxLength={12}
+                />
+                <div className="seg shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => setPSizeUnit("pct")}
+                    className={`seg-btn ${pSizeUnit === "pct" ? "seg-btn-active" : ""}`}
+                  >
+                    %
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPSizeUnit("eur")}
+                    className={`seg-btn ${pSizeUnit === "eur" ? "seg-btn-active" : ""}`}
+                  >
+                    €
+                  </button>
+                </div>
+              </div>
+              <p className="mt-1 h-4 text-[11px] text-muted">
+                {sizeValid && groupNav > 0
+                  ? pSizeUnit === "pct"
+                    ? `≈ ${fmtEur(eurFromPct)} € du fonds (${fmtEur(Math.round(groupNav))} €)`
+                    : `≈ ${fmtPct(pctFromEur)} % du fonds (${fmtEur(Math.round(groupNav))} €)`
+                  : "Taille suggérée"}
+              </p>
+            </div>
+            <div>
+              <select
+                value={pHorizon}
+                onChange={(e) => setPHorizon(e.target.value)}
+                className="input"
+              >
+                <option>Long terme</option>
+                <option>Tactique</option>
+                <option>Court terme</option>
+              </select>
+              <p className="mt-1 h-4 text-[11px] text-muted">Horizon</p>
+            </div>
           </div>
-          <button type="submit" disabled={sending} className="btn btn-primary w-full">
+          {/* Graphique à joindre pour justifier la thèse. */}
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs text-muted">📈 Graphique :</span>
+            <div className="seg">
+              <button
+                type="button"
+                onClick={() => setPRange("")}
+                className={`seg-btn ${!pRange ? "seg-btn-active" : ""}`}
+              >
+                Aucun
+              </button>
+              {PROPOSAL_RANGES.map((r) => (
+                <button
+                  key={r.key}
+                  type="button"
+                  onClick={() => setPRange(r.key)}
+                  className={`seg-btn ${pRange === r.key ? "seg-btn-active" : ""}`}
+                >
+                  {r.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          {pTicker && pRange && (
+            <ProposalChart ticker={pTicker} range={pRange} />
+          )}
+          {demo && (
+            <p className="rounded-lg border border-ai/30 bg-ai/5 px-3 py-2 text-xs text-muted">
+              Aperçu : connectez-vous sur l&apos;app en ligne pour envoyer une proposition au groupe.
+            </p>
+          )}
+          <button type="submit" disabled={sending || demo} className="btn btn-primary w-full">
             {sending ? "Envoi…" : "Envoyer & notifier le groupe"}
           </button>
         </form>
@@ -329,7 +424,6 @@ export function Chat({ demo, currentUserId }: { demo: boolean; currentUserId?: s
         <button
           type="button"
           onClick={() => setShowProposalForm((v) => !v)}
-          disabled={demo}
           title="Proposer un investissement"
           className={`btn shrink-0 px-3 ${showProposalForm ? "bg-brand/10 border-brand/30 text-brand-600" : ""}`}
         >
