@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { isConfigured } from "@/lib/data";
+import { fetchPrices } from "@/lib/prices";
 
 async function groupFund(supabase: Awaited<ReturnType<typeof createClient>>) {
   const { data } = await supabase
@@ -53,63 +54,87 @@ export async function POST(request: NextRequest) {
   } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
+  // Modèle SIMPLE en EUROS :
+  //  - INVESTIR / RENFORCER : { ticker, amount }  → amount € s'AJOUTENT à la position ;
+  //    le cash baisse de `amount`, la valeur des positions monte de `amount` → la NAV ne bouge pas.
+  //  - VENDRE (clôture)      : { ticker, sell:true } → on retire la ligne et on recrédite le cash
+  //    à sa VALEUR DE MARCHÉ (cours live), pas au coût.
   const body = await request.json().catch(() => null);
   const ticker = String(body?.ticker ?? "").trim().toUpperCase();
-  const quantity = Number(body?.quantity);
-  const avg_cost = Number(body?.avg_cost);
-  if (!ticker || !Number.isFinite(quantity) || !Number.isFinite(avg_cost)) {
-    return NextResponse.json({ error: "ticker, quantity, avg_cost requis" }, { status: 400 });
-  }
+  const sell = body?.sell === true;
+  const amount = Number(body?.amount);
+  if (!ticker) return NextResponse.json({ error: "ticker requis" }, { status: 400 });
 
   const fund = await groupFund(supabase);
   if (!fund) return NextResponse.json({ error: "group fund missing" }, { status: 404 });
 
-  // position existante (pour ajuster le cash de façon conservatrice)
+  // Position existante (parts + PRU pondéré).
   const { data: existing } = await supabase
     .from("holdings")
     .select("quantity, avg_cost")
     .eq("fund_id", fund.id)
     .eq("ticker", ticker)
     .maybeSingle();
-  const oldValue = existing ? existing.quantity * existing.avg_cost : 0;
+  const oldQty = existing ? Number(existing.quantity) || 0 : 0;
+  const oldAvg = existing ? Number(existing.avg_cost) || 0 : 0;
 
-  if (quantity <= 0) {
-    // vente totale : on retire la position, on recrédite le cash au coût de revient
+  // Cours live (EUR) — sert à convertir un montant € en parts (et à valoriser une vente).
+  const prices = await fetchPrices([ticker]);
+  const price = prices[ticker];
+
+  // ── VENTE (clôture totale) ──────────────────────────────────────────
+  if (sell) {
+    if (!existing) return NextResponse.json({ error: "position introuvable" }, { status: 400 });
+    const back = typeof price === "number" && price > 0 ? oldQty * price : oldQty * oldAvg;
     await supabase.from("holdings").delete().eq("fund_id", fund.id).eq("ticker", ticker);
-    await adjustCash(supabase, fund, oldValue);
+    await adjustCash(supabase, fund, back); // on récupère la valeur de marché en cash
     await supabase.from("trades").insert({
       fund_id: fund.id,
       side: "sell",
       ticker,
-      quantity: 0,
-      price: avg_cost,
-      rationale: "Position clôturée via l'interface",
+      quantity: oldQty,
+      price: typeof price === "number" ? price : oldAvg,
+      rationale: "Vente totale via l'interface",
       source: "member",
     });
-    return NextResponse.json({ ok: true, removed: true });
+    return NextResponse.json({ ok: true, removed: true, creditedCash: Math.round(back) });
   }
 
-  const newValue = quantity * avg_cost;
+  // ── INVESTIR / RENFORCER (montant en euros) ─────────────────────────
+  if (!Number.isFinite(amount) || amount <= 0) {
+    return NextResponse.json({ error: "Indique un montant en euros (> 0) à investir." }, { status: 400 });
+  }
+  if (!(typeof price === "number" && price > 0)) {
+    return NextResponse.json(
+      { error: `Cours indisponible pour ${ticker} pour l'instant — réessaie dans un moment.` },
+      { status: 502 }
+    );
+  }
+
+  const addedQty = amount / price; // parts achetées maintenant au cours live
+  const newQty = oldQty + addedQty;
+  const newCost = oldQty * oldAvg + amount; // coût total cumulé
+  const newAvg = newCost / newQty; // PRU pondéré
+
   const { error } = await supabase
     .from("holdings")
     .upsert(
-      { fund_id: fund.id, ticker, quantity, avg_cost, updated_at: new Date().toISOString() },
+      { fund_id: fund.id, ticker, quantity: newQty, avg_cost: newAvg, updated_at: new Date().toISOString() },
       { onConflict: "fund_id,ticker" }
     );
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
-  // l'argent investi sort du cash (delta vs ancienne valeur de la ligne)
-  await adjustCash(supabase, fund, -(newValue - oldValue));
+  await adjustCash(supabase, fund, -amount); // l'argent investi sort du cash
 
   await supabase.from("trades").insert({
     fund_id: fund.id,
     side: "buy",
     ticker,
-    quantity,
-    price: avg_cost,
-    rationale: "Position saisie/mise à jour via l'interface",
+    quantity: addedQty,
+    price,
+    rationale: `Investissement de ${Math.round(amount)} € via l'interface`,
     source: "member",
   });
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, invested: Math.round(amount), price, reinforced: oldQty > 0 });
 }
