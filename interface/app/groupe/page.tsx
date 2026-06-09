@@ -85,7 +85,7 @@ export default async function GroupePage() {
       </div>
 
       <div className="order-4">
-        <SectionTitle>Saisir / mettre à jour une position</SectionTitle>
+        <SectionTitle>Investir / renforcer une position</SectionTitle>
         {data.demo && (
           <div className="card-p mb-3 border-ai/30 bg-ai/5 text-sm text-ink">
             Mode démo : l&apos;enregistrement sera actif une fois Supabase branché (déploiement).
