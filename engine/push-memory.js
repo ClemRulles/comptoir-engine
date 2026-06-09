@@ -50,13 +50,26 @@ function changedFiles() {
   }
 }
 
-async function main() {
-  const message = process.argv.slice(2).join(" ").trim() || `memory: maj ${new Date().toISOString().slice(0, 10)}`;
-  const url = process.env.MEMORY_PUSH_URL;
-  const secret = process.env.CRON_SECRET;
+// URL de l'endpoint Vercel par défaut (l'app de prod). Surchargable par --url= ou $MEMORY_PUSH_URL.
+const DEFAULT_URL = "https://comptoir-engine.vercel.app/api/memory/push";
 
-  if (!url || !secret) {
-    console.error("push-memory: MEMORY_PUSH_URL ou CRON_SECRET absent → mémoire NON persistée (commit local seulement).");
+function flag(name) {
+  const pfx = `--${name}=`;
+  const hit = process.argv.slice(2).find((a) => a.startsWith(pfx));
+  return hit ? hit.slice(pfx.length) : null;
+}
+
+async function main() {
+  // message = arguments positionnels (hors --flags).
+  const message =
+    process.argv.slice(2).filter((a) => !a.startsWith("--")).join(" ").trim() ||
+    `memory: maj ${new Date().toISOString().slice(0, 10)}`;
+  // secret/url : priorité au flag (passé dans le prompt de la routine) puis à l'env.
+  const url = flag("url") || process.env.MEMORY_PUSH_URL || DEFAULT_URL;
+  const secret = flag("secret") || process.env.CRON_SECRET;
+
+  if (!secret) {
+    console.error("push-memory: secret absent (--secret=… ou $CRON_SECRET) → mémoire NON persistée (commit local seulement).");
     process.exit(0);
   }
 
