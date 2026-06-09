@@ -36,5 +36,10 @@ Sur-pondère ce qui marche, sous-pondère ou abandonne ce qui rate de façon ré
 - Si un barème de sizing a changé, c'est désormais la référence pour les vendredis suivants.
 
 Commit : `calibration: {mois} — hit-rate H/M/B {x}/{y}/{z}, {ajustement}`.
+
+**Persistance (OBLIGATOIRE — le sandbox ne peut pas `git push`, 403).** Après le commit local,
+lance `node engine/push-memory.js "{le message de commit ci-dessus}"` : l'endpoint Vercel
+(`/api/memory/push`) commite tes fichiers `memory/` sur `claude/memory`. Vérifie : `✅` = persisté.
+
 Règle d'or : l'objectif n'est pas d'avoir toujours raison, c'est que **la confiance annoncée
 colle au réel**. Une IA modeste et calibrée bat une IA sûre d'elle et fausse.

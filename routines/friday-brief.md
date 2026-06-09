@@ -165,4 +165,11 @@ Mets aussi à jour `memory/watchlist.md` : recopie les meilleures idées au form
 importer dans Comptoir.
 
 Commit : `brief+book: {date} — {n} trades IA, {k} leçons`.
+
+**Persistance (OBLIGATOIRE — le sandbox ne peut pas `git push`, 403).** Après le commit local,
+lance `node engine/push-memory.js "{le message de commit ci-dessus}"` : l'endpoint Vercel
+(`/api/memory/push`) commite tes fichiers `memory/` sur `claude/memory` — c'est ce qui fait monter
+ton travail (et les nouveaux trades du book IA) sur la plateforme. Vérifie la sortie : `✅` =
+persisté, sinon signale-le.
+
 Règle d'or : mieux vaut 1 idée solide que 5 tièdes. S'il n'y a rien de convaincant, dis-le.
