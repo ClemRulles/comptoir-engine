@@ -2,7 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 // Refreshes the Supabase session cookie and protects app routes.
-// Public: /login and /api/cron/* (the cron is protected by its own secret).
+// Public: /login, /api/cron/* et /api/memory/* (protégés par leur propre CRON_SECRET).
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
 
@@ -35,6 +35,7 @@ export async function middleware(request: NextRequest) {
     path.startsWith("/login") ||
     path.startsWith("/reset-password") ||
     path.startsWith("/api/cron") ||
+    path.startsWith("/api/memory") ||
     path.startsWith("/auth");
 
   if (!user && !isPublic) {
