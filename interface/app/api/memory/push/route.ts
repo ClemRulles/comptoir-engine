@@ -38,7 +38,13 @@ async function gh(method: string, path: string, token: string, body?: unknown) {
 }
 
 export async function POST(request: NextRequest) {
-  if (!(await authorizeMaintenance(request))) {
+  // Auth : secret DÉDIÉ MEMORY_PUSH_SECRET (que les routines envoient), OU la maintenance
+  // habituelle (Bearer CRON_SECRET / session connectée). Le secret dédié évite de réutiliser
+  // CRON_SECRET (illisible sur Vercel) et limite la portée à l'écriture mémoire.
+  const pushSecret = process.env.MEMORY_PUSH_SECRET;
+  const auth = request.headers.get("authorization");
+  const okDedicated = Boolean(pushSecret) && auth === `Bearer ${pushSecret}`;
+  if (!okDedicated && !(await authorizeMaintenance(request))) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 
