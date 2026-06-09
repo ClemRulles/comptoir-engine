@@ -265,3 +265,21 @@ export interface CryptoFile {
   sentiment_read?: string | null;
   coins?: CryptoCoin[] | null;
 }
+
+// ── Convictions de l'IA (deep-dive du mercredi) — engine: memory/fund/convictions.json ──
+export type Verdict = "Acheter" | "Surveiller" | "Éviter";
+export interface ConvictionItem {
+  ticker: string;
+  name?: string;
+  verdict: Verdict;
+  confidence: "Haute" | "Moyenne" | "Basse";
+  horizon?: string;            // "coeur" | "tactique"
+  thesis: string;              // thèse en une ligne
+  risk?: string;               // le risque qui invaliderait la thèse
+  date?: string;               // date d'analyse
+}
+export interface ConvictionsFile {
+  _doc?: string;
+  updated?: string;
+  items: ConvictionItem[];
+}

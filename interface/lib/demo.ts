@@ -1,4 +1,4 @@
-import type { AiFundFile, Calibration, ClubMember, Contribution, CryptoFile, Decision, GrokPulseWeek, MarketSignals } from "./types";
+import type { AiFundFile, Calibration, ClubMember, Contribution, ConvictionsFile, CryptoFile, Decision, GrokPulseWeek, MarketSignals } from "./types";
 
 // Données de DÉMONSTRATION (affichées tant que Supabase n'est pas branché).
 // Clairement étiquetées « Démo » dans l'UI — remplacées par les vraies données en prod.
@@ -377,5 +377,15 @@ export const DEMO_CRYPTO: CryptoFile = {
     { id: "binancecoin", symbol: "BNB", name: "BNB", price_eur: 522.99, market_cap_eur: 70574937207, change_24h_pct: 1.58, change_7d_pct: -10.31, change_30d_pct: -4.71 },
     { id: "ripple", symbol: "XRP", name: "XRP", price_eur: 1.92, market_cap_eur: 109000000000, change_24h_pct: 0.9, change_7d_pct: -7.2, change_30d_pct: -12.1 },
     { id: "solana", symbol: "SOL", name: "Solana", price_eur: 118.4, market_cap_eur: 62000000000, change_24h_pct: 4.1, change_7d_pct: -15.8, change_30d_pct: -28.3 },
+  ],
+};
+
+// Convictions de démonstration (verdicts du deep-dive du mercredi).
+export const DEMO_CONVICTIONS: ConvictionsFile = {
+  updated: "2026-06-08",
+  items: [
+    { ticker: "VRT", name: "Vertiv", verdict: "Acheter", confidence: "Haute", horizon: "coeur", thesis: "Pioches & pelles de l'IA : refroidissement/énergie des data centers, carnet de commandes solide.", risk: "Décélération du capex hyperscalers ou concurrence prix sur le thermique.", date: "2026-06-04" },
+    { ticker: "ASML", name: "ASML", verdict: "Surveiller", confidence: "Moyenne", horizon: "coeur", thesis: "Monopole EUV, mais valorisation tendue après le rebond — attendre un meilleur point d'entrée.", risk: "Cyclicité des commandes mémoire/fonderie.", date: "2026-06-04" },
+    { ticker: "MSTR", name: "MicroStrategy", verdict: "Éviter", confidence: "Haute", horizon: "tactique", thesis: "Proxy bitcoin à effet de levier : la prime sur la NAV se comprime, narratif X non corroboré.", risk: "Rebond brutal du bitcoin (à traiter en contrarien).", date: "2026-06-04" },
   ],
 };

@@ -3,6 +3,7 @@ import {
   fetchAiFund,
   fetchCalibration,
   fetchCatalysts,
+  fetchConvictions,
   fetchCrypto,
   fetchDecisions,
   fetchGrokPulse,
@@ -18,6 +19,7 @@ import {
   DEMO_CALIBRATION,
   DEMO_CATALYSTS,
   DEMO_CONTRIBUTIONS,
+  DEMO_CONVICTIONS,
   DEMO_CRYPTO,
   DEMO_DECISIONS,
   DEMO_GROK_PULSE,
@@ -35,6 +37,7 @@ import type {
   CatalystRow,
   ClubMember,
   Contribution,
+  ConvictionItem,
   CryptoFile,
   Decision,
   Fund,
@@ -449,6 +452,34 @@ export async function getCrypto(): Promise<CryptoData> {
   const file = await fetchCrypto();
   if (!file || !file.coins || file.coins.length === 0) return { demo: true, crypto: DEMO_CRYPTO };
   return { demo: false, crypto: file };
+}
+
+// ── Convictions de l'IA (deep-dive du mercredi) ───────────────────────
+export interface ConvictionsData {
+  demo: boolean;
+  updated?: string;
+  items: ConvictionItem[]; // triées : Acheter/Surveiller/Éviter puis confiance
+}
+
+const VERDICT_RANK: Record<string, number> = { Acheter: 0, Surveiller: 1, "Éviter": 2 };
+const CONF_RANK: Record<string, number> = { Haute: 0, Moyenne: 1, Basse: 2 };
+function sortConvictions(items: ConvictionItem[]): ConvictionItem[] {
+  return [...items].sort(
+    (a, b) =>
+      (VERDICT_RANK[a.verdict] ?? 9) - (VERDICT_RANK[b.verdict] ?? 9) ||
+      (CONF_RANK[a.confidence] ?? 9) - (CONF_RANK[b.confidence] ?? 9)
+  );
+}
+
+export async function getConvictions(): Promise<ConvictionsData> {
+  if (!isConfigured()) {
+    return { demo: true, updated: DEMO_CONVICTIONS.updated, items: sortConvictions(DEMO_CONVICTIONS.items) };
+  }
+  const file = await fetchConvictions();
+  if (!file || !Array.isArray(file.items) || file.items.length === 0) {
+    return { demo: true, updated: DEMO_CONVICTIONS.updated, items: sortConvictions(DEMO_CONVICTIONS.items) };
+  }
+  return { demo: false, updated: file.updated, items: sortConvictions(file.items) };
 }
 
 // ── Flux d'activité (mouvements réalisés des deux fonds) ───────────────
