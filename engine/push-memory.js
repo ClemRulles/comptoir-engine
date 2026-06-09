@@ -35,6 +35,7 @@ const CURATED = [
   "memory/fund/calibration.json",
   "memory/fund/signals.json",
   "memory/fund/crypto.json",
+  "memory/fund/convictions.json",
 ];
 
 // Fichiers modifiés par le dernier commit local (ce que la routine vient d'écrire).
