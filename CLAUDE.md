@@ -64,6 +64,10 @@ Le fonds IA (`memory/fund/ai-fund.json`) est un vrai portefeuille fictif qu'on c
 3. Réécris les fichiers concernés, concis (garde ~30 jours, archive le reste en bas).
 4. Ajoute une ligne datée dans `memory/lessons.md` si tu as appris quelque chose d'actionnable.
 5. Commit avec un message clair et daté.
+6. **Persiste** : `node engine/push-memory.js "{message de commit}"`. Le sandbox cloud est en
+   LECTURE SEULE sur GitHub (`git push` → 403) : sans cette étape, ton travail reste dans le
+   sandbox et **n'apparaît jamais sur la plateforme**. L'endpoint Vercel `/api/memory/push`
+   commite tes fichiers `memory/` sur `claude/memory`. Sortie `✅` = persisté ; sinon, dis-le.
 
 ## Sortie
 Markdown sobre, sans jargon. Toujours : thèse en une ligne, arguments, **le risque qui

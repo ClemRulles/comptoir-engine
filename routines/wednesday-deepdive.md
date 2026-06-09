@@ -41,4 +41,10 @@ Sortie → ajoute un bloc `## Revue book IA — {date}` en haut de `memory/convi
 ces verdicts. Le vendredi (PASSE 2) les exécute en priorité. Ne touche à rien d'autre du book ici.
 
 Commit : `deepdive: {date} — {tickers} + revue book ({n} positions)`.
+
+**Persistance (OBLIGATOIRE — le sandbox ne peut pas `git push`, 403).** Après le commit local,
+lance `node engine/push-memory.js "{le message de commit ci-dessus}"` : l'endpoint Vercel
+(`/api/memory/push`) commite tes fichiers `memory/` sur `claude/memory` — c'est ce qui les fait
+apparaître sur la plateforme. Vérifie la sortie : `✅` = persisté, sinon signale-le.
+
 Plafond total Opus : **≤ 3 candidats + ≤ 2 positions book = 5 titres**. Le reste attend la semaine suivante.

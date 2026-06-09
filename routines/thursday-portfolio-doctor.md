@@ -43,3 +43,8 @@ SORTIE} — règle de sortie touchée ? — raison 1 ligne`. Le vendredi exécut
 Pour le groupe, **tu signales, tu ne vends pas** : le groupe décide.
 
 Commit : `portfolio-doctor: {date} — {n} positions (groupe+IA), {k} alertes`.
+
+**Persistance (OBLIGATOIRE — le sandbox ne peut pas `git push`, 403).** Après le commit local,
+lance `node engine/push-memory.js "{le message de commit ci-dessus}"` : l'endpoint Vercel
+(`/api/memory/push`) commite tes fichiers `memory/` sur `claude/memory` — c'est ce qui les fait
+apparaître sur la plateforme. Vérifie la sortie : `✅` = persisté, sinon signale-le.

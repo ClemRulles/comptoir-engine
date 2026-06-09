@@ -117,4 +117,11 @@ Format `memory/grok-pulse.json` :
 ```
 
 Commit : `trend-radar: {date} — tendance: {nom ou AUCUNE}, {n} catalyseurs · pouls maj`.
+
+**Persistance (OBLIGATOIRE — le sandbox ne peut pas `git push`, 403).** Après le commit local,
+lance `node engine/push-memory.js "{le message de commit ci-dessus}"`. L'endpoint Vercel
+(`/api/memory/push`) commite tes fichiers `memory/` modifiés sur `claude/memory` — **c'est ce qui
+fait apparaître ton travail sur la plateforme**. Vérifie la sortie : `✅` = persisté ; sinon
+signale-le explicitement dans ton résumé (la mémoire n'est pas montée).
+
 Reste léger : c'est un travail de tri et de validation, pas une analyse titre par titre.

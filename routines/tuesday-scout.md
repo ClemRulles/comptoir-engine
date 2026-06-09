@@ -30,3 +30,8 @@ Sortie → réécris `memory/watchlist.md` (max ~40 lignes, meilleurs scores en 
 (Tag = [tendance] ou [qualité].)
 
 Commit : `scout: {date} — {n} candidats, {k} marqués ★`. Reste léger, pas d'analyse profonde ici.
+
+**Persistance (OBLIGATOIRE — le sandbox ne peut pas `git push`, 403).** Après le commit local,
+lance `node engine/push-memory.js "{le message de commit ci-dessus}"` : l'endpoint Vercel
+(`/api/memory/push`) commite tes fichiers `memory/` sur `claude/memory` — c'est ce qui les fait
+apparaître sur la plateforme. Vérifie la sortie : `✅` = persisté, sinon signale-le.
