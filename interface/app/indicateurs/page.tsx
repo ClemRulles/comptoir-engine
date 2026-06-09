@@ -1,8 +1,9 @@
-import { getCatalysts, getCrypto, getGrokPulse, getMarketRadar } from "@/lib/data";
+import { getCatalysts, getConvictions, getCrypto, getGrokPulse, getMarketRadar } from "@/lib/data";
 import { CatalystsList } from "@/components/Catalysts";
 import { MarketRadar } from "@/components/MarketRadar";
 import { MarketPulse } from "@/components/MarketPulse";
 import { CryptoClimate } from "@/components/CryptoClimate";
+import { Convictions } from "@/components/Convictions";
 import { KpiCard, SectionTitle, Reveal } from "@/components/Kpi";
 
 export const dynamic = "force-dynamic";
@@ -14,11 +15,12 @@ function nextLabel(date: string): string {
 }
 
 export default async function IndicateursPage() {
-  const [{ demo, upcoming, past }, radar, pulse, crypto] = await Promise.all([
+  const [{ demo, upcoming, past }, radar, pulse, crypto, convictions] = await Promise.all([
     getCatalysts(),
     getMarketRadar(),
     getGrokPulse(),
     getCrypto(),
+    getConvictions(),
   ]);
   const next = upcoming[0];
   const anticipated = upcoming.filter((r) => /actif/i.test(r.status)).length;
@@ -41,8 +43,13 @@ export default async function IndicateursPage() {
         <MarketPulse weeks={pulse.weeks} demo={pulse.demo} />
       </Reveal>
 
-      {/* 2) Climat crypto */}
-      <Reveal delay={100}>
+      {/* 2) Convictions de l'IA (top 3, deep-dive du mercredi) */}
+      <Reveal delay={90}>
+        <Convictions items={convictions.items} demo={convictions.demo} updated={convictions.updated} limit={3} />
+      </Reveal>
+
+      {/* 3) Climat crypto */}
+      <Reveal delay={120}>
         <CryptoClimate crypto={crypto.crypto} demo={crypto.demo} />
       </Reveal>
 
