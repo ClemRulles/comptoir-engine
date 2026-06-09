@@ -112,40 +112,19 @@ export function MarketRadar({ signals, demo }: { signals: MarketSignals; demo: b
         </div>
       )}
 
-      {/* Signaux à surveiller */}
-      <div className="card-p">
-        <div className="mb-3 flex items-center justify-between">
-          <h3 className="text-base font-bold tracking-tight">Signaux à surveiller</h3>
-          <span className="text-xs text-muted">{watch.length} titre(s) avec alerte</span>
-        </div>
-        {watch.length === 0 ? (
-          <p className="text-sm text-muted">Aucun signal notable sur les titres suivis.</p>
-        ) : (
-          <ul className="space-y-2.5">
-            {watch.map(({ t, alerts }) => (
-              <li key={t.ticker} className="flex flex-wrap items-center gap-x-2 gap-y-1.5">
-                <TickerCell ticker={t.ticker} logoSize={20} />
-                {alerts.map((al, i) => (
-                  <span key={i} className={`chip text-xs ${TONE_CLS[al.tone]}`}>{al.label}</span>
-                ))}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-
-      {/* Tableau complet des signaux */}
+      {/* UN SEUL tableau : signaux par titre + alertes en ligne (gate rouge d'abord) */}
       <div className="card-p overflow-x-auto">
         <div className="mb-3 flex items-center justify-between">
           <h3 className="text-base font-bold tracking-tight">Signaux par titre</h3>
           <span className="text-xs text-muted">
+            {watch.length > 0 && <span className="mr-2 text-ai">{watch.length} en alerte</span>}
             {demo ? "démo" : signals.updated ? `maj ${new Date(signals.updated).toLocaleDateString("fr-FR")}` : ""}
           </span>
         </div>
         <table className="w-full text-sm row-hover">
           <thead>
             <tr className="label border-b border-line">
-              <th className="py-2 text-left font-semibold">Titre</th>
+              <th className="py-2 text-left font-semibold">Titre &amp; alertes</th>
               <th className="text-center font-semibold">Gate</th>
               <th className="text-right font-semibold">RSI 14</th>
               <th className="text-right font-semibold hidden sm:table-cell">Mom. 12-1</th>
@@ -159,9 +138,19 @@ export function MarketRadar({ signals, demo }: { signals: MarketSignals; demo: b
               const g = t.gate?.verdict ?? "indéterminé";
               const mom = t.momentum_12_1?.value;
               const vol = t.rel_volume?.value;
+              const alerts = alertsFor(t);
               return (
-                <tr key={t.ticker} className="border-b border-line/60">
-                  <td className="py-2.5"><TickerCell ticker={t.ticker} logoSize={22} /></td>
+                <tr key={t.ticker} className="border-b border-line/60 align-top">
+                  <td className="py-2.5">
+                    <TickerCell ticker={t.ticker} logoSize={22} />
+                    {alerts.length > 0 && (
+                      <div className="mt-1.5 flex flex-wrap gap-1">
+                        {alerts.map((al, i) => (
+                          <span key={i} className={`chip text-xs ${TONE_CLS[al.tone]}`}>{al.label}</span>
+                        ))}
+                      </div>
+                    )}
+                  </td>
                   <td className="text-center">
                     <span className={`chip text-xs ${GATE_CLS[g] ?? "bg-slate-100 text-slate-500"}`}>
                       {GATE_DOT[g] ?? "⚪"} {g}

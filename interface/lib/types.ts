@@ -238,3 +238,30 @@ export interface GrokPulseFile {
   updated?: string;
   weeks: GrokPulseWeek[];
 }
+
+// ── Radar crypto (CoinGecko + Fear & Greed) — engine: memory/fund/crypto.json ──
+export interface CryptoCoin {
+  id: string;
+  symbol: string;
+  name: string;
+  price_eur: number | null;
+  market_cap_eur: number | null;
+  change_24h_pct: number | null;
+  change_7d_pct: number | null;
+  change_30d_pct: number | null;
+}
+export interface CryptoMarket {
+  total_market_cap_eur?: number | null;
+  total_volume_eur?: number | null;
+  market_cap_change_24h_pct?: number | null;
+  btc_dominance_pct?: number | null;
+  eth_dominance_pct?: number | null;
+}
+export interface CryptoFile {
+  _doc?: string;
+  updated?: string;
+  market?: CryptoMarket | null;
+  fear_greed?: { value: number | null; classification: string | null } | null;
+  sentiment_read?: string | null;
+  coins?: CryptoCoin[] | null;
+}

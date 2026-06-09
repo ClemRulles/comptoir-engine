@@ -3,6 +3,7 @@ import {
   fetchAiFund,
   fetchCalibration,
   fetchCatalysts,
+  fetchCrypto,
   fetchDecisions,
   fetchGrokPulse,
   fetchMemoryMarkdown,
@@ -17,6 +18,7 @@ import {
   DEMO_CALIBRATION,
   DEMO_CATALYSTS,
   DEMO_CONTRIBUTIONS,
+  DEMO_CRYPTO,
   DEMO_DECISIONS,
   DEMO_GROK_PULSE,
   DEMO_GROUP,
@@ -33,6 +35,7 @@ import type {
   CatalystRow,
   ClubMember,
   Contribution,
+  CryptoFile,
   Decision,
   Fund,
   GrokPulseWeek,
@@ -433,6 +436,19 @@ export async function getGrokPulse(): Promise<GrokPulseData> {
   const weeks = file?.weeks ?? [];
   if (weeks.length === 0) return { demo: true, weeks: [...DEMO_GROK_PULSE].sort(byWeekDesc) };
   return { demo: false, weeks: [...weeks].sort(byWeekDesc) };
+}
+
+// ── Radar crypto (CoinGecko + Fear & Greed), écrit par la routine du lundi ──
+export interface CryptoData {
+  demo: boolean;
+  crypto: CryptoFile;
+}
+
+export async function getCrypto(): Promise<CryptoData> {
+  if (!isConfigured()) return { demo: true, crypto: DEMO_CRYPTO };
+  const file = await fetchCrypto();
+  if (!file || !file.coins || file.coins.length === 0) return { demo: true, crypto: DEMO_CRYPTO };
+  return { demo: false, crypto: file };
 }
 
 // ── Flux d'activité (mouvements réalisés des deux fonds) ───────────────

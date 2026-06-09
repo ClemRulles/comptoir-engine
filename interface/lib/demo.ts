@@ -1,4 +1,4 @@
-import type { AiFundFile, Calibration, ClubMember, Contribution, Decision, GrokPulseWeek, MarketSignals } from "./types";
+import type { AiFundFile, Calibration, ClubMember, Contribution, CryptoFile, Decision, GrokPulseWeek, MarketSignals } from "./types";
 
 // Données de DÉMONSTRATION (affichées tant que Supabase n'est pas branché).
 // Clairement étiquetées « Démo » dans l'UI — remplacées par les vraies données en prod.
@@ -358,3 +358,24 @@ export const DEMO_GROK_PULSE: GrokPulseWeek[] = [
     sources: ["Grok/X", "recoupé: 8-K AMZN"],
   },
 ];
+
+// Radar crypto de démonstration (CoinGecko + Fear & Greed).
+export const DEMO_CRYPTO: CryptoFile = {
+  updated: "2026-06-08",
+  market: {
+    total_market_cap_eur: 1968453478911,
+    total_volume_eur: 85093408879,
+    market_cap_change_24h_pct: 2.28,
+    btc_dominance_pct: 56.2,
+    eth_dominance_pct: 9.0,
+  },
+  fear_greed: { value: 8, classification: "Extreme Fear" },
+  sentiment_read: "peur extrême — zone contrarienne potentielle (à corroborer)",
+  coins: [
+    { id: "bitcoin", symbol: "BTC", name: "Bitcoin", price_eur: 55037, market_cap_eur: 1103523531243, change_24h_pct: 2.24, change_7d_pct: -9.87, change_30d_pct: -19.42 },
+    { id: "ethereum", symbol: "ETH", name: "Ethereum", price_eur: 1460.26, market_cap_eur: 176580516180, change_24h_pct: 3.41, change_7d_pct: -13.63, change_30d_pct: -25.4 },
+    { id: "binancecoin", symbol: "BNB", name: "BNB", price_eur: 522.99, market_cap_eur: 70574937207, change_24h_pct: 1.58, change_7d_pct: -10.31, change_30d_pct: -4.71 },
+    { id: "ripple", symbol: "XRP", name: "XRP", price_eur: 1.92, market_cap_eur: 109000000000, change_24h_pct: 0.9, change_7d_pct: -7.2, change_30d_pct: -12.1 },
+    { id: "solana", symbol: "SOL", name: "Solana", price_eur: 118.4, market_cap_eur: 62000000000, change_24h_pct: 4.1, change_7d_pct: -15.8, change_30d_pct: -28.3 },
+  ],
+};

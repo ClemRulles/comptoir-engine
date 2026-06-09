@@ -1,4 +1,4 @@
-import type { AiFundFile, Calibration, Decision, DecisionsFile, GrokPulseFile, MarketSignals } from "./types";
+import type { AiFundFile, Calibration, CryptoFile, Decision, DecisionsFile, GrokPulseFile, MarketSignals } from "./types";
 
 const GH_REPO = process.env.GITHUB_REPO || "ClemRulles/comptoir-engine";
 const GH_BRANCH = process.env.GITHUB_BRANCH || "claude/memory";
@@ -142,6 +142,17 @@ export async function fetchGrokPulse(): Promise<GrokPulseFile | null> {
   if (!raw) return null;
   try {
     return JSON.parse(raw) as GrokPulseFile;
+  } catch {
+    return null;
+  }
+}
+
+// Radar crypto (CoinGecko + Fear & Greed), écrit par la routine du lundi.
+export async function fetchCrypto(): Promise<CryptoFile | null> {
+  const raw = await fetchRepoFile("memory/fund/crypto.json");
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as CryptoFile;
   } catch {
     return null;
   }
