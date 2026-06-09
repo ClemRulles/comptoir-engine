@@ -112,66 +112,85 @@ export function MarketRadar({ signals, demo }: { signals: MarketSignals; demo: b
         </div>
       )}
 
-      {/* UN SEUL tableau : signaux par titre + alertes en ligne (gate rouge d'abord) */}
-      <div className="card-p overflow-x-auto">
-        <div className="mb-3 flex items-center justify-between">
+      {/* Vue lisible : gate (feu vert/ambre/rouge) + alertes en clair par titre */}
+      <div className="card-p">
+        <div className="mb-1 flex items-center justify-between">
           <h3 className="text-base font-bold tracking-tight">Signaux par titre</h3>
           <span className="text-xs text-muted">
             {watch.length > 0 && <span className="mr-2 text-ai">{watch.length} en alerte</span>}
             {demo ? "démo" : signals.updated ? `maj ${new Date(signals.updated).toLocaleDateString("fr-FR")}` : ""}
           </span>
         </div>
-        <table className="w-full text-sm row-hover">
-          <thead>
-            <tr className="label border-b border-line">
-              <th className="py-2 text-left font-semibold">Titre &amp; alertes</th>
-              <th className="text-center font-semibold">Gate</th>
-              <th className="text-right font-semibold">RSI 14</th>
-              <th className="text-right font-semibold hidden sm:table-cell">Mom. 12-1</th>
-              <th className="text-right font-semibold hidden md:table-cell">Vol. rel.</th>
-              <th className="text-left font-semibold pl-4 hidden lg:table-cell">Range 52s</th>
-              <th className="text-right font-semibold hidden xl:table-cell">F-Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((t) => {
-              const g = t.gate?.verdict ?? "indéterminé";
-              const mom = t.momentum_12_1?.value;
-              const vol = t.rel_volume?.value;
-              const alerts = alertsFor(t);
-              return (
-                <tr key={t.ticker} className="border-b border-line/60 align-top">
-                  <td className="py-2.5">
-                    <TickerCell ticker={t.ticker} logoSize={22} />
-                    {alerts.length > 0 && (
-                      <div className="mt-1.5 flex flex-wrap gap-1">
-                        {alerts.map((al, i) => (
-                          <span key={i} className={`chip text-xs ${TONE_CLS[al.tone]}`}>{al.label}</span>
-                        ))}
-                      </div>
-                    )}
-                  </td>
-                  <td className="text-center">
-                    <span className={`chip text-xs ${GATE_CLS[g] ?? "bg-slate-100 text-slate-500"}`}>
-                      {GATE_DOT[g] ?? "⚪"} {g}
-                    </span>
-                  </td>
-                  <td className="text-right"><RsiBadge s={t.rsi_14} /></td>
-                  <td className={`text-right tabular-nums hidden sm:table-cell ${typeof mom === "number" ? (mom >= 0 ? "up" : "down") : "text-muted"}`}>
-                    {typeof mom === "number" ? pctSigned(mom) : "—"}
-                  </td>
-                  <td className={`text-right tabular-nums hidden md:table-cell ${typeof vol === "number" && vol >= 1.5 ? "text-ai font-semibold" : "text-muted"}`}>
-                    {typeof vol === "number" ? `×${vol.toFixed(1)}` : "—"}
-                  </td>
-                  <td className="pl-4 hidden lg:table-cell"><Range52 value={t.range_52w?.value} /></td>
-                  <td className="text-right tabular-nums hidden xl:table-cell text-muted">
-                    {typeof t.fscore?.score === "number" ? `${t.fscore.score}/9` : "—"}
-                  </td>
+        <p className="mb-3 text-xs text-muted">
+          🟢 favorable · 🟠 prudence (taille réduite + stop) · 🔴 défavorable (interdit/sortie). Les puces
+          = ce qui ressort des indicateurs.
+        </p>
+        <ul className="divide-y divide-line/60">
+          {rows.map((t) => {
+            const g = t.gate?.verdict ?? "indéterminé";
+            const alerts = alertsFor(t);
+            return (
+              <li key={t.ticker} className="flex flex-wrap items-center gap-x-3 gap-y-1.5 py-2.5">
+                <span className={`chip shrink-0 text-xs ${GATE_CLS[g] ?? "bg-slate-100 text-slate-500"}`}>
+                  {GATE_DOT[g] ?? "⚪"}
+                </span>
+                <span className="w-28 shrink-0"><TickerCell ticker={t.ticker} logoSize={20} /></span>
+                {alerts.length > 0 ? (
+                  <span className="flex flex-wrap gap-1">
+                    {alerts.map((al, i) => (
+                      <span key={i} className={`chip text-xs ${TONE_CLS[al.tone]}`}>{al.label}</span>
+                    ))}
+                  </span>
+                ) : (
+                  <span className="text-xs text-muted">rien à signaler</span>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+
+        {/* Détail chiffré — replié */}
+        <details className="mt-3">
+          <summary className="cursor-pointer text-xs font-semibold text-muted">
+            Détail chiffré (RSI, momentum, volume, 52 sem., F-Score)
+          </summary>
+          <div className="mt-2 overflow-x-auto">
+            <table className="w-full text-sm row-hover">
+              <thead>
+                <tr className="label border-b border-line">
+                  <th className="py-2 text-left font-semibold">Titre</th>
+                  <th className="text-right font-semibold">RSI 14</th>
+                  <th className="text-right font-semibold">Mom. 12-1</th>
+                  <th className="text-right font-semibold hidden sm:table-cell">Vol. rel.</th>
+                  <th className="text-left font-semibold pl-4 hidden md:table-cell">Range 52s</th>
+                  <th className="text-right font-semibold">F-Score</th>
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
+              </thead>
+              <tbody>
+                {rows.map((t) => {
+                  const mom = t.momentum_12_1?.value;
+                  const vol = t.rel_volume?.value;
+                  return (
+                    <tr key={t.ticker} className="border-b border-line/60">
+                      <td className="py-2.5"><TickerCell ticker={t.ticker} logoSize={20} /></td>
+                      <td className="text-right"><RsiBadge s={t.rsi_14} /></td>
+                      <td className={`text-right tabular-nums ${typeof mom === "number" ? (mom >= 0 ? "up" : "down") : "text-muted"}`}>
+                        {typeof mom === "number" ? pctSigned(mom) : "—"}
+                      </td>
+                      <td className={`text-right tabular-nums hidden sm:table-cell ${typeof vol === "number" && vol >= 1.5 ? "text-ai font-semibold" : "text-muted"}`}>
+                        {typeof vol === "number" ? `×${vol.toFixed(1)}` : "—"}
+                      </td>
+                      <td className="pl-4 hidden md:table-cell"><Range52 value={t.range_52w?.value} /></td>
+                      <td className="text-right tabular-nums text-muted">
+                        {typeof t.fscore?.score === "number" ? `${t.fscore.score}/9` : "—"}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </details>
       </div>
     </div>
   );

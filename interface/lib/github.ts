@@ -1,4 +1,4 @@
-import type { AiFundFile, Calibration, CryptoFile, Decision, DecisionsFile, GrokPulseFile, MarketSignals } from "./types";
+import type { AiFundFile, Calibration, ConvictionsFile, CryptoFile, Decision, DecisionsFile, GrokPulseFile, MarketSignals } from "./types";
 
 const GH_REPO = process.env.GITHUB_REPO || "ClemRulles/comptoir-engine";
 const GH_BRANCH = process.env.GITHUB_BRANCH || "claude/memory";
@@ -153,6 +153,17 @@ export async function fetchCrypto(): Promise<CryptoFile | null> {
   if (!raw) return null;
   try {
     return JSON.parse(raw) as CryptoFile;
+  } catch {
+    return null;
+  }
+}
+
+// Convictions de l'IA (verdicts du deep-dive du mercredi).
+export async function fetchConvictions(): Promise<ConvictionsFile | null> {
+  const raw = await fetchRepoFile("memory/fund/convictions.json");
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as ConvictionsFile;
   } catch {
     return null;
   }
