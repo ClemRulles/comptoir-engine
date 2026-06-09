@@ -27,6 +27,20 @@ Sortie → écris une fiche par titre dans `memory/convictions.md` (format metho
 remplace une fiche existante si tu réanalyses le même titre, garde < 30 jours).
 Retire le `★` traité dans la watchlist. Ajoute une leçon si le pré-score du Scout était à côté.
 
+**Écris aussi `memory/fund/convictions.json`** (lu par l'interface, page Indicateurs) — version
+structurée des verdicts de la semaine, garde les ~6 plus pertinents (les meilleurs Acheter d'abord) :
+```json
+{
+  "updated": "{date}",
+  "items": [
+    { "ticker": "VRT", "name": "Vertiv", "verdict": "Acheter|Surveiller|Éviter",
+      "confidence": "Haute|Moyenne|Basse", "horizon": "coeur|tactique",
+      "thesis": "thèse en UNE ligne", "risk": "le risque qui invaliderait la thèse", "date": "{date}" }
+  ]
+}
+```
+`verdict` = ta conviction (Acheter/Surveiller/Éviter) ; `confidence` = force des preuves (method §E).
+
 ## B. Revue de risque du book IA (≤ 2 positions, ciblée)
 Choisis dans `ai-fund.json` **au plus 2 positions** qui méritent le cerveau Opus : soit les
 **2 plus gros poids** du NAV, soit celles dont la **règle de sortie est proche d'être touchée**
