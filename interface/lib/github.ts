@@ -3,28 +3,42 @@ import type { AiFundFile, Calibration, Decision, DecisionsFile, GrokPulseFile, M
 const GH_REPO = process.env.GITHUB_REPO || "ClemRulles/comptoir-engine";
 const GH_BRANCH = process.env.GITHUB_BRANCH || "claude/memory";
 
-// Lit un fichier texte du repo privé via l'API GitHub (token lecture seule).
+// Jeton(s) de lecture : on essaie GITHUB_TOKEN puis, en repli, GITHUB_WRITE_TOKEN.
+// Robustesse : si le token de lecture est expiré/absent, on bascule sur le token
+// d'écriture (valide) → les lectures (book IA, signaux, pouls…) ne tombent jamais à vide
+// pour un simple souci de jeton. Dédoublonné.
+function readTokens(): string[] {
+  return [process.env.GITHUB_TOKEN, process.env.GITHUB_WRITE_TOKEN].filter(
+    (t, i, a): t is string => Boolean(t) && a.indexOf(t) === i
+  );
+}
+
+// Lit un fichier texte du repo privé via l'API GitHub.
 // `ref` optionnel : un SHA de commit pour lire une VERSION PASSÉE du fichier
 // (sinon la branche runtime). Sert à la navigation par semaine (historique).
 export async function fetchRepoFile(path: string, ref?: string): Promise<string | null> {
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) return null;
+  const tokens = readTokens();
+  if (!tokens.length) return null;
 
-  try {
-    const url = `https://api.github.com/repos/${GH_REPO}/contents/${path}?ref=${ref || GH_BRANCH}`;
-    const res = await fetch(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: "application/vnd.github.raw+json",
-        "X-GitHub-Api-Version": "2022-11-28",
-      },
-      cache: "no-store",
-    });
-    if (!res.ok) return null;
-    return await res.text();
-  } catch {
-    return null;
+  const url = `https://api.github.com/repos/${GH_REPO}/contents/${path}?ref=${ref || GH_BRANCH}`;
+  for (const token of tokens) {
+    try {
+      const res = await fetch(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/vnd.github.raw+json",
+          "X-GitHub-Api-Version": "2022-11-28",
+        },
+        cache: "no-store",
+      });
+      if (res.ok) return await res.text();
+      if (res.status === 404) return null; // fichier absent : inutile d'insister
+      // 401/403 (jeton invalide/expiré) → on tente le token suivant
+    } catch {
+      // réseau : on tente le token suivant
+    }
   }
+  return null;
 }
 
 export interface FileCommit {
@@ -36,34 +50,40 @@ export interface FileCommit {
 // Liste les commits qui ont touché un fichier (les plus récents d'abord).
 // Chaque run hebdomadaire d'une routine = un commit → sert d'ancre « semaine ».
 export async function fetchFileCommits(path: string, perPage = 14): Promise<FileCommit[]> {
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) return [];
+  const tokens = readTokens();
+  if (!tokens.length) return [];
 
-  try {
-    const url = `https://api.github.com/repos/${GH_REPO}/commits?path=${encodeURIComponent(
-      path
-    )}&sha=${GH_BRANCH}&per_page=${perPage}`;
-    const res = await fetch(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: "application/vnd.github+json",
-        "X-GitHub-Api-Version": "2022-11-28",
-      },
-      cache: "no-store",
-    });
-    if (!res.ok) return [];
-    const data = (await res.json()) as {
-      sha: string;
-      commit: { message: string; committer?: { date?: string }; author?: { date?: string } };
-    }[];
-    return (data ?? []).map((c) => ({
-      sha: c.sha,
-      date: c.commit?.committer?.date ?? c.commit?.author?.date ?? "",
-      message: (c.commit?.message ?? "").split("\n")[0],
-    }));
-  } catch {
-    return [];
+  const url = `https://api.github.com/repos/${GH_REPO}/commits?path=${encodeURIComponent(
+    path
+  )}&sha=${GH_BRANCH}&per_page=${perPage}`;
+  for (const token of tokens) {
+    try {
+      const res = await fetch(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/vnd.github+json",
+          "X-GitHub-Api-Version": "2022-11-28",
+        },
+        cache: "no-store",
+      });
+      if (!res.ok) {
+        if (res.status === 404) return [];
+        continue; // jeton invalide → suivant
+      }
+      const data = (await res.json()) as {
+        sha: string;
+        commit: { message: string; committer?: { date?: string }; author?: { date?: string } };
+      }[];
+      return (data ?? []).map((c) => ({
+        sha: c.sha,
+        date: c.commit?.committer?.date ?? c.commit?.author?.date ?? "",
+        message: (c.commit?.message ?? "").split("\n")[0],
+      }));
+    } catch {
+      // réseau : on tente le token suivant
+    }
   }
+  return [];
 }
 
 export async function fetchAiFund(): Promise<AiFundFile | null> {
