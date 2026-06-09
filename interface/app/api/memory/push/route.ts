@@ -49,8 +49,13 @@ export async function POST(request: NextRequest) {
   }
 
   const token = process.env.GITHUB_WRITE_TOKEN || process.env.GITHUB_TOKEN;
+  const tokenSource = process.env.GITHUB_WRITE_TOKEN
+    ? "GITHUB_WRITE_TOKEN"
+    : process.env.GITHUB_TOKEN
+    ? "GITHUB_TOKEN(fallback)"
+    : "none";
   if (!token) {
-    return NextResponse.json({ error: "GITHUB_WRITE_TOKEN absent" }, { status: 500 });
+    return NextResponse.json({ error: "GITHUB_WRITE_TOKEN absent", tokenSource }, { status: 500 });
   }
 
   const body = (await request.json().catch(() => null)) as {
@@ -108,6 +113,6 @@ export async function POST(request: NextRequest) {
       files: files.map((f) => f.path),
     });
   } catch (e) {
-    return NextResponse.json({ error: String(e) }, { status: 502 });
+    return NextResponse.json({ error: String(e), tokenSource }, { status: 502 });
   }
 }
