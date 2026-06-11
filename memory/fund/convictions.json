@@ -1,0 +1,20 @@
+{
+  "updated": "2026-06-11",
+  "items": [
+    { "ticker": "MSCI", "name": "MSCI Inc.", "verdict": "Acheter", "confidence": "Moyenne", "horizon": "coeur",
+      "thesis": "Quasi-monopole des indices, rétention 95,4%, organique +13% ; PE ~30x dé-raté sous son histoire (35-45x).",
+      "risk": "Asset-based fees = bêta marché (un drawdown coupe l'AUM) + décélération ESG ; rétention qui casserait <93%.", "date": "2026-06-11" },
+    { "ticker": "SU.PA", "name": "Schneider Electric", "verdict": "Surveiller", "confidence": "Moyenne", "horizon": "coeur",
+      "thesis": "Picks-and-shovels électrification IA/data center, Q1 +11,2% organique record, gate vert — mais payé plein (~26x).",
+      "risk": "Valo sans marge + FX -750/-850 M€ ; digestion du capex data center casserait les +16% de Systems.", "date": "2026-06-11" },
+    { "ticker": "MC.PA", "name": "LVMH", "verdict": "Surveiller", "confidence": "Moyenne", "horizon": "coeur",
+      "thesis": "Meilleur portefeuille du luxe, ~21x vs 24-27x historiques, Chine inflecte (+7% Asie hors Japon) ; catalyseur S1 le 28 juil.",
+      "risk": "Organique +1% manqué et faiblesse large (Europe/Japon -3%) ; piège de valeur si l'organique repasse négatif.", "date": "2026-06-11" },
+    { "ticker": "SAF.PA", "name": "Safran (book)", "verdict": "Surveiller", "confidence": "Moyenne", "horizon": "coeur",
+      "thesis": "Book GARDER — pivot MRO renforcé (aftermarket +32%, services +43%, 520 LEAP +63%) ; cycle aftermarket accélère.",
+      "risk": "Gate ambre (valo pleine, FX USD) ; un retournement des heures de vol casserait l'aftermarket.", "date": "2026-06-11" },
+    { "ticker": "HO.PA", "name": "Thales (book)", "verdict": "Surveiller", "confidence": "Moyenne", "horizon": "coeur",
+      "thesis": "Book GARDER — pivot défense EU renforcé (commandes +27%, Défense +75%, BtB >1) ; budgets EU accélèrent.",
+      "risk": "Gate ambre (momentum -10%, valo post-rally) ; une dé-escalade géopolitique refroidirait le sentiment.", "date": "2026-06-11" }
+  ]
+}

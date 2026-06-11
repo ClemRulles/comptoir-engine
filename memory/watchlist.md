@@ -7,9 +7,9 @@
 
 | ★  | Ticker  | Nom                | Tag       | Horizon | Pré-score | Gate        | Drapeau bulle                          | Thèse 1 ligne                                                                   | Vu le      |
 |----|---------|--------------------|-----------|---------|:---------:|-------------|----------------------------------------|---------------------------------------------------------------------------------|------------|
-| ★  | SU.PA   | Schneider Electric | [qualité] | long    | 76        | 🟢 c=+0.51  | Sain — momentum sain, pas de cash burn | Seul candidat vert ; picks & shovels AI/data center ; Q1 record +11 % organique | 2026-06-10 |
-| ★  | MSCI    | MSCI Inc.          | [qualité] | long    | 60        | 🟠 c=+0.19  | Sain — PE ~40× récurrent, pas de hype  | Monopole indices financiers, revenu récurrent, marge nette ~50 %, FCF massif    | 2026-06-10 |
-| ★  | MC.PA   | LVMH               | [qualité] | long    | 55        | 🟠 c=+0.11  | Vigilance — ralentissement Chine réel  | Luxe premium en repli –29 % depuis pic (€905→€492) ; résultats 28 juil.         | 2026-06-10 |
+|    | SU.PA   | Schneider Electric | [qualité] | long    | 76        | 🟢 c=+0.51  | Deep-dive 06-11 → **Surveiller/Moyenne** | Qualité sans marge (~26x) + FX ; Acheter sur repli vers ~23x. Fiche convictions.md | 2026-06-11 |
+|    | MSCI    | MSCI Inc.          | [qualité] | long    | 60        | 🟠 c=+0.20  | Deep-dive 06-11 → **Acheter/Moyenne**    | Moat indices, PE 30x dé-raté vs histoire ; gate 🟠 ⇒ book ≤5 %+stop. Fiche convictions.md | 2026-06-11 |
+|    | MC.PA   | LVMH               | [qualité] | long    | 55        | 🟠 c=−0.10  | Deep-dive 06-11 → **Surveiller/Moyenne** | Marge de sécurité réelle mais retournement non confirmé ; attendre S1 28 juil.   | 2026-06-11 |
 |    | LIN     | Linde              | [qualité] | long    | 61        | 🟢 c=+0.22  | Vigilance légère — range52 0.957       | Gaz industriels compounder (ROIC 24 %, contrats take-or-pay) ; near-high → peu de décote | 2026-06-10 |
 |    | BC8.DE  | Bechtle            | [qualité] | long    | 42        | 🟠 c=−0.15  | Sain — mid-cap, peu de hype            | IT distribution Allemagne, sous le radar ; repli –21 % mom, RSI 66 (rebond potentiel) | 2026-06-10 |
 |    | ASML    | ASML               | [qualité] | —       | 45        | ⚠️ SURCHAUFFE | Risque élevé — mom +103 %, RSI 75.7, near-high | **À éviter** : moat EUV solide mais surchauffe extrême — attendre repli significatif | 2026-06-10 |
