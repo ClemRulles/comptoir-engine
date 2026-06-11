@@ -76,7 +76,9 @@ export interface AppData {
   demo: boolean;
   group: FundView;
   ai: FundView;
-  series: { date: string; group: number; ai: number }[];
+  // Valeur absente pour un fonds à une date (pas de snapshot ce jour-là) = null — jamais NaN,
+  // que Recharts ne sait pas relier (connectNulls ne gère que null).
+  series: { date: string; group: number | null; ai: number | null }[];
   weekDeltaGroup: number;
   weekDeltaAi: number;
   brief: string | null;
@@ -105,12 +107,19 @@ export function isConfigured() {
 // Convertit les positions en mode « seed » (quantity=1 + value_t0 = valeur € à t0) en
 // parts fractionnaires réelles via le cours live, pour une valorisation correcte qui suit
 // le marché. Sans cours (ticker non couvert) : ancrage à la valeur t0 (stable, pnl 0).
-// Les positions déjà en vraies parts (quantity ≠ 1) passent inchangées.
+// Une ligne est « seed » si elle porte le flag explicite seed:true, ou — repli pour les
+// books écrits avant le flag — si quantity===1 avec un value_t0 ; seed:false explicite
+// protège une vraie position d'exactement 1 part contre toute reconversion.
+export function isSeedPosition(p: { quantity: number; value_t0?: number; seed?: boolean }): boolean {
+  if (typeof p.seed === "boolean") return p.seed;
+  return p.quantity === 1 && typeof p.value_t0 === "number" && p.value_t0 > 0;
+}
+
 function normalizeBook<
-  T extends { ticker: string; quantity: number; avg_cost: number; value_t0?: number }
+  T extends { ticker: string; quantity: number; avg_cost: number; value_t0?: number; seed?: boolean }
 >(positions: T[], prices: Record<string, number>): T[] {
   return positions.map((p) => {
-    if (p.quantity === 1 && typeof p.value_t0 === "number" && p.value_t0 > 0) {
+    if (isSeedPosition(p) && typeof p.value_t0 === "number" && p.value_t0 > 0) {
       const price = prices[p.ticker.toUpperCase()];
       if (typeof price === "number" && price > 0) {
         const shares = p.value_t0 / price;
@@ -193,21 +202,30 @@ export async function getAppData(): Promise<AppData> {
 
   try {
     const supabase = await createClient();
-    const { data: fundsData } = await supabase.from("funds").select("*");
+    // Lectures indépendantes en parallèle (Supabase + GitHub) : seul fetchPrices dépend
+    // de la liste des positions. Évite 6 allers-retours séquentiels sur une page dynamique.
+    const [{ data: fundsData }, { data: holdingsData }, aiFile, { data: contribData }, { data: snapData }, brief] =
+      await Promise.all([
+        supabase.from("funds").select("*"),
+        supabase.from("holdings").select("*"),
+        fetchAiFund(),
+        supabase.from("contributions").select("ts, amount"),
+        supabase.from("nav_snapshots").select("*").order("date", { ascending: true }),
+        fetchMemoryMarkdown("morning-brief.md"),
+      ]);
     const funds = (fundsData ?? []) as (Fund & { cash: number })[];
     const groupFund = funds.find((f) => f.kind === "group");
     const aiFundRow = funds.find((f) => f.kind === "ai");
 
-    const { data: holdingsData } = await supabase.from("holdings").select("*");
     const allHoldings = (holdingsData ?? []) as Holding[];
     const groupHoldings = allHoldings.filter((h) => h.fund_id === groupFund?.id);
 
-    const aiFile = await fetchAiFund();
     const aiPositions = aiFile?.positions ?? [];
 
-    // Apports membres : le pot commun (group.cash) est déjà incrémenté à chaque apport.
-    // Le book IA reçoit la même somme pour rester à armes égales (cash de trading + apports cumulés).
-    const { data: contribData } = await supabase.from("contributions").select("ts, amount");
+    // Apports membres : funds.cash n'est PAS incrémenté lors d'un apport (voir
+    // api/contributions) — la table contributions fait foi. Le total des apports est ajouté
+    // ici au cash ET au capital de départ des DEUX fonds : armes égales, et un apport ne
+    // compte jamais comme du rendement.
     const contribRows = (contribData ?? []) as { ts?: string | null; amount: number }[];
     const apportsTotal = contribRows.reduce((s, c) => s + Number(c.amount ?? 0), 0);
     const contributions = aggregateContribsByDate(contribRows);
@@ -238,17 +256,13 @@ export async function getAppData(): Promise<AppData> {
       prices
     );
 
-    const { data: snapData } = await supabase
-      .from("nav_snapshots")
-      .select("*")
-      .order("date", { ascending: true });
     const snaps = (snapData ?? []) as NavSnapshot[];
     const gSnaps = snaps.filter((s) => s.fund_id === groupFund?.id);
     const aSnaps = snaps.filter((s) => s.fund_id === aiFundRow?.id);
-    const byDate = new Map<string, { date: string; group: number; ai: number }>();
-    for (const s of gSnaps) byDate.set(s.date, { date: s.date, group: s.nav, ai: NaN });
+    const byDate = new Map<string, { date: string; group: number | null; ai: number | null }>();
+    for (const s of gSnaps) byDate.set(s.date, { date: s.date, group: s.nav, ai: null });
     for (const s of aSnaps) {
-      const r = byDate.get(s.date) ?? { date: s.date, group: NaN, ai: NaN };
+      const r = byDate.get(s.date) ?? { date: s.date, group: null, ai: null };
       r.ai = s.nav;
       byDate.set(s.date, r);
     }
@@ -277,8 +291,6 @@ export async function getAppData(): Promise<AppData> {
       return b ? (a - b) / b : 0;
     };
 
-    const brief = await fetchMemoryMarkdown("morning-brief.md");
-
     return {
       configured: true,
       demo: false,
@@ -290,8 +302,10 @@ export async function getAppData(): Promise<AppData> {
       brief,
       contributions,
     };
-  } catch {
-    // si la base n'est pas encore prête, on retombe proprement sur la démo
+  } catch (e) {
+    // Base pas encore prête OU panne en prod : on retombe sur la démo, mais en le LOGGANT —
+    // sinon une panne Supabase afficherait des chiffres fictifs sans aucune trace.
+    console.error("getAppData: repli démo après erreur:", e);
     return demoData();
   }
 }
@@ -368,7 +382,8 @@ export async function getClubData(): Promise<ClubData> {
     }));
     const monthlyPerMember = Number(setting?.value ?? 25) || 25;
     return buildClub(false, members, contributions, monthlyPerMember);
-  } catch {
+  } catch (e) {
+    console.error("getClubData: repli démo après erreur:", e);
     return buildClub(true, DEMO_MEMBERS, DEMO_CONTRIBUTIONS, 25);
   }
 }
@@ -540,7 +555,8 @@ export async function getActivity(limit = 8): Promise<ActivityData> {
 
     // En prod : on montre le réel (même vide) — pas de mouvements de démo trompeurs.
     return { demo: false, ai: aiItems, group: groupItems };
-  } catch {
+  } catch (e) {
+    console.error("getActivity: repli démo après erreur:", e);
     return {
       demo: true,
       ai: DEMO_AI_TRADES.map((t) => toItem("ai", t)).slice(0, limit),

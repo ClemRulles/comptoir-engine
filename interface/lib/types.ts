@@ -95,6 +95,10 @@ export interface AiFundFile {
     quantity: number;
     avg_cost: number;
     value_t0?: number; // valeur € de la ligne à t0 (pour normaliser quantity=1 → parts réelles)
+    // Marqueur EXPLICITE de ligne « seed » (quantity=1 + value_t0 = valeur € à t0).
+    // Prime sur l'heuristique quantity===1 : une vraie position d'exactement 1 part
+    // doit porter seed:false pour ne jamais être reconvertie.
+    seed?: boolean;
     thesis?: string;
     confidence?: Confidence;
     thesis_id?: string;

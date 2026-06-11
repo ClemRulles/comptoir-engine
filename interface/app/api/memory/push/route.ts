@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { authorizeMaintenance } from "@/lib/cron-auth";
+import { authorizeMaintenance, secretEquals } from "@/lib/cron-auth";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 30;
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
   // CRON_SECRET (illisible sur Vercel) et limite la portée à l'écriture mémoire.
   const pushSecret = process.env.MEMORY_PUSH_SECRET;
   const auth = request.headers.get("authorization");
-  const okDedicated = Boolean(pushSecret) && auth === `Bearer ${pushSecret}`;
+  const okDedicated = Boolean(pushSecret) && secretEquals(auth, `Bearer ${pushSecret}`);
   if (!okDedicated && !(await authorizeMaintenance(request))) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
@@ -78,6 +78,35 @@ export async function POST(request: NextRequest) {
       { error: `chemin non autorisé: ${bad.path} (doit être sous memory/)` },
       { status: 400 }
     );
+  }
+
+  // Garde-fous de contenu : un fichier mémoire est petit (markdown/JSON de routine).
+  // Plafonds larges mais fermes pour qu'un appel mal formé ne commite pas n'importe quoi.
+  const MAX_FILES = 24;
+  const MAX_FILE_BYTES = 512 * 1024; // 512 Ko par fichier
+  if (files.length > MAX_FILES) {
+    return NextResponse.json({ error: `trop de fichiers (${files.length} > ${MAX_FILES})` }, { status: 400 });
+  }
+  const tooBig = files.find((f) => Buffer.byteLength(f.content, "utf8") > MAX_FILE_BYTES);
+  if (tooBig) {
+    return NextResponse.json(
+      { error: `fichier trop volumineux: ${tooBig.path} (max ${MAX_FILE_BYTES / 1024} Ko)` },
+      { status: 400 }
+    );
+  }
+
+  // Un .json invalide commité casserait l'interface en silence (les lecteurs retombent sur
+  // la démo). On refuse AVANT de commiter, avec l'erreur de parse pour corriger côté routine.
+  for (const f of files) {
+    if (!f.path.endsWith(".json")) continue;
+    try {
+      JSON.parse(f.content);
+    } catch (e) {
+      return NextResponse.json(
+        { error: `JSON invalide: ${f.path} — ${e instanceof Error ? e.message : String(e)}` },
+        { status: 400 }
+      );
+    }
   }
 
   const message =

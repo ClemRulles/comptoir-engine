@@ -25,6 +25,26 @@ function stooqSym(ticker: string): string | null {
   return STOOQ_MAP[ticker.toUpperCase()] ?? null;
 }
 
+// Devise des cours Stooq, déduite du suffixe de place. Les clôtures Stooq sont en devise
+// LOCALE : sans conversion, un cours US (USD) ou danois (DKK) serait compté comme des euros
+// dans la NAV. Les suffixes absents d'ici (ex. .uk : cotations en pence, ambigu) sont
+// ignorés par les replis — mieux vaut un cours manquant (ancré) qu'une devise fausse.
+const SUFFIX_CURRENCY: Record<string, string> = {
+  fr: "EUR",
+  be: "EUR",
+  de: "EUR",
+  nl: "EUR",
+  it: "EUR",
+  us: "USD",
+  dk: "DKK",
+};
+
+export function stooqCurrency(ticker: string): string | null {
+  const sym = stooqSym(ticker);
+  const suffix = sym?.split(".").pop();
+  return (suffix && SUFFIX_CURRENCY[suffix]) || null;
+}
+
 const UA = { "User-Agent": "Mozilla/5.0 (compatible; HypeInvest/1.0)" };
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
