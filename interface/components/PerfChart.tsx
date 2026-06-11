@@ -13,7 +13,8 @@ import {
 } from "recharts";
 import { pct } from "@/lib/fund";
 
-type Point = { date: string; group: number; ai: number };
+// Valeur null = pas de snapshot pour ce fonds à cette date (l'aire relie via connectNulls).
+type Point = { date: string; group: number | null; ai: number | null };
 type Contribution = { date: string; amount: number };
 type Mode = "both" | "group" | "ai";
 
@@ -79,10 +80,12 @@ export function PerfChart({
     return MONTHS[Number(m) - 1] ?? m;
   };
 
-  const rangePerf = (sel: (p: Point) => number) => {
-    if (filtered.length < 2) return 0;
-    const a = sel(filtered[filtered.length - 1]);
-    const b = sel(filtered[0]);
+  const rangePerf = (sel: (p: Point) => number | null) => {
+    // Premier/dernier point où CE fonds a une valeur (les dates sans snapshot sont null).
+    const vals = filtered.map(sel).filter((v): v is number => v != null && Number.isFinite(v));
+    if (vals.length < 2) return 0;
+    const a = vals[vals.length - 1];
+    const b = vals[0];
     return b ? (a - b) / b : 0;
   };
 

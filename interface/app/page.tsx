@@ -39,7 +39,7 @@ export default async function DashboardPage() {
           delay={0}
           value={<AnimatedNumber value={group.nav} kind="eur" />}
           sub={<Delta value={group.perf} />}
-          spark={data.series.map((s) => s.group)}
+          spark={data.series.map((s) => s.group).filter((v): v is number => v != null)}
         />
         <KpiCard
           label="Fonds IA"
@@ -48,7 +48,7 @@ export default async function DashboardPage() {
           delay={60}
           value={<AnimatedNumber value={ai.nav} kind="eur" />}
           sub={<Delta value={ai.perf} />}
-          spark={data.series.map((s) => s.ai)}
+          spark={data.series.map((s) => s.ai).filter((v): v is number => v != null)}
         />
         <KpiCard
           label="Classement"

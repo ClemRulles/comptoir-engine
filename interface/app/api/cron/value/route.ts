@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createAdminClient } from "@/lib/supabase/server";
 import { authorizeMaintenance } from "@/lib/cron-auth";
+import { isSeedPosition } from "@/lib/data";
 import { fetchAiFund } from "@/lib/github";
 import { fetchPrices } from "@/lib/prices";
 import type { Fund, Holding } from "@/lib/types";
@@ -58,7 +59,8 @@ export async function GET(request: NextRequest) {
   }));
   const aiItems = aiPositions.map((p) => {
     const price = prices[p.ticker.toUpperCase()];
-    const seed = p.quantity === 1 && typeof p.value_t0 === "number" && p.value_t0 > 0;
+    // Même définition de « ligne seed » que getAppData (flag explicite > heuristique).
+    const seed = isSeedPosition(p) && typeof p.value_t0 === "number" && p.value_t0 > 0;
     const quantity = seed && typeof price === "number" && price > 0 ? p.value_t0! / price : p.quantity;
     const fallback = typeof p.value_t0 === "number" ? p.value_t0 : p.avg_cost * p.quantity;
     return { ticker: p.ticker, quantity, fallback };

@@ -68,7 +68,7 @@ async function fetchChart(symbol: string, params: string, revalidate: number): P
 }
 
 // Taux de change → euros : renvoie { CCY: unités de CCY pour 1 EUR }. EUR = 1.
-async function fetchEurRates(currencies: string[]): Promise<Record<string, number>> {
+export async function fetchEurRates(currencies: string[]): Promise<Record<string, number>> {
   const out: Record<string, number> = { EUR: 1 };
   const need = Array.from(new Set(currencies)).filter((c) => c && c !== "EUR" && !(c in out));
   await Promise.all(
