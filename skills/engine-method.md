@@ -163,6 +163,11 @@ Le **régime** (`signals.regime`) fixe le plancher de cash ci-dessous. Détail :
 - **On ne moyenne JAMAIS à la baisse une thèse cassée.** Ajouter ne se fait que si la thèse se
   *renforce*, pas pour « réparer » une perte.
 
+**Frais de friction (réalisme du paper trading).** Chaque trade du book (achat ET vente) coûte
+**0,30 % du montant** (frais + spread forfaitaires), débité du cash et loggé (`fee`) dans le trade.
+Le groupe paie de vrais frais : un book sans frais gagnerait à sur-trader — c'est exactement le
+biais qu'on veut interdire. Tout P&L réalisé (§I) est **net de frais**.
+
 **Garde-fou de drawdown.** Si le drawdown du book (vs son plus haut) dépasse **−15 %**, la passe
 suivante **réduit le risque** (remonte le cash, coupe d'abord les tactiques et les thèses les plus
 fragiles) avant toute nouvelle prise de risque. Survivre d'abord, performer ensuite.
@@ -175,10 +180,16 @@ L'avantage de l'IA n'est pas de « deviner » : c'est de **tenir un registre hon
 **corriger** plus vite qu'un humain. Mécanique :
 
 **Scorer une décision clôturée.** Quand une position est fermée, écris une entrée dans
-`memory/fund/decisions.json` : `confidence` annoncée à l'entrée, `realized_pnl_pct`, `outcome`
-(« thèse confirmée / cassée / neutre ») et `hit` (la confiance était-elle méritée ?).
-- `hit = true` si : confiance **Haute/Moyenne** ET thèse confirmée (ou sortie disciplinée gagnante) ;
-  OU confiance **Basse** correctement traitée comme telle (petite taille, pas de casse).
+`memory/fund/decisions.json` : `confidence` annoncée à l'entrée, `realized_pnl_pct` (net de
+frais §H), `benchmark_return_pct`, `alpha_pct`, `outcome` (« thèse confirmée / cassée / neutre »)
+et `hit` (la confiance était-elle méritée ?).
+- **L'alpha, pas le P&L brut, mesure le skill.** `benchmark_return_pct` = rendement du MSCI World
+  EUR sur la même période (`node engine/bench.js {opened} {closed}`) ; `alpha_pct =
+  realized_pnl_pct − benchmark_return_pct`. Un +5 % quand le marché fait +9 % n'est pas un succès :
+  c'est du bêta moins un coût d'opportunité.
+- `hit = true` si : confiance **Haute/Moyenne** ET thèse confirmée ET **alpha > 0** (ou sortie
+  disciplinée qui évite une perte que le marché n'a pas subie) ; OU confiance **Basse**
+  correctement traitée comme telle (petite taille, pas de casse).
 - `hit = false` si le baissier avait raison sur un point que le haussier avait « oublié »
   (dossier unilatéral, cf. §D) — c'est l'erreur la plus instructive.
 
@@ -190,6 +201,8 @@ L'avantage de l'IA n'est pas de « deviner » : c'est de **tenir un registre hon
 Basse < Moyenne < Haute. Si ce n'est pas le cas, la confiance est du bruit → la passe mensuelle
 (`routines/monthly-calibration.md`) **rétrograde le sizing** du bucket fautif et **durcit** ses
 critères, jusqu'à ce que confiance annoncée et réussite réelle se rejoignent.
+**Seuil statistique : n ≥ 8 décisions par bucket avant tout ajustement de sizing.** En dessous,
+le hit_rate est du bruit (une malchance ≠ une mauvaise calibration) : on constate, on n'ajuste pas.
 
 **Boucle de feedback (concrète).**
 1. Vendredi : score les fermetures → leçons datées dans `lessons.md` → maj des 2 JSON.

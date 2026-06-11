@@ -34,14 +34,18 @@ Si `portfolio.md` est vide, laisse `seeded:false`, écris-le dans le brief, et c
 
 Pour chaque position **fermée** depuis le dernier vendredi (ou règle de sortie touchée cette
 semaine d'après le Portfolio Doctor) :
-1. Calcule le **P&L réalisé** (`realized_pnl_pct`).
-2. Verdict : la thèse s'est-elle **confirmée / cassée / neutre** ? L'hypothèse pivot écrite à
+1. Calcule le **P&L réalisé** (`realized_pnl_pct`), **net des frais de friction** (cf. PASSE 2).
+2. **Mesure l'alpha** : `node engine/bench.js {opened} {closed}` → `benchmark_return_pct`
+   (MSCI World EUR sur la même période) ; `alpha_pct = realized_pnl_pct − benchmark_return_pct`.
+   **C'est l'alpha qui mesure le skill** : +5 % quand le marché fait +9 % n'est pas un succès,
+   c'est un coût d'opportunité. Si bench.js échoue (`ok:false`), mets `null` et note le data_gap.
+3. Verdict : la thèse s'est-elle **confirmée / cassée / neutre** ? L'hypothèse pivot écrite à
    l'entrée tenait-elle ? Le baissier (§D) avait-il marqué un point « oublié » ?
-3. Fixe `hit` (true/false) selon §I.
-4. **Append** une entrée dans `memory/fund/decisions.json`.
-5. Écris une **leçon datée** dans `memory/lessons.md` (format du fichier) : cause concrète
+4. Fixe `hit` (true/false) selon §I — pour un trade **gagnant**, `hit=true` exige **alpha > 0**.
+5. **Append** une entrée dans `memory/fund/decisions.json` (avec `benchmark_return_pct` + `alpha_pct`).
+6. Écris une **leçon datée** dans `memory/lessons.md` (format du fichier) : cause concrète
    (catalyseur absent, valo tendue, momentum suivi trop tard, taille trop grosse…) → correction.
-6. **Recompute** `memory/fund/calibration.json` (buckets par confiance + global). Mets `updated`.
+7. **Recompute** `memory/fund/calibration.json` (buckets par confiance + global). Mets `updated`.
 
 S'il n'y a eu aucune fermeture, écris-le et ne fabrique pas de leçon.
 
@@ -65,6 +69,9 @@ passe, pour que la valorisation live soit juste :
 - L'exposition reste identique (on ne change que la représentation : 1 lot → N parts réelles).
 Si le cours d'un ticker est introuvable (ETF/européen non couvert), garde la ligne telle quelle
 (elle reste ancrée à `value_t0`) et note-le. Une fois converti (`quantity ≠ 1`), ne reconvertis pas.
+**Marqueur explicite** : écris `"seed": false` sur chaque ligne convertie (et `"seed": true` sur
+toute ligne encore en mode seed) — l'interface s'appuie sur ce flag, prioritaire sur l'heuristique
+`quantity:1`, pour ne jamais reconvertir une vraie position d'exactement 1 part.
 
 ## PASSE 2 — Gestion du book IA (entrées/sorties)
 
@@ -91,8 +98,12 @@ selon le régime, garde-fou drawdown). **Ordre des sources** :
 - **Entrées** ensuite : alloue le cash disponible aux meilleures convictions, **taille selon §H**
   (un gate 🟠/⚪ plafonne à 5 % + stop −8 % ; un 🔴 interdit l'entrée). **Chaque trade cite son gate**
   (verdict + composite) dans le `rationale`.
+- **Frais de friction (honnêteté du duel)** : le groupe paie de vrais frais et du spread —
+  le book IA aussi. Chaque trade (achat ET vente) coûte **0,30 % du montant**, débité du cash
+  et loggé dans le trade (`fee: montant × 0.003`, arrondi au centime). Le P&L réalisé scoré en
+  PASSE 1 est **net** de ces frais. Effet voulu : sur-trader coûte, la patience est gratuite.
 - **Chaque trade est loggé** dans `ai-fund.json.trades` avec `side, ticker, quantity, price,
-  confidence, thesis_id, horizon, rationale`, et chaque position porte `entry_date, target,
+  fee, confidence, thesis_id, horizon, rationale`, et chaque position porte `entry_date, target,
   exit_rule, confidence, horizon, thesis_id`. Mets `as_of` à jour et garde `cash` cohérent.
 
 Discipline : mieux vaut rester en cash qu'entrer sans marge de sécurité. La surchauffe n'est

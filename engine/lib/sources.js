@@ -152,6 +152,62 @@ export async function yahooDaily(ticker) {
   };
 }
 
+// --- Yahoo : closes EOD entre deux dates ({ "YYYY-MM-DD": close }) -------------
+// Sert au benchmark des décisions clôturées (engine/bench.js) : rendement du
+// MSCI World EUR sur la période d'une position, pour mesurer l'ALPHA (method §I).
+export async function yahooRange(ticker, fromDate, toDate) {
+  const sym = toYahooSymbol(ticker);
+  if (!sym || !fromDate) return null;
+  const p1 = Math.floor(new Date(fromDate).getTime() / 1000);
+  const p2 = Math.floor((toDate ? new Date(toDate).getTime() : Date.now()) / 1000) + 86400;
+  if (!Number.isFinite(p1) || !Number.isFinite(p2) || p2 <= p1) return null;
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=1d&period1=${p1}&period2=${p2}`;
+  const j = await fetchJson(url, { timeout: 9000 });
+  const r = j?.chart?.result?.[0];
+  const ts = r?.timestamp;
+  const closes = r?.indicators?.quote?.[0]?.close;
+  if (!Array.isArray(ts) || !Array.isArray(closes)) return null;
+  const out = {};
+  ts.forEach((t, i) => {
+    const c = closes[i];
+    if (Number.isFinite(c) && c > 0) out[new Date(t * 1000).toISOString().slice(0, 10)] = c;
+  });
+  return Object.keys(out).length ? out : null;
+}
+
+// --- SEC EDGAR : fondamentaux OFFICIELS, gratuits, sans clé (US uniquement) ----
+// Source primaire du F-Score / qualité des earnings pour les titres US : les 10-K
+// XBRL de data.sec.gov remplacent FMP (free tier devenu lacunaire). La SEC demande
+// un User-Agent identifiant (politique fair-access, ~10 req/s max — on en fait 2).
+const SEC_UA = "comptoir-engine/0.3 (club d'investissement; contact: henri.lobeau@gmail.com)";
+
+async function fetchSecJson(url) {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), DEFAULT_TIMEOUT);
+  try {
+    const r = await fetch(url, { signal: ctrl.signal, headers: { "User-Agent": SEC_UA, Accept: "application/json" } });
+    if (!r.ok) return null;
+    return await r.json();
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(t);
+  }
+}
+
+let _secTickerMap = null; // cache process : 1 fetch du mapping par run, pas par ticker
+export async function secTickerMap() {
+  if (_secTickerMap !== undefined && _secTickerMap !== null) return _secTickerMap;
+  _secTickerMap = await fetchSecJson("https://www.sec.gov/files/company_tickers.json");
+  return _secTickerMap;
+}
+
+// companyfacts brut pour un CIK zéro-paddé (10 chiffres), ou null.
+export async function secCompanyFacts(cik) {
+  if (!cik) return null;
+  return fetchSecJson(`https://data.sec.gov/api/xbrl/companyfacts/CIK${cik}.json`);
+}
+
 // --- OpenInsider : transactions d'initiés, GRATUIT, sans clé (scraping HTML) ----
 // US UNIQUEMENT (OpenInsider ne couvre pas les sociétés européennes/HK). On le réserve
 // donc aux tickers dont le symbole Yahoo n'a pas de suffixe de place (= US pur), sinon

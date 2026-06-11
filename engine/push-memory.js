@@ -15,7 +15,7 @@
 // déjà, on pourra rejouer). Mais il IMPRIME le résultat pour qu'on voie si ça a persisté.
 
 import { execSync } from "node:child_process";
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -51,6 +51,34 @@ function changedFiles() {
   }
 }
 
+// Journal de bord AUTOMATIQUE des runs : push-memory tourne en fin de CHAQUE routine,
+// c'est donc l'endroit fiable pour tracer « quelle routine a tourné, quand, avec quels
+// fichiers » — sans compter sur la discipline de la routine. Si une nuit manque dans ce
+// journal, c'est qu'elle a planté avant la persistance : le vendredi doit le signaler.
+function recordRun(message, paths) {
+  const reportPath = resolve(REPO_ROOT, "memory/run-report.json");
+  let doc = {
+    _doc:
+      "Journal AUTOMATIQUE des runs de routines, écrit par engine/push-memory.js à chaque persistance. 'runs' = plus récent d'abord : { ts, routine (préfixe du message de commit), message, files }. Sert d'observabilité : un trou dans les nuits attendues (Lun-Ven) = une routine qui a planté avant de persister — à signaler dans le brief du vendredi. ~40 entrées conservées. Ne pas éditer à la main.",
+    runs: [],
+  };
+  try {
+    const existing = JSON.parse(readFileSync(reportPath, "utf8"));
+    if (existing && Array.isArray(existing.runs)) doc = existing;
+  } catch {
+    // absent ou illisible : on repart du modèle ci-dessus
+  }
+  const routine = (message.includes(":") ? message.split(":")[0] : "inconnu").trim();
+  doc.runs.unshift({ ts: new Date().toISOString(), routine, message, files: paths });
+  doc.runs = doc.runs.slice(0, 40);
+  try {
+    writeFileSync(reportPath, JSON.stringify(doc, null, 2) + "\n", "utf8");
+    return "memory/run-report.json";
+  } catch {
+    return null; // jamais bloquant : le push part quand même
+  }
+}
+
 // URL de l'endpoint Vercel par défaut (l'app de prod). Surchargable par --url= ou $MEMORY_PUSH_URL.
 const DEFAULT_URL = "https://comptoir-engine.vercel.app/api/memory/push";
 
@@ -79,6 +107,10 @@ async function main() {
     console.error("push-memory: aucun fichier memory/ à pousser.");
     process.exit(0);
   }
+
+  // Trace ce run dans le journal de bord et pousse le journal avec le reste.
+  const reportFile = recordRun(message, paths);
+  if (reportFile && !paths.includes(reportFile)) paths.push(reportFile);
 
   const files = paths.map((p) => ({ path: p, content: readFileSync(resolve(REPO_ROOT, p), "utf8") }));
 

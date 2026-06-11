@@ -19,7 +19,8 @@
 // les sources manquantes -> null + `data_gaps`. On ne bloque JAMAIS une routine.
 
 import { readJsonSafe, writeJson, fundPath } from "./lib/io.js";
-import { KEYS, yahooDaily, openInsider, fredLatest, fredYoY, fmp, alphaEarnings, alphaRevenueGrowth } from "./lib/sources.js";
+import { KEYS, yahooDaily, openInsider, fredLatest, fredYoY, fmp, alphaEarnings, alphaRevenueGrowth, secTickerMap, secCompanyFacts, toYahooSymbol, toBaseSymbol } from "./lib/sources.js";
+import { annualFromFacts, cikForSymbol } from "./lib/edgar.js";
 import { momentumFromCloses, rsi, relativeVolume, range52w, insiderSignal, piotroski, earningsQuality, regimeScore, gate } from "./lib/calc.js";
 import { TODAY } from "./lib/schema.js";
 
@@ -37,13 +38,17 @@ async function computeRegime(gaps) {
     gaps.push("FRED (clé absente) -> régime macro + proxy peur/avidité non calculés");
     return regimeScore({});
   }
-  const [t10y2y, unrate, cpiYoY, ff, vix, hy] = await Promise.all([
+  // Séries US + ZONE EURO (le book est majoritairement européen) — tout via FRED,
+  // même clé : HICP EA (CP0000EZ19M086NEST, indice -> YoY) et chômage EA (LRHUTTTTEZM156S).
+  const [t10y2y, unrate, cpiYoY, ff, vix, hy, euHicpYoY, euUnrate] = await Promise.all([
     fredLatest("T10Y2Y"),
     fredLatest("UNRATE"),
     fredYoY("CPIAUCSL"),
     fredLatest("FEDFUNDS"),
     fredLatest("VIXCLS"),
     fredLatest("BAMLH0A0HYM2"),
+    fredYoY("CP0000EZ19M086NEST"),
+    fredLatest("LRHUTTTTEZM156S"),
   ]);
   const inputs = {
     t10y2y: t10y2y?.value ?? null,
@@ -53,6 +58,9 @@ async function computeRegime(gaps) {
     fedfunds: ff?.value ?? null,
     vix: vix?.value ?? null,
     hy_spread: hy?.value ?? null,
+    eu_hicp_yoy: euHicpYoY?.value ?? null,
+    eu_unrate: euUnrate?.value ?? null,
+    eu_unrate_prev: null,
   };
   const r = regimeScore(inputs);
   r.inputs = inputs;
@@ -84,20 +92,38 @@ async function computeTicker(ticker, gaps) {
   out.insider_90d = insiderSignal(oi);
   if (!out.insider_90d) gaps.push(`${ticker}: initiés OpenInsider indisponibles (non-US ?)`);
 
-  // --- Fondamentaux (FMP) -------------------------------------------------
-  if (KEYS.FMP) {
+  // --- Fondamentaux : SEC EDGAR d'abord (US, officiel, sans clé), FMP en repli ---
+  // EDGAR = les 10-K XBRL de data.sec.gov : la source la plus fiable qui existe, et
+  // gratuite. FMP (free tier lacunaire) ne sert plus que de repli, notamment non-US.
+  out.fscore = out.earnings_quality = null;
+  out.fundamentals_source = null;
+  const isUs = !toYahooSymbol(ticker).includes(".");
+  if (isUs) {
+    const map = await secTickerMap();
+    const cik = cikForSymbol(map, toBaseSymbol(ticker));
+    if (cik) {
+      const facts = await secCompanyFacts(cik);
+      const years = facts ? annualFromFacts(facts) : null;
+      if (years) {
+        out.fscore = piotroski(years.cur, years.prev);
+        // L'objet-année EDGAR porte les 3 états fusionnés (income+cashflow+balance).
+        out.earnings_quality = earningsQuality(years.cur, years.cur, years.cur);
+        out.fundamentals_source = years.source;
+      }
+    }
+    if (!out.fscore) gaps.push(`${ticker}: EDGAR companyfacts indisponible/incomplet`);
+  }
+  if (!out.fscore && KEYS.FMP) {
     const [inc, bal, cf] = await Promise.all([fmp.income(ticker, 2), fmp.balance(ticker, 2), fmp.cashflow(ticker, 2)]);
     if (inc && bal && cf && inc.length >= 2) {
       const cur = { ...inc[0], ...bal[0], ...cf[0] };
       const prev = { ...inc[1], ...bal[1], ...cf[1] };
       out.fscore = piotroski(cur, prev);
       out.earnings_quality = earningsQuality(inc[0], cf[0], bal[0]);
+      out.fundamentals_source = "FMP";
     } else {
-      out.fscore = out.earnings_quality = null;
       gaps.push(`${ticker}: états financiers FMP incomplets`);
     }
-  } else {
-    out.fscore = out.earnings_quality = null;
   }
 
   // --- Croissance (Alpha Vantage) -----------------------------------------
@@ -127,7 +153,7 @@ async function computeTicker(ticker, gaps) {
 async function main() {
   const tickers = resolveTickers();
   const gaps = [];
-  if (!KEYS.FMP) gaps.push("FMP (clé absente) -> F-Score & qualité des earnings non calculés");
+  if (!KEYS.FMP) gaps.push("FMP (clé absente) -> F-Score & earnings limités aux titres US (SEC EDGAR)");
   if (!KEYS.ALPHAVANTAGE) gaps.push("Alpha Vantage (clé absente) -> EPS surprise & croissance CA non calculés");
 
   console.log(`📈 signals — ${tickers.length} ticker(s) : ${tickers.join(", ") || "(aucun)"}`);

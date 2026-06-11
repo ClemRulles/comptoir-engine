@@ -160,6 +160,11 @@ export function regimeScore(inputs) {
     stress += 1; flags.push("chômage en hausse nette");
   }
   if (inputs.cpi_yoy != null && inputs.cpi_yoy > 0.04) { heat += 1; flags.push("inflation élevée (>4%)"); }
+  // Zone euro (le book est majoritairement européen — le régime ne peut pas être 100% US).
+  if (inputs.eu_hicp_yoy != null && inputs.eu_hicp_yoy > 0.04) { heat += 1; flags.push("inflation zone euro élevée (HICP >4%)"); }
+  if (inputs.eu_unrate != null && inputs.eu_unrate_prev != null && inputs.eu_unrate - inputs.eu_unrate_prev > 0.3) {
+    stress += 1; flags.push("chômage zone euro en hausse nette");
+  }
   if (inputs.vix != null) {
     if (inputs.vix > 35) { stress += 2; flags.push(`VIX très élevé (${inputs.vix}) — panique`); }
     else if (inputs.vix > 28) { stress += 1; flags.push(`VIX élevé (${inputs.vix}) — peur`); }
@@ -178,7 +183,7 @@ export function regimeScore(inputs) {
     else fear_greed = "neutre";
   }
 
-  const known = ["t10y2y", "unrate", "cpi_yoy", "vix", "hy_spread"].filter((k) => inputs[k] != null).length;
+  const known = ["t10y2y", "unrate", "cpi_yoy", "vix", "hy_spread", "eu_hicp_yoy", "eu_unrate"].filter((k) => inputs[k] != null).length;
   if (known === 0) {
     return { label: "inconnu", score: null, cash_floor: 0.15, fear_greed: null, flags: ["aucune donnée FRED"], ok: false };
   }
@@ -284,6 +289,24 @@ export function gate(sig) {
         ? "garde-fou ORANGE : taille max 5% du book + stop-loss −8% obligatoire (§H)."
         : "garde-fou VERT : sizing normal selon conviction, plafond 20% (§H).",
   };
+}
+
+// ===========================================================================
+// RENDEMENT SUR PÉRIODE — pour le benchmark des décisions clôturées (alpha §I).
+// points = { "YYYY-MM-DD": close }. Entrée = 1re clôture ≥ from ; sortie = dernière
+// clôture ≤ to. Renvoie { entry_date, exit_date, return_pct, ok } ou null.
+// ===========================================================================
+export function periodReturn(points, from, to) {
+  if (!points || typeof points !== "object" || !from) return null;
+  const dates = Object.keys(points).filter((d) => Number.isFinite(points[d]) && points[d] > 0).sort();
+  if (dates.length < 2) return null;
+  const end = to || dates[dates.length - 1];
+  const entryDate = dates.find((d) => d >= from);
+  const exitDate = [...dates].reverse().find((d) => d <= end);
+  if (!entryDate || !exitDate || exitDate <= entryDate) return null;
+  const a = points[entryDate], b = points[exitDate];
+  if (!(a > 0)) return null;
+  return { entry_date: entryDate, exit_date: exitDate, return_pct: round(b / a - 1, 4), ok: true };
 }
 
 // ---- petits utilitaires --------------------------------------------------
