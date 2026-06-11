@@ -21,10 +21,17 @@ empêche la confiance de devenir du bruit.
 
 ## 2. Test d'honnêteté (façon Brier)
 Le hit_rate doit **croître** avec la confiance : Basse < Moyenne < Haute.
+
+**Garde-fou statistique d'abord : n ≥ 8 par bucket.** Avec 3-4 décisions, un hit_rate est du
+bruit — une malchance ne doit pas casser le sizing pour des mois. Si un bucket a `n < 8` :
+**constate** (« échantillon insuffisant : n=… ») dans le brief, **n'ajuste rien**. Le test
+ci-dessous ne s'applique qu'aux buckets qui ont atteint ce seuil.
 - Si **oui** : l'IA est calibrée. Tu peux laisser (ou monter prudemment) les tailles cibles §H.
 - Si **non** (ex. « Haute » ne bat pas « Moyenne », ou réussit < 50 %) : la confiance est mal
   calibrée. **Rétrograde** : réduis la taille cible du bucket fautif (§H) et **durcis ses
   critères** (ce qui mérite « Haute » devient plus exigeant). Note le nouveau barème.
+- Rappel §I : le hit d'un trade gagnant exige **alpha > 0** (vs MSCI World EUR, `engine/bench.js`).
+  La calibration mesure du skill, pas du bêta de marché haussier.
 
 ## 3. Patterns par type de thèse
 Quels types gagnent / perdent (cœur vs tactique, momentum suivi, pioches & pelles, valo tendue) ?

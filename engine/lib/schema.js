@@ -23,7 +23,7 @@ const decisions = {
   required: ["decisions"],
   template: () => ({
     _doc:
-      "Registre APPEND-ONLY des décisions de book IA CLÔTURÉES. La passe d'apprentissage du vendredi y ajoute une entrée à chaque position fermée. C'est l'historique sur lequel se calcule la calibration. Ne jamais réécrire le passé : on corrige par une nouvelle leçon, pas en effaçant. Schéma d'une entrée : { thesis_id, ticker, horizon (coeur|tactique), confidence (Haute|Moyenne|Basse), opened (YYYY-MM-DD), closed (YYYY-MM-DD), entry (prix moyen), exit (prix), realized_pnl_pct (nombre, ex 0.124 = +12.4%), outcome ('thèse confirmée'|'thèse cassée'|'neutre'), hit (true si le résultat valide la confiance annoncée), lesson (1 phrase actionnable) }.",
+      "Registre APPEND-ONLY des décisions de book IA CLÔTURÉES. La passe d'apprentissage du vendredi y ajoute une entrée à chaque position fermée. C'est l'historique sur lequel se calcule la calibration. Ne jamais réécrire le passé : on corrige par une nouvelle leçon, pas en effaçant. Schéma d'une entrée : { thesis_id, ticker, horizon (coeur|tactique), confidence (Haute|Moyenne|Basse), opened (YYYY-MM-DD), closed (YYYY-MM-DD), entry (prix moyen), exit (prix), realized_pnl_pct (nombre NET de frais, ex 0.124 = +12.4%), benchmark_return_pct (rendement du MSCI World EUR sur la même période, via `node engine/bench.js opened closed`), alpha_pct (= realized_pnl_pct - benchmark_return_pct : la SEULE mesure de skill), outcome ('thèse confirmée'|'thèse cassée'|'neutre'), hit (true si le résultat valide la confiance annoncée — pour un gagnant, exige alpha_pct > 0), lesson (1 phrase actionnable) }.",
     decisions: [],
   }),
   check(obj) {

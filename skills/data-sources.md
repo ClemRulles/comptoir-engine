@@ -11,12 +11,17 @@ Si une clé manque ou une API plafonne → bascule sur la recherche web native e
 ### SEC EDGAR — gratuit, sans clé (l'ancre anti-bullshit)
 - Données officielles : 10-K, 10-Q, 8-K, S-1, formulaires insiders.
 - `https://data.sec.gov/api/xbrl/companyfacts/CIK##########.json` → chiffres normalisés.
+- **Alimente directement le gate quantitatif** : `engine/signals.js` calcule le F-Score de
+  Piotroski et la qualité des earnings des titres US depuis les 10-K XBRL (FMP n'est plus
+  qu'un repli). Voir `skills/quant-signals.md`.
 - Full-text search : `https://efts.sec.gov/LATEST/search-index?q=...` (repère les hausses de
   dépôts mentionnant un thème = tendance réelle, pas médiatique).
 - Usage : Deep-dive (fondamentaux), Trend Radar (S-1/IPO, vagues de dépôts), Portfolio Doctor (8-K).
 
 ### FRED — `FRED_API_KEY` (gratuit, Fed de St. Louis) — macro à zéro bruit
 - Taux directeurs, courbe des taux (10Y-2Y), inflation (CPI/PCE), chômage, conditions financières.
+- **Couvre aussi la zone euro** (le book est majoritairement européen) : HICP EA
+  `CP0000EZ19M086NEST`, chômage EA `LRHUTTTTEZM156S` — intégrés au régime par `engine/signals.js`.
 - `https://api.stlouisfed.org/fred/series/observations?series_id=...&api_key=...`
 - Usage : Trend Radar / régime. Excellent pour juger « risk-on sain » vs « stress ».
 
