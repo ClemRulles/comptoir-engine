@@ -54,23 +54,33 @@ Règle de sortie touchée : la prime sur NAV bitcoin s'est effondrée. Cours act
 
 ---
 
-## Alertes book IA — 2026-06-12
+## Alertes book IA — 2026-06-12 (fenêtre de sortie §H exécutée)
 
-Le vendredi exécute ces alertes en priorité. Régime SURCHAUFFE → plancher cash ≥ 30 %.
+Régime SURCHAUFFE → plancher cash ≥ 30 %. Le mandat « jeudi = vente seule » (PR #62, mergé le
+12/06 à 11h05 UTC) est arrivé APRÈS le run nocturne : la fenêtre de sortie a été rejouée le
+12/06 en journée — les 7 sorties forcées gate 🔴 sont FAITES. Vendredi : ne pas les rejouer,
+contrôler la cohérence (positions retirées, cash crédité net) puis trancher les arbitrages ci-dessous.
 
-| Ticker | Verdict book IA | Règle touchée ? | Raison |
-|--------|-----------------|-----------------|--------|
-| BYD    | SORTIE FORCÉE 🔴 | Oui — §H gate rouge | composite −0,604 ; momentum −29 % ; 52s 2 % — thèse intacte, mais règle verrouillée |
-| CI2    | SORTIE FORCÉE 🔴 | Oui — §H gate rouge | composite −0,284 ; momentum −18 % |
-| SGO.PA | SORTIE FORCÉE 🔴 | Oui — §H gate rouge | composite −0,316 ; momentum −21 % |
-| SAP    | SORTIE FORCÉE 🔴 | Oui — §H gate rouge | composite −0,492 ; momentum −46 % ; 52s 3 % |
-| NOVOB  | SORTIE FORCÉE 🔴 | Oui — §H gate rouge | composite −0,436 ; momentum −43 % (thèse intacte — re-entrer quand gate se redresse) |
-| MSTR   | SORTIE FORCÉE 🔴 | Oui — §H + drapeau dur | F-Score 3/9 (≤ 3) ; composite −0,620 ; EPS surprise −149 % ; thèse cassée |
-| RMS.PA | SORTIE FORCÉE 🔴 | Oui — §H gate rouge | composite −0,436 ; momentum −31 % ; 52s 12 % |
-| SAF.PA | ALERTE 🟠 taille | Non — thèse OK | position ~792 € = 7,6 % NAV > plafond 5 % ambre (≈ 540 €) → trimmer ≈ 252 € + stop −8 % vs avg_cost à écrire |
-| HO.PA  | ALERTE 🟠 taille | Non — thèse OK | position ~777 € = 7,5 % NAV > plafond 5 % → trimmer ≈ 237 € + stop −8 % à écrire |
-| NFLX   | ALERTE 🟠 taille + stop | Oui — stop −8 % touché | position ~745 € = 7,2 % NAV > plafond 5 % ; avg_cost 87,9 € vs cours ~74,8 € = −15 % → stop −8 % déjà atteint ; sortir ou trim vendredi selon arbitrage |
-| AI     | ALERTE 🟠 stop manquant | Non — taille OK | position ~414 € = 4,0 % NAV (sous plafond) ; stop −8 % vs avg_cost 160,4 € → seuil ~147,6 € — à consigner |
+### Sorties exécutées (vente seule, frais 0,30 % débités)
 
-> NAV estimée book IA au 12/06 : positions restantes ~4 924 € + cash 4 108 € ≈ **10 387 €**.
-> Après sorties forcées (~1 820 € libérés) : cash ~5 928 € = **54 % NAV** — très confortable vs plancher 30 % surchauffe.
+| Ticker | Parts | Prix € | Produit net € | P&L vs coût | Déclencheur |
+|--------|------:|------:|-------------:|------------:|-------------|
+| MSTR   | 1,3553 | 103,78 | 140,23 | −65,0 % | drapeau dur F3/9 + règle touchée (prime NAV BTC effondrée) — thèse cassée |
+| BYD    | 38,9712 | 9,37 | 364,01 | −9,0 % | gate 🔴 (composite −0,604) — thèse intacte, règle verrouillée |
+| CI2    | 0,4687 | 760,68 | 355,46 | −11,1 % | gate 🔴 (composite −0,284, flux étrangers sortants) |
+| SGO.PA | 3,9386 | 73,28 | 287,75 | −18,1 % | gate 🔴 (composite −0,316, T1 −2,3 % organique) |
+| SAP    | 1,6290 | 139,90 | 227,21 | −43,2 % | gate 🔴 (composite −0,492, momentum −46 %) |
+| NOVOB  | 6,1077 | 37,80 | 230,20 | −23,3 % | gate 🔴 (composite −0,436) — thèse GLP-1 intacte, ré-entrée prioritaire si gate se redresse |
+| RMS.PA | 0,0897 | 1 643,00 | 146,88 | −27,0 % | gate 🔴 (composite −0,436, premiums resale en baisse) |
+
+**Total libéré : ~1 752 € net (frais 5,27 €). Cash book IA : 5 859,74 € ≈ 56 % NAV.**
+Vendredi (PASSE 1) : scorer ces 7 fermetures — P&L net, alpha via `node engine/bench.js 2026-06-04 2026-06-12`, leçons.
+
+### À trancher vendredi (arbitrages, PAS exécutés jeudi)
+
+| Ticker | Alerte | Détail |
+|--------|--------|--------|
+| SAF.PA | 🟠 taille | 7,6 % NAV > cap ambre 5 % — Opus dit GARDER (thèse renforcée) ; trimmer ≈ 252 € ou attendre passage 🟢 |
+| HO.PA  | 🟠 taille | 7,5 % NAV > cap ambre 5 % — Opus dit GARDER (défense EU accélère) ; trimmer ≈ 237 € ou attendre 🟢 |
+| NFLX   | 🟠 stop touché | −15 % vs avg_cost (stop −8 % dépassé) mais F6/9, earnings verts — sortir ou trim, à arbitrer |
+| AI     | 🟠 stop manquant | consigner stop −8 % vs avg_cost 160,4 € → seuil ~147,6 € |
