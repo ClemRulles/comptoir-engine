@@ -309,6 +309,34 @@ export function periodReturn(points, from, to) {
   return { entry_date: entryDate, exit_date: exitDate, return_pct: round(b / a - 1, 4), ok: true };
 }
 
+// ===========================================================================
+// BOOK DE SCÉNARIOS (method §K) — stats prédictives depuis forecasts.json.
+// hit = (probability >= 0.5) === happened ; brier = moyenne((p − o)²), 0 = parfait,
+// 0.25 = pile ou face. Pur : l'appelant (engine/forecasts.js) gère l'I/O.
+// ===========================================================================
+export function forecastStats(scenarios) {
+  const resolved = (Array.isArray(scenarios) ? scenarios : []).filter(
+    (s) =>
+      s && s.status === "résolu" &&
+      typeof s.probability === "number" &&
+      typeof s.resolution?.happened === "boolean"
+  );
+  if (!resolved.length) return { resolved: 0, hits: 0, hit_rate: 0, brier: null, ok: true };
+  let hits = 0, brierSum = 0;
+  for (const s of resolved) {
+    const o = s.resolution.happened ? 1 : 0;
+    if ((s.probability >= 0.5) === s.resolution.happened) hits++;
+    brierSum += (s.probability - o) ** 2;
+  }
+  return {
+    resolved: resolved.length,
+    hits,
+    hit_rate: round(hits / resolved.length, 3),
+    brier: round(brierSum / resolved.length, 3),
+    ok: true,
+  };
+}
+
 // ---- petits utilitaires --------------------------------------------------
 function num(v) { const n = Number(v); return Number.isFinite(n) ? n : null; }
 function safeDiv(a, b) { a = num(a); b = num(b); return a != null && b != null && b !== 0 ? a / b : null; }

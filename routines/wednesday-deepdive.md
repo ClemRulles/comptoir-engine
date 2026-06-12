@@ -27,6 +27,15 @@ Sortie → écris une fiche par titre dans `memory/convictions.md` (format metho
 remplace une fiche existante si tu réanalyses le même titre, garde < 30 jours).
 Retire le `★` traité dans la watchlist. Ajoute une leçon si le pré-score du Scout était à côté.
 
+## A bis. Scénarios candidats (book prédictif §K, ≤ 2)
+Si `memory/fund/forecasts.json` contient des scénarios `status: "candidat"` : fais passer chaque
+chaîne causale au débat §D — le **baissier attaque la chaîne** (l'effet est-il déjà pricé ? la
+chaîne a-t-elle un maillon faible ? quel est le base rate historique de ce type d'événement ?),
+l'arbitre tranche : `"validé"` (fixe la **probabilité** finale 0,50-0,95 et durcit le
+**falsificateur**) ou `"rejeté"` (note pourquoi en une ligne dans le scénario). Joue ensuite
+`node engine/forecasts.js`. Un scénario validé n'est PAS encore une position — vendredi décide,
+dans la limite de la poche (`stats.pocket_cap`).
+
 **Écris aussi `memory/fund/convictions.json`** (lu par l'interface, page Indicateurs) — version
 structurée des verdicts de la semaine, garde les ~6 plus pertinents (les meilleurs Acheter d'abord) :
 ```json

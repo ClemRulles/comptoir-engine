@@ -50,6 +50,15 @@ dans `ai-fund.json`) — ou règle de sortie touchée cette semaine :
 
 S'il n'y a eu aucune fermeture, écris-le et ne fabrique pas de leçon.
 
+**Scénarios à résoudre (book prédictif §K).** Pour chaque scénario de `forecasts.json` dont
+l'événement ou l'horizon est passé (statuts `joué`/`validé`, + les `expiré` marqués par
+forecasts.js) : juge `happened` **contre le falsificateur écrit** (pas contre ton envie d'avoir
+eu raison), écris `resolution` { date, happened, brier = (probability − happened)², notes,
+trade_alpha_pct si joué }, passe le statut à `"résolu"`, et tire une **leçon datée** sur la
+PRÉDICTION (chaîne trop longue ? déjà pricé ? probabilité trop sûre ?) distincte de la leçon de
+trade. Puis `node engine/forecasts.js` (stats + pocket_cap). Prédire juste et trader mal — ou
+l'inverse — sont deux leçons différentes : ne les confonds pas.
+
 **Si c'est le 1er vendredi du mois → fais aussi la revue de calibration PROFONDE** décrite dans
 `routines/monthly-calibration.md` (recompute sur TOUT l'historique de `decisions.json`, test
 d'honnêteté Brier Basse < Moyenne < Haute, patterns par type de thèse, ajustement explicite du
@@ -97,6 +106,12 @@ selon le régime, garde-fou drawdown). **Ordre des sources** :
    puis déplace la ligne en « Archives » de `catalysts.md`. Sinon retire-la, note pourquoi.
    **On ne parie jamais sur le contenu d'une annonce surprise** (method §J).
 3. Puis traite les nouvelles `convictions.md` (candidats ★ analysés mercredi).
+4. **Scénarios validés (§K)** : pour chaque `status: "validé"` de `forecasts.json` que tu décides
+   de jouer — poche totale ≤ `stats.pocket_cap` du NAV, demi-taille tactique par scénario, stop
+   serré, gate non-🔴 sur l'instrument, date de résolution = déclencheur de sortie — ouvre la
+   position avec `thesis_id` = id du scénario et passe-le à `"joué"`. Tu peux aussi décider de ne
+   PAS jouer un scénario validé (note pourquoi) : il sera quand même scoré comme prédiction à
+   résolution — l'IA apprend même sans miser.
 
 - **Sorties** d'abord : toute position dont la règle de sortie est touchée, la thèse cassée, **ou le
   gate passé au 🔴** (sortie forcée §H).

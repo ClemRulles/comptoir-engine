@@ -8,7 +8,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
   momentum12_1, momentumFromCloses, rsi, relativeVolume, range52w, insiderSignal,
-  piotroski, earningsQuality, regimeScore, gate, GATE_WEIGHTS, periodReturn,
+  piotroski, earningsQuality, regimeScore, gate, GATE_WEIGHTS, periodReturn, forecastStats,
 } from "./lib/calc.js";
 import { annualFromFacts, cikForSymbol } from "./lib/edgar.js";
 
@@ -175,6 +175,36 @@ const ok = (cond, label) => {
   const map = { 0: { cik_str: 320193, ticker: "AAPL", title: "Apple Inc." }, 1: { cik_str: 1018724, ticker: "AMZN", title: "Amazon" } };
   ok(cikForSymbol(map, "amzn") === "0001018724", "edgar: ticker -> CIK zéro-paddé");
   ok(cikForSymbol(map, "ZZZZ") === null, "edgar: ticker inconnu -> null");
+}
+
+// ---- calc: forecastStats (book de scénarios §K) ----------------------------
+{
+  const sc = (prob, happened, status = "résolu") => ({
+    id: "x", status, probability: prob,
+    resolution: status === "résolu" ? { happened } : undefined,
+  });
+  ok(forecastStats([]).resolved === 0, "forecasts: vide -> 0 résolu, ok");
+  ok(forecastStats(null).resolved === 0, "forecasts: null -> 0 résolu");
+  // 2 prédictions justes (p=0.8 arrivé, p=0.6 pas arrivé... 0.6>=0.5 mais happened=false -> miss)
+  const st = forecastStats([sc(0.8, true), sc(0.6, false), sc(0.7, true), sc(0.9, false, "joué")]);
+  ok(st.resolved === 3, `forecasts: seuls les résolus comptent (got ${st.resolved})`);
+  ok(st.hits === 2 && Math.abs(st.hit_rate - 0.667) < 1e-9, `forecasts: hit = (p>=0.5)===happened (got ${st.hits}, ${st.hit_rate})`);
+  // brier : (0.8-1)² + (0.6-0)² + (0.7-1)² = 0.04 + 0.36 + 0.09 = 0.49 / 3 ≈ 0.163
+  ok(Math.abs(st.brier - 0.163) < 1e-9, `forecasts: brier moyen (got ${st.brier})`);
+}
+
+// ---- schema: forecasts.json -------------------------------------------------
+{
+  const { SCHEMAS } = await import("./lib/schema.js");
+  const good = { scenarios: [{ id: "ipo-spacex", status: "validé", probability: 0.65, falsifier: "pas d'IPO avant l'horizon" }], stats: {} };
+  ok(SCHEMAS.forecasts.check(good).length === 0, "schema forecasts: scénario valide -> aucun problème");
+  const bad = { scenarios: [{ id: "a", status: "validé", probability: 0.3 }, "junk"], stats: null };
+  const probs = SCHEMAS.forecasts.check(bad);
+  ok(probs.some((p) => /probability/.test(p.msg)), "schema forecasts: probabilité hors borne détectée");
+  ok(probs.some((p) => /falsifier/.test(p.msg)), "schema forecasts: falsificateur manquant détecté");
+  ok(probs.some((p) => typeof p.dropScenario === "number"), "schema forecasts: entrée non-objet -> drop");
+  ok(probs.some((p) => p.resetStats), "schema forecasts: stats invalide -> reset");
+  ok(SCHEMAS.forecasts.check({ scenarios: "oops", stats: {} }).some((p) => p.hard), "schema forecasts: scenarios non-tableau -> dur");
 }
 
 // ---- guard: réparation sur fichiers temporaires ---------------------------

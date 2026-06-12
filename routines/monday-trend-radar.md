@@ -70,6 +70,18 @@ risque : alléger/couvrir avant) de *catalyseur favorable à une thèse qu'on a 
 (éventuel pari tactique, taillé §H, date de l'événement = déclencheur). Pas de pari directionnel
 sur le contenu d'une annonce surprise.
 
+## Partie C bis — Scénarios de second ordre (book prédictif, method §K)
+En repassant sur les candidats de tendance ET le calendrier de la Partie C, demande-toi : y a-t-il
+un **événement majeur** (IPO, régulation, M&A, décision politique datée) dont les **effets de
+second ordre** sur d'AUTRES titres cotés sont prévisibles et pas encore pricés ? (Exemple type :
+IPO SpaceX confirmée → pure-players spatiaux sous pression de capital, fournisseurs favorisés,
+effet-Musk sur Tesla.) Si oui — **0 à 2 max, le blanc est la norme** — pré-enregistre un scénario
+dans `memory/fund/forecasts.json` (`status: "candidat"`, schéma dans le `_doc` du fichier) :
+événement déclencheur observable, chaîne causale écrite, probabilité provisoire, horizon,
+falsificateur, instruments cotés. Puis joue `node engine/forecasts.js` (expire + stats).
+Le mercredi débattra la chaîne, le vendredi jouera (poche plafonnée). Pas de scénario sans
+falsificateur, pas de pari sur le contenu d'une annonce surprise (§J).
+
 ## Partie D — Pouls Grok du marché (radar à corroborer)
 Une fois par semaine, prends le pouls du marché via Grok (seul accès X temps réel). C'est un
 **radar de thèmes/news, jamais un signal d'achat** (CLAUDE.md, method §F).

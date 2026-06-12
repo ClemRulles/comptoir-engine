@@ -55,6 +55,11 @@ Le fonds IA (`memory/fund/ai-fund.json`) est un vrai portefeuille fictif qu'on c
   exécute les **ventes défensives** du book (règle de sortie touchée, thèse cassée, gate 🔴,
   stop) — jamais d'achat ; le **vendredi** reste la seule fenêtre d'entrée, après instruction
   complète. Sortir vite est urgent, entrer vite ne l'est jamais.
+- **Prédire est permis, mais seulement pré-enregistré (method §K)** : un jugement sur le futur
+  (effets de second ordre d'un événement — ex. IPO majeure → secteur impacté) ne se joue que via
+  `memory/fund/forecasts.json` : scénario écrit AVANT, probabilisé, falsifiable, horizon daté,
+  poche plafonnée (`pocket_cap`, méritée), puis **scoré en deux temps** (prédiction vs trade).
+  « Ça va remonter » reste interdit — un scénario §K est jugeable à date fixe.
 - Départ du book = **clone du groupe** (mêmes positions + même cash via `memory/portfolio.md`
   tant que `seeded:false`), puis gestion indépendante. À armes égales, on prouve qu'on bat le groupe.
 

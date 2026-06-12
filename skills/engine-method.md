@@ -255,3 +255,49 @@ d'apprentissage de plus, appliquée au *timing*, pas seulement au *choix de titr
 
 Garde-fou : un catalyseur **ne relève jamais** une confiance Basse en Haute, et ne contourne
 jamais la checklist bulle (§B). Un mauvais dossier avec un bon catalyseur reste un mauvais dossier.
+
+---
+
+## K. Book de scénarios — prédire le second ordre, en se mesurant
+
+§J anticipe des événements datés sur des titres qu'on suit. §K va un cran plus loin : **parier
+(petit) sur les effets de second ordre d'un événement** — l'exemple canonique : « IPO SpaceX
+confirmée → les pure-players spatiaux subissent la concurrence pour le capital, les fournisseurs
+en profitent ensuite, Tesla bouge sur l'effet-Musk ». C'est du jugement sur le futur — autorisé
+UNIQUEMENT sous la discipline du pré-registre `memory/fund/forecasts.json`.
+
+**Le pré-registre (ce qui distingue « anticiper » de « espérer »).** AVANT de jouer quoi que ce
+soit, le scénario est écrit avec : l'**événement déclencheur** (daté ou conditionnel observable),
+la **chaîne causale** (qui est impacté, dans quel ordre, pourquoi), une **probabilité annoncée**
+(0,50-0,95 — l'IA s'engage sur un chiffre), un **horizon** (date limite de résolution), un
+**falsificateur** (ce qui prouvera que c'était faux — pas de falsificateur = pas de scénario),
+et les **instruments** cotés (direct + pioches/pelles). « Ça va remonter » est invérifiable ;
+un scénario §K est jugeable à date fixe.
+
+**Le cycle (zéro routine en plus).**
+- **Lundi** détecte 0-2 scénarios candidats (news, IPO, régulation, calendrier §J) → `status:
+  "candidat"`. Le droit au blanc s'applique : zéro candidat la plupart des semaines est NORMAL.
+- **Mercredi (Opus)** attaque la chaîne causale en débat §D — le baissier cherche le maillon
+  faible (déjà pricé ? chaîne trop longue ? base rate des IPO ?) → `"validé"` (probabilité et
+  falsificateur finalisés) ou `"rejeté"`.
+- **Vendredi** ouvre les positions des scénarios validés (poche ci-dessous, `thesis_id` du trade
+  = id du scénario, `status: "joué"`), et **résout** ceux dont l'horizon ou l'événement est passé.
+- `node engine/forecasts.js` après toute modification : expire les périmés, recalcule les stats,
+  ajuste la poche.
+
+**La poche (plafonds stricts).** Total scénarios ≤ `stats.pocket_cap` du NAV (départ 10 %).
+Par scénario : **demi-taille tactique** (§G/§H), stop serré, date de résolution = déclencheur de
+sortie/décision, **jamais sur un gate 🔴**, et la fenêtre du jeudi s'applique (vente seule).
+Le plafond se **mérite** (recalculé par forecasts.js) : < 6 résolus → 10 % ; hit_rate ≥ 0,6 →
+15 % ; ≥ 0,7 → 20 % ; < 0,45 → 5 %. Une IA qui prédit mal voit sa poche rétrécir toute seule.
+
+**Le scoring en deux temps (l'honnêteté de l'arme).** À résolution, le vendredi écrit dans
+`resolution` : `happened` (le scénario s'est-il réalisé ? jugé contre le falsificateur),
+`brier` = (probability − happened)², et — si joué — `trade_alpha_pct` (alpha du trade, §I).
+**Les deux mesures sont séparées** : on peut prédire juste et trader mal (mal timé, mal
+instrumenté) ou gagner par chance en s'étant trompé. C'est la distinction qui apprend à l'IA
+à *prédire mieux*, pas juste à trader. Leçon datée dans `lessons.md` à chaque résolution.
+
+Garde-fous hérités : jamais de pari sur le **contenu** d'une annonce surprise (§J), le sentiment
+social ne valide rien (§F), la checklist bulle s'applique aux instruments (§B), et un scénario
+ne relève jamais la confiance d'un dossier par ailleurs faible.
