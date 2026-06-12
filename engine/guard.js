@@ -32,6 +32,13 @@ function applySoftRepairs(schema, obj, problems) {
     actions.push(`decisions[${i}] retiré (entrée invalide)`);
   }
 
+  // Même logique pour scenarios[] (forecasts.json).
+  const sdrops = problems.filter((p) => typeof p.dropScenario === "number").map((p) => p.dropScenario);
+  for (const i of sdrops.sort((a, b) => b - a)) {
+    obj.scenarios.splice(i, 1);
+    actions.push(`scenarios[${i}] retiré (entrée invalide)`);
+  }
+
   for (const p of problems) {
     if (p.addBucket) {
       obj.buckets.push(bucketFor(p.addBucket));
@@ -52,6 +59,10 @@ function applySoftRepairs(schema, obj, problems) {
     if (p.resetTrades) {
       obj.trades = [];
       actions.push("`trades` réinitialisé");
+    }
+    if (p.resetStats) {
+      obj.stats = schema.template().stats;
+      actions.push("`stats` réinitialisé");
     }
   }
   return actions;

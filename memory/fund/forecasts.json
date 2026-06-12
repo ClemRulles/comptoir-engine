@@ -1,0 +1,12 @@
+{
+  "_doc": "Book de SCÉNARIOS prédictifs (method §K) — le pré-registre qui donne à l'IA un jugement sur le futur SANS boule de cristal : chaque scénario est écrit AVANT d'être joué, probabilisé, falsifiable, et scoré à résolution. Schéma d'un scénario : { id (kebab-case), opened (YYYY-MM-DD), event (l'événement déclencheur, daté ou conditionnel — ex. 'IPO SpaceX confirmée'), chain (chaîne causale de second ordre : qui est impacté, dans quel ordre, pourquoi), probability (0.5-0.95, probabilité ANNONCÉE de réalisation), horizon (YYYY-MM-DD, date limite de résolution), falsifier (ce qui prouvera que le scénario était faux), instruments ([tickers] pour le jouer, direct + pioches/pelles), status (candidat: détecté lundi | validé: la chaîne survit au débat Opus de mercredi | joué: position ouverte vendredi, thesis_id du trade = cet id | rejeté: débat perdu | expiré: horizon dépassé sans réalisation | résolu: tranché et scoré), resolution ({ date, happened (bool), brier ((probability − happened)², 0 = parfait), notes, trade_alpha_pct (si joué : alpha du trade — mesure SÉPARÉE, on peut prédire juste et trader mal) }) }. 'stats' est recalculé par node engine/forecasts.js : hit = (probability ≥ 0.5) === happened ; pocket_cap = part max du NAV allouée aux scénarios (§K : grandit/rétrécit selon le hit_rate prédictif prouvé). Ne jamais réécrire un scénario résolu : on apprend de ses prédictions, on ne les efface pas.",
+  "updated": "2026-06-12",
+  "scenarios": [],
+  "stats": {
+    "resolved": 0,
+    "hits": 0,
+    "hit_rate": 0,
+    "brier": null,
+    "pocket_cap": 0.1
+  }
+}

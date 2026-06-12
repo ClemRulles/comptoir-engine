@@ -151,7 +151,56 @@ const aiFund = {
   },
 };
 
-export const SCHEMAS = { decisions, calibration, signals, aiFund };
+// ---------------------------------------------------------------------------
+// forecasts.json — book de SCÉNARIOS prédictifs (method §K). Chaque prédiction
+// est pré-enregistrée AVANT d'être jouée : datée, probabilisée, falsifiable, puis
+// scorée à résolution. C'est ce qui distingue « anticiper » de « espérer ».
+// ---------------------------------------------------------------------------
+const FORECAST_STATUSES = new Set(["candidat", "validé", "joué", "résolu", "rejeté", "expiré"]);
+
+const forecasts = {
+  file: "forecasts.json",
+  required: ["scenarios", "stats"],
+  template: () => ({
+    _doc:
+      "Book de SCÉNARIOS prédictifs (method §K) — le pré-registre qui donne à l'IA un jugement sur le futur SANS boule de cristal : chaque scénario est écrit AVANT d'être joué, probabilisé, falsifiable, et scoré à résolution. Schéma d'un scénario : { id (kebab-case), opened (YYYY-MM-DD), event (l'événement déclencheur, daté ou conditionnel — ex. 'IPO SpaceX confirmée'), chain (chaîne causale de second ordre : qui est impacté, dans quel ordre, pourquoi), probability (0.5-0.95, probabilité ANNONCÉE de réalisation), horizon (YYYY-MM-DD, date limite de résolution), falsifier (ce qui prouvera que le scénario était faux), instruments ([tickers] pour le jouer, direct + pioches/pelles), status (candidat: détecté lundi | validé: la chaîne survit au débat Opus de mercredi | joué: position ouverte vendredi, thesis_id du trade = cet id | rejeté: débat perdu | expiré: horizon dépassé sans réalisation | résolu: tranché et scoré), resolution ({ date, happened (bool), brier ((probability − happened)², 0 = parfait), notes, trade_alpha_pct (si joué : alpha du trade — mesure SÉPARÉE, on peut prédire juste et trader mal) }) }. 'stats' est recalculé par node engine/forecasts.js : hit = (probability ≥ 0.5) === happened ; pocket_cap = part max du NAV allouée aux scénarios (§K : grandit/rétrécit selon le hit_rate prédictif prouvé). Ne jamais réécrire un scénario résolu : on apprend de ses prédictions, on ne les efface pas.",
+    updated: TODAY(),
+    scenarios: [],
+    stats: {
+      resolved: 0,
+      hits: 0,
+      hit_rate: 0,
+      brier: null,
+      pocket_cap: 0.1,
+    },
+  }),
+  check(obj) {
+    const problems = [];
+    if (!Array.isArray(obj.scenarios)) {
+      problems.push({ hard: true, msg: "`scenarios` n'est pas un tableau" });
+      return problems;
+    }
+    obj.scenarios.forEach((s, i) => {
+      if (s == null || typeof s !== "object") {
+        problems.push({ hard: false, msg: `scenarios[${i}] n'est pas un objet`, dropScenario: i });
+        return;
+      }
+      if (!s.id) problems.push({ hard: false, msg: `scenarios[${i}].id manquant` });
+      if (!FORECAST_STATUSES.has(s.status))
+        problems.push({ hard: false, msg: `scenarios[${i}].status invalide ("${s.status}")` });
+      if (s.status !== "candidat" && s.status !== "rejeté" &&
+          !(typeof s.probability === "number" && s.probability >= 0.5 && s.probability <= 0.95))
+        problems.push({ hard: false, msg: `scenarios[${i}].probability hors [0.5, 0.95] ("${s.probability}")` });
+      if (!s.falsifier && (s.status === "validé" || s.status === "joué"))
+        problems.push({ hard: false, msg: `scenarios[${i}].falsifier manquant (non falsifiable = non jouable, §K)` });
+    });
+    if (obj.stats == null || typeof obj.stats !== "object")
+      problems.push({ hard: false, msg: "`stats` manquant ou invalide", resetStats: true });
+    return problems;
+  },
+};
+
+export const SCHEMAS = { decisions, calibration, signals, aiFund, forecasts };
 
 // Complète un objet parsé avec les clés requises manquantes de son template,
 // SANS écraser les valeurs présentes. Retourne { obj, added: [clés ajoutées] }.
