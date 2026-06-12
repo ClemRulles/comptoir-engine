@@ -17,7 +17,7 @@ Paper trading d'abord. Ce n'est pas un conseil en investissement.
 | Lun | `monday-trend-radar` | Sonnet | Régime + **LA tendance de la semaine** + **calendrier des catalyseurs datés** (FOMC, résultats, tarifs…) à anticiper |
 | Mar | `tuesday-scout` | Sonnet | Sociétés cotées exposées à la tendance + filtres qualité |
 | Mer | `wednesday-deepdive` | **Opus** | Débat haussier/baissier sur ≤3 candidats **+ revue de risque Opus de ≤2 positions du book IA** |
-| Jeu | `thursday-portfolio-doctor` | Sonnet | État des **deux books** (groupe + IA) vs leur règle de sortie |
+| Jeu | `thursday-portfolio-doctor` | Sonnet | État des **deux books** + **exécution des sorties défensives du book IA** (vente seule) |
 | Ven | `friday-brief` | Sonnet | Apprentissage + gestion du book IA + synthèse + revue hebdo ; **1er vendredi du mois = calibration profonde** |
 
 **5 tâches planifiées, point.** La revue de calibration mensuelle n'est PAS une 6ᵉ tâche : elle

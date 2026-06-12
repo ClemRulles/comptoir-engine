@@ -163,6 +163,16 @@ Le **régime** (`signals.regime`) fixe le plancher de cash ci-dessous. Détail :
 - **On ne moyenne JAMAIS à la baisse une thèse cassée.** Ajouter ne se fait que si la thèse se
   *renforce*, pas pour « réparer » une perte.
 
+**Fenêtres de décision asymétriques (jeudi = vente seule, vendredi = tout).** Sortir vite est
+urgent ; entrer vite ne l'est presque jamais. Le book a donc DEUX fenêtres d'exécution :
+- **Jeudi (Portfolio Doctor)** : **ventes défensives uniquement** — `exit_rule` touchée, thèse
+  cassée, gate 🔴 (sortie forcée), stop −8 % d'une 🟠/⚪, verdict Opus SORTIR/ALLÉGER non exécuté.
+  **Aucun achat, aucun renforcement le jeudi**, même gate 🟢 : une entrée mérite l'instruction
+  complète du cycle (débat §D du mercredi → exécution du vendredi). La latence de sortie pire-cas
+  passe de ~7 jours à ~3-4 sans ouvrir la porte au sur-trading (les frais §H font le reste).
+- **Vendredi (Brief/Book)** : sorties restantes, puis entrées/renforcements selon convictions ×
+  calibration × gate. C'est la SEULE fenêtre d'achat de la semaine.
+
 **Frais de friction (réalisme du paper trading).** Chaque trade du book (achat ET vente) coûte
 **0,30 % du montant** (frais + spread forfaitaires), débité du cash et loggé (`fee`) dans le trade.
 Le groupe paie de vrais frais : un book sans frais gagnerait à sur-trader — c'est exactement le

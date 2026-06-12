@@ -32,8 +32,9 @@ Si `portfolio.md` est vide, laisse `seeded:false`, écris-le dans le brief, et c
 
 ## PASSE 1 — Apprentissage (scorer le passé)
 
-Pour chaque position **fermée** depuis le dernier vendredi (ou règle de sortie touchée cette
-semaine d'après le Portfolio Doctor) :
+Pour chaque position **fermée** depuis le dernier vendredi — **y compris les sorties exécutées
+jeudi** par le Portfolio Doctor (bloc `### Sorties exécutées` de `portfolio.md` + trades `sell`
+dans `ai-fund.json`) — ou règle de sortie touchée cette semaine :
 1. Calcule le **P&L réalisé** (`realized_pnl_pct`), **net des frais de friction** (cf. PASSE 2).
 2. **Mesure l'alpha** : `node engine/bench.js {opened} {closed}` → `benchmark_return_pct`
    (MSCI World EUR sur la même période) ; `alpha_pct = realized_pnl_pct − benchmark_return_pct`.
@@ -78,9 +79,13 @@ toute ligne encore en mode seed) — l'interface s'appuie sur ce flag, prioritai
 Rafraîchis les signaux : `node engine/signals.js` (positions + convictions retenues). En appliquant
 **method §H** (gate quantitatif → sizing pondéré conviction × calibration, plafonds, plancher de cash
 selon le régime, garde-fou drawdown). **Ordre des sources** :
-1. Exécute d'abord les **verdicts Opus du mercredi** (bloc `## Revue book IA` de `convictions.md` :
-   RENFORCER / GARDER / ALLÉGER / SORTIR) et les **alertes du jeudi** (bloc `## Alertes book IA`
-   de `portfolio.md`). Ce sont des décisions déjà instruites — applique-les en priorité.
+1. **Vérifie d'abord ce que le jeudi a déjà exécuté** (bloc `### Sorties exécutées` de
+   `portfolio.md` + trades `sell` d'hier dans `ai-fund.json`) : ces ventes sont FAITES — ne les
+   rejoue pas, contrôle juste la cohérence (position retirée/réduite, cash crédité net de frais).
+   Puis exécute ce qui **reste** : verdicts Opus du mercredi (bloc `## Revue book IA` de
+   `convictions.md` : RENFORCER / GARDER / ALLÉGER / SORTIR) non traités jeudi, et alertes
+   `À SURVEILLER` du jeudi qui ont mûri en sortie. Ce sont des décisions déjà instruites —
+   priorité sur tout le reste.
 2. **Re-valide les catalyseurs** (`memory/catalysts.md`, détectés lundi) — la boucle anticipation :
    pour chaque ligne dont la date approche (≤ ~2 semaines) et qui portait un pré-positionnement,
    demande « ça vaut toujours le coup ? » → (a) l'événement est-il toujours au calendrier (pas

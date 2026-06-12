@@ -1,14 +1,16 @@
-# JEUDI — PORTFOLIO DOCTOR (santé des positions détenues)
+# JEUDI — PORTFOLIO DOCTOR (santé des positions + fenêtre de SORTIE du book IA)
 # Cron : 0 22 * * 4   ·   Modèle : Sonnet
 
 **Étape 0 — garde-fou :** `node engine/guard.js` (cf. `skills/memory-guard.md`).
 
-Lis `CLAUDE.md`, `skills/engine-method.md`, `skills/data-sources.md`, `skills/quant-signals.md`,
-`memory/portfolio.md`, `memory/fund/ai-fund.json`, `memory/market-regime.md`, `memory/catalysts.md`.
+Lis `CLAUDE.md`, `skills/engine-method.md` (surtout §H — fenêtres de décision asymétriques),
+`skills/data-sources.md`, `skills/quant-signals.md`, `memory/portfolio.md`,
+`memory/fund/ai-fund.json`, `memory/convictions.md`, `memory/market-regime.md`, `memory/catalysts.md`.
 
 Objectif : confronter **chaque position des deux books** (le groupe via `portfolio.md` ET le
-book IA via `ai-fund.json`) à sa thèse et sa règle de sortie écrites. Ainsi le vendredi gère le
-book IA sur des alertes datées de la veille, pas de la semaine passée.
+book IA via `ai-fund.json`) à sa thèse et sa règle de sortie écrites — et, pour le book IA,
+**exécuter les sorties défensives sans attendre vendredi** (§H : sortir vite est urgent,
+entrer vite ne l'est jamais ; le jeudi ne fait JAMAIS d'achat).
 
 Joue d'abord `node engine/signals.js` (positions du book) pour rafraîchir le gate de chaque ligne.
 
@@ -36,13 +38,30 @@ sortie / Vérifié le :
 Sous le tableau, 2-3 lignes d'explication pour chaque `SORTIE`/`À SURVEILLER` (repris
 dans le brief de vendredi). Ajoute une leçon si une thèse s'est confirmée ou cassée.
 
-**Book IA** : applique le même diagnostic aux positions de `memory/fund/ai-fund.json`. Tu ne
-modifies pas le JSON ici (c'est le rôle du vendredi, PASSE 2) — tu écris les alertes dans un bloc
-`## Alertes book IA — {date}` en bas de `memory/portfolio.md` : `{ticker} — {INTACT/À SURVEILLER/
-SORTIE} — règle de sortie touchée ? — raison 1 ligne`. Le vendredi exécute ces sorties en priorité.
+**Book IA — fenêtre de SORTIE (exécution, vente uniquement).** Applique le même diagnostic aux
+positions de `memory/fund/ai-fund.json`, puis **exécute immédiatement** toute vente déclenchée par :
+- la **règle de sortie écrite** (`exit_rule`) touchée, ou la **thèse cassée** (pivot faux) ;
+- le **gate passé au 🔴** → sortie forcée §H, pas de débat ;
+- le **stop −8 %** d'une position entrée en gate 🟠/⚪ ;
+- un verdict Opus **SORTIR** (ou **ALLÉGER**, en vente partielle) de `memory/convictions.md`
+  encore non exécuté.
+
+Exécution dans `ai-fund.json` : log du trade (`side:"sell"`, `quantity`, `price` = cours du jour,
+`fee` = montant × 0,003, `rationale` citant le déclencheur + le gate), retire/réduis la position,
+crédite le `cash` (net de frais), mets `as_of` à jour. La passe d'apprentissage du **vendredi**
+score ces fermetures (P&L net, alpha via `engine/bench.js`) — n'écris PAS `decisions.json` ici.
+
+**INTERDITS du jeudi (non négociables)** : aucun achat, aucun renforcement, aucune entrée
+tactique — même catalyseur imminent, même gate 🟢. Les entrées restent le monopole du vendredi,
+après instruction complète (§H). En cas de doute sur une vente : statut `À SURVEILLER` + alerte,
+le vendredi tranchera. Mieux vaut une sortie retardée de 24 h qu'une vente impulsive.
+
+Écris ensuite le bloc `## Alertes book IA — {date}` en bas de `memory/portfolio.md` :
+d'abord `### Sorties exécutées` (`{ticker} — vendu {n} parts à {prix} € — déclencheur — frais`),
+puis les `À SURVEILLER` restants (`{ticker} — raison 1 ligne`). Le vendredi vérifie et complète.
 Pour le groupe, **tu signales, tu ne vends pas** : le groupe décide.
 
-Commit : `portfolio-doctor: {date} — {n} positions (groupe+IA), {k} alertes`.
+Commit : `portfolio-doctor: {date} — {n} positions (groupe+IA), {k} alertes, {s} sorties exécutées`.
 
 **Persistance (OBLIGATOIRE — le sandbox ne peut pas `git push`, 403).** Après le commit local,
 lance `node engine/push-memory.js "{le message de commit ci-dessus}"` : l'endpoint Vercel
