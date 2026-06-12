@@ -51,6 +51,10 @@ Le fonds IA (`memory/fund/ai-fund.json`) est un vrai portefeuille fictif qu'on c
   factuels (F-Score, momentum 12-1, qualité des earnings, régime macro) via
   `node engine/signals.js` → `memory/fund/signals.json`. Le `gate` (🟢/🟠/🔴/⚪) garde-fou
   les décisions ; outrepasser un 🔴 se justifie par écrit. Voir `skills/quant-signals.md`.
+- **Deux fenêtres de décision, asymétriques (method §H)** : le **jeudi** (Portfolio Doctor)
+  exécute les **ventes défensives** du book (règle de sortie touchée, thèse cassée, gate 🔴,
+  stop) — jamais d'achat ; le **vendredi** reste la seule fenêtre d'entrée, après instruction
+  complète. Sortir vite est urgent, entrer vite ne l'est jamais.
 - Départ du book = **clone du groupe** (mêmes positions + même cash via `memory/portfolio.md`
   tant que `seeded:false`), puis gestion indépendante. À armes égales, on prouve qu'on bat le groupe.
 
