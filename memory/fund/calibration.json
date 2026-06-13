@@ -1,17 +1,46 @@
 {
   "_doc": "Agrégats recalculés à chaque passe (vendredi + revue mensuelle) à partir de decisions.json. 'buckets' = un objet par niveau de confiance annoncé : n (décisions clôturées), hits (résultats qui valident la confiance), hit_rate (hits/n), avg_return (rendement réalisé moyen). 'global' = stats du book IA. Une IA bien calibrée a un hit_rate qui CROÎT avec la confiance (Basse < Moyenne < Haute) ; sinon la passe mensuelle corrige le sizing (method §I).",
-  "updated": "2026-06-03",
+  "updated": "2026-06-13",
+  "note_n_insuffisant": "ATTENTION — n < 8 par bucket (Haute=1, Moyenne=6, Basse=2). Seuil statistique §I non atteint : le hit_rate est du bruit. Les résultats négatifs reflètent (1) un héritage de positions en moins-value et (2) une semaine de marché déclinant (benchmark -2.41%). NE PAS ajuster les tailles cibles §H pour l'instant. Observer uniquement.",
   "buckets": [
-    { "confidence": "Haute", "n": 0, "hits": 0, "hit_rate": 0, "avg_return": 0 },
-    { "confidence": "Moyenne", "n": 0, "hits": 0, "hit_rate": 0, "avg_return": 0 },
-    { "confidence": "Basse", "n": 0, "hits": 0, "hit_rate": 0, "avg_return": 0 }
+    {
+      "confidence": "Haute",
+      "n": 1,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "avg_return": -0.270,
+      "avg_alpha": -0.2459,
+      "note": "n=1 < seuil 8 — statistiquement non significatif. RMS.PA : sortie gate forcée position héritée. Pas d'ajustement."
+    },
+    {
+      "confidence": "Moyenne",
+      "n": 6,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "avg_return": -0.2146,
+      "avg_alpha": -0.1904,
+      "note": "n=6 < seuil 8 — statistiquement non significatif. 5 sorties gate forcées héritées + 1 stop. Thèses majoritairement intactes (NOVOB, SAP, CI2, BYD). Pas d'ajustement."
+    },
+    {
+      "confidence": "Basse",
+      "n": 2,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "avg_return": -0.4155,
+      "avg_alpha": -0.3914,
+      "note": "n=2 < seuil 8 — non significatif. MSTR thèse cassée (correct d'être Basse) + SGO thèse cassée. Sizing Basse approprié."
+    }
   ],
   "global": {
-    "closed_decisions": 0,
-    "win_rate": 0,
-    "avg_win": 0,
-    "avg_loss": 0,
+    "closed_decisions": 8,
+    "win_rate": 0.0,
+    "avg_win": null,
+    "avg_loss": -0.2721,
+    "avg_alpha": -0.2363,
     "profit_factor": 0,
-    "max_drawdown": 0
+    "max_drawdown_nav": -0.003,
+    "benchmark_period": "2026-06-04 / 2026-06-12",
+    "benchmark_return": -0.0241,
+    "note": "Semaine 1 post-seed : toutes les sorties héritées de positions TR en moins-value dans un marché déclinant. Le book IA a limité la casse via les gates (positions investies ~43% vs groupe 100%). Alpha global agrégé = -23.6% mais c'est trompeur : la majeure partie est du bêta baissier sur des positions héritées. Réévaluer à n≥8 par bucket."
   }
 }

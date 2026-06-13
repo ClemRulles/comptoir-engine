@@ -1,6 +1,6 @@
 {
   "_doc": "Cache des signaux QUANTITATIFS calculés par engine/signals.js. 'regime' = score macro FRED agrégé (gate global). 'tickers' = map ticker -> { fscore, momentum_12_1, earnings_quality, gate } horodatés. L'IA LIT ce fichier avant d'ouvrir/fermer une position (method §A/§H) : les signaux sont des garde-fous factuels, pas une boîte noire. 'data_gaps' liste les sources indisponibles (clé manquante / quota) pour rester honnête sur l'incertitude. Régénéré par les routines ; ne pas éditer à la main.",
-  "updated": "2026-06-12T00:06:41.683Z",
+  "updated": "2026-06-13T00:12:18.173Z",
   "regime": {
     "label": "SURCHAUFFE",
     "score": {
@@ -14,313 +14,63 @@
     ],
     "ok": true,
     "inputs": {
-      "t10y2y": 0.4,
+      "t10y2y": 0.39,
       "unrate": 4.3,
       "unrate_prev": null,
       "cpi_yoy": 0.042,
       "fedfunds": 3.63,
-      "vix": 22.22,
-      "hy_spread": 2.8,
+      "vix": 19.44,
+      "hy_spread": 2.78,
       "eu_hicp_yoy": 0.03,
       "eu_unrate": 6.7,
       "eu_unrate_prev": null
     },
-    "asof": "2026-06-11"
+    "asof": "2026-06-12"
   },
   "tickers": {
-    "SAF.PA": {
-      "ticker": "SAF.PA",
-      "asof": "2026-06-12",
+    "MSCI": {
+      "ticker": "MSCI",
+      "asof": "2026-06-13",
       "momentum_12_1": {
-        "value": 0.1086,
+        "value": 0.0519,
         "sign": "positif",
         "overheated": false,
         "ok": true
       },
       "rsi_14": {
-        "value": 58.4,
+        "value": 54,
         "zone": "sain",
         "ok": true
       },
       "rel_volume": {
-        "value": 0.9,
+        "value": 0.46,
         "ok": true
       },
       "range_52w": {
-        "value": 0.441,
-        "zone": "moitié basse",
-        "ok": true
-      },
-      "price": 295.3,
-      "currency": "EUR",
-      "insider_90d": null,
-      "earnings_quality": null,
-      "fscore": null,
-      "fundamentals_source": null,
-      "eps_surprise": null,
-      "revenue_growth": null,
-      "gate": {
-        "verdict": "ambre",
-        "composite": 0.191,
-        "coverage": 0.39,
-        "reasons": [],
-        "contributions": [
-          {
-            "key": "momentum_12_1",
-            "sub_score": 0.36,
-            "weight": 0.15
-          },
-          {
-            "key": "rsi_14",
-            "sub_score": 0.2,
-            "weight": 0.1
-          },
-          {
-            "key": "range_52w",
-            "sub_score": 0,
-            "weight": 0.1
-          },
-          {
-            "key": "rel_volume",
-            "sub_score": 0,
-            "weight": 0.04
-          }
-        ],
-        "note": "garde-fou ORANGE : taille max 5% du book + stop-loss −8% obligatoire (§H)."
-      }
-    },
-    "HO.PA": {
-      "ticker": "HO.PA",
-      "asof": "2026-06-12",
-      "momentum_12_1": {
-        "value": -0.0982,
-        "sign": "négatif",
-        "overheated": false,
-        "ok": true
-      },
-      "rsi_14": {
-        "value": 58.6,
-        "zone": "sain",
-        "ok": true
-      },
-      "rel_volume": {
-        "value": 0.8,
-        "ok": true
-      },
-      "range_52w": {
-        "value": 0.36,
-        "zone": "moitié basse",
-        "ok": true
-      },
-      "price": 237.8,
-      "currency": "EUR",
-      "insider_90d": null,
-      "earnings_quality": null,
-      "fscore": null,
-      "fundamentals_source": null,
-      "eps_surprise": null,
-      "revenue_growth": null,
-      "gate": {
-        "verdict": "ambre",
-        "composite": -0.075,
-        "coverage": 0.39,
-        "reasons": [],
-        "contributions": [
-          {
-            "key": "momentum_12_1",
-            "sub_score": -0.33,
-            "weight": 0.15
-          },
-          {
-            "key": "rsi_14",
-            "sub_score": 0.2,
-            "weight": 0.1
-          },
-          {
-            "key": "range_52w",
-            "sub_score": 0,
-            "weight": 0.1
-          },
-          {
-            "key": "rel_volume",
-            "sub_score": 0,
-            "weight": 0.04
-          }
-        ],
-        "note": "garde-fou ORANGE : taille max 5% du book + stop-loss −8% obligatoire (§H)."
-      }
-    },
-    "AMZN": {
-      "ticker": "AMZN",
-      "asof": "2026-06-12",
-      "momentum_12_1": {
-        "value": 0.2466,
-        "sign": "positif",
-        "overheated": false,
-        "ok": true
-      },
-      "rsi_14": {
-        "value": 27.1,
-        "zone": "survendu",
-        "ok": true
-      },
-      "rel_volume": {
-        "value": 0.99,
-        "ok": true
-      },
-      "range_52w": {
-        "value": 0.551,
+        "value": 0.683,
         "zone": "moitié haute",
         "ok": true
       },
-      "price": 241.51,
+      "price": 599.12,
       "currency": "USD",
-      "insider_90d": {
-        "ratio": 0,
-        "buys": 0,
-        "sells": 8,
-        "zone": "ventes nettes",
-        "ok": true
-      },
+      "insider_90d": null,
       "earnings_quality": {
-        "accruals_ratio": -0.0756,
-        "fcf_to_ni": null,
+        "accruals_ratio": -0.0677,
+        "fcf_to_ni": 1.288,
         "flag": "vert",
         "ok": true
       },
       "fscore": {
-        "score": 5,
+        "score": 7,
         "max": 9,
-        "band": "moyen",
+        "band": "solide",
         "tests": {
           "roa_positif": 1,
           "cfo_positif": 1,
           "roa_en_hausse": 1,
           "accruals_sains": 1,
-          "dette_lt_en_baisse": 1,
-          "liquidite_en_hausse": 0,
-          "pas_de_dilution": 0,
-          "marge_brute_en_hausse": 0,
-          "rotation_actifs_en_hausse": 0
-        },
-        "missing": [
-          "marge_brute_en_hausse"
-        ],
-        "ok": true
-      },
-      "fundamentals_source": "SEC EDGAR (10-K)",
-      "eps_surprise": {
-        "surprise_pct": 68.48,
-        "date": "2026-04-29",
-        "ok": true
-      },
-      "revenue_growth": null,
-      "gate": {
-        "verdict": "vert",
-        "composite": 0.264,
-        "coverage": 0.96,
-        "reasons": [
-          "qualité earnings favorable",
-          "momentum 12-1 favorable",
-          "RSI 14j défavorable",
-          "range 52 sem. favorable",
-          "initiés 90j défavorable",
-          "EPS surprise favorable"
-        ],
-        "contributions": [
-          {
-            "key": "fscore",
-            "sub_score": 0,
-            "weight": 0.28
-          },
-          {
-            "key": "earnings_quality",
-            "sub_score": 1,
-            "weight": 0.15
-          },
-          {
-            "key": "momentum_12_1",
-            "sub_score": 0.82,
-            "weight": 0.15
-          },
-          {
-            "key": "rsi_14",
-            "sub_score": -0.5,
-            "weight": 0.1
-          },
-          {
-            "key": "range_52w",
-            "sub_score": 0.5,
-            "weight": 0.1
-          },
-          {
-            "key": "insider_90d",
-            "sub_score": -0.6,
-            "weight": 0.1
-          },
-          {
-            "key": "rel_volume",
-            "sub_score": 0,
-            "weight": 0.04
-          },
-          {
-            "key": "eps_surprise",
-            "sub_score": 1,
-            "weight": 0.04
-          }
-        ],
-        "note": "garde-fou VERT : sizing normal selon conviction, plafond 20% (§H)."
-      }
-    },
-    "NFLX": {
-      "ticker": "NFLX",
-      "asof": "2026-06-12",
-      "momentum_12_1": {
-        "value": -0.2785,
-        "sign": "négatif",
-        "overheated": false,
-        "ok": true
-      },
-      "rsi_14": {
-        "value": 14.9,
-        "zone": "survendu",
-        "ok": true
-      },
-      "rel_volume": {
-        "value": 1,
-        "ok": true
-      },
-      "range_52w": {
-        "value": 0.106,
-        "zone": "près du bas",
-        "ok": true
-      },
-      "price": 81.27,
-      "currency": "USD",
-      "insider_90d": {
-        "ratio": 0,
-        "buys": 0,
-        "sells": 2,
-        "zone": "ventes nettes",
-        "ok": true
-      },
-      "earnings_quality": {
-        "accruals_ratio": 0.015,
-        "fcf_to_ni": 0.862,
-        "flag": "vert",
-        "ok": true
-      },
-      "fscore": {
-        "score": 6,
-        "max": 9,
-        "band": "moyen",
-        "tests": {
-          "roa_positif": 1,
-          "cfo_positif": 1,
-          "roa_en_hausse": 1,
-          "accruals_sains": 0,
-          "dette_lt_en_baisse": 1,
-          "liquidite_en_hausse": 0,
+          "dette_lt_en_baisse": 0,
+          "liquidite_en_hausse": 1,
           "pas_de_dilution": 1,
           "marge_brute_en_hausse": 0,
           "rotation_actifs_en_hausse": 1
@@ -331,23 +81,25 @@
         "ok": true
       },
       "fundamentals_source": "SEC EDGAR (10-K)",
-      "eps_surprise": null,
+      "eps_surprise": {
+        "surprise_pct": 2.02,
+        "date": "2026-04-21",
+        "ok": true
+      },
       "revenue_growth": null,
       "gate": {
-        "verdict": "ambre",
-        "composite": 0.001,
-        "coverage": 0.92,
+        "verdict": "vert",
+        "composite": 0.63,
+        "coverage": 0.86,
         "reasons": [
           "F-Score favorable",
           "qualité earnings favorable",
-          "momentum 12-1 défavorable",
-          "RSI 14j défavorable",
-          "initiés 90j défavorable"
+          "range 52 sem. favorable"
         ],
         "contributions": [
           {
             "key": "fscore",
-            "sub_score": 0.5,
+            "sub_score": 1,
             "weight": 0.28
           },
           {
@@ -357,76 +109,7 @@
           },
           {
             "key": "momentum_12_1",
-            "sub_score": -0.93,
-            "weight": 0.15
-          },
-          {
-            "key": "rsi_14",
-            "sub_score": -0.5,
-            "weight": 0.1
-          },
-          {
-            "key": "range_52w",
-            "sub_score": -0.4,
-            "weight": 0.1
-          },
-          {
-            "key": "insider_90d",
-            "sub_score": -0.6,
-            "weight": 0.1
-          },
-          {
-            "key": "rel_volume",
-            "sub_score": 0,
-            "weight": 0.04
-          }
-        ],
-        "note": "garde-fou ORANGE : taille max 5% du book + stop-loss −8% obligatoire (§H)."
-      }
-    },
-    "EIMI": {
-      "ticker": "EIMI",
-      "asof": "2026-06-12",
-      "momentum_12_1": {
-        "value": 0.4356,
-        "sign": "positif",
-        "overheated": false,
-        "ok": true
-      },
-      "rsi_14": {
-        "value": 48.9,
-        "zone": "sain",
-        "ok": true
-      },
-      "rel_volume": {
-        "value": 0,
-        "ok": true
-      },
-      "range_52w": {
-        "value": 0.884,
-        "zone": "près du haut",
-        "ok": true
-      },
-      "price": 53.53,
-      "currency": "USD",
-      "insider_90d": null,
-      "earnings_quality": null,
-      "fscore": null,
-      "fundamentals_source": null,
-      "eps_surprise": null,
-      "revenue_growth": null,
-      "gate": {
-        "verdict": "vert",
-        "composite": 0.564,
-        "coverage": 0.39,
-        "reasons": [
-          "momentum 12-1 favorable",
-          "range 52 sem. favorable"
-        ],
-        "contributions": [
-          {
-            "key": "momentum_12_1",
-            "sub_score": 1,
+            "sub_score": 0.17,
             "weight": 0.15
           },
           {
@@ -443,62 +126,61 @@
             "key": "rel_volume",
             "sub_score": 0,
             "weight": 0.04
+          },
+          {
+            "key": "eps_surprise",
+            "sub_score": 0.4,
+            "weight": 0.04
           }
         ],
         "note": "garde-fou VERT : sizing normal selon conviction, plafond 20% (§H)."
       }
     },
-    "AI": {
-      "ticker": "AI",
-      "asof": "2026-06-12",
+    "MC.PA": {
+      "ticker": "MC.PA",
+      "asof": "2026-06-13",
       "momentum_12_1": {
-        "value": -0.0382,
+        "value": -0.0322,
         "sign": "neutre",
         "overheated": false,
         "ok": true
       },
       "rsi_14": {
-        "value": 35.5,
-        "zone": "faible",
+        "value": 59.9,
+        "zone": "sain",
         "ok": true
       },
       "rel_volume": {
-        "value": 1.35,
+        "value": 1.57,
         "ok": true
       },
       "range_52w": {
-        "value": 0.291,
+        "value": 0.339,
         "zone": "moitié basse",
         "ok": true
       },
-      "price": 165.02,
+      "price": 510.6,
       "currency": "EUR",
       "insider_90d": null,
       "earnings_quality": null,
       "fscore": null,
       "fundamentals_source": null,
       "eps_surprise": null,
-      "revenue_growth": {
-        "yoy": -0.357,
-        "fiscalDate": "2026-04-30",
-        "ok": true
-      },
+      "revenue_growth": null,
       "gate": {
         "verdict": "ambre",
-        "composite": -0.128,
-        "coverage": 0.43,
-        "reasons": [
-          "croissance CA défavorable"
-        ],
+        "composite": 0.031,
+        "coverage": 0.39,
+        "reasons": [],
         "contributions": [
           {
             "key": "momentum_12_1",
-            "sub_score": -0.13,
+            "sub_score": -0.11,
             "weight": 0.15
           },
           {
             "key": "rsi_14",
-            "sub_score": -0.2,
+            "sub_score": 0.2,
             "weight": 0.1
           },
           {
@@ -509,231 +191,36 @@
           {
             "key": "rel_volume",
             "sub_score": 0.2,
-            "weight": 0.04
-          },
-          {
-            "key": "revenue_growth",
-            "sub_score": -0.6,
             "weight": 0.04
           }
         ],
         "note": "garde-fou ORANGE : taille max 5% du book + stop-loss −8% obligatoire (§H)."
       }
     },
-    "LOTB": {
-      "ticker": "LOTB",
-      "asof": "2026-06-12",
+    "SU.PA": {
+      "ticker": "SU.PA",
+      "asof": "2026-06-13",
       "momentum_12_1": {
-        "value": 0.206,
+        "value": 0.2093,
         "sign": "positif",
         "overheated": false,
         "ok": true
       },
       "rsi_14": {
-        "value": 69.6,
-        "zone": "fort",
-        "ok": true
-      },
-      "rel_volume": {
-        "value": 1.45,
-        "ok": true
-      },
-      "range_52w": {
-        "value": 0.983,
-        "zone": "près du haut",
-        "ok": true
-      },
-      "price": 11780,
-      "currency": "EUR",
-      "insider_90d": null,
-      "earnings_quality": null,
-      "fscore": null,
-      "fundamentals_source": null,
-      "eps_surprise": null,
-      "revenue_growth": null,
-      "gate": {
-        "verdict": "vert",
-        "composite": 0.464,
-        "coverage": 0.39,
-        "reasons": [
-          "momentum 12-1 favorable"
-        ],
-        "contributions": [
-          {
-            "key": "momentum_12_1",
-            "sub_score": 0.69,
-            "weight": 0.15
-          },
-          {
-            "key": "rsi_14",
-            "sub_score": 0.4,
-            "weight": 0.1
-          },
-          {
-            "key": "range_52w",
-            "sub_score": 0.3,
-            "weight": 0.1
-          },
-          {
-            "key": "rel_volume",
-            "sub_score": 0.2,
-            "weight": 0.04
-          }
-        ],
-        "note": "garde-fou VERT : sizing normal selon conviction, plafond 20% (§H)."
-      }
-    },
-    "BYD": {
-      "ticker": "BYD",
-      "asof": "2026-06-12",
-      "momentum_12_1": {
-        "value": -0.2908,
-        "sign": "négatif",
-        "overheated": false,
-        "ok": true
-      },
-      "rsi_14": {
-        "value": 39.4,
-        "zone": "faible",
-        "ok": true
-      },
-      "rel_volume": {
-        "value": 0.74,
-        "ok": true
-      },
-      "range_52w": {
-        "value": 0.023,
-        "zone": "près du bas",
-        "ok": true
-      },
-      "price": 84.95,
-      "currency": "HKD",
-      "insider_90d": null,
-      "earnings_quality": null,
-      "fscore": null,
-      "fundamentals_source": null,
-      "eps_surprise": null,
-      "revenue_growth": null,
-      "gate": {
-        "verdict": "rouge",
-        "composite": -0.604,
-        "coverage": 0.39,
-        "reasons": [
-          "momentum 12-1 défavorable",
-          "range 52 sem. défavorable"
-        ],
-        "contributions": [
-          {
-            "key": "momentum_12_1",
-            "sub_score": -0.97,
-            "weight": 0.15
-          },
-          {
-            "key": "rsi_14",
-            "sub_score": -0.2,
-            "weight": 0.1
-          },
-          {
-            "key": "range_52w",
-            "sub_score": -0.7,
-            "weight": 0.1
-          },
-          {
-            "key": "rel_volume",
-            "sub_score": 0,
-            "weight": 0.04
-          }
-        ],
-        "note": "garde-fou ROUGE : position INTERDITE / sortie forcée (§H). Pas de débat — drapeau dur ou composite ≤ −0.2."
-      }
-    },
-    "CI2": {
-      "ticker": "CI2",
-      "asof": "2026-06-12",
-      "momentum_12_1": {
-        "value": -0.1818,
-        "sign": "négatif",
-        "overheated": false,
-        "ok": true
-      },
-      "rsi_14": {
-        "value": 50.6,
+        "value": 46.9,
         "zone": "sain",
         "ok": true
       },
       "rel_volume": {
-        "value": 1.08,
+        "value": 1.04,
         "ok": true
       },
       "range_52w": {
-        "value": 0.182,
-        "zone": "près du bas",
-        "ok": true
-      },
-      "price": 760.68,
-      "currency": "EUR",
-      "insider_90d": null,
-      "earnings_quality": null,
-      "fscore": null,
-      "fundamentals_source": null,
-      "eps_surprise": null,
-      "revenue_growth": null,
-      "gate": {
-        "verdict": "rouge",
-        "composite": -0.284,
-        "coverage": 0.39,
-        "reasons": [
-          "momentum 12-1 défavorable"
-        ],
-        "contributions": [
-          {
-            "key": "momentum_12_1",
-            "sub_score": -0.61,
-            "weight": 0.15
-          },
-          {
-            "key": "rsi_14",
-            "sub_score": 0.2,
-            "weight": 0.1
-          },
-          {
-            "key": "range_52w",
-            "sub_score": -0.4,
-            "weight": 0.1
-          },
-          {
-            "key": "rel_volume",
-            "sub_score": 0,
-            "weight": 0.04
-          }
-        ],
-        "note": "garde-fou ROUGE : position INTERDITE / sortie forcée (§H). Pas de débat — drapeau dur ou composite ≤ −0.2."
-      }
-    },
-    "BNP.PA": {
-      "ticker": "BNP.PA",
-      "asof": "2026-06-12",
-      "momentum_12_1": {
-        "value": 0.201,
-        "sign": "positif",
-        "overheated": false,
-        "ok": true
-      },
-      "rsi_14": {
-        "value": 61.5,
-        "zone": "fort",
-        "ok": true
-      },
-      "rel_volume": {
-        "value": 0.85,
-        "ok": true
-      },
-      "range_52w": {
-        "value": 0.832,
+        "value": 0.713,
         "zone": "moitié haute",
         "ok": true
       },
-      "price": 91.94,
+      "price": 265.3,
       "currency": "EUR",
       "insider_90d": null,
       "earnings_quality": null,
@@ -743,7 +230,7 @@
       "revenue_growth": null,
       "gate": {
         "verdict": "vert",
-        "composite": 0.488,
+        "composite": 0.448,
         "coverage": 0.39,
         "reasons": [
           "momentum 12-1 favorable",
@@ -752,12 +239,12 @@
         "contributions": [
           {
             "key": "momentum_12_1",
-            "sub_score": 0.67,
+            "sub_score": 0.7,
             "weight": 0.15
           },
           {
             "key": "rsi_14",
-            "sub_score": 0.4,
+            "sub_score": 0.2,
             "weight": 0.1
           },
           {
@@ -774,157 +261,30 @@
         "note": "garde-fou VERT : sizing normal selon conviction, plafond 20% (§H)."
       }
     },
-    "SGO.PA": {
-      "ticker": "SGO.PA",
-      "asof": "2026-06-12",
-      "momentum_12_1": {
-        "value": -0.2061,
-        "sign": "négatif",
-        "overheated": false,
-        "ok": true
-      },
-      "rsi_14": {
-        "value": 50.8,
-        "zone": "sain",
-        "ok": true
-      },
-      "rel_volume": {
-        "value": 1.01,
-        "ok": true
-      },
-      "range_52w": {
-        "value": 0.191,
-        "zone": "près du bas",
-        "ok": true
-      },
-      "price": 73.28,
-      "currency": "EUR",
-      "insider_90d": null,
-      "earnings_quality": null,
-      "fscore": null,
-      "fundamentals_source": null,
-      "eps_surprise": null,
-      "revenue_growth": null,
-      "gate": {
-        "verdict": "rouge",
-        "composite": -0.316,
-        "coverage": 0.39,
-        "reasons": [
-          "momentum 12-1 défavorable"
-        ],
-        "contributions": [
-          {
-            "key": "momentum_12_1",
-            "sub_score": -0.69,
-            "weight": 0.15
-          },
-          {
-            "key": "rsi_14",
-            "sub_score": 0.2,
-            "weight": 0.1
-          },
-          {
-            "key": "range_52w",
-            "sub_score": -0.4,
-            "weight": 0.1
-          },
-          {
-            "key": "rel_volume",
-            "sub_score": 0,
-            "weight": 0.04
-          }
-        ],
-        "note": "garde-fou ROUGE : position INTERDITE / sortie forcée (§H). Pas de débat — drapeau dur ou composite ≤ −0.2."
-      }
-    },
-    "SAP": {
-      "ticker": "SAP",
-      "asof": "2026-06-12",
-      "momentum_12_1": {
-        "value": -0.4589,
-        "sign": "négatif",
-        "overheated": false,
-        "ok": true
-      },
-      "rsi_14": {
-        "value": 49,
-        "zone": "sain",
-        "ok": true
-      },
-      "rel_volume": {
-        "value": 1.64,
-        "ok": true
-      },
-      "range_52w": {
-        "value": 0.033,
-        "zone": "près du bas",
-        "ok": true
-      },
-      "price": 139.9,
-      "currency": "EUR",
-      "insider_90d": null,
-      "earnings_quality": null,
-      "fscore": null,
-      "fundamentals_source": null,
-      "eps_surprise": null,
-      "revenue_growth": null,
-      "gate": {
-        "verdict": "rouge",
-        "composite": -0.492,
-        "coverage": 0.39,
-        "reasons": [
-          "momentum 12-1 défavorable",
-          "range 52 sem. défavorable"
-        ],
-        "contributions": [
-          {
-            "key": "momentum_12_1",
-            "sub_score": -1,
-            "weight": 0.15
-          },
-          {
-            "key": "rsi_14",
-            "sub_score": 0.2,
-            "weight": 0.1
-          },
-          {
-            "key": "range_52w",
-            "sub_score": -0.7,
-            "weight": 0.1
-          },
-          {
-            "key": "rel_volume",
-            "sub_score": 0.2,
-            "weight": 0.04
-          }
-        ],
-        "note": "garde-fou ROUGE : position INTERDITE / sortie forcée (§H). Pas de débat — drapeau dur ou composite ≤ −0.2."
-      }
-    },
     "NOVOB": {
       "ticker": "NOVOB",
-      "asof": "2026-06-12",
+      "asof": "2026-06-13",
       "momentum_12_1": {
-        "value": -0.4329,
+        "value": -0.4309,
         "sign": "négatif",
         "overheated": false,
         "ok": true
       },
       "rsi_14": {
-        "value": 47.2,
+        "value": 46.3,
         "zone": "sain",
         "ok": true
       },
       "rel_volume": {
-        "value": 0.72,
+        "value": 0.63,
         "ok": true
       },
       "range_52w": {
-        "value": 0.189,
+        "value": 0.204,
         "zone": "près du bas",
         "ok": true
       },
-      "price": 282.55,
+      "price": 287.25,
       "currency": "DKK",
       "insider_90d": null,
       "earnings_quality": null,
@@ -964,92 +324,50 @@
         "note": "garde-fou ROUGE : position INTERDITE / sortie forcée (§H). Pas de débat — drapeau dur ou composite ≤ −0.2."
       }
     },
-    "MSTR": {
-      "ticker": "MSTR",
-      "asof": "2026-06-12",
+    "SAP": {
+      "ticker": "SAP",
+      "asof": "2026-06-13",
       "momentum_12_1": {
-        "value": -0.5144,
+        "value": -0.4782,
         "sign": "négatif",
         "overheated": false,
         "ok": true
       },
       "rsi_14": {
-        "value": 24.7,
-        "zone": "survendu",
+        "value": 41.5,
+        "zone": "faible",
         "ok": true
       },
       "rel_volume": {
-        "value": 0.95,
+        "value": 0.9,
         "ok": true
       },
       "range_52w": {
-        "value": 0.045,
+        "value": 0.036,
         "zone": "près du bas",
         "ok": true
       },
-      "price": 120.15,
-      "currency": "USD",
-      "insider_90d": {
-        "ratio": 0.67,
-        "buys": 2,
-        "sells": 1,
-        "zone": "achats nets",
-        "ok": true
-      },
-      "earnings_quality": {
-        "accruals_ratio": -0.0613,
-        "fcf_to_ni": 0.02,
-        "flag": "ambre",
-        "ok": true
-      },
-      "fscore": {
-        "score": 3,
-        "max": 9,
-        "band": "faible",
-        "tests": {
-          "roa_positif": 0,
-          "cfo_positif": 0,
-          "roa_en_hausse": 0,
-          "accruals_sains": 1,
-          "dette_lt_en_baisse": 1,
-          "liquidite_en_hausse": 1,
-          "pas_de_dilution": 0,
-          "marge_brute_en_hausse": 0,
-          "rotation_actifs_en_hausse": 0
-        },
-        "missing": [],
-        "ok": true
-      },
-      "fundamentals_source": "SEC EDGAR (10-K)",
+      "price": 140.26,
+      "currency": "EUR",
+      "insider_90d": null,
+      "earnings_quality": null,
+      "fscore": null,
+      "fundamentals_source": null,
       "eps_surprise": {
-        "surprise_pct": -149.51,
-        "date": "2026-05-05",
+        "surprise_pct": 4.69,
+        "date": "2026-04-23",
         "ok": true
       },
       "revenue_growth": null,
       "gate": {
         "verdict": "rouge",
-        "composite": -0.62,
-        "coverage": 0.96,
+        "composite": -0.521,
+        "coverage": 0.43,
         "reasons": [
-          "F-Score défavorable",
           "momentum 12-1 défavorable",
-          "RSI 14j défavorable",
-          "range 52 sem. défavorable",
-          "EPS surprise défavorable",
-          "F-Score critique (3/9)"
+          "range 52 sem. défavorable"
         ],
         "contributions": [
-          {
-            "key": "fscore",
-            "sub_score": -1,
-            "weight": 0.28
-          },
-          {
-            "key": "earnings_quality",
-            "sub_score": -0.3,
-            "weight": 0.15
-          },
           {
             "key": "momentum_12_1",
             "sub_score": -1,
@@ -1057,17 +375,12 @@
           },
           {
             "key": "rsi_14",
-            "sub_score": -0.5,
+            "sub_score": -0.2,
             "weight": 0.1
           },
           {
             "key": "range_52w",
             "sub_score": -0.7,
-            "weight": 0.1
-          },
-          {
-            "key": "insider_90d",
-            "sub_score": 0.4,
             "weight": 0.1
           },
           {
@@ -1077,70 +390,7 @@
           },
           {
             "key": "eps_surprise",
-            "sub_score": -1,
-            "weight": 0.04
-          }
-        ],
-        "note": "garde-fou ROUGE : position INTERDITE / sortie forcée (§H). Pas de débat — drapeau dur ou composite ≤ −0.2."
-      }
-    },
-    "RMS.PA": {
-      "ticker": "RMS.PA",
-      "asof": "2026-06-12",
-      "momentum_12_1": {
-        "value": -0.312,
-        "sign": "négatif",
-        "overheated": false,
-        "ok": true
-      },
-      "rsi_14": {
-        "value": 54.1,
-        "zone": "sain",
-        "ok": true
-      },
-      "rel_volume": {
-        "value": 0.73,
-        "ok": true
-      },
-      "range_52w": {
-        "value": 0.12,
-        "zone": "près du bas",
-        "ok": true
-      },
-      "price": 1643,
-      "currency": "EUR",
-      "insider_90d": null,
-      "earnings_quality": null,
-      "fscore": null,
-      "fundamentals_source": null,
-      "eps_surprise": null,
-      "revenue_growth": null,
-      "gate": {
-        "verdict": "rouge",
-        "composite": -0.436,
-        "coverage": 0.39,
-        "reasons": [
-          "momentum 12-1 défavorable"
-        ],
-        "contributions": [
-          {
-            "key": "momentum_12_1",
-            "sub_score": -1,
-            "weight": 0.15
-          },
-          {
-            "key": "rsi_14",
-            "sub_score": 0.2,
-            "weight": 0.1
-          },
-          {
-            "key": "range_52w",
-            "sub_score": -0.4,
-            "weight": 0.1
-          },
-          {
-            "key": "rel_volume",
-            "sub_score": 0,
+            "sub_score": 0.4,
             "weight": 0.04
           }
         ],
@@ -1149,29 +399,14 @@
     }
   },
   "data_gaps": [
-    "SAF.PA: initiés OpenInsider indisponibles (non-US ?)",
-    "SAF.PA: états financiers FMP incomplets",
-    "HO.PA: initiés OpenInsider indisponibles (non-US ?)",
-    "HO.PA: états financiers FMP incomplets",
-    "EIMI: initiés OpenInsider indisponibles (non-US ?)",
-    "EIMI: états financiers FMP incomplets",
-    "AI: initiés OpenInsider indisponibles (non-US ?)",
-    "AI: états financiers FMP incomplets",
-    "LOTB: initiés OpenInsider indisponibles (non-US ?)",
-    "LOTB: états financiers FMP incomplets",
-    "BYD: initiés OpenInsider indisponibles (non-US ?)",
-    "BYD: états financiers FMP incomplets",
-    "CI2: initiés OpenInsider indisponibles (non-US ?)",
-    "CI2: états financiers FMP incomplets",
-    "BNP.PA: initiés OpenInsider indisponibles (non-US ?)",
-    "BNP.PA: états financiers FMP incomplets",
-    "SGO.PA: initiés OpenInsider indisponibles (non-US ?)",
-    "SGO.PA: états financiers FMP incomplets",
-    "SAP: initiés OpenInsider indisponibles (non-US ?)",
-    "SAP: états financiers FMP incomplets",
+    "MSCI: initiés OpenInsider indisponibles (non-US ?)",
+    "MC.PA: initiés OpenInsider indisponibles (non-US ?)",
+    "MC.PA: états financiers FMP incomplets",
+    "SU.PA: initiés OpenInsider indisponibles (non-US ?)",
+    "SU.PA: états financiers FMP incomplets",
     "NOVOB: initiés OpenInsider indisponibles (non-US ?)",
     "NOVOB: états financiers FMP incomplets",
-    "RMS.PA: initiés OpenInsider indisponibles (non-US ?)",
-    "RMS.PA: états financiers FMP incomplets"
+    "SAP: initiés OpenInsider indisponibles (non-US ?)",
+    "SAP: états financiers FMP incomplets"
   ]
 }

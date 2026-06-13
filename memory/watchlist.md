@@ -1,27 +1,27 @@
-# Watchlist — maj 2026-06-10
+# Watchlist — maj 2026-06-13
 
-> Mode : **qualité pur** (aucune tendance validée lundi — trends.md vierge).
-> Régime : **RISK-ON SAIN** · plancher cash 5 % (signals.js 2026-06-10).
-> F-Score indisponible (clé FMP absente) → coverage 39-53 % selon ticker.
-> Drapeaux durs absents → gates calculés sur prix + momentum + RSI + range52 + initiés US.
+> Mode : **tendance VALIDÉE** — Réarmement européen.
+> Régime : **SURCHAUFFE** · plancher cash 30% (signals.js 2026-06-13).
+> Coverage : 39-96% selon ticker (F-Score EDGAR pour US, prix+momentum pour EU).
 
-| ★  | Ticker  | Nom                | Tag       | Horizon | Pré-score | Gate        | Drapeau bulle                          | Thèse 1 ligne                                                                   | Vu le      |
-|----|---------|--------------------|-----------|---------|:---------:|-------------|----------------------------------------|---------------------------------------------------------------------------------|------------|
-|    | SU.PA   | Schneider Electric | [qualité] | long    | 76        | 🟢 c=+0.51  | Deep-dive 06-11 → **Surveiller/Moyenne** | Qualité sans marge (~26x) + FX ; Acheter sur repli vers ~23x. Fiche convictions.md | 2026-06-11 |
-|    | MSCI    | MSCI Inc.          | [qualité] | long    | 60        | 🟠 c=+0.20  | Deep-dive 06-11 → **Acheter/Moyenne**    | Moat indices, PE 30x dé-raté vs histoire ; gate 🟠 ⇒ book ≤5 %+stop. Fiche convictions.md | 2026-06-11 |
-|    | MC.PA   | LVMH               | [qualité] | long    | 55        | 🟠 c=−0.10  | Deep-dive 06-11 → **Surveiller/Moyenne** | Marge de sécurité réelle mais retournement non confirmé ; attendre S1 28 juil.   | 2026-06-11 |
-|    | LIN     | Linde              | [qualité] | long    | 61        | 🟢 c=+0.22  | Vigilance légère — range52 0.957       | Gaz industriels compounder (ROIC 24 %, contrats take-or-pay) ; near-high → peu de décote | 2026-06-10 |
-|    | BC8.DE  | Bechtle            | [qualité] | long    | 42        | 🟠 c=−0.15  | Sain — mid-cap, peu de hype            | IT distribution Allemagne, sous le radar ; repli –21 % mom, RSI 66 (rebond potentiel) | 2026-06-10 |
-|    | ASML    | ASML               | [qualité] | —       | 45        | ⚠️ SURCHAUFFE | Risque élevé — mom +103 %, RSI 75.7, near-high | **À éviter** : moat EUV solide mais surchauffe extrême — attendre repli significatif | 2026-06-10 |
-|    | V       | Visa               | [qualité] | —       | 40        | 🔴 c=−0.21  | Sain (fondamentaux)                    | **À éviter** (gate rouge) : FCF $21 Md, PE 23× — mom –14 % ; surveiller pour rebond | 2026-06-10 |
-|    | MSFT    | Microsoft          | [qualité] | —       | 35        | 🔴 c=−0.31  | Vigilance — capex IA $190 Md           | **À éviter** (gate rouge) : cloud/IA solide — mom –12 %, range52 bas ; recalculer | 2026-06-10 |
+| ★  | Ticker  | Nom                | Tag       | Horizon | Gate        | Drapeau bulle                          | Thèse 1 ligne / Statut                                                                   | Vu le      |
+|----|---------|--------------------|-----------|---------|-------------|----------------------------------------|---------------------------------------------------------------------------------|------------|
+| ★  | MSCI    | MSCI Inc.          | [qualité] | long    | 🟢 c=+0.22 F7/9 cov86% | Sain — 0 drapeau (bulle improbable)     | **ACHETÉ 13/06** — quasi-monopole indices, PE 30x dé-raté vs historique, rétention 95.4%. Détenu 1.36 parts. | 2026-06-13 |
+|    | SU.PA   | Schneider Electric | [qualité] | long    | 🟢 c=+0.51  | Vigilance — valo pleine ~26x forward   | **Surveiller** — qualité picks-and-shovels IA/data center, mais PE tendu. Acheter sur repli ~23x (choc FX ou digestion capex). | 2026-06-11 |
+|    | MC.PA   | LVMH               | [qualité] | long    | 🟠 c=−0.10  | Sain — marge de sécurité réelle (21x vs 24-27x historique) | **Surveiller** — pari retournement luxe non confirmé. Attendre S1 28 juillet : si organique ré-accélère mid-single-digit → Acheter. | 2026-06-11 |
+|    | NOVOB   | Novo Nordisk B     | [qualité] | long    | 🔴 c=−0.44  | Sain — thèse fondamentale solide       | **Hors book (gate 🔴)** — thèse GLP-1 très solide (Medicare juillet). **Ré-entrée prioritaire** si gate remonte > -0.2. Surveiller début juillet. | 2026-06-12 |
+|    | SAP     | SAP AG             | [qualité] | long    | 🔴 c=−0.49  | Sain — cloud RISE confirmé             | **Hors book (gate 🔴)** — thèse Autonomous Enterprise intacte (backlog +20%, cloud +19%). Ré-entrée si momentum rebondit. | 2026-06-12 |
+|    | RHM.DE  | Rheinmetall        | [défense] | long    | à calculer  | Vigilance — hausse rapide des cours defense | Nouveau candidat lié à la tendance défense EU. Artillerie, véhicules blindés, pure-play réarmement terrestre. À analyser (Scout lundi). | 2026-06-13 |
+|    | LIN     | Linde              | [qualité] | long    | 🟢 c=+0.22  | Vigilance légère — range52 0.957       | Compounder gaz industriels (ROIC 24%, take-or-pay) ; near-high, peu de décote. Surveiller. | 2026-06-10 |
+|    | ASML    | ASML               | [qualité] | —       | ⚠️ SURCHAUFFE | Risque élevé — mom +103%, RSI 75.7     | **À éviter** : moat EUV inattaquable mais surchauffe extrême. Attendre -20 à -30% minimum. | 2026-06-10 |
+|    | V       | Visa               | [qualité] | —       | 🔴 c=−0.21  | Sain (fondamentaux)                    | **À éviter** (gate rouge) : FCF $21Md, PE 23x — surveiller pour rebond (gate). | 2026-06-10 |
+|    | MSFT    | Microsoft          | [qualité] | —       | 🔴 c=−0.31  | Vigilance — capex IA $190Md            | **À éviter** (gate rouge) : cloud/IA solide — momentum cassé, recalculer. | 2026-06-10 |
 
-## Alertes book — changements de gate (2026-06-10 vs 2026-06-06)
+## Ré-entrées prioritaires (position book IA vendues, thèse intacte)
 
-| Ticker | Ancien gate | Nouveau gate | Impact §H |
-|--------|:-----------:|:------------:|-----------|
-| SGO.PA | 🟠 ambre    | 🔴 rouge     | Sortie forcée à la prochaine passe (Portfolio Doctor jeudi) |
-| AMZN   | 🟠 ambre    | 🟢 vert      | Revient à sizing normal (positif) |
-
-> SGO.PA composite –0.196→ franchit le seuil –0.2 (momentum –20 %). Sortie à traiter jeudi (§H, pas de débat).
-> AMZN composite +0.258, momentum +25 %, RSI 37 (survendu → rebond potentiel).
+| Ticker | Thèse | Gate actuel | Condition de ré-entrée |
+|--------|-------|:-----------:|------------------------|
+| NOVOB  | GLP-1/Wegovy, Medicare juillet | 🔴 c=−0.44 | Gate composite > -0.2 (surveiller début juillet post-Medicare) |
+| SAP    | Cloud RISE, Autonomous Enterprise | 🔴 c=−0.49 | Gate composite > -0.2 + momentum rebondit |
+| CI2    | Macro Inde (+6.9% PIB) | 🔴 c=−0.28 | Gate composite > -0.2 + flux étrangers se stabilisent |
+| BYD    | EV Chine, technologie charge | 🔴 c=−0.60 | Gate composite > -0.2 (momentum très négatif, patience requise) |

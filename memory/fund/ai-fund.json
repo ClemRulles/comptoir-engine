@@ -1,8 +1,8 @@
 {
-  "as_of": "2026-06-12",
+  "as_of": "2026-06-13",
   "seeded": true,
   "start_capital": 10417.28,
-  "cash": 5859.74,
+  "cash": 5959.03,
   "positions": [
     {
       "ticker": "SAF.PA",
@@ -13,20 +13,22 @@
       "thesis_id": "saf-aero",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "thèse cassée si cycle aéro/MRO se retourne",
-      "thesis": "Aéronautique + défense, qualité industrielle. Hérité du groupe à t0."
+      "exit_rule": "thèse cassée si cycle aéro/MRO se retourne (heures de vol en baisse) — stop mental, pas de seuil prix",
+      "seed": false,
+      "thesis": "Aéronautique + MRO LEAP : aftermarket +32%, LEAP +63% livrés. Gate 🟢 vert (composite +0.311). Thèse renforcée Q1 2026."
     },
     {
       "ticker": "HO.PA",
-      "quantity": 3.26825735,
+      "quantity": 2.21825735,
       "avg_cost": 246.320872,
       "confidence": "Moyenne",
       "horizon": "coeur",
       "thesis_id": "ho-defense",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "sortie si budgets défense EU décélèrent nettement",
-      "thesis": "Cycle défense européen structurel. Hérité du groupe à t0."
+      "exit_rule": "sortie si budgets défense EU décélèrent nettement ; stop -8% à 226.61 EUR (avg_cost × 0.92)",
+      "seed": false,
+      "thesis": "Cycle défense européen structurel, commandes +75% Défense H1 2026. Trimé à 5% NAV (cap 🟠 ambre)."
     },
     {
       "ticker": "AMZN",
@@ -37,20 +39,9 @@
       "thesis_id": "amzn-aws",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "sortie si croissance AWS + marge retail se cassent",
-      "thesis": "AWS + levier marge retail/pub. Hérité du groupe à t0."
-    },
-    {
-      "ticker": "NFLX",
-      "quantity": 8.43950815,
-      "avg_cost": 87.92337,
-      "confidence": "Moyenne",
-      "horizon": "coeur",
-      "thesis_id": "nflx-pricing",
-      "entry_date": "2026-06-04",
-      "target": null,
-      "exit_rule": "sortie si stagnation abonnés + pricing power perdu",
-      "thesis": "Leader streaming, pricing power + pub. Hérité du groupe à t0."
+      "exit_rule": "sortie si croissance AWS + marge retail se cassent ; gate 🟢 vert (composite +0.257)",
+      "seed": false,
+      "thesis": "AWS + levier marge retail/pub. F5/9, EPS surprise +68%, earnings quality vert. RSI 26.8 survendu (potentiel rebond)."
     },
     {
       "ticker": "EIMI",
@@ -62,19 +53,21 @@
       "entry_date": "2026-06-04",
       "target": null,
       "exit_rule": "rebalancement, pas de thèse single-stock",
-      "thesis": "Diversification marchés émergents (ETF). Hérité du groupe à t0."
+      "seed": false,
+      "thesis": "Diversification marchés émergents (ETF). Momentum +38%, gate 🟢 vert. IMF EM growth +3.9% 2026."
     },
     {
       "ticker": "AI",
       "quantity": 2.50935147,
       "avg_cost": 160.41595,
-      "confidence": "Haute",
+      "confidence": "Moyenne",
       "horizon": "coeur",
       "thesis_id": "airliquide-compounder",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "sortie si ROIC/volumes se dégradent durablement",
-      "thesis": "Air Liquide — compounder gaz industriels, défensif. Hérité du groupe à t0."
+      "exit_rule": "sortie si ROIC/volumes se dégradent durablement ; stop -8% à 147.58 EUR (avg_cost × 0.92) ; CA YoY -35.7% (04/2026) à clarifier H1",
+      "seed": false,
+      "thesis": "Air Liquide — compounder gaz industriels, défensif. Gate 🟠 ambre (composite -0.097, coverage 43%). CA YoY anormal à surveiller."
     },
     {
       "ticker": "LOTB",
@@ -85,8 +78,9 @@
       "thesis_id": "lotus-quality",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "alléger si DCF inversé devient irréaliste (valo tendue)",
-      "thesis": "Marque premium (Biscoff), croissance + marge. Valo tendue. Hérité du groupe à t0."
+      "exit_rule": "alléger si DCF inversé devient irréaliste (RSI 77.6 = suracheté, near 52w high 0.983) ; valo tendue signalée depuis le seed",
+      "seed": false,
+      "thesis": "Lotus Bakeries (Biscoff) — compounder premium. RSI 77.6 overbought, gate 🟢 mais vigilance valo. Taille petite (4.4% NAV)."
     },
     {
       "ticker": "BNP.PA",
@@ -98,7 +92,21 @@
       "entry_date": "2026-06-04",
       "target": null,
       "exit_rule": "sortie si taux/risque crédit cassent la thèse banque",
-      "thesis": "Banque diversifiée, valo basse, +32% depuis achat. Hérité du groupe à t0."
+      "seed": false,
+      "thesis": "Banque diversifiée, +42.9% depuis book entry, gate 🟢 vert (composite +0.379). ECB +25bps (courbe favorable)."
+    },
+    {
+      "ticker": "MSCI",
+      "quantity": 1.36,
+      "avg_cost": 535.40,
+      "confidence": "Moyenne",
+      "horizon": "coeur",
+      "thesis_id": "msci-monopole",
+      "entry_date": "2026-06-13",
+      "target": null,
+      "exit_rule": "vendre si rétention abonnés < 93% ou PE re-expand > 40x sans accélération organique ; stop -8% à 492.57 EUR",
+      "seed": false,
+      "thesis": "Quasi-monopole indices MSCI, PE 30x dé-raté vs historique 35-45x, F7/9 EDGAR, organique +13%, rétention 95.4%. Analyst upgrades Goldman/Wells/RJ."
     }
   ],
   "trades": [
@@ -207,7 +215,46 @@
       "thesis_id": "hermes-luxe",
       "horizon": "coeur",
       "rationale": "Fenêtre de sortie jeudi (§H) : gate 🔴 (composite −0.436, momentum −31 %, premiums resale Birkin/Kelly en baisse) → sortie forcée."
+    },
+    {
+      "ts": "2026-06-13",
+      "side": "sell",
+      "ticker": "NFLX",
+      "quantity": 8.43950815,
+      "price": 69.38,
+      "fee": 1.76,
+      "confidence": "Moyenne",
+      "thesis_id": "nflx-pricing",
+      "horizon": "coeur",
+      "gate": "🟠 ambre composite +0.012 (F6/9, earnings quality vert)",
+      "rationale": "Stop -8% déclenché (69.38 EUR < seuil 80.89 EUR = avg_cost 87.92 × 0.92). Gate 🟠 ambre exige stop obligatoire §H. RSI 14.6 survendu extrême mais momentum -28% — la règle prime. Thèse 'pricing power' fragilisée (EPS raté T1, départ Hastings board). Stop non documenté explicitement à l'entrée → leçon : toujours écrire stop_price_eur."
+    },
+    {
+      "ts": "2026-06-13",
+      "side": "sell",
+      "ticker": "HO.PA",
+      "quantity": 1.05,
+      "price": 234.70,
+      "fee": 0.74,
+      "confidence": "Moyenne",
+      "thesis_id": "ho-defense",
+      "horizon": "coeur",
+      "gate": "🟠 ambre composite -0.087 (cap 5% NAV §H)",
+      "rationale": "Trim discipliné §H : position 7.5% NAV > cap ambre 5% (gate 🟠 composite -0.087). Thèse défense EU intacte (GARDER Opus, commandes +75%). Pas une sortie de thèse — compliance sizing. Restent 2.218 parts ≈ 5.0% NAV."
+    },
+    {
+      "ts": "2026-06-13",
+      "side": "buy",
+      "ticker": "MSCI",
+      "quantity": 1.36,
+      "price": 535.40,
+      "fee": 2.18,
+      "confidence": "Moyenne",
+      "thesis_id": "msci-monopole",
+      "horizon": "coeur",
+      "gate": "🟢 vert composite +0.22 coverage 86% F7/9 EDGAR",
+      "rationale": "Nouvelle conviction Deep-dive 11/06 → entrée vendredi §H. Quasi-monopole indices, PE 30x dé-raté vs historique 35-45x, F7/9 EDGAR (solide), organique +13%, rétention 95.4%, analyst upgrades Goldman Buy/Wells OW/RJ PT $730. Gate 🟢 vert (F7/9 catapulte couverture 49%→86%). Sizing Moyenne = 7% NAV (~730€). Stop -8% à 492.57 EUR. n<8 décisions → sizing standard §H sans ajustement calibration."
     }
   ],
-  "note": "Book RE-CLONÉ depuis le groupe au 2026-06-08 (valeurs Trade Republic). PARTS RÉELLES FIGÉES : quantity = valeur TR / cours live EUR au seed (parts fractionnaires identiques à seed-group), avg_cost = coût de revient TR / quantity (PnL = % depuis achat TR). Valorisation = quantity × cours live (EUR), exactement comme le fonds du groupe → les deux bougent ensemble tant que l'IA n'a pas divergé. Σ positions t0 = 6279,57 € ; cash 4108 € ; NAV t0 ≈ 10387,57 € (= groupe). start_capital = 6309,28 € (baseline course) + 4108 € = 10417,28 € pour que le cash ne compte pas comme du rendement. Les apports membres mensuels (le 5, 10×25 €) s'ajoutent au cash ET au start_capital des deux fonds via l'interface (getAppData/value/backfill). Dès le 1er vendredi, l'IA gère/rebalance selon §H et diverge — ne plus re-cloner après divergence."
+  "note": "Book RE-CLONÉ depuis le groupe au 2026-06-08 (valeurs Trade Republic). PARTS RÉELLES : quantity = valeur TR / cours live EUR au seed, avg_cost = coût de revient TR / quantity. Divergence démarrée au 1er vendredi (13/06) : 3 exits gate-disciplinées (NFLX stop -8%, HO trim à 5% NAV) + 1 entrée propre (MSCI Acheter/Moyenne). Cash 57.4% NAV (régime SURCHAUFFE → plancher 30% respecté). start_capital = 10417.28 €. NAV estimée 2026-06-13 ≈ 10,384 €."
 }
