@@ -1,0 +1,12 @@
+{
+  "_doc": "Sentiment X (Grok) transformé en PRÉDICTIONS SCORÉES (method §F) — le sentiment ne décide jamais sur la foi : il se MÉRITE une voix en prouvant qu'il prédit. Le lundi (pouls Grok) enregistre 0-3 'calls' directionnels court terme ; engine/grok.js les score contre le prix réel à l'horizon. Schéma d'un call : { id (kebab-case), opened (YYYY-MM-DD), ticker, direction ('hausse'|'baisse' attendue à court terme), confidence (0.5-0.9, force du signal de sentiment), thesis (1 ligne : ce que Grok 'sent'), horizon (YYYY-MM-DD, ~2 semaines), source (semaine du pouls), played (bool : le book a-t-il pris une position tactique ?), status ('ouvert' | 'joué' | 'résolu' | 'expiré'), resolution ({ date, move_pct (variation réelle sur l'horizon), correct (bool : le mouvement a-t-il suivi la direction au-delà de ±2 %), brier ((confidence − correct)²), trade_alpha_pct (si joué : alpha — mesure SÉPARÉE) }) }. 'stats' (recalculé par engine/grok.js) : resolved, hits, hit_rate, brier, tactical_cap = budget MAX du NAV pour les paris Grok, MÉRITÉ : 0 % tant que < 6 calls résolus, puis 3/6/8 % selon hit_rate (≥0.55/0.65/0.70), 0 % si < 0.45. Garde-fous §F : jamais sur gate 🔴, jamais contre la checklist bulle §B, demi-taille tactique, stop serré, sortie datée. L'euphorie reste un signal contrarien de top. Ne jamais réécrire un call résolu.",
+  "updated": "2026-06-13",
+  "calls": [],
+  "stats": {
+    "resolved": 0,
+    "hits": 0,
+    "hit_rate": 0,
+    "brier": null,
+    "tactical_cap": 0
+  }
+}

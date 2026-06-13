@@ -94,19 +94,38 @@ en régime de surchauffe généralisée.
 
 ---
 
-## F. Sentiment / Grok (pouls hebdo)
+## F. Sentiment / Grok — un témoin qui peut GAGNER une voix (jamais l'obtenir sur la foi)
 
-Le sentiment X n'entre **jamais** dans le score de conviction. Il alimente seulement :
-- la case « euphorie sociale » de la checklist bulle (contrarien) ;
-- le radar de catalyseurs court terme de la poche tactique (avec stop serré) ;
-- le **pouls hebdo du marché** (`memory/grok-pulse.json`, écrit le lundi en Partie D) :
-  thèmes/tendances et titres qui ont bougé. C'est un **radar à corroborer** : un thème ne devient
-  une tendance candidate (ou n'influence une entrée de book) que s'il est **recoupé par une source
-  dure** (`corroborated:true`). Un thème `corroborated:false` reste affiché, mais ne justifie
-  **aucune** décision à lui seul.
-Pondération maximale du sentiment dans une décision : **témoin, pas juge.**
-Rappel de prudence : le sentiment subjectif aide surtout en marché haussier ; les
-faits priment en marché baissier.
+Le sentiment X n'entre **jamais** dans le score de conviction *cœur*. Pour le **long terme**, il
+reste strictement un **témoin** :
+- la case « euphorie sociale » de la checklist bulle (contrarien — l'euphorie marque les tops) ;
+- le **pouls hebdo** (`memory/grok-pulse.json`, lundi Partie D) : thèmes/titres qui bougent, **à
+  corroborer**. Un thème ne devient candidat que recoupé par une source dure (`corroborated:true`).
+
+**Mais le sentiment a un edge POSSIBLE à court terme** (réaction rapide aux news, momentum
+retail) — possible, pas prouvé. On ne le croit donc pas : on le **mesure**, et il **gagne** une
+voix tactique en proportion de ce qu'il prouve. Mécanique (`memory/fund/grok-calls.json`,
+`engine/grok.js`), miroir exact de la calibration §I et du book §K :
+
+1. **Chaque intuition Grok devient un call falsifiable**, pré-enregistré le lundi : `ticker`,
+   `direction` (hausse/baisse à ~2 semaines), `confidence` (0,5-0,9), thèse 1 ligne, `horizon`.
+   « Ça va monter » sans horizon est invérifiable ; un call Grok est jugeable à date fixe.
+2. **Il est scoré contre le prix réel** (`engine/grok.js`) : `correct` si le mouvement a suivi la
+   direction au-delà de ±2 % ; `brier = (confidence − correct)²`. Exigeant : le sentiment prétend
+   prédire un *mouvement*, pas de la stagnation.
+3. **Le budget tactique de Grok se MÉRITE, en partant de ZÉRO** : `stats.tactical_cap` = 0 % tant
+   que < 6 calls résolus (Grok n'a rien prouvé → aucune allocation, pur radar). Ensuite, hit_rate
+   ≥ 0,55 → 3 %, ≥ 0,65 → 6 %, ≥ 0,70 → 8 % du NAV ; < 0,45 → retour à 0 %. Une IA qui surécoute
+   un Grok médiocre voit sa poche se fermer toute seule.
+
+**Garde-fous (non négociables, même si Grok est calibré).** Un call ne déclenche un trade que
+**tactique** : demi-taille (§G/§H), **jamais sur un gate 🔴**, **jamais contre la checklist bulle
+§B** (un parabolique hypé reste « éviter »), stop serré, date d'horizon = déclencheur de sortie,
+fenêtre du jeudi applicable (vente seule). Le total des positions Grok ≤ `tactical_cap`. Le
+sentiment ne **relève jamais** la confiance d'un dossier cœur, et n'autorise **aucun** achat sur
+le seul sentiment d'une crypto (CLAUDE.md). **Témoin qui a gagné le droit de voter — jamais juge.**
+Rappel : le sentiment aide surtout en marché haussier ; en marché baissier, les faits priment et
+`tactical_cap` doit être lu à l'aune du régime (en SURCHAUFFE/STRESS, reste sous le plancher de cash §H).
 
 ---
 

@@ -8,7 +8,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
   momentum12_1, momentumFromCloses, rsi, relativeVolume, range52w, insiderSignal,
-  piotroski, earningsQuality, regimeScore, gate, GATE_WEIGHTS, periodReturn, forecastStats,
+  piotroski, earningsQuality, regimeScore, gate, GATE_WEIGHTS, periodReturn, forecastStats, directionalHit, grokStats,
 } from "./lib/calc.js";
 import { annualFromFacts, cikForSymbol } from "./lib/edgar.js";
 
@@ -205,6 +205,40 @@ const ok = (cond, label) => {
   ok(probs.some((p) => typeof p.dropScenario === "number"), "schema forecasts: entrée non-objet -> drop");
   ok(probs.some((p) => p.resetStats), "schema forecasts: stats invalide -> reset");
   ok(SCHEMAS.forecasts.check({ scenarios: "oops", stats: {} }).some((p) => p.hard), "schema forecasts: scenarios non-tableau -> dur");
+}
+
+// ---- calc: directionalHit + grokStats (sentiment Grok §F) ------------------
+{
+  ok(directionalHit(0.05, "hausse") === true, "directionalHit: +5% sur call hausse -> correct");
+  ok(directionalHit(0.01, "hausse") === false, "directionalHit: +1% (sous bande 2%) -> miss (pas de mouvement)");
+  ok(directionalHit(-0.05, "baisse") === true, "directionalHit: -5% sur call baisse -> correct");
+  ok(directionalHit(0.05, "baisse") === false, "directionalHit: +5% sur call baisse -> miss");
+  ok(directionalHit(null, "hausse") === null, "directionalHit: move non numérique -> null");
+
+  const call = (conf, correct, status = "résolu") => ({
+    id: "x", ticker: "T", direction: "hausse", status, confidence: conf,
+    resolution: status === "résolu" ? { correct } : undefined,
+  });
+  ok(grokStats([]).resolved === 0, "grokStats: vide -> 0 résolu");
+  const st = grokStats([call(0.7, true), call(0.6, false), call(0.8, true), call(0.9, true, "ouvert")]);
+  ok(st.resolved === 3, `grokStats: seuls les résolus comptent (got ${st.resolved})`);
+  ok(st.hits === 2 && Math.abs(st.hit_rate - 0.667) < 1e-9, `grokStats: hit = correct (got ${st.hits}, ${st.hit_rate})`);
+  // brier : (0.7-1)²+(0.6-0)²+(0.8-1)² = 0.09+0.36+0.04 = 0.49 /3 ≈ 0.163
+  ok(Math.abs(st.brier - 0.163) < 1e-9, `grokStats: brier moyen (got ${st.brier})`);
+}
+
+// ---- schema: grok-calls.json -----------------------------------------------
+{
+  const { SCHEMAS } = await import("./lib/schema.js");
+  const good = { calls: [{ id: "nvda-hot", ticker: "NVDA", direction: "hausse", status: "ouvert", confidence: 0.7 }], stats: {} };
+  ok(SCHEMAS.grokCalls.check(good).length === 0, "schema grok: call valide -> aucun problème");
+  const bad = { calls: [{ id: "a", ticker: "X", direction: "up", status: "ouvert", confidence: 1.5 }, "junk"], stats: null };
+  const probs = SCHEMAS.grokCalls.check(bad);
+  ok(probs.some((p) => /direction/.test(p.msg)), "schema grok: direction invalide détectée");
+  ok(probs.some((p) => /confidence/.test(p.msg)), "schema grok: confidence hors borne détectée");
+  ok(probs.some((p) => typeof p.dropCall === "number"), "schema grok: entrée non-objet -> dropCall");
+  ok(probs.some((p) => p.resetGrokStats), "schema grok: stats invalide -> reset");
+  ok(SCHEMAS.grokCalls.check({ calls: "oops", stats: {} }).some((p) => p.hard), "schema grok: calls non-tableau -> dur");
 }
 
 // ---- guard: réparation sur fichiers temporaires ---------------------------

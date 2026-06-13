@@ -39,6 +39,13 @@ function applySoftRepairs(schema, obj, problems) {
     actions.push(`scenarios[${i}] retiré (entrée invalide)`);
   }
 
+  // Même logique pour calls[] (grok-calls.json).
+  const cdrops = problems.filter((p) => typeof p.dropCall === "number").map((p) => p.dropCall);
+  for (const i of cdrops.sort((a, b) => b - a)) {
+    obj.calls.splice(i, 1);
+    actions.push(`calls[${i}] retiré (entrée invalide)`);
+  }
+
   for (const p of problems) {
     if (p.addBucket) {
       obj.buckets.push(bucketFor(p.addBucket));
@@ -60,7 +67,7 @@ function applySoftRepairs(schema, obj, problems) {
       obj.trades = [];
       actions.push("`trades` réinitialisé");
     }
-    if (p.resetStats) {
+    if (p.resetStats || p.resetGrokStats) {
       obj.stats = schema.template().stats;
       actions.push("`stats` réinitialisé");
     }
