@@ -8,7 +8,7 @@ Lis `CLAUDE.md`, `skills/engine-method.md` (surtout §H sizing/risque, §I calib
 `skills/trend-gate.md`, `skills/quant-signals.md`, `memory/trends.md`, `memory/convictions.md`,
 `memory/portfolio.md`, `memory/market-regime.md`, `memory/lessons.md`, `memory/catalysts.md`,
 `memory/fund/ai-fund.json`, `memory/fund/decisions.json`, `memory/fund/calibration.json`,
-`memory/fund/signals.json`.
+`memory/fund/signals.json`, `memory/fund/forecasts.json`, `memory/fund/grok-calls.json`.
 
 C'est la routine la plus chargée : elle **apprend**, **gère le book IA**, puis **packagé** la semaine.
 Fais les trois passes dans l'ordre.
@@ -49,6 +49,12 @@ dans `ai-fund.json`) — ou règle de sortie touchée cette semaine :
 7. **Recompute** `memory/fund/calibration.json` (buckets par confiance + global). Mets `updated`.
 
 S'il n'y a eu aucune fermeture, écris-le et ne fabrique pas de leçon.
+
+**Calls Grok à résoudre (sentiment §F).** Joue `node engine/grok.js` : il score contre le prix
+réel les calls de `grok-calls.json` dont l'horizon est passé et met à jour le budget tactique
+mérité. Lis la sortie ; si des calls **joués** se sont résolus, ajoute leur `trade_alpha_pct`
+(via `engine/bench.js`) et tire une **leçon datée** distinguant la PRÉDICTION (Grok a-t-il bien
+senti ?) du TRADE (alpha). Le sentiment a-t-il gagné ou perdu de la voix cette semaine ?
 
 **Scénarios à résoudre (book prédictif §K).** Pour chaque scénario de `forecasts.json` dont
 l'événement ou l'horizon est passé (statuts `joué`/`validé`, + les `expiré` marqués par
@@ -112,6 +118,13 @@ selon le régime, garde-fou drawdown). **Ordre des sources** :
    position avec `thesis_id` = id du scénario et passe-le à `"joué"`. Tu peux aussi décider de ne
    PAS jouer un scénario validé (note pourquoi) : il sera quand même scoré comme prédiction à
    résolution — l'IA apprend même sans miser.
+5. **Calls Grok à jouer (§F)** : tu peux ouvrir une position **tactique** depuis un call
+   `status:"ouvert"` de `grok-calls.json`, dans la limite de **`stats.tactical_cap` du NAV au
+   total** (= 0 tant que Grok n'a pas prouvé son hit-rate → souvent rien à jouer au début, c'est
+   normal et voulu). Contraintes : demi-taille tactique, **gate non-🔴** sur le ticker, checklist
+   bulle §B passée, stop serré, horizon du call = déclencheur de sortie. Passe le call à
+   `status:"joué"`, `played:true`, et logge le trade (`fee`, `rationale` citant le call + son
+   `tactical_cap`). Un call non joué reste scoré comme prédiction — Grok apprend même sans mise.
 
 - **Sorties** d'abord : toute position dont la règle de sortie est touchée, la thèse cassée, **ou le
   gate passé au 🔴** (sortie forcée §H).

@@ -111,6 +111,19 @@ Une fois par semaine, prends le pouls du marché via Grok (seul accès X temps r
 6. Repli : si Grok plafonne/échoue, construis le pouls à partir de la recherche web native,
    note-le dans `sources` (« repli web »), et ne bloque jamais la routine.
 
+7. **Calls Grok scorés (method §F — le sentiment gagne sa voix).** En plus du pouls (radar),
+   transforme **0 à 3** convictions de sentiment *court terme* en **calls falsifiables** dans
+   `memory/fund/grok-calls.json` (le blanc est la norme — n'en force aucun). Un call n'est légitime
+   que si Grok exprime une **direction nette à ~2 semaines** sur un titre coté (pas un thème vague,
+   pas une crypto). Pour chacun : `id` (kebab-case), `opened` (aujourd'hui), `ticker`, `direction`
+   (`hausse`/`baisse`), `confidence` (0,5-0,9 = force du signal), `thesis` (1 ligne : ce que Grok
+   sent), `horizon` (≈ +2 semaines), `source` (semaine du pouls), `played:false`, `status:"ouvert"`.
+   Puis joue **`node engine/grok.js`** : il résout les calls échus contre le prix réel, recalcule
+   le hit-rate et le **budget tactique mérité** (`stats.tactical_cap`, 0 % tant que < 6 résolus).
+   Ces calls ne sont PAS des ordres : le vendredi décide d'en jouer (tactique, demi-taille, dans
+   la limite de `tactical_cap`), ou pas — un call non joué est quand même scoré (Grok apprend même
+   sans qu'on mise). Garde-fous §F : jamais sur gate 🔴, jamais contre la checklist bulle.
+
 Format `memory/grok-pulse.json` :
 ```json
 {

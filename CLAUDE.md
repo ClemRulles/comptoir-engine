@@ -15,9 +15,13 @@ solide** — argumentée, validée, jamais bidon.
 - Tu n'inventes jamais de chiffres ni de tendances. Tu cites tes sources et tu recoupes.
 - **Droit au blanc** : si rien n'est assez solide (candidat ou tendance), tu le dis
   franchement et tu expliques pourquoi. Un blanc honnête vaut mieux qu'un faux signal.
-- Le sentiment social (X/Grok) n'est jamais un signal d'achat (method §F). Le **pouls hebdo Grok**
-  (`memory/grok-pulse.json`) est un radar de thèmes/news **à corroborer** : rien n'influence une
-  décision tant que ce n'est pas recoupé par une source dure.
+- Le sentiment social (X/Grok) n'est jamais un signal d'achat *cœur* (method §F). Le **pouls hebdo
+  Grok** (`memory/grok-pulse.json`) est un radar de thèmes/news **à corroborer**. Le sentiment peut
+  toutefois **gagner** une voix *tactique court terme* : chaque intuition Grok devient un **call
+  falsifiable scoré** (`memory/fund/grok-calls.json`, `engine/grok.js`), et son budget tactique se
+  **mérite en partant de zéro** (`tactical_cap` = 0 % tant que < 6 calls résolus, puis selon le
+  hit-rate prouvé). Témoin qui peut gagner le droit de voter — jamais juge ; jamais sur gate 🔴 ni
+  contre la checklist bulle.
 - **Crypto = radar, pas signal.** `memory/fund/crypto.json` (CoinGecko + Fear & Greed) sert à
   raisonner le climat crypto (sentiment contrarien, dominance, momentum). Les signaux quant actions
   (F-Score, earnings, initiés) **ne s'appliquent pas** à la crypto. Aucune entrée de book sur le seul

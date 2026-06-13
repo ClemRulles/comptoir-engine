@@ -200,7 +200,58 @@ const forecasts = {
   },
 };
 
-export const SCHEMAS = { decisions, calibration, signals, aiFund, forecasts };
+// ---------------------------------------------------------------------------
+// grok-calls.json — sentiment X (Grok) transformé en PRÉDICTIONS SCORÉES (method §F).
+// Grok ne reçoit pas un budget sur la foi : chaque "call" directionnel court terme est
+// pré-enregistré, puis scoré contre le prix réel. Le budget tactique de Grok se MÉRITE —
+// il démarre à 0 % et ne grandit qu'avec un hit-rate prouvé (engine/grok.js).
+// ---------------------------------------------------------------------------
+const GROK_CALL_STATUSES = new Set(["ouvert", "joué", "résolu", "expiré"]);
+const GROK_DIRECTIONS = new Set(["hausse", "baisse"]);
+
+const grokCalls = {
+  file: "grok-calls.json",
+  required: ["calls", "stats"],
+  template: () => ({
+    _doc:
+      "Sentiment X (Grok) transformé en PRÉDICTIONS SCORÉES (method §F) — le sentiment ne décide jamais sur la foi : il se MÉRITE une voix en prouvant qu'il prédit. Le lundi (pouls Grok) enregistre 0-3 'calls' directionnels court terme ; engine/grok.js les score contre le prix réel à l'horizon. Schéma d'un call : { id (kebab-case), opened (YYYY-MM-DD), ticker, direction ('hausse'|'baisse' attendue à court terme), confidence (0.5-0.9, force du signal de sentiment), thesis (1 ligne : ce que Grok 'sent'), horizon (YYYY-MM-DD, ~2 semaines), source (semaine du pouls), played (bool : le book a-t-il pris une position tactique ?), status ('ouvert' | 'joué' | 'résolu' | 'expiré'), resolution ({ date, move_pct (variation réelle sur l'horizon), correct (bool : le mouvement a-t-il suivi la direction au-delà de ±2 %), brier ((confidence − correct)²), trade_alpha_pct (si joué : alpha — mesure SÉPARÉE) }) }. 'stats' (recalculé par engine/grok.js) : resolved, hits, hit_rate, brier, tactical_cap = budget MAX du NAV pour les paris Grok, MÉRITÉ : 0 % tant que < 6 calls résolus, puis 3/6/8 % selon hit_rate (≥0.55/0.65/0.70), 0 % si < 0.45. Garde-fous §F : jamais sur gate 🔴, jamais contre la checklist bulle §B, demi-taille tactique, stop serré, sortie datée. L'euphorie reste un signal contrarien de top. Ne jamais réécrire un call résolu.",
+    updated: TODAY(),
+    calls: [],
+    stats: {
+      resolved: 0,
+      hits: 0,
+      hit_rate: 0,
+      brier: null,
+      tactical_cap: 0,
+    },
+  }),
+  check(obj) {
+    const problems = [];
+    if (!Array.isArray(obj.calls)) {
+      problems.push({ hard: true, msg: "`calls` n'est pas un tableau" });
+      return problems;
+    }
+    obj.calls.forEach((c, i) => {
+      if (c == null || typeof c !== "object") {
+        problems.push({ hard: false, msg: `calls[${i}] n'est pas un objet`, dropCall: i });
+        return;
+      }
+      if (!c.id) problems.push({ hard: false, msg: `calls[${i}].id manquant` });
+      if (!c.ticker) problems.push({ hard: false, msg: `calls[${i}].ticker manquant` });
+      if (!GROK_DIRECTIONS.has(c.direction))
+        problems.push({ hard: false, msg: `calls[${i}].direction invalide ("${c.direction}")` });
+      if (!GROK_CALL_STATUSES.has(c.status))
+        problems.push({ hard: false, msg: `calls[${i}].status invalide ("${c.status}")` });
+      if (!(typeof c.confidence === "number" && c.confidence >= 0.5 && c.confidence <= 0.9))
+        problems.push({ hard: false, msg: `calls[${i}].confidence hors [0.5, 0.9] ("${c.confidence}")` });
+    });
+    if (obj.stats == null || typeof obj.stats !== "object")
+      problems.push({ hard: false, msg: "`stats` manquant ou invalide", resetGrokStats: true });
+    return problems;
+  },
+};
+
+export const SCHEMAS = { decisions, calibration, signals, aiFund, forecasts, grokCalls };
 
 // Complète un objet parsé avec les clés requises manquantes de son template,
 // SANS écraser les valeurs présentes. Retourne { obj, added: [clés ajoutées] }.

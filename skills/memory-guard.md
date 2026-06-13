@@ -14,7 +14,7 @@ node engine/guard.js
 ```
 
 Ce que ça garantit (voir `engine/README.md`) :
-- `decisions.json`, `calibration.json`, `signals.json`, `ai-fund.json`, `forecasts.json` existent et sont
+- `decisions.json`, `calibration.json`, `signals.json`, `ai-fund.json`, `forecasts.json`, `grok-calls.json` existent et sont
   structurellement valides ;
 - un fichier **absent / illisible** est recréé proprement, l'original corrompu étant
   **mis en quarantaine** (`*.corrupt-<horodatage>`) — on ne perd jamais une donnée, on

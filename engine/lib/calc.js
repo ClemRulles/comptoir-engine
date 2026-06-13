@@ -337,6 +337,43 @@ export function forecastStats(scenarios) {
   };
 }
 
+// ===========================================================================
+// SENTIMENT GROK (method §F) — un "call" directionnel est correct si le prix a
+// suivi la direction au-delà d'une bande de bruit (±2 % par défaut). Exigeant à
+// dessein : le sentiment prétend prédire un MOUVEMENT, pas de la stagnation.
+// ===========================================================================
+export function directionalHit(move_pct, direction, band = 0.02) {
+  if (typeof move_pct !== "number" || !Number.isFinite(move_pct)) return null;
+  if (direction === "hausse") return move_pct > band;
+  if (direction === "baisse") return move_pct < -band;
+  return null;
+}
+
+// Stats prédictives de Grok depuis grok-calls.json. hit = call résolu correct ;
+// brier = moyenne((confidence − correct)²). Pur ; l'I/O est dans engine/grok.js.
+export function grokStats(calls) {
+  const resolved = (Array.isArray(calls) ? calls : []).filter(
+    (c) =>
+      c && c.status === "résolu" &&
+      typeof c.confidence === "number" &&
+      typeof c.resolution?.correct === "boolean"
+  );
+  if (!resolved.length) return { resolved: 0, hits: 0, hit_rate: 0, brier: null, ok: true };
+  let hits = 0, brierSum = 0;
+  for (const c of resolved) {
+    const o = c.resolution.correct ? 1 : 0;
+    if (c.resolution.correct) hits++;
+    brierSum += (c.confidence - o) ** 2;
+  }
+  return {
+    resolved: resolved.length,
+    hits,
+    hit_rate: round(hits / resolved.length, 3),
+    brier: round(brierSum / resolved.length, 3),
+    ok: true,
+  };
+}
+
 // ---- petits utilitaires --------------------------------------------------
 function num(v) { const n = Number(v); return Number.isFinite(n) ? n : null; }
 function safeDiv(a, b) { a = num(a); b = num(b); return a != null && b != null && b !== 0 ? a / b : null; }
