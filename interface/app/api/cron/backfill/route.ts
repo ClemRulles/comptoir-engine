@@ -2,26 +2,22 @@ import { NextResponse, type NextRequest } from "next/server";
 import { createAdminClient } from "@/lib/supabase/server";
 import { authorizeMaintenance } from "@/lib/cron-auth";
 import { fetchAiFund } from "@/lib/github";
-import { fetchHistoricalCloses } from "@/lib/prices";
-import type { Fund, Holding } from "@/lib/types";
+import type { Fund } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
-// Reconstitue la courbe NAV PASSÉE des deux fonds en supposant le panier ACTUEL détenu
-// dans le temps (backcast), via les clôtures historiques FMP. Idempotent : n'écrase JAMAIS
-// un snapshot déjà présent (les vrais relevés du cron quotidien priment). À lancer une fois,
-// après avoir encodé les positions du groupe. Param ?days=180 (défaut 180, max 365).
+// POINT DE BASE — pose l'ORIGINE de la courbe : un unique snapshot à plat au capital de
+// départ, daté à l'inception du fonds. PAS de backcast : on ne reconstitue plus le passé en
+// projetant le panier actuel sur des cours anciens (ça repeignait l'historique à chaque trade
+// et inventait une perf jamais réalisée). La courbe = ce point d'origine + les vrais relevés
+// quotidiens de `value`. Elle reste donc plate jusqu'au 1er marché, puis n'évolue qu'avec les
+// achats/ventes/apports réels. Idempotent (upsert sur fund_id,date), n'écrase aucun vrai relevé
+// (ils sont datés à leur jour, distinct de l'inception).
 export async function GET(request: NextRequest) {
   if (!(await authorizeMaintenance(request))) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
-
-  const days = Math.min(365, Math.max(30, Number(new URL(request.url).searchParams.get("days") ?? 180)));
-  const from = new Date();
-  from.setDate(from.getDate() - days);
-  const fromStr = from.toISOString().slice(0, 10);
-  const today = new Date().toISOString().slice(0, 10);
 
   const supabase = createAdminClient();
   const { data: fundsData } = await supabase.from("funds").select("*");
@@ -32,110 +28,35 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "funds non initialisés" }, { status: 500 });
   }
 
-  const { data: ghData } = await supabase.from("holdings").select("*").eq("fund_id", group.id);
-  // anchor = valeur € à plat utilisée pour un ticker sans historique (positions ancrées).
-  const groupHoldings = ((ghData ?? []) as Holding[]).map((h) => ({
-    ticker: h.ticker,
-    quantity: h.quantity,
-    anchor: h.avg_cost * h.quantity,
-  }));
+  // Le book IA fait foi pour son capital/cash de départ (ai-fund.json), comme dans getAppData.
   const aiFund = await fetchAiFund();
-  const aiRaw = aiFund?.positions ?? [];
+  const aiStart = aiFund?.start_capital ?? ai.start_capital ?? 0;
+  const aiCash = aiFund?.cash ?? ai.cash ?? ai.start_capital ?? 0;
 
-  const { data: contribData } = await supabase.from("contributions").select("amount");
-  const apportsTotal = ((contribData ?? []) as { amount: number }[]).reduce((s, c) => s + Number(c.amount ?? 0), 0);
-  // Symétrie : apports ajoutés au cash des deux fonds (cf. value/getAppData).
-  const groupCash = (group.cash ?? group.start_capital ?? 0) + apportsTotal;
-  const aiCash = (aiFund?.cash ?? ai.cash ?? ai.start_capital ?? 0) + apportsTotal;
-
-  const tickers = Array.from(new Set([...groupHoldings.map((h) => h.ticker), ...aiRaw.map((p) => p.ticker)]));
-  if (tickers.length === 0) {
-    return NextResponse.json({ error: "aucune position à reconstituer" }, { status: 400 });
-  }
-  const hist = await fetchHistoricalCloses(tickers, fromStr);
-  const covered = Object.keys(hist);
-  if (covered.length === 0) {
-    return NextResponse.json({ error: "pas de données historiques pour ces tickers" }, { status: 502 });
-  }
-
-  // Axe de dates = union des dates disponibles, triées, bornées à hier (le cron possède aujourd'hui).
-  const dateSet = new Set<string>();
-  for (const t of covered) for (const d of Object.keys(hist[t])) if (d < today) dateSet.add(d);
-  const dates = Array.from(dateSet).sort();
-
-  // Cours « actuel » = dernière clôture connue (pour normaliser les positions IA seed → parts).
-  const latestClose = (ticker: string): number | null => {
-    const m = hist[ticker.toUpperCase()];
-    if (!m) return null;
-    const ds = Object.keys(m).sort();
-    return ds.length ? m[ds[ds.length - 1]] : null;
-  };
-  // Positions IA : convertit quantity=1 + value_t0 en parts réelles via le dernier cours.
-  // anchor = valeur à plat si le ticker n'a pas d'historique.
-  const aiPositions = aiRaw.map((p) => {
-    const anchor = typeof p.value_t0 === "number" ? p.value_t0 : p.avg_cost * p.quantity;
-    if (p.quantity === 1 && typeof p.value_t0 === "number" && p.value_t0 > 0) {
-      const price = latestClose(p.ticker);
-      if (price) return { ticker: p.ticker, quantity: p.value_t0 / price, anchor };
-    }
-    return { ticker: p.ticker, quantity: p.quantity, anchor };
+  // NAV d'origine = capital de départ (cash de base + positions à t0), AVANT tout apport :
+  // les apports arrivent plus tard et apparaissent comme des marches + marqueurs « apport »,
+  // pas comme une origine gonflée. Donc on n'ajoute PAS apportsTotal ici.
+  const baseline = (f: { id: string; inception_date: string }, startCapital: number, cash: number) => ({
+    fund_id: f.id,
+    date: f.inception_date,
+    cash,
+    positions_value: Math.max(0, startCapital - cash),
+    nav: startCapital,
   });
 
-  // NAV(date) = cash + Σ (quantité × dernière clôture connue ≤ date), forward-fill par ticker.
-  // Ticker sans aucune clôture sur la période → on le maintient à plat à sa valeur (anchor).
-  const navFor = (holdings: { ticker: string; quantity: number; anchor?: number }[], cash: number) => {
-    const last: Record<string, number> = {};
-    const rows: { date: string; nav: number; pos: number }[] = [];
-    for (const date of dates) {
-      for (const h of holdings) {
-        const c = hist[h.ticker.toUpperCase()]?.[date];
-        if (typeof c === "number") last[h.ticker.toUpperCase()] = c;
-      }
-      let pos = 0;
-      for (const h of holdings) {
-        const c = last[h.ticker.toUpperCase()];
-        if (typeof c === "number") pos += c * h.quantity;
-        else if (typeof h.anchor === "number") pos += h.anchor; // pas d'historique → valeur à plat
-      }
-      rows.push({ date, nav: cash + pos, pos });
-    }
-    return rows;
-  };
+  const rows = [
+    baseline(group, group.start_capital ?? 0, group.cash ?? group.start_capital ?? 0),
+    baseline(ai, aiStart, aiCash),
+  ];
 
-  const groupRows = navFor(groupHoldings, groupCash);
-  const aiRows = navFor(aiPositions, aiCash);
-
-  // N'insère que les dates absentes (ne pas écraser les vrais relevés).
-  const { data: existing } = await supabase
+  const { error } = await supabase
     .from("nav_snapshots")
-    .select("fund_id, date")
-    .gte("date", fromStr);
-  const seen = new Set(((existing ?? []) as { fund_id: string; date: string }[]).map((r) => `${r.fund_id}|${r.date}`));
-
-  const payload: { fund_id: string; date: string; cash: number; positions_value: number; nav: number }[] = [];
-  for (const r of groupRows) {
-    if (!seen.has(`${group.id}|${r.date}`)) payload.push({ fund_id: group.id, date: r.date, cash: groupCash, positions_value: r.pos, nav: r.nav });
-  }
-  for (const r of aiRows) {
-    if (!seen.has(`${ai.id}|${r.date}`)) payload.push({ fund_id: ai.id, date: r.date, cash: aiCash, positions_value: r.pos, nav: r.nav });
-  }
-
-  // insère par lots de 500
-  let inserted = 0;
-  for (let i = 0; i < payload.length; i += 500) {
-    const chunk = payload.slice(i, i + 500);
-    const { error } = await supabase.from("nav_snapshots").insert(chunk);
-    if (error) return NextResponse.json({ error: error.message, inserted }, { status: 500 });
-    inserted += chunk.length;
-  }
+    .upsert(rows, { onConflict: "fund_id,date" });
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
   return NextResponse.json({
     ok: true,
-    note: "Backcast du panier actuel — estimation, pas un relevé réel.",
-    days,
-    coveredTickers: covered,
-    missingTickers: tickers.filter((t) => !covered.includes(t)),
-    datesReconstituted: dates.length,
-    inserted,
+    note: "Point de base posé à l'inception (capital de départ). Pas de backcast : la courbe est le track record réel.",
+    baseline: rows.map((r) => ({ fund_id: r.fund_id, date: r.date, nav: r.nav })),
   });
 }
