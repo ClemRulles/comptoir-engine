@@ -8,7 +8,7 @@ type Step = { key: string; label: string; path: string; hint: string };
 const STEPS: Step[] = [
   { key: "seed", label: "1 · Encoder le groupe", path: "/api/cron/seed-group", hint: "Convertit vos 15 positions en parts réelles via les cours." },
   { key: "value", label: "2 · Valoriser le jour", path: "/api/cron/value", hint: "Écrit le point NAV du jour pour les deux fonds." },
-  { key: "backfill", label: "3 · Courbes du passé", path: "/api/cron/backfill?days=180", hint: "Reconstitue ~6 mois d'historique." },
+  { key: "backfill", label: "3 · Point de base", path: "/api/cron/backfill", hint: "Pose l'origine de la courbe au capital de départ (pas de backcast)." },
 ];
 
 export function MaintenancePanel({ demo }: { demo: boolean }) {

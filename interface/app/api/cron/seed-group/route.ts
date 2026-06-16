@@ -20,7 +20,7 @@ export const maxDuration = 60;
 //   3) positions réelles (SEED_BOOK, valeurs Trade Republic) converties en parts fractionnaires
 //      via le cours live (quantité = valeur / cours) → l'affichage = valeur au seed puis suit le
 //      marché ; ticker sans cours → ancré à sa valeur (signalé dans la réponse) ;
-//   4) snapshots NAV effacés (on repart d'une courbe propre → relancer backfill puis value).
+//   4) snapshots NAV effacés (on repart d'une courbe propre → relancer backfill = point de base, puis value).
 // GET /api/cron/seed-group  (Authorization: Bearer $CRON_SECRET ou session connectée)
 export async function GET(request: NextRequest) {
   if (!(await authorizeMaintenance(request))) {
@@ -93,12 +93,14 @@ export async function GET(request: NextRequest) {
   const { error } = await supabase.from("holdings").upsert(rows, { onConflict: "fund_id,ticker" });
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
-  // ── 4) Repartir d'une courbe propre : on efface les snapshots NAV antérieurs. Relancer
-  // ensuite « Courbes du passé » (backfill) puis « Valoriser le jour » (value) reconstruit
-  // l'historique et écrit le 1er point réel.
+  // ── 4) Purge le backcast hérité SANS toucher au vrai track record : on n'efface que les
+  // snapshots ANTÉRIEURS à l'inception (l'ancienne courbe fictive « panier actuel projeté dans
+  // le passé »). Les vrais relevés quotidiens (≥ inception, écrits par value) sont préservés —
+  // bootstrap reste donc rejouable sans perdre l'historique réel. Relancer ensuite « Point de
+  // base » (backfill = origine à plat à l'inception) puis « Valoriser le jour » (value).
   const ai = ((fundsData ?? []) as (Fund & { cash: number })[]).find((f) => f.kind === "ai");
-  const fundIds = [group.id, ...(ai ? [ai.id] : [])];
-  await supabase.from("nav_snapshots").delete().in("fund_id", fundIds);
+  await supabase.from("nav_snapshots").delete().eq("fund_id", group.id).lt("date", group.inception_date);
+  if (ai) await supabase.from("nav_snapshots").delete().eq("fund_id", ai.id).lt("date", ai.inception_date);
 
   return NextResponse.json({
     ok: true,
@@ -108,7 +110,7 @@ export async function GET(request: NextRequest) {
     positions: rows.length,
     pricedTickers: priced,
     anchoredTickers: anchored,
-    next: "Lancer ?days=180 sur /api/cron/backfill puis /api/cron/value.",
+    next: "Lancer /api/cron/backfill (point de base) puis /api/cron/value.",
     note: anchored.length
       ? `Cours introuvable pour ${anchored.join(", ")} → ancrés à leur valeur (à revoir).`
       : "Toutes les positions valorisées via cours live.",
