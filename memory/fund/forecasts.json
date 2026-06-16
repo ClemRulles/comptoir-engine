@@ -1,7 +1,22 @@
 {
   "_doc": "Book de SCÉNARIOS prédictifs (method §K) — le pré-registre qui donne à l'IA un jugement sur le futur SANS boule de cristal : chaque scénario est écrit AVANT d'être joué, probabilisé, falsifiable, et scoré à résolution. Schéma d'un scénario : { id (kebab-case), opened (YYYY-MM-DD), event (l'événement déclencheur, daté ou conditionnel — ex. 'IPO SpaceX confirmée'), chain (chaîne causale de second ordre : qui est impacté, dans quel ordre, pourquoi), probability (0.5-0.95, probabilité ANNONCÉE de réalisation), horizon (YYYY-MM-DD, date limite de résolution), falsifier (ce qui prouvera que le scénario était faux), instruments ([tickers] pour le jouer, direct + pioches/pelles), status (candidat: détecté lundi | validé: la chaîne survit au débat Opus de mercredi | joué: position ouverte vendredi, thesis_id du trade = cet id | rejeté: débat perdu | expiré: horizon dépassé sans réalisation | résolu: tranché et scoré), resolution ({ date, happened (bool), brier ((probability − happened)², 0 = parfait), notes, trade_alpha_pct (si joué : alpha du trade — mesure SÉPARÉE, on peut prédire juste et trader mal) }) }. 'stats' est recalculé par node engine/forecasts.js : hit = (probability ≥ 0.5) === happened ; pocket_cap = part max du NAV allouée aux scénarios (§K : grandit/rétrécit selon le hit_rate prédictif prouvé). Ne jamais réécrire un scénario résolu : on apprend de ses prédictions, on ne les efface pas.",
-  "updated": "2026-06-12",
-  "scenarios": [],
+  "updated": "2026-06-16",
+  "scenarios": [
+    {
+      "id": "ai-power-enr-hyperscaler-q2",
+      "opened": "2026-06-16",
+      "event": "Q2 2026 hyperscaler earnings (Amazon, Microsoft, Alphabet, Meta — publiés juillet-août 2026) confirment capex IA ≥ $700B annualisé maintenu ou relevé",
+      "chain": "Capex confirmé → demande accélérée de transformateurs HV + câbles + switchgear → Siemens Energy (ENR.DE) carnet de commandes passe >50 Md€ → upgrades analystes → multiple expansion sur ENR.DE / re-rating de la prime infrastructure énergie",
+      "probability": 0.65,
+      "horizon": "2026-09-15",
+      "falsifier": "Au moins 2 hyperscalers majeurs (parmi Amazon, Microsoft, Alphabet, Meta) coupent leur guidance capex >15% lors des résultats Q2 — signal que le cycle d'investissement ralentit",
+      "instruments": [
+        "ENR.DE",
+        "SU.PA"
+      ],
+      "status": "candidat"
+    }
+  ],
   "stats": {
     "resolved": 0,
     "hits": 0,

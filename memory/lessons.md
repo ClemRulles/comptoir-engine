@@ -10,6 +10,8 @@ Format : `YYYY-MM-DD · [TICKER ou MÉTHODE] · ce qui s'est passé → ce que j
 
 ## Leçons vives
 
+2026-06-16 · MÉTHODE/Tendance · Le "second ordre" d'une tendance validée (réarmement EU) peut générer une tendance distincte encore plus large (infrastructure IA/énergie) : ne pas traiter les semaines comme des cases isolées — chercher le fil conducteur causal entre les thèmes. Cette semaine : réarmement EU → industriels souverains → partage du capex avec AI infra → énergie nucléaire. C'est la même rotation macro vue sous un autre angle. → Avant d'abandonner une tendance semaine-sur-semaine, vérifier si elle a évolué ou généré un second ordre plutôt que de chercher du neuf à tout prix.
+
 2026-06-13 · NFLX/MÉTHODE · Stop -8% obligatoire §H pour les positions 🟠 ambre non documenté en EUR explicite dans ai-fund.json → NFLX arrêté à 69.38 EUR sans seuil écrit à l'entrée (80.89 EUR). Correction : toujours écrire stop_price_eur dans exit_rule à la création de chaque position 🟠/⚪ — c'est la différence entre une règle et une intention.
 
 2026-06-13 · MSCI/Gate · F-Score 7/9 EDGAR (couverture 49%→86%) transforme un gate 🟠 ambre en 🟢 vert juste avant l'achat. Sans le re-run signals.js ciblé, on aurait acheté sous contrainte 5% cap au lieu de 7% NAV (Moyenne). → Toujours recalculer signals.js sur les convictions candidates le vendredi avant d'ouvrir une position.

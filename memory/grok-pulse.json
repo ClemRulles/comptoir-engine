@@ -1,7 +1,40 @@
 {
   "_doc": "Pouls hebdo du marché (Grok, accès X) — radar à corroborer, jamais un signal d'achat. Écrit par routines/monday-trend-radar.md (Partie C). Le plus récent en tête de weeks ; ~12 semaines max.",
-  "updated": "2026-06-08",
+  "updated": "2026-06-16",
   "weeks": [
+    {
+      "week": "2026-W25",
+      "date": "2026-06-16",
+      "label": "Semaine du 16 juin 2026",
+      "headline": "FOMC hold + AI-nuclear momentum + EU defense poussent le marché en attendant la rotation value/real vs tech.",
+      "themes": [
+        {
+          "title": "AI infra / énergie nucléaire",
+          "detail": "Power demand from AI data centers drives nuclear and utility interest with sentiment on X highlighting small modular reactors and hyperscaler capex. $725B hyperscaler capex 2026 et contrats nucléaires (Microsoft-Constellation, Google-Kairos) soutiennent le sentiment. Rotation du capital vers 'ce qui alimente l'IA' plutôt que 'l'IA elle-même'.",
+          "tickers": ["CEG", "VST", "ENR.DE", "SU.PA"],
+          "corroborated": true
+        },
+        {
+          "title": "EU defense spending — continuation",
+          "detail": "European NATO members signaling higher budgets boosting contractors. Rheinmetall-Anduril drone partnership (juin 2026) et backlog €73B (record) alimentent le sentiment positif. SAF.PA et HO.PA restent les deux noms les plus cités. Rotation sectorielle pro-industriels EU.",
+          "tickers": ["SAF.PA", "HO.PA", "RHM.DE"],
+          "corroborated": true
+        },
+        {
+          "title": "FOMC hold — légèrement hawkish",
+          "detail": "Hold unanime confirmé le 17 juin. Dot plot : 75 bps de baisses attendus fin 2026 (vs 100 bps en mars). Le marché digère le signal moins dovish sans panique (VIX 17.68 = calme). Les banques et financières bénéficient de la courbe plus stable. Sentiment global : ni euphorie ni peur.",
+          "tickers": ["BNP.PA"],
+          "corroborated": true
+        }
+      ],
+      "movers": [
+        { "ticker": "SAF.PA", "direction": "up", "reason": "EU defense budget signals et commandes H1 2026 +75% Défense (Thales) corroborées", "held": true },
+        { "ticker": "HO.PA", "direction": "up", "reason": "NATO spending optimism, Rheinmetall-Anduril drone deal", "held": true },
+        { "ticker": "AMZN", "direction": "up", "reason": "AI infrastructure demand narrative + RSI survendu rebond technique", "held": true },
+        { "ticker": "MSCI", "direction": "down", "reason": "Index rebalancing outflows, légère pression initiés vendeurs (3 ventes / 1 achat)", "held": true }
+      ],
+      "sources": ["Grok/X — grok-4.3 via API xAI 2026-06-16", "recoupé: FRED (FOMC), tech-insider.org ($725B capex), Morgan Stanley (power demand), capitalcom (RHM backlog), SEC EDGAR (Constellation 8-K)"]
+    },
     {
       "week": "2026-W24",
       "date": "2026-06-08",
