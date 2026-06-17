@@ -100,6 +100,40 @@ function aggregateContribsByDate(rows: { ts?: string | null; amount: number }[])
     .sort((a, b) => a.date.localeCompare(b.date));
 }
 
+// Nettoie les « pics en V » de la courbe NAV au moment de l'AFFICHAGE (filet de sécurité,
+// indépendant des snapshots en base). Un point qui dévie de plus de SPIKE_T par rapport à ses
+// DEUX voisins immédiats dans le MÊME sens (un creux ou un pic isolé d'un seul jour) est un
+// artefact de prix manquant — la veille d'une source throttlée, les titres non cotés retombent
+// sur leur coût → NAV trop basse ce jour-là, qui « récupère » le lendemain. Un VRAI mouvement
+// décale le niveau (le voisin suivant reste proche), donc il ne déclenche pas le filtre : seuls
+// les V/Λ qui reviennent à leur point de départ sont remplacés par l'interpolation des voisins.
+// Chaque fonds est traité indépendamment ; on compare aux valeurs d'origine (pas en cascade).
+const SPIKE_T = 0.025; // 2,5 % : sous ce seuil, on ne touche à rien (vraie volatilité préservée)
+
+export function despikeSeries<T extends { group: number | null; ai: number | null }>(series: T[]): T[] {
+  for (const key of ["group", "ai"] as const) {
+    const orig = series.map((p) => p[key]);
+    // indices où CE fonds a une valeur (les deux fonds peuvent avoir des trous différents)
+    const idx: number[] = [];
+    orig.forEach((v, i) => {
+      if (typeof v === "number" && Number.isFinite(v)) idx.push(i);
+    });
+    for (let j = 1; j < idx.length - 1; j++) {
+      const a = orig[idx[j - 1]] as number;
+      const b = orig[idx[j]] as number;
+      const c = orig[idx[j + 1]] as number;
+      if (!(a > 0) || !(c > 0)) continue;
+      const devPrev = (b - a) / a;
+      const devNext = (b - c) / c;
+      // Même sens vs les DEUX voisins ET ampleur > seuil → artefact isolé → interpole.
+      if ((devPrev > SPIKE_T && devNext > SPIKE_T) || (devPrev < -SPIKE_T && devNext < -SPIKE_T)) {
+        series[idx[j]] = { ...series[idx[j]], [key]: (a + c) / 2 };
+      }
+    }
+  }
+  return series;
+}
+
 export function isConfigured() {
   return Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 }
@@ -308,7 +342,9 @@ export async function getAppData(): Promise<AppData> {
       demo: false,
       group,
       ai,
-      series,
+      // Filet de sécurité d'affichage : retire les « pics en V » des snapshots historiques
+      // (artefacts de prix manquants) même si la base contient encore de vieux points sales.
+      series: despikeSeries(series),
       weekDeltaGroup: weekDelta(gSnaps),
       weekDeltaAi: weekDelta(aSnaps),
       brief,
