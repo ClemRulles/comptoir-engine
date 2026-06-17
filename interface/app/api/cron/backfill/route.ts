@@ -110,6 +110,14 @@ export async function GET(request: NextRequest) {
 
   const payload = [...rowsFor(group.id, group.inception_date), ...rowsFor(ai.id, ai.inception_date)];
 
+  // Purge le pré-historique AVANT de réécrire. Un simple upsert ne remplace que les dates
+  // qu'on régénère : d'anciens snapshots d'un backcast précédent, datés sur des jours absents
+  // du nouveau jeu (jours de bourse différents, couverture différente), survivraient et
+  // créeraient de faux « pics » en V. On efface donc TOUT le pré-inception par fonds, puis on
+  // réécrit la reconstruction propre. Les vrais relevés (≥ inception) ne sont jamais touchés.
+  await supabase.from("nav_snapshots").delete().eq("fund_id", group.id).lt("date", group.inception_date);
+  await supabase.from("nav_snapshots").delete().eq("fund_id", ai.id).lt("date", ai.inception_date);
+
   let written = 0;
   for (let i = 0; i < payload.length; i += 500) {
     const chunk = payload.slice(i, i + 500);

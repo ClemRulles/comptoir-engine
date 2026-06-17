@@ -43,6 +43,24 @@ export async function GET(request: NextRequest) {
   ];
   const prices = await fetchPrices(tickers);
 
+  // Garde-fou de COUVERTURE : si une part importante du panier n'est pas cotée ce soir (source
+  // throttlée), on N'écrit PAS de snapshot. Sinon les positions non cotées retombent sur leur
+  // repli (coût < valeur de marché pour un titre en plus-value) → la NAV creuse un faux trou
+  // d'un jour qui « récupère » le lendemain : ce sont les pics en V. Mieux vaut sauter une nuit
+  // (le point d'hier reste, la courbe est continue) que graver un faux creux permanent.
+  const uniqueTickers = Array.from(new Set(tickers.map((t) => t.toUpperCase()))).filter(Boolean);
+  const pricedCount = uniqueTickers.filter((t) => typeof prices[t] === "number" && prices[t] > 0).length;
+  const coverage = uniqueTickers.length ? pricedCount / uniqueTickers.length : 1;
+  if (uniqueTickers.length > 0 && coverage < 0.7) {
+    return NextResponse.json({
+      ok: true,
+      skipped: "couverture prix insuffisante — snapshot non écrit (évite un faux creux)",
+      coverage: Math.round(coverage * 100) / 100,
+      priced: pricedCount,
+      requested: uniqueTickers.length,
+    });
+  }
+
   // Valorise avec REPLI : si le cours manque (source throttlée), on retombe sur la valeur
   // de repli (coût de revient pour le groupe ; value_t0/coût pour l'IA) au lieu de 0 — la
   // NAV reste juste même si Stooq/FMP ne renvoient qu'une partie des cours.
