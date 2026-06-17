@@ -234,6 +234,13 @@ export async function getAppData(): Promise<AppData> {
     const tickers = [...groupHoldings.map((h) => h.ticker), ...aiPositions.map((p) => p.ticker)];
     const prices = await fetchPrices(tickers);
 
+    // Couverture des prix live (même logique que le cron value) : sert plus bas à décider si
+    // on prolonge la courbe jusqu'au point « aujourd'hui ». Si la source est partielle à
+    // l'instant du rendu, ce point plongerait (replis sur coût) → faux creux transitoire.
+    const liveUnique = Array.from(new Set(tickers.map((t) => t.toUpperCase()))).filter(Boolean);
+    const livePriced = liveUnique.filter((t) => typeof prices[t] === "number" && prices[t] > 0).length;
+    const liveCoverage = liveUnique.length ? livePriced / liveUnique.length : 1;
+
     const group = enrich(
       "group",
       groupFund?.name ?? "Fonds du groupe",
@@ -273,13 +280,18 @@ export async function getAppData(): Promise<AppData> {
     // vendredi) toute la journée. On prolonge jusqu'à la valeur live pour que la courbe
     // colle toujours au grand chiffre affiché. Quand le cron écrira le snapshot du jour,
     // il remplacera proprement ce point au prochain chargement.
+    // …mais seulement si la couverture des prix live est suffisante : sinon group.nav/ai.nav
+    // sont sous-évalués (replis sur coût) et créeraient un faux creux au bord droit. En
+    // couverture faible, on laisse la courbe au dernier snapshot réel (continue, pas de pic).
     const today = new Date().toISOString().slice(0, 10);
     const last = series[series.length - 1];
-    if (!last || last.date < today) {
-      series.push({ date: today, group: group.nav, ai: ai.nav });
-    } else if (last.date === today) {
-      last.group = group.nav;
-      last.ai = ai.nav;
+    if (liveCoverage >= 0.7) {
+      if (!last || last.date < today) {
+        series.push({ date: today, group: group.nav, ai: ai.nav });
+      } else if (last.date === today) {
+        last.group = group.nav;
+        last.ai = ai.nav;
+      }
     }
 
     const weekDelta = (arr: NavSnapshot[]) => {
