@@ -337,12 +337,32 @@ export async function getAppData(): Promise<AppData> {
       return b ? (a - b) / b : 0;
     };
 
+    // CLONE AVANT DIVERGENCE : tant que l'IA n'a pas pris ses propres décisions, c'est un clone
+    // exact du groupe → les deux courbes doivent se SUPERPOSER. La date de divergence = 1er trade
+    // indépendant du book IA (hors SEED/RECLONE, qui sont à quantité nulle). Pour toute date
+    // antérieure, on force ai = group : les lignes coïncident exactement (intention du produit)
+    // et tout vieux snapshot IA bruité du pré-historique est neutralisé d'un coup. Après cette
+    // date, chaque fonds suit ses propres relevés (la vraie divergence des choix).
+    const aiRealTrades = (aiFile?.trades ?? []).filter(
+      (t) =>
+        t.ticker &&
+        t.ticker.toUpperCase() !== "SEED" &&
+        t.ticker.toUpperCase() !== "RECLONE" &&
+        Number(t.quantity) > 0
+    );
+    const divergenceDate = aiRealTrades.map((t) => String(t.ts).slice(0, 10)).sort()[0] ?? null;
+    if (divergenceDate) {
+      for (const p of series) {
+        if (p.date < divergenceDate && typeof p.group === "number") p.ai = p.group;
+      }
+    }
+
     return {
       configured: true,
       demo: false,
       group,
       ai,
-      // Filet de sécurité d'affichage : retire les « pics en V » des snapshots historiques
+      // Filet de sécurité d'affichage : retire les « pics en V » résiduels des snapshots
       // (artefacts de prix manquants) même si la base contient encore de vieux points sales.
       series: despikeSeries(series),
       weekDeltaGroup: weekDelta(gSnaps),
