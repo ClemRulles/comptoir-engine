@@ -10,6 +10,10 @@ Format : `YYYY-MM-DD · [TICKER ou MÉTHODE] · ce qui s'est passé → ce que j
 
 ## Leçons vives
 
+2026-06-17 · HO.PA/Gate · HO.PA détenu (2.22 parts, avg_cost 246€) vient de passer 🔴 (composite -0.201, mom -12%) en repassant le recalcul signals.js ce mardi. La semaine dernière le gate était 🟠 ambre → trim discipliné exécuté. Cette semaine le momentum continue de glisser et franchit le seuil rouge. La règle §H est sans débat : sortie forcée à la prochaine fenêtre de vente (jeudi). → Ne pas attendre le vendredi pour une sortie forcée 🔴 : la latence coûte 1-2% de plus à la baisse. La fenêtre du jeudi est faite pour ça.
+
+2026-06-17 · MÉTHODE/Scout · ENR.DE (Siemens Energy) illustre le cas "momentum 12M élevé (+91%) + RSI 30 très survendu" : le titre a beaucoup monté puis s'est corrigé brutalement. C'est une fenêtre potentielle, pas une confirmation. Le deep-dive doit vérifier que la correction est technique (prise de bénéfices, rotation) et non fondamentale (guidance coupée). → Dans ce cas, la checklist DCF inversé est encore plus importante : est-ce que le consensus €195 est réaliste compte tenu du backlog €154B et des marges attendues 10-12% ?
+
 2026-06-16 · MÉTHODE/Tendance · Le "second ordre" d'une tendance validée (réarmement EU) peut générer une tendance distincte encore plus large (infrastructure IA/énergie) : ne pas traiter les semaines comme des cases isolées — chercher le fil conducteur causal entre les thèmes. Cette semaine : réarmement EU → industriels souverains → partage du capex avec AI infra → énergie nucléaire. C'est la même rotation macro vue sous un autre angle. → Avant d'abandonner une tendance semaine-sur-semaine, vérifier si elle a évolué ou généré un second ordre plutôt que de chercher du neuf à tout prix.
 
 2026-06-13 · NFLX/MÉTHODE · Stop -8% obligatoire §H pour les positions 🟠 ambre non documenté en EUR explicite dans ai-fund.json → NFLX arrêté à 69.38 EUR sans seuil écrit à l'entrée (80.89 EUR). Correction : toujours écrire stop_price_eur dans exit_rule à la création de chaque position 🟠/⚪ — c'est la différence entre une règle et une intention.
