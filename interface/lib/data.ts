@@ -118,17 +118,49 @@ export function despikeSeries<T extends { group: number | null; ai: number | nul
     orig.forEach((v, i) => {
       if (typeof v === "number" && Number.isFinite(v)) idx.push(i);
     });
-    for (let j = 1; j < idx.length - 1; j++) {
-      const a = orig[idx[j - 1]] as number;
-      const b = orig[idx[j]] as number;
-      const c = orig[idx[j + 1]] as number;
-      if (!(a > 0) || !(c > 0)) continue;
-      const devPrev = (b - a) / a;
-      const devNext = (b - c) / c;
-      // Même sens vs les DEUX voisins ET ampleur > seuil → artefact isolé → interpole.
-      if ((devPrev > SPIKE_T && devNext > SPIKE_T) || (devPrev < -SPIKE_T && devNext < -SPIKE_T)) {
-        series[idx[j]] = { ...series[idx[j]], [key]: (a + c) / 2 };
-      }
+    if (idx.length < 3) continue;
+    // Copie de travail (alignée sur idx) mise à jour à chaque remplissage : les épaules d'un
+    // creux suivant doivent référencer les valeurs DÉJÀ corrigées, pas les valeurs d'origine
+    // (sinon une épaule encore basse fait prendre un vrai sommet pour un pic → faux lissage).
+    const cur = idx.map((seriesIdx) => orig[seriesIdx] as number);
+    const val = (k: number) => cur[k];
+
+    // Remplit une « dépression » (ou un « pic ») : une SUITE de points (1 jour OU plusieurs)
+    // qui s'écarte des deux ÉPAULES — le point juste avant et le point juste après le run — au
+    // delà du seuil, l'épaule droite revenant près de l'épaule gauche (le creux « rebondit »).
+    // C'est la signature des prix manquants, creux LARGES à fond plat compris. On interpole
+    // entre les épaules. Un VRAI palier (qui ne revient pas) ne rebondit pas → l'épaule droite
+    // reste loin → on n'y touche pas : la volatilité réelle est préservée.
+    let j = 1;
+    while (j < idx.length - 1) {
+      const left = val(j - 1);
+      if (!(left > 0)) { j++; continue; }
+
+      // longueur du run vers le BAS (dépression) puis vers le HAUT (pic). Borné à length-1 pour
+      // garder toujours une épaule droite : un run qui irait jusqu'au bout = tendance, pas artefact.
+      let kLow = j;
+      while (kLow < idx.length - 1 && val(kLow) < left * (1 - SPIKE_T)) kLow++;
+      let kHigh = j;
+      while (kHigh < idx.length - 1 && val(kHigh) > left * (1 + SPIKE_T)) kHigh++;
+
+      const tryFill = (runEnd: number): boolean => {
+        if (runEnd <= j) return false;
+        const right = val(runEnd); // 1re épaule droite, hors du run
+        if (!(right > 0)) return false;
+        // recouvrement : l'épaule droite revient à ± seuil de l'épaule gauche (sinon = vrai palier)
+        if (Math.abs(right - left) > left * SPIKE_T) return false;
+        const li = idx[j - 1], ri = idx[runEnd];
+        for (let m = j; m < runEnd; m++) {
+          const fill = left + (right - left) * ((idx[m] - li) / (ri - li));
+          cur[m] = fill;
+          series[idx[m]] = { ...series[idx[m]], [key]: fill };
+        }
+        return true;
+      };
+
+      if (kLow > j && tryFill(kLow)) { j = kLow; continue; }
+      if (kHigh > j && tryFill(kHigh)) { j = kHigh; continue; }
+      j++;
     }
   }
   return series;
