@@ -110,6 +110,11 @@ function aggregateContribsByDate(rows: { ts?: string | null; amount: number }[])
 // Chaque fonds est traité indépendamment ; on compare aux valeurs d'origine (pas en cascade).
 const SPIKE_T = 0.025; // 2,5 % : sous ce seuil, on ne touche à rien (vraie volatilité préservée)
 
+// Date à partir de laquelle le book IA a commencé à gérer SES propres positions (1res ventes
+// indépendantes). Sert de repli quand la lecture GitHub du book échoue (aiFile null) — sinon la
+// courbe IA divergerait du groupe sur tout l'historique. Avant cette date, IA = clone du groupe.
+const AI_DIVERGENCE_FALLBACK = "2026-06-12";
+
 export function despikeSeries<T extends { group: number | null; ai: number | null }>(series: T[]): T[] {
   for (const key of ["group", "ai"] as const) {
     const orig = series.map((p) => p[key]);
@@ -368,6 +373,29 @@ export async function getAppData(): Promise<AppData> {
       const b = arr[j].nav;
       return b ? (a - b) / b : 0;
     };
+
+    // ── CLONE AVANT DIVERGENCE (le cœur de la correction) ──────────────────────────────
+    // Tant que l'IA n'a pas pris ses PROPRES décisions, c'est un clone exact du groupe : les
+    // deux courbes doivent se SUPERPOSER. On force donc ai = group pour toute date < divergence,
+    // ce qui neutralise d'un coup les vieux snapshots IA bruités du pré-historique. Après cette
+    // date, l'IA suit ses vrais relevés (la vraie divergence des choix de la semaine).
+    //
+    // Date de divergence = 1er trade INDÉPENDANT du book IA (hors SEED/RECLONE à quantité nulle).
+    // REPLI EN DUR si la lecture GitHub du book échoue en prod (aiFile null) : sans lui, un simple
+    // échec de lecture laisserait les deux courbes diverger sur tout l'historique — exactement le
+    // bug observé. La 1re vente indépendante du book a eu lieu le 2026-06-12.
+    const aiRealTrades = (aiFile?.trades ?? []).filter(
+      (t) =>
+        t.ticker &&
+        t.ticker.toUpperCase() !== "SEED" &&
+        t.ticker.toUpperCase() !== "RECLONE" &&
+        Number(t.quantity) > 0
+    );
+    const divergenceDate = aiRealTrades.map((t) => String(t.ts).slice(0, 10)).sort()[0] ?? AI_DIVERGENCE_FALLBACK;
+    for (const p of series) {
+      // ai = group SANS condition (number ou null) → superposition garantie avant divergence.
+      if (p.date < divergenceDate) p.ai = p.group;
+    }
 
     return {
       configured: true,
