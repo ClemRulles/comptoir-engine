@@ -6,6 +6,14 @@ décision future : sizing, choix de thèse, timing, niveau de confiance.
 
 Format : `YYYY-MM-DD · [TICKER ou MÉTHODE] · ce qui s'est passé → ce que je corrige.`
 
+2026-06-18 · AI/DATA · Le feed `signals.js` a affiché « CA YoY −35,7 % » sur Air Liquide, signal alarmant qui aurait pu déclencher une vente. Cause réelle : **attribution d'actions gratuites 1-pour-10 le 10/06** (reset mécanique du cours ~−9 %) + FX −5,9 %. Le CA réel a CRÛ en comparable (+1,9 %). → **Avant d'agir sur un mouvement extrême d'un compounder stable, vérifier les actions sur capital (split, attribution gratuite, dividende exceptionnel)** : un −36 % sur Air Liquide est *a priori* un artefact, pas un fait. Ajouter ce réflexe au Portfolio Doctor du jeudi avant toute vente sur signal aberrant.
+
+2026-06-18 · HO.PA/GATE · Position flippée 🔴 (-0,201) mardi → « sortie forcée jeudi » planifiée, puis redressée 🟠 (-0,187) mercredi, au-dessus du stop, thèse intacte. → Confirme la leçon 06-12 : **un 🔴 à un cheveu du seuil (-0,2) et à couverture 39 % n'est pas définitif** ; le re-test du gate le jour de la fenêtre de sortie (jeudi) évite une vente sur un faux franchissement. Ne pas pré-engager une sortie forcée 2 jours à l'avance sur un gate frontière low-coverage.
+
+2026-06-18 · MÉTHODE/§K · Scénario prédictif « capex hyperscaler → re-rating ENR.DE » REJETÉ au débat : (1) maillon pivot **déjà obsolète** (backlog ENR déjà €154 Md vs €50 Md de la chaîne), (2) **effet déjà pricé / non transmis** — ENR a chuté −25 % MALGRÉ commandes record + guidance relevée. → **Un scénario §K dont l'événement est très probable MAIS dont l'effet de second ordre ne se transmet pas empiriquement au prix (good-news-no-reaction) doit être rejeté.** Prédire juste un événement déjà escompté n'est pas un edge ; le test est le *delta de re-rating*, pas l'occurrence.
+
+2026-06-18 · MÉTHODE/RANKING · 3 ★ infra-IA classés par pré-score Scout (GEV 80 > ENR 74 > CEG 72) ressortent **inversés** sur la marge de sécurité : seul CEG (le plus bas, momentum −14 %, replié −35 %) finit **Acheter** ; GEV (le plus haut, +107 %, 47x fwd) finit Surveiller. → Re-confirme 06-11 : **en SURCHAUFFE, le candidat replié bat le candidat surchauffé** ; la marge de valo (DCF inversé §C) prime sur le momentum pour ranger. Un gate 🟢 de momentum (GEV) vaut moins qu'un gate 🟠 de timing sur une qualité dé-risquée (CEG).
+
 > Garde ~90 jours de leçons vives ici ; archive le reste sous « Archives » en bas.
 
 ## Leçons vives

@@ -1,14 +1,15 @@
-# Watchlist — maj 2026-06-17
+# Watchlist — maj 2026-06-18
 
 > Mode : **tendance VALIDÉE** — Infrastructure IA / Énergie nucléaire (16/06) + Réarmement EU (13/06, continuation).
-> Régime : **SURCHAUFFE** · plancher cash 30% (signals.js 2026-06-17).
-> 🚨 **ALERTE BOOK** : HO.PA vient de passer 🔴 (composite -0.201, mom -12%) → sortie forcée à planifier **jeudi** (fenêtre vente seule §H).
+> Régime : **SURCHAUFFE** · plancher cash 30% (signals.js 2026-06-18).
+> ✅ **Deep-dive mercredi traité** : GEV (Surveiller — valo 47x sans marge), ENR.DE (Surveiller — fenêtre survendu, gate 🟠), CEG (**Acheter** modeste — seule avec marge de sécurité, gate 🟠). ★ retirés.
+> ✅ **ALERTE HO.PA LEVÉE** : le gate s'est redressé 🔴→🟠 (composite -0.201→-0.187 le 18/06), au-dessus du stop (€231 > €226,62), thèse intacte → **plus de sortie forcée mécanique**. Jeudi re-vérifie le gate ; s'il replonge <-0,2 → sortie forcée §H.
 
 | ★  | Ticker  | Nom                   | Tag                      | Horizon | Gate                        | Drapeau bulle                                | Thèse 1 ligne / Statut                                                                                                                                                | Pré-score | Vu le      |
 |----|---------|-----------------------|--------------------------|---------|-----------------------------|----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|------------|
-| ★  | GEV     | GE Vernova            | [infra-IA] [tendance]    | long    | 🟢 F6/9 c=+0.47 cov96%     | Vigilance — mom +115% sur 12M à challenger (RSI 42 = pullback récent) | **Deep-dive mercredi** — pioches & pelles US #1 : turbines gaz, transformateurs, grid solutions. Orders Q1 +71% ($18.3B), backlog $163B→$200B, guidance raised $44.5-45.5B rev/12-14% EBITDA. 37 analystes Buy PT $1,216 (+30%). Forward PE 47x à challenger via DCF inversé. | 80        | 2026-06-17 |
-| ★  | ENR.DE  | Siemens Energy        | [infra-IA] [tendance]    | long    | 🟠 F· mom+91% RSI30 cov39% | Vigilance légère — F-Score EU non calculé     | **Deep-dive mercredi** — pioches & pelles EU : turbines, transformateurs HV, réseau. Backlog record €154B, Q2 orders +29.5% (€17.7B), 11 GW contrats data center signés. Guidance FY26 +14-16%/10-12% marges. Cours ~€155 vs consensus €195 (+25%) JPMorgan OW €225. RSI 30 = très survendu = fenêtre. Gate 🟠 = cap 5% + stop -8%. | 74        | 2026-06-17 |
-| ★  | CEG     | Constellation Energy  | [nucléaire] [tendance]   | long    | 🟢 F6/9 c=+0.38 cov82%     | Vigilance — valo 26x FCF à challenger DCF    | **Deep-dive mercredi** — acteur direct nucléaire US : 5,650 MW hyperscaler (Microsoft TMI, Meta), Calpine acq. (+21GW gaz/géothermie). RSI 38.6 (oversold). Momentum -13% = pullback post-run. F6/9 solide. Valo 26x FCF élevée mais contrats 20 ans signés — DCF inversé à faire. | 72        | 2026-06-17 |
+|    | GEV     | GE Vernova            | [infra-IA] [tendance]    | long    | 🟢 F6/9 c=+0.32 cov96%     | Vigilance — valo 47x fwd price la perfection | **Surveiller** (deep-dive 18/06) — exécution superbe (orders +71%, backlog $163→200B, guidance relevée) mais 47x fwd = zéro marge en surchauffe + wind saigne ($(400)M FY26). Acheter sur repli −20%. Conf. Moyenne. | —        | 2026-06-18 |
+|    | ENR.DE  | Siemens Energy        | [infra-IA] [tendance]    | long    | 🟠 F· mom+92% RSI34 cov39% | Vigilance — repli survendu dans tendance      | **Surveiller / tactique** (deep-dive 18/06) — backlog €154B record, guidance relevée, FCF ~€8B ; RSI 34 après −25% = fenêtre. Mais valo ~35x + Gamesa non prouvé. Gate 🟠 = cap 5% + stop −8%. Conf. Moyenne. Scénario §K rejeté (déjà pricé). | —        | 2026-06-18 |
+|    | CEG     | Constellation Energy  | [nucléaire] [tendance]   | long    | 🟠 F6/9 c=+0.19 cov82%     | Sain — repli a dé-risqué la valo (~13x 2029E) | **ACHETER modeste** (deep-dive 18/06) — seule des trois avec marge de sécurité : replié −35% vs ATH, PPA 20 ans (Microsoft/TMI, Meta), F6/9, plancher PTC. Gate 🟠 (momentum -14%) = cap 5% + stop −8%. Entrée vendredi. Conf. Moyenne. | —        | 2026-06-18 |
 |    | MSCI    | MSCI Inc.             | [qualité]                | long    | 🟢 F7/9 c=+0.49 cov96%     | Sain — 0 drapeau                            | **DÉTENU** (1.36 parts, entrée 535€, stop 492€). Quasi-monopole indices, PE 30x, rétention 95.4%. Q2 résultats 21 juillet = prochain catalyseur. Gate stable 🟢. | —         | 2026-06-13 |
 |    | CCJ     | Cameco Corp           | [uranium] [tendance]     | long    | 🟢 F· mom+55% RSI50 cov39% | Sain — matière première cyclique, pas de narratif pur | **Surveiller** — uranium : 230M lb engagés LT, contrat Inde 22M lb $2.6B, prix CAD 115-120/lb. Gate 🟢 mais F-Score non calculé (traiter comme 🟠 prudent). Matière première du cycle nucléaire IA. Ajouter si deep-dive ENR/CEG valide. | 68        | 2026-06-17 |
 |    | VST     | Vistra Corp           | [nucléaire] [tendance]   | long    | 🟠 F6/9 c=−0.08 cov96%     | Vigilance légère — Texas ERCOT concentration | **Surveiller** — nucléaire US alternatif à CEG, PE 18x (moins cher), PPA Meta 20 ans 2,600 MW. Gate 🟠 ambre = cap 5%. Alternative si CEG deep-dive conclut "trop cher". | 65        | 2026-06-17 |
@@ -22,11 +23,12 @@
 |    | V       | Visa                  | [qualité]                | —       | 🔴                          | Sain                                         | **À éviter** (gate 🔴) : FCF $21Md, PE 23x. Surveiller si gate rebondit. | —         | 2026-06-10 |
 |    | MSFT    | Microsoft             | [qualité]                | —       | 🔴                          | Vigilance — capex IA $80B+                   | **À éviter** (gate 🔴) : cloud/IA solide, momentum cassé. | —         | 2026-06-16 |
 
-## 🚨 Alerte book IA — à traiter JEUDI (vente seule §H)
+## ✅ Alerte book IA — HO.PA résolue (revue Opus 18/06)
 
-| Ticker | Situation | Urgence |
-|--------|-----------|---------|
-| **HO.PA** | Flipped 🔴 rouge ce mardi (composite -0.201, mom -12%) → sortie forcée §H. Thèse défense EU intacte mais gate prime. | **SORTIE FORCÉE** |
+| Ticker | Situation | Action jeudi |
+|--------|-----------|--------------|
+| **HO.PA** | Gate **redressé 🔴→🟠** (-0.201→-0.187 le 18/06), au-dessus du stop (€231>€226,62), thèse défense EU **intacte** (budgets Allemagne/France en hausse). **Plus de sortie forcée.** | **RE-VÉRIFIER le gate jeudi** : si <-0,2 → sortie forcée §H ; sinon GARDER (cap 5% ok). |
+| **AI** | Signal CA -35,7% = **ARTEFACT** (attribution gratuite 1-pour-10 le 10/06 + FX). Business croît en comparable (+1,9%). | **NE PAS vendre sur ce signal** — pivot réel non touché. |
 
 ## Ré-entrées prioritaires (positions vendues, thèse intacte)
 
@@ -37,10 +39,12 @@
 | CI2    | Macro Inde (+6.9% PIB) | 🔴 | Gate composite > -0.2 + flux étrangers se stabilisent |
 | BYD    | EV Chine, technologie charge | 🔴 | Gate composite > -0.2 (patience) |
 
-## Deep-dive mercredi (3 ★ — plafond respecté)
+## Deep-dive mercredi 18/06 — TRAITÉ (verdicts)
 
-| ★  | Ticker | Profil | Priorité | Note scout |
-|----|--------|--------|----------|-----------|
-| ★★★ | GEV  | Pioches & pelles US (turbines/grid) | #1 — F6/9, backlog $163B, orders +71%, PT +30% | Challenger forward PE 47x via DCF inversé |
-| ★★  | ENR.DE | Pioches & pelles EU (transformateurs HV) | #2 — RSI 30 survendu, consensus +25%, F-Score EU à calculer | Gate ambre = cap 5% book |
-| ★   | CEG  | Acteur direct nucléaire US | #3 — F6/9, RSI oversold 38.6, 26x FCF à challenger | Valo tendue mais base contractuelle solide 20 ans |
+| Ticker | Verdict | Conf. | Pourquoi (résumé §D) |
+|--------|---------|-------|----------------------|
+| **CEG** | **Acheter** (modeste) | Moyenne | Seule avec marge de sécurité : replié −35% vs ATH (~13x 2029E), PPA 20 ans, F6/9, plancher PTC. Gate 🟠 → cap 5% + stop −8%. Entrée vendredi. |
+| **ENR.DE** | Surveiller / tactique | Moyenne | Backlog €154B record + fenêtre RSI 34 survendu, mais valo ~35x + Gamesa non prouvé. Gate 🟠. |
+| **GEV** | Surveiller | Moyenne | Exécution superbe mais 47x fwd = zéro marge en surchauffe + wind saigne. Acheter sur repli −20%. |
+
+> Leçon ranking : le pré-score Scout (GEV 80 > ENR 74 > CEG 72) ressort **inversé** sur la marge de sécurité — seul CEG (le plus bas) finit **Acheter**. Confirme la leçon 11/06 : le pré-score est momentum-tilté ; la valo-vs-histoire (DCF inversé §C) prime pour ranger les candidats.
