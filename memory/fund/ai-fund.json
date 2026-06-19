@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-13",
+  "as_of": "2026-06-19",
   "seeded": true,
   "start_capital": 10417.28,
   "cash": 5959.03,
@@ -256,5 +256,5 @@
       "rationale": "Nouvelle conviction Deep-dive 11/06 → entrée vendredi §H. Quasi-monopole indices, PE 30x dé-raté vs historique 35-45x, F7/9 EDGAR (solide), organique +13%, rétention 95.4%, analyst upgrades Goldman Buy/Wells OW/RJ PT $730. Gate 🟢 vert (F7/9 catapulte couverture 49%→86%). Sizing Moyenne = 7% NAV (~730€). Stop -8% à 492.57 EUR. n<8 décisions → sizing standard §H sans ajustement calibration."
     }
   ],
-  "note": "Book RE-CLONÉ depuis le groupe au 2026-06-08 (valeurs Trade Republic). PARTS RÉELLES : quantity = valeur TR / cours live EUR au seed, avg_cost = coût de revient TR / quantity. Divergence démarrée au 1er vendredi (13/06) : 3 exits gate-disciplinées (NFLX stop -8%, HO trim à 5% NAV) + 1 entrée propre (MSCI Acheter/Moyenne). Cash 57.4% NAV (régime SURCHAUFFE → plancher 30% respecté). start_capital = 10417.28 €. NAV estimée 2026-06-13 ≈ 10,384 €."
+  "note": "Book RE-CLONÉ depuis le groupe au 2026-06-08 (valeurs Trade Republic). Divergence démarrée au 1er vendredi (13/06) : 3 exits gate-disciplinées (NFLX stop -8%, HO trim à 5% NAV) + 1 entrée propre (MSCI Acheter/Moyenne). Portfolio Doctor 19/06 : 0 sorties — aucun gate 🔴, aucun stop atteint. 8 positions actives. Signaux : 6 🟢 vert (SAF.PA, AMZN, EIMI, LOTB, BNP.PA, MSCI) + 2 🟠 ambre (HO.PA −0,149, AI −0,064). À surveiller : BNP.PA RSI 77,5 suracheté, HO.PA whisker rouge −0,149. Cash 56,5 % NAV. start_capital = 10417.28 €. NAV estimée 2026-06-19 ≈ 10 552 €."
 }
