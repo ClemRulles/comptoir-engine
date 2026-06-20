@@ -1,8 +1,8 @@
 {
-  "as_of": "2026-06-19",
+  "as_of": "2026-06-20",
   "seeded": true,
   "start_capital": 10417.28,
-  "cash": 5959.03,
+  "cash": 5218.03,
   "positions": [
     {
       "ticker": "SAF.PA",
@@ -13,9 +13,9 @@
       "thesis_id": "saf-aero",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "thèse cassée si cycle aéro/MRO se retourne (heures de vol en baisse) — stop mental, pas de seuil prix",
+      "exit_rule": "thèse cassée si cycle aéro/MRO se retourne (heures de vol en baisse) — stop mental, pas de seuil prix ; résultats S1 28 juillet = prochain test",
       "seed": false,
-      "thesis": "Aéronautique + MRO LEAP : aftermarket +32%, LEAP +63% livrés. Gate 🟢 vert (composite +0.311). Thèse renforcée Q1 2026."
+      "thesis": "Aéronautique + MRO LEAP : aftermarket +32%, LEAP +63% livrés. Gate 🟢 vert (composite +0.368). Thèse renforcée Q1 2026."
     },
     {
       "ticker": "HO.PA",
@@ -26,9 +26,9 @@
       "thesis_id": "ho-defense",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "sortie si budgets défense EU décélèrent nettement ; stop -8% à 226.61 EUR (avg_cost × 0.92)",
+      "exit_rule": "sortie si budgets défense EU décélèrent nettement ; stop -8% à 226.61 EUR (avg_cost × 0.92) ; gate 🟠 ambre −0.120 (whisker rouge, re-vérifier chaque semaine)",
       "seed": false,
-      "thesis": "Cycle défense européen structurel, commandes +75% Défense H1 2026. Trimé à 5% NAV (cap 🟠 ambre)."
+      "thesis": "Cycle défense européen structurel, commandes +75% Défense H1 2026. Trimé à 5% NAV (cap 🟠 ambre). Gate ambre −0.120 (amélioration vs −0.149 semaine précédente)."
     },
     {
       "ticker": "AMZN",
@@ -39,9 +39,9 @@
       "thesis_id": "amzn-aws",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "sortie si croissance AWS + marge retail se cassent ; gate 🟢 vert (composite +0.257)",
+      "exit_rule": "sortie si croissance AWS + marge retail se cassent ; gate 🟢 vert F5/9 (composite +0.277)",
       "seed": false,
-      "thesis": "AWS + levier marge retail/pub. F5/9, EPS surprise +68%, earnings quality vert. RSI 26.8 survendu (potentiel rebond)."
+      "thesis": "AWS + levier marge retail/pub. F5/9, EPS surprise +68%, earnings quality vert. RSI 31.1 survendu. Hyperscaler Q2 (juillet-août) = test de la thèse infra-IA."
     },
     {
       "ticker": "EIMI",
@@ -52,9 +52,9 @@
       "thesis_id": "em-etf",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "rebalancement, pas de thèse single-stock",
+      "exit_rule": "rebalancement, pas de thèse single-stock ; deadline tarifs US 1er juillet (impact EM indirect)",
       "seed": false,
-      "thesis": "Diversification marchés émergents (ETF). Momentum +38%, gate 🟢 vert. IMF EM growth +3.9% 2026."
+      "thesis": "Diversification marchés émergents (ETF). Momentum +39%, gate 🟢 vert (composite +0.513). IMF EM growth +3.9% 2026."
     },
     {
       "ticker": "AI",
@@ -65,9 +65,9 @@
       "thesis_id": "airliquide-compounder",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "sortie si ROIC/volumes se dégradent durablement ; stop -8% à 147.58 EUR (avg_cost × 0.92) ; CA YoY -35.7% (04/2026) à clarifier H1",
+      "exit_rule": "sortie si ROIC/volumes se dégradent durablement ; stop -8% à 147.58 EUR (avg_cost × 0.92) ; CA YoY -35.7% = ARTEFACT attribution gratuite 10/06 — ne pas vendre sur ce signal",
       "seed": false,
-      "thesis": "Air Liquide — compounder gaz industriels, défensif. Gate 🟠 ambre (composite -0.097, coverage 43%). CA YoY anormal à surveiller."
+      "thesis": "Air Liquide — compounder gaz industriels, défensif. Gate 🟠 ambre (composite −0.013, RSI 36.1 survendu). Business intact en comparable (+1.9%). Near-vert."
     },
     {
       "ticker": "LOTB",
@@ -78,9 +78,9 @@
       "thesis_id": "lotus-quality",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "alléger si DCF inversé devient irréaliste (RSI 77.6 = suracheté, near 52w high 0.983) ; valo tendue signalée depuis le seed",
+      "exit_rule": "alléger si DCF inversé PER >50x devient irréaliste vs pairs food-premium (Lindt ~30x, Mondelez ~18x) ; taille petite (4.2% NAV = garde-fou naturel)",
       "seed": false,
-      "thesis": "Lotus Bakeries (Biscoff) — compounder premium. RSI 77.6 overbought, gate 🟢 mais vigilance valo. Taille petite (4.4% NAV)."
+      "thesis": "Lotus Bakeries (Biscoff) — compounder premium. Gate 🟢 vert (composite +0.521). RSI 57.1 normalisé (vs 77.6 au seed). PER ~44x : vigilance valo, position petite."
     },
     {
       "ticker": "BNP.PA",
@@ -91,9 +91,9 @@
       "thesis_id": "bnp-bank",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "sortie si taux/risque crédit cassent la thèse banque",
+      "exit_rule": "sortie si taux/risque crédit cassent la thèse banque ; surveiller HY spreads + RSI 75.3 (suracheté technique) ; position 3.6% NAV = risque limité",
       "seed": false,
-      "thesis": "Banque diversifiée, +42.9% depuis book entry, gate 🟢 vert (composite +0.379). ECB +25bps (courbe favorable)."
+      "thesis": "Banque diversifiée, +50% depuis book entry. Gate 🟢 vert (composite +0.305). ECB +25bps (courbe favorable). RSI 75.3 = essoufflement technique à surveiller mais thèse intacte."
     },
     {
       "ticker": "MSCI",
@@ -104,9 +104,22 @@
       "thesis_id": "msci-monopole",
       "entry_date": "2026-06-13",
       "target": null,
-      "exit_rule": "vendre si rétention abonnés < 93% ou PE re-expand > 40x sans accélération organique ; stop -8% à 492.57 EUR",
+      "exit_rule": "vendre si rétention abonnés < 93% ou PE re-expand > 40x sans accélération organique ; stop -8% à 492.57 EUR ; résultats Q2 21 juillet",
       "seed": false,
-      "thesis": "Quasi-monopole indices MSCI, PE 30x dé-raté vs historique 35-45x, F7/9 EDGAR, organique +13%, rétention 95.4%. Analyst upgrades Goldman/Wells/RJ."
+      "thesis": "Quasi-monopole indices MSCI, PE 30x dé-raté vs historique 35-45x, F7/9 EDGAR, organique +13%, rétention 95.4%. Gate 🟢 vert (composite +0.520). RSI 30.8 survendu = potentiel rebond."
+    },
+    {
+      "ticker": "CEG",
+      "quantity": 2.926,
+      "avg_cost": 252.49,
+      "confidence": "Moyenne",
+      "horizon": "coeur",
+      "thesis_id": "ceg-nuclear-ppa",
+      "entry_date": "2026-06-20",
+      "target": null,
+      "exit_rule": "vendre si restart TMI (Three Mile Island, fin 2027) glisse matériellement OU guidance >20% CAGR BPA coupée OU stop −8% à 232.29 EUR (avg_cost × 0.92) ; surveiller cession PJM (deadline sept. 2026) et dealflow hyperscaler",
+      "seed": false,
+      "thesis": "Nucléaire US + PPA hyperscaler 20 ans (Microsoft TMI 835MW, Meta Clinton 1100MW). Replié −35% vs ATH. F6/9 EDGAR. Gate 🟢 vert (upgraded de 🟠 ambre). 13x BPA 2029E = marge de sécurité. PTC plancher. Guidance >20% CAGR BPA réaffirmée."
     }
   ],
   "trades": [
@@ -254,7 +267,20 @@
       "horizon": "coeur",
       "gate": "🟢 vert composite +0.22 coverage 86% F7/9 EDGAR",
       "rationale": "Nouvelle conviction Deep-dive 11/06 → entrée vendredi §H. Quasi-monopole indices, PE 30x dé-raté vs historique 35-45x, F7/9 EDGAR (solide), organique +13%, rétention 95.4%, analyst upgrades Goldman Buy/Wells OW/RJ PT $730. Gate 🟢 vert (F7/9 catapulte couverture 49%→86%). Sizing Moyenne = 7% NAV (~730€). Stop -8% à 492.57 EUR. n<8 décisions → sizing standard §H sans ajustement calibration."
+    },
+    {
+      "ts": "2026-06-20",
+      "side": "buy",
+      "ticker": "CEG",
+      "quantity": 2.926,
+      "price": 252.49,
+      "fee": 2.22,
+      "confidence": "Moyenne",
+      "thesis_id": "ceg-nuclear-ppa",
+      "horizon": "coeur",
+      "gate": "🟢 vert composite +0.239 F6/9 EDGAR coverage 86%",
+      "rationale": "Entrée vendredi §H sur verdict Acheter/Moyenne du débat mercredi 18/06. Gate passé 🟠 ambre (composite +0.192 cov82% le 18/06) → 🟢 vert (composite +0.239 cov86% le 20/06) : momentum légèrement relevé + couverture stable. Nucléaire US + PPA hyperscaler 20 ans (Microsoft TMI 835MW restart fin 2027, Meta Clinton 1100MW juin 2027), replié −35% vs ATH. DCF inversé : ~13x BPA 2029E = marge de sécurité réelle (vs pairs CEG à 22-30x). Guidance >20% CAGR BPA 2026-29 réaffirmée. PTC nucléaire = plancher de revenu (floor downside). Calpine (clos 07/01) accrétif +$2/action. Sizing Moyenne = 7% NAV (~739€). Cash post-trade ~49.5% >> plancher 30% SURCHAUFFE §H. Stop −8% à 232.29 EUR (avg_cost × 0.92). Tendance 'infra IA / énergie nucléaire' validée. Gate 🟢 → plafond 20% §H (non capé). Secteur nucléaire : 0% NAV → 7% — sous plafond 40% §H."
     }
   ],
-  "note": "Book RE-CLONÉ depuis le groupe au 2026-06-08 (valeurs Trade Republic). Divergence démarrée au 1er vendredi (13/06) : 3 exits gate-disciplinées (NFLX stop -8%, HO trim à 5% NAV) + 1 entrée propre (MSCI Acheter/Moyenne). Portfolio Doctor 19/06 : 0 sorties — aucun gate 🔴, aucun stop atteint. 8 positions actives. Signaux : 6 🟢 vert (SAF.PA, AMZN, EIMI, LOTB, BNP.PA, MSCI) + 2 🟠 ambre (HO.PA −0,149, AI −0,064). À surveiller : BNP.PA RSI 77,5 suracheté, HO.PA whisker rouge −0,149. Cash 56,5 % NAV. start_capital = 10417.28 €. NAV estimée 2026-06-19 ≈ 10 552 €."
+  "note": "Book RE-CLONÉ depuis le groupe au 2026-06-08 (valeurs Trade Republic). Divergence démarrée au 1er vendredi (13/06) : 3 exits gate-disciplinées (NFLX stop −8%, HO trim à 5% NAV) + 1 entrée propre (MSCI Acheter/Moyenne). Portfolio Doctor 19/06 : 0 sorties. Brief 20/06 : 1 entrée CEG (Constellation Energy, nucléaire US, gate 🟢 vert F6/9, Moyenne, 7% NAV, 252.49€/part). 9 positions actives. Signaux 20/06 : 7 🟢 vert (SAF.PA, AMZN, EIMI, LOTB, BNP.PA, MSCI, CEG) + 2 🟠 ambre (HO.PA −0.120, AI −0.013). À surveiller : HO.PA whisker rouge (stop 226.61€ / cours 232.4€, marge 2.5%), NOVOB 🔴 (ré-entrée post-Medicare 1 juillet). Cash 49.5% NAV (>> plancher 30% SURCHAUFFE). start_capital = 10417.28 €. NAV estimée 2026-06-20 ≈ 10 541 €."
 }
