@@ -1,50 +1,51 @@
-# Watchlist — maj 2026-06-20
+# Watchlist — maj 2026-06-23
 
-> Mode : **tendance VALIDÉE** — Infrastructure IA / Énergie nucléaire (16/06) + Réarmement EU (13/06, continuation).
-> Régime : **SURCHAUFFE** · plancher cash 30% (signals.js 2026-06-18).
-> ✅ **Deep-dive mercredi traité** : GEV (Surveiller — valo 47x sans marge), ENR.DE (Surveiller — fenêtre survendu, gate 🟠), CEG (**Acheter** modeste — seule avec marge de sécurité, gate 🟠). ★ retirés.
-> ✅ **ALERTE HO.PA LEVÉE** : le gate s'est redressé 🔴→🟠 (composite -0.201→-0.187 le 18/06), au-dessus du stop (€231 > €226,62), thèse intacte → **plus de sortie forcée mécanique**. Jeudi re-vérifie le gate ; s'il replonge <-0,2 → sortie forcée §H.
+> Mode : **tendance VALIDÉE (continuation)** — Infrastructure IA / Énergie nucléaire (23/06, confirmation).
+> Régime : **SURCHAUFFE — BIAIS HAWKISH** · plancher cash 30% · FOMC dot plot 3.8%, PCE 3.6%.
+> ⚠️ **ALERTE JEUDI — HO.PA STOP TOUCHÉ** : cours 226.3€ < stop 226.61€ → sortie forcée §H.
+> ⚠️ **ALERTE JEUDI — SAF.PA 🟢→🟠** : gate ambre (RSI 73.5), position 8.4% NAV > cap 5% → trim requis §H.
 
 | ★  | Ticker  | Nom                   | Tag                      | Horizon | Gate                        | Drapeau bulle                                | Thèse 1 ligne / Statut                                                                                                                                                | Pré-score | Vu le      |
 |----|---------|-----------------------|--------------------------|---------|-----------------------------|----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|------------|
-|    | GEV     | GE Vernova            | [infra-IA] [tendance]    | long    | 🟢 F6/9 c=+0.32 cov96%     | Vigilance — valo 47x fwd price la perfection | **Surveiller** (deep-dive 18/06) — exécution superbe (orders +71%, backlog $163→200B, guidance relevée) mais 47x fwd = zéro marge en surchauffe + wind saigne ($(400)M FY26). Acheter sur repli −20%. Conf. Moyenne. | —        | 2026-06-18 |
-|    | ENR.DE  | Siemens Energy        | [infra-IA] [tendance]    | long    | 🟠 F· mom+92% RSI34 cov39% | Vigilance — repli survendu dans tendance      | **Surveiller / tactique** (deep-dive 18/06) — backlog €154B record, guidance relevée, FCF ~€8B ; RSI 34 après −25% = fenêtre. Mais valo ~35x + Gamesa non prouvé. Gate 🟠 = cap 5% + stop −8%. Conf. Moyenne. Scénario §K rejeté (déjà pricé). | —        | 2026-06-18 |
-|    | CEG     | Constellation Energy  | [nucléaire] [tendance]   | long    | 🟢 F6/9 c=+0.24 cov86%     | Sain — repli a dé-risqué la valo (~13x 2029E) | **DÉTENU** (2.926 parts, entrée 252.49€, stop 232.29€). Nucléaire US + PPA hyperscaler 20 ans. Gate 🟢 vert (upgraded de 🟠 ambre). 7% NAV. Q2 hyperscaler (juil-août) = prochain test de la thèse. | —        | 2026-06-20 |
-|    | MSCI    | MSCI Inc.             | [qualité]                | long    | 🟢 F7/9 c=+0.49 cov96%     | Sain — 0 drapeau                            | **DÉTENU** (1.36 parts, entrée 535€, stop 492€). Quasi-monopole indices, PE 30x, rétention 95.4%. Q2 résultats 21 juillet = prochain catalyseur. Gate stable 🟢. | —         | 2026-06-13 |
-|    | CCJ     | Cameco Corp           | [uranium] [tendance]     | long    | 🟢 F· mom+55% RSI50 cov39% | Sain — matière première cyclique, pas de narratif pur | **Surveiller** — uranium : 230M lb engagés LT, contrat Inde 22M lb $2.6B, prix CAD 115-120/lb. Gate 🟢 mais F-Score non calculé (traiter comme 🟠 prudent). Matière première du cycle nucléaire IA. Ajouter si deep-dive ENR/CEG valide. | 68        | 2026-06-17 |
-|    | VST     | Vistra Corp           | [nucléaire] [tendance]   | long    | 🟠 F6/9 c=−0.08 cov96%     | Vigilance légère — Texas ERCOT concentration | **Surveiller** — nucléaire US alternatif à CEG, PE 18x (moins cher), PPA Meta 20 ans 2,600 MW. Gate 🟠 ambre = cap 5%. Alternative si CEG deep-dive conclut "trop cher". | 65        | 2026-06-17 |
-|    | SU.PA   | Schneider Electric    | [qualité] [infra-IA]     | long    | 🟢 F· mom+21% RSI48 cov43% | Vigilance — valo ~26x forward               | **Surveiller** — data center power infra, Q1 Systems +16%. Gate 🟢. Acheter sur repli (~23x). Tendance identique à GEV/ENR mais valo déjà pleine. | —         | 2026-06-11 |
-|    | MC.PA   | LVMH                  | [qualité]                | long    | 🟠 F· mom−2% RSI70 cov39%  | Sain — décote 21x vs 24-27x historique      | **Surveiller** — RSI 70 = proche overbought (attention). Catalyseur : S1 28 juillet. Thèse : retournement luxe. Attendre confirmation organique avant d'entrer. | —         | 2026-06-11 |
-|    | NOVOB   | Novo Nordisk B        | [qualité]                | long    | 🔴                          | Sain — fondamentaux GLP-1 très solides       | **Hors book (gate 🔴)** — Medicare Wegovy 50$/mois dès 1er juillet = catalyseur daté. **Ré-entrée prioritaire début juillet** si gate composite > -0.2. | —         | 2026-06-16 |
-|    | SAP     | SAP AG                | [qualité]                | long    | 🔴                          | Sain — cloud confirmé                        | **Hors book (gate 🔴)** — cloud RISE +19%, backlog +20%, Autonomous Enterprise (Sapphire juin 2026). Ré-entrée si momentum rebondit. | —         | 2026-06-12 |
-|    | RHM.DE  | Rheinmetall           | [défense] [tendance]     | —       | 🔴 mom−36% RSI37 cov39%    | Vigilance — correction après run défense     | **À éviter (gate 🔴)** — backlog €73B record, guidance +45% FY26, Rheinmetall-Anduril. Thèse structurelle intacte mais momentum −36% = sortie forcée book. Q1 revenue miss (UBS PT coupé de €2,200 à €1,600). Ré-évaluer si gate remonte. | —         | 2026-06-17 |
-|    | LIN     | Linde                 | [qualité]                | long    | 🟢 c=+0.22                  | Vigilance légère — near 52w high             | Compounder gaz industriels (ROIC 24%, take-or-pay). Peu de décote, surveiller repli. | —         | 2026-06-10 |
-|    | ASML    | ASML                  | [qualité]                | —       | ⚠️ SURCHAUFFE               | Risque élevé — mom +103%                     | **À éviter** : moat EUV inattaquable mais surchauffe extrême. Attendre −20 à −30% minimum. | —         | 2026-06-10 |
-|    | V       | Visa                  | [qualité]                | —       | 🔴                          | Sain                                         | **À éviter** (gate 🔴) : FCF $21Md, PE 23x. Surveiller si gate rebondit. | —         | 2026-06-10 |
-|    | MSFT    | Microsoft             | [qualité]                | —       | 🔴                          | Vigilance — capex IA $80B+                   | **À éviter** (gate 🔴) : cloud/IA solide, momentum cassé. | —         | 2026-06-16 |
+|    | GEV     | GE Vernova            | [infra-IA] [tendance]    | long    | 🟢 F6/9 c=+0.32 cov96%     | ⚠️ Vigilance haute — valo >50x fwd après +25% sur le mois | **Surveiller (attendre repli)** (deep-dive 18/06) — exécution superbe (orders +71%, backlog $163B→200B, guidance relevée, $10B buyback) mais valo >50x fwd = zéro marge en SURCHAUFFE + FOMC hawkish renchérit financement nouveaux projets. Acheter sur repli −25%. | —        | 2026-06-23 |
+|    | ENR.DE  | Siemens Energy        | [infra-IA] [tendance]    | long    | 🟠 F· mom+92% RSI34 cov39% | Vigilance — repli survendu dans tendance      | **Surveiller / tactique** — backlog €154B record (buyback 1.5M actions juin 4-21) ; MAIS FOMC hawkish = coût financement nouveaux projets monte → moins prioritaire vs CEG (contrats fixes). Gate 🟠 = cap 5% + stop −8%. | —        | 2026-06-23 |
+|    | CEG     | Constellation Energy  | [nucléaire] [tendance]   | long    | 🟢 F6/9 c=+0.275 cov86%    | Sain — repli a dé-risqué la valo (~13x 2029E) | **DÉTENU** (2.926 parts, entrée 252.49€, stop 232.29€, cours 275.53€ +9.1% vs entrée). Renforcé : $5B buyback + CyrusOne 380MW + Calpine close + FCF $8.4B. PPA fixes = défensif vs anxiété FCF hyperscaler. Gate 🟢 stable. Test Q2 hyperscaler (juil-août). | —        | 2026-06-23 |
+|    | MSCI    | MSCI Inc.             | [qualité]                | long    | 🟢 F7/9 c=+0.472 cov92%    | Sain — 0 drapeau                            | **DÉTENU** (1.36 parts, entrée 535€, stop 492€, cours 580.85€). RSI 23.4 = survendu extrême ; F7/9 intact ; rétention 95.4% ; Q2 résultats 21 juillet. Gate 🟢 solide. | —         | 2026-06-23 |
+|    | CCJ     | Cameco Corp           | [uranium] [tendance]     | long    | 🟢 F· mom+55% RSI50 cov39% | Sain — matière première cyclique             | **Surveiller** — uranium cycle nucléaire IA. Contrat Inde 22M lb $2.6B. Gate 🟢. Ajouter si deep-dive CEG/ENR valide la tendance durabilité. | 68        | 2026-06-17 |
+|    | VST     | Vistra Corp           | [nucléaire] [tendance]   | long    | 🟠 F6/9 c=−0.08 cov96%     | Vigilance légère — Texas ERCOT concentration | **Surveiller** — nucléaire US alternatif CEG (PE 18x moins cher), PPA Meta 20 ans 2600 MW. Gate 🟠 = cap 5%. | 65        | 2026-06-17 |
+|    | SU.PA   | Schneider Electric    | [qualité] [infra-IA]     | long    | 🟢 F· mom+21% RSI48 cov43% | Vigilance — valo ~26x forward               | **Surveiller** — data center power infra, Q1 Systems +16%. Gate 🟢. Acheter sur repli (~23x). FOMC hawkish = financement projets plus cher → attendre plus de repli. | —         | 2026-06-11 |
+|    | MC.PA   | LVMH                  | [qualité]                | long    | 🟠 F· mom−2% RSI70 cov39%  | Sain — décote 21x vs 24-27x historique      | **Surveiller** — S1 28 juillet = déclencheur. Thèse retournement luxe. Attendre confirmation organique. | —         | 2026-06-11 |
+|    | NOVOB   | Novo Nordisk B        | [qualité]                | long    | 🔴 c=−0.415                 | Sain — fondamentaux GLP-1 très solides       | **Hors book (gate 🔴)** — Medicare Wegovy $50/mois dès 1er juillet (J-8). Wegovy pill 3M prescriptions = demande prouvée. **Ré-entrée prioritaire début juillet** si gate composite > −0.2. | —         | 2026-06-23 |
+|    | SAP     | SAP AG                | [qualité]                | long    | 🔴                          | Sain — cloud confirmé                        | **Hors book (gate 🔴)** — cloud RISE +19%, Autonomous Enterprise. Ré-entrée si momentum rebondit. | —         | 2026-06-12 |
+|    | RHM.DE  | Rheinmetall           | [défense] [tendance]     | —       | 🔴 mom−36% RSI37 cov39%    | Vigilance — correction après run défense     | **À éviter (gate 🔴)** — backlog €73B record, Q1 revenue miss. Ré-évaluer si gate remonte. | —         | 2026-06-17 |
+|    | LIN     | Linde                 | [qualité]                | long    | 🟢 c=+0.22                  | Vigilance légère — near 52w high             | Compounder gaz industriels (ROIC 24%). Peu de décote, surveiller repli. | —         | 2026-06-10 |
+|    | ASML    | ASML                  | [qualité]                | —       | ⚠️ SURCHAUFFE               | Risque élevé — mom +103%                     | **À éviter** : moat EUV inattaquable mais surchauffe extrême. Attendre −25% minimum. | —         | 2026-06-10 |
+|    | V       | Visa                  | [qualité]                | —       | 🔴                          | Sain                                         | **À éviter** (gate 🔴). | —         | 2026-06-10 |
+|    | MSFT    | Microsoft             | [qualité]                | —       | 🔴                          | Vigilance — capex IA $120B+                  | **À éviter** (gate 🔴) : AI capex anxiety + FCF pressure. | —         | 2026-06-16 |
+|    | GOOGL   | Alphabet              | [qualité]                | —       | ⚠️                          | Vigilance — FCF −47%, AI talent losses       | **Surveiller / Grok call baisse** (repli web W26) — GOOGL −6% le 22 juin : FTC, DMA, FCF anxiété. Pas dans notre book. Grok call baisse enregistré W26. | —         | 2026-06-23 |
 
-## ✅ Alerte book IA — HO.PA résolue (revue Opus 18/06)
+## ⚠️ ALERTES JEUDI (Portfolio Doctor 2026-06-26) — book IA
 
-| Ticker | Situation | Action jeudi |
-|--------|-----------|--------------|
-| **HO.PA** | Gate **redressé 🔴→🟠** (-0.201→-0.187 le 18/06), au-dessus du stop (€231>€226,62), thèse défense EU **intacte** (budgets Allemagne/France en hausse). **Plus de sortie forcée.** | **RE-VÉRIFIER le gate jeudi** : si <-0,2 → sortie forcée §H ; sinon GARDER (cap 5% ok). |
-| **AI** | Signal CA -35,7% = **ARTEFACT** (attribution gratuite 1-pour-10 le 10/06 + FX). Business croît en comparable (+1,9%). | **NE PAS vendre sur ce signal** — pivot réel non touché. |
+| Ticker | Alerte | Action requise |
+|--------|--------|----------------|
+| **HO.PA** | 🚨 STOP TOUCHÉ | Cours 226.3€ < stop 226.61€ (avg_cost 246.32 × 0.92). Gate 🟠 ambre (composite −0.111). **SORTIE FORCÉE §H jeudi si cours toujours < 226.61€.** Thèse défense EU intacte mais la règle prime sans débat. |
+| **SAF.PA** | ⚠️ GATE 🟢→🟠 | RSI 73.5 suracheté, gate composite +0.132. Position 2.68 parts × 331.2€ = ~888€ ≈ 8.4% NAV > cap 5% (529€). **TRIM à 5% NAV jeudi** (~1.09 parts à vendre). Thèse aéro/LEAP intacte. Stop −8% requis pour position résiduelle : 331.2 × 0.92 = 304.7€. |
+| **AMZN** | ⚠️ SURVEILLANCE | Chute −4.75% le 22/06 ($244→$232). RSI 30.2 survendu. FTC antitrust + EU DMA = risques. AWS Q1 +28% = thèse intacte. Gate 🟢 (composite +0.243). **Tenir — stop mental si guidance AWS cassée au Q2 (30 juillet).** |
+| **BNP.PA** | 🟡 SURACHETÉ | RSI 77.8 + range52 0.986. Thèse non cassée mais essoufflement technique. FOMC hawkish bénéfique long terme mais BNP.PA déjà au plafond technique. Évaluer allègement partiel si RSI reste >75 vendredi. |
 
 ## Ré-entrées prioritaires (positions vendues, thèse intacte)
 
 | Ticker | Thèse | Gate actuel | Condition de ré-entrée |
 |--------|-------|:-----------:|------------------------|
-| NOVOB  | GLP-1/Wegovy, Medicare Bridge 1er juillet | 🔴 | Gate composite > -0.2 début juillet post-lancement |
-| SAP    | Cloud RISE, Autonomous Enterprise | 🔴 | Gate composite > -0.2 + momentum rebondit |
-| CI2    | Macro Inde (+6.9% PIB) | 🔴 | Gate composite > -0.2 + flux étrangers se stabilisent |
-| BYD    | EV Chine, technologie charge | 🔴 | Gate composite > -0.2 (patience) |
+| NOVOB  | GLP-1/Wegovy, Medicare Bridge 1er juillet (J-8) | 🔴 −0.415 | Gate composite > −0.2 début juillet post-lancement |
+| SAP    | Cloud RISE, Autonomous Enterprise | 🔴 | Gate composite > −0.2 + momentum rebondit |
+| CI2    | Macro Inde (+6.9% PIB) | 🔴 | Gate composite > −0.2 + tarifs Section 122 éclairés |
+| BYD    | EV Chine, technologie charge | 🔴 | Gate composite > −0.2 (patience) |
 
 ## Deep-dive mercredi 18/06 — TRAITÉ (verdicts)
 
 | Ticker | Verdict | Conf. | Pourquoi (résumé §D) |
 |--------|---------|-------|----------------------|
-| **CEG** | **Acheter** (modeste) | Moyenne | Seule avec marge de sécurité : replié −35% vs ATH (~13x 2029E), PPA 20 ans, F6/9, plancher PTC. Gate 🟠 → cap 5% + stop −8%. Entrée vendredi. |
-| **ENR.DE** | Surveiller / tactique | Moyenne | Backlog €154B record + fenêtre RSI 34 survendu, mais valo ~35x + Gamesa non prouvé. Gate 🟠. |
-| **GEV** | Surveiller | Moyenne | Exécution superbe mais 47x fwd = zéro marge en surchauffe + wind saigne. Acheter sur repli −20%. |
-
-> Leçon ranking : le pré-score Scout (GEV 80 > ENR 74 > CEG 72) ressort **inversé** sur la marge de sécurité — seul CEG (le plus bas) finit **Acheter**. Confirme la leçon 11/06 : le pré-score est momentum-tilté ; la valo-vs-histoire (DCF inversé §C) prime pour ranger les candidats.
+| **CEG** | **Acheter** (modeste, entrée vendredi 20/06) | Moyenne | Seule avec marge de sécurité : ~13x 2029E, PPA 20 ans, F6/9. Renforcé cette semaine (buyback $5B, CyrusOne deal). |
+| **ENR.DE** | Surveiller / tactique | Moyenne | Backlog €154B + RSI 34 survendu mais FOMC hawkish = moins prioritaire (financement plus cher). |
+| **GEV** | Surveiller (repli −25% requis) | Moyenne | Exécution superbe mais valo >50x fwd après +25% sur le mois — encore plus cher qu'au 18/06. |

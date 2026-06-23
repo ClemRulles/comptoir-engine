@@ -1,7 +1,48 @@
 {
   "_doc": "Pouls hebdo du marché (Grok, accès X) — radar à corroborer, jamais un signal d'achat. Écrit par routines/monday-trend-radar.md (Partie C). Le plus récent en tête de weeks ; ~12 semaines max.",
-  "updated": "2026-06-16",
+  "updated": "2026-06-23",
   "weeks": [
+    {
+      "week": "2026-W26",
+      "date": "2026-06-23",
+      "label": "Semaine du 23 juin 2026",
+      "headline": "AI Capex FCF Anxiety + FOMC hawkish pivot : le marché questionne le ROI de l'IA tandis que la Fed indique une possible hausse des taux.",
+      "themes": [
+        {
+          "title": "AI Capex ROI Anxiety — rotation hors hyperscalers FCF-compressés",
+          "detail": "Alphabet −6%, Amazon −4.75% le 22 juin sur la compression FCF (AMZN −95% trailing, GOOGL −47%) face à $452B de capex combiné 2026. FTC antitrust sur le business pub AMZN $70B et EU DMA sur AWS ajoutent à la pression. Le marché questionne le délai de ROI de l'IA mais PAS le capex en soi (aucune coupure de guidance). Rotation vers les bénéficiaires réels de l'infra (CEG, utilities nucléaires) vs hyperscalers purs.",
+          "tickers": ["AMZN", "GOOGL", "CEG", "VST"],
+          "corroborated": true
+        },
+        {
+          "title": "FOMC Hawkish Pivot — dot plot révisé, hausse possible H2 2026",
+          "detail": "FOMC 17 juin : HOLD unanime MAIS dot plot révisé à 3.8% médiane (vs 3.4%) — 9/18 membres projettent ≥1 hausse avant fin 2026, 6 projettent 2 hausses. PCE 2026 révisé à 3.6% vs 2.7%. 17/18 membres upside risks sur l'inflation. Warsh 'unambiguous' sur la stabilité des prix. Le marché n'a pas encore pleinement pricé 1-2 hausses potentielles. Bénéficiaires : banques (NIM), value ; exposés : growth, long-duration.",
+          "tickers": ["BNP.PA", "JPM"],
+          "corroborated": true
+        },
+        {
+          "title": "Infrastructure nucléaire — contrats CEG renforcent la thèse vs anxiété FCF",
+          "detail": "CEG annonce $5B buyback + clôture Calpine ($26.6B, +$2/action accrétion) + nouveau deal CyrusOne 380MW + FCF guidance $8.4B 2026-27 + 1 GW nuclear uprates (Braidwood, Byron). Les contrats PPA fixes 20 ans sont imperméables à l'anxiété FCF trimestrielle des hyperscalers — les revenus sont contractuels. CEG se positionne comme le 'safe haven' de la thèse infra-IA.",
+          "tickers": ["CEG", "CCJ", "VST", "ENR.DE"],
+          "corroborated": true
+        },
+        {
+          "title": "Medicare GLP-1 Bridge — J-8 avant le lancement (1er juillet)",
+          "detail": "Le Medicare GLP-1 Bridge pour Wegovy ($50/mois, 65M+ seniors éligibles) démarre dans 8 jours. Wegovy pill déjà à 3M prescriptions (l'un des plus forts lancements pharma US par volume). NOVOB gate 🔴 (momentum −41%) — pas de trade avant redressement du gate. Radar pour la ré-entrée post-lancement.",
+          "tickers": ["NOVOB", "LLY"],
+          "corroborated": true
+        }
+      ],
+      "movers": [
+        { "ticker": "AMZN", "direction": "down", "reason": "FCF trailing −95% (capex $200B vs revenus AWS +28%) + FTC antitrust $70B ad business + EU DMA AWS = compression multiple sévère le 22 juin", "held": true },
+        { "ticker": "CEG", "direction": "up", "reason": "$5B buyback + CyrusOne 380MW + Calpine close + FCF guidance $8.4B — contraste fort avec l'anxiété FCF hyperscalers", "held": true },
+        { "ticker": "SAF.PA", "direction": "up", "reason": "RSI 73.5 (suracheté) + gate 🟢→🟠 : poursuite de la hausse défense EU mais momentum potentiellement essoufflé. Trim book IA requis jeudi.", "held": true },
+        { "ticker": "HO.PA", "direction": "down", "reason": "Cours 226.3€ = stop 226.61€ touché. Gate 🟠 ambre (composite −0.111). Sortie forcée book IA jeudi.", "held": true },
+        { "ticker": "MSCI", "direction": "down", "reason": "RSI 23.4 = survendu extrême. Pression technique mais F7/9 et rétention 95.4% intacts. Q2 résultats 21 juillet = rebond potentiel.", "held": true }
+      ],
+      "crypto_narrative": "BTC 55,959€ (−15.3% 30j), ETH 1,510€ (−17.1% 30j). Fear & Greed = 23 = Extrême Peur (2ème semaine consécutive). BTC dominance 56.3% : capitulation altcoins. Aucun catalyseur on-chain ou ETF flux identifié cette semaine. La zone 54-56k EUR sur BTC = support psychologique. Lecture contrarienne maintenue mais preuve dure absente = radar uniquement.",
+      "sources": ["repli web (Grok API: unable to generate data for June 2026)", "corroboré: Yahoo Finance / 247WallSt (AMZN/GOOGL selloff 22/06)", "Fed.gov SEP June 17 2026 (dot plot)", "Yahoo Finance (CEG buyback, Calpine, CyrusOne)", "PR Newswire (Wegovy Medicare Bridge, 3M prescriptions)", "engine/signals.js 2026-06-23", "engine/crypto.js 2026-06-23"]
+    },
     {
       "week": "2026-W25",
       "date": "2026-06-16",
@@ -22,7 +63,7 @@
         },
         {
           "title": "FOMC hold — légèrement hawkish",
-          "detail": "Hold unanime confirmé le 17 juin. Dot plot : 75 bps de baisses attendus fin 2026 (vs 100 bps en mars). Le marché digère le signal moins dovish sans panique (VIX 17.68 = calme). Les banques et financières bénéficient de la courbe plus stable. Sentiment global : ni euphorie ni peur.",
+          "detail": "Hold unanime confirmé le 17 juin. Dot plot : 75 bps de baisses attendus fin 2026 (vs 100 bps en mars). Le marché digère le signal moins dovish sans panique (VIX 17.68 = calme). Les banques et financières bénéficient de la courbe plus stable. Sentiment global : ni euphorie ni peur. NOTE RÉTROSPECTIVE W26 : le dot plot réel est PLUS hawkish — 9/18 hike, PCE 3.6%. La lecture '75 bps coupes' était prématurée.",
           "tickers": ["BNP.PA"],
           "corroborated": true
         }
