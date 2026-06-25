@@ -4,6 +4,10 @@ Une ligne datée par leçon actionnable. Alimenté par la passe d'apprentissage 
 (trades clôturés) et la **revue mensuelle de calibration**. Une leçon vaut si elle change une
 décision future : sizing, choix de thèse, timing, niveau de confiance.
 
+2026-06-25 · MÉTHODE/Gate · Une alerte de trim fondée sur un gate **ambre** doit être **re-validée** avant exécution : SAF.PA, flaggé « 🟢→🟠 trim à 5% NAV » le 24/06, est ressorti **🟢** (composite +0.215) au recalcul du 25/06 → le cap 5% (contrainte ambre) ne s'applique plus, GARDER. → Le cap §H **suit le verdict du gate du jour**, pas une alerte figée de la veille ; un gate borderline (composite ~0.2) bascule d'un jour à l'autre et le cap avec lui. Toujours recalculer `signals.js` avant un trim mécanique. *(Inverse exact de la discipline NFLX : là le stop-prix prime sans débat ; ici c'est le cap-gate qui suit le gate vivant.)*
+
+2026-06-25 · DEEP-DIVE/Thème · Deux noms « nucléaire/IA » testés (VST vs CEG détenu) : VST est **moins cher** (~18x fwd vs ~26x, FCF 7% vs 3.8%) mais la décote est **payée en levier** (dette $19.6 Md vs $5.9 Md) — en régime hawkish, le coût du capital qui monte frappe d'abord le bilan lourd. → Entre deux expressions d'un même thème sous plafond secteur 40% §H, préférer la **qualité de bilan** à la décote de multiple quand les taux montent ; un multiple bas adossé à de la dette n'est pas une marge de sécurité. Ne pas **dédoubler** un thème (CEG suffit).
+
 Format : `YYYY-MM-DD · [TICKER ou MÉTHODE] · ce qui s'est passé → ce que je corrige.`
 
 2026-06-23 · FOMC/MÉTHODE · Lundi W25, j'avais retenu "FOMC hold + 75 bps de coupes fin 2026" comme la lecture du marché — information de PRESSE PRÉ-RÉUNION. La SEP officielle du 17 juin révèle l'inverse : dot plot médiane 3.8% (vs 3.4%), 9/18 membres projettent ≥1 hausse, PCE 3.6% (vs 2.7%). La correction majeure de la lecture initiale arrive seulement en W26. → **Ne jamais consommer des projections de taux pré-réunion comme des faits établis ; lire le SEP officiel (Fed.gov) systématiquement 24-48h après la réunion pour corriger le régime.** Le dot plot est le document de référence, pas les dépêches pré-décision.

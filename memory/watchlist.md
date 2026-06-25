@@ -1,15 +1,16 @@
-# Watchlist — maj 2026-06-24
+# Watchlist — maj 2026-06-25
 
 > Mode : **tendance VALIDÉE (continuation)** — Infrastructure IA / Énergie nucléaire (24/06).
 > Régime : **SURCHAUFFE — BIAIS HAWKISH** · plancher cash 30% · FOMC dot plot 3.8%, PCE 3.6%.
-> ⚠️ **ALERTE JEUDI 26/06 — HO.PA STOP TOUCHÉ** : cours 226.3€ < stop 226.61€ → sortie forcée §H.
-> ⚠️ **ALERTE JEUDI 26/06 — SAF.PA 🟢→🟠** : gate ambre (RSI 73.5), position 8.4% NAV > cap 5% → trim à 5% NAV requis §H.
+> ✅ **Deep-dive Opus 25/06 TRAITÉ** : CRH **Acheter/Moyenne** (seule marge de sécurité) · NEX.PA **Surveiller** (gate vert mais guidance plate) · VST **Surveiller** (redondant avec CEG, plus endetté). Fiches → `convictions.md`.
+> 🚨 **ALERTE JEUDI 26/06 — HO.PA STOP TOUCHÉ → SORTIR** : cours 225.3€ < stop 226.61€, gate 🟠 −0.141. **Sortie forcée §H** jeudi si ≤ 226.61€ (revue Opus 25/06 confirme : thèse intacte mais la règle prime — leçon NFLX). Ré-entrée prioritaire si gate > −0.1 + cours reprend.
+> ✅ **SAF.PA — alerte trim LEVÉE (corrigée 25/06)** : gate **rebasculé 🟢** (composite +0.215, juste >0.2) → cap §H = 20%, position ~8.5% NAV largement dessous → **aucun trim forcé, GARDER**. RSI 78.5 = pas de renfort ; si composite repasse <0.2 (gate ambre), le cap 5% se réactive.
 
 | ★  | Ticker  | Nom                   | Tag                       | Horizon | Gate                             | Drapeau bulle                                       | Thèse 1 ligne / Statut                                                                                                                                                                            | Pré-score | Vu le      |
 |----|---------|-----------------------|---------------------------|---------|----------------------------------|-----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|------------|
-| ★  | VST     | Vistra Corp           | [nucléaire] [tendance]    | long    | 🟠 F6/9 mom−20% RSI54 cov92%   | Vigilance légère — +65% YTD, correction en cours   | **★ Deep-dive mercredi** — Alt nucléaire US (P/E 27.9x, moins cher que pairs); Meta PPA 20 ans 2609 MW + AWS 3800 MW signés; correction depuis ATH = possible fenêtre; gate 🟠 F6/9 cov92% solide mais cap 5% + stop −8% §H. Risque : concentration Texas ERCOT. | 60 | 2026-06-24 |
-| ★  | NEX.PA  | Nexans                | [câbles-HV] [tendance]    | long    | 🟠 F· mom+61% RSI47.7 cov39%   | Vigilance légère — mom élevé mais non parabolic    | **★ Nouveau — deep-dive mercredi** — "Pioches et pelles" infra-IA réseau HV; backlog €7.9B Q1 2026 (sol. supraconducteur DC 300 MW/33 kV pour data centers); P/E ~16-18x raisonnable vs Prysmian; gate 🟠 = cap 5% §H. À creuser : marges et FCF. | 61 | 2026-06-24 |
-| ★  | CRH     | CRH plc               | [qualité] [infra-US]      | long    | 🟢 F6/9 mom+10% RSI56 cov92%   | Sain — 0 drapeau                                   | **★ Nouveau — deep-dive mercredi** — Qualité matériaux construction US, F6/9 EDGAR cov92%, gate 🟢; exposition directe décaissements IIJA 2025-27 (routes, ponts, eau); hors tendance = diversification. Risque : cycle construction sensible aux taux. | 59 | 2026-06-24 |
+|    | VST     | Vistra Corp           | [nucléaire] [tendance]    | long    | 🟠 F6/9 mom−16% RSI59 cov96%   | Sain — repli −25% vs ATH, pas bulle                | **TRAITÉ 25/06 → Surveiller (Moyenne)** — moins cher que CEG (~18x fwd, FCF 7%) + PPA 20 ans + 98% hedgé, MAIS dette $19.6 Md (vs CEG $5.9 Md) pénalisée en régime hawkish + expo merchant + initiés vendeurs + mom −16%. **Redondant avec CEG (préféré, bilan plus propre)**. Pas d'entrée. | 60 | 2026-06-25 |
+|    | NEX.PA  | Nexans                | [câbles-HV] [tendance]    | long    | 🟢 F· mom+59% RSI38 cov39%     | Vigilance légère — mom élevé non parabolic         | **TRAITÉ 25/06 → Surveiller (Moyenne)** — backlog €7.9B visible 2028, FCF x2, marge +161 bps, décote vs Prysmian, RSI 38 = fenêtre tactique. MAIS Q1 organique +0.1% + **guidance 2026 EBITDA PLATE** (€730-810M vs €728M) + cov 39% sans F-Score = le +59% a couru devant les bénéfices. Tactique only sur repli confirmé. | 61 | 2026-06-25 |
+|    | CRH     | CRH plc               | [qualité] [infra-US]      | long    | 🟢 F6/9 mom+13% RSI59 cov86%   | Sain — 0 drapeau                                   | **TRAITÉ 25/06 → ACHETER (Moyenne, taille modeste)** — F6/9 cov86%, gate 🟢 +0.519 (le plus propre), **décote vs VMC/MLM** (~18,6x fwd vs 28-31x) = marge de sécurité + re-rating, vent infra IIJA (40% CA), pricing power granulats. Seul candidat où la surchauffe n'interdit pas l'entrée. Risque : taux hawkish + falaise IIJA 30/09. **Entrée vendredi.** | 59 | 2026-06-25 |
 |    | GEV     | GE Vernova            | [infra-IA] [tendance]     | long    | 🟢 F6/9 c=+0.32 cov96%         | ⚠️ Vigilance haute — valo >50x fwd après +25% sur le mois | **Surveiller (attendre repli)** — exécution superbe (orders +71%, backlog $163B→200B, $10B buyback) mais valo >50x fwd = zéro marge en SURCHAUFFE + FOMC hawkish renchérit financement. Acheter sur repli −25%. | —  | 2026-06-23 |
 |    | ENR.DE  | Siemens Energy        | [infra-IA] [tendance]     | long    | 🟠 F· mom+101% RSI59.7 cov43%  | Vigilance — momentum proche du parabolic           | **Surveiller** — backlog €154B record; FOMC hawkish = financement nouveaux projets monte → moins prioritaire vs CEG. Gate 🟠 + mom+101% = attendre repli RSI 40-. | —  | 2026-06-23 |
 |    | CEG     | Constellation Energy  | [nucléaire] [tendance]    | long    | 🟢 F6/9 c=+0.275 cov86%        | Sain — DCF inversé ~13x 2029E = marge réelle       | **DÉTENU** (2.926 parts, entrée 252.49€, stop 232.29€, cours 275.53€ +9.1%). PPA fixes 20 ans = défensif vs anxiété FCF hyperscaler. Test FALSIFICATEUR = Q2 hyperscaler (juil-août). | —  | 2026-06-23 |
@@ -31,9 +32,9 @@
 
 | Ticker | Alerte | Action requise |
 |--------|--------|----------------|
-| **HO.PA** | 🚨 STOP TOUCHÉ | Cours 226.3€ < stop 226.61€ (avg_cost 246.32 × 0.92). Gate 🟠 ambre (composite −0.111). **SORTIE FORCÉE §H jeudi si cours toujours ≤ 226.61€.** Thèse défense EU intacte mais la règle prime sans débat. |
-| **SAF.PA** | ⚠️ GATE 🟢→🟠 | RSI 73.5 suracheté, gate composite +0.132. Position 2.68 parts × 331.2€ ≈ 888€ ≈ 8.4% NAV > cap 5% (≈ 529€). **TRIM à 5% NAV jeudi** (~1.09 parts à vendre). Thèse aéro/LEAP intacte. Stop −8% résiduel : 331.2 × 0.92 = 304.7€. |
-| **BNP.PA** | 🟡 SURACHETÉ | RSI 77.8 + range52 0.986. Thèse banque intacte. Évaluer allègement partiel si RSI reste >75 jeudi. |
+| **HO.PA** | 🚨 STOP TOUCHÉ → **SORTIR** | Cours 225.3€ < stop 226.61€ (avg_cost 246.32 × 0.92). Gate 🟠 ambre (composite **−0.141**). **SORTIE FORCÉE §H jeudi si cours toujours ≤ 226.61€** (revue Opus 25/06 = confirmé). Thèse défense EU intacte (Q1 Défense +75%, carnet €53.3 Md) mais la règle prime sans débat (leçon NFLX). Ré-entrée prioritaire si gate > −0.1 + cours reprend. |
+| **SAF.PA** | ✅ TRIM **ANNULÉ** (GARDER) | Gate **rebasculé 🟢** (composite **+0.215**, juste >0.2) → cap §H = 20%, position ~8.5% NAV **largement dessous → aucun trim** (l'alerte ambre de la veille est périmée). RSI 78.5 suracheté = **pas de renfort**. Gate borderline : si composite repasse <0.2 (ambre), cap 5% se réactive → trim. Thèse aéro/LEAP intacte (Q1 pièces +29%, services +43%). |
+| **BNP.PA** | 🟡 SURACHETÉ | RSI 79.9 + range52 0.964. Gate 🟢 (+0.294). Thèse banque intacte. Évaluer allègement partiel si RSI reste >75 jeudi (concentration/technique, pas thèse). |
 
 ## Ré-entrées prioritaires (gate 🔴 → surveillance)
 
@@ -43,6 +44,16 @@
 | SAP    | Cloud RISE, Autonomous Enterprise | 🔴 | Gate composite > −0.2 + momentum rebondit |
 | CI2    | Macro Inde (+6.9% PIB) | 🔴 | Gate composite > −0.2 + tarifs Section 122 éclairés |
 | BYD    | EV Chine, technologie charge | 🔴 | Gate composite > −0.2 (patience) |
+
+## Deep-dive mercredi 25/06 — TRAITÉS (verdicts)
+
+| Ticker | Verdict | Conf. | Pourquoi (résumé §D) |
+|--------|---------|-------|----------------------|
+| **CRH** | **Acheter** (taille modeste, entrée vendredi) | Moyenne | Seule marge de sécurité des 3 : décote vs VMC/MLM (~18,6x fwd vs 28-31x), F6/9 cov86%, gate 🟢 +0.519, vent infra IIJA. Risque : taux hawkish + falaise IIJA 30/09. |
+| **NEX.PA** | Surveiller (tactique only) | Moyenne | Backlog €7.9B + décote vs Prysmian + RSI 38, mais guidance 2026 EBITDA PLATE + Q1 organique +0.1% + cov 39% = le +59% a couru devant les bénéfices. |
+| **VST** | Surveiller (préférer CEG) | Moyenne | Moins cher que CEG mais dette $19.6 Md (hawkish), expo merchant, initiés vendeurs, mom −16%. Redondant avec CEG (bilan plus propre). |
+| **HO.PA** (book) | **SORTIR** (stop §H) | — | Stop −8% touché (225.3€<226.61€), gate 🟠. Thèse intacte mais règle prime (leçon NFLX). Exécution jeudi. |
+| **SAF.PA** (book) | **GARDER** | — | Gate rebasculé 🟢 → trim ambre annulé ; ~8.5% NAV < cap 20%. RSI 78.5 = pas de renfort. |
 
 ## Deep-dive mercredi 18/06 — TRAITÉS (verdicts)
 
