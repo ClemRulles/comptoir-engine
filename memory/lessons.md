@@ -4,6 +4,12 @@ Une ligne datée par leçon actionnable. Alimenté par la passe d'apprentissage 
 (trades clôturés) et la **revue mensuelle de calibration**. Une leçon vaut si elle change une
 décision future : sizing, choix de thèse, timing, niveau de confiance.
 
+2026-06-27 · CRH/GATE-SIZING · Entrée CRH (matériaux/granulats US) gate 🟢 vert composite +0.434, F6/9 EDGAR cov 96% — le gate le plus solide des trois deep-dives de la semaine. DCF inversé : ~18.6x fwd vs VMC/MLM à 28-31x = marge de sécurité réelle malgré SURCHAUFFE. → En régime surchauffe-hawkish, un candidat avec marge de valo réelle mérite l'entrée ; la SURCHAUFFE exige une marge, elle n'interdit pas tout.
+
+2026-06-27 · AMZN+AI/GATE-FLIP · AMZN et AI ont tous deux repassé 🟠→🟢 entre le 26/06 et le 27/06 (AMZN +0.186→+0.215 ; AI +0.090→+0.237). Les caps 5% sont mécaniquement levés. Positions INCHANGÉES car (a) AMZN à 5.1% NAV (sous 20%) et binary Q2 imminent 30/07 ; (b) AI à 4.2% NAV (cov 39% sans F-Score). → Un gate flip 🟠→🟢 lève le cap §H mais ne force pas un renforcement : la décision de taille suit aussi la conviction et le risque binary à l'horizon.
+
+2026-06-27 · HO.PA/CLÔTURE · Position entièrement fermée (score décisions.json) : -9.48% réalisé, alpha -9.66% vs benchmark +0.18%. Thèse neutre (gate mécanique, fondamentaux défense EU intacts). 3.27 parts seeded à 246.32€ avg_cost → sorties à 234.70€ (13/06) + 218.40€ (26/06). → Leçon confirmée 26/06 : la sortie mécanique est la bonne décision même avec thèse intacte. L'alpha négatif vient du gate qui avait capté la rotation défense avant le H1 23/07.
+
 2026-06-26 · HO.PA/STOP · Gate 🔴 composite -0.312, stop touché (218.4€ < 226.61€). Sortie forcée exécutée même avec thèse défense EU intacte et consensus analyste Acheter 10/12. → Même quand la thèse est saine, gate 🔴 + stop touché = sortie mécanique sans débat. "Thèse intacte" ne prolonge jamais un stop déclenché.
 
 2026-06-26 · SAF.PA/GATE-SIZING · Gate 🟢→🟠 (composite +0.108, RSI 78.7 suracheté). Cap 5% se réactive → trim de 8.8% à 5% NAV, 1.168 parts vendues. Confirme leçon 23/06 : le cap §H suit le gate du jour. RSI suracheté extrême + S1 imminents (28/07) = timing correct pour alléger, même si thèse LEAP/MRO reste intacte.

@@ -1,7 +1,7 @@
 {
   "_doc": "Agrégats recalculés à chaque passe (vendredi + revue mensuelle) à partir de decisions.json. 'buckets' = un objet par niveau de confiance annoncé : n (décisions clôturées), hits (résultats qui valident la confiance), hit_rate (hits/n), avg_return (rendement réalisé moyen). 'global' = stats du book IA. Une IA bien calibrée a un hit_rate qui CROÎT avec la confiance (Basse < Moyenne < Haute) ; sinon la passe mensuelle corrige le sizing (method §I).",
-  "updated": "2026-06-13",
-  "note_n_insuffisant": "ATTENTION — n < 8 par bucket (Haute=1, Moyenne=6, Basse=2). Seuil statistique §I non atteint : le hit_rate est du bruit. Les résultats négatifs reflètent (1) un héritage de positions en moins-value et (2) une semaine de marché déclinant (benchmark -2.41%). NE PAS ajuster les tailles cibles §H pour l'instant. Observer uniquement.",
+  "updated": "2026-06-27",
+  "note_n_insuffisant": "ATTENTION — n < 8 par bucket (Haute=1, Moyenne=6, Basse=2). Seuil statistique §I non atteint : le hit_rate est du bruit. Les résultats négatifs reflètent (1) un héritage de positions en moins-value, (2) des sorties gate-forcées mécaniques (thèses souvent intactes), et (3) un benchmark quasi-flat sur la période (+0.18%). NE PAS ajuster les tailles cibles §H pour l'instant. Observer uniquement.",
   "buckets": [
     {
       "confidence": "Haute",
@@ -17,9 +17,9 @@
       "n": 6,
       "hits": 0,
       "hit_rate": 0.0,
-      "avg_return": -0.2146,
-      "avg_alpha": -0.1904,
-      "note": "n=6 < seuil 8 — statistiquement non significatif. 5 sorties gate forcées héritées + 1 stop. Thèses majoritairement intactes (NOVOB, SAP, CI2, BYD). Pas d'ajustement."
+      "avg_return": -0.1953,
+      "avg_alpha": -0.1755,
+      "note": "n=6 < seuil 8 — statistiquement non significatif. 6 sorties (5 gate-forcées héritées + NFLX stop + HO.PA gate+stop). Thèses majorit. intactes (NOVOB, SAP, CI2, BYD, HO.PA). Pas d'ajustement."
     },
     {
       "confidence": "Basse",
@@ -32,15 +32,15 @@
     }
   ],
   "global": {
-    "closed_decisions": 8,
+    "closed_decisions": 9,
     "win_rate": 0.0,
     "avg_win": null,
-    "avg_loss": -0.2721,
-    "avg_alpha": -0.2363,
+    "avg_loss": -0.2524,
+    "avg_alpha": -0.2313,
     "profit_factor": 0,
     "max_drawdown_nav": -0.003,
-    "benchmark_period": "2026-06-04 / 2026-06-12",
-    "benchmark_return": -0.0241,
-    "note": "Semaine 1 post-seed : toutes les sorties héritées de positions TR en moins-value dans un marché déclinant. Le book IA a limité la casse via les gates (positions investies ~43% vs groupe 100%). Alpha global agrégé = -23.6% mais c'est trompeur : la majeure partie est du bêta baissier sur des positions héritées. Réévaluer à n≥8 par bucket."
+    "benchmark_period": "2026-06-04 / 2026-06-27",
+    "benchmark_return": 0.0018,
+    "note": "Semaines 1-4 post-seed : 9 décisions, toutes négatives. 8 sur 9 sont des sorties gate-forcées (positions héritées en moins-value ou stop mécanique). 1 thèse réellement cassée (MSTR/RMS). Le book a limité la casse via la discipline gate ; la NAV reste à ~-0.09% vs start_capital alors que le groupe aurait subi tout le bêta baissier. Alpha calculé sur benchmark IWDA.AS. Réévaluer calibration à n≥8 par bucket — pas de signal exploitable avant cela."
   }
 }

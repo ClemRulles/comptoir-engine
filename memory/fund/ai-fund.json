@@ -1,9 +1,9 @@
 {
   "_doc": "Cache des signaux QUANTITATIFS calculés par engine/signals.js. 'regime' = score macro FRED agrégé (gate global). 'tickers' = map ticker -> { fscore, momentum_12_1, earnings_quality, gate } horodatés. L'IA LIT ce fichier avant d'ouvrir/fermer une position (method §A/§H) : les signaux sont des garde-fous factuels, pas une boîte noire. 'data_gaps' liste les sources indisponibles (clé manquante / quota) pour rester honnête sur l'incertitude. Régénéré par les routines ; ne pas éditer à la main.",
-  "as_of": "2026-06-26",
+  "as_of": "2026-06-27",
   "seeded": true,
   "start_capital": 10417.28,
-  "cash": 6226.80,
+  "cash": 5495.59,
   "positions": [
     {
       "ticker": "SAF.PA",
@@ -105,9 +105,22 @@
       "thesis_id": "ceg-nuclear-ppa",
       "entry_date": "2026-06-20",
       "target": null,
-      "exit_rule": "vendre si restart TMI (Three Mile Island, fin 2027) glisse matériellement OU guidance >20% CAGR BPA coupée OU stop -8% à 232.29€ (avg_cost × 0.92) ; cours ~244.9€ EUR (268.69 USD / 1.097), marge stop 5.4% ; surveiller cession PJM (deadline sept. 2026)",
+      "exit_rule": "vendre si restart TMI (Three Mile Island, fin 2027) glisse matériellement OU guidance >20% CAGR BPA coupée OU stop -8% à 232.29€ (avg_cost × 0.92) ; cours ~240.67€ EUR (264.02 USD / 1.097), marge stop 3.6% ; surveiller cession PJM (deadline sept. 2026)",
       "seed": false,
-      "thesis": "Nucléaire US + PPA hyperscaler 20 ans (Microsoft TMI 835MW restart 2027, Meta Clinton 1100MW). FERC waiver approuvé 01/06 = restart accéléré confirmé. Gate 🟢 vert (composite +0.299, F6/9 EDGAR). 13x BPA 2029E = marge de sécurité. Marge stop 5.4% — surveiller EUR/USD."
+      "thesis": "Nucléaire US + PPA hyperscaler 20 ans (Microsoft TMI 835MW restart 2027, Meta Clinton 1100MW). FERC waiver approuvé 01/06 = restart accéléré confirmé. Gate 🟢 vert (composite +0.269, F6/9 EDGAR). 13x BPA 2029E = marge de sécurité. Marge stop 3.6% — surveiller EUR/USD."
+    },
+    {
+      "ticker": "CRH",
+      "quantity": 7.12,
+      "avg_cost": 102.39,
+      "confidence": "Moyenne",
+      "horizon": "coeur",
+      "thesis_id": "crh-infra-us",
+      "entry_date": "2026-06-27",
+      "target": null,
+      "exit_rule": "vendre si falaise IIJA frappe sans relais (réautorisation pas votée FY2027) ET résidentiel s'effondre OU guidance BPA FY2026 coupée OU stop -8% à 94.20€ (avg_cost × 0.92) ; surveiller expiration IIJA 30/09/2026 comme déclencheur clé",
+      "seed": false,
+      "thesis": "Leader matériaux construction US (granulats #1, pricing power). Décote vs VMC/MLM (~18.6x fwd vs 28-31x pairs). F6/9 EDGAR, IIJA 40% CA, guide EBITDA $8.1-8.5B FY2026. Gate 🟢 vert (composite +0.434, F6/9, cov 96%). Résidentiel 32% CA = sensibilité taux hawkish. Falaise IIJA 30/09 = risque de visibilité FY2027."
     }
   ],
   "trades": [
@@ -307,7 +320,20 @@
       "horizon": "coeur",
       "gate": "🟠 ambre composite +0.186 (RSI 29.6 survendu, initiés 0/8 ventes, F5/9 neutre)",
       "rationale": "Trim discipliné §H : gate passé 🟢→🟠 (composite +0.186, initiés 100% vendeurs 8/8, FCF -95% CT sur capex $200B). Position 6.2% NAV > cap 5% ambre. Prix EUR 206.93€ (227.01 USD / EUR-USD 1.097). Thèse AWS intacte : FCF comprimé par capex d'investissement (leçon 23/06), pas un déclin du business. Falsificateur = guidance AWS cassée OU capex coupé >15% Q2 30 juillet. Stop §H maintenant obligatoire : 177.13€ (avg_cost 192.54 × 0.92). Reste 2.518 parts ≈ 5% NAV."
+    },
+    {
+      "ts": "2026-06-27",
+      "side": "buy",
+      "ticker": "CRH",
+      "quantity": 7.12,
+      "price": 102.39,
+      "fee": 2.19,
+      "confidence": "Moyenne",
+      "thesis_id": "crh-infra-us",
+      "horizon": "coeur",
+      "gate": "🟢 vert composite +0.434 F6/9 EDGAR coverage 96%",
+      "rationale": "Entrée vendredi §H sur verdict Acheter/Moyenne deep-dive 25/06. Gate 🟢 vert (F6/9, composite +0.434, cov 96%) — le gate le plus propre des deep-dives de la semaine. Leader matériaux/granulats US #1, décote nette vs VMC/MLM (~18.6x fwd vs 28-31x pairs), IIJA 40% CA, guide EBITDA $8.1-8.5B. Seule conviction où la surchauffe-hawkish n'interdit pas l'entrée (marge de sécurité réelle). Risques : sensibilité taux (résidentiel 32% CA) + falaise IIJA 30/09/2026. Cash post-trade 52.8% NAV >> plancher 30% SURCHAUFFE §H. Sizing Moyenne = 7% NAV (~729€). Stop −8% à 94.20€ (avg_cost × 0.92)."
     }
   ],
-  "note": "Book RE-CLONÉ depuis le groupe au 2026-06-08. Divergence démarrée au 1er vendredi 13/06. Portfolio Doctor 19/06 : 0 sorties. Brief 20/06 : entrée CEG (nucléaire US). Portfolio Doctor 26/06 : 3 actions — HO.PA sorti 🔴 (composite -0.312, stop 226.61€ touché à 218.4€, convictions 25/06 SORTIR confirmé) ; SAF.PA trimmé 🟠 (composite +0.108, RSI 78.7, cap 5% NAV de 8.8%) ; AMZN trimmé 🟠 (composite +0.186, initiés 0/8 ventes, cap 5% NAV de 6.2%). 8 positions actives. Signaux 26/06 : 5 🟢 vert (EIMI +0.513, LOTB +0.513, BNP.PA +0.255, MSCI +0.421, CEG +0.299) + 3 🟠 ambre (SAF.PA +0.108, AMZN +0.186, AI +0.090). ALERTE URGENTE : MSCI stop 492.57€ / cours ~496.4€ (marge 0.8% — surveiller quotidiennement, ALERTE FX si EUR/USD > 1.107). CEG stop 232.29€/cours ~244.9€ (marge 5.4%). BNP.PA RSI 78.7 + range52 1.0 (au plus haut). Candidats ré-entrée vendredi : HO.PA (thèse intacte), CRH (Acheter Moyenne convictions 25/06), NOVOB (Medicare Bridge 1er juillet). Cash 59.8% NAV (>> plancher 30% SURCHAUFFE). NAV estimée ≈ 10 418€ (+0.0% vs start_capital 10 417.28€). start_capital = 10417.28€."
+  "note": "Book RE-CLONÉ depuis le groupe au 2026-06-08. Divergence démarrée au 1er vendredi 13/06. Brief 27/06 : entrée CRH 🟢 (granulats/infra-US, 7% NAV, ~729€, gate composite +0.434 F6/9 cov96%). Gates flips 27/06 : AMZN 🟠→🟢 (composite +0.215 — cap 5% levé, position 5.1% NAV OK) ; AI 🟠→🟢 (composite +0.237 — cap 5% levé, position 4.2% NAV OK). 9 positions actives. Signaux 27/06 : 8 🟢 (AMZN +0.215, EIMI +0.564, AI +0.237, LOTB +0.513, BNP.PA +0.268, MSCI +0.424, CEG +0.269, CRH +0.434) + 1 🟠 (SAF.PA +0.159). MSCI stop 492.57€ / cours ~505.79€ (marge 2.7% — améliorée vs 0.8% le 26/06 ; FX break-even EUR/USD 1.1265 vs précédent 1.107). CEG stop 232.29€/cours ~240.67€ (marge 3.6%). BNP.PA RSI 82.8 suracheté (gate 🟢, thèse banque intacte, ne pas renforcer). Ré-entrées prioritaires : NOVOB (gate 🔴, surveiller post-1er juillet Medicare) ; HO.PA (gate 🔴, thèse défense EU intacte, H1 23/07). Cash 52.8% NAV (>> plancher 30% SURCHAUFFE). NAV ≈ 10 408€ (-0.09% vs start_capital 10 417.28€). start_capital = 10417.28€."
 }

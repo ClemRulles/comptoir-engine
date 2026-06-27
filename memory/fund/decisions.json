@@ -128,6 +128,22 @@
       "outcome": "neutre",
       "hit": false,
       "lesson": "Stop -8% (🟠 ambre §H) non documenté en EUR explicite dans ai-fund : le seuil aurait dû être 80.89 EUR écrit à l'entrée. Sans chiffre explicite, le stop reste vague. → toujours écrire stop_price_eur dans exit_rule pour chaque position 🟠/⚪."
+    },
+    {
+      "thesis_id": "ho-defense",
+      "ticker": "HO.PA",
+      "horizon": "coeur",
+      "confidence": "Moyenne",
+      "opened": "2026-06-04",
+      "closed": "2026-06-26",
+      "entry": 246.32,
+      "exit": 223.67,
+      "realized_pnl_pct": -0.0948,
+      "benchmark_return_pct": 0.0018,
+      "alpha_pct": -0.0966,
+      "outcome": "neutre",
+      "hit": false,
+      "lesson": "Gate 🔴 composite -0.312 + stop -8% touché (218.4€ < 226.61€) → sortie forcée même avec thèse défense EU intacte (Q1 commandes +27%, Défense +75%). La thèse saine ne reporte jamais une règle de sortie déclenchée. Ré-entrée prioritaire si gate composite > -0.2 (même logique NOVOB/SAP). Candidat H1 23 juillet."
     }
   ]
 }
