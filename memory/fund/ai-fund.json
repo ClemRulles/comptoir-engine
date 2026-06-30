@@ -1,6 +1,6 @@
 {
   "_doc": "Cache des signaux QUANTITATIFS calculés par engine/signals.js. 'regime' = score macro FRED agrégé (gate global). 'tickers' = map ticker -> { fscore, momentum_12_1, earnings_quality, gate } horodatés. L'IA LIT ce fichier avant d'ouvrir/fermer une position (method §A/§H) : les signaux sont des garde-fous factuels, pas une boîte noire. 'data_gaps' liste les sources indisponibles (clé manquante / quota) pour rester honnête sur l'incertitude. Régénéré par les routines ; ne pas éditer à la main.",
-  "as_of": "2026-06-27",
+  "as_of": "2026-06-30",
   "seeded": true,
   "start_capital": 10417.28,
   "cash": 5495.59,
@@ -14,9 +14,9 @@
       "thesis_id": "saf-aero",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "thèse cassée si cycle aéro/MRO se retourne (heures de vol en baisse) ; gate 🟠 → cap 5% NAV appliqué 26/06 (RSI 78.7, composite +0.108) ; H1 28 juillet = test binaire ; stop mental -8% avg_cost = 276.04€ (irrelevant au cours 343.7€)",
+      "exit_rule": "thèse cassée si cycle aéro/MRO se retourne (heures de vol en baisse) ; gate 🟢 retrouvé 30/06 (composite +0.236, cap 5% levé) ; H1 28 juillet = test binaire ; stop mental -8% avg_cost = 276.04€ (irrelevant au cours 336.5€)",
       "seed": false,
-      "thesis": "Aéronautique + MRO LEAP : Q1 +23% org, aftermarket +29.3%, services +43%, LEAP 520. Gate 🟠 ambre (composite +0.108, RSI 78.7 suracheté). Thèse renforcée Q1 2026. Trimmé à 5% NAV le 26/06 (cap ambre §H)."
+      "thesis": "Aéronautique + MRO LEAP : Q1 +23% org, aftermarket +29.3%, services +43%, LEAP 520. Gate 🟢 vert retrouvé 30/06 (composite +0.236, RSI 74.9 suracheté). Thèse renforcée Q1 2026. Trimmé à 5% NAV le 26/06, cap 5% levé au 30/06. S1 28 juillet = test de thèse."
     },
     {
       "ticker": "AMZN",
@@ -27,9 +27,9 @@
       "thesis_id": "amzn-aws",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "sortie si croissance AWS cassée OU capex coupé >15% (test Q2 30 juillet) ; gate 🟠 → cap 5% NAV appliqué 26/06 ; stop obligatoire §H : 177.13€ (avg_cost 192.54 × 0.92) ; cours ~206.93€ EUR, marge stop +16.9%",
+      "exit_rule": "sortie si croissance AWS cassée OU capex coupé >15% (test Q2 30 juillet) ; gate 🟢 +0.344 (cap 5% levé) ; stop obligatoire §H : 177.13€ (avg_cost 192.54 × 0.92) ; cours ~210€ EUR (=$240.14 USD/1.1431), marge stop +18.6%",
       "seed": false,
-      "thesis": "AWS + levier marge retail/pub. F5/9, earnings quality vert. Gate 🟠 ambre (composite +0.186, initiés 0/8 ventes, FCF -95% CT sur capex $200B). FCF comprimé par capex d'investissement = signal CT, thèse LT intacte. Test Q2 30 juillet. Trimmé à 5% NAV 26/06."
+      "thesis": "AWS + levier marge retail/pub. F5/9, earnings quality vert. Gate 🟢 vert (composite +0.344, RSI 46.4 sain). FCF comprimé par capex d'investissement = signal CT, thèse LT intacte. Test FALSIFICATEUR Q2 30 juillet : capex maintenu + AWS ≥30% → thèse HAUTE. Trimmé à 5% NAV 26/06."
     },
     {
       "ticker": "EIMI",
@@ -42,7 +42,7 @@
       "target": null,
       "exit_rule": "rebalancement, pas de thèse single-stock ; deadline tarifs US Section 122 expiry 24 juillet (binaire) ; impact indirect EM indirect si Inde ciblée",
       "seed": false,
-      "thesis": "Diversification marchés émergents (ETF). Momentum +42%, gate 🟢 vert (composite +0.513). IMF EM growth +3.9% 2026."
+      "thesis": "Diversification marchés émergents (ETF). Momentum +42%, gate 🟢 vert (composite +0.513). IMF EM growth +3.9% 2026. Cours ~47.7€ (=$54.53 USD/1.1431). Catalyseur Section 122 tariff expiry 24/07 (binaire EM)."
     },
     {
       "ticker": "AI",
@@ -53,9 +53,9 @@
       "thesis_id": "airliquide-compounder",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "sortie si ROIC/volumes se dégradent durablement ; stop -8% : 147.58€ (avg_cost × 0.92) ; cours 171.4€, marge stop +16% ; gate 🟠 ambre (composite +0.090) → cap 5% NAV (position 4.1% NAV = sous le cap)",
+      "exit_rule": "sortie si ROIC/volumes se dégradent durablement ; stop -8% : 147.58€ (avg_cost × 0.92) ; cours ~172.72€, marge stop +16.9% ; gate 🟢 vert (composite +0.237) — cap 5% levé, position 4.2% NAV = sous le cap",
       "seed": false,
-      "thesis": "Air Liquide — compounder gaz industriels, défensif. Gate 🟠 ambre (composite +0.090, RSI 58.9 sain, mom +3%). Business intact, CA comparable +1.9% (artefact attribution gratuite 10/06 résolu). Position 4.1% NAV = sous le cap ambre 5%."
+      "thesis": "Air Liquide — compounder gaz industriels, défensif. Gate 🟢 vert (composite +0.237, RSI sain). Business intact, CA comparable +1.9% (artefact attribution gratuite 10/06 résolu). Position 4.2% NAV = sous le cap 5%."
     },
     {
       "ticker": "LOTB",
@@ -66,9 +66,9 @@
       "thesis_id": "lotus-quality",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "alléger si DCF inversé PER >50x devient irréaliste vs pairs food-premium (Lindt ~30x, Mondelez ~18x) ; taille petite (4.3% NAV = garde-fou naturel)",
+      "exit_rule": "alléger si DCF inversé PER >50x devient irréaliste vs pairs food-premium (Lindt ~30x, Mondelez ~18x) ; taille petite (4.4% NAV = garde-fou naturel)",
       "seed": false,
-      "thesis": "Lotus Bakeries (Biscoff) — compounder premium. Gate 🟢 vert (composite +0.513). RSI 59.8 normalisé. PER ~44x : vigilance valo, position petite. Cours 11 420€."
+      "thesis": "Lotus Bakeries (Biscoff) — compounder premium. Gate 🟢 vert (composite +0.513). RSI 59.8 normalisé. PER ~44x : vigilance valo, position petite. Cours ~11 520€."
     },
     {
       "ticker": "BNP.PA",
@@ -79,9 +79,9 @@
       "thesis_id": "bnp-bank",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "sortie si taux/risque crédit cassent la thèse banque ; RSI 78.7 + range52 1.0 = AU PLUS HAUT 52 SEM. — vendredi évalue allègement partiel ; position 3.7% NAV = risque limité",
+      "exit_rule": "sortie si taux/risque crédit cassent la thèse banque ; RSI 75.5 suracheté, cours 100.36€ (au plus haut 52 sem) — ne pas renforcer ; FOMC 29/07 = catalyseur NIM (positif si HIKE) ; position 3.6% NAV = risque limité",
       "seed": false,
-      "thesis": "Banque diversifiée, +52% depuis avg_cost. Gate 🟢 vert (composite +0.255). ECB favorable, NIM. RSI 78.7 + range52 1.0 = surchauffe technique maximale (au plus haut 52 sem). Thèse non cassée."
+      "thesis": "Banque diversifiée, +48% depuis avg_cost. Gate 🟢 vert (composite +0.282). ECB favorable, NIM. RSI 75.5 + cours 100.36€ (near 52w high) = surchauffe technique. Thèse non cassée. FOMC 29/07 = test NIM."
     },
     {
       "ticker": "MSCI",
@@ -92,9 +92,9 @@
       "thesis_id": "msci-monopole",
       "entry_date": "2026-06-13",
       "target": null,
-      "exit_rule": "vendre si rétention abonnés < 93% ou PE re-expand > 40x sans accélération organique ; stop -8% à 492.57€ (avg_cost × 0.92) — ALERTE : cours ~496.4€ EUR (marge 0.8% sur stop !!!) ; ALERTE FX : si EUR/USD > 1.107, stop touché mécaniquement ; résultats Q2 21 juillet",
+      "exit_rule": "vendre si rétention abonnés < 93% ou PE re-expand > 40x sans accélération organique ; stop -8% à 492.57€ (avg_cost × 0.92) — 🚨 STOP BREACHED FX : cours 488.2€ (=$558 USD/1.1431) < stop 492.57€ (−0.9%) — FX-driven (EUR/USD 1.1431 vs 1.107 break-even) ; gate 🟢 F7/9 intact, RSI 31 survendu ; résultats Q2 21 juillet = prochain test de thèse ; DÉCISION JEUDI Doctor",
       "seed": false,
-      "thesis": "Quasi-monopole indices MSCI, PE dé-raté vs historique 35-45x, F7/9 EDGAR, organique +13%, rétention 95.4%. Gate 🟢 vert (composite +0.421). RSI 19.2 extrêmement survendu (panic sell). Analysts upgrades (Rothschild $690, Wells Fargo OW $700). ALERTE STOP : 492.57€ / ~496.4€ cours = marge 0.8%."
+      "thesis": "Quasi-monopole indices MSCI, PE dé-raté vs historique 35-45x, F7/9 EDGAR, organique +13%, rétention 95.4%. Gate 🟢 vert (composite +0.421). RSI 31 survendu (rebond potentiel). Analysts upgrades (Rothschild $690, Wells Fargo OW $700). 🚨 STOP BREACHED FX : cours 488.2€ (=$558 USD/1.1431) < stop 492.57€. Décision JEUDI Doctor."
     },
     {
       "ticker": "CEG",
@@ -105,9 +105,9 @@
       "thesis_id": "ceg-nuclear-ppa",
       "entry_date": "2026-06-20",
       "target": null,
-      "exit_rule": "vendre si restart TMI (Three Mile Island, fin 2027) glisse matériellement OU guidance >20% CAGR BPA coupée OU stop -8% à 232.29€ (avg_cost × 0.92) ; cours ~240.67€ EUR (264.02 USD / 1.097), marge stop 3.6% ; surveiller cession PJM (deadline sept. 2026)",
+      "exit_rule": "vendre si restart TMI (Three Mile Island, fin 2027) glisse matériellement OU guidance >20% CAGR BPA coupée OU stop -8% à 232.29€ (avg_cost × 0.92) ; 🚨 STOP BREACHED FX : cours 226.9€ (=$259.32 USD/1.1431) < stop 232.29€ — FX-driven (EUR/USD 1.1431 vs ~1.097 à l'entrée) ; gate 🟢 F6/9 intact, thèse PPA non cassée ; surveiller cession PJM (deadline sept. 2026) ; DÉCISION JEUDI Doctor",
       "seed": false,
-      "thesis": "Nucléaire US + PPA hyperscaler 20 ans (Microsoft TMI 835MW restart 2027, Meta Clinton 1100MW). FERC waiver approuvé 01/06 = restart accéléré confirmé. Gate 🟢 vert (composite +0.269, F6/9 EDGAR). 13x BPA 2029E = marge de sécurité. Marge stop 3.6% — surveiller EUR/USD."
+      "thesis": "Nucléaire US + PPA hyperscaler 20 ans (Microsoft TMI 835MW restart 2027, Meta Clinton 1100MW). FERC waiver approuvé 01/06 = restart accéléré confirmé. Gate 🟢 vert (composite +0.269, F6/9 EDGAR). 13x BPA 2029E = marge de sécurité. 🚨 STOP BREACHED FX : cours 226.9€ < stop 232.29€ (FX-driven, thèse intacte). Décision JEUDI Doctor."
     },
     {
       "ticker": "CRH",
@@ -118,9 +118,9 @@
       "thesis_id": "crh-infra-us",
       "entry_date": "2026-06-27",
       "target": null,
-      "exit_rule": "vendre si falaise IIJA frappe sans relais (réautorisation pas votée FY2027) ET résidentiel s'effondre OU guidance BPA FY2026 coupée OU stop -8% à 94.20€ (avg_cost × 0.92) ; surveiller expiration IIJA 30/09/2026 comme déclencheur clé",
+      "exit_rule": "vendre si falaise IIJA frappe sans relais (réautorisation pas votée FY2027) ET résidentiel s'effondre OU guidance BPA FY2026 coupée OU stop -8% à 94.20€ (avg_cost × 0.92) ; 🟡 ALERTE : cours 95.3€ (=$108.87/1.1431) vs stop 94.20€ = marge 1.2% seulement ; Arcosa $8.5B acquisition (22/06, closing T1 2027) = nouvelle dette en régime hawkish ; surveiller quotidiennement et expiration IIJA 30/09/2026",
       "seed": false,
-      "thesis": "Leader matériaux construction US (granulats #1, pricing power). Décote vs VMC/MLM (~18.6x fwd vs 28-31x pairs). F6/9 EDGAR, IIJA 40% CA, guide EBITDA $8.1-8.5B FY2026. Gate 🟢 vert (composite +0.434, F6/9, cov 96%). Résidentiel 32% CA = sensibilité taux hawkish. Falaise IIJA 30/09 = risque de visibilité FY2027."
+      "thesis": "Leader matériaux construction US (granulats #1, pricing power). Décote vs VMC/MLM (~18.6x fwd vs 28-31x pairs). F6/9 EDGAR, IIJA 40% CA, guide EBITDA $8.1-8.5B FY2026. Gate 🟢 vert (composite +0.434, F6/9, cov 96%). Résidentiel 32% CA = sensibilité taux hawkish. Arcosa acquisition $8.5B (22/06, closing T1 2027) renforce IIJA mais augmente la dette en régime hawkish. 🟡 Stop 94.20€ / cours 95.3€ = marge 1.2%."
     }
   ],
   "trades": [
@@ -335,5 +335,5 @@
       "rationale": "Entrée vendredi §H sur verdict Acheter/Moyenne deep-dive 25/06. Gate 🟢 vert (F6/9, composite +0.434, cov 96%) — le gate le plus propre des deep-dives de la semaine. Leader matériaux/granulats US #1, décote nette vs VMC/MLM (~18.6x fwd vs 28-31x pairs), IIJA 40% CA, guide EBITDA $8.1-8.5B. Seule conviction où la surchauffe-hawkish n'interdit pas l'entrée (marge de sécurité réelle). Risques : sensibilité taux (résidentiel 32% CA) + falaise IIJA 30/09/2026. Cash post-trade 52.8% NAV >> plancher 30% SURCHAUFFE §H. Sizing Moyenne = 7% NAV (~729€). Stop −8% à 94.20€ (avg_cost × 0.92)."
     }
   ],
-  "note": "Book RE-CLONÉ depuis le groupe au 2026-06-08. Divergence démarrée au 1er vendredi 13/06. Brief 27/06 : entrée CRH 🟢 (granulats/infra-US, 7% NAV, ~729€, gate composite +0.434 F6/9 cov96%). Gates flips 27/06 : AMZN 🟠→🟢 (composite +0.215 — cap 5% levé, position 5.1% NAV OK) ; AI 🟠→🟢 (composite +0.237 — cap 5% levé, position 4.2% NAV OK). 9 positions actives. Signaux 27/06 : 8 🟢 (AMZN +0.215, EIMI +0.564, AI +0.237, LOTB +0.513, BNP.PA +0.268, MSCI +0.424, CEG +0.269, CRH +0.434) + 1 🟠 (SAF.PA +0.159). MSCI stop 492.57€ / cours ~505.79€ (marge 2.7% — améliorée vs 0.8% le 26/06 ; FX break-even EUR/USD 1.1265 vs précédent 1.107). CEG stop 232.29€/cours ~240.67€ (marge 3.6%). BNP.PA RSI 82.8 suracheté (gate 🟢, thèse banque intacte, ne pas renforcer). Ré-entrées prioritaires : NOVOB (gate 🔴, surveiller post-1er juillet Medicare) ; HO.PA (gate 🔴, thèse défense EU intacte, H1 23/07). Cash 52.8% NAV (>> plancher 30% SURCHAUFFE). NAV ≈ 10 408€ (-0.09% vs start_capital 10 417.28€). start_capital = 10417.28€."
+  "note": "Trend-radar 30/06 (W27). NAV estimée ≈ 10,268€ (−1.43% vs start_capital 10,417.28€). Principale cause : EUR/USD 1.1431 vs ~1.097 utilisé lors des entrées = appréciation EUR +4.2% crée alertes FX systémiques sur positions US. 🚨 CEG STOP BREACHED FX : cours 226.9€ (=$259.32 USD/1.1431) < stop 232.29€ — gate 🟢 F6/9 intact, thèse PPA nucléaire non cassée → Décision JEUDI Doctor. 🚨 MSCI STOP BREACHED FX : cours 488.2€ (=$558 USD/1.1431) < stop 492.57€ (−0.9%) — gate 🟢 F7/9, RSI 31 survendu → Décision JEUDI Doctor. 🟡 CRH ALERTE STOP 1.2% : cours 95.3€ (=$108.87/1.1431) vs stop 94.20€ — Arcosa $8.5B acquisition 22/06 ajoute dette en régime hawkish → surveiller quotidiennement. ✅ SAF.PA gate 🟢 retrouvé (composite +0.236, cap 5% levé). Tendance W27 : Healthcare/GLP-1 Medicare Bridge lancé J=0 (NOVOB gate 🔴 RSI 79.9 = ré-entrée impossible ; Scout LLY+XLV mardi). Grok calls W25 résolus : saf-defense-w25 CORRECT +5.2% ; amzn-ai-rebound-w25 CORRECT +8.3% (n=2, tactical_cap=0 car n<6). Cash 5,495.59€ (53.5% NAV >> plancher 30%). 9 positions actives. start_capital = 10417.28€."
 }

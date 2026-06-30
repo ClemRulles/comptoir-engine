@@ -1,7 +1,48 @@
 {
   "_doc": "Pouls hebdo du marché (Grok, accès X) — radar à corroborer, jamais un signal d'achat. Écrit par routines/monday-trend-radar.md (Partie C). Le plus récent en tête de weeks ; ~12 semaines max.",
-  "updated": "2026-06-23",
+  "updated": "2026-06-30",
   "weeks": [
+    {
+      "week": "2026-W27",
+      "date": "2026-06-30",
+      "label": "Semaine du 30 juin 2026",
+      "headline": "Rotation défensive massive (Health Care +7.92%) + Medicare GLP-1 Bridge lancé aujourd'hui — le marché prend ses bénéfices sur la tech IA face au CPI 4.2%.",
+      "themes": [
+        {
+          "title": "Rotation défensive Health Care/Utilities vs Tech — signal structurel S&P",
+          "detail": "Health Care +7.92%, Utilities +3.96%, Real Estate +3.97% vs IT −5.38%, Communication Services −6.22% sur la semaine 23-27 juin. S&P Equal Weight +1.60% vs S&P Cap-Weighted −1.94% = divergence +3.5 pts = signal de rotation large, pas du bruit. Nasdaq-100 −4.23% = 2ème pire semaine depuis début 2025. Semis : Micron −10%, SK Hynix −12% = doute sur le timing hardware IA. CPI mai +4.2% = 3ème accélération consécutive renforce le biais hawkish et la rotation vers les défensifs.",
+          "tickers": ["XLV", "NOVOB", "LLY", "AMZN"],
+          "corroborated": true
+        },
+        {
+          "title": "Medicare GLP-1 Bridge — Wegovy $50/mois pour seniors US lancé J=0",
+          "detail": "Programme CMS officiel au 1er juillet, tous États + territoires, durée jusqu'à fin 2027 (18 mois visibilité). Wegovy pill : 3M prescriptions (80% patients JAMAIS exposés aux GLP-1 = expansion du TAM réel, pas cannibalisation). NOVOB RSI 79.9 = déjà partiellement pricé, gate 🔴 composite −0.462 = ré-entrée impossible (§H). LLY (Zepbound inclus dans le programme) = candidat Scout mardi pour pré-score. Données d'adoption Medicare arriveront ~début août avec Q2 Novo Nordisk/LLY.",
+          "tickers": ["NOVOB", "LLY", "UNH"],
+          "corroborated": true
+        },
+        {
+          "title": "AI capex validation — FALSIFICATEUR hyperscaler imminent (28-30 juillet)",
+          "detail": "Microsoft $190B capex 2026 (résultats Q2 28/07), Alphabet $175-185B (29/07), Amazon $200B+ (30/07), Meta $115-135B (30/07) = test FALSIFICATEUR infra-IA concentré sur 3 jours. CEG détenu gate 🟢 F6/9 MAIS stop BREACHED FX (226.9€ < 232.29€). AMZN gate 🟢 +0.344, RSI 46.4 sain — tenir jusqu'aux résultats Q2. Aucun hyperscaler n'a coupé sa guidance capex (FALSIFICATEUR non déclenché à ce stade).",
+          "tickers": ["CEG", "AMZN", "CRH"],
+          "corroborated": true
+        },
+        {
+          "title": "CRH Arcosa acquisition — $8.5B cash renforce IIJA mais augmente la dette",
+          "detail": "CRH a annoncé le 22/06 l'acquisition d'Arcosa Inc ($8.5B cash, $150/action, 25% premium). Position book IA entrée le 27/06 à 102.39€ = après le selloff post-deal (~$112→$108). L'acquisition renforce l'exposition IIJA (agrégats transport + water management) long terme mais augmente la dette en régime hawkish → F-Score CRH pourrait se dégrader (dette_lt_en_baisse = test raté). Cours 95.3€ vs stop 94.20€ = marge 1.2% seulement.",
+          "tickers": ["CRH"],
+          "corroborated": true
+        }
+      ],
+      "movers": [
+        { "ticker": "NOVOB", "direction": "up", "reason": "Medicare GLP-1 Bridge lancé aujourd'hui J=0. RSI 79.9 = déjà partiellement pricé (gate 🔴 — pas de trade).", "held": false },
+        { "ticker": "CEG", "direction": "down", "reason": "Stop BREACHED FX : cours 226.9€ (=$259.32 USD/1.1431) < stop 232.29€. Gate 🟢 F6/9 intact, thèse PPA nucléaire non cassée. Décision JEUDI Doctor.", "held": true },
+        { "ticker": "MSCI", "direction": "down", "reason": "Stop BREACHED FX : cours 488.2€ (=$558 USD/1.1431) < stop 492.57€ (−0.9%). RSI 31 survendu, gate 🟢 F7/9 intact. Décision JEUDI Doctor.", "held": true },
+        { "ticker": "CRH", "direction": "down", "reason": "Cours 95.3€ (=$108.87 USD/1.1431) vs stop 94.20€ = marge 1.2% seulement. Arcosa $8.5B selloff post-annonce 22/06.", "held": true },
+        { "ticker": "SAF.PA", "direction": "up", "reason": "Gate 🟢 retrouvé (composite +0.236). Cap 5% levé. RSI 74.9 (légèrement suracheté). S1 28/07 = prochain test.", "held": true }
+      ],
+      "crypto_narrative": "BTC 52,671€ (−16.7% 30j, −5.8% 7j, +1.2% 24h) ; ETH 1,410€ (−18.5% 30j) ; Solana 65.69€ (+5.1% 24h = légèrement résilient). Fear & Greed = 15 = Extrême Peur (dégradé de 23 la semaine passée = 4ème semaine négative 30j). BTC dominance 55.6% : capitulation altcoins. Aucun catalyseur on-chain ou ETF identifié = radar uniquement, aucune entrée book.",
+      "sources": ["repli web (Grok API: unable to generate data for June 2026)", "Clearbrook Global Weekly Market Commentary 29/06/2026", "BLS CPI May 2026 (CPI +4.2%)", "PR Newswire (Medicare GLP-1 Bridge CMS 29/06/2026)", "PR Newswire (Wegovy pill 3M prescriptions, ADA 2026)", "CNN Health (Medicare GLP-1 coverage 29/06/2026)", "Yahoo Finance (secteurs, cours EUR/USD)", "engine/signals.js 2026-06-30", "engine/crypto.js 2026-06-30"]
+    },
     {
       "week": "2026-W26",
       "date": "2026-06-23",
