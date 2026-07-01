@@ -1,6 +1,6 @@
 {
   "_doc": "Cache des signaux QUANTITATIFS calculés par engine/signals.js. 'regime' = score macro FRED agrégé (gate global). 'tickers' = map ticker -> { fscore, momentum_12_1, earnings_quality, gate } horodatés. L'IA LIT ce fichier avant d'ouvrir/fermer une position (method §A/§H) : les signaux sont des garde-fous factuels, pas une boîte noire. 'data_gaps' liste les sources indisponibles (clé manquante / quota) pour rester honnête sur l'incertitude. Régénéré par les routines ; ne pas éditer à la main.",
-  "updated": "2026-06-30T00:14:36.862Z",
+  "updated": "2026-07-01T00:08:05.157Z",
   "regime": {
     "label": "SURCHAUFFE",
     "score": {
@@ -14,59 +14,105 @@
     ],
     "ok": true,
     "inputs": {
-      "t10y2y": 0.28,
+      "t10y2y": 0.3,
       "unrate": 4.3,
       "unrate_prev": null,
       "cpi_yoy": 0.042,
       "fedfunds": 3.63,
-      "vix": 18.41,
-      "hy_spread": 2.83,
+      "vix": 17.65,
+      "hy_spread": 2.8,
       "eu_hicp_yoy": 0.031,
       "eu_unrate": 6.7,
       "eu_unrate_prev": null
     },
-    "asof": "2026-06-29"
+    "asof": "2026-06-30"
   },
   "tickers": {
-    "NOVOB": {
-      "ticker": "NOVOB",
-      "asof": "2026-06-30",
+    "ABT": {
+      "ticker": "ABT",
+      "asof": "2026-07-01",
       "momentum_12_1": {
-        "value": -0.3401,
+        "value": -0.3718,
         "sign": "négatif",
         "overheated": false,
         "ok": true
       },
       "rsi_14": {
-        "value": 79.9,
-        "zone": "suracheté",
+        "value": 48.7,
+        "zone": "sain",
         "ok": true
       },
       "rel_volume": {
-        "value": 0.48,
+        "value": 0.42,
         "ok": true
       },
       "range_52w": {
-        "value": 0.377,
-        "zone": "moitié basse",
+        "value": 0.158,
+        "zone": "près du bas",
         "ok": true
       },
-      "price": 314.9,
-      "currency": "DKK",
-      "insider_90d": null,
-      "earnings_quality": null,
-      "fscore": null,
-      "fundamentals_source": null,
-      "eps_surprise": null,
+      "price": 90.74,
+      "currency": "USD",
+      "insider_90d": {
+        "ratio": 1,
+        "buys": 3,
+        "sells": 0,
+        "zone": "achats nets",
+        "ok": true
+      },
+      "earnings_quality": {
+        "accruals_ratio": -0.0351,
+        "fcf_to_ni": 1.134,
+        "flag": "vert",
+        "ok": true
+      },
+      "fscore": {
+        "score": 4,
+        "max": 9,
+        "band": "moyen",
+        "tests": {
+          "roa_positif": 1,
+          "cfo_positif": 1,
+          "roa_en_hausse": 0,
+          "accruals_sains": 1,
+          "dette_lt_en_baisse": 1,
+          "liquidite_en_hausse": 0,
+          "pas_de_dilution": 0,
+          "marge_brute_en_hausse": 0,
+          "rotation_actifs_en_hausse": 0
+        },
+        "missing": [
+          "marge_brute_en_hausse"
+        ],
+        "ok": true
+      },
+      "fundamentals_source": "SEC EDGAR (10-K)",
+      "eps_surprise": {
+        "surprise_pct": 0,
+        "date": "2026-04-16",
+        "ok": true
+      },
       "revenue_growth": null,
       "gate": {
-        "verdict": "rouge",
-        "composite": -0.462,
-        "coverage": 0.39,
+        "verdict": "ambre",
+        "composite": -0.021,
+        "coverage": 0.96,
         "reasons": [
-          "momentum 12-1 défavorable"
+          "qualité earnings favorable",
+          "momentum 12-1 défavorable",
+          "initiés 90j favorable"
         ],
         "contributions": [
+          {
+            "key": "fscore",
+            "sub_score": -0.3,
+            "weight": 0.28
+          },
+          {
+            "key": "earnings_quality",
+            "sub_score": 1,
+            "weight": 0.15
+          },
           {
             "key": "momentum_12_1",
             "sub_score": -1,
@@ -74,12 +120,83 @@
           },
           {
             "key": "rsi_14",
-            "sub_score": -0.3,
+            "sub_score": 0.2,
             "weight": 0.1
           },
           {
             "key": "range_52w",
+            "sub_score": -0.4,
+            "weight": 0.1
+          },
+          {
+            "key": "insider_90d",
+            "sub_score": 1,
+            "weight": 0.1
+          },
+          {
+            "key": "rel_volume",
             "sub_score": 0,
+            "weight": 0.04
+          },
+          {
+            "key": "eps_surprise",
+            "sub_score": -0.4,
+            "weight": 0.04
+          }
+        ],
+        "note": "garde-fou ORANGE : taille max 5% du book + stop-loss −8% obligatoire (§H)."
+      }
+    },
+    "MC.PA": {
+      "ticker": "MC.PA",
+      "asof": "2026-07-01",
+      "momentum_12_1": {
+        "value": -0.0316,
+        "sign": "neutre",
+        "overheated": false,
+        "ok": true
+      },
+      "rsi_14": {
+        "value": 50,
+        "zone": "sain",
+        "ok": true
+      },
+      "rel_volume": {
+        "value": 0.88,
+        "ok": true
+      },
+      "range_52w": {
+        "value": 0.205,
+        "zone": "près du bas",
+        "ok": true
+      },
+      "price": 484.1,
+      "currency": "EUR",
+      "insider_90d": null,
+      "earnings_quality": null,
+      "fscore": null,
+      "fundamentals_source": null,
+      "eps_surprise": null,
+      "revenue_growth": null,
+      "gate": {
+        "verdict": "ambre",
+        "composite": -0.092,
+        "coverage": 0.39,
+        "reasons": [],
+        "contributions": [
+          {
+            "key": "momentum_12_1",
+            "sub_score": -0.11,
+            "weight": 0.15
+          },
+          {
+            "key": "rsi_14",
+            "sub_score": 0.2,
+            "weight": 0.1
+          },
+          {
+            "key": "range_52w",
+            "sub_score": -0.4,
             "weight": 0.1
           },
           {
@@ -88,12 +205,12 @@
             "weight": 0.04
           }
         ],
-        "note": "garde-fou ROUGE : position INTERDITE / sortie forcée (§H). Pas de débat — drapeau dur ou composite ≤ −0.2."
+        "note": "garde-fou ORANGE : taille max 5% du book + stop-loss −8% obligatoire (§H)."
       }
     }
   },
   "data_gaps": [
-    "NOVOB: initiés OpenInsider indisponibles (non-US ?)",
-    "NOVOB: états financiers FMP incomplets"
+    "MC.PA: initiés OpenInsider indisponibles (non-US ?)",
+    "MC.PA: états financiers FMP incomplets"
   ]
 }
