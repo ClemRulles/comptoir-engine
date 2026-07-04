@@ -1,7 +1,7 @@
 {
   "_doc": "Agrégats recalculés à chaque passe (vendredi + revue mensuelle) à partir de decisions.json. 'buckets' = un objet par niveau de confiance annoncé : n (décisions clôturées), hits (résultats qui valident la confiance), hit_rate (hits/n), avg_return (rendement réalisé moyen). 'global' = stats du book IA. Une IA bien calibrée a un hit_rate qui CROÎT avec la confiance (Basse < Moyenne < Haute) ; sinon la passe mensuelle corrige le sizing (method §I).",
-  "updated": "2026-06-27",
-  "note_n_insuffisant": "ATTENTION — n < 8 par bucket (Haute=1, Moyenne=6, Basse=2). Seuil statistique §I non atteint : le hit_rate est du bruit. Les résultats négatifs reflètent (1) un héritage de positions en moins-value, (2) des sorties gate-forcées mécaniques (thèses souvent intactes), et (3) un benchmark quasi-flat sur la période (+0.18%). NE PAS ajuster les tailles cibles §H pour l'instant. Observer uniquement.",
+  "updated": "2026-07-04",
+  "note_n_insuffisant": "ATTENTION — n < 8 par bucket (Haute=1, Moyenne=6, Basse=2). Seuil statistique §I non atteint : le hit_rate est du bruit. Les résultats négatifs reflètent (1) un héritage de positions en moins-value, (2) des sorties gate-forcées mécaniques (thèses souvent intactes), et (3) un benchmark quasi-flat sur la période (+0.18%). NE PAS ajuster les tailles cibles §H pour l'instant. Observer uniquement. [REVUE MENSUELLE JUILLET 2026 : 0 nouvelle décision clôturée depuis le 27/06. Les 3 premières convictions IA propres (MSCI, CEG, CRH) sont ouvertes depuis 4-6 semaines, non scorées. Aucun ajustement de sizing. Tailles cibles §H maintenues : Haute≈12%, Moyenne≈7%, Basse≈3%.]",
   "buckets": [
     {
       "confidence": "Haute",
@@ -41,6 +41,6 @@
     "max_drawdown_nav": -0.003,
     "benchmark_period": "2026-06-04 / 2026-06-27",
     "benchmark_return": 0.0018,
-    "note": "Semaines 1-4 post-seed : 9 décisions, toutes négatives. 8 sur 9 sont des sorties gate-forcées (positions héritées en moins-value ou stop mécanique). 1 thèse réellement cassée (MSTR/RMS). Le book a limité la casse via la discipline gate ; la NAV reste à ~-0.09% vs start_capital alors que le groupe aurait subi tout le bêta baissier. Alpha calculé sur benchmark IWDA.AS. Réévaluer calibration à n≥8 par bucket — pas de signal exploitable avant cela."
+    "note": "Semaines 1-5 post-seed (revue mensuelle 04/07) : 9 décisions, toutes négatives. 8 sur 9 sont des sorties gate-forcées (positions héritées en moins-value ou stop mécanique). 1 thèse réellement cassée (MSTR). Le book a limité la casse via la discipline gate ; NAV ≈ -0.8% vs start_capital. Les 3 premières convictions IA propres (MSCI, CEG, CRH) sont ouvertes et portent la qualité future de la calibration — quand elles se clôtureront, elles peupleront les buckets avec de 'vrais' signaux IA (entrées sur conviction, pas sur héritage). Alpha calculé sur benchmark IWDA.AS. Réévaluer calibration à n≥8 par bucket (~août-sept 2026)."
   }
 }

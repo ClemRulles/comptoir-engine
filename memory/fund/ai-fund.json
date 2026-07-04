@@ -1,6 +1,6 @@
 {
   "_doc": "Cache des signaux QUANTITATIFS calculés par engine/signals.js. 'regime' = score macro FRED agrégé (gate global). 'tickers' = map ticker -> { fscore, momentum_12_1, earnings_quality, gate } horodatés. L'IA LIT ce fichier avant d'ouvrir/fermer une position (method §A/§H) : les signaux sont des garde-fous factuels, pas une boîte noire. 'data_gaps' liste les sources indisponibles (clé manquante / quota) pour rester honnête sur l'incertitude. Régénéré par les routines ; ne pas éditer à la main.",
-  "as_of": "2026-07-03",
+  "as_of": "2026-07-04",
   "seeded": true,
   "start_capital": 10417.28,
   "cash": 5611.17,
@@ -118,7 +118,7 @@
       "thesis_id": "crh-infra-us",
       "entry_date": "2026-06-27",
       "target": null,
-      "exit_rule": "vendre si falaise IIJA frappe sans relais (réautorisation pas votée FY2027) ET résidentiel s'effondre OU guidance BPA FY2026 coupée OU stop -8% à 94.20€ (avg_cost × 0.92) ; 🟡 ALERTE PRIX : signals.js $107.53=94.1€ (< stop 94.20€ de 0.1%) vs web $116.49=101.9€ (> stop, OK) — DISCORDANCE MAJEURE → À SURVEILLER, vendredi vérifie le prix réel USD avant toute décision ; Arcosa $8.5B (closing T1 2027) surveillé ; expiration IIJA 30/09/2026",
+      "exit_rule": "vendre si falaise IIJA frappe sans relais (réautorisation pas votée FY2027) ET résidentiel s'effondre OU guidance BPA FY2026 coupée OU stop USD natif $107.37 (avg_cost_USD $116.72 × 0.92) — cours 04/07 $107.53 = 0.16% au-dessus du stop USD, GARDER (gate 🟢, §G 🟢 cœur) ; Arcosa $8.5B (closing T1 2027) surveillé ; expiration IIJA 30/09/2026. Note : le stop EUR 94.20€ est marginalement franchi (93.87€ avec EUR/USD 1.145) mais stop USD NON franchi — §G gouverne sur 🟢 cœur (leçon CRH/STOP-EUR-vs-USD 04/07).",
       "seed": false,
       "thesis": "Leader matériaux construction US (granulats #1, pricing power). Décote vs VMC/MLM (~18.6x fwd vs 28-31x pairs). F6/9 EDGAR, IIJA 40% CA, guide EBITDA $8.1-8.5B FY2026. Gate 🟢 vert (composite +0.341, F6/9, cov 96%). 🟡 ALERTE PRIX : discordance $107.53 (signals.js) vs $116.49 (web). Stop 94.20€ marginalement franchi selon signals (94.1€) mais pas selon web (101.9€). Vendredi vérifie."
     }
@@ -361,5 +361,5 @@
       "rationale": "Trim discipliné §H : gate 🟠 ambre au 03/07 (composite +0.167 < seuil 0.2 → cap 5% NAV actif). Position 5.93% NAV > cap 5% → trim obligatoire. Entrée le 20/06 était 🟢 vert (composite +0.239) → §G gouverne (exit sur cassure de thèse, pas sur le seul prix). Opus 02/07 GARDER : 'vendre au plus-bas avant le test binaire Q2 hyperscaler serait vendre le bruit'. NOUVEAU PPA WALMART 176 MW Dresden 2029 annoncé 03/07 = confirme la thèse PPA. Stop écrit 232.29€ breached (cours ~209.3€) mais Opus override actif : la cassure de thèse N'EST PAS déclenchée (guidance CAGR réaffirmée, restart Crane on track). Restent 2.465 parts ≈ 5.0% NAV. Falsificateur daté : Q2 hyperscaler capex 28-31/07."
     }
   ],
-  "note": "Doctor 03/07 (W27). 2 trims exécutés : SAF.PA (RSI 82.1 extrême, cap 🟠 5% → 1.461 parts) + CEG (gate 🟠 ambre, cap 5% → 2.465 parts, Opus GARDER sur pivot intact). 1 alerte CRH : discordance prix signals.js $107.53 vs web $116.49 — stop 94.20€ marginalement franchi selon signals seulement, vérification prix frais requise vendredi. NAV estimée ≈ 10 318€ (−0.95% vs start_capital 10 417€). Cash 5 611€ = 54.4% NAV (>> plancher 30% SURCHAUFFE). 9 positions actives. Régime SURCHAUFFE maintenu. Catalyseurs critiques J+18-28 : Q2 MSCI 21/07, Section 122 tariffs 24/07, SAF.PA + MSFT + GOOGL + AMZN + Meta 28-31/07, FOMC 29/07."
+  "note": "Brief 04/07 (W27, 1er vendredi du mois). 0 trade exécuté cette semaine. CRH : stop EUR 94.20€ marginalement franchi (93.87€, EUR/USD 1.145) mais stop USD $107.37 non franchi (cours $107.53) + gate 🟢 vert intact → GARDER (§G 🟢 cœur, leçon CRH/STOP-EUR-vs-USD). SAF.PA : composite 0.089 (↓ de 0.134), RSI 80.4, position 5.04% NAV = essentiellement au cap 5% 🟠, S1 28/07. NOVOB : gate 🔴 (mom -37%) → ré-entrée toujours impossible. Calibration mensuelle : n<8 tous buckets, aucun ajustement sizing. NAV estimée ≈ 10 335€ (−0.79% vs start_capital 10 417€). Cash 5 611€ = 54.3% NAV (>> plancher 30% SURCHAUFFE). 9 positions actives. Régime SURCHAUFFE, biais hawkish. Falsificateurs critiques J+7-25 : JPM/GS/WFC Q2 10-11/07, CPI juin 14/07, MSCI Q2 21/07, Section 122 tariffs 24/07, SAF.PA H1 + hyperscalers 28-31/07, FOMC 29/07."
 }

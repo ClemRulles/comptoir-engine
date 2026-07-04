@@ -1,6 +1,6 @@
 {
   "_doc": "Sentiment X (Grok) transformé en PRÉDICTIONS SCORÉES (method §F) — le sentiment ne décide jamais sur la foi : il se MÉRITE une voix en prouvant qu'il prédit. Le lundi (pouls Grok) enregistre 0-3 'calls' directionnels court terme ; engine/grok.js les score contre le prix réel à l'horizon. Schéma d'un call : { id (kebab-case), opened (YYYY-MM-DD), ticker, direction ('hausse'|'baisse' attendue à court terme), confidence (0.5-0.9, force du signal de sentiment), thesis (1 ligne : ce que Grok 'sent'), horizon (YYYY-MM-DD, ~2 semaines), source (semaine du pouls), played (bool : le book a-t-il pris une position tactique ?), status ('ouvert' | 'joué' | 'résolu' | 'expiré'), resolution ({ date, move_pct (variation réelle sur l'horizon), correct (bool : le mouvement a-t-il suivi la direction au-delà de ±2 %), brier ((confidence − correct)²), trade_alpha_pct (si joué : alpha — mesure SÉPARÉE) }) }. 'stats' (recalculé par engine/grok.js) : resolved, hits, hit_rate, brier, tactical_cap = budget MAX du NAV pour les paris Grok, MÉRITÉ : 0 % tant que < 6 calls résolus, puis 3/6/8 % selon hit_rate (≥0.55/0.65/0.70), 0 % si < 0.45. Garde-fous §F : jamais sur gate 🔴, jamais contre la checklist bulle §B, demi-taille tactique, stop serré, sortie datée. L'euphorie reste un signal contrarien de top. Ne jamais réécrire un call résolu.",
-  "updated": "2026-06-30",
+  "updated": "2026-07-04",
   "calls": [
     {
       "id": "ceg-nuclear-safe-haven-w26",
@@ -39,7 +39,7 @@
       "status": "résolu",
       "resolution": {
         "date": "2026-06-30",
-        "price_open_eur": 320.0,
+        "price_open_eur": 320,
         "price_close_eur": 336.5,
         "move_pct": 5.2,
         "correct": true,
@@ -60,7 +60,7 @@
       "status": "résolu",
       "resolution": {
         "date": "2026-06-30",
-        "price_open_eur": 194.0,
+        "price_open_eur": 194,
         "price_close_eur": 210.1,
         "move_pct": 8.3,
         "correct": true,
@@ -72,10 +72,9 @@
   "stats": {
     "resolved": 2,
     "hits": 2,
-    "hit_rate": 1.0,
-    "brier_avg": 0.16,
-    "tactical_cap": 0,
-    "note": "n=2 (< 6 requis pour déverrouiller tactical_cap). hit_rate 100% sur 2 calls = bon signal mais insuffisant pour calibration. Prochain déverrouillage possible après 4 calls supplémentaires résolus."
+    "hit_rate": 1,
+    "brier": 0.16,
+    "tactical_cap": 0
   },
   "data_gaps": []
 }

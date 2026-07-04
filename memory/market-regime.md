@@ -1,4 +1,4 @@
-# Régime de marché — mis à jour le 2026-06-30
+# Régime de marché — mis à jour le 2026-07-04
 
 - **Cadran** : SURCHAUFFE — BIAIS HAWKISH RENFORCÉ (CPI mai +4.2% = 3ème accélération consécutive ; FOMC dot plot 3.8% médiane ; 9/18 membres projettent ≥1 hausse)
 - **Consigne au système** : plancher cash ≥ 30% MAINTENU ; CPI 4.2% s'éloigne encore du seuil "déverrouillage" (3.2%) → pas de déploiement de cash tant que l'inflation ne décélère pas sous 3.5% ; préférer actifs à revenus contractuels fixes (CEG PPA 20 ans) et qualitatif (MSCI, LOTB) sur les projets à financement variable ; **ne pas renforcer en SURCHAUFFE** même gate 🟢, sauf entrée avec marge de sécurité réelle

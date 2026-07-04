@@ -1,6 +1,6 @@
-# Tendance de la semaine — 2026-06-30
+# Tendance de la semaine — 2026-07-04
 
-- **Statut** : VALIDÉE (tendance nouvelle — premier enregistrement)
+- **Statut** : VALIDÉE (J+3 post-lancement Medicare Bridge — données d'adoption à ~4 semaines)
 - **Tendance** : Healthcare / GLP-1 — Medicare Bridge + Rotation défensive face à CPI 4.2%
 - **Pourquoi maintenant** : Deux preuves dures simultanées cette semaine. (1) Le Medicare GLP-1 Bridge entre en vigueur aujourd'hui (1er juillet 2026) : Wegovy à $50/mois pour 65M+ seniors US — premier accès Medicare à grande échelle. Wegovy pill vient d'atteindre 3M prescriptions (80% patients nouveaux au GLP-1 = expansion réelle du marché, pas cannibalisation). (2) CPI mai 2026 : +4.2% YoY = 3ème accélération consécutive → FOMC hawkish biais renforcé → rotation sectorielle massive vers les défensifs (Health Care +7.92% W26, Utilities +4%) AUX DÉPENS de la tech (IT −5.38%, Comm −6.22%). Le S&P Equal Weight a battu le S&P Cap-Weighted de +3.5 pts = signal de rotation large, pas un bruit.
 - **Preuves dures (nouvelles cette semaine)** :
@@ -9,7 +9,7 @@
   3. Secteur Health Care : +7.92% semaine 23-27 juin 2026 (Yahoo Finance/Clearbrook Global) — l'un des plus forts mouvements sectoriels hebdo de l'année.
   4. CPI mai 2026 : +4.2% YoY (BLS, 30/06) = 3ème accélération → renforce la rotation vers défensifs/santé vs growth.
 - **Durabilité** : Structurelle-cyclique — le Medicare GLP-1 Bridge court jusqu'à fin 2027 (18 mois minimum) et crée un demand structurel supplémentaire. La rotation défensive due au FOMC hawkish + CPI persistant peut durer jusqu'à la prochaine inflexion macro (FOMC juillet ou septembre). Ce n'est pas du buzz : c'est une décision de politique publique + un mouvement de cours de secteur.
-- **Stade** : DÉBUT — le programme démarre aujourd'hui, les données d'adoption (prescriptions Medicare) arriveront début août avec les Q2 résultats Novo Nordisk/Eli Lilly. La plupart du marché n'a pas encore repositionné vers les bénéficiaires de second ordre.
+- **Stade** : DÉBUT (J+3) — programme lancé le 1er juillet, les données d'adoption (prescriptions Medicare) arriveront début août avec les Q2 résultats Novo Nordisk/Eli Lilly. Deep-dive 2/07 : LLY/UNH/ABT tous Surveiller (déjà pricés en SURCHAUFFE → droit au blanc, aucune entrée). Attendre repli ~$1 000 LLY ou gate NOVOB composite > −0.2.
 - **Manières de la jouer (cotées)** :
   - **NOVOB (Novo Nordisk B)** — bénéficiaire direct GLP-1. 311.9 DKK, gate 🔴 (RSI 79.9 post-rally, momentum −34%) → **HORS BOOK, ré-entrée verrouillée §H**. Surveiller gate hebdomadairement. Ré-entrée si composite > −0.2.
   - **LLY (Eli Lilly)** — bénéficiaire direct (Zepbound aussi couvert par Medicare Bridge). Concurrent direct NOVOB. Non étudié encore → Scout mardi envoyer pour pré-score et gate.
