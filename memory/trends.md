@@ -1,40 +1,44 @@
-# Tendance de la semaine — 2026-07-04
+# Tendance de la semaine — 2026-07-07
 
-- **Statut** : VALIDÉE (J+3 post-lancement Medicare Bridge — données d'adoption à ~4 semaines)
-- **Tendance** : Healthcare / GLP-1 — Medicare Bridge + Rotation défensive face à CPI 4.2%
-- **Pourquoi maintenant** : Deux preuves dures simultanées cette semaine. (1) Le Medicare GLP-1 Bridge entre en vigueur aujourd'hui (1er juillet 2026) : Wegovy à $50/mois pour 65M+ seniors US — premier accès Medicare à grande échelle. Wegovy pill vient d'atteindre 3M prescriptions (80% patients nouveaux au GLP-1 = expansion réelle du marché, pas cannibalisation). (2) CPI mai 2026 : +4.2% YoY = 3ème accélération consécutive → FOMC hawkish biais renforcé → rotation sectorielle massive vers les défensifs (Health Care +7.92% W26, Utilities +4%) AUX DÉPENS de la tech (IT −5.38%, Comm −6.22%). Le S&P Equal Weight a battu le S&P Cap-Weighted de +3.5 pts = signal de rotation large, pas un bruit.
+- **Statut** : VALIDÉE (porte-à-faux macro + preuve dure IIJA — NFP juin +57K BLS 3 juillet, Energy +21% YTD, Materials +17% YTD)
+- **Tendance** : **Plateau des taux + IIJA accélération → Rotation vers l'Infrastructure US (Matériaux/Construction)**
+- **Pourquoi maintenant** : Deux signaux simultanés cette semaine. (1) NFP juin +57K vs +110K attendu (BLS, 3 juillet) = 3ème mois de révisions cumulées négatives (−74K sur 3 mois) + Leisure & Hospitality −61K (effet Coupe du Monde) → plateau des taux renforcé : FOMC 29 juillet maintenant à 75.6% hold (FedWatch), risque de HIKE nettement réduit. Un taux qui plafonne bénéficie aux actifs à dette longue, en particulier les matériaux/construction IIJA. (2) IIJA : ~50% des fonds autoroutiers et de transport non encore déployés (TIKR/McKinsey 2026) → 3 à 4 ans de visibilité sur les carnets commandes des leaders matériaux US. La rotation sectorielle confirme : Energy +21% YTD, Materials +17% YTD, Industrials +12% > Tech flat = le marché a déjà tourné le dos aux pure-play AI pour aller chercher les bénéficiaires tangibles de l'investissement public.
 - **Preuves dures (nouvelles cette semaine)** :
-  1. Medicare GLP-1 Bridge : programme CMS officiel au 1er juillet, Wegovy $50/mois, tous États + territoires, durée jusqu'à fin 2027 (PR Newswire/CMS, 29/06/2026).
-  2. Wegovy pill : 3M prescriptions atteintes (ADA 2026, PR Newswire) — 1 prescription toutes les 5 secondes ; 80% patients jamais exposés aux GLP-1 = expansion du TAM.
-  3. Secteur Health Care : +7.92% semaine 23-27 juin 2026 (Yahoo Finance/Clearbrook Global) — l'un des plus forts mouvements sectoriels hebdo de l'année.
-  4. CPI mai 2026 : +4.2% YoY (BLS, 30/06) = 3ème accélération → renforce la rotation vers défensifs/santé vs growth.
-- **Durabilité** : Structurelle-cyclique — le Medicare GLP-1 Bridge court jusqu'à fin 2027 (18 mois minimum) et crée un demand structurel supplémentaire. La rotation défensive due au FOMC hawkish + CPI persistant peut durer jusqu'à la prochaine inflexion macro (FOMC juillet ou septembre). Ce n'est pas du buzz : c'est une décision de politique publique + un mouvement de cours de secteur.
-- **Stade** : DÉBUT (J+3) — programme lancé le 1er juillet, les données d'adoption (prescriptions Medicare) arriveront début août avec les Q2 résultats Novo Nordisk/Eli Lilly. Deep-dive 2/07 : LLY/UNH/ABT tous Surveiller (déjà pricés en SURCHAUFFE → droit au blanc, aucune entrée). Attendre repli ~$1 000 LLY ou gate NOVOB composite > −0.2.
+  1. BLS Employment Situation June 2026 (3 juillet) : NFP +57K (vs +110K attendu) + révisions cumulées −74K sur 3 mois = ralentissement du marché du travail → plateau des taux probable.
+  2. CME FedWatch (7 juillet) : probabilité FOMC 29 juillet hold = 75.6% → le marché ne prie plus pour un HIKE juillet.
+  3. CRH +10.8% sur 30 jours (cours web ~$111.25) — prix Arcosa ($8.5B, closing T1 2027) absorbé ; réaccélération YTD.
+  4. Energy +21% YTD, Materials +17% YTD, Industrials +12% YTD (TheStreet, 7 juillet) — rotation sectorielle structurelle vers cycliques/industriels vs Tech flat.
+  5. IIJA 50% des fonds non déployés (McKinsey Infrastructure Report 2026, corroboré TIKR) — les budgets autoroutiers, ferroviaires et water management continuent d'arriver dans les carnets des granulats/béton.
+- **Durabilité** : Cyclique-structurelle — le double vecteur (IIJA autorisation + plateau de taux) court au moins jusqu'à septembre 2026 (falaise IIJA 30/09 = risque connu, gérable). Si le CPI juin (14 juillet) passe <4.0%, le régime pourrait basculer NORMAL → plancher cash abaissé → renforcement Infrastructure possible. Si HIKE FOMC : scénario adverse pour la dette CRH (Arcosa $8.5B), surveiller.
+- **Stade** : CONTINUATION (CRH en book depuis 27 juin ; tendance initiée en W26 avec l'annonce Arcosa, confirmée W29 post-NFP). Ce n'est plus un lancement : c'est un dossier en cours de validation par le flux d'événements.
 - **Manières de la jouer (cotées)** :
-  - **NOVOB (Novo Nordisk B)** — bénéficiaire direct GLP-1. 311.9 DKK, gate 🔴 (RSI 79.9 post-rally, momentum −34%) → **HORS BOOK, ré-entrée verrouillée §H**. Surveiller gate hebdomadairement. Ré-entrée si composite > −0.2.
-  - **LLY (Eli Lilly)** — bénéficiaire direct (Zepbound aussi couvert par Medicare Bridge). Concurrent direct NOVOB. Non étudié encore → Scout mardi envoyer pour pré-score et gate.
-  - **UNH (UnitedHealth) / pharmacies CVS** — bénéficiaires de second ordre (volume de prescriptions, gestion des PBM). Moins hype que NOVOB/LLY = profil pioches-et-pelles.
-  - **XLV (ETF Healthcare S&P)** — exposition sectorielle large défensive ; pas de risque individuel.
-- **Drapeau bulle** : Improbable sur les noms fondamentaux (NOVOB/LLY sont sur des valorisations élevées mais soutenues par des bénéfices réels et une expansion de marché quantifiable). XLV/UNH = 0 drapeau bulle. **Note : NOVOB a déjà rallié (RSI 79.9) donc le timing d'entrée doit attendre un gate 🟢**.
-- **Ce qui tuerait la thèse** : (1) Adoption Medicare < 5% des éligibles en 2 mois (signalerait résistance prescripteurs) ; (2) FOMC pivot dovish (CPI redescend < 3% → rotation défensive se défait) ; (3) Résultats adverses de sécurité chez les seniors (FDA safety alert) ; (4) LLY annonce une réduction du prix compétitif qui comprime les marges Novo Nordisk.
-- **Effet de second ordre** : FOMC hawkish → taux longs restent hauts → REIT/Real Estate en flux entrants paradoxaux (dividend hunting) ; les compagnies d'assurance santé (UNH, Humana) absorbent les coûts GLP-1 → potentielle pression sur leurs marges si l'adoption dépasse les anticipations actuarielles.
-- **Sources** : PR Newswire (Medicare GLP-1 Bridge 29/06/2026) ; PR Newswire (Wegovy pill 3M prescriptions, ADA 2026) ; CNN Health (Medicare GLP-1 coverage 29/06/2026) ; BLS CPI May 2026 ; Clearbrook Global Weekly Market Commentary 29/06/2026 ; Yahoo Finance (secteurs) ; engine/signals.js 2026-06-30
+  - **CRH plc** — DÉTENU (7.12 parts, avg_cost 102.39€, gate 🟢 c=+0.455). Leader granulats US #1, décote vs VMC/MLM (~18.6x fwd vs 28-31x), IIJA 40% CA, guide EBITDA $8.1-8.5B. Arcosa ($8.5B, closing T1 2027) renforce l'expo infrastructure et eau. ⚠️ Prix discordant : signals.js $107.58 vs web $111.25 — stop USD $107.37 non franchi dans les deux cas. GARDER.
+  - **VMC (Vulcan Materials)** — pioche directe. Leader granulats SE/SW US (régions les plus IIJA-actives). ~28x fwd = prime vs CRH mais justifiée par geographie IIJA (Texas, Florida, SE). Scout recommandé avant entrée. Surveiller.
+  - **MLM (Martin Marietta Materials)** — pioche directe. Leader granulats Mid-Atlantic/Central. Concurrent direct CRH/VMC. Série de prix power prouvé (+prix agrégats +8-12% YoY). Scout recommandé. Surveiller.
+- **Drapeau bulle** : Nul sur CRH (0 drapeau, décote réelle vs pairs). VMC/MLM : vigilance légère (~28-31x fwd = élévé en SURCHAUFFE, attendre repli ou gate 🟢 propre avant entrée).
+- **Ce qui tuerait la thèse** :
+  1. **CPI juin ≥ 4.5% (14 juillet)** : 4ème accélération consécutive rendrait HIKE FOMC probable → coût du capital monte → dette CRH post-Arcosa pénalisée.
+  2. **IIJA non réautorisé FY2027** (vote Congrès attendu automne 2026) : fin de la visibilité commandes infrastructure.
+  3. **Guidance BPA CRH FY2026 coupée** lors des prochains résultats trimestriels (Q3 août).
+- **Effet de second ordre** : Stop USD CRH $107.37 reste la limite mécanique à surveiller vendredi. Si EUR/USD monte (pression dollar NFP-driven), recouper systématiquement avec le cours USD natif.
+- **Sources** : BLS Employment Situation June 2026 (3 juillet) ; CME FedWatch (FOMC 29 juillet 75.6% hold, 7 juillet) ; TheStreet (sector rotation YTD, 6-7 juillet) ; TIKR/McKinsey (IIJA 50% non déployé) ; engine/signals.js 2026-07-07 ; web pricing CRH ~$111.25 (web vs $107.58 signals)
 
 ---
 
-# Tendance de la semaine précédente — 2026-06-23 (archivée W27, continuation structurelle)
+# Tendance de la semaine précédente — 2026-06-30 (archivée W27, tendance secondaire active)
 
-- **Statut** : CONTINUATION STRUCTURELLE — actif dans le book (CEG, CRH) mais relayée en tendance secondaire cette semaine
+- **Statut** : CONTINUATION STRUCTURELLE — Medicare Bridge opérationnel J+7 ; données adoption dans ~3-4 semaines
+- **Tendance** : Healthcare / GLP-1 — Medicare Bridge + Rotation défensive face à CPI 4.2%
+- **Note d'archivage 2026-07-07** : La thèse GLP-1 reste solide (Medicare Bridge opérationnel depuis 1er juillet, 13M nouveaux éligibles confirmés par CMS/CNBC, Wegovy 3M prescriptions). NOVOB gate flip 🔴→🟠 ambre (composite +0.118, RSI 79.3) = amélioration, mais RSI 79.3 interdit la ré-entrée en SURCHAUFFE (overbought extrême). La rotation Healthcare est relayée cette semaine par la tendance Infrastructure US post-NFP. **Falsificateur non déclenché** : adoption Medicare restant à mesurer (données début août avec Q2 Novo Nordisk/LLY). **LLY/UNH/ABT** : toujours Surveiller (déjà pricés). Droit au blanc reconduit en SURCHAUFFE.
+- **Falsificateurs non déclenchés** : (1) adoption < 5% des éligibles à J+7 non mesurable encore ; (2) FDA safety alert seniors absent.
+
+---
+
+# Archives — tendance semaine 2026-06-23 (archivée W26)
+
+- **Statut** : CONTINUATION STRUCTURELLE — CEG détenu (thèse PPA intacte, §G gouverne), CRH entré 27/06
 - **Tendance** : Infrastructure IA / Énergie nucléaire — contrats PPA fixes comme défense contre l'anxiété FCF hyperscalers
-- **Note d'archivage 2026-06-30** : La thèse reste solide (CEG Q1 2026 EPS $2.74, +5.79% beat ; revenues +23.56% beat ; Walmart 176MW PPA nucléaire ; Goldman $5.3T hyperscaler capex 2025-2030 ; Morgan Stanley OW PT $364). NON INVALIDÉE. Mais elle cède la tendance hebdomadaire à la rotation Healthcare + Medicare Bridge (plus frais cette semaine). Test FALSIFICATEUR imminents : Q2 hyperscalers capex guidance (28-31 juillet). **ALERTES STOP** : CEG 226.9€ < stop 232.29€ (BREACHED FX-driven) ; CRH 95.3€ vs stop 94.20€ (marge 1.2%). Décisions Thursday Doctor.
-- **Falsificateurs non déclenchés** : 1) aucun hyperscaler n'a coupé sa guidance capex >15% ; 2) PPA 20 ans non résiliés.
-
----
-
-# Archives — tendance semaine 2026-06-16 (archivée W26)
-
-- **Statut** : VALIDÉE (4 semaines consécutives infrastructure IA / énergie nucléaire)
-- **Note d'archivage** : Tendance confirmée 3 semaines d'affilée. Test FALSIFICATEUR = Q2 hyperscalers capex (28-31 juillet). CEG détenu book IA (2.926 parts) + CRH entré 27/06. Voir archives W26 et W25 dans mémoire précédente.
+- **Note d'archivage** : Thèse intacte (CEG Q1 EPS $2.74 beat, Walmart 176MW PPA Dresden confirmé 03/07, MS OW $364). Gate 🟠 ambre (composite +0.163). **ALERTES STOP** : stop EUR 232.29€ BREACHED (cours $245.87 = 214.2€) — §G gouverne, GARDER jusqu'au FALSIFICATEUR Q2 hyperscaler 28-31/07. Test FALSIFICATEUR imminents : hyperscalers capex (MSFT 28/07, GOOGL 29/07, AMZN 30/07).
 
 ---
 
@@ -42,4 +46,4 @@
 
 - **Statut** : VALIDÉE (continuation via fil directeur causal vers infra-IA)
 - **Tendance** : Réarmement européen — cycle pluriannuel en phase d'accélération des commandes
-- **Note d'archivage** : Structurellement active (SAF.PA détenu groupe), mais gate HO.PA 🔴 et stop touché (218.4€ < 226.61€) le 23/06 → **SORTI du book IA**. SAF.PA trimmé à 5% NAV (gate 🟠 → 🟢 le 30/06). Thèse défense EU non invalidée — relayée par infra-IA dans le fil causal.
+- **Note d'archivage** : Structurellement active (SAF.PA détenu groupe, gate 🟠 RSI 78.5). HO.PA sorti (gate 🔴 + stop 218.4€). SAF.PA cap 5% actif (RSI 78.5). Thèse défense EU non invalidée — relayée par infra-IA dans le fil causal.

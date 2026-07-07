@@ -1,7 +1,21 @@
 {
   "_doc": "Book de SCÉNARIOS prédictifs (method §K) — le pré-registre qui donne à l'IA un jugement sur le futur SANS boule de cristal : chaque scénario est écrit AVANT d'être joué, probabilisé, falsifiable, et scoré à résolution. Schéma d'un scénario : { id (kebab-case), opened (YYYY-MM-DD), event (l'événement déclencheur, daté ou conditionnel — ex. 'IPO SpaceX confirmée'), chain (chaîne causale de second ordre : qui est impacté, dans quel ordre, pourquoi), probability (0.5-0.95, probabilité ANNONCÉE de réalisation), horizon (YYYY-MM-DD, date limite de résolution), falsifier (ce qui prouvera que le scénario était faux), instruments ([tickers] pour le jouer, direct + pioches/pelles), status (candidat: détecté lundi | validé: la chaîne survit au débat Opus de mercredi | joué: position ouverte vendredi, thesis_id du trade = cet id | rejeté: débat perdu | expiré: horizon dépassé sans réalisation | résolu: tranché et scoré), resolution ({ date, happened (bool), brier ((probability − happened)², 0 = parfait), notes, trade_alpha_pct (si joué : alpha du trade — mesure SÉPARÉE, on peut prédire juste et trader mal) }) }. 'stats' est recalculé par node engine/forecasts.js : hit = (probability ≥ 0.5) === happened ; pocket_cap = part max du NAV allouée aux scénarios (§K : grandit/rétrécit selon le hit_rate prédictif prouvé). Ne jamais réécrire un scénario résolu : on apprend de ses prédictions, on ne les efface pas.",
-  "updated": "2026-07-04",
+  "updated": "2026-07-07",
   "scenarios": [
+    {
+      "id": "cpi-regime-transition-h1-2026",
+      "opened": "2026-07-07",
+      "event": "CPI juin 2026 (publication BLS 14 juillet) < 4.0% (vs 4.2% en mai = 3ème accélération consécutive)",
+      "chain": "CPI juin < 4.0% → FOMC 29 juillet élimine tout scénario de HIKE → marché retire la prime de risque SURCHAUFFE → régime passe de SURCHAUFFE à NORMAL → plancher de cash 30%→15% déverrouillé → positions tech de qualité (AMZN, MSCI déjà détenus) bénéficient d'une re-expansion des multiples → taux longs stables ou légèrement inférieurs → infrastructure (CRH) profite de la baisse des coûts de financement pour l'acquisition Arcosa → possibilité de renforcer tech et infrastructure simultanément",
+      "probability": 0.5,
+      "horizon": "2026-07-15",
+      "falsifier": "CPI juin ≥ 4.5% : la 4ème accélération consécutive rendrait un HIKE FOMC juillet quasi-certain, aggravant la SURCHAUFFE et contredisant toute relaxation du régime",
+      "instruments": [
+        "AMZN",
+        "MSCI"
+      ],
+      "status": "candidat"
+    },
     {
       "id": "ai-power-enr-hyperscaler-q2",
       "opened": "2026-06-16",

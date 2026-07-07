@@ -1,7 +1,83 @@
 {
   "_doc": "Pouls hebdo du marché (Grok, accès X) — radar à corroborer, jamais un signal d'achat. Écrit par routines/monday-trend-radar.md (Partie C). Le plus récent en tête de weeks ; ~12 semaines max.",
-  "updated": "2026-06-30",
+  "updated": "2026-07-07",
   "weeks": [
+    {
+      "week": "2026-W29",
+      "date": "2026-07-07",
+      "label": "Semaine du 7 juillet 2026",
+      "headline": "NFP juin raté (+57K vs 110K attendu) soulage le FOMC et alimente la rotation vers l'infrastructure ; crypto rebond surprise post-NFP ; CEG à 52-week low sur Citi downgrade.",
+      "themes": [
+        {
+          "title": "NFP miss → plateau des taux + rotation Infrastructure/Matériaux",
+          "detail": "NFP juin +57K vs 110K attendu (BLS 3 juillet). Révisions cumulées -74K sur 3 mois. Leisure & Hospitality -61K (effet Coupe du Monde). FOMC 29 juillet : 75.6% hold (FedWatch, post-NFP). Taux stables favorisent l'infra à dette (CRH Arcosa). IIJA 50% fonds autoroutiers non déployés → 3-4 ans de visibilité. Energy +21% YTD, Materials +17% YTD, Industrials +12% YTD = rotation sectorielle structurelle confirmée (TheStreet, 6-7 juillet). Semis rebond +2.7% le 6/07 (post-NFP) mais Tech flat YTD.",
+          "tickers": ["CRH", "VMC", "MLM"],
+          "corroborated": true
+        },
+        {
+          "title": "Crypto rebond NFP-driven",
+          "detail": "BTC $64,208 (55,920€, +6.19% 7j, +5.89% 30j), ETH $1,815 (1,571€, +11.45% 7j, +15.42% 30j), Solana 71.57€ (+9.06% 7j, +32.7% 30j = très fort). Fear & Greed 27 (Fear, récupération depuis 15 Extrême Peur la semaine passée). Catalyseur : NFP miss du 3 juillet + saisonnalité positive juillet (médiane BTC +7.6% en juillet). Aucun catalyseur on-chain ou flux ETF identifié. BTC dominance 55.9%, lecture contrarienne : Fear 27 = potentiel de rebond CT mais pas de preuve d'inversion structurelle.",
+          "tickers": [],
+          "corroborated": false
+        },
+        {
+          "title": "GLP-1 Medicare Bridge opérationnel — 13M nouveaux éligibles",
+          "detail": "Medicare Bridge opérationnel depuis 1er juillet. CMS confirms 13M nouveaux éligibles seniors obèses/surpoids (en plus des 16M déjà couverts). Humana gère les prior authorizations. Durée 18 mois. NOVOB gate flip 🔴→🟠 ambre (composite +0.118, RSI 79.3) — amélioration mais overbought extrême → pas de ré-entrée en SURCHAUFFE. Données d'adoption arriveront début août avec Q2 résultats. Risque post-démo : CMS pourrait renégocier les prix après décembre 2027.",
+          "tickers": ["NOVOB", "LLY"],
+          "corroborated": true
+        },
+        {
+          "title": "CEG à 52-week low — Citi downgrade vs Morgan Stanley OW",
+          "detail": "Citi abaisse objectif $297 (de $348) le 1er juillet → -6.2% ce jour → 52-week low $240.27. MS OW $364, Bernstein Outperform. Cours signals.js $245.87 (= 214.2€, stop EUR 232.29€ breached). Thèse PPA nucléaire intacte : Walmart 176MW PPA Dresden confirmé 03/07, Meta 1.1GW Clinton, Microsoft TMI. McKinsey $7T AI infrastructure capex 2030, FERC data center demand 35GW. §G gouverne : GARDER jusqu'aux Q2 hyperscalers 28-31/07.",
+          "tickers": ["CEG", "TLN", "CCJ"],
+          "corroborated": true
+        }
+      ],
+      "movers": [
+        {
+          "ticker": "CEG",
+          "direction": "down",
+          "reason": "Citi downgrade $297 le 1er juillet → 52-week low $240.27. Signals.js $245.87 (214.2€, stop 232.29€ breached). Gate 🟠 ambre +0.163 F6/9. Grok call 'hausse' W26 INCORRECT (-9%). §G gouverne : GARDER jusqu'aux Q2 hyperscalers 28-31/07.",
+          "held": true
+        },
+        {
+          "ticker": "CRH",
+          "direction": "up",
+          "reason": "CRH +10.8% 30j (~$111 web vs $107.58 signals — discordant). Gate 🟢 vert +0.455 F6/9. IIJA 50% non déployé + Arcosa closing T1 2027. Stop USD $107.37 non franchi dans les deux cas.",
+          "held": true
+        },
+        {
+          "ticker": "AMZN",
+          "direction": "up",
+          "reason": "NFP miss → soulagement FOMC. Gate 🟢 +0.371, RSI 54.4 sain, $244.16. Q2 results 30 juillet = test de thèse AWS. Nouveau Grok call 'hausse' W29 ouvert (horizon 21/07).",
+          "held": true
+        },
+        {
+          "ticker": "MSCI",
+          "direction": "up",
+          "reason": "Price $614.04 / 538€ (+9.3% au-dessus du stop 492.57€). Gate 🟢 F7/9. Q2 le 21 juillet = prochain test.",
+          "held": true
+        },
+        {
+          "ticker": "BNP.PA",
+          "direction": "neutral",
+          "reason": "RSI 66.4 (décrue depuis 76.4 = positif). Gate 🟢 composite +0.23. Q2 big banks US 14-15 juillet = catalyseur directionnel NIM.",
+          "held": true
+        }
+      ],
+      "crypto_narrative": "BTC ~$64,208 (55,920€, +6.19% 7j, +5.89% 30j) — rebond depuis capitulation fin juin ; ETH $1,815 (1,571€, +11.45% 7j, +15.42% 30j) ; SOL +32.7% 30j = très fort. Fear & Greed 27 (Fear, récupération depuis 15 Extrême Peur). Catalyseur : NFP miss du 3 juillet + saisonnalité juillet. Aucun catalyseur on-chain ou ETF flux identifié = radar uniquement.",
+      "sources": [
+        "repli web (Grok API: unable to generate data)",
+        "BLS Employment Situation June 2026 (3 juillet)",
+        "CME FedWatch (FOMC 29 juillet 75.6% hold)",
+        "CMS/CNBC (Medicare GLP-1 Bridge 13M éligibles)",
+        "Motley Fool/Investing.com (CEG 52-week low, Citi $297)",
+        "TIKR/McKinsey (IIJA 50% non déployé)",
+        "TheStreet (S&P sector rotation YTD)",
+        "engine/signals.js 2026-07-07",
+        "engine/crypto.js 2026-07-07"
+      ]
+    },
     {
       "week": "2026-W27",
       "date": "2026-06-30",
@@ -16,7 +92,7 @@
         },
         {
           "title": "Medicare GLP-1 Bridge — Wegovy $50/mois pour seniors US lancé J=0",
-          "detail": "Programme CMS officiel au 1er juillet, tous États + territoires, durée jusqu'à fin 2027 (18 mois visibilité). Wegovy pill : 3M prescriptions (80% patients JAMAIS exposés aux GLP-1 = expansion du TAM réel, pas cannibalisation). NOVOB RSI 79.9 = déjà partiellement pricé, gate 🔴 composite −0.462 = ré-entrée impossible (§H). LLY (Zepbound inclus dans le programme) = candidat Scout mardi pour pré-score. Données d'adoption Medicare arriveront ~début août avec Q2 Novo Nordisk/LLY.",
+          "detail": "Programme CMS officiel au 1er juillet, tous États + territoires, durée jusqu'à fin 2027 (18 mois visibilité). Wegovy pill : 3M prescriptions (80% patients JAMAIS exposés aux GLP-1 = expansion du TAM réel, pas cannibalisation). NOVOB RSI 79.9 = déjà partiellement pricé, gate 🔴 composite −0.462 = ré-entrée impossible (§H). LLY (Zepbound inclus dans le programme) = candidat Scout. Données d'adoption Medicare arriveront ~début août avec Q2 Novo Nordisk/LLY.",
           "tickers": ["NOVOB", "LLY", "UNH"],
           "corroborated": true
         },
@@ -81,7 +157,6 @@
         { "ticker": "HO.PA", "direction": "down", "reason": "Cours 226.3€ = stop 226.61€ touché. Gate 🟠 ambre (composite −0.111). Sortie forcée book IA jeudi.", "held": true },
         { "ticker": "MSCI", "direction": "down", "reason": "RSI 23.4 = survendu extrême. Pression technique mais F7/9 et rétention 95.4% intacts. Q2 résultats 21 juillet = rebond potentiel.", "held": true }
       ],
-      "crypto_narrative": "BTC 55,959€ (−15.3% 30j), ETH 1,510€ (−17.1% 30j). Fear & Greed = 23 = Extrême Peur (2ème semaine consécutive). BTC dominance 56.3% : capitulation altcoins. Aucun catalyseur on-chain ou ETF flux identifié cette semaine. La zone 54-56k EUR sur BTC = support psychologique. Lecture contrarienne maintenue mais preuve dure absente = radar uniquement.",
       "sources": ["repli web (Grok API: unable to generate data for June 2026)", "corroboré: Yahoo Finance / 247WallSt (AMZN/GOOGL selloff 22/06)", "Fed.gov SEP June 17 2026 (dot plot)", "Yahoo Finance (CEG buyback, Calpine, CyrusOne)", "PR Newswire (Wegovy Medicare Bridge, 3M prescriptions)", "engine/signals.js 2026-06-23", "engine/crypto.js 2026-06-23"]
     },
     {
@@ -104,7 +179,7 @@
         },
         {
           "title": "FOMC hold — légèrement hawkish",
-          "detail": "Hold unanime confirmé le 17 juin. Dot plot : 75 bps de baisses attendus fin 2026 (vs 100 bps en mars). Le marché digère le signal moins dovish sans panique (VIX 17.68 = calme). Les banques et financières bénéficient de la courbe plus stable. Sentiment global : ni euphorie ni peur. NOTE RÉTROSPECTIVE W26 : le dot plot réel est PLUS hawkish — 9/18 hike, PCE 3.6%. La lecture '75 bps coupes' était prématurée.",
+          "detail": "Hold unanime confirmé le 17 juin. Dot plot : 75 bps de baisses attendus fin 2026 (vs 100 bps en mars). Le marché digère le signal moins dovish sans panique (VIX 17.68 = calme). Les banques et financières bénéficient de la courbe plus stable. NOTE RÉTROSPECTIVE W26 : le dot plot réel est PLUS hawkish — 9/18 hike, PCE 3.6%. La lecture '75 bps coupes' était prématurée.",
           "tickers": ["BNP.PA"],
           "corroborated": true
         }

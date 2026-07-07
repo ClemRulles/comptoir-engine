@@ -1,7 +1,19 @@
 {
   "_doc": "Sentiment X (Grok) transformé en PRÉDICTIONS SCORÉES (method §F) — le sentiment ne décide jamais sur la foi : il se MÉRITE une voix en prouvant qu'il prédit. Le lundi (pouls Grok) enregistre 0-3 'calls' directionnels court terme ; engine/grok.js les score contre le prix réel à l'horizon. Schéma d'un call : { id (kebab-case), opened (YYYY-MM-DD), ticker, direction ('hausse'|'baisse' attendue à court terme), confidence (0.5-0.9, force du signal de sentiment), thesis (1 ligne : ce que Grok 'sent'), horizon (YYYY-MM-DD, ~2 semaines), source (semaine du pouls), played (bool : le book a-t-il pris une position tactique ?), status ('ouvert' | 'joué' | 'résolu' | 'expiré'), resolution ({ date, move_pct (variation réelle sur l'horizon), correct (bool : le mouvement a-t-il suivi la direction au-delà de ±2 %), brier ((confidence − correct)²), trade_alpha_pct (si joué : alpha — mesure SÉPARÉE) }) }. 'stats' (recalculé par engine/grok.js) : resolved, hits, hit_rate, brier, tactical_cap = budget MAX du NAV pour les paris Grok, MÉRITÉ : 0 % tant que < 6 calls résolus, puis 3/6/8 % selon hit_rate (≥0.55/0.65/0.70), 0 % si < 0.45. Garde-fous §F : jamais sur gate 🔴, jamais contre la checklist bulle §B, demi-taille tactique, stop serré, sortie datée. L'euphorie reste un signal contrarien de top. Ne jamais réécrire un call résolu.",
-  "updated": "2026-07-04",
+  "updated": "2026-07-07",
   "calls": [
+    {
+      "id": "amzn-nfp-tailwind-w29",
+      "opened": "2026-07-07",
+      "ticker": "AMZN",
+      "direction": "hausse",
+      "confidence": 0.58,
+      "thesis": "NFP juin +57K (miss vs 110K) réduit le risque FOMC hike juillet → soulagement pour la croissance ; gate 🟢 composite +0.371, RSI 54.4 sain ; AWS thesis intacte ; rebond technique post-NFP attendu avant résultats Q2 (30 juillet)",
+      "horizon": "2026-07-21",
+      "source": "2026-W29 (repli web — Grok API indisponible)",
+      "played": false,
+      "status": "ouvert"
+    },
     {
       "id": "ceg-nuclear-safe-haven-w26",
       "opened": "2026-06-23",
@@ -12,7 +24,16 @@
       "horizon": "2026-07-07",
       "source": "2026-W26 (repli web — Grok API indisponible)",
       "played": false,
-      "status": "ouvert"
+      "status": "résolu",
+      "resolution": {
+        "date": "2026-07-07",
+        "price_open_usd": 270.26,
+        "price_close_usd": 245.87,
+        "move_pct": -9.03,
+        "correct": false,
+        "brier": 0.4225,
+        "note": "CEG chuté -9% depuis l'ouverture du call ($270→$245.87 signals.js, 52-week low $240.27). Citi downgrade PT $297 (de $348, le 1er juillet, −6.2% ce jour). Direction 'hausse' INCORRECT. Thèse PPA intacte à LT mais pression technique + analyste a dominé à CT — le call portait sur le CT sentiment, pas la thèse LT."
+      }
     },
     {
       "id": "googl-capex-anxiety-w26",
@@ -24,7 +45,16 @@
       "horizon": "2026-07-07",
       "source": "2026-W26 (repli web — Grok API indisponible)",
       "played": false,
-      "status": "ouvert"
+      "status": "résolu",
+      "resolution": {
+        "date": "2026-07-07",
+        "price_open_usd": 315,
+        "price_close_usd": 366.46,
+        "move_pct": 16.3,
+        "correct": false,
+        "brier": 0.3364,
+        "note": "GOOGL rebondi +16% depuis l'ouverture du call (~$315 post-selloff du 22 juin). Direction 'baisse' INCORRECT. Leçon : appeler 'baisse' après qu'un selloff -6% est déjà consommé = biais de fraîcheur. Le marché avait digéré la FCF anxiety le 22 juin — le rebond qui suit était probable. Calls d'anticipation dans le sens d'une baisse déjà pricée = edge négatif."
+      }
     },
     {
       "id": "saf-defense-w25",
@@ -70,10 +100,10 @@
     }
   ],
   "stats": {
-    "resolved": 2,
+    "resolved": 4,
     "hits": 2,
-    "hit_rate": 1,
-    "brier": 0.16,
+    "hit_rate": 0.5,
+    "brier": 0.27,
     "tactical_cap": 0
   },
   "data_gaps": []

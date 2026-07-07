@@ -1,6 +1,6 @@
 {
   "_doc": "Cache des signaux QUANTITATIFS calculés par engine/signals.js. 'regime' = score macro FRED agrégé (gate global). 'tickers' = map ticker -> { fscore, momentum_12_1, earnings_quality, gate } horodatés. L'IA LIT ce fichier avant d'ouvrir/fermer une position (method §A/§H) : les signaux sont des garde-fous factuels, pas une boîte noire. 'data_gaps' liste les sources indisponibles (clé manquante / quota) pour rester honnête sur l'incertitude. Régénéré par les routines ; ne pas éditer à la main.",
-  "updated": "2026-07-04T00:09:42.334Z",
+  "updated": "2026-07-07T00:12:14.266Z",
   "regime": {
     "label": "SURCHAUFFE",
     "score": {
@@ -19,81 +19,137 @@
       "unrate_prev": null,
       "cpi_yoy": 0.042,
       "fedfunds": 3.63,
-      "vix": 16.59,
-      "hy_spread": 2.75,
+      "vix": 15.81,
+      "hy_spread": 2.74,
       "eu_hicp_yoy": 0.031,
       "eu_unrate": 6.7,
       "eu_unrate_prev": null
     },
-    "asof": "2026-07-02"
+    "asof": "2026-07-06"
   },
   "tickers": {
-    "NOVOB": {
-      "ticker": "NOVOB",
-      "asof": "2026-07-04",
+    "GOOGL": {
+      "ticker": "GOOGL",
+      "asof": "2026-07-07",
       "momentum_12_1": {
-        "value": -0.366,
-        "sign": "négatif",
-        "overheated": false,
+        "value": 1.0306,
+        "sign": "positif",
+        "overheated": true,
         "ok": true
       },
       "rsi_14": {
-        "value": 79.3,
-        "zone": "suracheté",
+        "value": 53.8,
+        "zone": "sain",
         "ok": true
       },
       "rel_volume": {
-        "value": 0.48,
+        "value": 0.69,
         "ok": true
       },
       "range_52w": {
-        "value": 0.427,
-        "zone": "moitié basse",
+        "value": 0.821,
+        "zone": "moitié haute",
         "ok": true
       },
-      "price": 326.9,
-      "currency": "DKK",
-      "insider_90d": null,
-      "earnings_quality": null,
-      "fscore": null,
-      "fundamentals_source": null,
-      "eps_surprise": null,
+      "price": 366.46,
+      "currency": "USD",
+      "insider_90d": {
+        "ratio": 0,
+        "buys": 0,
+        "sells": 8,
+        "zone": "ventes nettes",
+        "ok": true
+      },
+      "earnings_quality": {
+        "accruals_ratio": -0.0547,
+        "fcf_to_ni": 0.554,
+        "flag": "vert",
+        "ok": true
+      },
+      "fscore": {
+        "score": 5,
+        "max": 9,
+        "band": "moyen",
+        "tests": {
+          "roa_positif": 1,
+          "cfo_positif": 1,
+          "roa_en_hausse": 0,
+          "accruals_sains": 1,
+          "dette_lt_en_baisse": 0,
+          "liquidite_en_hausse": 1,
+          "pas_de_dilution": 1,
+          "marge_brute_en_hausse": 0,
+          "rotation_actifs_en_hausse": 0
+        },
+        "missing": [
+          "marge_brute_en_hausse",
+          "rotation_actifs_en_hausse"
+        ],
+        "ok": true
+      },
+      "fundamentals_source": "SEC EDGAR (10-K)",
+      "eps_surprise": {
+        "surprise_pct": 101.98,
+        "date": "2026-04-29",
+        "ok": true
+      },
       "revenue_growth": null,
       "gate": {
-        "verdict": "rouge",
-        "composite": -0.462,
-        "coverage": 0.39,
+        "verdict": "ambre",
+        "composite": 0.161,
+        "coverage": 0.96,
         "reasons": [
-          "momentum 12-1 défavorable"
+          "qualité earnings favorable",
+          "range 52 sem. favorable",
+          "initiés 90j défavorable",
+          "EPS surprise favorable",
+          "momentum en surchauffe (>+60%/an)"
         ],
         "contributions": [
           {
+            "key": "fscore",
+            "sub_score": 0,
+            "weight": 0.28
+          },
+          {
+            "key": "earnings_quality",
+            "sub_score": 1,
+            "weight": 0.15
+          },
+          {
             "key": "momentum_12_1",
-            "sub_score": -1,
+            "sub_score": -0.3,
             "weight": 0.15
           },
           {
             "key": "rsi_14",
-            "sub_score": -0.3,
+            "sub_score": 0.2,
             "weight": 0.1
           },
           {
             "key": "range_52w",
-            "sub_score": 0,
+            "sub_score": 0.5,
+            "weight": 0.1
+          },
+          {
+            "key": "insider_90d",
+            "sub_score": -0.6,
             "weight": 0.1
           },
           {
             "key": "rel_volume",
             "sub_score": 0,
             "weight": 0.04
+          },
+          {
+            "key": "eps_surprise",
+            "sub_score": 1,
+            "weight": 0.04
           }
         ],
-        "note": "garde-fou ROUGE : position INTERDITE / sortie forcée (§H). Pas de débat — drapeau dur ou composite ≤ −0.2."
+        "note": "garde-fou ORANGE : taille max 5% du book + stop-loss −8% obligatoire (§H)."
       }
     }
   },
-  "data_gaps": [
-    "NOVOB: initiés OpenInsider indisponibles (non-US ?)",
-    "NOVOB: états financiers FMP incomplets"
-  ]
+  "data_gaps": []
 }
