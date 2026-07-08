@@ -7,7 +7,7 @@
   "positions": [
     {
       "ticker": "SAF.PA",
-      "quantity": 1.46090,
+      "quantity": 1.4609,
       "avg_cost": 300.046154,
       "confidence": "Moyenne",
       "horizon": "coeur",
@@ -20,7 +20,7 @@
     },
     {
       "ticker": "AMZN",
-      "quantity": 2.51780,
+      "quantity": 2.5178,
       "avg_cost": 192.535071,
       "confidence": "Moyenne",
       "horizon": "coeur",
@@ -86,7 +86,7 @@
     {
       "ticker": "MSCI",
       "quantity": 1.36,
-      "avg_cost": 535.40,
+      "avg_cost": 535.4,
       "confidence": "Moyenne",
       "horizon": "coeur",
       "thesis_id": "msci-monopole",
@@ -248,7 +248,7 @@
       "side": "sell",
       "ticker": "HO.PA",
       "quantity": 1.05,
-      "price": 234.70,
+      "price": 234.7,
       "fee": 0.74,
       "confidence": "Moyenne",
       "thesis_id": "ho-defense",
@@ -261,7 +261,7 @@
       "side": "buy",
       "ticker": "MSCI",
       "quantity": 1.36,
-      "price": 535.40,
+      "price": 535.4,
       "fee": 2.18,
       "confidence": "Moyenne",
       "thesis_id": "msci-monopole",
@@ -301,7 +301,7 @@
       "ticker": "SAF.PA",
       "quantity": 1.16769,
       "price": 343.7,
-      "fee": 1.20,
+      "fee": 1.2,
       "confidence": "Moyenne",
       "thesis_id": "saf-aero",
       "horizon": "coeur",
@@ -312,7 +312,7 @@
       "ts": "2026-06-26",
       "side": "sell",
       "ticker": "AMZN",
-      "quantity": 0.60890,
+      "quantity": 0.6089,
       "price": 206.93,
       "fee": 0.38,
       "confidence": "Moyenne",
@@ -339,7 +339,7 @@
       "side": "sell",
       "ticker": "SAF.PA",
       "quantity": 0.055,
-      "price": 353.30,
+      "price": 353.3,
       "fee": 0.06,
       "confidence": "Moyenne",
       "thesis_id": "saf-aero",
@@ -361,5 +361,5 @@
       "rationale": "Trim discipliné §H : gate 🟠 ambre au 03/07 (composite +0.167 < seuil 0.2 → cap 5% NAV actif). Position 5.93% NAV > cap 5% → trim obligatoire. Entrée le 20/06 était 🟢 vert (composite +0.239) → §G gouverne (exit sur cassure de thèse, pas sur le seul prix). Opus 02/07 GARDER : 'vendre au plus-bas avant le test binaire Q2 hyperscaler serait vendre le bruit'. NOUVEAU PPA WALMART 176 MW Dresden 2029 annoncé 03/07 = confirme la thèse PPA. Stop écrit 232.29€ breached (cours ~209.3€) mais Opus override actif : la cassure de thèse N'EST PAS déclenchée (guidance CAGR réaffirmée, restart Crane on track). Restent 2.465 parts ≈ 5.0% NAV. Falsificateur daté : Q2 hyperscaler capex 28-31/07."
     }
   ],
-  "note": "Trend Radar 07/07 (W29). 0 trade exécuté. CRH : prix DISCORDANT — signals.js $107.58 vs web $111.25 (écart 3.4%) ; stop USD $107.37 non franchi dans les deux cas → GARDER (§G 🟢 cœur, gate c=+0.455). CEG : $245.87 signals.js (214.2€, stop 232.29€ toujours breached) ; gate 🟠 +0.163 ; §G gouverne GARDER (Walmart 176MW PPA confirmé, falsificateur Q2 hyperscaler 28-31/07). SAF.PA : RSI 78.5 (↓ de 82.1, légèrement moins overbought), cap 5% actif. AI.PA : RSI 83.4 = le PLUS OVERBOUGHT du book (position 4.31% NAV < cap 5%, surveiller). NOVOB : gate 🔴→🟠 ambre (composite +0.118, RSI 79.3) — pas de ré-entrée en SURCHAUFFE (RSI overbought extrême). BNP.PA : RSI 66.4 (décrue depuis 76.4, positif) ; Q2 grandes banques US corrigé au 14-15 juillet (ex-10-11/07). MSCI : $614.04 / 538€, stop margin +9.3% (intact). Grok calls CEG+GOOGL W26 : TOUS LES DEUX INCORRECTS (hit rate 2/4 = 50%, tactical_cap = 0). Nouveau Grok call AMZN hausse W29 (horizon 21/07). Scénario §K candidat : CPI juin <4.0% → transition régime NORMAL (résolution 15/07). Tendance W29 : Infrastructure US/IIJA plateau des taux (CRH détenu, VMC/MLM surveiller). NAV estimée ≈ 10 341€ (−0.73% vs start_capital 10 417€). Cash 5 611€ = 54.3% NAV (>> plancher 30% SURCHAUFFE). 9 positions actives. EUR/USD 1.148. Falsificateurs critiques : JPM/WFC/GS Q2 14-15/07, CPI juin 14/07 (BINAIRE RÉGIME), MSCI Q2 21/07, Section 122 tariffs 24/07, hyperscalers 28-31/07 + FOMC 29/07."
+  "note": "Scout 08/07 (W29). Tendance Infrastructure US/IIJA plateau des taux. Signaux recalculés 08/07. 0 trade exécuté (Scout = analyse uniquement). ★ VMC (F9/9, 🟢+0.512, RSI54.6, ~30x fwd, acteur direct IIJA) + ★ GVA (F7/9, 🟢+0.685 = composite le plus élevé, RSI52.9, contracteur civil, backlog record .97B, small-cap .5B) → deep-dive mercredi 9/07. MLM Surveiller (F8/9 fort mais deal Lhoist 3.5B leverage en SURCHAUFFE). EXP Surveiller 🟠 (ambre +0.035, wallboard dilue IIJA, F5/9). SUM DELISTED (Quikrete, supprimé watchlist). Signaux book 08/07 : MSCI 🟢+0.643 F7/9 (meilleur gate book) ; AMZN 🟢+0.364 RSI50 (EQ vert) ; CRH 🟢+0.297 RSI42.9 cours~13 (stop 94.20€ intact, initiés défavorables pèsent sur composite) ; CEG 🟠+0.150 RSI34 (SURVENDU, §G gouverne) ; AI.PA 🟠-0.023 RSI72.4 (↓ depuis 83.4) ; SAF.PA 🟠+0.138 RSI76.1. NOVOB 🟠+0.118 RSI79.3 (ré-entrée toujours bloquée). Régime SURCHAUFFE confirmé : VIX 15.57 (↓), HY 2.72%, CPI 4.2%, T10Y2Y 0.36. Cash 5611€ = 54.3% NAV. Prochains falsificateurs : CPI juin 14/07 (BINAIRE RÉGIME), MSCI Q2 21/07, hyperscalers 28-31/07 + FOMC 29/07."
 }
