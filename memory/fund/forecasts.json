@@ -1,6 +1,6 @@
 {
   "_doc": "Book de SCÉNARIOS prédictifs (method §K) — le pré-registre qui donne à l'IA un jugement sur le futur SANS boule de cristal : chaque scénario est écrit AVANT d'être joué, probabilisé, falsifiable, et scoré à résolution. Schéma d'un scénario : { id (kebab-case), opened (YYYY-MM-DD), event (l'événement déclencheur, daté ou conditionnel — ex. 'IPO SpaceX confirmée'), chain (chaîne causale de second ordre : qui est impacté, dans quel ordre, pourquoi), probability (0.5-0.95, probabilité ANNONCÉE de réalisation), horizon (YYYY-MM-DD, date limite de résolution), falsifier (ce qui prouvera que le scénario était faux), instruments ([tickers] pour le jouer, direct + pioches/pelles), status (candidat: détecté lundi | validé: la chaîne survit au débat Opus de mercredi | joué: position ouverte vendredi, thesis_id du trade = cet id | rejeté: débat perdu | expiré: horizon dépassé sans réalisation | résolu: tranché et scoré), resolution ({ date, happened (bool), brier ((probability − happened)², 0 = parfait), notes, trade_alpha_pct (si joué : alpha du trade — mesure SÉPARÉE, on peut prédire juste et trader mal) }) }. 'stats' est recalculé par node engine/forecasts.js : hit = (probability ≥ 0.5) === happened ; pocket_cap = part max du NAV allouée aux scénarios (§K : grandit/rétrécit selon le hit_rate prédictif prouvé). Ne jamais réécrire un scénario résolu : on apprend de ses prédictions, on ne les efface pas.",
-  "updated": "2026-07-07",
+  "updated": "2026-07-09",
   "scenarios": [
     {
       "id": "cpi-regime-transition-h1-2026",
@@ -14,7 +14,8 @@
         "AMZN",
         "MSCI"
       ],
-      "status": "candidat"
+      "status": "rejeté",
+      "rejected_note": "Débat Opus 2026-07-09 : chaîne REJETÉE. (1) L'événement déclencheur est un print macro NON prévisible — nous ne prédisons pas le CPI (CLAUDE.md : jamais inventer de tendance). Après 3 accélérations consécutives (~4,0→4,1→4,2 %), une cassure <4,0 % en un seul print a un base rate ≤0,5 : la probabilité annoncée 0,5 est un tirage à pile ou face, pas une conviction. (2) L'effet de second ordre est DÉJÀ pricé : le FOMC 29/07 est à 75,6 % hold (CME FedWatch) — le HIKE est déjà retiré du marché, donc le re-rating marginal d'un CPI <4,0 % sur AMZN/MSCI serait faible. (3) Les instruments (AMZN, MSCI) sont des positions CŒUR déjà détenues : jouer ce scénario = ne pas vendre / renforcer du bêta existant, pas un pari de second ordre §K avec pioches/pelles. C'est un pari macro de premier ordre sur des positions détenues, qui se résout de lui-même le 14/07 sans qu'un pré-registre ajoute d'edge. La question du régime est déjà traitée par market-regime.md + le plancher de cash. Pas de poche allouée."
     },
     {
       "id": "ai-power-enr-hyperscaler-q2",
