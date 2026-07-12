@@ -9,6 +9,12 @@ import type { Fund, Holding } from "@/lib/types";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
+// Fenêtre de l'incident « token GitHub expiré » (2026-07-09 → correctif) : le cron a écrit des
+// snapshots IA = cash seul (positions_value = 0) faute de pouvoir lire le book → falaise sur la
+// courbe. Tant que le book est lisible, on purge ces artefacts dans cette fenêtre (idempotent).
+// Un snapshot IA légitime a toujours positions_value > 0 (le book n'a jamais été 100 % cash).
+const AI_ARTIFACT_WINDOW = { from: "2026-07-09", to: "2026-07-31" };
+
 // Valorise les 2 fonds et écrit un snapshot NAV daté. Déclenché par le Vercel Cron.
 export async function GET(request: NextRequest) {
   if (!(await authorizeMaintenance(request))) {
@@ -93,9 +99,12 @@ export async function GET(request: NextRequest) {
   const aiNav = aiCash + aiPosVal;
 
   const date = new Date().toISOString().slice(0, 10);
+  // Garde-fou BOOK IA : si le book est illisible (token GitHub expiré, GitHub down…), on
+  // n'écrit PAS de snapshot IA — sinon la NAV IA retombe sur le cash seul et grave une
+  // falaise permanente dans la courbe (incident du 2026-07-09). Le groupe, lui, reste valorisé.
   const rows = [
     { fund_id: group.id, date, cash: groupCash, positions_value: groupPosVal, nav: groupNav },
-    { fund_id: ai.id, date, cash: aiCash, positions_value: aiPosVal, nav: aiNav },
+    ...(aiFund ? [{ fund_id: ai.id, date, cash: aiCash, positions_value: aiPosVal, nav: aiNav }] : []),
   ];
 
   const { error } = await supabase
@@ -103,14 +112,29 @@ export async function GET(request: NextRequest) {
     .upsert(rows, { onConflict: "fund_id,date" });
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
-  // garde le cash du fonds IA aligné sur le book du repo
-  if (aiFund) await supabase.from("funds").update({ cash: aiCash }).eq("id", ai.id);
+  if (aiFund) {
+    // Auto-réparation : purge les snapshots IA artefacts de l'incident (cash seul).
+    await supabase
+      .from("nav_snapshots")
+      .delete()
+      .eq("fund_id", ai.id)
+      .lte("positions_value", 0)
+      .gte("date", AI_ARTIFACT_WINDOW.from)
+      .lte("date", AI_ARTIFACT_WINDOW.to)
+      .neq("date", date);
+    // garde le cash du fonds IA aligné sur le book du repo — cash de BASE, sans les apports :
+    // getAppData et ce cron ajoutent apportsTotal à la lecture (sinon double comptage en repli).
+    await supabase.from("funds").update({ cash: aiFund.cash }).eq("id", ai.id);
+  }
 
   return NextResponse.json({
     ok: true,
     date,
     pricedTickers: Object.keys(prices).length,
+    aiBookReadable: Boolean(aiFund),
     group: { nav: groupNav, positions_value: groupPosVal, cash: groupCash },
-    ai: { nav: aiNav, positions_value: aiPosVal, cash: aiCash },
+    ai: aiFund
+      ? { nav: aiNav, positions_value: aiPosVal, cash: aiCash }
+      : { skipped: "book IA illisible (token GitHub ?) — snapshot IA non écrit" },
   });
 }

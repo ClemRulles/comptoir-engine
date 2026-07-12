@@ -85,6 +85,10 @@ export interface AppData {
   // Dates d'apports (cotisations) agrégées → marqueurs « apport » sur la courbe : un saut de
   // NAV à ces dates vient d'un versement, pas de la performance.
   contributions: { date: string; amount: number }[];
+  // false = ai-fund.json illisible (token GitHub expiré, GitHub down…) : le fonds IA affiché
+  // est dégradé (cash seul, 0 position). Le dashboard le signale au lieu de montrer des
+  // chiffres faux en silence — c'est ce silence qui a caché l'incident de juillet 2026.
+  aiBookReadable: boolean;
 }
 
 // Agrège les apports par date (somme du jour) → 1 marqueur par date sur la courbe.
@@ -265,6 +269,7 @@ function demoData(): AppData {
     weekDeltaAi: win((p) => p.ai),
     brief: DEMO_BRIEF,
     contributions: aggregateContribsByDate(DEMO_CONTRIBUTIONS),
+    aiBookReadable: true,
   };
 }
 
@@ -327,8 +332,10 @@ export async function getAppData(): Promise<AppData> {
       "ai",
       aiFundRow?.name ?? "Fonds IA",
       // Capital injecté IA = capital t0 du book + apports (mêmes apports que le groupe) →
-      // les apports ne comptent pas comme du rendement.
-      (aiFile?.start_capital ?? aiFundRow?.start_capital ?? 0) + apportsTotal,
+      // les apports ne comptent pas comme du rendement. Si le book est illisible, repli sur le
+      // capital du GROUPE (l'IA est un clone : même base) — pas sur funds.start_capital, resté
+      // à la valeur de migration (1000) qui fabriquait un « +388.9% » fantaisiste.
+      (aiFile?.start_capital ?? groupFund?.start_capital ?? aiFundRow?.start_capital ?? 0) + apportsTotal,
       aiCash,
       normalizeBook(aiPositions, prices),
       prices
@@ -336,7 +343,13 @@ export async function getAppData(): Promise<AppData> {
 
     const snaps = (snapData ?? []) as NavSnapshot[];
     const gSnaps = snaps.filter((s) => s.fund_id === groupFund?.id);
-    const aSnaps = snaps.filter((s) => s.fund_id === aiFundRow?.id);
+    // Écarte à la lecture les snapshots IA « cash seul » de l'incident token (2026-07-09…) :
+    // artefacts gravés quand le book était illisible. Le cron value les purge en base dès que
+    // le book redevient lisible ; ce filtre corrige l'affichage sans attendre. Un snapshot IA
+    // légitime a toujours positions_value > 0 (le book n'a jamais été 100 % cash).
+    const aSnaps = snaps.filter(
+      (s) => s.fund_id === aiFundRow?.id && !(s.positions_value <= 0 && s.date >= "2026-07-09")
+    );
     const byDate = new Map<string, { date: string; group: number | null; ai: number | null }>();
     for (const s of gSnaps) byDate.set(s.date, { date: s.date, group: s.nav, ai: null });
     for (const s of aSnaps) {
@@ -354,14 +367,17 @@ export async function getAppData(): Promise<AppData> {
     // …mais seulement si la couverture des prix live est suffisante : sinon group.nav/ai.nav
     // sont sous-évalués (replis sur coût) et créeraient un faux creux au bord droit. En
     // couverture faible, on laisse la courbe au dernier snapshot réel (continue, pas de pic).
+    // …et seulement si le book IA est lisible pour le point IA : sinon ai.nav = cash seul
+    // (0 position) → le bord droit de la courbe IA plongerait en falaise alors que rien n'a
+    // été vendu. Book illisible = pas de point IA du jour (la courbe s'arrête au dernier vrai).
     const today = new Date().toISOString().slice(0, 10);
     const last = series[series.length - 1];
     if (liveCoverage >= 0.7) {
       if (!last || last.date < today) {
-        series.push({ date: today, group: group.nav, ai: ai.nav });
+        series.push({ date: today, group: group.nav, ai: aiFile ? ai.nav : null });
       } else if (last.date === today) {
         last.group = group.nav;
-        last.ai = ai.nav;
+        if (aiFile) last.ai = ai.nav;
       }
     }
 
@@ -409,6 +425,7 @@ export async function getAppData(): Promise<AppData> {
       weekDeltaAi: weekDelta(aSnaps),
       brief,
       contributions,
+      aiBookReadable: Boolean(aiFile),
     };
   } catch (e) {
     // Base pas encore prête OU panne en prod : on retombe sur la démo, mais en le LOGGANT —

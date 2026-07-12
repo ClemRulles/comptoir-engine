@@ -7,7 +7,9 @@ import { useRouter } from "next/navigation";
 // + bouton manuel et horodatage « mis à jour à ».
 export function LiveRefresher({ intervalMs = 120000 }: { intervalMs?: number }) {
   const router = useRouter();
-  const [updatedAt, setUpdatedAt] = useState<Date>(new Date());
+  // null au premier rendu : l'heure n'existe qu'au montage client. Initialiser avec new Date()
+  // faisait diverger le HTML serveur du client (React #418, hydratation cassée à chaque page).
+  const [updatedAt, setUpdatedAt] = useState<Date | null>(null);
   const [spinning, setSpinning] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -19,6 +21,7 @@ export function LiveRefresher({ intervalMs = 120000 }: { intervalMs?: number }) 
   }
 
   useEffect(() => {
+    setUpdatedAt(new Date());
     function tick() {
       if (document.visibilityState === "visible") {
         router.refresh();
@@ -37,7 +40,7 @@ export function LiveRefresher({ intervalMs = 120000 }: { intervalMs?: number }) 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [intervalMs]);
 
-  const hh = updatedAt.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
+  const hh = updatedAt ? updatedAt.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }) : "…";
 
   return (
     <button
