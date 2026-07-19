@@ -30,6 +30,15 @@ export default async function DashboardPage() {
 
   return (
     <div className="flex flex-col gap-6">
+      {/* Bandeau panne : order 0 implicite → passe avant les blocs order-1+ partout */}
+      {!data.demo && !data.aiBookReadable && (
+        <div className="rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+          ⚠️ <b>Book IA illisible</b> — la lecture de <code>ai-fund.json</code> sur GitHub échoue
+          (token expiré ?). Le fonds IA affiche son cash seul et ses snapshots quotidiens sont
+          suspendus. Renouveler <code>GITHUB_TOKEN</code>/<code>GITHUB_WRITE_TOKEN</code> sur
+          Vercel, puis ouvrir <code>/api/cron/value</code> pour réparer la courbe.
+        </div>
+      )}
       {/* Mobile : graphique en premier (order-1). Desktop : KPIs en premier (md:order-1). */}
       <div className="grid grid-cols-2 gap-4 xl:grid-cols-4 order-2 md:order-1">
         <KpiCard
