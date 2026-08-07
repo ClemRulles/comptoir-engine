@@ -37,6 +37,33 @@ async function gh(method: string, path: string, token: string, body?: unknown) {
   return json;
 }
 
+// Choisit le token d'écriture qui MARCHE, au lieu du premier qui EXISTE.
+// Piège vécu (juillet-août 2026, un mois de mémoire perdue) : `GITHUB_WRITE_TOKEN ||
+// GITHUB_TOKEN` sélectionne GITHUB_WRITE_TOKEN dès qu'il est défini — même périmé. Renouveler
+// le PAT dans GITHUB_TOKEN seul ne réparait donc rien : la variable morte masquait la valide,
+// en silence, alors que la LECTURE (lib/github.ts) essayait déjà les deux et fonctionnait.
+// Ici on sonde chaque candidat sur la tête de branche (appel que le flux fait de toute façon)
+// et on garde le premier qui authentifie — même robustesse que le chemin de lecture.
+async function pickWriteToken(): Promise<{ token: string | null; source: string; tried: string[] }> {
+  const candidates = (
+    [
+      ["GITHUB_WRITE_TOKEN", process.env.GITHUB_WRITE_TOKEN],
+      ["GITHUB_TOKEN", process.env.GITHUB_TOKEN],
+    ] as [string, string | undefined][]
+  ).filter((c, i, a): c is [string, string] => Boolean(c[1]) && a.findIndex(([, v]) => v === c[1]) === i);
+  const tried: string[] = [];
+  for (const [name, value] of candidates) {
+    tried.push(name);
+    try {
+      await gh("GET", `git/ref/heads/${GH_BRANCH}`, value);
+      return { token: value, source: name, tried };
+    } catch {
+      // 401/403 (périmé, droits insuffisants) → candidat suivant
+    }
+  }
+  return { token: null, source: "none", tried };
+}
+
 export async function POST(request: NextRequest) {
   // Auth : secret DÉDIÉ MEMORY_PUSH_SECRET (que les routines envoient), OU la maintenance
   // habituelle (Bearer CRON_SECRET / session connectée). Le secret dédié évite de réutiliser
@@ -48,14 +75,18 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 
-  const token = process.env.GITHUB_WRITE_TOKEN || process.env.GITHUB_TOKEN;
-  const tokenSource = process.env.GITHUB_WRITE_TOKEN
-    ? "GITHUB_WRITE_TOKEN"
-    : process.env.GITHUB_TOKEN
-    ? "GITHUB_TOKEN(fallback)"
-    : "none";
+  const { token, source: tokenSource, tried } = await pickWriteToken();
   if (!token) {
-    return NextResponse.json({ error: "GITHUB_WRITE_TOKEN absent", tokenSource }, { status: 500 });
+    return NextResponse.json(
+      {
+        error: tried.length
+          ? `aucun token GitHub valide en écriture (essayés : ${tried.join(", ")}) — PAT expiré ou sans Contents:write ?`
+          : "GITHUB_WRITE_TOKEN absent",
+        tokenSource,
+        tried,
+      },
+      { status: 500 }
+    );
   }
 
   const body = (await request.json().catch(() => null)) as {
