@@ -4,6 +4,7 @@
 **Étape 0 — garde-fou :** `node engine/guard.js` (cf. `skills/memory-guard.md`).
 
 Lis `CLAUDE.md`, `skills/engine-method.md`, `skills/data-sources.md`, `skills/quant-signals.md`,
+`memory/playbook.md` (jurisprudence — ses amendements actifs s'appliquent),
 `memory/trends.md` (la tendance validée lundi), `memory/watchlist.md`, `memory/market-regime.md`.
 
 Objectif : transformer la tendance de la semaine en **candidats cotés concrets**, et

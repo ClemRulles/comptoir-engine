@@ -5,10 +5,12 @@
 si un fichier a été `recreated`, dis-le dans la revue hebdo (un historique a pu être reconstruit).
 
 Lis `CLAUDE.md`, `skills/engine-method.md` (surtout §H sizing/risque, §I calibration),
-`skills/trend-gate.md`, `skills/quant-signals.md`, `memory/trends.md`, `memory/convictions.md`,
-`memory/portfolio.md`, `memory/market-regime.md`, `memory/lessons.md`, `memory/catalysts.md`,
-`memory/fund/ai-fund.json`, `memory/fund/decisions.json`, `memory/fund/calibration.json`,
-`memory/fund/signals.json`, `memory/fund/forecasts.json`, `memory/fund/grok-calls.json`.
+`skills/trend-gate.md`, `skills/quant-signals.md`, **`memory/playbook.md` (jurisprudence — ses
+amendements actifs s'appliquent à toutes tes décisions de ce soir)**, `memory/trends.md`,
+`memory/convictions.md`, `memory/portfolio.md`, `memory/market-regime.md`, `memory/lessons.md`,
+`memory/catalysts.md`, `memory/fund/ai-fund.json`, `memory/fund/decisions.json`,
+`memory/fund/calibration.json`, `memory/fund/signals.json`, `memory/fund/forecasts.json`,
+`memory/fund/grok-calls.json`.
 
 C'est la routine la plus chargée : elle **apprend**, **gère le book IA**, puis **packagé** la semaine.
 Fais les trois passes dans l'ordre.
@@ -49,6 +51,20 @@ dans `ai-fund.json`) — ou règle de sortie touchée cette semaine :
 7. **Recompute** `memory/fund/calibration.json` (buckets par confiance + global). Mets `updated`.
 
 S'il n'y a eu aucune fermeture, écris-le et ne fabrique pas de leçon.
+
+**Mise à jour du playbook (l'apprentissage qui CHANGE le comportement).** Une leçon notée dans
+`lessons.md` est un souvenir ; une règle du playbook est appliquée par toutes les routines. Après
+le scoring, demande-toi : **≥ 3 cas concordants** (décisions scorées et/ou leçons datées) pointent-ils
+vers la même correction de comportement ?
+- **Oui** → écris ou renforce **UN amendement max cette semaine** dans `memory/playbook.md`
+  (format du fichier : règle impérative + preuves citées + **falsificateur obligatoire**, statut
+  `à l'essai`). S'il renforce un amendement existant, ajoute le cas aux preuves plutôt que de
+  créer un doublon.
+- **Non** → n'écris rien. Le droit au blanc s'applique : une règle sans preuves est du bruit
+  qui polluera toutes les routines suivantes.
+- Rappel hiérarchie : un amendement peut durcir ou préciser, **jamais assouplir un verrou §H ni
+  contredire `CLAUDE.md`**. La promotion `à l'essai` → `confirmé` (ou le retrait) appartient à la
+  revue mensuelle, pas à toi.
 
 **Calls Grok à résoudre (sentiment §F).** Joue `node engine/grok.js` : il score contre le prix
 réel les calls de `grok-calls.json` dont l'horizon est passé et met à jour le budget tactique
@@ -93,7 +109,9 @@ toute ligne encore en mode seed) — l'interface s'appuie sur ce flag, prioritai
 
 Rafraîchis les signaux : `node engine/signals.js` (positions + convictions retenues). En appliquant
 **method §H** (gate quantitatif → sizing pondéré conviction × calibration, plafonds, plancher de cash
-selon le régime, garde-fou drawdown). **Ordre des sources** :
+selon le régime, garde-fou drawdown) **et les amendements actifs de `memory/playbook.md`** (chaque
+trade dont un amendement a modifié la décision le cite dans son `rationale` : `[P-00N]`).
+**Ordre des sources** :
 1. **Vérifie d'abord ce que le jeudi a déjà exécuté** (bloc `### Sorties exécutées` de
    `portfolio.md` + trades `sell` d'hier dans `ai-fund.json`) : ces ventes sont FAITES — ne les
    rejoue pas, contrôle juste la cohérence (position retirée/réduite, cash crédité net de frais).
@@ -187,8 +205,9 @@ Ce que l'IA a acheté/vendu et pourquoi (depuis la passe 2), son NAV vs le group
 La leçon la plus actionnable tirée de la passe 1 (ou « rien clôturé cette semaine »).
 
 ## 🔧 Ce que je corrige
-Ce que la calibration m'a fait changer (sizing d'un bucket, ton d'une confiance, critère durci).
-Si rien à corriger cette semaine, dis-le franchement.
+Ce que la calibration m'a fait changer (sizing d'un bucket, ton d'une confiance, critère durci),
+et tout mouvement du playbook cette semaine : amendement né (`P-00N à l'essai` + sa règle en une
+ligne), renforcé, ou appliqué à un trade. Si rien à corriger cette semaine, dis-le franchement.
 
 ## À éviter / drapeaux de bulle
 Noms populaires jugés surévalués, avec la raison (DCF inversé).

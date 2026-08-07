@@ -66,13 +66,21 @@ Le fonds IA (`memory/fund/ai-fund.json`) est un vrai portefeuille fictif qu'on c
   « Ça va remonter » reste interdit — un scénario §K est jugeable à date fixe.
 - Départ du book = **clone du groupe** (mêmes positions + même cash via `memory/portfolio.md`
   tant que `seeded:false`), puis gestion indépendante. À armes égales, on prouve qu'on bat le groupe.
+- **Le playbook gouverne, les leçons se souviennent** : `memory/playbook.md` contient les
+  amendements de méthode que le moteur s'est **prouvés à lui-même** (≥ 3 cas concordants cités,
+  falsificateur écrit, revue mensuelle qui confirme ou retire). Toute routine **applique ses
+  amendements actifs** — c'est ce qui distingue apprendre de se souvenir. Hiérarchie : cette
+  constitution > verrous durs §H > playbook > défauts de la méthode ; un amendement durcit ou
+  précise, jamais n'assouplit un verrou. Naissance le vendredi (1 max/semaine, preuves exigées),
+  jugement sur pièces le 1er vendredi du mois.
 
 ## Protocole mémoire (à chaque routine)
 0. **Garde-fou d'abord** : joue `node engine/guard.js` avant toute lecture/écriture d'état.
    Il garantit que `memory/fund/*.json` sont valides (recrée proprement un fichier corrompu
    ou absent, complète un fichier incomplet sans rien détruire). Si sa sortie liste un fichier
    `recreated`, signale-le dans le brief. Voir `skills/memory-guard.md`.
-1. Lis les fichiers `memory/` listés dans le prompt du jour.
+1. Lis les fichiers `memory/` listés dans le prompt du jour — dont `memory/playbook.md`,
+   dont les amendements actifs s'appliquent à tes décisions du soir.
 2. Fais le travail. Respecte les plafonds (titres, profondeur) et les règles de sizing/risque (§H).
 3. Réécris les fichiers concernés, concis (garde ~30 jours, archive le reste en bas).
 4. Ajoute une ligne datée dans `memory/lessons.md` si tu as appris quelque chose d'actionnable.

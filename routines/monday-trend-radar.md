@@ -4,7 +4,8 @@
 **Étape 0 — garde-fou :** `node engine/guard.js` (cf. `skills/memory-guard.md`). Signale tout fichier recréé.
 
 Tu ouvres la semaine. Lis `CLAUDE.md`, `skills/engine-method.md`, `skills/trend-gate.md`,
-`skills/data-sources.md`, `skills/quant-signals.md`, et `memory/trends.md` (semaine passée).
+`skills/data-sources.md`, `skills/quant-signals.md`, `memory/playbook.md` (jurisprudence —
+ses amendements actifs s'appliquent), et `memory/trends.md` (semaine passée).
 
 ## Partie A — Régime de marché
 Joue `node engine/signals.js` : `signals.regime` te donne un **cadran chiffré** (courbe 10Y-2Y,

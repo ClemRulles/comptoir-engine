@@ -7,7 +7,8 @@
 recompute à partir de `decisions.json` : un registre corrompu fausserait tout, le garde-fou l'empêche.
 
 Lis `CLAUDE.md`, `skills/engine-method.md` (§H sizing, §I calibration),
-`memory/fund/decisions.json`, `memory/fund/calibration.json`, `memory/lessons.md`.
+`memory/fund/decisions.json`, `memory/fund/calibration.json`, `memory/lessons.md`,
+`memory/playbook.md`.
 
 Objectif : prendre du recul sur **tout l'historique** de décisions, vérifier que l'IA est
 **honnêtement calibrée**, et **ajuster le sizing et le ton** en conséquence. C'est la passe qui
@@ -37,12 +38,28 @@ ci-dessous ne s'applique qu'aux buckets qui ont atteint ce seuil.
 Quels types gagnent / perdent (cœur vs tactique, momentum suivi, pioches & pelles, valo tendue) ?
 Sur-pondère ce qui marche, sous-pondère ou abandonne ce qui rate de façon répétée.
 
-## 4. Écris la correction
+## 4. Revue du playbook (la jurisprudence est jugée sur pièces)
+Pour chaque amendement de `memory/playbook.md` :
+- **`à l'essai` depuis ≥ 4 semaines** : rassemble les décisions prises SOUS cette règle depuis
+  son adoption (trades citant `[P-00N]`, statuts du Doctor, refus d'entrée motivés). Mesure
+  l'effet — alpha des trades concernés, pertes évitées ou opportunités manquées — et remplis
+  `Effet mesuré`. Verdict : **`confirmé`** si l'effet va dans le sens de la règle,
+  **retiré** (→ Archives, avec la raison) si son falsificateur s'est déclenché ou si après
+  2 revues il n'y a toujours aucun effet mesurable. Trop peu de cas ? Constate-le
+  (« échantillon insuffisant ») et laisse `à l'essai` — comme pour les buckets n < 8.
+- **`confirmé`** : vérifie que son falsificateur ne s'est pas déclenché depuis. Une règle
+  confirmée n'est pas éternelle.
+- **Plafond : 10 amendements actifs.** Au-delà, retire le moins utile avant d'en confirmer un
+  nouveau. Un playbook obèse ne s'applique plus.
+
+## 5. Écris la correction
 - Ajoute un **bloc daté** dans `memory/lessons.md` sous « Leçons vives » :
   `YYYY-MM-DD · CALIBRATION · {constat chiffré} → {ajustement de sizing/critère appliqué}.`
 - Si un barème de sizing a changé, c'est désormais la référence pour les vendredis suivants.
+- Mouvements du playbook (promotions, retraits, effets mesurés) : une ligne chacun dans le
+  même bloc CALIBRATION.
 
-Commit : `calibration: {mois} — hit-rate H/M/B {x}/{y}/{z}, {ajustement}`.
+Commit : `calibration: {mois} — hit-rate H/M/B {x}/{y}/{z}, {ajustement}, playbook {p} confirmés/{r} retirés`.
 
 **Persistance (OBLIGATOIRE — le sandbox ne peut pas `git push`, 403).** Après le commit local,
 lance `node engine/push-memory.js "{le message de commit ci-dessus}"` : l'endpoint Vercel
