@@ -4,7 +4,8 @@
 **Étape 0 — garde-fou :** `node engine/guard.js` (cf. `skills/memory-guard.md`).
 
 Lis `CLAUDE.md`, `skills/engine-method.md` (surtout §H — fenêtres de décision asymétriques),
-`skills/data-sources.md`, `skills/quant-signals.md`, `memory/portfolio.md`,
+`skills/data-sources.md`, `skills/quant-signals.md`, `memory/playbook.md` (jurisprudence — ses
+amendements actifs s'appliquent, notamment aux stops et aux vérifications de prix), `memory/portfolio.md`,
 `memory/fund/ai-fund.json`, `memory/convictions.md`, `memory/market-regime.md`, `memory/catalysts.md`.
 
 Objectif : confronter **chaque position des deux books** (le groupe via `portfolio.md` ET le

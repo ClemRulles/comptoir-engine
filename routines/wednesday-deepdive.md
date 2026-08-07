@@ -4,6 +4,7 @@
 **Étape 0 — garde-fou :** `node engine/guard.js` (cf. `skills/memory-guard.md`).
 
 Lis `CLAUDE.md`, `skills/engine-method.md`, `skills/data-sources.md`, `skills/quant-signals.md`,
+`memory/playbook.md` (jurisprudence — ses amendements actifs s'appliquent),
 `memory/watchlist.md`, `memory/market-regime.md`, `memory/fund/ai-fund.json`.
 
 Objectif : analyser en profondeur les candidats marqués `★` (**plafond strict : 3**) **et**

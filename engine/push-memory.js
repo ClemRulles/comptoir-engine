@@ -29,6 +29,7 @@ const CURATED = [
   "memory/watchlist.md",
   "memory/grok-pulse.json",
   "memory/lessons.md",
+  "memory/playbook.md",
   "memory/portfolio.md",
   "memory/fund/ai-fund.json",
   "memory/fund/decisions.json",
