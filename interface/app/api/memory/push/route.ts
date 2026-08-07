@@ -32,9 +32,33 @@ async function gh(method: string, path: string, token: string, body?: unknown) {
   });
   const json = await res.json().catch(() => ({}));
   if (!res.ok) {
-    throw new Error(`GitHub ${method} ${path} → ${res.status} ${json?.message ?? ""}`);
+    const err = new Error(`GitHub ${method} ${path} → ${res.status} ${json?.message ?? ""}`);
+    (err as Error & { status?: number }).status = res.status;
+    throw err;
   }
   return json;
+}
+
+// Tokens candidats pour l'écriture, dans l'ordre de préférence, dédoublonnés par VALEUR.
+// Piège vécu (09/07 → 07/08/2026, un mois de mémoire perdue) : l'ancien code faisait
+// `GITHUB_WRITE_TOKEN || GITHUB_TOKEN` → GITHUB_WRITE_TOKEN gagnait dès qu'il était défini,
+// même périmé, et masquait GITHUB_TOKEN pourtant renouvelé et valide. Renouveler une seule des
+// deux variables ne réparait donc rien, en silence — pendant que la LECTURE (lib/github.ts,
+// qui essaie déjà les deux) continuait de marcher et masquait la panne côté interface.
+function writeTokenCandidates(): [string, string][] {
+  return (
+    [
+      ["GITHUB_WRITE_TOKEN", process.env.GITHUB_WRITE_TOKEN],
+      ["GITHUB_TOKEN", process.env.GITHUB_TOKEN],
+    ] as [string, string | undefined][]
+  ).filter((c, i, a): c is [string, string] => Boolean(c[1]) && a.findIndex(([, v]) => v === c[1]) === i);
+}
+
+// Une erreur d'AUTORISATION (token périmé, ou valide mais sans Contents:write) justifie de
+// réessayer avec le token suivant. Tout le reste (réseau, conflit, 422) est une vraie erreur.
+function isAuthError(e: unknown): boolean {
+  const s = (e as Error & { status?: number })?.status;
+  return s === 401 || s === 403;
 }
 
 export async function POST(request: NextRequest) {
@@ -48,14 +72,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 
-  const token = process.env.GITHUB_WRITE_TOKEN || process.env.GITHUB_TOKEN;
-  const tokenSource = process.env.GITHUB_WRITE_TOKEN
-    ? "GITHUB_WRITE_TOKEN"
-    : process.env.GITHUB_TOKEN
-    ? "GITHUB_TOKEN(fallback)"
-    : "none";
-  if (!token) {
-    return NextResponse.json({ error: "GITHUB_WRITE_TOKEN absent", tokenSource }, { status: 500 });
+  const candidates = writeTokenCandidates();
+  if (!candidates.length) {
+    return NextResponse.json(
+      { error: "aucun token GitHub configuré (GITHUB_WRITE_TOKEN / GITHUB_TOKEN)", tokenSource: "none" },
+      { status: 500 }
+    );
   }
 
   const body = (await request.json().catch(() => null)) as {
@@ -114,34 +136,57 @@ export async function POST(request: NextRequest) {
       ? body.message.trim()
       : `memory: mise à jour automatique (${new Date().toISOString().slice(0, 10)})`;
 
-  try {
-    // 1) tête de branche + arbre de base
-    const ref = await gh("GET", `git/ref/heads/${GH_BRANCH}`, token);
-    const baseCommitSha = ref.object.sha as string;
-    const baseCommit = await gh("GET", `git/commits/${baseCommitSha}`, token);
-    const baseTreeSha = baseCommit.tree.sha as string;
+  // On tente le flux COMPLET avec chaque token, en basculant sur le suivant à la moindre
+  // erreur d'autorisation. Un GET de sonde ne suffirait pas : un token en lecture seule
+  // s'authentifie très bien puis échoue au moment d'écrire. Les étapes 1-2 sont idempotentes
+  // et un arbre créé sans commit reste un objet orphelin inoffensif — réessayer est sûr.
+  const tried: string[] = [];
+  let lastError: unknown = null;
+  for (const [tokenSource, token] of candidates) {
+    tried.push(tokenSource);
+    try {
+      // 1) tête de branche + arbre de base
+      const ref = await gh("GET", `git/ref/heads/${GH_BRANCH}`, token);
+      const baseCommitSha = ref.object.sha as string;
+      const baseCommit = await gh("GET", `git/commits/${baseCommitSha}`, token);
+      const baseTreeSha = baseCommit.tree.sha as string;
 
-    // 2) nouvel arbre (contenu inline → pas d'appel blob séparé)
-    const newTree = await gh("POST", "git/trees", token, {
-      base_tree: baseTreeSha,
-      tree: files.map((f) => ({ path: f.path, mode: "100644", type: "blob", content: f.content })),
-    });
+      // 2) nouvel arbre (contenu inline → pas d'appel blob séparé)
+      const newTree = await gh("POST", "git/trees", token, {
+        base_tree: baseTreeSha,
+        tree: files.map((f) => ({ path: f.path, mode: "100644", type: "blob", content: f.content })),
+      });
 
-    // 3) commit + 4) avance la branche
-    const commit = await gh("POST", "git/commits", token, {
-      message,
-      tree: newTree.sha,
-      parents: [baseCommitSha],
-    });
-    await gh("PATCH", `git/refs/heads/${GH_BRANCH}`, token, { sha: commit.sha });
+      // 3) commit + 4) avance la branche
+      const commit = await gh("POST", "git/commits", token, {
+        message,
+        tree: newTree.sha,
+        parents: [baseCommitSha],
+      });
+      await gh("PATCH", `git/refs/heads/${GH_BRANCH}`, token, { sha: commit.sha });
 
-    return NextResponse.json({
-      ok: true,
-      branch: GH_BRANCH,
-      commit: commit.sha,
-      files: files.map((f) => f.path),
-    });
-  } catch (e) {
-    return NextResponse.json({ error: String(e), tokenSource }, { status: 502 });
+      return NextResponse.json({
+        ok: true,
+        branch: GH_BRANCH,
+        commit: commit.sha,
+        files: files.map((f) => f.path),
+        tokenSource,
+      });
+    } catch (e) {
+      lastError = e;
+      if (!isAuthError(e)) break; // vraie erreur (réseau, conflit) : changer de token n'aiderait pas
+      // 401/403 : token périmé ou sans Contents:write → on tente le candidat suivant
+    }
   }
+
+  return NextResponse.json(
+    {
+      error: String(lastError),
+      tried,
+      hint: isAuthError(lastError)
+        ? "Tous les tokens ont échoué en autorisation : PAT expiré, ou sans permission Contents:write sur le dépôt."
+        : undefined,
+    },
+    { status: 502 }
+  );
 }

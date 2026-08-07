@@ -6,6 +6,7 @@ import {
   fetchConvictions,
   fetchCrypto,
   fetchDecisions,
+  fetchFileCommits,
   fetchGrokPulse,
   fetchMemoryMarkdown,
   fetchSignals,
@@ -89,7 +90,16 @@ export interface AppData {
   // est dégradé (cash seul, 0 position). Le dashboard le signale au lieu de montrer des
   // chiffres faux en silence — c'est ce silence qui a caché l'incident de juillet 2026.
   aiBookReadable: boolean;
+  // Âge (jours entiers) du dernier commit des routines sur memory/ (branche runtime), ou null
+  // si illisible. Les routines écrivent 5 nuits/semaine : au-delà de MEMORY_STALE_DAYS, la
+  // persistance est cassée (endpoint /api/memory/push en panne, token, routines à l'arrêt…)
+  // même si le book reste lisible — c'est l'angle mort qui a duré un mois en juillet 2026.
+  memoryAgeDays: number | null;
 }
+
+// Seuil d'alerte de persistance : le plus grand trou normal est le week-end (routine du
+// vendredi → sam 0:00, celle du lundi → mar 0:00, soit 3 jours). 4+ jours = panne.
+export const MEMORY_STALE_DAYS = 4;
 
 // Agrège les apports par date (somme du jour) → 1 marqueur par date sur la courbe.
 function aggregateContribsByDate(rows: { ts?: string | null; amount: number }[]): { date: string; amount: number }[] {
@@ -270,6 +280,7 @@ function demoData(): AppData {
     brief: DEMO_BRIEF,
     contributions: aggregateContribsByDate(DEMO_CONTRIBUTIONS),
     aiBookReadable: true,
+    memoryAgeDays: 0,
   };
 }
 
@@ -280,7 +291,7 @@ export async function getAppData(): Promise<AppData> {
     const supabase = await createClient();
     // Lectures indépendantes en parallèle (Supabase + GitHub) : seul fetchPrices dépend
     // de la liste des positions. Évite 6 allers-retours séquentiels sur une page dynamique.
-    const [{ data: fundsData }, { data: holdingsData }, aiFile, { data: contribData }, { data: snapData }, brief] =
+    const [{ data: fundsData }, { data: holdingsData }, aiFile, { data: contribData }, { data: snapData }, brief, memCommits] =
       await Promise.all([
         supabase.from("funds").select("*"),
         supabase.from("holdings").select("*"),
@@ -288,6 +299,7 @@ export async function getAppData(): Promise<AppData> {
         supabase.from("contributions").select("ts, amount"),
         supabase.from("nav_snapshots").select("*").order("date", { ascending: true }),
         fetchMemoryMarkdown("morning-brief.md"),
+        fetchFileCommits("memory", 1),
       ]);
     const funds = (fundsData ?? []) as (Fund & { cash: number })[];
     const groupFund = funds.find((f) => f.kind === "group");
@@ -426,6 +438,9 @@ export async function getAppData(): Promise<AppData> {
       brief,
       contributions,
       aiBookReadable: Boolean(aiFile),
+      memoryAgeDays: memCommits[0]?.date
+        ? Math.floor((Date.now() - new Date(memCommits[0].date).getTime()) / 86_400_000)
+        : null,
     };
   } catch (e) {
     // Base pas encore prête OU panne en prod : on retombe sur la démo, mais en le LOGGANT —
