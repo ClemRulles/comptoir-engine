@@ -1,139 +1,112 @@
-# Brief de la semaine — 2026-07-04
+# Brief hebdomadaire — 2026-08-08 (W32)
 
-## Cadran de régime
-**SURCHAUFFE — BIAIS HAWKISH RENFORCÉ** · CPI mai 4.2% (3ème accélération) · FOMC dot plot médiane 3.8%, 9/18 membres projettent ≥1 hike · plancher cash ≥ 30% maintenu · pas de déploiement tant que CPI > 3.5%.
-
-EUR/USD 1.1431 — appréciation EUR de +4 pts vs entrées (1.097) crée un biais baissier mécanique sur positions US. Ce n'est pas un signal fondamental : voir leçon CRH/STOP-EUR-vs-USD ci-dessous.
-
-## 🎯 LA tendance de la semaine
-**Healthcare / GLP-1 — Medicare Bridge opérationnel (J+3) · VALIDÉE W27**
-
-Medicare GLP-1 Bridge lancé le 1er juillet : Wegovy $50/mois pour 65M+ seniors US — la politique publique est en place, les données d'adoption (prescriptions Medicare) n'arriveront qu'en août (Q2 NOVOB/LLY). Cette semaine : **droit au blanc sur les entrées** — tous les bénéficiaires liquides sont déjà pricés en SURCHAUFFE.
-
-**Directe** : LLY (gate 🟢 le plus fort +0.51) ou NOVOB — tous deux sans marge de sécurité (LLY ~30x fwd ≈ PT consensus, NOVOB RSI 79.3 gate 🔴). Attendre repli ~$1 000 LLY ou gate NOVOB composite > −0.2.
-
-**Pioches/pelles** : XLV (ETF Healthcare S&P, 0 risque individuel, gate 🟢, profil défensif SURCHAUFFE) — seule entrée possible sans deep-dive si sizing réduit.
-
-**Drapeau bulle** : aucun sur les fondamentaux (GLP-1 = revenus réels), mais timing post-launch défavorable à l'entrée immédiate.
-
-**Ce qui tuerait la thèse** : adoption Medicare < 5% des éligibles en 2 mois ; pivot dovish FOMC (CPI < 3%) ; safety alert FDA chez les seniors ; réduction compétitive LLY comprimant marges Novo Nordisk.
-
-**Effet de second ordre** : UNH/Humana absorbent les coûts GLP-1 → pression MCR si adoption dépasse les prévisions actuarielles.
-
-## Longs haute conviction (cœur)
-
-### 1. MSCI Inc. — Quasi-monopole indices · 🟢 F7/9 · Haute (thèse)
-Quasi-monopole des indices MSCI utilisés par $14T+ d'AUM. PE ~30x dé-raté vs historique 35-45x, organique +13% Q1, rétention abonnés 95.4%. Gate 🟢 composite +0.554, RSI 53.1 sain.
-- Revenus récurrents (indices + analytics) = résistants en SURCHAUFFE, insensibles aux taux
-- Pricing power inégalé : aucune alternative crédible, renouvellements quasi-automatiques
-- FCF yield élevé + rachats d'actions constants = retour au capital fiable
-⚠ Risque pivot : rétention < 93% ou PE re-expand > 40x sans accélération organique → EXIT
-Règle de sortie : résultats Q2 le 21 juillet — test binaire décisif.
-
-### 2. Amazon (AMZN) — AWS moteur de croissance IA · 🟢 F5/9 · Moyenne (thèse)
-AWS = infrastructure cloud IA de référence. Croissance >30% Q1, demande hyperscaler confirmée par $452B capex combiné (AMZN+GOOGL). Gate 🟢 composite +0.265, RSI 50.9 sain.
-- AWS croissance >30% maintenue, leaders cloud à deux chiffres
-- Capex $200B+ maintenus = confiance dans la demande IA durable
-- Marge retail/pub en amélioration structurelle (operating leverage)
-⚠ Risque pivot : AWS < 25% croissance OU capex coupé >15% Q2 → EXIT + invalider infra-IA
-Règle de sortie : résultats Q2 30 juillet — FALSIFICATEUR capex principal.
-
-### 3. CEG — Nucléaire US + PPA hyperscaler 20 ans · 🟠 F6/9 · Moyenne (thèse)
-Seul actif à revenus contractuels fixes (PPA 20 ans) dans un régime SURCHAUFFE. PPAs : Microsoft Crane 835MW 2027, Meta Clinton 1100MW, Walmart Dresden 176MW 2029 (confirmé 03/07). Morgan Stanley OW $364.
-- Revenus contractuels = insensibles au cycle de taux (avantage unique en SURCHAUFFE)
-- PPA renforcé par 3ème hyperscaler + électricien national : thèse non cassée
-- 13x BPA 2029E = marge de sécurité réelle (vs pairs ~22-30x)
-⚠ Risque pivot : capex hyperscaler coupé >15% (≥2/4 : MSFT 28/07, GOOGL 29/07, AMZN 30/07, Meta 30/07) → EXIT immédiat
-Règle de sortie : falsificateurs Q2 hyperscaler 28-31 juillet. Gate 🟠 actif (cap 5% NAV).
-
-## Idées tactiques (court terme)
-
-**Aucune idée tactique cette semaine — droit au blanc.**
-
-En SURCHAUFFE, le seuil d'entrée est plus élevé. Les 3 candidats Healthcare deep-dive du 2/07 (LLY, UNH, ABT) sont tous Surveiller sans marge de sécurité. Les calls Grok ouverts (CEG hausse + GOOGL baisse, horizon 7/07) ne peuvent pas être joués — tactical_cap = 0% (n<6 calls résolus). On conserve le cash.
-
-## 📅 Catalyseurs à l'horizon
-
-| Date | Événement | En jeu | Posture |
-|------|-----------|--------|---------|
-| **10-11 juillet** | Q2 big banks US (JPM, C, WFC, GS) | BNP.PA proxy NIM — stress crédit visible → surveiller sortie partielle | À surveiller |
-| **14 juillet** | CPI juin 2026 (BLS 8h30 ET) | Hike FOMC juillet probable si ≥ 4.5% ; allègement si ≤ 3.8% | **BINAIRE FORT** |
-| **21 juillet** | MSCI Q2 résultats | Rétention ≥ 94% + organique mid-single-digit = thèse intacte | **ACTIF — falsificateur** |
-| **28-31 juillet** | Hyperscalers Q2 (MSFT/GOOGL/AMZN/Meta) + FOMC 29/07 | FALSIFICATEUR infra-IA : capex coupé >15% par ≥2/4 → EXIT CEG+AMZN | **ACTIF — semaine critique** |
-
-## Vos positions — ce qui a changé
-
-**Aucune sortie cette semaine (4 juillet = holiday US).** Les 2 micro-trims (SAF.PA et CEG) étaient jeudi 3/07.
-
-Positions sous surveillance :
-- **CEG** : cours $239.25 USD (209.3€ / EUR/USD 1.1431) — stop EUR 232.29€ toujours breached ; gate 🟠 actif. §G gouverne : thèse PPA intacte (Walmart 176MW confirmé 03/07), GARDER jusqu'aux falsificateurs Q2.
-- **CRH** : cours $107.53 USD (93.87€) — stop EUR 94.20€ marginalement franchi MAIS stop USD natif $107.37 NON franchi (marge 0.16%). Gate 🟢 intact. §G gouverne : GARDER.
-- **SAF.PA** : gate 🟠 (composite +0.089, RSI 80.4 extrême suracheté) — cap 5% actif, position 5.04% NAV (de minimis). H1 28 juillet = test. Ne pas renforcer.
-- **BNP.PA** : RSI 70.3, near 52w high — thèse NIM intacte. Q2 banques US 10-11/07 = prochain juge. Ne pas renforcer.
-- **Reste du book INTACT** : AMZN 🟢, EIMI 🟢, MSCI 🟢, LOTB 🟢, AI 🟠 sous cap.
-
-## Le book IA cette semaine
-
-**0 trade exécuté cette semaine.**
-
-NAV estimée : **≈ 10 334€ (−0.79% vs start_capital 10 417€)**
-- Positions : ~4 723€ (45.7% NAV)
-- Cash : 5 611€ (54.3% NAV) — largement au-dessus du plancher 30% SURCHAUFFE
-
-Le book IA et le groupe naviguent à des niveaux similaires. L'edge viendra de la qualité des décisions sur les 3 premières convictions propres (MSCI, CEG, CRH). La discipline de sortie sur les positions héritées (8 gate-forcées) a évité environ 800-1 000€ de pertes supplémentaires vs un passif non géré.
-
-## 🎓 Leçon de la semaine
-
-**CRH / STOP-EUR-vs-USD (04/07)** — Pour les positions US exprimées en EUR, le stop d'origine a été calculé en USD (avg_cost $116.72 × 0.92 = $107.37). Quand EUR/USD s'apprécie de +4 pts (1.097 → 1.145), le stop converti en EUR paraît franchi (93.87€ < 94.20€) alors que le stop USD natif ne l'est pas ($107.53 > $107.37 de 0.16%).
-
-**Règle opérationnelle** : pour toute position US entrée en USD, le stop USD natif fait référence. Le stop EUR converti est une alerte de surveillance, pas un déclencheur de sortie automatique si la FX a bougé sans signal fondamental. Exit_rule CRH mise à jour en conséquence.
-
-## 🔧 Ce que je corrige
-
-**Revue mensuelle de calibration (1er vendredi — 04/07)** : tous les buckets n<8 — seuil statistique §I non atteint. Aucun ajustement du sizing §H. Tailles cibles maintenues : Haute≈12%, Moyenne≈7%, Basse≈3%.
-
-Le win_rate à 0% sur 9 décisions est trompeusement négatif : 8/9 sorties étaient des gate-forcées d'héritage (thèses souvent intactes), 1 thèse réellement cassée (MSTR, taille Basse — correcte). L'edge du book IA à ce stade est dans la **discipline de sortie**, pas encore dans le stock picking.
-
-Correction immédiate : **le stop USD natif est désormais documenté explicitement dans l'exit_rule de toutes les positions US** (CRH et CEG déjà mis à jour).
-
-## À éviter / drapeaux de bulle
-
-- **PRY.MI (Prysmian)** : momentum +170% = parabolic extrême (2 drapeaux §B). Leader câbles HV, thèse solide, mais valo et élan = risque élevé. Attendre −30% minimum.
-- **SAF.PA** : RSI 80.4 = suracheté extrême. Position conservée (cap 5% 🟠) mais ne pas renforcer avant H1 28/07.
-- **BNP.PA** : RSI 70.3, range52 0.982. Thèse NIM intacte, ne pas renforcer avant Q2 banques US 10-11/07.
-- **ASML** : momentum +103%, surchauffe extrême persistante. Attendre −25% minimum.
-- **GEV** : valo >50x fwd après +25% sur le mois. Exécution impeccable, zéro marge en SURCHAUFFE.
-
-## En une phrase
-
-Le CPI juin (14 juillet) et les hyperscalers Q2 (28-31 juillet) sont les seuls événements qui comptent pour ce book — garder le cap, garder le cash, ne rien toucher avant les chiffres.
+**Régime : RISK-ON SAIN** | VIX 15.15 | T10Y2Y 0.46 | CPI 3.5% | EUR/USD 1.152 | Cash floor : **5%** (était 30%)
 
 ---
-## Revue hebdo
 
-**Ce qui a marché / pas marché**
-- Micro-trims du 3/07 (Doctor jeudi) : SAF.PA et CEG correctement ramenés sous le cap 5% 🟠. Discipline §H respectée sans sortie de thèse.
-- CRH discordance prix résolue : $107.53 (signals.js) = prix réel ; $116.49 (web scraping semaine passée) était l'artefact. Le signal engine était le bon depuis le début.
-- MSCI stop dégagé confirmé : cours $603.11 USD, marge +7.1% au-dessus du stop. Alerte FX du 30/06 correctement archivée.
-- NOVOB : gate 🔴 maintenu malgré Medicare Bridge J=0 (RSI 79.3). Attente correcte.
-- Healthcare deep-dive (LLY/UNH/ABT) → 3 Surveiller, 0 Acheter. Droit au blanc honnête : tendance réelle, prix sans marge en SURCHAUFFE.
+## 1. PASSE 1 — Leçons et scoring (semaines W29-W32)
 
-**Calibration en bref**
-- Haute : 0/1 hits (n=1 < 8 — non significatif)
-- Moyenne : 0/6 hits (n=6 < 8 — non significatif)
-- Basse : 0/2 hits (n=2 < 8 — non significatif)
-- Les 9 décisions sont des sorties d'héritage gate-forcées. Les premières vraies convictions IA (MSCI, CEG, CRH) peupleront les buckets à la clôture (~août-sept 2026). Calibration à réévaluer à n≥8 par bucket.
+### Grok calls résolus
+- **amzn-nfp-tailwind-w29** (horizon 21/07) : move_pct=+0.64%, **INCORRECT** (< ±2%). brier=0.336.
+- Stats cumulées : 5 résolutions, 2 hits, **hit_rate=40% → tactical_cap=0** (< 55%). Aucune poche Grok.
+- Leçon : NFP miss n'a pas généré le rebond court terme prédit sur AMZN avant le 21/07 (Q2 était le vrai catalyseur). Le CT ne suit pas toujours la macro même quand la thèse est juste.
 
-**Hygiène**
-- Positions sans règle de sortie : aucune — toutes ont exit_rule + stop documenté.
-- Concentration : 9 positions, cash 54.3% >> plancher 30%. Aucun ticker > 7% NAV. Hygiène impeccable.
-- Thèses périmées : aucune — CEG + CRH testées aux Q2 fin juillet ; §G permet de tenir jusqu'au falsificateur.
+### Forecasts
+- **cpi-regime-transition-h1-2026** (status : rejeté) : l'événement s'est réalisé (CPI juin 3.5% < 4.0%) mais le scénario avait correctement été rejeté pour raisons méthodologiques (coin flip, déjà pricé, pas de second ordre). Pas de résolution à scorer — restera rejeté.
+- **ai-power-enr-hyperscaler-q2** (status : rejeté) : capex $700B+ confirmé ✓ mais ENR.DE a sous-performé comme prédit lors du rejet (effet déjà pricé). Validation du rejet. Pas de résolution à scorer.
+- **pocket_cap=0.10** (10% NAV) disponible pour un futur scénario §K — 0 scénario joué à ce jour.
 
-**3 actions pour la semaine prochaine**
-1. **Lundi** : Trend Radar — surveiller si rotation Healthcare/GLP-1 continue ou si capex IA hyperscaler reprend la main. Vérifier gate NOVOB (hebdo).
-2. **Mercredi** : Deep-dive candidat — XLV (ETF Healthcare défensif, gate 🟢) est la seule entrée envisageable sans marge supplémentaire requise. Ou NOVOB si gate composite > −0.2.
-3. **Vendredi 11/07** : Brief — résultats Q2 banques US (JPM/WFC/C 10/07, GS 11/07) → signal BNP.PA. Surveiller CRH stop USD $107.37 quotidiennement (marge 0.16% = fil du rasoir).
+### Calibration book
+- Aucune position clôturée depuis le 09/07 → pas de nouvelle entrée de décisions.json.
+- n<8 pour tous les buckets → calibration inchangée. Sizing Haute≈12%, Moyenne≈7%, Basse≈3%.
+- Performance cumulative depuis seed (04/06) : NAV ≈ 10,375€ / start_capital 10,417€ = **−0.4%**. IWDA.AS benchmark +3.43% → trailing de ~3.8 pts. Contexte : 8 semaines à cash floor 30% (SURCHAUFFE) ont coûté de l'alpha vs un marché haussier. Le basculement RISK-ON SAIN et les 3 renforcements de ce vendredi réduisent l'écart de sous-investissement.
 
-**Auto-évaluation**
-- Ce que le moteur a bien fait : lever l'alerte MSCI (stop dégagé, périmé correctement) ; appliquer §G sur CEG/CRH au lieu de sortir mécaniquement sur le seul cours EUR ; droit au blanc sur Healthcare malgré la pression de "ne pas rater la tendance".
-- Ce que le moteur peut améliorer : détecter la discordance de prix USD/EUR plus tôt en semaine (pas seulement le vendredi). À implémenter : vérification de cohérence des cours US dans le Doctor du jeudi.
+---
+
+## 2. PASSE 2 — Revue du book
+
+### Régime : SURCHAUFFE → RISK-ON SAIN (DÉVERROUILLÉ ce vendredi)
+CPI juin 3.5% (signals.js) → plancher cash 30%→5%. NFP juillet −23K (3ème miss consécutif). VIX 15.15. FOMC juillet hold confirmé, tout hike éliminé.
+
+### 3 trades exécutés — 2026-08-08
+
+| Ticker | Action | Qté | Prix | Raison |
+|--------|--------|-----|------|--------|
+| SAF.PA | BUY | +0.57 parts | 357.4€ | S1 marge record ✓, gate 🟢 +0.382, RSI 69 sain |
+| AMZN | BUY | +0.53 parts | 238.26€ | AWS +37% Q2 ✓, capex relevé, gate 🟢 +0.361 |
+| AI.PA | BUY | +1.70 parts | 172.38€ | ROIC H1 +10.2% ✓, RSI 38.7 survendu, gate 🟢 +0.241 |
+
+Fee total : 1.87€. Cash : 5,611.17€ → **4,986.26€** (48.1% NAV).
+
+### État des positions (08/08/2026)
+
+| Ticker | Parts | Cours | % NAV | Gate | Stop | Statut |
+|--------|-------|-------|-------|------|------|--------|
+| SAF.PA | 2.0309 | 357.4€ | 7.0% | 🟢 +0.382 RSI 69 | 290.85€ (-8% avg 316.14€) | ✅ Renforcé. Thèse confirmée. |
+| AMZN | 3.0478 | $274.48 | 7.0% | 🟢 +0.361 RSI 62.9 | $212.45 USD | ✅ Renforcé. AWS +37%. Thèse HAUTE. |
+| AI.PA | 4.20935 | 172.38€ | 7.0% | 🟢 +0.241 RSI 38.7 | 152.03€ | ✅ Renforcé. RSI survendu = fenêtre ideale. |
+| LOTB | 0.03938 | 12 060€ | 4.6% | 🟢 +0.533 RSI 57.5 | — | ✅ Stable. Compounder. |
+| EIMI | 9.775 | $53.79 | 4.4% | 🟢 +0.564 RSI 59.9 | — | ✅ Section 301 mixte/neutre. |
+| BNP.PA | 3.722 | 112.44€ | 4.0% | 🟢 +0.319 RSI 73.8 | — | ✅ Q2 +33% confirmé. Ne pas renforcer (RSI). |
+| MSCI | 1.36 | $563.17 | 6.4% | 🟢 +0.521 RSI 29.3 | $540.54 USD | ⚠️ Stop EUR franchi (488.86€ < 492.57€) MAIS stop USD intact ($563 > $540). GARDER. NON renforcé. |
+| CEG | 2.465 | $269.89 | 5.6% | 🟠 +0.199 RSI 60.4 | 232.29€ | ⚠️ Stop EUR barely OK (234.28€ > 232.29€, +0.86%). Falsificateurs NON déclenchés ✓. GARDER §G. |
+| CRH | 7.12 | $100.48 | 6.0% | 🟢 +0.247 RSI 51 | $107.37 USD | ⚠️ Stop USD franchi (100.48 < 107.37) — GARDER §G (Q2 beat $2.21/$2.03). DERNIER override actif. |
+| **Cash** | — | — | **48.1%** | — | — | Plancher 5% très largement respecté. |
+
+**NAV estimée : ~10,375€** (−0.4% vs start_capital 10,417€)
+
+### Positions sans action requise
+- **EIMI** : Section 122 tariffs remplacées Section 301 10-12.5% — neutre/mixte, pas de trigger de sortie.
+- **LOTB** : Stable, compounder. Pas de catalyseur imminent.
+- **BNP.PA** : Q2 +33%, thèse confirmée. RSI 73.8 légèrement suracheté — surveiller.
+
+### Décision non prise : MSCI non renforcé
+Thèse Q2 confirmée (rétention 95.3% ✓) mais renforcement rejeté : avg_cost nouveau ~534€ → stop EUR ~491€ ≈ cours actuel 488.86€ (risk/reward dégradé, marge quasi nulle). Attendre rebond MSCI qui dégage stop EUR > 510€ avant de considérer renforcement.
+
+---
+
+## 3. PASSE 3 — Tendance de la semaine et brief marché
+
+### Tendance W32 : Infrastructure US / IIJA — **CONTINUATION confirmée** + RISK-ON SAIN
+
+**Thèse en une ligne** : Le CPI 3.5% a déclenché le basculement de régime et libéré le cash floor — les thèses IIJA (CRH Q2 beat), tech-infra (AMZN AWS +37%) et qualité-défensive (Air Liquide ROIC +10.2%) sont toutes confirmées par Q2 et méritent le renforcement.
+
+**Ce qui a changé cette semaine** :
+1. **CPI 3.5%** → RISK-ON SAIN, plancher cash 5% (était 30%). Déverrouille le déploiement discipliné.
+2. **NFP juillet −23K** → 3ème miss consécutif = plateau des taux durablement ancré. Favorable infrastructure long terme.
+3. **Hyperscalers Q2** : AMZN AWS +37%, MSFT Azure +39%, GOOGL + Meta confirmés → AUCUN FALSIFICATEUR déclenché. Thèse infra-IA (CEG) intacte.
+4. **SAF.PA S1** : marge record confirmée. Thèse MRO/LEAP haute.
+5. **CRH Q2 beat** : $2.21 vs $2.03. IIJA pipeline se remplit. Guide EBITDA $8.1-8.5B maintenu.
+6. **BNP.PA Q2 +33%** : thèse bancaire confirmée. MSCI rétention 95.3% ✓ (expense guide élevée = bruit, pas cassure).
+
+**Ce qui surveille** :
+- **CRH** : stop USD $107.37 toujours franchi (cours $100.48). §G gouverne (Q2 beat) mais DERNIER override. Sortie au slip de gate OU guidance cut.
+- **CEG** : stop EUR barely OK (234.28€ vs 232.29€, +0.86%). Si EUR/USD monte encore (> 1.16), le stop EUR peut se refermer. Surveiller hebdomadairement.
+- **MSCI** : survendu RSI 29.3 post-Q2. Stop USD $540.54 intact mais stop EUR marginalement franchi. NON renforcé.
+- **IIJA réautorisation FY2027** : vote Congrès automne 2026 = risque clé pour CRH.
+
+**Ce qui tuerait la tendance** :
+1. IIJA non réautorisé FY2027 (vote congrès) → carnets CRH/VMC/GVA s'assèchent
+2. CRH Q3 guidance coupée → exit mécanique (dernier override consommé)
+3. Récession macro US marquée (NFP < −100K sur 2 mois consécutifs) → ralentissement CAPEX public
+
+### Watchlist scout W32 (3 noms à suivre pour l'automne)
+- **GVA** : priorité re-analyse. Si Q2 marge ≥ 12.25% LIVRÉE → pivot prouvé, bascule potentiellement Acheter. Repli RSI < 40 recherché.
+- **VMC** : entrée ~24-25x (repli ~$230-240) ou confirmation volumes Q2.
+- **NOVOB** : Q2 Medicare données = déclencheur. RSI < 65 requis pour ré-entrée RISK-ON SAIN.
+
+---
+
+## 4. Prochains jalons (août-septembre 2026)
+
+| Date | Événement | Impact |
+|------|-----------|--------|
+| ~Août 2026 | NOVOB Q2 (données adoption Medicare) | Gate NOVOB + RSI → ré-entrée possible si adoption forte |
+| ~Septembre 2026 | CRH Q3 résultats | BINAIRE : guidance maintenue → GARDER ; coupée → EXIT |
+| 30 septembre 2026 | Falaise IIJA — fin autorisation FY2026 | Si pas de réautorisation, thèse CRH fragilisée |
+| Automne 2026 | Vote Congrès IIJA FY2027 | Risque majeur clé pour toute la thèse infrastructure |
+| ~Novembre 2026 | FOMC | En RISK-ON SAIN : coupe possible H1 2027 si CPI continue ↓ |
+
+---
+
+**Niveau de confiance global** : Moyen-Haut. Les thèses majeures ont passé le test Q2, le régime est favorable, mais 2 positions ont leur stop à risque (CRH, CEG) et le book trail le benchmark de 3.8 pts après 8 semaines de cash floor hawkish.
