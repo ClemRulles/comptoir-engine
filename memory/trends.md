@@ -1,4 +1,24 @@
-# Tendance de la semaine — 2026-08-08
+## Tendance de la semaine — 11 août 2026
+
+- **Statut** : VALIDÉE
+- **Tendance** : L'électricité est le nouveau goulot d'étranglement de l'IA — les équipementiers de réseau (transformateurs, câbles HVDC, gestion de puissance pour data centers) entrent dans un supercycle de commandes à visibilité pluriannuelle alors que le bottleneck se déplace des chips vers la puissance.
+- **Pourquoi maintenant** : Microsoft, Alphabet et Meta ont tous changé au Q2 2026 leur langage d'earnings du "capex agrégé" vers le "time-to-energy" — la vitesse d'accès à la puissance électrique est désormais le premier facteur limitant devant les chips et le foncier. Meta annonce un campus Louisiana de 5 GW, OpenAI un campus Georgia de 3,2 GW. $660-690B de capex hyperscaler engagé en 2026 (quasi-doublement vs 2025).
+- **Preuves dures** :
+  1. Hyperscalers Q2 2026 : $660-690B de capex engagé (Microsoft, Alphabet, Amazon, Meta, Oracle — 10-Q et calls directs) ; Meta $349,31B engagements non-résiliables (10-Q) ; Amazon $200B capex (+53% vs 2025)
+  2. US utility capex 2026-2030 : ~$1,3T (S&P Global, avr. 2026), premier moteur = grands consommateurs (data centers IA)
+  3. EMEA grid buildout : $26B/an → $70B/an en 2028 (UBS) ; European utilities capex à 164% EBITDA en 2026 (record) ; EU €580B utility capex 2026-2030
+  4. Signal "time-to-energy" : 3 hyperscalers indépendants, même Q2, même langage-shift → convergence non-coordonnée = signal fort
+- **Durabilité** : Structurelle — double moteur : (1) demande IA en puissance bas-carbone 24/7, (2) décarbonation mandatée EU (Clean Industrial Deal fév. 2026, +100 GW/an jusqu'à 2030). Backlogs confirmés : Siemens Energy Grid Tech +25-27% guidé, backlog record ; Nexans PWR-Transmission €7,9 Md visible jusqu'à 2028.
+- **Stade** : Début/milieu. "time-to-energy" bottleneck confirmé Q2 2026. Équipementiers non paraboliques : Siemens Energy -25% depuis pic malgré guidance relevée ; Nexans RSI 38 après repli.
+- **Manières de la jouer (cotées)** : VRT/Vertiv (angle direct US — gestion thermique/puissance data centers) · ETN/Eaton (pioches et pelles — équipements électriques/PDU, ~22x fwd) · ENR.DE/Siemens Energy (EU — transformateurs HVDC, déjà Surveiller) · NEX.PA/Nexans (EU — câbles HVDC, backlog €7,9 Md, déjà Surveiller)
+- **Drapeau bulle** : Improbable pour les pioches (VRT, ETN, NEX.PA, ENR.DE). Vigilance sur NVIDIA/AMD (pas l'angle recommandé). DCF inversé : VRT ~35x fwd (justifié +40% rev réels) ; ETN ~22x fwd (raisonnable).
+- **Ce qui tuerait la thèse** : (1) Réduction >20% capex hyperscaler sur 2 trimestres consécutifs, ou (2) montée forte des taux forçant reports utility. Aucun visible : engagements contractuels + Fed en pause.
+- **Effet de second ordre** : Hausse prix électricité industrielle → vents contraires pour industries énergivores (aluminiers, aciéristes, chimistes). Utilities (Enel €53B, Iberdrola) : visibilité revenus accrue mais capex explosant (levier à surveiller).
+- **Sources** : Futurum AI Capex 2026 · S&P Global utility capex ($1.3T) · Data Center Knowledge Aug 2026 · Bond Vigilantes (EU utilities 164% EBITDA) · Q2 calls : Microsoft, Alphabet, Meta, Amazon · Siemens Energy Q2 FY26 · Nexans FY2025 · UBS EMEA grid
+
+---
+
+## Tendance de la semaine précédente — 8 août 2026 (W32)
 
 - **Statut** : CONTINUATION + DÉVERROUILLAGE (thèse IIJA/Infrastructure US confirmée par Q2 ; régime basculé SURCHAUFFE→RISK-ON SAIN ; 3 renforcements exécutés)
 - **Tendance** : **RISK-ON SAIN + IIJA accélération → Déploiement sur thèses confirmées par Q2 (SAF.PA, AMZN, Air Liquide)**
@@ -14,25 +34,16 @@
   8. BNP.PA Q2 +33% net income ✓.
 - **Durabilité** : Cyclique-structurelle étendue — l'IIJA reste à ~40-50% des fonds non déployés (transport/eau), le plateau des taux réduit le coût du capital des projets à longue durée, et le RISK-ON SAIN ouvre l'espace pour un déploiement progressif des 48% de cash du book IA. Risque calendrier : falaise IIJA 30/09/2026 (réautorisation FY2027 = vote Congrès automne), CRH Q3 = test final du dernier override stop.
 - **Stade** : CONTINUATION RENFORCÉE (CRH en book depuis 27/06 ; SAF.PA depuis 04/06, renforcé 08/08 ; AMZN depuis 04/06, renforcé 08/08 ; AI.PA depuis 04/06, renforcé 08/08). Ce n'est plus un lancement : c'est une thèse multi-positions qui passe les tests Q2 avec succès.
-- **Manières de la jouer (positions en book)** :
-  - **CRH plc** — DÉTENU (7.12 parts, avg_cost 102.39€ / $116.72). Q2 beat $2.21/$2.03 ✓. Stop USD $107.37 franchi (cours $100.48). §G GARDER (Q2 confirme IIJA, pas de guidance cut). DERNIER override actif.
-  - **SAF.PA** — RENFORCÉ 08/08 (2.0309 parts, avg 316.14€). S1 marge record ✓. Gate 🟢 +0.382. Stop 290.85€ (-8%).
-  - **AMZN** — RENFORCÉ 08/08 (3.0478 parts, avg 200.47€). AWS +37% ✓, capex relevé. Gate 🟢 +0.361. Stop USD $212.45 (P-001).
-  - **AI.PA (Air Liquide)** — RENFORCÉ 08/08 (4.20935 parts, avg 165.25€). ROIC +10.2% ✓, RSI 38.7 survendu. Gate 🟢 +0.241. Stop 152.03€ (-8%).
-  - **GVA (Granite Construction)** — SURVEILLER, penchant +. Priorité re-analyse post-Q2. Si marge ≥12.25% livrée → Acheter potentiel. RSI<40 (~$120-125) aussi valide. En RISK-ON SAIN : une entrée est possible si les deux conditions se réunissent (marge prouvée + repli).
-  - **VMC (Vulcan Materials)** — SURVEILLER. Entrée sur repli ~$230-240 ou confirmation Q2 volumes. Redondant CRH mais meilleur F-Score (F9/9 vs F6/9).
-- **Drapeau bulle** : Nul sur les positions détenues. GVA et VMC : vigilance sur le momentum déjà couru. GEV >50x fwd : éviter.
 - **Ce qui tuerait la thèse** :
   1. **IIJA non réautorisé FY2027** (vote Congrès automne 2026) : fin de la visibilité commandes infrastructure — signal de sortie immédiat CRH.
   2. **CRH Q3 guidance coupée** : déclenche la sortie mécanique (dernier override consommé).
-  3. **CPI rebondit ≥ 4.5% en juillet-août** : rebasculement RISK-ON→SURCHAUFFE possible (cash floor 5%→30% réactivé).
-  4. **NFP rebondit fortement (>+150K)** : signalisation possible d'un FOMC hike en retard — peu probable au vu des 3 miss consécutifs, mais surveiller.
-- **Effet de second ordre** : Stop USD CRH $107.37 reste la limite mécanique à surveiller (§G gouverne jusqu'au slip de gate ou guidance cut). Sur CEG : surveiller EUR/USD — si 1.16+, le stop EUR 232.29€ peut être à nouveau très proche (cours 234.28€ + seulement 0.86% de marge).
+  3. **CPI rebondit ≥ 4.5% en juillet-août** : rebasculement RISK-ON→SURCHAUFFE possible.
+  4. **NFP rebondit fortement (>+150K)** : signalisation possible d'un FOMC hike.
 - **Sources** : BLS CPI juin 2026 (14 juillet) ; BLS NFP juillet 2026 (7 août) ; AMZN Q2 2026 (30 juillet) ; SAF.PA S1 2026 (28 juillet) ; Air Liquide H1 2026 ; CRH Q2 2026 ; MSFT Q2 (28/07) ; Alphabet Q2 (29/07) ; Meta Q2 (30/07) ; BNP.PA Q2 ; MSCI Q2 (21/07, rétention 95.3%) ; engine/signals.js 2026-08-08
 
 ---
 
-# Tendance de la semaine précédente — 2026-07-07 (archivée W29, tendance infrastructure IIJA)
+# Archives — tendance semaine 2026-07-07 (W29, infrastructure IIJA)
 
 - **Statut** : CONTINUATION → CONFIRMÉE W32 (Q2 CRH beat ✓, FOMC hold ✓, CPI 3.5% → déverrouille)
 - **Tendance** : Plateau des taux + IIJA accélération → Rotation vers l'Infrastructure US (Matériaux/Construction)
@@ -40,7 +51,7 @@
 
 ---
 
-# Archives — tendance semaine 2026-06-30 (archivée W27, tendance secondaire active)
+# Archives — tendance semaine 2026-06-30 (W27, tendance secondaire active)
 
 - **Statut** : CONTINUATION STRUCTURELLE — Medicare Bridge opérationnel, données adoption en attente
 - **Tendance** : Healthcare / GLP-1 — Medicare Bridge + Rotation défensive
@@ -48,7 +59,7 @@
 
 ---
 
-# Archives — tendance semaine 2026-06-23 (archivée W26)
+# Archives — tendance semaine 2026-06-23 (W26)
 
 - **Statut** : CONTINUATION STRUCTURELLE — CEG détenu (thèse PPA intacte, §G gouverne)
 - **Tendance** : Infrastructure IA / Énergie nucléaire — contrats PPA fixes comme défense contre l'anxiété FCF hyperscalers
