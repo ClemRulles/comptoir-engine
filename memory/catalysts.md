@@ -1,4 +1,4 @@
-# Calendrier des catalyseurs — maj 2026-08-08
+# Calendrier des catalyseurs — maj 2026-08-15
 
 Événements **datés et publics** des ~6 prochaines semaines qui peuvent bouger nos secteurs/titres.
 On **anticipe le connu**, on ne devine pas une annonce surprise. Chaque ligne = un risque daté.
@@ -17,15 +17,16 @@ Statut : `À surveiller` → `ACTIF` (pré-positionnement ou risque connu) → `
 | Date | Événement | Type | Ce qui bouge (secteurs/tickers) | Sens du risque | Analyse de l'IA | Confiance | Statut |
 |------|-----------|------|--------------------------------|----------------|-----------------|-----------|--------|
 | ~Août 2026 | NOVOB — résultats Q2 2026 (post-Medicare launch, 5-6 semaines d'adoption) | Micro | NOVOB (hors book, candidate ré-entrée) | Directionnel | 1ères données prescription Medicare Wegovy. Gate 🟠 ambre — RSI à surveiller avant Q2. Adoption forte + RSI<65 → ré-entrée possible. | Moyenne | À surveiller |
-| ~Septembre 2026 | CRH — résultats Q3 2026 (EBITDA guide FY2026 + impact Arcosa) | Micro | CRH (détenu, DERNIER OVERRIDE actif) | Binaire fort | Q2 beat $2.21/$2.03 ✓. Q3 = prochain test IIJA + guidance. Sortie mécanique si guidance FY coupée OU gate slippe 🟠/🔴. | Haute | ACTIF |
-| Automne 2026 | IIJA réautorisation FY2027 — vote Congrès | Politique | CRH (détenu, IIJA 40% CA), VMC, GVA, MLM | Binaire fort | Fin de l'autorisation IIJA 30/09/2026. Sans réautorisation, la visibilité des carnets infrastructure s'effondre. Risque majeur pour la thèse CRH. Surveiller dès septembre. | Haute (sur la thèse) | À surveiller |
-| ~T4 2026 | Arcosa closing ($8.5B cash) — DOJ antitrust review | Micro/Réglementaire | CRH (détenu) | Binaire | DOJ approval = deal accrétif (IIJA water/transport renforcé). DOJ block = CRH se redresse (deal annulé). Closing T1 2027 possible. | Moyenne | À surveiller |
-| ~Novembre 2026 | FOMC — réunion taux post-élections (RISK-ON SAIN : probabilité coupure ?) | Macro | Toutes positions, particulièrement CEG/CRH | Directionnel | En RISK-ON SAIN, si CPI continue de baisser → FOMC pourrait signaler une coupe H1 2027. Favorable aux actifs à dette longue (CRH post-Arcosa) et aux taux fixes (CEG PPA). | Moyenne | À surveiller |
+| ~Septembre 2026 | GVA — résultats Q3 2026 (test pivot marge + backlog) | Micro | GVA (détenu depuis 15/08, horizon-test Q3'26 pré-enregistré) | Binaire fort | Horizon-test Q3'26 : marge adj EBITDA maintenue dans guide 12.25-13.25%, rev +25%+, backlog $7.4B+ stable. Falsificateur : marge <10% OU write-down OU backlog coupé → sortie immédiate (exit_rule pré-enregistrée). | Moyenne | ACTIF |
+| Automne 2026 | IIJA réautorisation FY2027 — vote Congrès | Politique | GVA (détenu, IIJA exposition directe), VMC, MLM | Binaire fort | Fin de l'autorisation IIJA 30/09/2026. Sans réautorisation, la visibilité des carnets infrastructure s'effondre. Exit_rule GVA pré-enregistrée : IIJA non réautorisé FY2027 → sortie immédiate. Risque majeur de thèse. Surveiller dès septembre. | Haute (sur la thèse) | À surveiller |
+| ~T4 2026 | Arcosa closing ($8.5B cash) — DOJ antitrust review | Micro/Réglementaire | CRH (HORS BOOK — sorti 14/08) | Binaire | DOJ approval = deal accrétif (IIJA water/transport renforcé). DOJ block = CRH se redresse (deal annulé). Closing T1 2027 possible. Hors book : surveiller uniquement si ré-entrée CRH envisagée. | Moyenne | À surveiller |
+| ~Novembre 2026 | FOMC — réunion taux post-élections (RISK-ON SAIN : probabilité coupure ?) | Macro | Toutes positions, particulièrement CEG/GVA | Directionnel | En RISK-ON SAIN, si CPI continue de baisser → FOMC pourrait signaler une coupe H1 2027. Favorable aux taux fixes (CEG PPA) et aux contrats infrastructure longue durée (GVA). | Moyenne | À surveiller |
 
 ## Archives (événements passés + ce qu'on en a tiré)
 
 | Date | Événement | Résultat | Leçon/Impact book |
 |------|-----------|----------|-------------------|
+| 14/08/2026 | CRH — sortie book IA (3 déclencheurs simultanés) | CRH sorti à $97.99 (84.81€). P&L −17.67% / alpha −21.65% vs IWDA +3.98%. | 3 déclencheurs : gate slip 🟢→🟠, DERNIER override déclenché (non renouvelable), stop USD $107.37 franchi. Thèse IIJA intacte (Q2 beat $2.21/$2.03 ✓). Rotation GVA exécutée 15/08. |
 | ~7 août 2026 | BLS NFP juillet 2026 | NFP juillet −23K (3ème miss consécutif). Plateau des taux durablement ancré. | Confirme RISK-ON SAIN. Pression sur le dollar. Favorable infrastructure longue durée. |
 | 30 juillet 2026 | Amazon Q2 2026 + Meta Q2 | AWS +37% ✓ (>> seuil 25%), capex relevé ✓. Meta confirmé capex ✓. FALSIFICATEURS infra-IA NON DÉCLENCHÉS. | Thèse AMZN HAUTE confirmée. Renforcement exécuté 08/08. Thèse CEG intacte (2/4 hyperscalers suffisants, tous 4 OK). |
 | 29 juillet 2026 | FOMC + Alphabet Q2 | FOMC HOLD confirmé. Alphabet capex confirmé ✓. | HOLD = RISK-ON SAIN catalyseur principal. Tout scénario de HIKE éliminé. Falsificateur CEG non déclenché. |

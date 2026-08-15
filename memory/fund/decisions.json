@@ -144,6 +144,22 @@
       "outcome": "neutre",
       "hit": false,
       "lesson": "Gate 🔴 composite -0.312 + stop -8% touché (218.4€ < 226.61€) → sortie forcée même avec thèse défense EU intacte (Q1 commandes +27%, Défense +75%). La thèse saine ne reporte jamais une règle de sortie déclenchée. Ré-entrée prioritaire si gate composite > -0.2 (même logique NOVOB/SAP). Candidat H1 23 juillet."
+    },
+    {
+      "thesis_id": "crh-infra-us",
+      "ticker": "CRH",
+      "horizon": "coeur",
+      "confidence": "Moyenne",
+      "opened": "2026-06-27",
+      "closed": "2026-08-14",
+      "entry": 102.39,
+      "exit": 84.81,
+      "realized_pnl_pct": -0.1767,
+      "benchmark_return_pct": 0.0398,
+      "alpha_pct": -0.2165,
+      "outcome": "neutre",
+      "hit": false,
+      "lesson": "Gate slip 🟢→🟠 + DERNIER override déclenché + stop USD $107.37 toujours franchi : 3 déclencheurs simultanés le 13/08. Q2 beat ($2.21/$2.03 ✓) et thèse IIJA intacte — mais la règle pré-enregistrée gouverne sans débat (leçon 13/08 CRH/GATE-SLIP-ÉTEINT-L'OVERRIDE). La rotation vers GVA (même thème IIJA, gate frais 🟢 F7/9 +0.577, pivot marge livré, 17x fwd) illustre que sortir ≠ abandonner la thèse."
     }
   ]
 }

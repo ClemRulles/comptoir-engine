@@ -1,24 +1,24 @@
-# Régime de marché — mis à jour le 2026-08-11 (Trend Radar lundi)
+# Régime de marché — mis à jour le 2026-08-15 (Brief vendredi W33)
 
-- **Cadran** : **RISK-ON SAIN** — basculement SURCHAUFFE→RISK-ON SAIN confirmé par engine/signals.js. CPI juin 3.5% (< 4.0%) : 1ère décélération après 3 accélérations consécutives. FOMC juillet : hold confirmé, tout scénario de HIKE éliminé. VIX 15.15 (↓), T10Y2Y 0.46 (légèrement plus positif), HY spread stable. NFP juillet −23K (miss — troisième miss consécutif = plateau des taux durablement ancré).
-- **Consigne au système** : **plancher cash ≥ 5%** (était 30% en SURCHAUFFE) ; déploiement discipliné possible sur les thèses confirmées ; favoriser la qualité (F-Score 7+, gate 🟢) mais maintenir une sélectivité haute — RISK-ON SAIN ≠ achat indiscriminé ; surveiller toujours les stops USD natifs (P-001) ; pas de positions nouvelles sur des thèses non validées par deep-dive récent ; **trois positions renforcées ce vendredi (SAF.PA, AMZN, AI.PA) sur thèses confirmées par Q2**.
-- **Valorisation indice** : S&P 500 YTD positif ; rotation sectorielle maintenue vers les cycliques/industriels (IIJA) ; Tech rebond post-résultats hyperscalers (AMZN +37% AWS, MSFT Azure +39%, GOOGL/Meta confirmés) ; Matériaux/Infrastructure solides malgré CRH en baisse post-Arcosa.
-- **Rotation sectorielle (W32)** : Tech rebond fort (AMZN +37% AWS Q2, catégorie leaders) ; Infrastructure IIJA en confirmation (CRH Q2 beat $2.21/$2.03) ; Healthcare défensif stable (BNP +33%, MSCI rétention 95.3%) ; Air Liquide ROIC H1 +10.2% = compounders industriels résilients.
-- **Zones de bulle** : PRY.MI momentum toujours parabolic (éviter) ; GEV >50x fwd (attendre repli) ; ASML surchauffe ; BNP.PA RSI 73.8 (légèrement suracheté — ne pas renforcer).
-- **Positions book IA — gates au 11/08 (engine/signals.js) :**
-  - **SAF.PA** 🟢 +0.218, RSI 75.2 ⚠️ (suracheté, +6pts vs 08/08) · cours 363,2€ · range52 0.998 (quasi-plus-haut 52s) → cap 5% §H maintenu, ne pas renforcer
-  - **AMZN** 🟢 +0.240, F5/9, RSI 65.9 · cours $278,09 · insiders vendeurs nets → thèse AWS confirmée Q2 ($200B capex) ; GARDER
-  - **EIMI** 🟢 +0.564, RSI 58.7 · cours $53,60 · ETF EM solide
-  - **AI.PA** 🟠 +0.199 (flip 🟢→🟠 !) RSI 33.4 (survendu) · cours 171,44€ · cap 5% §H s'applique — RSI bas = signal de rebond possible mais ne pas renforcer sans gate 🟢
-  - **LOTB** 🟢 +0.405, RSI 71.3 ⚠️ (suracheté) · cours 12 340€ · momentum +36%
-  - **BNP.PA** 🟢 +0.283, RSI 75.3 ⚠️ (suracheté, +1.5pt vs 08/08) · cours 112,8€ · range52 0.983 → ne pas renforcer
-  - **MSCI** 🟢 +0.587, F7/9, RSI 50.8 sain · cours $563,08 · range52 0.431 (moitié basse)
-  - **CEG** 🟠 +0.182, F6/9, RSI 55.8 · cours $270,43 · momentum −24% · range52 0.227 — falsificateurs Q2 non déclenchés ✓ ; thèse nucléaire PPA confirmée ; §G gouverne ; cap 5% §H
-  - **CRH** 🟢 +0.257, F6/9, RSI 51.6 sain · cours $100,60 · EPS surprise +12,76% · stop USD $107,37 toujours franchi — dernier override actif (§G, Q2 beat, thèse IIJA intacte)
-- **EUR/USD** : 1.152 — EUR toujours fort. P-001 actif sur AMZN, MSCI, CEG, CRH (stops en USD natif). Impact FX maintenu : CRH stop EUR 94.20€ plus contraignant que stop USD $107.37 (P-001 prévaut).
+- **Cadran** : **RISK-ON SAIN** — confirmé par engine/signals.js. CPI 3.5% (US, juin 2026), HICP 2.7% (EU), VIX 14.63, T10Y2Y 0.51, HY spread 2.71%. Aucune surchauffe. NFP juillet −23K (3ème miss consécutif = plateau des taux durablement ancré). FOMC hold confirmé, tout hike éliminé. Fear/greed : « avidité ».
+- **Consigne au système** : **plancher cash ≥ 5%** ; sélectivité haute (gate 🟢, deep-dive récent, stop écrit) ; favoriser F-Score ≥ 7 ; surveiller RSI extrêmes (LOTB 87.9, BNP.PA 81.6, SAF.PA 78.5) — NE PAS renforcer les suracheté même sous gate 🟢 ; P-001 actif sur AMZN, MSCI, CEG, GVA (stops en USD natif) ; cap 5% §H actif sur SAF.PA et AI.PA (gates 🟠).
+- **Valorisation indice** : S&P 500 YTD positif ; Tech rebond post-hyperscalers Q2 (AMZN AWS +37%, MSFT Azure +39%) ; Infrastructure IIJA solide (GVA Rev +29%, backlog $7.4B) ; CRH sorti 14/08 (gate slip 🟠) → remplacé par GVA 15/08 (rotation thématique).
+- **Rotation sectorielle (W33)** : Infrastructure électrique IA (power-grid supercycle, $660-690B capex hyperscaler) en tête ; Compounders défensifs (LOTB, BNP.PA, AI.PA, MSCI) solides ; Nucléaire/PPA (CEG, falsificateurs Q2 non déclenchés). Éviter suracheté RSI>80.
+- **Zones de bulle** : PRY.MI momentum +170% parabolic (éviter) ; VRT momentum +113% + revenue miss Q2 (éviter) ; ENR.DE mom +101% (vigilance) ; BNP.PA RSI 81.6 (ne pas renforcer) ; LOTB RSI 87.9 (surveiller, position petite).
+- **Positions book IA — gates au 15/08 (engine/signals.js) :**
+  - **SAF.PA** 🟠 +0.159, RSI 78.5 ⚠️ (suracheté persistant) · cours 360.5€ · range52 ~0.94 → cap 5% §H actif. 1.4509 parts = 5.05% NAV. Thèse S1 marge record ✓ intacte.
+  - **AMZN** 🟢 +0.240, F5/9, RSI 65 · cours $262.65 (=228.0€) · stop USD $212.45 (P-001) → thèse AWS +37% ✓. GARDER. 6.71% NAV.
+  - **EIMI** 🟢 +0.615, RSI 62 · cours $54.60 (=47.40€) · ETF EM solide. Section 301 neutre. 4.47% NAV.
+  - **AI.PA** 🟠 +0.090, RSI 27.3 (survendu) · cours 168.26€ · TRIM EXÉCUTÉ 15/08 → 3.07935 parts = 5.0% NAV. Cap 5% §H respecté. Stop 152.03€ intact (marge +10.8%). Potentiel rebond CT sur survendu.
+  - **LOTB** 🟢 +0.385, RSI 87.9 ⚠️ (extrême suracheté) · cours 12 320€ · compounder, position 4.68% NAV (petite — pas de cap 🟢). Surveiller sans vendre.
+  - **BNP.PA** 🟢 +0.259, RSI 81.6 ⚠️ (suracheté) · cours 112.10€ · range52 ~0.97 → ne pas renforcer. Q2 +33% ✓. 4.03% NAV.
+  - **MSCI** 🟢 +0.602, F7/9, RSI 48.4 sain · cours $569.13 (=494.0€) · stop USD $540.54 (P-001) intact · stop EUR 492.57€ DÉGAGÉ ✓ · rétention 95.3% ✓. Meilleur gate du book. GARDER. 6.49% NAV.
+  - **CEG** 🟢 +0.327, F6/9, RSI 59.8 · cours $282.50 (=245.2€) · stop EUR 232.29€ intact (marge +5.5%) · §G gouverne. Falsificateurs Q2 non déclenchés ✓. GARDER. 5.83% NAV.
+  - **GVA** 🟢 +0.577, F7/9, RSI 53.1 sain · cours $127.10 (=110.33€) · NOUVEAU acheté 15/08 · stop USD $116.93 (P-001 : avg_cost $127.10 × 0.92) · pivot marge Q2 LIVRÉ · backlog $7.4B · 7.0% NAV.
+- **EUR/USD** : 1.152 — EUR fort. P-001 actif sur AMZN, MSCI, CEG, GVA. CRH sorti 14/08 (P-001 CRH terminé).
 - **Macro (3 lignes)** :
-  - US : CPI juin 3.5% (décélération décisive après 4.0/4.1/4.2%) → FOMC juillet hold 9-3 confirmé, tout HIKE éliminé. NFP juillet −23K = marché du travail qui refroidit → plateau taux durablement ancré. T10Y2Y 0.47. VIX 14.9 (légèrement en baisse vs 15.15 le 08/08). Régime RISK-ON SAIN confirmé par engine/signals.js ce matin.
-  - Zone euro : ECB dépôt 2.25%. EUR/USD ~1.152 stable. **Nouveau risque 11/08 : Hormuz — Brent $87,69 (+4,95% le 10/08), Wall Street terminé en baisse le 10/08 "as expectations of Hormuz deal fade" ; Qatar LNG : perte cumulée estimée ~140 Gm³ sur 2026-2030. Ce choc est géopolitique (news-flow), pas structurel — XLE en zone de vente, pas d'entrée.**
-  - Hyperscalers Q2 (confirmés) : AMZN AWS +37% ✓, capex $200B ✓ ; MSFT Azure +39% ✓ ; GOOGL ✓ ; Meta $349,31B non-cancellable ✓ — AUCUN FALSIFICATEUR infra-IA déclenché. CEG et la thèse nucléaire/PPA restent intactes. **CPI juillet pub. DEMAIN (12/08) : catalyseur directionnel principal de la semaine.**
-- **NAV book IA estimée** : ≈ **10,375€** (−0.4% vs start_capital 10,417€). Positions : SAF.PA 7.0% | AMZN 7.0% | EIMI 4.4% | AI.PA 7.0% | LOTB 4.6% | BNP.PA 4.0% | MSCI 6.4% | CEG 5.6% | CRH 6.0%. Cash 4,986€ = **48.1% NAV** (bien au-dessus du plancher 5% RISK-ON SAIN). 9 positions actives. IWDA.AS benchmark +3.43% depuis 04/06 — book trailing de ~3.8 pts (conservatisme en SURCHAUFFE = coût assumé, déploiement maintenant autorisé).
-- **Sources** : FRED (CPI 3.5%, VIX 15.15, T10Y2Y 0.46) via engine/signals.js 2026-08-08 ; BLS NFP juillet 2026 (août 2026) ; AMZN Q2 (AWS +37%, 30/07) ; MSFT Q2 (Azure +39%, 28/07) ; engine/signals.js 2026-08-08 ; web (SAF.PA S1 marge record, BNP.PA Q2 +33%, Air Liquide H1 ROIC +10.2%, CRH Q2 $2.21/$2.03) ; MSCI Q2 (rétention 95.3%, 21/07) ; EUR/USD 1.152 (signals)
+  - US : CPI juin 3.5% → FOMC hold, tout hike éliminé. NFP juillet −23K = plateau taux durablement ancré. T10Y2Y 0.51. VIX 14.63 (avidité). Régime RISK-ON SAIN confirmé par engine/signals.js.
+  - Zone euro : ECB dépôt 2.25%. EUR/USD 1.152 stable. HICP EU 2.7% (bien sous la cible). Risque Hormuz atténué depuis 11/08.
+  - Hyperscalers Q2 (tous confirmés) : AMZN AWS +37%, MSFT Azure +39%, GOOGL, Meta $349B capex non-résiliable → AUCUN FALSIFICATEUR infra-IA déclenché. CEG (PPA nucléaire) et thèse GVA (data centers IIJA) intacts.
+- **NAV book IA estimée** : ≈ **10 360€** (−0.54% vs start_capital 10 417€). Positions : SAF.PA 5.0% | AMZN 6.7% | EIMI 4.5% | AI.PA 5.0% | LOTB 4.7% | BNP.PA 4.0% | MSCI 6.5% | CEG 5.8% | GVA 7.0%. Cash 5 257.83€ = **50.7% NAV** (plancher 5% RISK-ON très largement respecté). 9 positions actives. CRH sorti 14/08 → GVA acheté 15/08.
+- **Sources** : engine/signals.js 2026-08-15 (GVA gate ; régime FRED) ; engine/signals.js 2026-08-14 (SAF.PA, AMZN, EIMI, AI.PA, LOTB, BNP.PA, MSCI, CEG) ; EUR/USD 1.152 (signals) ; hyperscalers Q2 (appels directs)
