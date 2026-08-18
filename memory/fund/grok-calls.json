@@ -1,7 +1,20 @@
 {
   "_doc": "Sentiment X (Grok) transformé en PRÉDICTIONS SCORÉES (method §F) — le sentiment ne décide jamais sur la foi : il se MÉRITE une voix en prouvant qu'il prédit. Le lundi (pouls Grok) enregistre 0-3 'calls' directionnels court terme ; engine/grok.js les score contre le prix réel à l'horizon. Schéma d'un call : { id (kebab-case), opened (YYYY-MM-DD), ticker, direction ('hausse'|'baisse' attendue à court terme), confidence (0.5-0.9, force du signal de sentiment), thesis (1 ligne : ce que Grok 'sent'), horizon (YYYY-MM-DD, ~2 semaines), source (semaine du pouls), played (bool : le book a-t-il pris une position tactique ?), status ('ouvert' | 'joué' | 'résolu' | 'expiré'), resolution ({ date, move_pct (variation réelle sur l'horizon), correct (bool : le mouvement a-t-il suivi la direction au-delà de ±2 %), brier ((confidence − correct)²), trade_alpha_pct (si joué : alpha — mesure SÉPARÉE) }) }. 'stats' (recalculé par engine/grok.js) : resolved, hits, hit_rate, brier, tactical_cap = budget MAX du NAV pour les paris Grok, MÉRITÉ : 0 % tant que < 6 calls résolus, puis 3/6/8 % selon hit_rate (≥0.55/0.65/0.70), 0 % si < 0.45. Garde-fous §F : jamais sur gate 🔴, jamais contre la checklist bulle §B, demi-taille tactique, stop serré, sortie datée. L'euphorie reste un signal contrarien de top. Ne jamais réécrire un call résolu.",
-  "updated": "2026-08-15",
+  "updated": "2026-08-18",
   "calls": [
+    {
+      "id": "msci-oversold-rebound-w34",
+      "opened": "2026-08-18",
+      "ticker": "MSCI",
+      "direction": "hausse",
+      "confidence": 0.6,
+      "thesis": "MSCI RSI 28.9 = survendu extrême post-selloff Q2 guidance élevée ; gate 🟢 F7/9 solide (rétention 95.3% intacte) ; Grok sent rotation IA vers compounders financiers (index rebalancing inflows narrative) ; rebond technique attendu si stop USD $540.54 tient lors du double-source jeudi",
+      "horizon": "2026-09-01",
+      "source": "2026-W34 (Grok API grok-4.3)",
+      "played": false,
+      "status": "ouvert",
+      "guard_note": "⚠️ P-002 actif : marge stop +1.87% seulement. Call NON JOUÉ (played:false) — tactical_cap = 0% (5 calls résolus seulement, seuil = 6). Score uniquement. Si P-002 déclenche exit jeudi, call expiré avant horizon."
+    },
     {
       "id": "amzn-nfp-tailwind-w29",
       "opened": "2026-07-07",
@@ -101,7 +114,7 @@
         "move_pct": 8.3,
         "correct": true,
         "brier": 0.16,
-        "note": "AMZN hausse de ~194€ (16/06, RSI 35.4 survendu) à 210€ (30/06, =$240.14 USD/1.1431). Selloff −4.75% le 22/06 (capex anxiety) absorbé. Direction hausse CORRECT (+8.3% > seuil +2%). NOTE : contrebalancé par FX EUR/USD (1.1431 vs ~1.097 base book) = gains en USD supérieurs."
+        "note": "AMZN hausse de ~194€ (16/06, RSI 35.4 survendu) à 210€ (30/06, =$240.14 USD/1.1431). Direction hausse CORRECT (+8.3% > seuil +2%). NOTE : contrebalancé par FX EUR/USD (1.1431 vs ~1.097 base book) = gains en USD supérieurs."
       }
     }
   ],

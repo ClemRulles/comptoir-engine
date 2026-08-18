@@ -1,7 +1,23 @@
 {
   "_doc": "Book de SCÉNARIOS prédictifs (method §K) — le pré-registre qui donne à l'IA un jugement sur le futur SANS boule de cristal : chaque scénario est écrit AVANT d'être joué, probabilisé, falsifiable, et scoré à résolution. Schéma d'un scénario : { id (kebab-case), opened (YYYY-MM-DD), event (l'événement déclencheur, daté ou conditionnel — ex. 'IPO SpaceX confirmée'), chain (chaîne causale de second ordre : qui est impacté, dans quel ordre, pourquoi), probability (0.5-0.95, probabilité ANNONCÉE de réalisation), horizon (YYYY-MM-DD, date limite de résolution), falsifier (ce qui prouvera que le scénario était faux), instruments ([tickers] pour le jouer, direct + pioches/pelles), status (candidat: détecté lundi | validé: la chaîne survit au débat Opus de mercredi | joué: position ouverte vendredi, thesis_id du trade = cet id | rejeté: débat perdu | expiré: horizon dépassé sans réalisation | résolu: tranché et scoré), resolution ({ date, happened (bool), brier ((probability − happened)², 0 = parfait), notes, trade_alpha_pct (si joué : alpha du trade — mesure SÉPARÉE, on peut prédire juste et trader mal) }) }. 'stats' est recalculé par node engine/forecasts.js : hit = (probability ≥ 0.5) === happened ; pocket_cap = part max du NAV allouée aux scénarios (§K : grandit/rétrécit selon le hit_rate prédictif prouvé). Ne jamais réécrire un scénario résolu : on apprend de ses prédictions, on ne les efface pas.",
-  "updated": "2026-08-15",
+  "updated": "2026-08-18",
   "scenarios": [
+    {
+      "id": "nvda-q2-power-grid-rerating",
+      "opened": "2026-08-18",
+      "event": "NVIDIA Q2 FY27 résultats (26 août 2026) : data center revenue ≥ $90B (consensus ~$92B ; Q1 FY27 = $75.2B)",
+      "chain": "NVDA Q2 data center ≥$90B → confirmation que le volume de commandes GPU accélère encore → hyperscalers ont besoin de +puissance supplémentaire dans les 12-18 mois → carnet grid équipementiers (ENR.DE Grid Tech, ETN, NEX.PA) non seulement maintenu mais accéléré → ENR.DE : marché reconnaît que la rentabilité éolien Q3 n'est pas un one-off, révisions analystes upward → re-rating cours ENR.DE vers consensus ~€199 (vs €153 au 18/08, +30%) ; ETN : marge Electrical Americas maintenue 27%+ → continuation de l'expansion du multiple",
+      "probability": 0.65,
+      "horizon": "2026-09-05",
+      "falsifier": "NVDA Q2 data center <$85B (miss significatif vs consensus $92B) OU ≥2 hyperscalers coupent guidance capex >10% en Q3 → doute sur la demande grid équipementiers → non-réalisation du re-rating",
+      "instruments": [
+        "ENR.DE",
+        "ETN",
+        "NEX.PA"
+      ],
+      "status": "candidat",
+      "candidat_note": "Scénario enregistré lundi W34 (2026-08-18). Chaîne de second ordre : NVDA → volume commandes → grid équipementiers → re-rating ENR.DE. Instruments non détenus (ENR.DE gate 🟠 → max 5% §H si validé). Débat Opus requis mercredi avant validation. Précision : l'événement est daté (26/08) et public — pas un print macro inventé ; la chaîne repose sur des mécanismes déjà observés (ENR.DE backlog >€51B, book-to-bill 1.48x, EBITA tripled Q3)."
+    },
     {
       "id": "cpi-regime-transition-h1-2026",
       "opened": "2026-07-07",
