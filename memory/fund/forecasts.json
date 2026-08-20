@@ -1,6 +1,6 @@
 {
   "_doc": "Book de SCÉNARIOS prédictifs (method §K) — le pré-registre qui donne à l'IA un jugement sur le futur SANS boule de cristal : chaque scénario est écrit AVANT d'être joué, probabilisé, falsifiable, et scoré à résolution. Schéma d'un scénario : { id (kebab-case), opened (YYYY-MM-DD), event (l'événement déclencheur, daté ou conditionnel — ex. 'IPO SpaceX confirmée'), chain (chaîne causale de second ordre : qui est impacté, dans quel ordre, pourquoi), probability (0.5-0.95, probabilité ANNONCÉE de réalisation), horizon (YYYY-MM-DD, date limite de résolution), falsifier (ce qui prouvera que le scénario était faux), instruments ([tickers] pour le jouer, direct + pioches/pelles), status (candidat: détecté lundi | validé: la chaîne survit au débat Opus de mercredi | joué: position ouverte vendredi, thesis_id du trade = cet id | rejeté: débat perdu | expiré: horizon dépassé sans réalisation | résolu: tranché et scoré), resolution ({ date, happened (bool), brier ((probability − happened)², 0 = parfait), notes, trade_alpha_pct (si joué : alpha du trade — mesure SÉPARÉE, on peut prédire juste et trader mal) }) }. 'stats' est recalculé par node engine/forecasts.js : hit = (probability ≥ 0.5) === happened ; pocket_cap = part max du NAV allouée aux scénarios (§K : grandit/rétrécit selon le hit_rate prédictif prouvé). Ne jamais réécrire un scénario résolu : on apprend de ses prédictions, on ne les efface pas.",
-  "updated": "2026-08-18",
+  "updated": "2026-08-20",
   "scenarios": [
     {
       "id": "nvda-q2-power-grid-rerating",
@@ -15,8 +15,8 @@
         "ETN",
         "NEX.PA"
       ],
-      "status": "candidat",
-      "candidat_note": "Scénario enregistré lundi W34 (2026-08-18). Chaîne de second ordre : NVDA → volume commandes → grid équipementiers → re-rating ENR.DE. Instruments non détenus (ENR.DE gate 🟠 → max 5% §H si validé). Débat Opus requis mercredi avant validation. Précision : l'événement est daté (26/08) et public — pas un print macro inventé ; la chaîne repose sur des mécanismes déjà observés (ENR.DE backlog >€51B, book-to-bill 1.48x, EBITA tripled Q3)."
+      "status": "rejeté",
+      "rejected_note": "Débat Opus 2026-08-20 : chaîne REJETÉE (3e rejet de la chaîne capex→ENR re-rating). L'ÉVÉNEMENT est probable (~0.8 : NVDA bat le consensus data center depuis de nombreux trimestres) mais l'EFFET DE SECOND ORDRE prédit — ENR.DE re-rate +30% vers €199 d'ici le 05/09 — n'a AUCUN edge. (1) Effet DÉJÀ non transmis, prouvé cette semaine même : ENR a publié un Q3 FY26 RECORD le 05/08 (commandes €17.9B record, backlog €162B, net income +70% à €1.188B, FCF pré-tax €2.3B = 5x, éolien Gamesa positif 1ère fois en 15T) et l'action n'a pas re-raté matériellement (réaction molle/glissement post-print). Si le PROPRE trimestre record d'ENR ne re-rate pas le titre, un print NVDA à un cran de distance ne le fera pas en 10 jours. (2) Maillon faible temporel : la chaîne 'demande de puissance +12-18 mois' est structurelle et LENTE ; l'horizon 05/09 (~10j post-NVDA) est trop court pour qu'un multiple se ré-étende. (3) Valo déjà tendue : ENR ~24x fwd (32x au pic €162) vs médiane sectorielle 18.8x — le re-rating +30% supposerait ~30x fwd, soit pricer la perfection ; PT consensus €191-198 déjà atteignable sans catalyseur NVDA. Probabilité réelle de la chaîne complète ≈ 0.8 × 0.35 ≈ 0.28 < 0.5. Rappel : ceci NE nie PAS le supercycle power-grid (réel, backlog €162B), il nie que CE print NVDA re-rate ENR en 10 jours. Instruments sans marge d'entrée (ENR 🟢 mais cov 43% momentum-only ; ETN 34x Surveiller ; NEX.PA 🟠). Miroir exact du rejet ai-power-enr-hyperscaler-q2 (18/06) : 'ENR ne re-rate plus sur les bonnes nouvelles'. Pas de poche allouée."
     },
     {
       "id": "cpi-regime-transition-h1-2026",
