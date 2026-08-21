@@ -1,27 +1,27 @@
-# Régime de marché — mis à jour le 2026-08-19 (Scout W34)
+# Régime de marché — mis à jour le 2026-08-21 (Portfolio Doctor W34)
 
-- **Cadran** : **RISK-ON SAIN** — confirmé par engine/signals.js. CPI juillet 3.3% YoY (FRED, −20bps vs juin 3.5%), VIX 15.19, T10Y2Y 0.52, HY spread 2.70%. Aucune surchauffe. Jackson Hole 22/08 : Fed Powell attendu — FOMC 17 septembre cut probabilité 91% (CME FedWatch). EUR/USD 1.152 stable.
-- **Consigne au système** : **plancher cash ≥ 5%** ; sélectivité haute (gate 🟢, deep-dive récent, stop écrit) ; favoriser F-Score ≥ 7 ; P-001 actif sur AMZN, MSCI, CEG, GVA (stops USD natifs) ; SAF.PA gate revenu 🟢 — cap 5% §H levé, renforcement 5%→7% (Moyenne) envisageable vendredi si gate confirme ; AI.PA gate 🟠, cap 5% §H actif ; CEG stop EUR marginalement franchi MAIS P-001 prime.
+- **Cadran** : **RISK-ON SAIN** — confirmé par engine/signals.js 21/08. CPI juillet 3.3% YoY (FRED, −20bps vs juin 3.5%), VIX 14.89 (stable, −0.3pt vs 19/08), T10Y2Y 0.50, HY spread 2.73%. Aucune surchauffe. **⚠️ Jackson Hole DEMAIN 22/08** : Powell attendu dovish (FOMC 17 septembre cut probabilité 91% CME FedWatch) — différer AMZN trim et SAF.PA renforcement à après le discours. EUR/USD 1.152 stable.
+- **Consigne au système** : **plancher cash ≥ 5%** ; sélectivité haute (gate 🟢, deep-dive récent, stop écrit) ; favoriser F-Score ≥ 7 ; P-001 actif sur AMZN, MSCI, CEG, GVA (stops USD natifs) ; SAF.PA gate 🟢 confirmé +0.358 RSI 58.5 — renforcement 5%→7% eligible vendredi après Jackson Hole ; **AMZN gate 🟠 +0.187 (FLIP 21/08)** — cap 5% §H actif, trim −0.774 parts vendredi après Jackson Hole ; AI.PA gate 🟠 +0.140, cap 5% §H actif (position ~5.02% NAV, pas d'action) ; CEG stop EUR dégagé (+2.0%), P-001 prime.
 - **Valorisation indice** : S&P 500 YTD positif ; rotation IA en cours (Big Tech → picks-and-shovels) ; ENR.DE Q3 FY26 (5 août) : EBITA tripled, vent rentable pour la 1ère fois en 15 trimestres → inflexion fondamentale supercycle power-grid ; NVDA Q2 résultats 26/08 (consensus ~$92B data center).
 - **Rotation sectorielle (W34)** : Infrastructure électrique IA — inflexion fondamentale ENR.DE Q3 (EBITA €1.6B, tripled, wind profitable) ; Compounders défensifs (LOTB, BNP.PA, MSCI) ; Nucléaire/PPA (CEG, §G gouverne) ; MSCI RSI 39 (rebond depuis 28.9, P-002 levée). SAF.PA retour 🟢 (RSI 68.3, sain).
 - **Zones de bulle** : PRY.MI momentum +170% parabolic (éviter) ; POWL momentum +169% parabolic (À éviter) ; VRT momentum +113% + revenue miss Q2 (éviter) ; FIX momentum +145% (§B actif) ; ENR.DE mom +101% (vigilance mais inflexion fondamentale change la lecture).
-- **⚠️ ALERTE SAF.PA — GATE FLIP 🟠→🟢 (ce jour 19/08)** : Gate revenu 🟢 c=+0.409, RSI 68.3 (sain, loin du suracheté 80+). Cap 5% §H LEVÉ. Position actuelle 1.4509 parts avg 316.14€ = 5.0% NAV. Eligible à renforcement 5%→7% (Moyenne) vendredi si gate 🟢 confirmé — thèse S1 marge record ✓ intacte, stop -8% = 290.85€ (cours 353.1€, marge +21.4%). À décider au brief vendredi.
-- **⚠️ CEG — STOP EUR FRANCHI, P-001 PRIME** : Cours $266.83 (= 231.6€) < stop EUR 232.29€ (−0.3%). Mais P-001 : stop USD $212.45 intact (cours $266.83 >> $212.45, marge +25.7%). §G gouverne — falsificateurs Q2 non déclenchés (capex hyperscalers intacts ✓). Ne pas sortir sur stop EUR seul tant que P-001 tient.
-- **⚠️ MSCI — P-002 levée, RSI rebond** : Cours $562.77 (=488.5€), stop USD $540.54 — marge +4.1% (vs +1.87% le 18/08). RSI 39 (rebond depuis 28.9). Gate 🟢 +0.447 F7/9 (meilleur gate du book). P-002 plus active. Surveiller sans action.
-- **Positions book IA — gates au 19/08 (engine/signals.js) :**
-  - **SAF.PA** 🟢 +0.409, RSI 68.3 · cours 353.1€ · **gate flip 🟠→🟢** — cap 5% §H levé · 1.4509 parts = 5.0% NAV · stop 290.85€ (marge +21.4%). Renforcement vendredi possible.
-  - **AMZN** 🟢 +0.254, F5/9, RSI 67.5 · cours $259.45 (≈225.2€) · stop USD $212.45 (P-001) → thèse AWS +37% ✓. GARDER.
-  - **EIMI** 🟢 +0.391, RSI 76.9 (suracheté) · cours $53.71 (≈46.6€) · ~4.5% NAV. GARDER, surveiller RSI.
-  - **AI.PA** 🟠 +0.090, RSI 21 (très survendu) · cours 167.04€ · 3.07935 parts = 5.0% NAV · cap 5% §H respecté · stop 152.03€ intact. Aucune action.
-  - **LOTB** 🟢 +0.385, RSI 78 (suracheté) · cours 12 400€ · compounder, ~4.7% NAV. Surveiller sans vendre.
-  - **BNP.PA** 🟢 +0.466, RSI 64 · cours 109.4€ · ne pas renforcer. Q2 +33% ✓. ~4.0% NAV.
-  - **MSCI** 🟢 +0.447, F7/9, RSI 39 · cours $562.77 (≈488.5€) · **stop USD $540.54 — marge +4.1% (P-002 levée)** · meilleur gate du book · rétention 95.3% ✓. GARDER.
-  - **CEG** 🟢 +0.293, F6/9, RSI 56.6, momentum -20% · cours $266.83 (≈231.6€) · stop EUR 232.29€ franchi (−0.3%) MAIS **P-001 prime** : stop USD $212.45 intact (marge +25.7%) · §G gouverne. GARDER.
-  - **GVA** 🟢 +0.541, F7/9, RSI 53.7 · cours $124.42 (≈108.0€) · stop USD $116.93 (P-001, marge +6.4%) · pivot marge Q2 ✓ · backlog $7.4B · 7.0% NAV. GARDER.
+- **⚠️ AMZN — GATE FLIP 🟢→🟠 (ce jour 21/08)** : Gate +0.187 (vs +0.254 le 19/08), F5/9, RSI 40.6 (baisse depuis 67.5 le 19/08), initiés 0B/4S défavorable. Cap 5% §H ACTIF. Position 3.0478 parts ≈ 6.7% NAV > 5% — TRIM VENDREDI −0.774 parts (→ 2.274 parts = 5% NAV). Différer à après Jackson Hole 22/08 Powell. Thèse AWS +37% ✓ intacte, stop USD +22.5%.
+- **⚠️ SAF.PA — GATE 🟢 CONFIRMÉ (+0.358, RSI 58.5)** : Cap 5% §H LEVÉ. Renforcement 5%→7% (+0.642 parts) eligible vendredi après Jackson Hole. RSI 58.5 sain (< 65 = sizing plein autorisé per leçon 19/08). Thèse S1 marge record ✓, stop +18.1%.
+- **⚠️ MSCI — STOP EUR TRÈS SERRÉ** : Cours $568.75 = 493.7€ vs stop EUR 492.57€ — marge +0.23% (quasi-friction). P-001 gouverne : stop USD $540.54 intact (marge +5.2%). Garder sans action tant que P-001 tient.
+- **Positions book IA — gates au 21/08 (engine/signals.js) :**
+  - **SAF.PA** 🟢 +0.358, RSI 58.5 (sain) · cours 343.6€ · cap 5% §H levé · 1.4509 parts = 4.86% NAV · stop 290.85€ (marge +18.1%). Renforcement 5%→7% vendredi après Jackson Hole.
+  - **AMZN** 🟠 +0.187 ⚠️ FLIP 🟢→🟠 (21/08), F5/9, RSI 40.6, initiés 0B/4S · cours $260.11 (≈225.8€) · stop USD $212.45 (marge +22.5% — P-001) · 3.0478 parts = 6.7% NAV > cap 5% §H · TRIM −0.774 parts vendredi après Jackson Hole.
+  - **EIMI** 🟢 +0.564, RSI 67 (sain) · cours $54.47 (≈47.3€) · ~4.50% NAV. GARDER.
+  - **AI.PA** 🟠 +0.140, RSI 31.4 (très survendu) · cours 167.38€ · 3.07935 parts ≈ 5.02% NAV · cap 5% §H respecté · stop 152.03€ intact (marge +10.1%). Aucune action.
+  - **LOTB** 🟢 +0.385, RSI 74 · cours 12 660€ · compounder, ~4.86% NAV. Surveiller sans vendre.
+  - **BNP.PA** 🟢 +0.466, RSI 49.5 (normalisé) · cours 105.96€ · ~3.84% NAV. GARDER.
+  - **MSCI** 🟢 +0.476, F7/9, RSI 45.1 · cours $568.75 (≈493.7€) · **stop USD $540.54 — marge +5.2%** · **stop EUR 492.57€ — marge +0.23% (extrêmement serré — P-001 gouverne)** · rétention 95.3% ✓. GARDER.
+  - **CEG** 🟢 +0.337, F6/9, RSI 57.3, initiés 1B/0S · cours $272.92 (≈236.9€) · stop EUR 232.29€ DÉGAGÉ (marge +2.0%) · stop USD $212.45 (marge +28.5%) · §G gouverne. GARDER. Jackson Hole favorable.
+  - **GVA** 🟢 +0.558, F7/9, RSI 60.1 · cours $122.97 (≈106.7€) · stop USD $116.93 (P-001, marge +5.2%) · pivot marge Q2 ✓ · backlog $7.4B · 6.82% NAV. GARDER. Jackson Hole favorable.
 - **EUR/USD** : 1.152 — EUR fort. P-001 actif sur AMZN, MSCI, CEG, GVA.
 - **Macro (3 lignes)** :
   - US : CPI juillet 3.3% YoY (FRED) — désinflation continue. T10Y2Y 0.52, fedfunds 3.63%. VIX 15.19 (calme). FOMC 17/09 : 91% probabilité de coupe (25bps). Jackson Hole 22/08. Régime RISK-ON SAIN confirmé.
   - Zone euro : ECB dépôt ~2.25%. EUR/USD 1.152. EU HICP 2.7% YoY (sous cible). ENR.DE Q3 inflexion fondamentale (power-grid supercycle).
   - Hyperscalers : capex $660-690B engagé. NVDA Q2 résultats 26/08 (consensus $92B data center vs Q1 $75.2B). Aucun falsificateur infra-IA déclenché.
-- **NAV book IA estimée** : ≈ **10 267€** (−1.45% vs start_capital 10 417€). SAF.PA rebond légèrement, MSCI P-002 levée. Cash 5 257.83€ = **51.2% NAV** (plancher 5% RISK-ON largement respecté). 9 positions actives.
-- **Sources** : engine/signals.js 2026-08-19 (tous gates book) ; FRED (CPI 3.3%, T10Y2Y 0.52, UNRATE 4.1%) ; CME FedWatch (FOMC Sep 91% cut) ; ENR.DE Q3 FY26 (05/08/2026) ; P-001/P-002/§G playbook ; données marchés Yahoo (cours du jour).
+- **NAV book IA estimée** : ≈ **10 271€** (−1.40% vs start_capital 10 417€). Cash 5 257.83€ = **51.2% NAV** (plancher 5% RISK-ON largement respecté). 9 positions actives. 0 trades exécutés jeudi.
+- **Sources** : engine/signals.js 2026-08-21 (tous gates book) ; FRED (CPI 3.3%, T10Y2Y 0.50, VIX 14.89) ; CME FedWatch (FOMC Sep 91% cut) ; P-001/§G playbook ; données marchés Yahoo (cours du jour).

@@ -1,6 +1,6 @@
 {
   "_doc": "Cache des signaux QUANTITATIFS calculés par engine/signals.js. 'regime' = score macro FRED agrégé (gate global). 'tickers' = map ticker -> { fscore, momentum_12_1, earnings_quality, gate } horodatés. L'IA LIT ce fichier avant d'ouvrir/fermer une position (method §A/§H) : les signaux sont des garde-fous factuels, pas une boîte noire. 'data_gaps' liste les sources indisponibles (clé manquante / quota) pour rester honnête sur l'incertitude. Régénéré par les routines ; ne pas éditer à la main.",
-  "as_of": "2026-08-15",
+  "as_of": "2026-08-21",
   "seeded": true,
   "start_capital": 10417.28,
   "cash": 5257.83,
@@ -14,9 +14,9 @@
       "thesis_id": "saf-aero",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "sortie si S1 marge record non maintenu (RPFH < Q1 pace, carnets CFM déclinants) ; stop -8% avg_cost = 290.85€ (cours 360.5€, marge +24.0%) ; gate 🟠 +0.159 (RSI 78.5 suracheté persistant, range52 ~0.94) — cap 5% §H actif ; 1.4509 parts ≈ 5.05% NAV (cap respecté) ; ne pas renforcer en zone suracheté",
+      "exit_rule": "sortie si S1 marge record non maintenu (RPFH < Q1 pace, carnets CFM déclinants) ; stop -8% avg_cost = 290.85€ (cours 343.6€, marge +18.1%) ; gate 🟢 +0.358 (RSI 58.5 sain, confirmé 21/08) — cap 5% §H LEVÉ ; 1.4509 parts ≈ 4.86% NAV ; RENFORCEMENT 5%→7% ELIGIBLE VENDREDI (RSI 58.5 < 65, thèse S1 record ✓) différé après Jackson Hole 22/08",
       "seed": false,
-      "thesis": "Aéronautique + MRO LEAP : S1 marge record confirmé (28/07/2026), aftermarket +29.3%, services +43%, LEAP 520. Guidance FY relevée. Gate 🟠 +0.159 (RSI 78.5 suracheté persistant). Position trimmée à cap 5% le 14/08 (Opus verdict 13/08). Stop -8% = 290.85€ (marge +24% vs cours 360.5€). Thèse HAUTE intacte, taille réduite pour discipline sizing."
+      "thesis": "Aéronautique + MRO LEAP : S1 marge record confirmé (28/07/2026), aftermarket +29.3%, services +43%, LEAP 520. Guidance FY relevée. Gate 🟢 +0.358 confirmé 21/08 (RSI 58.5 sain — loin du suracheté). Stop -8% = 290.85€ (marge +18.1% vs cours 343.6€). Cap 5% §H levé. Renforcement 5%→7% (~0.642 parts supplémentaires) eligible vendredi après Jackson Hole."
     },
     {
       "ticker": "AMZN",
@@ -27,9 +27,9 @@
       "thesis_id": "amzn-aws",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "sortie si croissance AWS cassée (<25% YoY) OU capex coupé >15% (test Q2 confirmé ✓ — AWS +37%, capex relevé) ; stop EUR -8% avg_cost = 184.43€ ; stop USD natif $212.45 (P-001 : avg_cost 200.47€ × 1.152 × 0.92) ; gate 🟢 +0.240, RSI 65 sain, F5/9 — 3.0478 parts ≈ 6.71% NAV",
+      "exit_rule": "sortie si croissance AWS cassée (<25% YoY) OU capex coupé >15% (Q2 confirmé ✓ — AWS +37%) ; stop EUR -8% avg_cost = 184.43€ ; stop USD natif $212.45 (P-001 : avg_cost 200.47€ × 1.152 × 0.92) ; gate 🟠 +0.187 (FLIP 🟢→🟠 le 21/08 — F5/9, RSI 40.6, initiés 0B/4S, couv 92%) — cap 5% §H actif ; 3.0478 parts ≈ 6.7% NAV > cap 5% ; TRIM VENDREDI −0.774 parts (→ 2.274 parts = 5% NAV) différé après Jackson Hole 22/08",
       "seed": false,
-      "thesis": "AWS + levier marge retail/pub. Q2 AWS +37% ✓ (>> seuil 25%), capex relevé ✓ — FALSIFICATEUR NON DÉCLENCHÉ. F5/9, earnings quality vert. Gate 🟢 +0.240, RSI 65 sain. Thèse HAUTE. Renforcé 08/08 — 3.0478 parts, avg 200.47€, stop USD natif $212.45 (P-001). Cours $262.65 = 228.0€, marge stop +24.7%."
+      "thesis": "AWS + levier marge retail/pub. Q2 AWS +37% ✓ (>> seuil 25%), capex relevé ✓ — FALSIFICATEUR NON DÉCLENCHÉ. F5/9, earnings quality vert. Gate 🟠 +0.187 (FLIP 🟢→🟠 le 21/08 — initiés 0B/4S, RSI 40.6). Cours $260.11 = 225.8€, marge stop USD +22.5%. Thèse HAUTE mais gate ambre — cap 5% §H actif. TRIM VENDREDI −0.774 parts différé après Jackson Hole 22/08."
     },
     {
       "ticker": "EIMI",
@@ -452,5 +452,5 @@
       "rationale": "Rotation CRH→GVA — entrée vendredi §H. Pivot marge Q2 LIVRÉ (adj EBITDA 12.8% dans guide 12.25-13.25%) : condition binaire pré-enregistrée satisfaite (leçon 13/08 GVA/PIVOT-LIVRÉ-→-ACHETER). Rev +29% ($1.46B), backlog record $7.4B (+$250M séquentiel), data centers cités (supercycle W33). Gate 🟢 F7/9 vert (+0.577, cov 96%) = le plus propre du book sur ses fondamentaux. Même thème IIJA que CRH, gate frais, 17x fwd (vs pairs VMC 30x, ETN 34x). RSI 53.1 sain (vs momentum refroidi +8.69% = pas de surchauffe). Prix EUR : $127.10 / 1.152 = 110.33€. Stop USD natif $116.93 (P-001 : 110.33€ × 1.152 × 0.92). Sizing Moyenne = 7% NAV (~725€). P-002 : prix signals.js $127.10 concordant avec convictions 13/08 ($126.19) — écart < 1% → P-002 satisfait, pas d'artefact. Coût total : 6.57 × 110.33€ = 724.87€ + frais 2.17€ = 727.04€."
     }
   ],
-  "note": "Brief 2026-08-15 (Vendredi W33). Régime : RISK-ON SAIN (CPI 3.5%, VIX 14.63, T10Y2Y 0.51, HY 2.71%). 2 trades exécutés : (1) AI.PA TRIM −1.130 parts à 168.26€ (gate 🟠 +0.090 DÉGRADÉ, cap 5% §H — net 189.56€, frais 0.57€) ; (2) GVA BUY +6.57 parts à 110.33€ (gate 🟢 +0.577 F7/9, rotation CRH→GVA, pivot marge livré — coût 727.04€, frais 2.17€). Cash : 5 795.31€ + 189.56€ − 727.04€ = 5 257.83€ (50.7% NAV). 9 positions actives. NAV estimée : ≈10 360€ (−0.54% vs start_capital 10 417€). CRH SORTI 14/08 (scoré decisions.json #10 : P&L −17.67%, alpha −21.65%, outcome neutre). MSCI gate 🟢 +0.602 (RSI 48.4 sain, cours $569.13, stop USD $540.54 intact ✓). CEG 🟢 +0.327 (RSI 59.8, cours $282.50 = 245.2€ > stop EUR 232.29€, §G gouverne). Alertes RSI : LOTB 87.9 extrême (surveiller, position petite), BNP.PA 81.6 suracheté (ne pas renforcer), SAF.PA 78.5 (cap 5% ok). AI.PA RSI 27.3 survendu : trim exécuté, potentiel rebond CT, stop 152.03€ intact. GVA : nouvel entrant, stop USD $116.93 (P-001). Benchmark IWDA.AS +3.98% depuis 04/06 → alpha cumulé book ≈ −4.5%. Prochains tests : GVA Q3'26 (marge/backlog), NOVOB Q2 données Medicare (~mi-août), IIJA réautorisation vote automne."
+  "note": "Portfolio Doctor 2026-08-21 (Jeudi W34). Régime : RISK-ON SAIN (CPI 3.3%, VIX 14.89, T10Y2Y 0.50, HY 2.73%). 0 trades exécutés (4 déclencheurs §H non armés). Gates signals.js 21/08 : SAF.PA 🟢 +0.358 (RSI 58.5 sain ✓, cap levé), AMZN 🟠 +0.187 ⚠️ FLIP 🟢→🟠 (initiés 0B/4S, RSI 40.6 — cap 5% actif, 6.7% NAV > 5%, TRIM VENDREDI −0.774 parts après Jackson Hole), EIMI 🟢 +0.564, AI.PA 🟠 +0.140 (RSI 31.4, cap 5% ok), LOTB 🟢 +0.385, BNP.PA 🟢 +0.466, MSCI 🟢 +0.476 F7/9 (stop USD +5.2%, stop EUR margin +0.23% — P-001 gouverne), CEG 🟢 +0.337 F6/9 (stop EUR +2.0%, stop USD +28.5% — §G intact), GVA 🟢 +0.558 F7/9 (stop USD +5.2% — Jackson Hole favorable). Cash 5 257.83€ (51.2% NAV). NAV estimée : ≈10 271€ (−1.40% vs start_capital 10 417€). 9 positions actives. Alertes vendredi : (1) AMZN trim −0.774 parts (6.7%→5% NAV) après Jackson Hole 22/08 ; (2) SAF.PA renforcement 5%→7% (~+0.642 parts) après Jackson Hole 22/08. Catalyseurs actifs : Jackson Hole 22/08, NVDA Q2 26/08, IIJA réautorisation automne."
 }
