@@ -1,132 +1,92 @@
-# Brief du vendredi — 2026-08-15 (W33)
+# Brief W34 — 22 août 2026
 
-**Régime : RISK-ON SAIN** | VIX 14.63 | T10Y2Y 0.51 | CPI 3.5% (US) / 2.7% (EU HICP) | EUR/USD 1.152 | Cash floor : **5%**
+## Régime · RISK-ON SAIN confirmé
 
----
-
-## 1. PASSE 1 — Leçons et scoring W33
-
-### Position clôturée : CRH (14/08)
-
-| Champ | Valeur |
-|-------|--------|
-| Entrée | 102.39€ / 27 juin 2026 |
-| Sortie | 84.81€ / 14 août 2026 |
-| P&L net | **−17.67%** (−129.17€ après frais) |
-| Benchmark IWDA.AS | +3.98% (04/06→14/08) |
-| Alpha | **−21.65%** |
-| Confiance annoncée | Moyenne |
-| Hit ? | Non |
-| Thèse cassée ? | Non — Q2 beat $2.21/$2.03 ✓, guide EBITDA FY26 maintenu |
-| Raison sortie | exit_rule pré-enregistrée : gate slip 🟢→🟠 (DERNIER override déclenché) + stop USD $107.37 toujours franchi |
-
-Décision ajoutée à decisions.json (#10). Calibration Moyenne : n=6→7, avg_return −19.53%→−19.26%, avg_alpha −17.55%→−18.13%.
-
-### Grok calls
-Aucun call ouvert. Aucune résolution cette semaine. hit_rate=40% stable (2/5 résolus, tactical_cap=0). Prochains calls : cibler situations RSI survendu + catalyseur daté (RSI AI.PA 27.3 → surveiller rebond avant d'appeler).
-
-### Forecasts
-0 scénario actif. pocket_cap=10% disponible, non utilisée.
-
-### Calibration
-- Moyenne : n=7, avg_return=−19.26%, avg_alpha=−18.13% (n<8, pas d'ajustement §I)
-- Global : 10 décisions, toutes négatives. NAV ≈ −0.54% vs start_capital. Benchmark IWDA.AS +3.98%.
-- Note : 9/10 sorties sont des exits gate-forcés. 0/10 positifs. N'ajuster le sizing qu'à n≥8 par bucket (~sept-oct 2026).
+CPI juillet 3.3% YoY, VIX 16.01, T10Y2Y 0.50, HY spread 2.75%. Aucune surchauffe.  
+**Jackson Hole 22/08 — Powell dovish ✓** : FOMC 17 septembre cut 91% CME FedWatch. Plancher cash 5%.  
+EUR/USD 1.152. 9 positions actives, cash 5 209.83€ (50.7% NAV).
 
 ---
 
-## 2. PASSE 2 — Trades exécutés vendredi 15/08
+## Tendance W34 — Supercycle power-grid : inflexion prouvée, NVDA Q2 lundi
 
-### 2 trades exécutés
-
-| Ticker | Action | Qté | Prix | Gate | Frais | Net | Raison |
-|--------|--------|-----|------|------|-------|-----|--------|
-| AI.PA | VENTE (trim) | −1.130 parts | 168.26€ | 🟠 +0.090 RSI 27.3 | 0.57€ | +189.56€ cash | Cap 5% §H : position 6.9%→5.0% NAV |
-| GVA | ACHAT | +6.57 parts | 110.33€ | 🟢 +0.577 F7/9 | 2.17€ | −727.04€ cash | Rotation CRH→GVA, pivot marge livré |
-
-**Cash** : 5 795.31€ + 189.56€ − 727.04€ = **5 257.83€** (50.7% NAV)
-
-### Décisions non prises
-- **SAF.PA** (🟠 +0.159, RSI 78.5) : cap 5% déjà respecté (1.4509 parts = 5.05% NAV). Aucune action requise.
-- **LOTB** (🟢 +0.385, RSI 87.9 extrême) : position petite (4.68% NAV), gate 🟢 — pas de cap 5%. Surveiller.
-- **BNP.PA** (🟢 +0.259, RSI 81.6) : ne pas renforcer en suracheté malgré gate 🟢. Thèse conservée.
-- **NOVOB** hors book (gate 🟠) : données Medicare Q2 attendues mi-août — ré-entrée conditionnelle.
-
-### État des positions (15/08)
-
-| Ticker | Parts | Cours | % NAV | Gate | Stop | Statut |
-|--------|-------|-------|-------|------|------|--------|
-| SAF.PA | 1.4509 | 360.5€ | 5.05% | 🟠 +0.159 RSI 78.5⚠️ | 290.85€ | ✅ Cap 5% OK. Thèse S1 record ✓ intacte. |
-| AMZN | 3.0478 | $262.65 | 6.71% | 🟢 +0.240 RSI 65 | $212.45 USD | ✅ AWS +37% Q2 ✓. GARDER. |
-| EIMI | 9.775 | $54.60 | 4.47% | 🟢 +0.615 RSI 62 | — | ✅ Section 301 neutre. ETF EM solide. |
-| AI.PA | 3.079 | 168.26€ | 5.00% | 🟠 +0.090 RSI 27.3 | 152.03€ | ✅ TRIM exécuté → cap 5% §H. RSI survendu. |
-| LOTB | 0.0394 | 12 320€ | 4.68% | 🟢 +0.385 RSI 87.9⚠️ | — | ⚠️ RSI extrême. Compounder. Surveiller. |
-| BNP.PA | 3.722 | 112.10€ | 4.03% | 🟢 +0.259 RSI 81.6⚠️ | — | ⚠️ RSI suracheté. Q2 +33% ✓. Ne pas renforcer. |
-| MSCI | 1.36 | $569.13 | 6.49% | 🟢 +0.602 RSI 48.4 | $540.54 USD | ✅ Rétention 95.3% ✓. RSI sain. Meilleur gate. |
-| CEG | 2.465 | $282.50 | 5.83% | 🟢 +0.327 RSI 59.8 | 232.29€ | ✅ §G. Falsificateurs Q2 non déclenchés ✓. |
-| GVA | 6.57 ★ | $127.10 | 6.99% | 🟢 +0.577 F7/9 RSI 53.1 | $116.93 USD | ★ NOUVEAU. Pivot marge livré, backlog $7.4B. |
-| **Cash** | — | — | **50.7%** | — | — | Plancher 5% très largement respecté. |
-
-**NAV estimée : ~10 360€** (−0.54% vs start_capital 10 417€)
+Tendance **CONTINUATION**. ENR.DE Q3 FY26 (5/08) : EBITA 3×, éolien rentable pour la 1ère fois en 15T, backlog €162B record. La thèse est fondamentale, pas technique.  
+**Prochain test : NVDA Q2 résultats 26/08** (consensus $92B data center vs Q1 $75.2B). Pas un déclencheur de re-rating immédiat sur ENR.DE (rejeté 3 fois en forecasts — la chaîne est lente), mais confirme la demande grid structurelle.  
+**GVA** (position 7% NAV) : même thème IIJA, Q3 résultats ~septembre. Marge guide 12.25-13.25%, backlog $7.4B.
 
 ---
 
-## 3. PASSE 3 — Tendance et brief marché
+## Passe 1 — Apprentissage W34
 
-### Tendance W33 : Infrastructure électrique IA — VALIDÉE (inchangée)
+**Positions clôturées** : aucune depuis la semaine dernière (dernière clôture CRH le 14/08). Rien à scorer.
 
-**Thèse en une ligne** : L'électricité est le nouveau goulot d'étranglement de l'IA — les équipementiers de réseau entrent dans un supercycle de commandes à visibilité pluriannuelle alors que le bottleneck se déplace des chips vers la puissance.
+**Grok calls** : 5 résolus / 1 ouvert (msci-oversold-rebound-w34, horizon 01/09). 0 résolution ce run. Hit-rate 40%, tactical_cap 0% (< 6 résolus requis).
 
-**Ce que cette semaine confirme** :
-1. **GVA entré au book** (rotation CRH→GVA) : pivot marge Q2 12.8% LIVRÉ ✓, data centers cités, même thème IIJA mais gate frais F7/9 et +17x fwd. La rotation valide la discipline : sortir = abandonner le _véhicule_, pas la thèse.
-2. **Régime RISK-ON SAIN maintenu** : VIX 14.63 (avidité), CPI 3.5%, T10Y2Y 0.51. Aucune surchauffe visible.
-3. **Hyperscalers** : aucun falsificateur déclenché depuis 4 semaines. CEG et GVA sont sur les bonnes thèses.
-4. **RSI extrêmes** : 3 positions en zone suracheté (LOTB 87.9, BNP.PA 81.6, SAF.PA 78.5) — elles ont bien performé mais la discipline de sizing prime (ne pas renforcer).
+**Forecasts** : 3 scénarios, tous rejetés. 0 résolution. Pocket_cap 10% (0 hits, mais ≥1 résolution nécessaire pour calibration).
 
-**Ce qui tuerait la tendance** :
-1. Réduction >20% capex hyperscaler 2 trimestres consécutifs → sortie CEG / GVA
-2. IIJA non réautorisé FY2027 (vote automne) → sortie GVA immédiate (exit_rule pré-enregistrée)
-3. CPI rebondit ≥ 4.5% → rebasculement SURCHAUFFE → cash floor 30% (plancher de sécurité)
-
-### Watchlist (priorités)
-- **NOVOB** : données adoption Medicare Q2 attendues mi-août. Ré-entrée si gate 🟢 + RSI<65 + adoption >5% éligibles.
-- **ETN** : Surveiller à 28-30x fwd (~$375-385). Aucune entrée à 34x actuel (P-003 : gate élevé ≠ acheter).
-- **NEX.PA** : Surveiller — gate 🟠, Power en normalisation Q2. Attendre repli + gate 🟢 (backlog €7.7B intact).
+**Calibration** : 10 décisions historiques, tous buckets n < 8. Pas d'ajustement sizing. Prochaine réévaluation : n_Moyenne ≥ 8 (~sept-oct 2026).
 
 ---
 
-## 4. Catalyseurs des 5 prochaines semaines
+## Passe 2 — Book IA : 2 trades exécutés
 
-| Date | Événement | Impact book |
-|------|-----------|-------------|
-| **~mi-août 2026** | NOVOB Q2 données adoption Medicare | Ré-entrée possible si gate 🟢 + RSI<65 + adoption >5% |
-| **~septembre 2026** | GVA Q3 résultats | Test pivot marge (guide 12.25-13.25%) + backlog $7.4B+ stable |
-| **30/09/2026** | Falaise IIJA FY2026 | Binaire fort pour GVA. Sans réautorisation FY2027 → sortie immédiate |
-| **Automne 2026** | Vote Congrès IIJA FY2027 | Signal sortie GVA si non réautorisé. Risque majeur de thèse |
-| **~novembre 2026** | FOMC | En RISK-ON SAIN : coupe possible H1 2027 si CPI continue ↓. Favorable CEG/GVA |
+### Trade 1 — AMZN TRIM (cap 5% §H)
+- **Vendu** : 0.774 parts à **224.5€** ($258.63 / 1.152)
+- Gate 🟠 +0.126, RSI 24.5 (survendu extrême), initiés 0B/4S, F5/9
+- Frais : 0.52€ | Net reçu : 173.25€
+- Reste : **2.2738 parts ≈ 5.0% NAV**
+- Stop USD $212.45 (P-001, marge +22.0% vs $258.63)
+- Thèse AWS intacte (Q2 +37%, falsificateur non déclenché) — cap 5% mécanique prime
+- **Note** : RSI 24.5 = survendu extrême (potentiel rebond technique), mais le cap §H est infranchissable. Un RSI bas ne suspend pas la règle.
 
----
+### Trade 2 — SAF.PA RENFORCEMENT (5%→7%)
+- **Acheté** : 0.642 parts à **343.6€**
+- Gate 🟢 +0.345, RSI 54.2 (sain), mom +12.9%
+- Frais : 0.66€ | Débit : 221.25€
+- Nouvelle quantité : **2.0929 parts ≈ 7.0% NAV**
+- Nouvel avg_cost : **324.60€** | Stop -8% : **298.63€** (marge +15.1%)
+- Thèse S1 marge record ✓ (28/07) — renforcement pré-enregistré exécuté comme prévu
 
-## En une phrase
-
-**RISK-ON SAIN confirmé, 2 trades exécutés (AI.PA trim cap §H + rotation CRH→GVA), book 9 positions / 50.7% cash / NAV −0.54% — benchmark IWDA.AS +3.98%, alpha cumulé ≈ −4.5% à combler par la qualité des convictions actives (GVA pivot livré, MSCI gate 🟢 fort, CEG §G intact).**
-
----
-
-## Revue hebdomadaire W33
-
-**Ce qui s'est passé** : CRH sorti 14/08 (3 déclencheurs simultanés : gate slip, DERNIER override, stop USD — thèse intacte mais règle prime). SAF.PA trimmé 14/08 (RSI suracheté, cap 5% verdict Opus). AI.PA trimmé 15/08 (gate 🟠 DÉGRADÉ, cap 5% mécanique). GVA acheté 15/08 (rotation, pivot livré, F7/9, 17x fwd). 
-
-**Ce qui n'a pas bougé** : Tendance W33 électricité/IA inchangée — GVA EST la tendance (data centers + IIJA). MSCI, CEG, AMZN, EIMI : positions stables, pas d'action requise.
-
-**Niveau de confiance global** : Moyen. 4 positions en zone RSI à surveiller. Le cash à 50.7% est à la fois une sécurité et un coût d'opportunité : le déploiement progressif (GVA 7% + éventuellement NOVOB) est la voie vers l'alpha si les thèses se confirment sur les 2 prochains trimestres. Benchmark trail ≈ −4.5% depuis seed — récupérable sur Q3-Q4 si IIJA + nucléaire + compounders livrent.
+**Bilan trades** : cash 5 257.83€ → **5 209.83€** | NAV estimée ≈ **10 266€** (−1.45% vs start_capital 10 417€)
 
 ---
 
-## Archive — Brief du 2026-08-08 (W32)
+## Positions book IA — gates 22/08
 
-*(archivé le 15/08/2026 — contenu complet dans le commit précédent)*
+| Ticker | Gate | Parts | NAV% | Stop | Note |
+|--------|------|-------|------|------|------|
+| SAF.PA | 🟢 +0.345, RSI 54.2 | 2.0929 | 7.0% | 298.63€ | Renforcement exécuté |
+| AMZN | 🟠 +0.126, RSI 24.5 | 2.2738 | 5.0% | $212.45 (P-001) | Trim exécuté, RSI survendu |
+| EIMI | 🟢 +0.565, RSI 65.5 | 9.775 | 4.5% | rebalan. | GARDER |
+| AI | 🟠 +0.140, RSI 36.1 | 3.079 | 5.0% | 152.03€ | Cap ok, ne pas renforcer |
+| LOTB | 🟢 +0.385, RSI 80.6 | 0.0394 | 4.9% | DCF >50x | RSI extrême — surveiller |
+| BNP.PA | 🟢 +0.466, RSI 34.1 | 3.722 | 3.8% | thèse crédit | GARDER |
+| MSCI | 🟢 +0.476, F7/9, RSI 42.7 | 1.36 | 6.5% | $540.54 (P-001) | Stop USD marge +5.2% |
+| CEG | 🟢 +0.337, F6/9, RSI 49.3 | 2.465 | 5.7% | $212.45 (P-001) / 232.29€ | §G gouverne |
+| GVA | 🟢 +0.558, F7/9, RSI 49.5 | 6.57 | 6.8% | $116.93 (P-001) | IIJA + data centers |
 
-**Régime : RISK-ON SAIN** | VIX 15.15 | T10Y2Y 0.46 | CPI 3.5% | EUR/USD 1.152 | Cash floor : 5% (était 30%)
+**Tally** : 🟢 7, 🟠 2, 🔴 0.
 
-3 trades exécutés 08/08 : SAF.PA BUY +0.57 / AMZN BUY +0.53 / AI.PA BUY +1.70 — déploiement sur thèses Q2 confirmées. Cash : 4 986.26€ (48.1% NAV). Tendance W32 Infrastructure US/IIJA continuation renforcée.
+---
+
+## Catalyseurs actifs W35
+
+- **26/08 (lundi)** — NVDA Q2 résultats (consensus $92B data center). Pas de trade direct, confirme supercycle grid.
+- **Septembre** — GVA Q3 résultats : test marge guide 12.25-13.25%, backlog $7.4B+.
+- **17/09** — FOMC : cut 25bps attendu (91%). Favorable CEG (PPA longs), GVA (financement infra).
+- **Automne** — IIJA réautorisation FY2027 (vote Congrès). Signal sortie immédiate GVA si non réautorisé.
+- **W35** — Grok call MSCI horizon 01/09 (msci-oversold-rebound-w34) : à scorer la semaine prochaine.
+
+---
+
+## Leçon W34
+
+**AMZN/RSI-24.5-CAP-MECANIQUE (22/08)** — Gate 🟠 + RSI survendu extrême (24.5) : les deux ne s'annulent pas. Le RSI survendu est un signal technique court terme (rebond possible) ; le cap 5% §H est une règle de risque structurelle. Exécuter le trim même avec un RSI à 24.5 protège la discipline sur les 100 prochains trades, même si ce trade individuel aurait pu être plus profitable en attendant le rebond.
+
+---
+
+## Pour le groupe
+
+**Positions groupe** : MSTR toujours détenu ⚠️⚠️ (SELL signal depuis semaine 11, −65% depuis book IA). Pas de mouvement groupe à reporter.
+
+**Tendance validée W34** : Supercycle power-grid (ENR.DE inflexion fondamentale). Aucune bulle nouvelle identifiée (LOTB RSI 80.6 à surveiller mais position 4.9% NAV = garde-fou naturel).

@@ -1,4 +1,4 @@
-# Calendrier des catalyseurs — maj 2026-08-18 (Trend Radar W34)
+# Calendrier des catalyseurs — maj 2026-08-22 (Brief W34)
 
 Événements **datés et publics** des ~6 prochaines semaines qui peuvent bouger nos secteurs/titres.
 On **anticipe le connu**, on ne devine pas une annonce surprise. Chaque ligne = un risque daté.
@@ -16,7 +16,7 @@ Statut : `À surveiller` → `ACTIF` (pré-positionnement ou risque connu) → `
 
 | Date | Événement | Type | Ce qui bouge (secteurs/tickers) | Sens du risque | Analyse de l'IA | Confiance | Statut |
 |------|-----------|------|--------------------------------|----------------|-----------------|-----------|--------|
-| **22/08/2026** | Jackson Hole — symposium Fed (Powell discours) | Macro | Toutes positions, USD, obligataire | Directionnel | Sep 17 cut à 91% (CME FedWatch). Si Powell confirme orientation dovish → taux courts reculent, favorable long-duration assets (CEG PPA, GVA infrastructure). Surprise hawkish peu probable post-CPI 3.3%. Surveiller ton du langage. | Haute | ACTIF |
+| **22/08/2026** | Jackson Hole — Powell dovish ✓ | Macro | Toutes positions | Directionnel | Powell dovish confirmé. FOMC 17/09 cut 91% CME. Régime RISK-ON SAIN maintenu. Favorable CEG (PPA), GVA (infra longue durée). → ARCHIVER. | Haute | PASSÉ |
 | **25/08/2026** | ENR.DE — conseil de surveillance / annonces stratégiques (à confirmer) | Micro | ENR.DE (watchlist [tendance]) | Binaire | Contexte Q3 FY26 EBITA tripled + wind profitable. Board peut confirmer les targets FY 2027. Potentiel re-rating si guidance raised de nouveau. Gate 🟠 → max 5% §H. | Moyenne | À surveiller |
 | **26/08/2026** | NVIDIA Q2 FY27 — résultats (data center consensus ~$92B) | Micro | ENR.DE, ETN, NEX.PA, GVA (indirect) | Binaire fort | Scénario candidat §K enregistré (nvda-q2-power-grid-rerating). Data center ≥$90B → confirmation volume commandes transformateurs/câbles → re-rating équipementiers power-grid. Miss <$85B = risque de défiance CT. | Haute | ACTIF |
 | **17/09/2026** | FOMC — décision taux (91% cut 25bps) | Macro | Toutes positions, obligataire, USD | Directionnel | Cut 91% pricé. Favorable CEG (PPA longue durée), GVA (infrastructure longue durée), réduction coût du capital. Si no-cut : choc négatif surtout sur actifs longs. Surveiller séquence CPI août (9 sept) avant. | Haute | À surveiller |
@@ -29,6 +29,7 @@ Statut : `À surveiller` → `ACTIF` (pré-positionnement ou risque connu) → `
 
 | Date | Événement | Résultat | Leçon/Impact book |
 |------|-----------|----------|-------------------|
+| 22/08/2026 | Jackson Hole — Powell (Fed) | Dovish confirmé. FOMC 17/09 cut 91% pricé. USD stable, obligataire bien orienté. | RISK-ON SAIN maintenu. Trades AMZN trim + SAF.PA renforcement exécutés post-discours. Favorable CEG (PPA longue durée) et GVA (infrastructure). |
 | ~Août 2026 | NOVOB — résultats Q2 2026 (adoption Medicare Wegovy) | Wegovy US −22% CER (transition formulaire), international +37%. Medicare Bridge : 3.8M éligibles, données adoption non publiées. EMA approuve Wegovy pill + 7.2mg. Guidance FY relevée (0% à −6% vs −12% à −4%). | Ré-entrée NOVOB : conditions NON RÉUNIES. Gate 🟠 + adoption non confirmée + prix non consolidé. NOVOB reste watchlist "Surveiller". |
 | 05/08/2026 | ENR.DE Q3 FY26 résultats | EBITA €1.6B (x3 YoY), vent profitable pour 1ère fois en 15T, backlog >€51B, book-to-bill 1.48x. FY guidance raised. | Inflexion fondamentale : thèse power-grid passe de "multiple expansion narrative" à "levier opérationnel réel". W34 trend = CONTINUATION + PRÉCISION sur ENR.DE. |
 | 14/08/2026 | CRH — sortie book IA (3 déclencheurs simultanés) | CRH sorti à $97.99 (84.81€). P&L −17.67% / alpha −21.65% vs IWDA +3.98%. | 3 déclencheurs : gate slip 🟢→🟠, DERNIER override déclenché (non renouvelable), stop USD $107.37 franchi. Thèse IIJA intacte. Rotation GVA exécutée 15/08. |

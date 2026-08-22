@@ -1,9 +1,9 @@
-# Watchlist — maj 2026-08-20 (Deep-dive W34)
+# Watchlist — maj 2026-08-22 (Brief W34)
 
-> Mode : **tendance VALIDÉE RISK-ON SAIN** — Power-Grid / Infrastructure Électrique IA — W34. Deep-dive mercredi 20/08 : **2 candidats ★ (ENR.DE, MYRG) → 0 Acheter, 2 Surveiller** (droit au blanc : qualité réelle mais aucune marge de valo). Revue book CEG + MSCI → 2 GARDER (pivots intacts). Scénario §K nvda-q2 REJETÉ (3e rejet chaîne capex→ENR re-rating). ★ retirés. NVDA Q2 le 26/08 = prochain jalon (mais ne re-rate pas ENR — cf. rejet).
-> Régime : **RISK-ON SAIN** · VIX 15.19 · EUR/USD 1.152 · plancher cash **5%** · T10Y2Y 0.52 · HY 2.70% · FOMC Sep 17 91% cut · Jackson Hole 22/08 · NVDA Q2 26/08.
-> Signaux book (engine/signals.js 19/08) : GVA 🟢 c=+0.541 F7/9 RSI53.7 | SAF.PA 🟢 c=+0.409 RSI68.3 (**gate flip 🟠→🟢 ce jour**) | MSCI 🟢 c=+0.447 F7/9 RSI39 | AI.PA 🟠 c=+0.090 RSI21
-> ✅ **SAF.PA** 🟢 +0.409 · RSI 68.3 (flip 🟠→🟢 — cap 5% §H LEVÉ) · 1.4509 parts avg 316.14€ · cours 353.1€ · stop -8% = 290.85€ · thèse S1 marge record ✓ · Renforcement 5%→7% envisageable vendredi si gate tient (§H Moyenne = 7%).
+> Mode : **tendance VALIDÉE RISK-ON SAIN** — Power-Grid / Infrastructure Électrique IA — W34. Jackson Hole 22/08 Powell DOVISH ✓. 2 trades exécutés (AMZN trim 6.7%→5%, SAF.PA renforcement 5%→7%). Deep-dive 20/08 : ENR.DE + MYRG → 0 Acheter (droit au blanc, valo). **NVDA Q2 lundi 26/08** = prochain jalon (mais ne re-rate pas ENR directement).
+> Régime : **RISK-ON SAIN** · VIX 16.01 · EUR/USD 1.152 · plancher cash **5%** · T10Y2Y 0.50 · HY 2.75% · FOMC Sep 17 91% cut · Jackson Hole ✓ · NVDA Q2 26/08.
+> Signaux book (engine/signals.js 22/08) : GVA 🟢 c=+0.558 F7/9 RSI49.5 | SAF.PA 🟢 c=+0.345 RSI54.2 | MSCI 🟢 c=+0.476 F7/9 RSI42.7 | AMZN 🟠 c=+0.126 RSI24.5 | AI.PA 🟠 c=+0.140 RSI36.1
+> ✅ **SAF.PA** 🟢 +0.345 · RSI 54.2 (sain) · **2.0929 parts avg 324.60€** · cours 343.6€ · stop -8% = **298.63€** · renforcement 5%→7% EXÉCUTÉ 22/08 post-Jackson Hole ✓.
 > ⚠️ **MSCI** 🟢 +0.447 F7/9 · cours $562.77 · stop USD $540.54 · marge +4.1% · RSI 39 · **P-002 levée** (marge repassée > 2%). Surveiller sans action.
 > ⚠️ **CEG** 🟢 +0.293 · momentum -20% · cours $266.83 (≈231.6€) · stop EUR 232.29€ franchi (−0.3%) MAIS **P-001 prime** : stop USD $212.45 intact (marge +25.7%) · §G gouverne · falsificateurs non déclenchés.
 > ⚠️ **AI.PA** 🟠 +0.090 · RSI 21 (très survendu) · 3.07935 parts avg 165.25€ · cours 167.04€ · stop 152.03€ · cap 5% §H respecté · aucune action (gate quasi-zéro).
@@ -59,14 +59,15 @@
 | POWL   | Momentum +169% parabolic (drapeau §B dur) + F5/9 moyen — small cap switchgear intéressant mais prix parabolic |
 | FIX    | Momentum +145% parabolic (§B) — surveiller sans ★ tant que mom > 70% |
 
-## Calendrier — semaine du 19 au 26 août 2026
+## Calendrier — semaine du 22 au 29 août 2026 et au-delà
 
 | Date | Événement | Impact book |
 |------|-----------|-------------|
-| **19/08/2026** | Scout + signals.js | SAF.PA gate flip 🟠→🟢 (cap levé). MSCI P-002 allégée. CEG stop EUR franchi, P-001 prime. |
-| **20/08/2026** | Deep-dive mercredi | ENR.DE ★ (valo post-Q3 FY26, gate 🟠 cov43%) + MYRG ★ (F7/9, gate 🟢, pioches T&D+DC US) |
-| **22/08/2026** | Jackson Hole — Powell discours | Si dovish confirmé → favorable CEG/GVA (actifs longue durée). FOMC Sep 17 91% cut. |
-| **26/08/2026** | NVDA Q2 FY27 résultats | Data center ≥$90B → re-rating ENR.DE/ETN/NEX.PA. Scénario §K nvda-q2-power-grid-rerating. |
+| **22/08/2026** | Jackson Hole — Powell DOVISH ✓ | RISK-ON SAIN confirmé. AMZN trim + SAF.PA renforcement exécutés. |
+| **26/08/2026** | NVDA Q2 FY27 résultats | Data center ≥$90B (consensus $92B). Pas de trade direct, confirme supercycle power-grid. ENR.DE ne re-rate PAS sur ce catalyseur indirect (rejet §K ×3). |
 | **~septembre** | GVA Q3 résultats | Horizon-test Q3'26 : marge 12.25-13.25%, rev +25%+, backlog $7.4B+ |
+| **01/09/2026** | Grok call MSCI (msci-oversold-rebound-w34) horizon | RSI 28.9 → rebond. À scorer. |
+| **09/09/2026** | CPI août 2026 (BLS) | Avant FOMC 17/09. Si MoM ≤ 0.1% → confirmation cut. |
+| **17/09/2026** | FOMC décision (91% cut 25bps) | Favorable CEG/GVA (actifs longue durée). |
 | **30/09/2026** | Falaise IIJA FY2026 | Binaire fort GVA. Si non réautorisé → exit_rule GVA immédiate |
 | **Automne 2026** | Vote Congrès IIJA FY2027 | Catalyseur majeur GVA (exit_rule pré-enregistrée si non réautorisé) |
