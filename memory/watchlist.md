@@ -1,13 +1,14 @@
-# Watchlist — maj 2026-08-22 (Brief W34)
+# Watchlist — maj 2026-08-25 (Trend Radar W35)
 
-> Mode : **tendance VALIDÉE RISK-ON SAIN** — Power-Grid / Infrastructure Électrique IA — W34. Jackson Hole 22/08 Powell DOVISH ✓. 2 trades exécutés (AMZN trim 6.7%→5%, SAF.PA renforcement 5%→7%). Deep-dive 20/08 : ENR.DE + MYRG → 0 Acheter (droit au blanc, valo). **NVDA Q2 lundi 26/08** = prochain jalon (mais ne re-rate pas ENR directement).
-> Régime : **RISK-ON SAIN** · VIX 16.01 · EUR/USD 1.152 · plancher cash **5%** · T10Y2Y 0.50 · HY 2.75% · FOMC Sep 17 91% cut · Jackson Hole ✓ · NVDA Q2 26/08.
-> Signaux book (engine/signals.js 22/08) : GVA 🟢 c=+0.558 F7/9 RSI49.5 | SAF.PA 🟢 c=+0.345 RSI54.2 | MSCI 🟢 c=+0.476 F7/9 RSI42.7 | AMZN 🟠 c=+0.126 RSI24.5 | AI.PA 🟠 c=+0.140 RSI36.1
-> ✅ **SAF.PA** 🟢 +0.345 · RSI 54.2 (sain) · **2.0929 parts avg 324.60€** · cours 343.6€ · stop -8% = **298.63€** · renforcement 5%→7% EXÉCUTÉ 22/08 post-Jackson Hole ✓.
-> ⚠️ **MSCI** 🟢 +0.447 F7/9 · cours $562.77 · stop USD $540.54 · marge +4.1% · RSI 39 · **P-002 levée** (marge repassée > 2%). Surveiller sans action.
-> ⚠️ **CEG** 🟢 +0.293 · momentum -20% · cours $266.83 (≈231.6€) · stop EUR 232.29€ franchi (−0.3%) MAIS **P-001 prime** : stop USD $212.45 intact (marge +25.7%) · §G gouverne · falsificateurs non déclenchés.
-> ⚠️ **AI.PA** 🟠 +0.090 · RSI 21 (très survendu) · 3.07935 parts avg 165.25€ · cours 167.04€ · stop 152.03€ · cap 5% §H respecté · aucune action (gate quasi-zéro).
-> ✅ **GVA** 🟢 +0.541 F7/9 · 6.57 parts avg 110.33€ · cours $124.42 (=108.0€) · stop USD $116.93 (P-001) · backlog $7.4B · RSI 53.7 · IIJA exposition directe.
+> Mode : **tendance CONTINUATION W34 RISK-ON SAIN** — Power-Grid / Infrastructure Électrique IA — W35. **NVDA Q2 DEMAIN 26/08 after-close** (consensus $91.85B). **IIJA extension Senate 90-6 (08/08) → 11/12/2026** — falaise 30/09 neutralisée pour GVA (Chambre doit voter). Pas de trade W35 avant NVDA print. Rotation sectorielle Tech→Industrials en cours.
+> Régime : **RISK-ON SAIN** · VIX 15.13 · EUR/USD 1.152 · plancher cash **5%** · T10Y2Y 0.46 · HY 2.70% · FOMC Sep 17 91% cut · CPI août 09/09 = dernier verrou.
+> Signaux book (engine/signals.js 25/08) : GVA 🟢 c=+0.558 F7/9 RSI51.7 | SAF.PA 🟢 RSI42.1 | MSCI 🟢 F7/9 RSI49.9 | BNP.PA 🟢 RSI30.7 (bas) | AMZN 🟠 F5/9 RSI33.6 | AI.PA 🟠 RSI36.5
+> ✅ **SAF.PA** 🟢 · RSI 42.1 (sain) · 2.0929 parts avg 324.60€ · stop 298.63€. GARDER.
+> ⚠️ **MSCI** 🟢 F7/9 · RSI 49.9 (rebond depuis 28.9 de W34 — call Grok msci-oversold-rebound expire 01/09) · stop USD $540.54. Surveiller — P-002 levée.
+> ⚠️ **CEG** 🟢 F6/9 · RSI 55.9 · stop EUR 232.29€ franchi (−0.3%) MAIS **P-001 prime** : stop USD $212.45 intact (marge +28.5%). §G gouverne. GARDER.
+> ⚠️ **AI.PA** 🟠 · RSI 36.5 · 3.07935 parts avg 165.25€ · stop 152.03€ · cap 5% §H. Aucune action.
+> ✅ **GVA** 🟢 F7/9 · RSI 51.7 · stop USD $116.93 (P-001). **IIJA extension Senate → falaise 30/09 neutralisée → 11/12**. Surveiller vote Chambre ~fin août. GARDER.
+> ⚠️ **BNP.PA** 🟢 · RSI 30.7 (bas — potentiel rebond). GARDER.
 
 | ★  | Ticker  | Nom                        | Tag                                    | Horizon | Pré-score | Gate                                  | Drapeau bulle                                                                              | Thèse 1 ligne / Statut                                                                                                                                                                                                                                                                                             | Vu le      |
 |----|---------|----------------------------|----------------------------------------|---------|-----------|---------------------------------------|--------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
@@ -59,15 +60,16 @@
 | POWL   | Momentum +169% parabolic (drapeau §B dur) + F5/9 moyen — small cap switchgear intéressant mais prix parabolic |
 | FIX    | Momentum +145% parabolic (§B) — surveiller sans ★ tant que mom > 70% |
 
-## Calendrier — semaine du 22 au 29 août 2026 et au-delà
+## Calendrier — semaine du 25 au 29 août 2026 et au-delà
 
 | Date | Événement | Impact book |
 |------|-----------|-------------|
-| **22/08/2026** | Jackson Hole — Powell DOVISH ✓ | RISK-ON SAIN confirmé. AMZN trim + SAF.PA renforcement exécutés. |
-| **26/08/2026** | NVDA Q2 FY27 résultats | Data center ≥$90B (consensus $92B). Pas de trade direct, confirme supercycle power-grid. ENR.DE ne re-rate PAS sur ce catalyseur indirect (rejet §K ×3). |
-| **~septembre** | GVA Q3 résultats | Horizon-test Q3'26 : marge 12.25-13.25%, rev +25%+, backlog $7.4B+ |
-| **01/09/2026** | Grok call MSCI (msci-oversold-rebound-w34) horizon | RSI 28.9 → rebond. À scorer. |
-| **09/09/2026** | CPI août 2026 (BLS) | Avant FOMC 17/09. Si MoM ≤ 0.1% → confirmation cut. |
+| **26/08/2026** | NVDA Q2 FY27 résultats (after-close) | Consensus $91.85B. Aucun trade avant le print. Si ≥$85B → thèse power-grid intacte. Si ≥$92B → surveiller si ENR.DE re-rate (test §K ×3 non-re-rating). |
+| **~fin août** | Chambre vote CR extension IIJA → 11/12/2026 | Si Chambre vote oui : exit_rule GVA repoussée à 11/12 ✓. Si bloquée : exit_rule GVA 30/09 réactivée → sortie jeudi/vendredi. |
+| **01/09/2026** | Grok call MSCI (msci-oversold-rebound-w34) horizon | RSI 28.9 → rebond (RSI 49.9 au 25/08). À scorer par engine/grok.js vendredi. |
+| **08/09/2026** | Grok calls CEG + AMZN (ceg-ai-power-demand-w35 et amzn-oversold-cloud-w35) horizon | À scorer par engine/grok.js. Tactical_cap = 0% — scoring seulement. |
+| **09/09/2026** | CPI août 2026 (BLS) | Avant FOMC 17/09. Si MoM ≤ 0.2% → confirmation cut 91%. Si ≥ 0.3% → réévaluation régime. |
 | **17/09/2026** | FOMC décision (91% cut 25bps) | Favorable CEG/GVA (actifs longue durée). |
-| **30/09/2026** | Falaise IIJA FY2026 | Binaire fort GVA. Si non réautorisé → exit_rule GVA immédiate |
-| **Automne 2026** | Vote Congrès IIJA FY2027 | Catalyseur majeur GVA (exit_rule pré-enregistrée si non réautorisé) |
+| **30/09/2026** | Falaise IIJA FY2026 (si CR Chambre non voté) | Risque neutralisé si Chambre vote. Surveiller. |
+| **~Septembre** | GVA Q3 résultats | Horizon-test Q3'26 : marge 12.25-13.25%, rev +25%+, backlog $7.4B+ |
+| **11/12/2026** | Nouvelle expiration IIJA authorities | Exit_rule GVA → si non réautorisé FY2027. |

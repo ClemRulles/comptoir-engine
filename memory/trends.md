@@ -1,3 +1,29 @@
+## Tendance de la semaine — 25 août 2026 (W35)
+
+- **Statut** : VALIDÉE — CONTINUATION W34 · Jalon NVDA Q2 demain · IIJA extension Senate
+- **Tendance** : Supercycle power-grid (continuation structurelle) — NVDA Q2 FY27 demain 26/08 comme test de confirmation de la demande AI hardware. Extension IIJA Senate (90-6, 08/08) → 11/12/2026 neutralise le risque immédiat sur GVA.
+- **Pourquoi maintenant** : W35 est une semaine de jalon (NVDA Q2) et de mise à jour de risque (IIJA extension). La tendance power-grid W34 reste la seule assez solide par les preuves. La rotation sectorielle Tech → Industrials en cours (Nasdaq -1.3% W35, Consumer Staples "exploding higher", Healthcare top YTD 2026) supporte nos positions "picks-and-shovels" (GVA, ENR.DE/ETN watchlist) sans constituer une tendance indépendante au niveau de preuve exigé par trend-gate.md. **Droit au blanc partiel appliqué** : aucune tendance véritablement nouvelle ne passe le filtre à 6 portes ; la rotation sectorielle (sources web, pas de flux institutionnels confirmés) et le rally crypto (radar-seulement) sont exclus.
+- **Preuves dures** :
+  1. NVDA Q2 FY27 consensus (26/08 after-close) : revenus $91.85B (guidé $91B ±2%), data center dominant. Source : Intellectia, alphio.ai préview août 2026.
+  2. ENR.DE Q3 FY26 (05/08) : EBITA €1.6B (x3 YoY), vent profitable 1ère fois en 15T, backlog Grid Tech >€51B, book-to-bill 1.48x. Source : Siemens Energy IR.
+  3. Hyperscalers capex 2026 : $660-690B engagé — AWS Q2 +37%, capex relevé ✓. Source : 10-Q MSFT/AMZN/GOOGL/META.
+  4. Senate vote 90-6 (08/08/2026) : extension IIJA authorities via CR → 11/12/2026. Source : NACo, Holland & Knight août 2026.
+  5. Rotation sectorielle W35 (sources web multiples) : Consumer Staples "exploding higher", Healthcare top YTD, Tech worst performer. Source : Yahoo Finance, Forbes, Investing.com août 2026.
+- **Durabilité** : Structurelle — double moteur AI + décarbonation EU. Backlogs contractuels 2028+. Extension IIJA renforce la visibilité de GVA jusqu'en décembre.
+- **Stade** : Milieu. Thèse en "exécution confirmée". NVDA Q2 demain = test de continuité structurelle. Pas de pré-positionnement avant le print.
+- **Ce qui changerait la lecture vs W34** : (1) IIJA extension Senate → 11/12 allège le risque GVA immédiat (exit_rule 30/09 neutralisée) ; (2) Si NVDA Q2 data center <$85B = invalidation partielle demande AI hardware → pression CT sur le thème power-grid ; (3) Si ENR.DE re-rate post-NVDA (test de la thèse "non-re-rating" établie 3x — §K rejets).
+- **Manières de la jouer (cotées)** :
+  - **GVA** (détenu, 🟢 F7/9) — IIJA extension → falaise 30/09 neutralisée. Stop USD $116.93 (P-001). GARDER.
+  - **ENR.DE** (watchlist, 🟢 cov43%, mom +57%) — Surveiller si re-rate post-NVDA. Entrée <€125 seulement (≤20x fwd).
+  - **ETN** (watchlist, 🟢 F6/9) — 34x fwd = Surveiller. Repli $375-385.
+  - **NEX.PA** (watchlist, 🟠) — max 5% §H si gate 🟢.
+- **Drapeau bulle** : Vigilance — ENR.DE mom +57% RSI69.9 (cov 43%) ; ETN 34x fwd ; FIX mom +145% §B. Aucune entrée new money avant confirmation NVDA Q2 et marge sur entrée.
+- **Ce qui tuerait la thèse** : (1) NVDA Q2 data center <$85B. (2) 2+ hyperscalers coupent capex >15% en Q3. (3) ENR.DE Q4 retourne en perte vent.
+- **Effet de second ordre** : Rotation Tech→Industrials supporte le positionnement relatif de GVA vs méga-cap tech. Extension IIJA Senate = visibilité infrastructure renforcée pour GVA jusqu'à décembre 2026.
+- **Sources** : engine/signals.js 2026-08-25 ; Siemens Energy IR (05/08) ; NVDA Q2 preview Intellectia/alphio.ai août 2026 ; IIJA : NACo / Holland & Knight (Senate vote 90-6, 08/08/2026) ; Web : Yahoo Finance / Forbes / Investing.com (rotation sectorielle W35) ; CoinGecko (crypto, radar)
+
+---
+
 ## Tendance de la semaine — 18 août 2026 (W34)
 
 - **Statut** : VALIDÉE — CONTINUATION + PRÉCISION

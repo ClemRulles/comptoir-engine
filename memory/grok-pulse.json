@@ -1,7 +1,63 @@
 {
   "_doc": "Pouls hebdo du marché (Grok, accès X) — radar à corroborer, jamais un signal d'achat. Écrit par routines/monday-trend-radar.md (Partie C). Le plus récent en tête de weeks ; ~12 semaines max.",
-  "updated": "2026-08-18",
+  "updated": "2026-08-25",
   "weeks": [
+    {
+      "week": "2026-W35",
+      "date": "2026-08-25",
+      "label": "Semaine du 25 août 2026",
+      "headline": "AI infrastructure demand and crypto rally drive risk-on sentiment across equities and digital assets",
+      "themes": [
+        {
+          "title": "AI Power and Cloud Expansion",
+          "detail": "Narratives autour de la demande power data center et du capex hyperscalers — CEG et AMZN cités comme bénéficiaires du cycle AI. Contexte pré-NVDA Q2 (26/08 after-close, consensus $91.85B).",
+          "tickers": ["CEG", "AMZN"],
+          "corroborated": true,
+          "corroboration_note": "CORROBORÉ : ENR.DE Q3 FY26 backlog Grid Tech >€51B ✓ + NVDA Q2 consensus $92B (guidance officielle $91B ±2%) ✓ + AWS Q2 +37% ✓. La demande power-grid AI est documentée par des données dures (10-Q, IR). CEG et AMZN sont détenus — thèse coeur intacte."
+        },
+        {
+          "title": "European Industrial and Luxury Resilience",
+          "detail": "SAF.PA, AI.PA, LOTB et BNP.PA cités sur X comme noms défensifs EU tenant bien sur optimisme de croissance globale et stabilisation des chaînes d'approvisionnement.",
+          "tickers": ["SAF.PA", "AI.PA", "LOTB", "BNP.PA"],
+          "corroborated": false,
+          "corroboration_note": "NON CORROBORÉ — sentiment général sur X sans nouvelle preuve dure publiée en W35 spécifiquement. SAF.PA S1 marge record (28/07) et BNP.PA Q2 +33% (W32) sont des faits établis mais pas des nouvelles W35. Le sentiment EU positif est potentiellement contrarien (BNP.PA RSI 30.7 bas, SAF.PA RSI 42.1 sain). Thèse LT de ces positions intacte, mais non corroboré par sources dures cette semaine."
+        },
+        {
+          "title": "Crypto Risk-On Surge — BTC +22.9% 7j, F&G 74",
+          "detail": "BTC €67,686 (+22.9% 7j), ETH €2,127 (+30.4% 7j), XRP +48.1% 7j. Fear & Greed 74 (Greed). Dominance BTC 59.1%. Discussion X sur flux ETF BTC institutionnels et staking ETH. Rally corrélé avec le Risk-On actions global (S&P +13% YTD).",
+          "tickers": [],
+          "corroborated": false,
+          "corroboration_note": "NON CORROBORÉ — données de prix uniquement (CoinGecko). Flux ETF BTC non vérifiables dans les sources dures. Fear & Greed 74 = signal contrarien LT (Greed tend à précéder des corrections CT). Crypto reste radar — aucune allocation de book sur ce seul narratif (CLAUDE.md)."
+        }
+      ],
+      "movers": [
+        {
+          "ticker": "CEG",
+          "direction": "up",
+          "reason": "Narratif AI data-center power demand intensifié pré-NVDA Q2. Détenu. Gate 🟢 +0.337, RSI 55.9. Momentum -12% CT mais thèse PPA LT intacte.",
+          "held": true
+        },
+        {
+          "ticker": "AMZN",
+          "direction": "up",
+          "reason": "Cloud growth AWS narrative + capex AI infrastructure. Détenu. Gate 🟠 F5/9, RSI 33.6 (survendu — potentiel rebond technique).",
+          "held": true
+        },
+        {
+          "ticker": "LOTB",
+          "direction": "up",
+          "reason": "Luxury sector rotation sur amélioration outlook consommateur. Détenu. RSI 81.7 (suracheté extrême — signal contrarien).",
+          "held": true
+        },
+        {
+          "ticker": "MSCI",
+          "direction": "up",
+          "reason": "Broad equity rally lifting index/analytics providers. Détenu. RSI 49.9 (rebond depuis 28.9 de W34 — call Grok msci-oversold-rebound-w34 en bonne voie).",
+          "held": true
+        }
+      ],
+      "sources": ["Grok API xAI (grok-4.3)", "recoupé : Siemens Energy IR ENR.DE Q3 / NVDA Q2 guidance officielle / AWS Q2 +37% / CoinGecko crypto / web rotation sectorielle W35"]
+    },
     {
       "week": "2026-W34",
       "date": "2026-08-18",

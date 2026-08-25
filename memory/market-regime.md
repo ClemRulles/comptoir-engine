@@ -1,27 +1,30 @@
-# Régime de marché — mis à jour le 2026-08-22 (Brief W34)
+# Régime de marché — mis à jour le 2026-08-25 (Trend Radar W35)
 
-- **Cadran** : **RISK-ON SAIN** — confirmé par engine/signals.js 22/08. CPI juillet 3.3% YoY (FRED), VIX 16.01 (+1.1pt vs 21/08), T10Y2Y 0.50, HY spread 2.75%. **Jackson Hole 22/08 — Powell DOVISH CONFIRMÉ** : FOMC 17 septembre cut probabilité 91% CME FedWatch. Régime inchangé, plancher cash 5%. EUR/USD 1.152 stable.
-- **Consigne au système** : **plancher cash ≥ 5%** ; sélectivité haute (gate 🟢, deep-dive récent, stop écrit) ; favoriser F-Score ≥ 7 ; P-001 actif sur AMZN, MSCI, CEG, GVA (stops USD natifs) ; SAF.PA renforcement EXÉCUTÉ 22/08 (5%→7%, +0.642 parts à 343.6€, avg_cost 324.60€, stop 298.63€) ; AMZN trim EXÉCUTÉ 22/08 (−0.774 parts à 224.5€, 6.7%→5.0% NAV) ; AI.PA gate 🟠 +0.140, cap 5% §H actif (position ~5.0% NAV, pas d'action) ; CEG stop USD dégagé (+22%), P-001 prime.
-- **Valorisation indice** : S&P 500 YTD positif ; rotation IA en cours (Big Tech → picks-and-shovels) ; ENR.DE Q3 FY26 (5 août) : EBITA tripled, vent rentable pour la 1ère fois en 15 trimestres → inflexion fondamentale supercycle power-grid ; **NVDA Q2 résultats LUNDI 26/08** (consensus ~$92B data center).
-- **Rotation sectorielle (W34)** : Infrastructure électrique IA — inflexion fondamentale ENR.DE Q3 (EBITA €1.6B, tripled, wind profitable) ; Compounders défensifs (LOTB, BNP.PA, MSCI) ; Nucléaire/PPA (CEG, §G gouverne) ; MSCI RSI 42.7 (sain, rebond depuis 28.9).
-- **Zones de bulle** : PRY.MI momentum +170% parabolic (éviter) ; POWL momentum +169% parabolic (À éviter) ; VRT momentum +113% + revenue miss Q2 (éviter) ; FIX momentum +145% (§B actif) ; ENR.DE mom +101% (vigilance mais inflexion fondamentale change la lecture).
-- **⚠️ AMZN — TRIM EXÉCUTÉ 22/08** : Gate 🟠 +0.126 (RSI 24.5 survendu extrême, F5/9, initiés 0B/4S). Trim −0.774 parts à 224.5€ → 2.2738 parts = 5.0% NAV. RSI 24.5 = potentiel rebond technique — si gate repasse 🟢, renforcement éligible. Stop USD $212.45 (P-001, marge +22.0%).
-- **⚠️ SAF.PA — RENFORCEMENT EXÉCUTÉ 22/08** : Gate 🟢 +0.345 (RSI 54.2 sain). +0.642 parts à 343.6€ → 2.0929 parts ≈ 7.0% NAV. Avg_cost 316.14€ → 324.60€. Stop -8% = 298.63€ (marge +15.1%). Thèse S1 marge record ✓.
-- **⚠️ LOTB — RSI 80.6 SURACHETÉ EXTRÊME** : Gate 🟢 +0.385. Position petite (4.9% NAV = garde-fou naturel). Surveiller sans vendre (§G : falsificateur = PER >50x sans accélération). Cours ~12,660€.
-- **Positions book IA — gates au 22/08 (engine/signals.js) :**
-  - **SAF.PA** 🟢 +0.345, RSI 54.2 (sain) · cours 343.6€ · 2.0929 parts = 7.0% NAV · stop 298.63€ (marge +15.1%). EXÉCUTÉ.
-  - **AMZN** 🟠 +0.126, F5/9, RSI 24.5 (survendu extrême), initiés 0B/4S · cours $258.63 (≈224.5€) · stop USD $212.45 (marge +22.0% — P-001) · 2.2738 parts = 5.0% NAV. EXÉCUTÉ.
-  - **EIMI** 🟢 +0.565, RSI 65.5 (sain) · cours $54.47 (≈47.3€) · ~4.5% NAV. GARDER.
-  - **AI.PA** 🟠 +0.140, RSI 36.1 · cours ~167.38€ · 3.07935 parts ≈ 5.0% NAV · cap 5% §H respecté · stop 152.03€ intact (marge +10.1%). Aucune action.
-  - **LOTB** 🟢 +0.385, RSI 80.6 (extrême suracheté) · cours ~12 660€ · ~4.9% NAV. Surveiller sans vendre.
-  - **BNP.PA** 🟢 +0.466, RSI 34.1 (bas, normalisé) · cours ~105.96€ · ~3.8% NAV. GARDER.
-  - **MSCI** 🟢 +0.476, F7/9, RSI 42.7 · cours $568.75 (≈493.7€) · **stop USD $540.54 — marge +5.2%** · rétention 95.3% ✓. GARDER.
-  - **CEG** 🟢 +0.337, F6/9, RSI 49.3 · cours $272.92 (≈236.9€) · stop EUR 232.29€ (marge +2.0%) · stop USD $212.45 (marge +28.5%) · §G gouverne. GARDER.
-  - **GVA** 🟢 +0.558, F7/9, RSI 49.5 · cours $122.97 (≈106.7€) · stop USD $116.93 (P-001, marge +5.2%) · pivot marge Q2 ✓ · backlog $7.4B. GARDER.
-- **EUR/USD** : 1.152 — EUR fort. P-001 actif sur AMZN, MSCI, CEG, GVA.
+- **Cadran** : **RISK-ON SAIN** — confirmé par engine/signals.js 25/08. T10Y2Y 0.46 (vs 0.50 en W34), VIX 15.13 (vs 16.01), HY spread 2.70% (vs 2.75%). Légère amélioration des conditions financières. CPI juillet 3.3% YoY (FRED, inchangé). FOMC 17 septembre cut 91% CME FedWatch. EUR/USD 1.152.
+- **Consigne au système** : **plancher cash ≥ 5%** ; aucune entrée new money avant NVDA Q2 print 26/08 after-close ; **IIJA falaise 30/09 NEUTRALISÉE** par extension Senate (vote 90-6, 08/08) → authorities → 11/12/2026 (la Chambre doit encore voter le CR — probable mais non garanti) ; sélectivité haute (gate 🟢, deep-dive récent, stop écrit) ; P-001 actif sur AMZN, MSCI, CEG, GVA.
+- **Valorisation indice** : S&P 500 YTD +13%, 25 records en 2026. Rotation sectorielle W35 active : Tech worst performer (Nasdaq -1.3%), Consumer Staples "exploding higher", Healthcare top performer YTD. NVDA Q2 FY27 demain 26/08 après clôture (consensus $91.85B revenus, data center dominant).
+- **Rotation sectorielle (W35)** : Tech méga-cap → Defensives/Industrials. Les "picks-and-shovels" infrastructure IA (GVA, ENR.DE/ETN/NEX.PA watchlist) bénéficient de ce contexte de rotation value/industrials. Consumer Staples, Healthcare et Industrials mènent le marché.
+- **Zones de bulle** : PRY.MI momentum +170% parabolic (éviter) ; POWL momentum +169% parabolic (éviter) ; VRT momentum +113% + revenue miss Q2 (éviter) ; FIX momentum +145% (§B actif) ; ENR.DE mom +57% RSI69.9 (vigilance, cov 43% F-Score indisponible).
+- **⚠️ NVDA Q2 DEMAIN (26/08)** : Résultats after-close. Consensus $91.85B revenus (guidé $91B ±2%), data center >$80B. Garde logique thèse power-grid : ≥$85B = thèse intacte. Aucune entrée new money avant le print. Si ≥$92B → chercher si ENR.DE re-rate (test de la thèse du non-re-rating ×3 §K).
+- **⚠️ IIJA EXTENSION — SENATE 90-6** : Vote 08/08/2026 → extension IIJA authorities via CR → 11 décembre 2026. Falaise 30/09 neutralisée pour GVA. Exit_rule GVA mise à jour : sortie immédiate si non réautorisé FY2027 avant 11/12. La Chambre doit voter — probabilité élevée (vote 90-6 au Sénat rarement bloqué en Chambre sur une CR).
+- **⚠️ CEG** — stop EUR 232.29€ franchi (marge -0.3%) MAIS P-001 prime : stop USD $212.45 intact (marge +28.5%). Gate 🟢 F6/9, RSI 55.9. Momentum -12% CT mais §G gouverne, falsificateurs Q2 non déclenchés. GARDER.
+- **⚠️ AMZN** — Gate 🟠 F5/9, RSI 33.6 (survendu). Stop USD $212.45 (P-001, marge > 21%). Potentiel rebond technique (RSI survendu). Cap 5% §H actif. Si gate repasse 🟢, renforcement partiel éligible.
+- **⚠️ LOTB** — RSI 81.7 (suracheté extrême) — surveiller sans vendre. Position petite (4.9% NAV = garde-fou naturel).
+- **⚠️ BNP.PA** — RSI 30.7 (bas, potentiel rebond). Gate 🟢. GARDER.
+- **Positions book IA — gates au 25/08 (engine/signals.js) :**
+  - **SAF.PA** 🟢, RSI 42.1, mom +12% · 2.0929 parts = 7.0% NAV · stop 298.63€. GARDER.
+  - **AMZN** 🟠 F5/9, RSI 33.6, mom +2% · 2.2738 parts = 5.0% NAV · stop USD $212.45 (P-001). GARDER.
+  - **EIMI** 🟢, RSI 67.5, mom +28% · ~4.5% NAV. GARDER.
+  - **AI.PA** 🟠, RSI 36.5, mom +9% · 3.07935 parts ≈ 5.0% NAV · cap 5% §H · stop 152.03€. Aucune action.
+  - **LOTB** 🟢, RSI 81.7 (extrême suracheté), mom +33% · ~4.9% NAV. Surveiller sans vendre.
+  - **BNP.PA** 🟢, RSI 30.7 (bas), mom +35% · ~3.8% NAV. GARDER.
+  - **MSCI** 🟢 F7/9, RSI 49.9, mom -4% · stop USD $540.54 · marge > 4%. GARDER. (Call Grok msci-oversold-rebound expire 01/09 — rebond RSI 28.9→49.9 en cours.)
+  - **CEG** 🟢 F6/9, RSI 55.9, mom -12% · stop EUR 232.29€ franchi / P-001 prime stop USD $212.45. §G gouverne. GARDER.
+  - **GVA** 🟢 F7/9, RSI 51.7, mom +14% · stop USD $116.93 (P-001). IIJA extension Senate → falaise 30/09 repoussée à 11/12. GARDER.
+- **Crypto** : BTC dominance 59.1%, F&G 74 (Greed) — avidité : signal contrarien LT. BTC €67,686 (+22.9% 7j, +22.7% 30j), ETH €2,127 (+30.4% 7j), XRP +48.1% 7j. Rally crypto corrélé Risk-On global. Radar sans allocation forcée. F&G 74 = vigilance (Greed tend à précéder corrections CT).
 - **Macro (3 lignes)** :
-  - US : CPI juillet 3.3% YoY (FRED) — désinflation continue. T10Y2Y 0.50, fedfunds 3.63%. VIX 16.01 (stable). FOMC 17/09 : 91% probabilité de coupe (25bps). Jackson Hole 22/08 dovish ✓.
-  - Zone euro : ECB dépôt ~2.25%. EUR/USD 1.152. EU HICP 2.7% YoY (sous cible). ENR.DE Q3 inflexion fondamentale (power-grid supercycle).
-  - Hyperscalers : capex $660-690B engagé. **NVDA Q2 résultats 26/08** (consensus $92B data center vs Q1 $75.2B). Aucun falsificateur infra-IA déclenché.
-- **NAV book IA estimée** : ≈ **10 266€** (−1.45% vs start_capital 10 417€). Cash 5 209.83€ = **50.7% NAV** (plancher 5% RISK-ON largement respecté). 9 positions actives. 2 trades exécutés vendredi.
-- **Sources** : engine/signals.js 2026-08-22 (tous gates book) ; FRED (CPI 3.3%, T10Y2Y 0.50, VIX 16.01) ; CME FedWatch (FOMC Sep 91% cut) ; P-001/§G playbook ; données marchés Yahoo (cours du jour).
+  - US : CPI juillet 3.3% YoY (FRED) — désinflation continue. T10Y2Y 0.46, VIX 15.13 (amélioration). FOMC 17/09 : 91% cut 25bps. CPI août (09/09) = dernier verrou avant FOMC.
+  - Zone euro : ECB ~2.25%. EUR/USD 1.152. EU HICP 2.9% (données signals.js). Contexte dovish. Rotation industrials EU dans notre sillage (SAF.PA, ENR.DE, BNP.PA).
+  - IIJA : Senate 90-6 pour extension → 11/12. NVDA Q2 demain = jalon supercycle AI. Rotation sectorielle US Tech → Industrials/Defensives = vent en poupe pour nos positions infrastructure.
+- **NAV book IA estimée** : ≈ **10 266€** (-1.45% vs start_capital 10 417€). Cash 5 209.83€ = **50.7% NAV** (plancher 5% RISK-ON largement respecté). 9 positions actives. Pas de trade W35 avant NVDA print.
+- **Sources** : engine/signals.js 2026-08-25 (tous gates book) ; FRED (CPI 3.3%, T10Y2Y 0.46, VIX 15.13) ; CME FedWatch (FOMC Sep 91% cut) ; CoinGecko/alternative.me (crypto) ; IIJA : NACo, Holland & Knight (Senate vote 90-6, 08/08/2026) ; Web : Yahoo Finance / Forbes / Investing.com (rotation sectorielle W35) ; NVDA Q2 preview Intellectia/alphio.ai août 2026.

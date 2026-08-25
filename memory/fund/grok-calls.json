@@ -1,7 +1,33 @@
 {
   "_doc": "Sentiment X (Grok) transformé en PRÉDICTIONS SCORÉES (method §F) — le sentiment ne décide jamais sur la foi : il se MÉRITE une voix en prouvant qu'il prédit. Le lundi (pouls Grok) enregistre 0-3 'calls' directionnels court terme ; engine/grok.js les score contre le prix réel à l'horizon. Schéma d'un call : { id (kebab-case), opened (YYYY-MM-DD), ticker, direction ('hausse'|'baisse' attendue à court terme), confidence (0.5-0.9, force du signal de sentiment), thesis (1 ligne : ce que Grok 'sent'), horizon (YYYY-MM-DD, ~2 semaines), source (semaine du pouls), played (bool : le book a-t-il pris une position tactique ?), status ('ouvert' | 'joué' | 'résolu' | 'expiré'), resolution ({ date, move_pct (variation réelle sur l'horizon), correct (bool : le mouvement a-t-il suivi la direction au-delà de ±2 %), brier ((confidence − correct)²), trade_alpha_pct (si joué : alpha — mesure SÉPARÉE) }) }. 'stats' (recalculé par engine/grok.js) : resolved, hits, hit_rate, brier, tactical_cap = budget MAX du NAV pour les paris Grok, MÉRITÉ : 0 % tant que < 6 calls résolus, puis 3/6/8 % selon hit_rate (≥0.55/0.65/0.70), 0 % si < 0.45. Garde-fous §F : jamais sur gate 🔴, jamais contre la checklist bulle §B, demi-taille tactique, stop serré, sortie datée. L'euphorie reste un signal contrarien de top. Ne jamais réécrire un call résolu.",
-  "updated": "2026-08-22",
+  "updated": "2026-08-25",
   "calls": [
+    {
+      "id": "ceg-ai-power-demand-w35",
+      "opened": "2026-08-25",
+      "ticker": "CEG",
+      "direction": "hausse",
+      "confidence": 0.55,
+      "thesis": "Grok W35 sent narratif 'AI data-center power demand intensifié' sur CEG ; gate 🟢 F6/9 RSI 55.9 (sain) ; thèse PPA LT intacte (falsificateurs non déclenchés) ; momentum -12% CT est un frein mais FOMC cut 91% 17/09 favorable aux actifs longue durée ; signal modéré de rebond CT avant FOMC",
+      "horizon": "2026-09-08",
+      "source": "2026-W35 (Grok API grok-4.3)",
+      "played": false,
+      "status": "ouvert",
+      "guard_note": "NON JOUÉ — tactical_cap = 0% (5 calls résolus seulement, seuil = 6). Score uniquement. Position déjà détenue au book coeur (§G gouverne). Call pur scoring sentiment."
+    },
+    {
+      "id": "amzn-oversold-cloud-w35",
+      "opened": "2026-08-25",
+      "ticker": "AMZN",
+      "direction": "hausse",
+      "confidence": 0.55,
+      "thesis": "Grok W35 sent 'cloud growth et AI infrastructure spending' bullish sur AMZN ; RSI 33.6 = survendu (rebond technique probable à 2 semaines) ; thèse AWS +37% Q2 ✓ intacte ; gate 🟠 F5/9 est un frein (momentum quasi-nul +2%) ; signal modéré rebond depuis zone survendue",
+      "horizon": "2026-09-08",
+      "source": "2026-W35 (Grok API grok-4.3)",
+      "played": false,
+      "status": "ouvert",
+      "guard_note": "NON JOUÉ — tactical_cap = 0% (5 calls résolus seulement, seuil = 6). Gate 🟠 interdit tout renforcement book. Score uniquement — mesure si le signal RSI survendu + sentiment Grok 'cloud' prédit un rebond CT à 2 semaines."
+    },
     {
       "id": "msci-oversold-rebound-w34",
       "opened": "2026-08-18",

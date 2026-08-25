@@ -1,68 +1,68 @@
 {
   "_doc": "Radar crypto (contexte, JAMAIS un signal d'achat seul — CLAUDE.md §F). Sources gratuites sans clé : CoinGecko (cap/dominance/cours EUR) + alternative.me (Fear & Greed). À corroborer par une preuve dure avant toute décision de book.",
-  "updated": "2026-08-18",
+  "updated": "2026-08-25",
   "market": {
-    "total_market_cap_eur": 1975224197576.6191,
-    "total_volume_eur": 45719587527.1583,
-    "market_cap_change_24h_pct": 1.8917753213812405,
-    "btc_dominance_pct": 56.55777222155534,
-    "eth_dominance_pct": 10.085128394646995
+    "total_market_cap_eur": 2294925574875.8335,
+    "total_volume_eur": 107101792465.74374,
+    "market_cap_change_24h_pct": -0.6261728447758608,
+    "btc_dominance_pct": 59.055348558389376,
+    "eth_dominance_pct": 11.160047274688008
   },
   "fear_greed": {
-    "value": 41,
-    "classification": "Fear"
+    "value": 74,
+    "classification": "Greed"
   },
-  "sentiment_read": "peur — sentiment déprimé",
+  "sentiment_read": "avidité — vigilance",
   "coins": [
     {
       "id": "bitcoin",
       "symbol": "BTC",
       "name": "Bitcoin",
-      "price_eur": 55684,
-      "market_cap_eur": 1117703855515,
-      "change_24h_pct": 2.5,
-      "change_7d_pct": 0.9,
-      "change_30d_pct": -0.4
+      "price_eur": 67686,
+      "market_cap_eur": 1358788989879,
+      "change_24h_pct": 1.77692,
+      "change_7d_pct": 22.9,
+      "change_30d_pct": 22.7
     },
     {
       "id": "ethereum",
       "symbol": "ETH",
       "name": "Ethereum",
-      "price_eur": 1650.97,
-      "market_cap_eur": 199253387550,
-      "change_24h_pct": 2,
-      "change_7d_pct": 2.1,
-      "change_30d_pct": 2.6
+      "price_eur": 2127.16,
+      "market_cap_eur": 256720587098,
+      "change_24h_pct": 0.94643,
+      "change_7d_pct": 30.4,
+      "change_30d_pct": 32.4
     },
     {
       "id": "binancecoin",
       "symbol": "BNB",
       "name": "BNB",
-      "price_eur": 522.64,
-      "market_cap_eur": 69596243847,
-      "change_24h_pct": 0.6,
-      "change_7d_pct": 1.1,
-      "change_30d_pct": 6.2
+      "price_eur": 603.48,
+      "market_cap_eur": 80360556162,
+      "change_24h_pct": 0.40325,
+      "change_7d_pct": 16.6,
+      "change_30d_pct": 23.7
     },
     {
       "id": "ripple",
       "symbol": "XRP",
       "name": "XRP",
-      "price_eur": 0.86539,
-      "market_cap_eur": 54241052945,
-      "change_24h_pct": 0.8,
-      "change_7d_pct": -0.8,
-      "change_30d_pct": -8.3
+      "price_eur": 1.27,
+      "market_cap_eur": 79632698709,
+      "change_24h_pct": -2.35844,
+      "change_7d_pct": 48.1,
+      "change_30d_pct": 34.5
     },
     {
       "id": "solana",
       "symbol": "SOL",
       "name": "Solana",
-      "price_eur": 65.6,
-      "market_cap_eur": 38238001654,
-      "change_24h_pct": 1.9,
-      "change_7d_pct": -0.2,
-      "change_30d_pct": 0.6
+      "price_eur": 84.68,
+      "market_cap_eur": 49422727418,
+      "change_24h_pct": 3.70025,
+      "change_7d_pct": 30.4,
+      "change_30d_pct": 32.5
     }
   ],
   "watchlist_ids": [
