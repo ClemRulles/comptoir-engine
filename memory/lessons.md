@@ -134,6 +134,8 @@ Format : `YYYY-MM-DD · [TICKER ou MÉTHODE] · ce qui s'est passé → ce que j
 
 ## Leçons vives
 
+2026-08-26 · MÉTHODE/Scout · EME (EMCOR Group) illustre le cas « RSI 30 post-record-earnings » : le stock chute −12% YTD MALGRÉ Q2 EPS +35%, rev +20% et guidance relevée. Cause : reset de valo sur multiple élevé, pas de deterioration fondamentale (backlog record, DC +45%). → **Avant de traiter un RSI survendu post-earnings comme une alerte, vérifier d'abord la qualité du dernier print : un RSI 30 après un +35% EPS record est probablement une fenêtre d'achat, pas un signal de danger. Le « pourquoi » du RSI survendu prime sur le chiffre lui-même.** Un beat massif + RSI 30 = dossier §D prioritaire, pas éviter.
+
 2026-06-17 · HO.PA/Gate · HO.PA détenu (2.22 parts, avg_cost 246€) vient de passer 🔴 (composite -0.201, mom -12%) en repassant le recalcul signals.js ce mardi. La semaine dernière le gate était 🟠 ambre → trim discipliné exécuté. Cette semaine le momentum continue de glisser et franchit le seuil rouge. La règle §H est sans débat : sortie forcée à la prochaine fenêtre de vente (jeudi). → Ne pas attendre le vendredi pour une sortie forcée 🔴 : la latence coûte 1-2% de plus à la baisse. La fenêtre du jeudi est faite pour ça.
 
 2026-06-17 · MÉTHODE/Scout · ENR.DE (Siemens Energy) illustre le cas "momentum 12M élevé (+91%) + RSI 30 très survendu" : le titre a beaucoup monté puis s'est corrigé brutalement. C'est une fenêtre potentielle, pas une confirmation. Le deep-dive doit vérifier que la correction est technique (prise de bénéfices, rotation) et non fondamentale (guidance coupée). → Dans ce cas, la checklist DCF inversé est encore plus importante : est-ce que le consensus €195 est réaliste compte tenu du backlog €154B et des marges attendues 10-12% ?
