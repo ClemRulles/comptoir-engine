@@ -1,6 +1,6 @@
 {
   "_doc": "Cache des signaux QUANTITATIFS calculés par engine/signals.js. 'regime' = score macro FRED agrégé (gate global). 'tickers' = map ticker -> { fscore, momentum_12_1, earnings_quality, gate } horodatés. L'IA LIT ce fichier avant d'ouvrir/fermer une position (method §A/§H) : les signaux sont des garde-fous factuels, pas une boîte noire. 'data_gaps' liste les sources indisponibles (clé manquante / quota) pour rester honnête sur l'incertitude. Régénéré par les routines ; ne pas éditer à la main.",
-  "as_of": "2026-08-22",
+  "as_of": "2026-08-28",
   "seeded": true,
   "start_capital": 10417.28,
   "cash": 5209.83,
@@ -14,7 +14,7 @@
       "thesis_id": "saf-aero",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "sortie si S1 marge record non maintenu (RPFH < Q1 pace, carnets CFM déclinants) ; stop -8% avg_cost = 298.63€ (cours 343.6€, marge +15.1%) ; gate 🟢 +0.345 (RSI 54.2 sain, confirmé 22/08) — cap 5% §H LEVÉ ; 2.0929 parts ≈ 7.0% NAV (renforcement 5%→7% exécuté 22/08)",
+      "exit_rule": "sortie si S1 marge record non maintenu (RPFH < Q1 pace, carnets CFM déclinants) ; stop -8% avg_cost = 298.63€ (cours 343.2€, marge +14.9%) ; gate 🟢 +0.441 (RSI 45.4 sain, 28/08) — cap 5% §H LEVÉ ; 2.0929 parts ≈ 7.0% NAV",
       "seed": false,
       "thesis": "Aéronautique + MRO LEAP : S1 marge record confirmé (28/07/2026), aftermarket +29.3%, services +43%, LEAP 520. Guidance FY relevée. Gate 🟢 +0.345 confirmé 22/08 (RSI 54.2 sain — loin du suracheté). Renforcement EXÉCUTÉ 22/08 : +0.642 parts à 343.6€ (post-Jackson Hole Powell dovish). Avg_cost 316.14€ → 324.60€. Stop -8% = 298.63€ (marge +15.1% vs cours 343.6€). Position 2.0929 parts ≈ 7.0% NAV. Sizing Moyenne levé."
     },
@@ -27,7 +27,7 @@
       "thesis_id": "amzn-aws",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "sortie si croissance AWS cassée (<25% YoY) OU capex coupé >15% (Q2 confirmé ✓ — AWS +37%) ; stop EUR -8% avg_cost = 184.43€ ; stop USD natif $212.45 (P-001 : avg_cost 200.47€ × 1.152 × 0.92) ; gate 🟠 +0.126 (22/08 — F5/9, RSI 24.5 survendu extrême, initiés 0B/4S, couv 96%) — cap 5% §H actif ; 2.2738 parts ≈ 5.0% NAV (trim exécuté 22/08)",
+      "exit_rule": "sortie si croissance AWS cassée (<25% YoY) OU capex coupé >15% (Q2 confirmé ✓ — AWS +37%) ; stop EUR -8% avg_cost = 184.43€ ; stop USD natif $212.45 (P-001, marge +20.6%) ; gate 🟠 +0.086 (28/08 — F5/9, RSI 29.8 survendu extrême, momentum −2%, initiés 0B/4S) — cap 5% §H actif ; 2.2738 parts ≈ 4.93% NAV ✓",
       "seed": false,
       "thesis": "AWS + levier marge retail/pub. Q2 AWS +37% ✓ (>> seuil 25%), capex relevé ✓ — FALSIFICATEUR NON DÉCLENCHÉ. F5/9, earnings quality vert. Gate 🟠 +0.126 (22/08 — RSI 24.5 survendu extrême, initiés 0B/4S, momentum +2%). TRIM EXÉCUTÉ 22/08 : −0.774 parts à 224.5€ ($258.63/1.152). Cours $258.63 = 224.5€. Stop USD $212.45 (marge +22.0%). Position 2.2738 parts ≈ 5.0% NAV (cap 5% §H respecté). RSI 24.5 = survendu extrême — potentiel rebond technique mais cap mécanique infranchissable."
     },
@@ -53,7 +53,7 @@
       "thesis_id": "airliquide-compounder",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "sortie si ROIC se dégrade durablement (<8%) OU guidance volumes coupée ; stop -8% avg_cost = 152.03€ (cours 168.26€, marge +10.8%) ; gate 🟠 +0.090 (RSI 27.3 survendu, cov 39%) — cap 5% §H actif — TRIM EXÉCUTÉ 15/08 (−1.130 parts → 3.07935 parts = 5.0% NAV) ; thèse compounder intacte, RSI 27.3 survendu = potentiel rebond ; ne pas renforcer sans gate 🟢",
+      "exit_rule": "sortie si ROIC se dégrade durablement (<8%) OU guidance volumes coupée ; stop -8% avg_cost = 152.03€ (cours 166.78€, marge +9.7%) ; gate 🟠 +0.107 (RSI 27.1 survendu extrême, 28/08) — cap 5% §H actif — 3.07935 parts = 4.99% NAV ✓ ; thèse compounder intacte, RSI 27.1 survendu = potentiel rebond ; ne pas renforcer sans gate 🟢",
       "seed": false,
       "thesis": "Air Liquide — compounder gaz industriels, défensif. ROIC H1 +10.2% confirmé. Gate 🟠 +0.090 (RSI 27.3 survendu, potentiel rebond). TRIM EXÉCUTÉ 15/08 : 1.130 parts vendues à 168.26€, reste 3.07935 parts = 5.0% NAV (cap 5% §H respecté). Stop 152.03€ intact (marge +10.8%). Thèse compounder intacte."
     },
@@ -66,7 +66,7 @@
       "thesis_id": "lotus-quality",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "alléger si DCF inversé PER >50x devient irréaliste vs pairs food-premium (Lindt ~30x, Mondelez ~18x) ; taille petite (4.68% NAV = garde-fou naturel) ; gate 🟢 +0.385, RSI 87.9 extrême suracheté — surveiller surextension",
+      "exit_rule": "alléger si DCF inversé PER >50x devient irréaliste vs pairs food-premium (Lindt ~30x, Mondelez ~18x) ; taille petite (~5.0% NAV = garde-fou naturel) ; gate 🟢 +0.372, RSI 80.5 suracheté (28/08) — surveiller surextension",
       "seed": false,
       "thesis": "Lotus Bakeries (Biscoff) — compounder premium. Gate 🟢 vert (composite +0.385, RSI 87.9 EXTRÊME suracheté). Cours ~12 320€. PER ~44x : vigilance valo, position petite (4.68% NAV). RSI 87.9 = suracheté extrême — surveiller sans vendre (gate 🟢, position petite)."
     },
@@ -79,7 +79,7 @@
       "thesis_id": "bnp-bank",
       "entry_date": "2026-06-04",
       "target": null,
-      "exit_rule": "sortie si taux/risque crédit cassent la thèse banque ; Q2 2026 +33% net income = thèse bancaire CONFIRMÉE ✓ ; gate 🟢 +0.259, RSI 81.6 suracheté — ne pas renforcer ; cours 112.10€ = +66% vs avg_cost 67.70€",
+      "exit_rule": "sortie si taux/risque crédit cassent la thèse banque ; Q2 2026 +33% net income = thèse bancaire CONFIRMÉE ✓ ; gate 🟢 +0.405, RSI 26.4 survendu (vol 2.38x, 28/08 — chute technique cours €100.66) — surveiller support ; cours +49% vs avg_cost 67.70€",
       "seed": false,
       "thesis": "Banque diversifiée, +66% depuis avg_cost. Gate 🟢 vert (composite +0.259, RSI 81.6 suracheté). Q2 +33% net income = thèse bancaire CONFIRMÉE. ECB favorable, NIM solide. RSI 81.6 suracheté — ne pas renforcer. Position 4.03% NAV."
     },
@@ -92,7 +92,7 @@
       "thesis_id": "msci-monopole",
       "entry_date": "2026-06-13",
       "target": null,
-      "exit_rule": "vendre si rétention abonnés < 93% ou PE re-expand > 40x sans accélération organique ; stop USD natif $540.54 (avg_cost 535.4€ × 1.097 × 0.92 — P-001) ; stop EUR 492.57€ DÉGAGÉ ✓ (cours $569.13 = 494.0€ > 492.57€) ; stop USD valide ✓ (cours $569.13 > $540.54) ; gate 🟢 +0.602, F7/9, RSI 48.4 sain, initiés équilibrés ; Q2 rétention 95.3% CONFIRMÉ ✓",
+      "exit_rule": "vendre si rétention abonnés < 93% ou PE re-expand > 40x sans accélération organique ; stop USD natif $540.54 (P-001, marge +5.3%) ; stop EUR 492.57€ DÉGAGÉ ✓ (cours $569.15 = €494.1) ; gate 🟢 +0.440, F7/9, RSI 53.6 sain (28/08) ; Q2 rétention 95.3% CONFIRMÉ ✓ — P-002 si cours < $555 (~marge 2.7%)",
       "seed": false,
       "thesis": "Quasi-monopole indices MSCI, PE dé-raté vs historique 35-45x. Q2 rétention 95.3% ✓ CONFIRMÉ. Stop EUR 492.57€ DÉGAGÉ (cours 494.0€ le 15/08). Stop USD $540.54 intact (cours $569.13). Gate 🟢 +0.602, F7/9, RSI 48.4 sain — meilleur gate du book. GARDER. Position 6.49% NAV."
     },
@@ -105,7 +105,7 @@
       "thesis_id": "ceg-nuclear-ppa",
       "entry_date": "2026-06-20",
       "target": null,
-      "exit_rule": "SORTIR seulement si (1) FALSIFICATEUR hyperscaler : capex coupé >15% — NON DÉCLENCHÉ ✓ (AMZN capex relevé, MSFT Azure +39%, GOOGL confirmé, Meta confirmé) OU (2) restart Crane 2027 glisse matériellement OU (3) guidance >20% CAGR BPA coupée ; cours $282.50 = 245.2€ > stop EUR 232.29€ (marge +5.5%) ; gate 🟢 +0.327 (F6/9, initiés achats nets, RSI 59.8 sain) ; §G gouverne — GARDER",
+      "exit_rule": "SORTIR seulement si (1) FALSIFICATEUR hyperscaler : capex coupé >15% — NON DÉCLENCHÉ ✓ OU (2) restart Crane 2027 glisse matériellement OU (3) guidance >20% CAGR BPA coupée ; stop EUR 232.29€ DÉGAGÉ ✓ (cours $282.41 = €245.2, marge +5.5%) ; stop USD $212.45 (P-001, marge +33%) ; gate 🟢 +0.363 (F6/9, RSI 63.5, initiés achats nets, 28/08) ; §G gouverne — GARDER",
       "seed": false,
       "thesis": "Nucléaire US + PPA hyperscaler 20 ans (Microsoft TMI 835MW, Meta Clinton 1100MW, Walmart 176MW). FALSIFICATEURS Q2 HYPERSCALERS NON DÉCLENCHÉS ✓. Gate 🟢 +0.327 (flip 🟠→🟢 le 14/08), F6/9, initiés achats nets. Cours $282.50 = 245.2€ > stop EUR 232.29€ (marge +5.5%). §G gouverne. 13x BPA 2029E = marge de sécurité. GARDER. Position 5.83% NAV."
     },
@@ -118,7 +118,7 @@
       "thesis_id": "gva-infra-us",
       "entry_date": "2026-08-15",
       "target": null,
-      "exit_rule": "sortie si marge adj EBITDA < 10% OU write-down projet majeur OU backlog CAP coupé OU gate slippe 🔴 ; stop USD natif $116.93 (avg_cost 110.33€ × 1.152 × 0.92, P-001) ; horizon-test Q3'26 : marge maintenue dans guide 12.25-13.25%, rev +25%+, backlog $7.4B+ stable ; IIJA réautorisation FY2027 (vote automne) = signal sortie immédiate si non réautorisé",
+      "exit_rule": "sortie si marge adj EBITDA < 10% OU write-down projet majeur OU backlog CAP coupé OU gate slippe 🔴 ; stop USD natif $116.93 (P-001, marge +6.7% vs cours $124.71) ; horizon-test Q3'26 : marge dans guide 12.25-13.25%, rev +25%+, backlog $7.4B+ stable ; IIJA réautorisation FY2027 (vote Chambre avant 30/09 attendu — extension Senate 90-6 ✓, Chambre doit confirmer) = sortie immédiate si non réautorisé ; gate 🟢 F7/9 +0.528 (28/08) — renforcement conditionnel gelé avant Q3",
       "seed": false,
       "thesis": "Granite Construction — infrastructures US + data centers. Pivot marge Q2 LIVRÉ (adj EBITDA 12.8% dans guide 12.25-13.25%). Rev +29% ($1.46B), backlog record $7.4B (+$250M séquentiel), data centers cités en Q2 call (supercycle W33). Gate 🟢 F7/9 vert (+0.577, cov 96%). Momentum refroidi (+8.69%, vs +50% juil.). RSI 53.1 sain. 17x fwd (décote vs pairs VMC 30x, ETN 34x). Rotation CRH→GVA (même thème IIJA, gate frais, pivot prouvé). Stop USD $116.93 (P-001). Position 7.0% NAV. Entrée 15/08 à 110.33€ (= $127.10 / 1.152 EUR/USD)."
     }
@@ -478,5 +478,5 @@
       "rationale": "Renforcement 5%→7% post-Jackson Hole §H — gate 🟢 confirmé, cap levé. Jackson Hole 22/08 Powell dovish (FOMC 17/09 cut 91%) = catalyseur favorable aéronautique/MRO (taux stables, demande voyage maintenue). Gate 🟢 +0.345, RSI 54.2 sain (< 65 = sizing plein autorisé per leçon 19/08). Thèse SAF.PA : S1 marge record CONFIRMÉ (28/07/2026), aftermarket +29.3%, guidance FY relevée — thèse intacte, critère de renforcement pré-écrit satisfait. +0.642 parts à 343.6€. Nouvelle quantité : 2.0929 parts. Nouvel avg_cost : 324.60€. Stop -8% = 298.63€ (marge +15.1% vs cours 343.6€). Cash plancher 5% respecté (50.7% NAV >> 5%). Coût total : 0.642 × 343.6€ = 220.59€ + frais 0.66€ = 221.25€."
     }
   ],
-  "note": "Brief W34 2026-08-22. Régime : RISK-ON SAIN (CPI 3.3%, VIX 16.01, T10Y2Y 0.50, HY 2.75%). 2 trades exécutés post-Jackson Hole. Jackson Hole 22/08 : Powell dovish (FOMC 17/09 cut 91% CME) — régime confirmé, plancher cash 5%. TRADE 1 AMZN TRIM : −0.774 parts à 224.5€ (RSI 24.5 survendu extrême — cap 5% mécanique §H). TRADE 2 SAF.PA RENFORCEMENT : +0.642 parts à 343.6€ (gate 🟢 +0.345, RSI 54.2 sain, thèse S1 record ✓). Gates 22/08 : SAF.PA 🟢 +0.345 (RSI 54.2), AMZN 🟠 +0.126 (RSI 24.5), EIMI 🟢, AI 🟠 +0.140, LOTB 🟢 (RSI 80.6 suracheté — surveiller), BNP.PA 🟢, MSCI 🟢 F7/9, CEG 🟢 F6/9, GVA 🟢 F7/9. Cash 5 209.83€ (50.7% NAV). NAV estimée : ≈10 266€ (−1.45% vs start_capital 10 417€). 9 positions actives. Catalyseurs : NVDA Q2 26/08 (consensus $92B), GVA Q3 ~sept, FOMC 17/09, IIJA réautorisation automne."
+  "note": "Doctor W36 2026-08-28. Régime RISK-ON SAIN (CPI 3.3%, VIX 15.21, T10Y2Y 0.47, HY 2.67%). 0 trade ce jeudi — aucun des 4 déclencheurs §H armés. Gates 28/08 : SAF.PA 🟢 +0.441 (RSI 45.4), AMZN 🟠 +0.086 (F5/9, RSI 29.8 survendu, mom −2%), EIMI 🟢 +0.503, AI 🟠 +0.107 (RSI 27.1 survendu), LOTB 🟢 +0.372 (RSI 80.5 suracheté), BNP.PA 🟢 +0.405 (RSI 26.4 survendu + vol 2.38x — surveillance), MSCI 🟢 F7/9 +0.440 (stop USD +5.3% fin), CEG 🟢 F6/9 +0.363 (stop EUR DÉGAGÉ +5.5%), GVA 🟢 F7/9 +0.528 (stop USD +6.7%). Cash 5 209.83€ (50.6% NAV). NAV estimée : ≈10 291€ (−1.21% vs start_capital 10 417€). 9 positions actives. Candidat vendredi : EME (Acheter Moyenne ~7% NAV, convictions 27/08). Vote Chambre IIJA avant 30/09 à surveiller (GVA exit_rule). CPI 09/09 + FOMC 17/09 à venir."
 }

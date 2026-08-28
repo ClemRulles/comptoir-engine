@@ -2,6 +2,17 @@
   "_doc": "Journal AUTOMATIQUE des runs de routines, écrit par engine/push-memory.js à chaque persistance. 'runs' = plus récent d'abord : { ts, routine (préfixe du message de commit), message, files }. Sert d'observabilité : un trou dans les nuits attendues (Lun-Ven) = une routine qui a planté avant de persister — à signaler dans le brief du vendredi. ~40 entrées conservées. Ne pas éditer à la main.",
   "runs": [
     {
+      "ts": "2026-08-28T00:19:01.851Z",
+      "routine": "memory",
+      "message": "memory: maj 2026-08-28",
+      "files": [
+        "memory/fund/ai-fund.json",
+        "memory/fund/signals.json",
+        "memory/lessons.md",
+        "memory/portfolio.md"
+      ]
+    },
+    {
       "ts": "2026-08-27T00:19:29.494Z",
       "routine": "memory",
       "message": "memory: maj 2026-08-27",
@@ -422,14 +433,6 @@
         "memory/fund/signals.json",
         "memory/lessons.md",
         "memory/watchlist.md"
-      ]
-    },
-    {
-      "ts": "2026-07-01T00:16:08.599Z",
-      "routine": "memory",
-      "message": "memory: maj 2026-07-01",
-      "files": [
-        "memory/run-report.json"
       ]
     }
   ]
