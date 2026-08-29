@@ -185,7 +185,12 @@ deux bornes et le résultat, même quand tout va bien.
   3. **le solde va sur le résidu indiciel `IWDA.AS`** (§H) jusqu'à revenir sous le plafond.
      Un achat de résidu indiciel **ne consomme pas** le budget de rotation, n'a ni gate ni stop,
      et se logue avec `thesis_id: "residu-indiciel"`, `horizon: "coeur"`,
-     `rationale: "déploiement §H — cash {x} % > plafond {y} % du régime {régime}"`.
+     `rationale: "déploiement §H — cash {x} % > plafond {y} % du régime {régime}, palier {n}/{N}"`.
+
+  **Cadence : 10 points de NAV par semaine maximum** (§H). Si l'écart au plafond dépasse 10
+  points, tu déploies 10 points cette semaine et tu écris dans le brief le palier suivant avec
+  sa date. On comble un écart en plusieurs fois ; on ne met pas un quart du NAV au marché sur
+  une seule date de cotation.
 
 Le résidu indiciel est **financé en priorité** quand une vraie conviction apparaît : on vend
 l'IWDA nécessaire avant de toucher au cash de plancher.

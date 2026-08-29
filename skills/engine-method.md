@@ -242,6 +242,14 @@ Le résidu indiciel n'a **ni gate, ni stop, ni exit_rule de prix** (on ne « sor
 sur un signal technique) et **ne compte pas** dans le plafond thème 40 %. Il est plafonné à
 **35 % du NAV** : au-delà, le book ne serait plus un book, ce serait un ETF avec des frais.
 
+**Cadence de déploiement — on comble un écart, on ne saute pas dedans.** Le retour dans le
+couloir se fait par paliers de **10 points de NAV par semaine maximum**. Un book à 42 % de cash
+avec un plafond à 15 % ne déploie donc pas 27 points d'un coup : il met ~3 semaines, et chaque
+palier est daté dans le brief. Motif : concentrer un quart du NAV sur une seule date de marché
+remplace un risque (être sous-investi) par un autre (tout acheter au même cours). La règle vaut
+dans les deux sens — un retour SOUS le plancher se fait aussi par paliers, sauf déclenchement du
+garde-fou de drawdown, qui lui est immédiat. Survivre d'abord, performer ensuite.
+
 **Sorties & stop (systématiques, écrits à l'entrée).**
 - Toute entrée fixe sa **règle de sortie** (`exit_rule`) et son **hypothèse pivot** AVANT l'achat.
   Pas de règle de sortie = pas de position.
