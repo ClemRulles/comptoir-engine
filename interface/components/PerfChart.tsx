@@ -80,12 +80,27 @@ export function PerfChart({
     return MONTHS[Number(m) - 1] ?? m;
   };
 
+  // Apports tombant DANS la fenêtre affichée. Un versement fait monter la NAV sans que ce
+  // soit de la performance : sans cette déduction, 250 € de cotisations sur ~11 000 € de NAV
+  // s'affichaient comme +2,3 % de perf. La carte KPI corrigeait déjà (les apports s'ajoutent
+  // au capital de départ, cf. getAppData) — la légende du graphe, non.
+  const apportsInRange = useMemo(() => {
+    if (!contributions.length || filtered.length < 2) return 0;
+    const first = filtered[0].date;
+    const last = filtered[filtered.length - 1].date;
+    return contributions
+      .filter((c) => c.date > first && c.date <= last)
+      .reduce((sum, c) => sum + (Number.isFinite(c.amount) ? c.amount : 0), 0);
+  }, [contributions, filtered]);
+
   const rangePerf = (sel: (p: Point) => number | null) => {
     // Premier/dernier point où CE fonds a une valeur (les dates sans snapshot sont null).
     const vals = filtered.map(sel).filter((v): v is number => v != null && Number.isFinite(v));
     if (vals.length < 2) return 0;
     const a = vals[vals.length - 1];
-    const b = vals[0];
+    // Même convention que `perf` dans getAppData : l'apport rejoint le CAPITAL de départ,
+    // il ne compte jamais comme du rendement. Les deux fonds reçoivent les mêmes apports.
+    const b = vals[0] + apportsInRange;
     return b ? (a - b) / b : 0;
   };
 

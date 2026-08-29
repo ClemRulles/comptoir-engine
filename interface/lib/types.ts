@@ -93,7 +93,13 @@ export interface AiFundFile {
   positions: {
     ticker: string;
     quantity: number;
+    // Coût de revient du GROUPE hérité au clone du 08/06 — sert au groupe, PAS à juger l'IA.
     avg_cost: number;
+    // Prix réellement PAYÉ par l'IA (cours du clone pour les lignes héritées, prix d'achat
+    // moyen pondéré ensuite). C'est la seule référence honnête du P&L du book IA : scoré
+    // contre avg_cost, MSTR affichait −65 % pour −0,8 % réel. Absent sur les vieux books →
+    // repli sur avg_cost (comportement d'avant).
+    entry_price?: number;
     value_t0?: number; // valeur € de la ligne à t0 (pour normaliser quantity=1 → parts réelles)
     // Marqueur EXPLICITE de ligne « seed » (quantity=1 + value_t0 = valeur € à t0).
     // Prime sur l'heuristique quantity===1 : une vraie position d'exactement 1 part

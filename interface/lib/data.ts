@@ -53,6 +53,9 @@ export interface EnrichedHolding {
   ticker: string;
   quantity: number;
   avgCost: number;
+  // Base de calcul réellement utilisée pour pnl/pnlPct : entry_price quand il existe
+  // (book IA), avg_cost sinon (groupe, et books antérieurs à la migration).
+  costBasis: number;
   price: number | null;
   marketValue: number;
   weight: number; // part du fonds (positions + cash)
@@ -221,18 +224,36 @@ function enrich(
   name: string,
   startCapital: number,
   cash: number,
-  raw: { ticker: string; quantity: number; avg_cost: number; value_t0?: number; thesis?: string }[],
+  raw: {
+    ticker: string;
+    quantity: number;
+    avg_cost: number;
+    entry_price?: number;
+    value_t0?: number;
+    thesis?: string;
+  }[],
   prices: Record<string, number>
 ): FundView {
   const holdings: EnrichedHolding[] = raw.map((h) => {
     const price = prices[h.ticker.toUpperCase()] ?? null;
+    // Base de coût : le prix PAYÉ par le fonds. Pour le book IA, `avg_cost` est le coût de
+    // revient hérité du GROUPE au clone du 08/06 (parfois vieux de plusieurs années) — s'en
+    // servir affiche la performance de quelqu'un d'autre sur la page du fonds IA (MSTR :
+    // −65 % au lieu de −0,8 %). `entry_price` est le prix d'entrée de l'IA ; on ne retombe
+    // sur avg_cost que s'il est absent (groupe, ou book antérieur à la migration).
+    const unitCost =
+      typeof h.entry_price === "number" && h.entry_price > 0 ? h.entry_price : h.avg_cost;
+    // ⚠️ Le repli « cours manquant » reste sur avg_cost : c'est ce que font `cron/value` et
+    // `cron/gapfill` pour écrire les snapshots. En changer un seul ferait diverger le point
+    // live de la courbe sur ce chemin dégradé. La migration entry_price ne touche QUE le P&L.
     const marketValue = price != null ? price * h.quantity : h.avg_cost * h.quantity;
-    const cost = h.avg_cost * h.quantity;
+    const cost = unitCost * h.quantity;
     const pnl = marketValue - cost;
     return {
       ticker: h.ticker.toUpperCase(),
       quantity: h.quantity,
       avgCost: h.avg_cost,
+      costBasis: unitCost,
       price,
       marketValue,
       weight: 0,
