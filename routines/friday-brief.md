@@ -37,7 +37,14 @@ Si `portfolio.md` est vide, laisse `seeded:false`, écris-le dans le brief, et c
 Pour chaque position **fermée** depuis le dernier vendredi — **y compris les sorties exécutées
 jeudi** par le Portfolio Doctor (bloc `### Sorties exécutées` de `portfolio.md` + trades `sell`
 dans `ai-fund.json`) — ou règle de sortie touchée cette semaine :
-1. Calcule le **P&L réalisé** (`realized_pnl_pct`), **net des frais de friction** (cf. PASSE 2).
+1. Calcule le **P&L réalisé** (`realized_pnl_pct`), **net des frais de friction** (cf. PASSE 2),
+   **contre `entry_price` — le prix payé par l'IA — jamais contre `avg_cost`** (§H/§I). Sur une
+   ligne héritée du clone, `avg_cost` est le coût de revient du GROUPE : l'utiliser impute à l'IA
+   une moins-value vieille de plusieurs années. Si `entry_price` manque sur la position, calcule-le
+   d'abord (clone du 2026-06-08 : `valeur t0 / quantité`) et écris-le dans `ai-fund.json` ; **pas
+   de prix d'entrée = pas de scoring**. Marque aussi `origin` : `"hérité"` (ligne du clone sortie
+   par une mécanique) ou `"conviction"` (dossier né d'un débat §D) — seules les `conviction`
+   entrent dans les buckets de confiance (§I).
 2. **Mesure l'alpha** : `node engine/bench.js {opened} {closed}` → `benchmark_return_pct`
    (MSCI World EUR sur la même période) ; `alpha_pct = realized_pnl_pct − benchmark_return_pct`.
    **C'est l'alpha qui mesure le skill** : +5 % quand le marché fait +9 % n'est pas un succès,
@@ -108,7 +115,7 @@ toute ligne encore en mode seed) — l'interface s'appuie sur ce flag, prioritai
 ## PASSE 2 — Gestion du book IA (entrées/sorties)
 
 Rafraîchis les signaux : `node engine/signals.js` (positions + convictions retenues). En appliquant
-**method §H** (gate quantitatif → sizing pondéré conviction × calibration, plafonds, plancher de cash
+**method §H** (gate quantitatif → sizing pondéré conviction × calibration, plafonds, couloir de cash (plancher ET plafond)
 selon le régime, garde-fou drawdown) **et les amendements actifs de `memory/playbook.md`** (chaque
 trade dont un amendement a modifié la décision le cite dans son `rationale` : `[P-00N]`).
 **Ordre des sources** :
@@ -144,11 +151,19 @@ trade dont un amendement a modifié la décision le cite dans son `rationale` : 
    `status:"joué"`, `played:true`, et logge le trade (`fee`, `rationale` citant le call + son
    `tactical_cap`). Un call non joué reste scoré comme prédiction — Grok apprend même sans mise.
 
-- **Sorties** d'abord : toute position dont la règle de sortie est touchée, la thèse cassée, **ou le
-  gate passé au 🔴** (sortie forcée §H).
+- **Sorties** d'abord : toute position dont la règle de sortie est touchée, la thèse cassée,
+  **ou frappée d'un drapeau fondamental 🔴** (F-Score ≤3 / earnings rouges → sortie forcée §H).
+  Un 🔴 de composite seul **ne se vend pas** : il gèle la ligne et saisit le mercredi (§H).
 - **Entrées** ensuite : alloue le cash disponible aux meilleures convictions, **taille selon §H**
-  (un gate 🟠/⚪ plafonne à 5 % + stop −8 % ; un 🔴 interdit l'entrée). **Chaque trade cite son gate**
-  (verdict + composite) dans le `rationale`.
+  (un gate 🟠/⚪ plafonne l'entrée à 5 % ; un drapeau fondamental 🔴 l'interdit). **Chaque trade
+  cite son gate** (verdict + composite) dans le `rationale`.
+- **Hystérésis et budget de rotation (§H)** : un trade de *dimensionnement* (trim ou renforcement
+  d'une ligne déjà détenue, thèse inchangée) n'est autorisé que si le changement de gate est
+  confirmé sur **2 relevés consécutifs**, que l'écart de taille dépasse **2 points de NAV**, que
+  le ticker n'a pas bougé depuis **8 semaines**, et que le **budget de 4 trades de
+  dimensionnement/mois** n'est pas épuisé. Sinon : on note l'intention dans le brief, on n'exécute
+  pas. Ces 4 conditions se vérifient **avant** d'écrire le trade, et le `rationale` dit laquelle
+  a été vérifiée.
 - **Frais de friction (honnêteté du duel)** : le groupe paie de vrais frais et du spread —
   le book IA aussi. Chaque trade (achat ET vente) coûte **0,30 % du montant**, débité du cash
   et loggé dans le trade (`fee: montant × 0.003`, arrondi au centime). Le P&L réalisé scoré en
@@ -157,8 +172,39 @@ trade dont un amendement a modifié la décision le cite dans son `rationale` : 
   fee, confidence, thesis_id, horizon, rationale`, et chaque position porte `entry_date, target,
   exit_rule, confidence, horizon, thesis_id`. Mets `as_of` à jour et garde `cash` cohérent.
 
-Discipline : mieux vaut rester en cash qu'entrer sans marge de sécurité. La surchauffe n'est
-jamais un feu vert. On ne moyenne pas à la baisse une thèse cassée.
+### PASSE 2bis — Contrôle d'exposition (obligatoire, avant d'écrire le brief)
+
+Calcule `cash_pct = cash / NAV` et compare-le au **couloir de cash du régime** (§H). Écris les
+deux bornes et le résultat, même quand tout va bien.
+
+- `cash_pct` **sous le plancher** → réduis le risque (§H, garde-fou).
+- `cash_pct` **dans le couloir** → rien à faire, dis-le en une ligne.
+- `cash_pct` **au-dessus du plafond** → **déploiement obligatoire cette semaine**, dans cet ordre :
+  1. les convictions `Acheter` de `convictions.md` non encore exécutées, sizées §H ;
+  2. les renforcements éligibles (hystérésis + budget de rotation respectés) ;
+  3. **le solde va sur le résidu indiciel `IWDA.AS`** (§H) jusqu'à revenir sous le plafond.
+     Un achat de résidu indiciel **ne consomme pas** le budget de rotation, n'a ni gate ni stop,
+     et se logue avec `thesis_id: "residu-indiciel"`, `horizon: "coeur"`,
+     `rationale: "déploiement §H — cash {x} % > plafond {y} % du régime {régime}, palier {n}/{N}"`.
+
+  **Cadence : 10 points de NAV par semaine maximum** (§H). Si l'écart au plafond dépasse 10
+  points, tu déploies 10 points cette semaine et tu écris dans le brief le palier suivant avec
+  sa date. On comble un écart en plusieurs fois ; on ne met pas un quart du NAV au marché sur
+  une seule date de cotation.
+
+Le résidu indiciel est **financé en priorité** quand une vraie conviction apparaît : on vend
+l'IWDA nécessaire avant de toucher au cash de plancher.
+
+**Ce que ce contrôle interdit explicitement :** terminer un vendredi en RISK-ON SAIN avec 40 %
+de cash et zéro ligne dans le brief pour l'expliquer. Rester liquide est une **décision**, elle
+s'argumente comme une position ; sinon c'est une position vendeuse par défaut, et le book perd
+la moitié du bêta du marché sans que personne l'ait voulu (état constaté le 2026-08-29 : 42 % de
+cash, régime RISK-ON SAIN, benchmark +4 %).
+
+Discipline : mieux vaut rester en cash qu'entrer **dans un single-stock** sans marge de sécurité
+— mais le défaut du book n'est pas le cash, c'est l'indice (§H). Le droit au blanc porte sur la
+**sélection**, jamais sur l'**exposition**. La surchauffe n'est jamais un feu vert. On ne moyenne
+pas à la baisse une thèse cassée.
 
 **Apports membres (convention) :** le `cash` de `ai-fund.json` ne représente QUE le cash de
 trading du book (issu des ventes/achats). Les apports des membres (25 €/mois/personne) sont gérés
@@ -199,7 +245,16 @@ on ne réagit pas dans la panique.
 Reprends de portfolio.md tout statut À SURVEILLER / SORTIE avec la raison. Si tout INTACT, une ligne.
 
 ## Le book IA cette semaine
-Ce que l'IA a acheté/vendu et pourquoi (depuis la passe 2), son NAV vs le groupe en une ligne.
+Ce que l'IA a acheté/vendu et pourquoi (depuis la passe 2). Puis **les 3 chiffres, toujours** (§I) :
+- **NAV IA vs NAV groupe** — la course.
+- **NAV IA vs IWDA.AS** depuis le t0 — le bêta. Perdre contre l'indice en portant du cash est un
+  problème d'**exposition**, pas de sélection : dis lequel des deux tu constates.
+- **Exposition** : `cash %` et le couloir du régime (PASSE 2bis). Si le cash est hors couloir,
+  dis ce que tu as déployé — ou pourquoi tu ne l'as pas fait.
+
+Et une ligne d'**attribution des ventes** : sur les ventes des 12 dernières semaines, combien se
+traitent aujourd'hui **au-dessus** de leur prix de vente ? Si c'est la majorité, le moteur vend
+bas — c'est un défaut de règle (§H), pas de malchance, et il se dit franchement.
 
 ## 🎓 Leçon de la semaine
 La leçon la plus actionnable tirée de la passe 1 (ou « rien clôturé cette semaine »).

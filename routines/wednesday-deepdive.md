@@ -52,7 +52,17 @@ structurée des verdicts de la semaine, garde les ~6 plus pertinents (les meille
 `verdict` = ta conviction (Acheter/Surveiller/Éviter) ; `confidence` = force des preuves (method §E).
 
 ## B. Revue de risque du book IA (≤ 2 positions, ciblée)
-Choisis dans `ai-fund.json` **au plus 2 positions** qui méritent le cerveau Opus : soit les
+
+**Saisines prioritaires (§H) — elles passent AVANT le choix libre ci-dessous.** Le jeudi ne vend
+plus sur un signal de prix : il **gèle** et te saisit. Traite d'abord, dans l'ordre :
+1. toute position sous **gel de composite 🔴** (composite ≤ −0.2 sans drapeau fondamental) ;
+2. toute position ayant franchi le **seuil de réexamen −25 % vs `entry_price`**.
+Une saisine **doit ressortir avec un verdict tranché et écrit** — RENFORCER / GARDER / SORTIR —
+jamais « à surveiller ». C'est le point du cycle où le jugement remplace la mécanique : le gel
+protège la position du bruit hebdomadaire, ton débat décide si la thèse mérite encore le capital.
+S'il y a ≥ 2 saisines, elles consomment tout le quota et le choix libre saute.
+
+Sinon, choisis dans `ai-fund.json` **au plus 2 positions** qui méritent le cerveau Opus : soit les
 **2 plus gros poids** du NAV, soit celles dont la **règle de sortie est proche d'être touchée**
 (d'après le Portfolio Doctor de la veille / le mouvement de cours). Pour chacune :
 1. L'**hypothèse pivot** écrite à l'entrée tient-elle toujours, chiffres officiels à l'appui (EDGAR/Finnhub) ?
@@ -60,6 +70,10 @@ Choisis dans `ai-fund.json` **au plus 2 positions** qui méritent le cerveau Opu
 3. Mini-débat baissier : qu'est-ce qui casserait la thèse d'ici 3 mois ? est-ce déjà en train d'arriver ?
 4. Verdict pour vendredi : **RENFORCER** (thèse confirmée et marge intacte) / **GARDER** / **ALLÉGER**
    / **SORTIR** (pivot faux ou valo extrême) — avec la raison en une ligne.
+   ⚠️ **ALLÉGER et SORTIR se justifient par la THÈSE**, jamais par « le cours a monté / le RSI est
+   à 80 / le gate a glissé ». Un titre cœur qui monte sans que sa thèse change n'est pas un motif
+   d'allègement — c'est la thèse qui marche. Si tu ne peux pas nommer le fait nouveau qui affaiblit
+   le dossier, le verdict est GARDER.
 
 Sortie → ajoute un bloc `## Revue book IA — {date}` en haut de `memory/convictions.md` listant
 ces verdicts. Le vendredi (PASSE 2) les exécute en priorité. Ne touche à rien d'autre du book ici.

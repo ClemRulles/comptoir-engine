@@ -40,12 +40,24 @@ Sous le tableau, 2-3 lignes d'explication pour chaque `SORTIE`/`À SURVEILLER` (
 dans le brief de vendredi). Ajoute une leçon si une thèse s'est confirmée ou cassée.
 
 **Book IA — fenêtre de SORTIE (exécution, vente uniquement).** Applique le même diagnostic aux
-positions de `memory/fund/ai-fund.json`, puis **exécute immédiatement** toute vente déclenchée par :
+positions de `memory/fund/ai-fund.json`, puis **exécute immédiatement** toute vente déclenchée
+par l'un des **4 déclencheurs — et AUCUN autre** :
 - la **règle de sortie écrite** (`exit_rule`) touchée, ou la **thèse cassée** (pivot faux) ;
-- le **gate passé au 🔴** → sortie forcée §H, pas de débat ;
-- le **stop −8 %** d'une position entrée en gate 🟠/⚪ ;
+- un **drapeau fondamental 🔴** (F-Score ≤ 3 ou earnings quality rouge) → sortie forcée §H,
+  pas de débat ;
+- le **stop de prix d'une position TACTIQUE** (§G/§H). Les positions **cœur n'ont pas de stop
+  de prix** : à −25 % vs `entry_price`, on ouvre un **réexamen** (saisine du mercredi), on ne
+  vend pas mécaniquement ;
 - un verdict Opus **SORTIR** (ou **ALLÉGER**, en vente partielle) de `memory/convictions.md`
   encore non exécuté.
+
+**Ce qui n'est PAS un déclencheur de vente (verrou §H, 2026-08-29) :** un gate qui glisse
+🟢→🟠, un 🔴 de **composite seul** (sans drapeau fondamental), un RSI suracheté ou survendu, un
+range 52 semaines élevé, un dépassement de 5 % du NAV sur une ligne dont le gate vient de virer
+ambre. Ces cas produisent un **GEL** (aucun achat/renforcement) + une **saisine du deep-dive du
+mercredi**, jamais une vente le jeudi. Motif : sur les 17 ventes du book, 14 se sont faites sous
+le cours d'aujourd'hui — le retaillage mécanique sur signal de prix a coûté au book, il n'a rien
+protégé. **Le jeudi vend des thèses cassées, pas des cours qui baissent.**
 
 Exécution dans `ai-fund.json` : log du trade (`side:"sell"`, `quantity`, `price` = cours du jour,
 `fee` = montant × 0,003, `rationale` citant le déclencheur + le gate), retire/réduis la position,

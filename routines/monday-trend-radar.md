@@ -9,7 +9,7 @@ ses amendements actifs s'appliquent), et `memory/trends.md` (semaine passée).
 
 ## Partie A — Régime de marché
 Joue `node engine/signals.js` : `signals.regime` te donne un **cadran chiffré** (courbe 10Y-2Y,
-chômage, inflation) + plancher de cash. Recoupe avec FMP sector-performance + recherche web, puis
+chômage, inflation) + couloir de cash (plancher ET plafond, §H). Recoupe avec FMP sector-performance + recherche web, puis
 règle le cadran : RISK-ON SAIN / NORMAL / SURCHAUFFE / STRESS.
 Écris-le dans `memory/market-regime.md` (format : cadran, consigne au système,
 valorisation indice, zones de bulle, largeur, macro en 3 lignes, sources).

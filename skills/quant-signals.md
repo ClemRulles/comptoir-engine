@@ -80,12 +80,20 @@ multipliée par son **poids**. Le composite est la **moyenne pondérée des sign
 
 **Verdict** (depuis le composite `c` et les drapeaux durs) :
 
-| Verdict | Condition | Conduite (method §H — STRICT) |
+| Verdict | Condition | Conduite (method §H — le gate filtre les ENTRÉES) |
 |--------|-----------|-------------------------------|
-| 🔴 **rouge** | drapeau dur (F-Score ≤3 OU earnings rouges) **ou** `c ≤ −0.2` | **position INTERDITE / sortie forcée**. Pas de débat. |
-| 🟠 **ambre** | `−0.2 < c < 0.2` | **taille max 5% du book + stop-loss −8% obligatoire**. |
+| 🔴 **fondamental** | drapeau dur : F-Score ≤3 **ou** earnings quality rouge | **position INTERDITE / sortie forcée**. Pas de débat — c'est de la comptabilité. |
+| 🔴 **composite** | `c ≤ −0.2` **sans** drapeau dur | **GEL** : aucun achat/renforcement, position figée, **réexamen §D au deep-dive du mercredi**. Pas de vente automatique. |
+| 🟠 **ambre** | `−0.2 < c < 0.2` | **plafond d'ENTRÉE 5% du book**. Une position déjà constituée n'est pas retaillée (hystérésis §H). |
 | 🟢 **vert** | `c ≥ 0.2` | sizing normal selon conviction, **plafond 20%**. |
 | ⚪ **indéterminé** | couverture des poids < 0.15 (signaux insuffisants) | **traité comme 🟠** (droit au blanc = prudence). |
+
+⚠️ **Le composite est à 0,35 un signal de PRIX** (momentum 0.15 + RSI 0.10 + range 52 sem. 0.10)
+et à 0,04 un signal de volume. Sur un book cœur, faire dépendre une VENTE d'un signal de prix
+hebdomadaire revient à vendre bas et racheter haut avec méthode — mesuré le 2026-08-29 :
+14 des 17 ventes du book se sont faites **sous** le cours d'aujourd'hui. D'où la scission
+🔴 fondamental / 🔴 composite ci-dessus, et l'hystérésis 2 relevés + 2 points de NAV (§H).
+Le gate reste **souverain pour dire non** à une entrée ; il n'est jamais seul à dire vends.
 
 `coverage` (dans `signals.json`) = part du poids total réellement couverte par des données :
 un gate 🟢 avec coverage 39% (prix seuls, sans clé) est moins étayé qu'un 🟢 à 100%.
@@ -114,7 +122,7 @@ un gate 🟢 avec coverage 39% (prix seuls, sans clé) est moins étayé qu'un �
 | **Lun · Trend Radar** | `signals.regime` ancre le cadran de `market-regime.md` (chiffré + peur/avidité). |
 | **Mar · Scout** | `signals.js {candidats}` : pré-score §A intègre F-Score + momentum + RSI ; un 🔴 = « à éviter ». |
 | **Mer · Deep-dive** | recalcul ciblé sur les ★ ; le baissier (§D) cite F-Score, accruals, range 52 sem., initiés. |
-| **Jeu · Portfolio Doctor** | recalcul sur les positions ; gate 🔴 / règle touchée / stop −8 % → **vente exécutée** (fenêtre de sortie §H — jamais d'achat le jeudi). |
+| **Jeu · Portfolio Doctor** | recalcul sur les positions ; **drapeau fondamental 🔴** / `exit_rule` touchée / thèse cassée / stop tactique → **vente exécutée** (fenêtre de sortie §H — jamais d'achat le jeudi). Un 🔴 composite seul → gel + saisine du mercredi, pas de vente. |
 | **Ven · Brief/Book** | toute entrée/sortie cite le gate (verdict + composite + coverage) ; sizing §H STRICT par verdict. |
 
 Relié à : `skills/engine-method.md` §A (lentilles)/§E (confiance)/§H (sizing STRICT),
