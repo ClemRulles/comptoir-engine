@@ -1,3 +1,29 @@
+## Tendance de la semaine — 29 août 2026 (W36)
+
+- **Statut** : VALIDÉE — CONTINUATION W35 · NVDA Q2 BEAT ✓ · thèse intacte
+- **Tendance** : Supercycle power-grid (continuation structurelle) — NVDA Q2 FY27 BEAT confirmé 26/08 (>$91.85B, data center dominant). Thèse power-grid intacte. ENR.DE ne re-rate pas sur NVDA beat (3e confirmation §K). Extension IIJA Senate 90-6 → 11/12 : vote Chambre 27/08 statut non confirmé (à vérifier).
+- **Pourquoi maintenant** : W36 est une semaine de confirmation post-NVDA. Le beat valide la demande AI hardware et donc les backlogs des équipementiers power-grid (GVA, ENR.DE watchlist). Rotation sectorielle Tech→Industrials continue — favorable à nos positions infrastructure (GVA, EME nouveau, SAF.PA). **Droit au blanc partiel appliqué** : pas de nouvelle tendance autonome identifiée cette semaine. La tendance W35 (supercycle power-grid) continue sans révision majeure.
+- **Preuves dures** :
+  1. NVDA Q2 FY27 (26/08) : BEAT > $91.85B consensus, data center dominant. Source : confirmé convictions 27/08 header.
+  2. ENR.DE non-re-rating (3e confirmation §K) : malgré NVDA beat, ENR.DE ne re-rate pas — règle de rejet des scénarios re-rating indirect renforcée.
+  3. Hyperscalers capex 2026 : $660-690B engagé — falsificateurs non déclenchés (AWS +37% ✓, capex relevé ✓). Source : 10-Q MSFT/AMZN/GOOGL/META.
+  4. Senate vote 90-6 (08/08/2026) : extension IIJA authorities via CR → 11/12/2026. Source : NACo, Holland & Knight août 2026.
+  5. EME RPO $17.14B +44% (backlog MEP data centers US, convictions 27/08) — demande MEP data centers réelle et en accélération.
+- **Durabilité** : Structurelle — double moteur AI + décarbonation EU. Backlogs contractuels 2028+. NVDA Q2 beat confirme le moteur. Extension IIJA → visibilité GVA jusqu'en décembre (sous condition vote Chambre).
+- **Stade** : Milieu. Thèse en "exécution confirmée". NVDA Q2 = confirmation de la demande. CPI 09/09 + FOMC 17/09 = prochains jalons macro.
+- **Ce qui changerait la lecture vs W35** : (1) NVDA Q2 data center BEAT ✓ → thèse intacte, aucun changement de lecture ; (2) ENR.DE ne re-rate toujours pas post-NVDA (3e confirmation) → rejet systématique renforcé des scénarios re-rating indirect ; (3) Vote Chambre IIJA 27/08 statut non confirmé → risque GVA non neutralisé à 100% ; (4) EME entré 29/08 comme nouveau véhicule MEP data centers (couche complémentaire à GVA).
+- **Manières de la jouer (cotées)** :
+  - **GVA** (détenu, 🟢 F7/9) — IIJA extension → falaise 30/09 conditionnellement neutralisée. Stop USD $116.93 (marge +4.8% ⚠️ surveillance). GARDER.
+  - **EME** (entré 29/08, 🟢 F6/9 +0.495) — MEP data centers, couche complémentaire à GVA. Stop $702 USD. GARDER.
+  - **ENR.DE** (watchlist, 🟢 cov43%, mom +57%) — Surveiller. Entrée <€125 seulement. Ne parie pas sur re-rating via catalyst indirect.
+  - **ETN** (watchlist, 🟢 F6/9) — 34x fwd = Surveiller. Repli $375-385.
+- **Drapeau bulle** : FIX mom +145% §B ; ENR.DE mom +57% RSI69.9 (cov 43%) ; MYRG +116% §B. Aucune entrée sur ces noms sans repli.
+- **Ce qui tuerait la thèse** : (1) 2+ hyperscalers coupent capex >15% en Q3. (2) GVA Q3 marge adj EBITDA < 10%. (3) ENR.DE Q4 retourne en perte vent.
+- **Effet de second ordre** : Rotation Tech→Industrials supporte EME, GVA, SAF.PA. FOMC cut 17/09 favorable actifs longs (CEG, GVA).
+- **Sources** : engine/signals.js 2026-08-29 ; NVDA Q2 FY27 (confirmé convictions 27/08) ; EME convictions 27/08 (deep-dive) ; IIJA : NACo / Holland & Knight (Senate vote 90-6, 08/08/2026) ; Web : Yahoo Finance / Forbes (rotation sectorielle W35-W36).
+
+---
+
 ## Tendance de la semaine — 25 août 2026 (W35)
 
 - **Statut** : VALIDÉE — CONTINUATION W34 · Jalon NVDA Q2 demain · IIJA extension Senate
