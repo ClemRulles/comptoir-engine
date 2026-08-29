@@ -8,7 +8,7 @@
     {
       "ticker": "SAF.PA",
       "quantity": 2.0929,
-      "avg_cost": 324.60,
+      "avg_cost": 324.6,
       "confidence": "Moyenne",
       "horizon": "coeur",
       "thesis_id": "saf-aero",
@@ -16,12 +16,14 @@
       "target": null,
       "exit_rule": "sortie si S1 marge record non maintenu (RPFH < Q1 pace, carnets CFM déclinants) ; stop -8% avg_cost = 298.63€ (cours 343.2€, marge +14.9%) ; gate 🟢 +0.441 (RSI 45.4 sain, 28/08) — cap 5% §H LEVÉ ; 2.0929 parts ≈ 7.0% NAV",
       "seed": false,
-      "thesis": "Aéronautique + MRO LEAP : S1 marge record confirmé (28/07/2026), aftermarket +29.3%, services +43%, LEAP 520. Guidance FY relevée. Gate 🟢 +0.345 confirmé 22/08 (RSI 54.2 sain — loin du suracheté). Renforcement EXÉCUTÉ 22/08 : +0.642 parts à 343.6€ (post-Jackson Hole Powell dovish). Avg_cost 316.14€ → 324.60€. Stop -8% = 298.63€ (marge +15.1% vs cours 343.6€). Position 2.0929 parts ≈ 7.0% NAV. Sizing Moyenne levé."
+      "thesis": "Aéronautique + MRO LEAP : S1 marge record confirmé (28/07/2026), aftermarket +29.3%, services +43%, LEAP 520. Guidance FY relevée. Gate 🟢 +0.345 confirmé 22/08 (RSI 54.2 sain — loin du suracheté). Renforcement EXÉCUTÉ 22/08 : +0.642 parts à 343.6€ (post-Jackson Hole Powell dovish). Avg_cost 316.14€ → 324.60€. Stop -8% = 298.63€ (marge +15.1% vs cours 343.6€). Position 2.0929 parts ≈ 7.0% NAV. Sizing Moyenne levé.",
+      "entry_price": 312.4841,
+      "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée"
     },
     {
       "ticker": "AMZN",
       "quantity": 3.1138,
-      "avg_cost": 208.80,
+      "avg_cost": 208.8,
       "confidence": "Moyenne",
       "horizon": "coeur",
       "thesis_id": "amzn-aws",
@@ -29,7 +31,9 @@
       "target": null,
       "exit_rule": "sortie si croissance AWS cassée (<25% YoY) OU capex coupé >15% (Q2 confirmé ✓ — AWS +37%) ; stop USD natif $221.30 (P-001 : avg_cost 208.80€ × 1.152 × 0.92, marge +20.4% vs cours $266.43) ; gate 🟢 +0.249 (29/08 — F5/9, RSI 38.7 normalisé, earnings quality vert, revenue growth +12.4%) — cap 5% §H LEVÉ ; 3.1138 parts ≈ 7.0% NAV (renforcement Moyenne exécuté 29/08)",
       "seed": false,
-      "thesis": "AWS + levier marge retail/pub. Q2 AWS +37% ✓ (>> seuil 25%), capex relevé ✓ — FALSIFICATEUR NON DÉCLENCHÉ. F5/9, earnings quality vert. Gate FLIP 🟠→🟢 (29/08 : RSI 29.8→38.7, composite 0.086→0.249). RENFORCEMENT EXÉCUTÉ 29/08 : +0.84 parts à 231.28€ ($266.43/1.152). Avg_cost 200.47€ → 208.80€. Stop USD $221.30 (P-001, marge +20.4%). Position 3.1138 parts ≈ 7.0% NAV (cap levé, sizing Moyenne plein)."
+      "thesis": "AWS + levier marge retail/pub. Q2 AWS +37% ✓ (>> seuil 25%), capex relevé ✓ — FALSIFICATEUR NON DÉCLENCHÉ. F5/9, earnings quality vert. Gate FLIP 🟠→🟢 (29/08 : RSI 29.8→38.7, composite 0.086→0.249). RENFORCEMENT EXÉCUTÉ 29/08 : +0.84 parts à 231.28€ ($266.43/1.152). Avg_cost 200.47€ → 208.80€. Stop USD $221.30 (P-001, marge +20.4%). Position 3.1138 parts ≈ 7.0% NAV (cap levé, sizing Moyenne plein).",
+      "entry_price": 219.5033,
+      "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée"
     },
     {
       "ticker": "EIMI",
@@ -42,7 +46,9 @@
       "target": null,
       "exit_rule": "rebalancement, pas de thèse single-stock ; Section 122 tariffs remplacées par Section 301 10-12.5% → impact neutre/mixte pour EM (binaire passé, résultat mixte) ; gate 🟢 +0.615, RSI 62 sain",
       "seed": false,
-      "thesis": "Diversification marchés émergents (ETF). Gate 🟢 vert (composite +0.615, RSI 62 sain). Cours ~$54.60 (=47.40€). Section 301 10-12.5% — impact neutre/mixte EM. RISK-ON SAIN favorable. Position 4.47% NAV."
+      "thesis": "Diversification marchés émergents (ETF). Gate 🟢 vert (composite +0.615, RSI 62 sain). Cours ~$54.60 (=47.40€). Section 301 10-12.5% — impact neutre/mixte EM. RISK-ON SAIN favorable. Position 4.47% NAV.",
+      "entry_price": 46.52,
+      "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée"
     },
     {
       "ticker": "AI",
@@ -55,7 +61,9 @@
       "target": null,
       "exit_rule": "sortie si ROIC se dégrade durablement (<8%) OU guidance volumes coupée ; stop -8% avg_cost = 152.03€ (cours 166.78€, marge +9.7%) ; gate 🟠 +0.107 (RSI 27.1 survendu extrême, 28/08) — cap 5% §H actif — 3.07935 parts = 4.99% NAV ✓ ; thèse compounder intacte, RSI 27.1 survendu = potentiel rebond ; ne pas renforcer sans gate 🟢",
       "seed": false,
-      "thesis": "Air Liquide — compounder gaz industriels, défensif. ROIC H1 +10.2% confirmé. Gate 🟠 +0.090 (RSI 27.3 survendu, potentiel rebond). TRIM EXÉCUTÉ 15/08 : 1.130 parts vendues à 168.26€, reste 3.07935 parts = 5.0% NAV (cap 5% §H respecté). Stop 152.03€ intact (marge +10.8%). Thèse compounder intacte."
+      "thesis": "Air Liquide — compounder gaz industriels, défensif. ROIC H1 +10.2% confirmé. Gate 🟠 +0.090 (RSI 27.3 survendu, potentiel rebond). TRIM EXÉCUTÉ 15/08 : 1.130 parts vendues à 168.26€, reste 3.07935 parts = 5.0% NAV (cap 5% §H respecté). Stop 152.03€ intact (marge +10.8%). Thèse compounder intacte.",
+      "entry_price": 167.7897,
+      "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée"
     },
     {
       "ticker": "LOTB",
@@ -68,7 +76,9 @@
       "target": null,
       "exit_rule": "alléger si DCF inversé PER >50x devient irréaliste vs pairs food-premium (Lindt ~30x, Mondelez ~18x) ; taille petite (~5.0% NAV = garde-fou naturel) ; gate 🟢 +0.372, RSI 80.5 suracheté (28/08) — surveiller surextension",
       "seed": false,
-      "thesis": "Lotus Bakeries (Biscoff) — compounder premium. Gate 🟢 vert (composite +0.385, RSI 87.9 EXTRÊME suracheté). Cours ~12 320€. PER ~44x : vigilance valo, position petite (4.68% NAV). RSI 87.9 = suracheté extrême — surveiller sans vendre (gate 🟢, position petite)."
+      "thesis": "Lotus Bakeries (Biscoff) — compounder premium. Gate 🟢 vert (composite +0.385, RSI 87.9 EXTRÊME suracheté). Cours ~12 320€. PER ~44x : vigilance valo, position petite (4.68% NAV). RSI 87.9 = suracheté extrême — surveiller sans vendre (gate 🟢, position petite).",
+      "entry_price": 10940.0,
+      "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée"
     },
     {
       "ticker": "BNP.PA",
@@ -81,7 +91,9 @@
       "target": null,
       "exit_rule": "sortie si taux/risque crédit cassent la thèse banque ; Q2 2026 +33% net income = thèse bancaire CONFIRMÉE ✓ ; gate 🟢 +0.405, RSI 26.4 survendu (vol 2.38x, 28/08 — chute technique cours €100.66) — surveiller support ; cours +49% vs avg_cost 67.70€",
       "seed": false,
-      "thesis": "Banque diversifiée, +66% depuis avg_cost. Gate 🟢 vert (composite +0.259, RSI 81.6 suracheté). Q2 +33% net income = thèse bancaire CONFIRMÉE. ECB favorable, NIM solide. RSI 81.6 suracheté — ne pas renforcer. Position 4.03% NAV."
+      "thesis": "Banque diversifiée, +66% depuis avg_cost. Gate 🟢 vert (composite +0.259, RSI 81.6 suracheté). Q2 +33% net income = thèse bancaire CONFIRMÉE. ECB favorable, NIM solide. RSI 81.6 suracheté — ne pas renforcer. Position 4.03% NAV.",
+      "entry_price": 93.66,
+      "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée"
     },
     {
       "ticker": "MSCI",
@@ -94,7 +106,9 @@
       "target": null,
       "exit_rule": "vendre si rétention abonnés < 93% ou PE re-expand > 40x sans accélération organique ; stop USD natif $540.54 (P-001, marge +5.3%) ; stop EUR 492.57€ DÉGAGÉ ✓ (cours $569.15 = €494.1) ; gate 🟢 +0.440, F7/9, RSI 53.6 sain (28/08) ; Q2 rétention 95.3% CONFIRMÉ ✓ — P-002 si cours < $555 (~marge 2.7%)",
       "seed": false,
-      "thesis": "Quasi-monopole indices MSCI, PE dé-raté vs historique 35-45x. Q2 rétention 95.3% ✓ CONFIRMÉ. Stop EUR 492.57€ DÉGAGÉ (cours 494.0€ le 15/08). Stop USD $540.54 intact (cours $569.13). Gate 🟢 +0.602, F7/9, RSI 48.4 sain — meilleur gate du book. GARDER. Position 6.49% NAV."
+      "thesis": "Quasi-monopole indices MSCI, PE dé-raté vs historique 35-45x. Q2 rétention 95.3% ✓ CONFIRMÉ. Stop EUR 492.57€ DÉGAGÉ (cours 494.0€ le 15/08). Stop USD $540.54 intact (cours $569.13). Gate 🟢 +0.602, F7/9, RSI 48.4 sain — meilleur gate du book. GARDER. Position 6.49% NAV.",
+      "entry_price": 535.4,
+      "entry_price_source": "achats IA, moyenne pondérée"
     },
     {
       "ticker": "CEG",
@@ -107,7 +121,9 @@
       "target": null,
       "exit_rule": "SORTIR seulement si (1) FALSIFICATEUR hyperscaler : capex coupé >15% — NON DÉCLENCHÉ ✓ OU (2) restart Crane 2027 glisse matériellement OU (3) guidance >20% CAGR BPA coupée ; stop EUR 232.29€ DÉGAGÉ ✓ (cours $282.41 = €245.2, marge +5.5%) ; stop USD $212.45 (P-001, marge +33%) ; gate 🟢 +0.363 (F6/9, RSI 63.5, initiés achats nets, 28/08) ; §G gouverne — GARDER",
       "seed": false,
-      "thesis": "Nucléaire US + PPA hyperscaler 20 ans (Microsoft TMI 835MW, Meta Clinton 1100MW, Walmart 176MW). FALSIFICATEURS Q2 HYPERSCALERS NON DÉCLENCHÉS ✓. Gate 🟢 +0.327 (flip 🟠→🟢 le 14/08), F6/9, initiés achats nets. Cours $282.50 = 245.2€ > stop EUR 232.29€ (marge +5.5%). §G gouverne. 13x BPA 2029E = marge de sécurité. GARDER. Position 5.83% NAV."
+      "thesis": "Nucléaire US + PPA hyperscaler 20 ans (Microsoft TMI 835MW, Meta Clinton 1100MW, Walmart 176MW). FALSIFICATEURS Q2 HYPERSCALERS NON DÉCLENCHÉS ✓. Gate 🟢 +0.327 (flip 🟠→🟢 le 14/08), F6/9, initiés achats nets. Cours $282.50 = 245.2€ > stop EUR 232.29€ (marge +5.5%). §G gouverne. 13x BPA 2029E = marge de sécurité. GARDER. Position 5.83% NAV.",
+      "entry_price": 252.49,
+      "entry_price_source": "achats IA, moyenne pondérée"
     },
     {
       "ticker": "GVA",
@@ -120,7 +136,9 @@
       "target": null,
       "exit_rule": "sortie si marge adj EBITDA < 10% OU write-down projet majeur OU backlog CAP coupé OU gate slippe 🔴 ; stop USD natif $116.93 (P-001, marge +4.8% vs cours $122.52) ; horizon-test Q3'26 : marge dans guide 12.25-13.25%, rev +25%+, backlog $7.4B+ stable ; IIJA réautorisation FY2027 (vote Chambre 27/08 : statut non confirmé — si non voté, exit_rule 30/09 se réarme) = sortie immédiate si non réautorisé avant 11/12 ; gate 🟢 F7/9 +0.469 (29/08) — renforcement conditionnel gelé avant Q3",
       "seed": false,
-      "thesis": "Granite Construction — infrastructures US + data centers. Pivot marge Q2 LIVRÉ (adj EBITDA 12.8% dans guide 12.25-13.25%). Rev +29% ($1.46B), backlog record $7.4B (+$250M séquentiel), data centers cités en Q2 call (supercycle W33). Gate 🟢 F7/9 vert (+0.469, cov 86%). Momentum refroidi (+6.7% 12-1, vs +50% juil.). RSI 42.9 sain. 17x fwd (décote vs pairs VMC 30x, ETN 34x). Stop USD $116.93 (P-001, marge +4.8% vs $122.52 — surveiller si pression). Extension IIJA Senate 90-6 → 11/12 : falaise 30/09 neutralisée (Chambre non confirmée, à vérifier). Position 6.8% NAV."
+      "thesis": "Granite Construction — infrastructures US + data centers. Pivot marge Q2 LIVRÉ (adj EBITDA 12.8% dans guide 12.25-13.25%). Rev +29% ($1.46B), backlog record $7.4B (+$250M séquentiel), data centers cités en Q2 call (supercycle W33). Gate 🟢 F7/9 vert (+0.469, cov 86%). Momentum refroidi (+6.7% 12-1, vs +50% juil.). RSI 42.9 sain. 17x fwd (décote vs pairs VMC 30x, ETN 34x). Stop USD $116.93 (P-001, marge +4.8% vs $122.52 — surveiller si pression). Extension IIJA Senate 90-6 → 11/12 : falaise 30/09 neutralisée (Chambre non confirmée, à vérifier). Position 6.8% NAV.",
+      "entry_price": 110.33,
+      "entry_price_source": "achats IA, moyenne pondérée"
     },
     {
       "ticker": "EME",
@@ -133,7 +151,9 @@
       "target": null,
       "exit_rule": "sortie si marge opérationnelle segment MEP passe < 8% durablement OU RPO backlog coupé ≥ 15% OU gate slippe 🔴 ; stop USD $702 (= avg_cost $763 × 0.92, marge −8%) ; stop EUR 609.34€ (= avg_cost 662.33€ × 0.92) ; gate 🟢 F6/9 +0.495 (29/08 — convictions 27/08) ; 1.09 parts ≈ 7.0% NAV",
       "seed": false,
-      "thesis": "EMCOR Group — contracteur MEP (mechanical-electrical-plumbing) pour data centers et infra critique US. Couche chaîne de valeur supérieure à GVA (MEP intérieur vs génie civil). F6/9 EDGAR solide, PEG ~0.65 (EPS +35% livrés), RPO $17.14B (+44% YoY), marge opérationnelle ~10.6% (2.5× GVA). RSI 39.8 au moment de la convictions (post-record, correction technique). Non redondant avec GVA (P-003b : couches différentes de la chaîne DC). Entrée 29/08 à 662.33€ ($763/1.152). Stop USD $702 (marge −8%). Position 7.0% NAV."
+      "thesis": "EMCOR Group — contracteur MEP (mechanical-electrical-plumbing) pour data centers et infra critique US. Couche chaîne de valeur supérieure à GVA (MEP intérieur vs génie civil). F6/9 EDGAR solide, PEG ~0.65 (EPS +35% livrés), RPO $17.14B (+44% YoY), marge opérationnelle ~10.6% (2.5× GVA). RSI 39.8 au moment de la convictions (post-record, correction technique). Non redondant avec GVA (P-003b : couches différentes de la chaîne DC). Entrée 29/08 à 662.33€ ($763/1.152). Stop USD $702 (marge −8%). Position 7.0% NAV.",
+      "entry_price": 662.33,
+      "entry_price_source": "achats IA, moyenne pondérée"
     }
   ],
   "trades": [
@@ -403,7 +423,7 @@
       "ts": "2026-08-08",
       "side": "buy",
       "ticker": "AI",
-      "quantity": 1.70,
+      "quantity": 1.7,
       "price": 172.38,
       "fee": 0.88,
       "confidence": "Moyenne",
@@ -442,7 +462,7 @@
       "ts": "2026-08-15",
       "side": "sell",
       "ticker": "AI",
-      "quantity": 1.130,
+      "quantity": 1.13,
       "price": 168.26,
       "fee": 0.57,
       "confidence": "Moyenne",
@@ -469,7 +489,7 @@
       "side": "sell",
       "ticker": "AMZN",
       "quantity": 0.774,
-      "price": 224.50,
+      "price": 224.5,
       "fee": 0.52,
       "confidence": "Moyenne",
       "thesis_id": "amzn-aws",
@@ -482,7 +502,7 @@
       "side": "buy",
       "ticker": "SAF.PA",
       "quantity": 0.642,
-      "price": 343.60,
+      "price": 343.6,
       "fee": 0.66,
       "confidence": "Moyenne",
       "thesis_id": "saf-aero",
@@ -517,5 +537,6 @@
       "rationale": "Nouvelle entrée vendredi §H — verdict Acheter Moyenne deep-dive 27/08. EMCOR Group : couche MEP (mechanical-electrical-plumbing) de data centers et infra critique. Meilleur dossier qualité/croissance de la nuit : F6/9 EDGAR solide, PEG ~0.65 (croissance forte + valo raisonnable), RPO $17.14B +44% YoY (backlog recurrences) — marge opérationnelle ~10.6% (vs GVA ~4% génie civil). RSI 39.8 post-record = entrée sur correction technique, pas sur surchauffe. Thèse complémentaire à GVA (couche différente de la chaîne de valeur DC : civil GVA vs MEP intérieur EME — P-003b validé : non-redondant). Cap thème post-EME : GVA(6.8%) + CEG(5.8%) + EME(7.0%) = 19.6% << 40% §H ✓. Prix EUR : $763 / 1.152 = 662.33€ (prix convictions 27/08 — EME non dans signals.js, approximation). Stop USD $702 = avg_cost × 0.92 (marge −8%). Stop EUR = 609.34€. Sizing Moyenne = 7% NAV (~722€). Coût total : 1.09 × 662.33€ = 721.94€ + frais 2.17€ = 724.11€."
     }
   ],
-  "note": "Brief W36 2026-08-29. Régime RISK-ON SAIN (VIX 14.51, T10Y2Y 0.39, HY 2.63% — amélioration vs W35). 2 trades vendredi : (1) AMZN renforcement +0.84 parts à 231.28€ (gate flip 🟠→🟢, RSI 29.8→38.7, sizing Moyenne 5%→7%) ; (2) EME entrée 1.09 parts à 662.33€ ($763 USD, gate 🟢 +0.495 F6/9, PEG ~0.65, Acheter Moyenne 7% NAV — convictions 27/08). Gates 29/08 : SAF.PA 🟢 +0.32 (RSI 37.6), AMZN 🟢 +0.249 (RSI 38.7), EIMI 🟢 +0.554 (RSI 60), AI 🟠 +0.09 (RSI 24.4), LOTB 🟢 +0.385 (RSI 73.5), BNP.PA 🟢 +0.405 (RSI 19.8 extrême survendu), MSCI 🟢 F7/9 +0.550 (RSI 54.5), CEG 🟢 F6/9 +0.323 (RSI 56.1), GVA 🟢 F7/9 +0.469 (RSI 42.9), EME 🟢 F6/9 +0.495 (entrée). Cash 4 290.86€ (41.7% NAV). NAV estimée : ≈10 296€ (−1.16% vs start_capital 10 417€). 10 positions actives. Benchmark IWDA +2.26% même période → alpha −3.42%. NVDA Q2 BEAT ✓ (thèse power-grid intacte). Vote Chambre IIJA 27/08 : statut non confirmé (à vérifier). CPI 09/09 + FOMC 17/09 à venir."
+  "note": "Brief W36 2026-08-29. Régime RISK-ON SAIN (VIX 14.51, T10Y2Y 0.39, HY 2.63% — amélioration vs W35). 2 trades vendredi : (1) AMZN renforcement +0.84 parts à 231.28€ (gate flip 🟠→🟢, RSI 29.8→38.7, sizing Moyenne 5%→7%) ; (2) EME entrée 1.09 parts à 662.33€ ($763 USD, gate 🟢 +0.495 F6/9, PEG ~0.65, Acheter Moyenne 7% NAV — convictions 27/08). Gates 29/08 : SAF.PA 🟢 +0.32 (RSI 37.6), AMZN 🟢 +0.249 (RSI 38.7), EIMI 🟢 +0.554 (RSI 60), AI 🟠 +0.09 (RSI 24.4), LOTB 🟢 +0.385 (RSI 73.5), BNP.PA 🟢 +0.405 (RSI 19.8 extrême survendu), MSCI 🟢 F7/9 +0.550 (RSI 54.5), CEG 🟢 F6/9 +0.323 (RSI 56.1), GVA 🟢 F7/9 +0.469 (RSI 42.9), EME 🟢 F6/9 +0.495 (entrée). Cash 4 290.86€ (41.7% NAV). NAV estimée : ≈10 296€ (−1.16% vs start_capital 10 417€). 10 positions actives. Benchmark IWDA +2.26% même période → alpha −3.42%. NVDA Q2 BEAT ✓ (thèse power-grid intacte). Vote Chambre IIJA 27/08 : statut non confirmé (à vérifier). CPI 09/09 + FOMC 17/09 à venir.",
+  "note_migration_2026_08_30": "MIGRATION §H/§I : ajout de `entry_price` = prix réellement payé par l'IA (clone 08/06 pour les lignes héritées, prix d'achat sinon). `avg_cost` reste le coût de revient du GROUPE et ne sert PLUS à juger l'IA (P&L, réexamen). Les mentions de « stop -8% avg_cost » dans les exit_rule des lignes coeur sont CADUQUES : le coeur n'a plus de stop de prix (§H) — seuil de réexamen -25% vs entry_price, saisine du mercredi. Le vendredi doit réécrire chaque exit_rule coeur en critère de THÈSE (falsificateur chiffré + horizon_test = prochains résultats) et supprimer les stops de prix."
 }

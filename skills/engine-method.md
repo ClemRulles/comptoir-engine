@@ -136,6 +136,18 @@ Rappel : le sentiment aide surtout en marché haussier ; en marché baissier, le
 - **Court terme (tactique)** : on exige un catalyseur daté + une règle de sortie
   serrée. Taille de position plus petite. La surchauffe est un risque, pas un feu vert.
 
+**Ce que « long terme » veut dire concrètement (sinon le mot ne coûte rien).** Une position
+cœur porte un `horizon_test` : la **prochaine publication de résultats** de la société. Entre
+deux `horizon_test`, elle est **intouchable** — sauf `exit_rule` écrite touchée, thèse cassée,
+drapeau fondamental §H, ou seuil de réexamen −25 %. Ni le RSI, ni le range 52 semaines, ni un
+composite qui glisse de 0,21 à 0,19 ne sont des motifs d'action sur une ligne cœur : ce sont
+des données de marché à un horizon de quelques jours, appliquées à une thèse à horizon de
+quelques années. **Un titre cœur se juge sur ses résultats, à la date de ses résultats.**
+
+Corollaire de cadence : la question du vendredi n'est pas « qu'est-ce qui a bougé ? » mais
+« **qu'est-ce qui a changé dans les faits depuis la semaine dernière ?** ». Si la réponse est
+« rien », l'action correcte est **rien** — et le brief le dit.
+
 ---
 
 ## H. Gestion du book IA (sizing & risque) — pour battre le groupe, pas pour parier
@@ -146,20 +158,48 @@ le risque**. Règles, appliquées de façon cohérente :
 
 **Gate quantitatif — RÈGLE VERROUILLÉE (préalable à toute entrée/sortie).** Lis
 `memory/fund/signals.json` (rafraîchis avec `node engine/signals.js {tickers}` si périmé).
-Le `gate` par titre **commande** le sizing, sans exception côté book :
 
-- 🔴 **rouge** → **position INTERDITE**. Si le titre est détenu : **sortie forcée** à la passe.
-  **Pas de débat, pas d'override** côté book (un drapeau dur F-Score ≤3 / earnings rouges, ou un
-  composite ≤ −0.2, n'est pas négociable). On ne moyenne jamais à la baisse un 🔴.
-- 🟠 **ambre** → **taille MAX 5 % du book** ET **stop-loss obligatoire à −8 %** vs entrée, écrit
-  à l'achat. Hypothèse pivot renforcée.
+Le gate est un **filtre d'ENTRÉE**, pas un ordre de vente. Il commande **ce qu'on achète et
+combien**, jamais à lui seul ce qu'on garde. Distinction fondatrice, née de la mesure du
+2026-08-29 (17 ventes du book : 14 en dessous du cours d'aujourd'hui ; les 9 sorties forcées
+de juin ont coûté **+278 €** de manque à gagner) : le composite est pondéré à **0,35 par des
+signaux de prix** (momentum, RSI, range 52 sem.) qui oscillent d'une semaine à l'autre. Faire
+piloter une VENTE par un signal de prix sur un book cœur, c'est vendre bas et racheter haut
+avec méthode. §G gouverne la sortie d'une position cœur : **on vend quand la thèse casse.**
+
+- 🔴 **rouge par DRAPEAU FONDAMENTAL** (F-Score ≤ 3 **ou** earnings quality rouge) →
+  **position INTERDITE, sortie forcée**. Pas de débat, pas d'override : ce sont des faits
+  comptables, pas du prix. On ne moyenne jamais à la baisse un drapeau dur.
+- 🔴 **rouge par COMPOSITE seul** (`c ≤ −0.2` sans drapeau fondamental) → **GEL**, pas sortie :
+  aucun achat, aucun renforcement, position figée, **réexamen §D obligatoire au deep-dive du
+  mercredi suivant**. La vente n'a lieu que si ce réexamen conclut « thèse cassée », si
+  l'`exit_rule` écrite est touchée, ou si le drapeau fondamental tombe. Un composite rouge qui
+  se redresse sans qu'on ait rien vendu est une information — on la logue.
+- 🟠 **ambre** → **plafond d'ENTRÉE à 5 % du NAV** : on n'ouvre ni ne renforce au-delà. Une
+  position déjà constituée **n'est pas retaillée** parce que le gate est passé ambre (voir
+  « Hystérésis » ci-dessous). Hypothèse pivot renforcée à l'écrit.
 - 🟢 **vert** → **sizing normal** selon conviction × calibration ci-dessous, **plafond 20 %**.
-- ⚪ **indéterminé** (couverture insuffisante / data_gaps) → **traité comme 🟠** (droit au blanc =
-  prudence : max 5 % + stop −8 %).
+- ⚪ **indéterminé** (couverture insuffisante / data_gaps) → **traité comme 🟠**.
 
-Le **régime** (`signals.regime`) fixe le plancher de cash ci-dessous. Détail : `skills/quant-signals.md`.
-> Cette règle prime sur tout le reste de §H : on calcule la taille « conviction × calibration »
-> puis on la **plafonne** par le verdict du gate (🟠/⚪ ⇒ ≤5 % + stop −8 % ; 🔴 ⇒ 0).
+Le **régime** (`signals.regime`) fixe le couloir de cash ci-dessous. Détail : `skills/quant-signals.md`.
+> Cette règle prime sur tout le reste de §H **pour les entrées** : on calcule la taille
+> « conviction × calibration » puis on la **plafonne** par le verdict du gate (🟠/⚪ ⇒ ≤ 5 % ;
+> 🔴 fondamental ⇒ 0). Pour les **sorties**, c'est §G + l'`exit_rule` écrite qui gouvernent,
+> le gate n'étant contraignant que par son drapeau fondamental.
+
+**Hystérésis (anti-ping-pong) — non négociable.** Un changement de gate n'est actionnable que
+s'il est **confirmé sur 2 relevés hebdomadaires consécutifs** ET que l'écart de taille dépasse
+**2 points de NAV** (on ne trade pas pour 0,4 point). Après tout trade de dimensionnement sur un
+ticker, ce ticker est **gelé 8 semaines** pour tout nouveau trade de dimensionnement — seuls
+l'`exit_rule`, la thèse cassée et le drapeau fondamental peuvent encore le faire bouger.
+Motif : entre le 26/06 et le 29/08, SAF.PA a fait 5 allers-retours de taille et AMZN 4, sans
+qu'aucune thèse ne change — coût net négatif à chaque fois (racheté plus haut qu'allégé).
+
+**Budget de rotation.** Maximum **4 trades de dimensionnement par mois** sur l'ensemble du book
+(les sorties sur thèse cassée, `exit_rule` et drapeau fondamental ne comptent pas dans ce
+budget). Le vendredi qui dépasserait ce budget garde ses idées pour la semaine suivante et le
+dit dans le brief. Un moteur hebdomadaire qui trade 28 fois en 12 semaines n'est pas un moteur
+long terme.
 
 **Sizing — pondéré par conviction ET par calibration.**
 - Taille cible de base par niveau de confiance : **Haute ≈ 12 %**, **Moyenne ≈ 7 %**,
@@ -171,16 +211,65 @@ Le **régime** (`signals.regime`) fixe le plancher de cash ci-dessous. Détail :
 
 **Plafonds (non négociables).**
 - **≤ 20 % du NAV** sur une seule position. **≤ 40 %** sur un même secteur/thème (ex. « infra IA »).
-- **Plancher de cash modulé par le régime** (lis `memory/market-regime.md`) : RISK-ON sain ≥ 5 %,
-  vigilance ≥ 15 %, surchauffe ≥ 30 %. En surchauffe on n'est jamais tout investi.
+- **Couloir de cash modulé par le régime** (lis `memory/market-regime.md`) — un **plancher ET un
+  plafond**, les deux contraignants :
+
+  | Régime | Plancher | **Plafond** |
+  |--------|:-------:|:-----------:|
+  | RISK-ON sain | 5 % | **15 %** |
+  | Vigilance / NORMAL | 15 % | **30 %** |
+  | Surchauffe | 30 % | **50 %** |
+  | Stress | 30 % | **60 %** |
+
+  Le plancher empêche de tout jouer ; **le plafond empêche de ne rien jouer**. Un book à 42 % de
+  cash en RISK-ON SAIN (état du 2026-08-29) est une **position vendeuse sur les actions que
+  personne n'a décidée** : elle ne vient d'aucune thèse, d'aucun débat §D, et elle a coûté la
+  moitié du bêta du marché pendant que le benchmark faisait +4 %. Le cash inemployé est un pari,
+  et tout pari du book doit être argumenté.
+
+**Résidu indiciel — le défaut du book n'est PAS le cash.** Quand le cash dépasse son plafond et
+qu'aucun dossier single-stock ne passe la barre §D/§E, on **n'entasse pas du cash : on achète
+l'indice**. Le surplus va sur **IWDA.AS (MSCI World EUR)** — le benchmark même qui sert à
+calculer l'alpha (§I). Conséquences voulues :
+- le **droit au blanc reste entier** (« aucune conviction cette semaine » n'oblige plus à
+  sous-performer le marché : on reste investi sans prétendre choisir) ;
+- chaque conviction single-stock devient un **écart explicite à l'indice**, donc son alpha se
+  lit directement — c'est exactement ce que §I prétend mesurer ;
+- le résidu se **réduit tout seul** à mesure que de vraies convictions apparaissent (on vend de
+  l'IWDA pour financer une entrée : ce n'est pas un trade de dimensionnement, ça ne consomme pas
+  le budget de rotation).
+Le résidu indiciel n'a **ni gate, ni stop, ni exit_rule de prix** (on ne « sort » pas du marché
+sur un signal technique) et **ne compte pas** dans le plafond thème 40 %. Il est plafonné à
+**35 % du NAV** : au-delà, le book ne serait plus un book, ce serait un ETF avec des frais.
 
 **Sorties & stop (systématiques, écrits à l'entrée).**
 - Toute entrée fixe sa **règle de sortie** (`exit_rule`) et son **hypothèse pivot** AVANT l'achat.
   Pas de règle de sortie = pas de position.
-- **Cœur** : on vend quand la **thèse casse** (pivot faux), pas sur un mouvement de prix.
+- **Cœur : AUCUN stop de prix.** On vend quand la **thèse casse** (pivot faux), point. Un stop
+  −8 % sur une position détenue pour 3-5 ans est un instrument de court terme : le bruit
+  hebdomadaire le touche avant que la thèse ait eu le temps d'avoir tort. À la place, seuil de
+  **RÉEXAMEN** : à **−25 % vs prix d'entrée**, le mercredi suivant doit produire un débat §D
+  complet et **trancher par écrit** (renforcer / garder / sortir). Un réexamen n'est pas une
+  vente — c'est l'interdiction de subir sans décider.
 - **Tactique** : stop serré sur invalidation du catalyseur OU −15 à −20 % vs entrée, au plus tôt.
+  Le tactique est la SEULE poche à stop de prix (avec §K et la poche Grok §F).
+- Tout stop se lit **dans la devise de cotation** (playbook P-001) et se vérifie en double
+  source (P-002).
 - **On ne moyenne JAMAIS à la baisse une thèse cassée.** Ajouter ne se fait que si la thèse se
   *renforce*, pas pour « réparer » une perte.
+
+**Prix d'entrée ≠ coût hérité (verrou de comptabilité).** Le book porte deux prix par position
+et ils ne servent PAS à la même chose :
+- `entry_price` — **le prix payé par l'IA** (cours du clone au 2026-06-08 pour les lignes
+  héritées, cours d'achat pour les autres). **C'est la seule référence** du P&L de l'IA (§I),
+  des seuils de réexamen et des stops tactiques.
+- `avg_cost` — le coût de revient historique **du groupe** sur les lignes héritées. Il sert au
+  groupe, jamais à juger l'IA.
+Les confondre a produit, sur les 9 sorties héritées de juin, un P&L logué de **−24,5 % de
+moyenne pour un P&L réel de −2,9 %** (MSTR : −65 % logué, **−0,8 % réel** ; NOVOB : −23,3 %
+logué, **+2,0 % réel**) — et des stops « −8 % vs avg_cost » situés jusqu'à 40 % sous le marché,
+donc inopérants. Une position dont `entry_price` manque doit le faire calculer avant tout
+scoring : **pas de prix d'entrée = pas de P&L logué**.
 
 **Fenêtres de décision asymétriques (jeudi = vente seule, vendredi = tout).** Sortir vite est
 urgent ; entrer vite ne l'est presque jamais. Le book a donc DEUX fenêtres d'exécution :
@@ -209,9 +298,19 @@ L'avantage de l'IA n'est pas de « deviner » : c'est de **tenir un registre hon
 **corriger** plus vite qu'un humain. Mécanique :
 
 **Scorer une décision clôturée.** Quand une position est fermée, écris une entrée dans
-`memory/fund/decisions.json` : `confidence` annoncée à l'entrée, `realized_pnl_pct` (net de
-frais §H), `benchmark_return_pct`, `alpha_pct`, `outcome` (« thèse confirmée / cassée / neutre »)
-et `hit` (la confiance était-elle méritée ?).
+`memory/fund/decisions.json` : `confidence` annoncée à l'entrée, `opened`, **`closed`
+(obligatoires — sans les deux dates, `bench.js` ne peut pas calculer la fenêtre du benchmark et
+l'alpha est faux)**, `entry` (= `entry_price`, le prix payé par l'IA), `exit`,
+`origin` (`hérité` | `conviction`), `realized_pnl_pct` (net de frais §H),
+`benchmark_return_pct`, `alpha_pct`, `outcome` (« thèse confirmée / cassée / neutre ») et `hit`
+(la confiance était-elle méritée ?).
+
+> **Verrou de référence.** `realized_pnl_pct = exit_net / entry − 1`, où `entry` est le prix payé
+> **par l'IA** (`entry_price` de la position, §H « Prix d'entrée ≠ coût hérité »). Jamais
+> `avg_cost` sur une ligne héritée : charger l'IA d'une moins-value que le groupe portait
+> depuis des années fabrique un hit_rate de 0 % qui n'apprend rien et qui, par le mécanisme
+> ci-dessous, rétrograde le sizing d'un moteur qui n'a pas démérité. **Un chiffre de
+> calibration faux est pire qu'une absence de calibration** : il se transforme en règle.
 - **L'alpha, pas le P&L brut, mesure le skill.** `benchmark_return_pct` = rendement du MSCI World
   EUR sur la même période (`node engine/bench.js {opened} {closed}`) ; `alpha_pct =
   realized_pnl_pct − benchmark_return_pct`. Un +5 % quand le marché fait +9 % n'est pas un succès :
@@ -232,6 +331,23 @@ Basse < Moyenne < Haute. Si ce n'est pas le cas, la confiance est du bruit → l
 critères, jusqu'à ce que confiance annoncée et réussite réelle se rejoignent.
 **Seuil statistique : n ≥ 8 décisions par bucket avant tout ajustement de sizing.** En dessous,
 le hit_rate est du bruit (une malchance ≠ une mauvaise calibration) : on constate, on n'ajuste pas.
+
+**Décisions héritées vs décisions propres — deux registres.** Une sortie de ligne **héritée du
+clone**, déclenchée par une mécanique (gate, stop) et non par un débat §D de l'IA, ne mesure pas
+le jugement de l'IA : elle mesure la mécanique. Elle est scorée avec `origin: "hérité"` et
+**exclue des buckets de confiance** ; elle alimente un bloc séparé `mechanics` (les verrous
+tiennent-ils ?). Seules les décisions `origin: "conviction"` — nées d'un débat §D, dimensionnées
+par §H — jugent le jugement. Sinon le premier trimestre du book restera un procès en calibration
+fait à des positions que l'IA n'a jamais choisies.
+
+**Ce qu'on mesure vraiment, chaque vendredi (3 chiffres, dans le brief).**
+1. **NAV IA vs NAV groupe** — la course annoncée.
+2. **NAV IA vs IWDA.AS** — le bêta : si le book perd contre l'indice tout en détenant du cash,
+   le problème est l'**exposition**, pas la sélection.
+3. **Attribution des ventes** : pour chaque vente des 12 dernières semaines, `cours d'aujourd'hui
+   vs prix de vente`. Si la majorité des ventes est en dessous du cours actuel, le moteur vend
+   bas — c'est un défaut de **règle**, pas de malchance, et il se corrige dans §H, pas dans
+   le choix des titres.
 
 **Boucle de feedback (concrète).**
 1. Vendredi : score les fermetures → leçons datées dans `lessons.md` → maj des 2 JSON.

@@ -55,10 +55,20 @@ Le fonds IA (`memory/fund/ai-fund.json`) est un vrai portefeuille fictif qu'on c
   factuels (F-Score, momentum 12-1, qualité des earnings, régime macro) via
   `node engine/signals.js` → `memory/fund/signals.json`. Le `gate` (🟢/🟠/🔴/⚪) garde-fou
   les décisions ; outrepasser un 🔴 se justifie par écrit. Voir `skills/quant-signals.md`.
+  **Le gate filtre ce qu'on ACHÈTE, il ne commande pas ce qu'on garde** : seul un **drapeau
+  fondamental** (F-Score ≤3, earnings rouges) force une vente ; un composite rouge ou ambre gèle
+  la ligne et saisit le débat du mercredi (§H). Un signal de prix hebdomadaire ne liquide pas une
+  thèse pluriannuelle.
+- **Le cash est une position, pas un refuge.** Le régime fixe un **couloir** — plancher ET
+  plafond (§H). Au-dessus du plafond, le surplus va aux convictions puis au **résidu indiciel
+  IWDA.AS** : le droit au blanc porte sur la sélection des titres, jamais sur l'exposition au
+  marché. Ne pas être investi est un pari, et tout pari du book s'argumente.
 - **Deux fenêtres de décision, asymétriques (method §H)** : le **jeudi** (Portfolio Doctor)
-  exécute les **ventes défensives** du book (règle de sortie touchée, thèse cassée, gate 🔴,
-  stop) — jamais d'achat ; le **vendredi** reste la seule fenêtre d'entrée, après instruction
-  complète. Sortir vite est urgent, entrer vite ne l'est jamais.
+  exécute les **ventes défensives** du book (règle de sortie touchée, thèse cassée, drapeau
+  fondamental 🔴, stop tactique) — jamais d'achat ; le **vendredi** reste la seule fenêtre
+  d'entrée, après instruction complète. Sortir vite est urgent, entrer vite ne l'est jamais.
+  Entre les deux, l'hystérésis §H (2 relevés, 2 points de NAV, gel 8 semaines, 4 trades de
+  dimensionnement/mois) empêche le book de se retailler pour du bruit.
 - **Prédire est permis, mais seulement pré-enregistré (method §K)** : un jugement sur le futur
   (effets de second ordre d'un événement — ex. IPO majeure → secteur impacté) ne se joue que via
   `memory/fund/forecasts.json` : scénario écrit AVANT, probabilisé, falsifiable, horizon daté,

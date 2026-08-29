@@ -1,46 +1,60 @@
 {
-  "_doc": "Agrégats recalculés à chaque passe (vendredi + revue mensuelle) à partir de decisions.json. 'buckets' = un objet par niveau de confiance annoncé : n (décisions clôturées), hits (résultats qui valident la confiance), hit_rate (hits/n), avg_return (rendement réalisé moyen). 'global' = stats du book IA. Une IA bien calibrée a un hit_rate qui CROÎT avec la confiance (Basse < Moyenne < Haute) ; sinon la passe mensuelle corrige le sizing (method §I).",
-  "updated": "2026-08-15",
-  "note_n_insuffisant": "ATTENTION — n < 8 par bucket (Haute=1, Moyenne=7, Basse=2). Seuil statistique §I non atteint : le hit_rate est du bruit. 1ère conviction IA propre close : CRH (Moyenne, −17.67% / alpha −21.65%) — sortie mécanique sur exit_rule pré-enregistrée (gate slip 🟢→🟠), thèse IIJA intacte. MSCI et CEG restent ouverts. NE PAS ajuster les tailles cibles §H. Tailles cibles maintenues : Haute≈12%, Moyenne≈7%, Basse≈3%. Prochaine réévaluation : n_moyenne≥8 (~sept-oct 2026).",
+  "_doc": "Agrégats recalculés à chaque passe (vendredi + revue mensuelle) à partir de decisions.json. 'buckets' = un objet par niveau de confiance annoncé : n (décisions clôturées), hits (résultats qui valident la confiance), hit_rate (hits/n), avg_return (rendement réalisé moyen). 'global' = stats du book IA. Une IA bien calibrée a un hit_rate qui CROÎT avec la confiance (Basse < Moyenne < Haute) ; sinon la passe mensuelle corrige le sizing (method §I). RETRAITEMENT 2026-08-30 : les buckets ne comptent QUE les décisions `origin:\"conviction\"` (nées d'un débat §D). Les sorties de lignes héritées du clone sont regroupées dans `mechanics` : elles jugent les verrous du gate, pas le jugement de l'IA. P&L et alpha lus dans `restatement` quand il existe.",
+  "updated": "2026-08-30",
+  "note_n_insuffisant": "ATTENTION — après retraitement, n_conviction = 1 (CRH). Le hit_rate par bucket n'existe pas encore : la 1re vraie mesure de calibration viendra de MSCI/CEG/GVA/EME à leur clôture. Seuil §I : n ≥ 8 par bucket. NE PAS ajuster les tailles cibles. Tailles maintenues : Haute≈12%, Moyenne≈7%, Basse≈3%.",
   "buckets": [
     {
       "confidence": "Haute",
-      "n": 1,
+      "n": 0,
       "hits": 0,
-      "hit_rate": 0.0,
-      "avg_return": -0.270,
-      "avg_alpha": -0.2459,
-      "note": "n=1 < seuil 8 — statistiquement non significatif. RMS.PA : sortie gate forcée position héritée. Pas d'ajustement."
+      "hit_rate": null,
+      "avg_return": null,
+      "avg_alpha": null,
+      "note": "0 décision de conviction close. L'ancienne entrée (RMS.PA, n=1, -27%) était une sortie de ligne HÉRITÉE mal imputée : déplacée dans `mechanics` (P&L réel +0.16%)."
     },
     {
       "confidence": "Moyenne",
-      "n": 7,
+      "n": 1,
       "hits": 0,
       "hit_rate": 0.0,
-      "avg_return": -0.1926,
-      "avg_alpha": -0.1813,
-      "note": "n=7 < seuil 8 — statistiquement non significatif. 7 sorties : 5 gate-forcées héritées + NFLX stop + HO.PA gate+stop + CRH gate-slip (1ère conviction IA propre close, thèse IIJA intacte, sortie mécanique sur exit_rule pré-enregistrée). Pas d'ajustement sizing."
+      "avg_return": -0.1767,
+      "avg_alpha": -0.2165,
+      "note": "n=1 (CRH) — non significatif. Sortie mécanique sur exit_rule pré-enregistrée (gate slip), thèse IIJA intacte. 6 des 7 anciennes 'Moyenne' étaient des sorties héritées : déplacées dans `mechanics`."
     },
     {
       "confidence": "Basse",
-      "n": 2,
+      "n": 0,
       "hits": 0,
-      "hit_rate": 0.0,
-      "avg_return": -0.4155,
-      "avg_alpha": -0.3914,
-      "note": "n=2 < seuil 8 — non significatif. MSTR thèse cassée (correct d'être Basse) + SGO thèse cassée. Sizing Basse approprié."
+      "hit_rate": null,
+      "avg_return": null,
+      "avg_alpha": null,
+      "note": "0 décision de conviction close. MSTR et SGO.PA étaient des lignes héritées (P&L réels -0.84% et -1.80%, pas -65% et -18.1%) : déplacées dans `mechanics`."
     }
   ],
   "global": {
-    "closed_decisions": 10,
+    "closed_decisions_conviction": 1,
+    "closed_decisions_heritees": 9,
     "win_rate": 0.0,
     "avg_win": null,
-    "avg_loss": -0.2448,
-    "avg_alpha": -0.2298,
+    "avg_loss": -0.1767,
+    "avg_alpha": -0.2165,
     "profit_factor": 0,
-    "max_drawdown_nav": -0.003,
-    "benchmark_period": "2026-06-04 / 2026-08-14",
-    "benchmark_return": 0.0398,
-    "note": "W33 15/08 : 10 décisions, toutes négatives. 1ère conviction IA propre clôturée : CRH (Moyenne, −17.67% / alpha −21.65%) — exit_rule pré-enregistrée déclenchée (gate slip 🟢→🟠), thèse IIJA intacte au moment de la sortie. 9 sorties sur 10 sont des exits gate-forcés (discipline du gate préserve la NAV). NAV ≈ −0.54% vs start_capital 10 417€. Benchmark IWDA.AS +3.98% depuis 04/06. MSCI et CEG (ouverts) + GVA (nouveau 15/08) portent la qualité future. Alpha calculé sur IWDA.AS. Réévaluer calibration à n≥8 par bucket (~sept-oct 2026)."
+    "max_drawdown_nav": -0.016,
+    "benchmark_period": "2026-06-04 / 2026-08-29",
+    "benchmark_return": 0.0448,
+    "nav_vs_t0": -0.0158,
+    "nav_groupe_vs_t0": 0.042,
+    "note": "W36 30/08 — mesure honnête après retraitement. NAV IA -1.58% vs t0, groupe +4.20%, IWDA +4.48% : le book perd 5.8 pts contre le groupe ET 6.1 pts contre l'indice tout en portant 42% de cash. Décomposition de l'écart de -602 € : -278 € de ventes (14 des 17 ventes se traitent aujourd'hui AU-DESSUS de leur prix de vente) et -296 € d'achats (les 5 convictions propres — CRH, MSCI, CEG, GVA, EME — sont toutes négatives). Ce n'est pas un problème de sélection isolé : c'est une règle qui vend sur signal de prix et achète après la hausse. Corrections §H du 2026-08-30 : gate = filtre d'entrée, hystérésis, couloir de cash, résidu indiciel, plus de stop de prix sur le cœur."
+  },
+  "mechanics": {
+    "_doc": "Sorties de lignes HÉRITÉES du clone, déclenchées par une mécanique (gate/stop) et non par un débat §D. Elles jugent les VERROUS, pas le jugement de l'IA (§I).",
+    "n": 9,
+    "avg_return": -0.0287,
+    "avg_alpha": -0.0308,
+    "gagnants": [
+      "NOVOB",
+      "RMS.PA"
+    ],
+    "verdict": "La mécanique du gate a bien coupé le seul vrai dossier cassé (SAP -12.5%) mais a liquidé 8 lignes pour une perte moyenne quasi nulle — puis 8 de ces 9 titres ont MONTÉ depuis (coût d'opportunité mesuré : +278 € au 2026-08-29). C'est le fait qui a motivé la scission 🔴 fondamental / 🔴 composite et l'hystérésis (§H, 2026-08-30)."
   }
 }

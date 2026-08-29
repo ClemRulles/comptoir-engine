@@ -10,12 +10,23 @@
       "closed": "2026-06-12",
       "entry": 296.51,
       "exit": 103.78,
-      "realized_pnl_pct": -0.650,
+      "realized_pnl_pct": -0.65,
       "benchmark_return_pct": -0.0241,
       "alpha_pct": -0.6259,
       "outcome": "thèse cassée",
       "hit": false,
-      "lesson": "Proxy leveraged BTC contient un double risque : baisse BTC + compression simultanée de la prime NAV. F3/9 drapeau dur visible dès le seed — la règle de sortie aurait dû inclure un seuil explicite sur la prime."
+      "lesson": "Proxy leveraged BTC contient un double risque : baisse BTC + compression simultanée de la prime NAV. F3/9 drapeau dur visible dès le seed — la règle de sortie aurait dû inclure un seuil explicite sur la prime.",
+      "origin": "hérité",
+      "restatement": {
+        "date": "2026-08-30",
+        "motif": "`entry` d'origine = coût de revient du GROUPE (avg_cost hérité du clone), pas le prix payé par l'IA. Corrigé §H/§I.",
+        "entry_ia": 104.35,
+        "opened_ia": "2026-06-08",
+        "realized_pnl_pct": -0.0084,
+        "benchmark_return_pct": 0.0013,
+        "alpha_pct": -0.0097,
+        "exclu_des_buckets": true
+      }
     },
     {
       "thesis_id": "byd-ev",
@@ -26,12 +37,23 @@
       "closed": "2026-06-12",
       "entry": 10.295,
       "exit": 9.369,
-      "realized_pnl_pct": -0.090,
+      "realized_pnl_pct": -0.09,
       "benchmark_return_pct": -0.0241,
       "alpha_pct": -0.0659,
       "outcome": "neutre",
       "hit": false,
-      "lesson": "Gate 🔴 composite -0.60 sur momentum -29% et range52 2% : la règle verrouillée prime même quand la thèse fondamentale (volumes × 2, technologie charge) est intacte. Ré-entrée possible si gate se redresse — tenir la règle est l'edge."
+      "lesson": "Gate 🔴 composite -0.60 sur momentum -29% et range52 2% : la règle verrouillée prime même quand la thèse fondamentale (volumes × 2, technologie charge) est intacte. Ré-entrée possible si gate se redresse — tenir la règle est l'edge.",
+      "origin": "hérité",
+      "restatement": {
+        "date": "2026-08-30",
+        "motif": "`entry` d'origine = coût de revient du GROUPE (avg_cost hérité du clone), pas le prix payé par l'IA. Corrigé §H/§I.",
+        "entry_ia": 9.74,
+        "opened_ia": "2026-06-08",
+        "realized_pnl_pct": -0.041,
+        "benchmark_return_pct": 0.0013,
+        "alpha_pct": -0.0423,
+        "exclu_des_buckets": true
+      }
     },
     {
       "thesis_id": "india-etf",
@@ -47,7 +69,18 @@
       "alpha_pct": -0.0869,
       "outcome": "neutre",
       "hit": false,
-      "lesson": "Macro Inde structurelle intacte (+6.9% PIB) mais flux CT sortants : un ETF peut voir son gate se détériorer sans que la thèse long terme casse. Sortie disciplinée, ré-entrée dès amélioration du momentum (gate composite -0.28 → surveiller)."
+      "lesson": "Macro Inde structurelle intacte (+6.9% PIB) mais flux CT sortants : un ETF peut voir son gate se détériorer sans que la thèse long terme casse. Sortie disciplinée, ré-entrée dès amélioration du momentum (gate composite -0.28 → surveiller).",
+      "origin": "hérité",
+      "restatement": {
+        "date": "2026-08-30",
+        "motif": "`entry` d'origine = coût de revient du GROUPE (avg_cost hérité du clone), pas le prix payé par l'IA. Corrigé §H/§I.",
+        "entry_ia": 765.22,
+        "opened_ia": "2026-06-08",
+        "realized_pnl_pct": -0.0089,
+        "benchmark_return_pct": 0.0013,
+        "alpha_pct": -0.0102,
+        "exclu_des_buckets": true
+      }
     },
     {
       "thesis_id": "saintgobain-cyclique",
@@ -63,7 +96,18 @@
       "alpha_pct": -0.1569,
       "outcome": "thèse cassée",
       "hit": false,
-      "lesson": "Cyclique construction : T1 -2.3% organique + précipitations record + faiblesse neuve US = thèse rénovation énergétique non encore enclenchée. Confiance Basse était correcte ; ne pas réentrer sur momentum seul."
+      "lesson": "Cyclique construction : T1 -2.3% organique + précipitations record + faiblesse neuve US = thèse rénovation énergétique non encore enclenchée. Confiance Basse était correcte ; ne pas réentrer sur momentum seul.",
+      "origin": "hérité",
+      "restatement": {
+        "date": "2026-08-30",
+        "motif": "`entry` d'origine = coût de revient du GROUPE (avg_cost hérité du clone), pas le prix payé par l'IA. Corrigé §H/§I.",
+        "entry_ia": 74.4,
+        "opened_ia": "2026-06-08",
+        "realized_pnl_pct": -0.018,
+        "benchmark_return_pct": 0.0013,
+        "alpha_pct": -0.0193,
+        "exclu_des_buckets": true
+      }
     },
     {
       "thesis_id": "sap-cloud",
@@ -73,13 +117,24 @@
       "opened": "2026-06-04",
       "closed": "2026-06-12",
       "entry": 246.17,
-      "exit": 139.90,
+      "exit": 139.9,
       "realized_pnl_pct": -0.432,
       "benchmark_return_pct": -0.0241,
       "alpha_pct": -0.4079,
       "outcome": "neutre",
       "hit": false,
-      "lesson": "Thèse cloud RISE confirmée (backlog +20%, cloud +19%) mais gate 🔴 momentum -46% incontournable. Divergence fondamentaux/momentum = cas classique 'valeur intrinsèque en avance sur le marché'. Sortie gate, ré-entrée quand momentum se retourne."
+      "lesson": "Thèse cloud RISE confirmée (backlog +20%, cloud +19%) mais gate 🔴 momentum -46% incontournable. Divergence fondamentaux/momentum = cas classique 'valeur intrinsèque en avance sur le marché'. Sortie gate, ré-entrée quand momentum se retourne.",
+      "origin": "hérité",
+      "restatement": {
+        "date": "2026-08-30",
+        "motif": "`entry` d'origine = coût de revient du GROUPE (avg_cost hérité du clone), pas le prix payé par l'IA. Corrigé §H/§I.",
+        "entry_ia": 159.44,
+        "opened_ia": "2026-06-08",
+        "realized_pnl_pct": -0.1252,
+        "benchmark_return_pct": 0.0013,
+        "alpha_pct": -0.1265,
+        "exclu_des_buckets": true
+      }
     },
     {
       "thesis_id": "novo-glp1",
@@ -89,13 +144,24 @@
       "opened": "2026-06-04",
       "closed": "2026-06-12",
       "entry": 58.53,
-      "exit": 37.80,
+      "exit": 37.8,
       "realized_pnl_pct": -0.233,
       "benchmark_return_pct": -0.0241,
       "alpha_pct": -0.2089,
       "outcome": "neutre",
       "hit": false,
-      "lesson": "Thèse GLP-1 la plus solide du book (Medicare juillet, 3M prescriptions) mais gate 🔴 momentum -43% : thèse confirmée ≠ gate vert. Ré-entrée prioritaire dès que le momentum se redresse (catalyseur juillet = potentiel déclencheur)."
+      "lesson": "Thèse GLP-1 la plus solide du book (Medicare juillet, 3M prescriptions) mais gate 🔴 momentum -43% : thèse confirmée ≠ gate vert. Ré-entrée prioritaire dès que le momentum se redresse (catalyseur juillet = potentiel déclencheur).",
+      "origin": "hérité",
+      "restatement": {
+        "date": "2026-08-30",
+        "motif": "`entry` d'origine = coût de revient du GROUPE (avg_cost hérité du clone), pas le prix payé par l'IA. Corrigé §H/§I.",
+        "entry_ia": 36.95,
+        "opened_ia": "2026-06-08",
+        "realized_pnl_pct": 0.0199,
+        "benchmark_return_pct": 0.0013,
+        "alpha_pct": 0.0186,
+        "exclu_des_buckets": true
+      }
     },
     {
       "thesis_id": "hermes-luxe",
@@ -105,13 +171,24 @@
       "opened": "2026-06-04",
       "closed": "2026-06-12",
       "entry": 2295.84,
-      "exit": 1643.00,
-      "realized_pnl_pct": -0.270,
+      "exit": 1643.0,
+      "realized_pnl_pct": -0.27,
       "benchmark_return_pct": -0.0241,
       "alpha_pct": -0.2459,
       "outcome": "thèse cassée",
       "hit": false,
-      "lesson": "Confiance Haute héritée du groupe sur un luxe fragilisé : premiums resale Birkin/Kelly en baisse + expo Golfe = signal précoce de perte de pricing power. Avant de classer 'Haute' une position héritée, refaire le débat §D — le baissier n'avait pas été joué."
+      "lesson": "Confiance Haute héritée du groupe sur un luxe fragilisé : premiums resale Birkin/Kelly en baisse + expo Golfe = signal précoce de perte de pricing power. Avant de classer 'Haute' une position héritée, refaire le débat §D — le baissier n'avait pas été joué.",
+      "origin": "hérité",
+      "restatement": {
+        "date": "2026-08-30",
+        "motif": "`entry` d'origine = coût de revient du GROUPE (avg_cost hérité du clone), pas le prix payé par l'IA. Corrigé §H/§I.",
+        "entry_ia": 1635.5,
+        "opened_ia": "2026-06-08",
+        "realized_pnl_pct": 0.0016,
+        "benchmark_return_pct": 0.0013,
+        "alpha_pct": 0.0003,
+        "exclu_des_buckets": true
+      }
     },
     {
       "thesis_id": "nflx-pricing",
@@ -127,7 +204,18 @@
       "alpha_pct": -0.1868,
       "outcome": "neutre",
       "hit": false,
-      "lesson": "Stop -8% (🟠 ambre §H) non documenté en EUR explicite dans ai-fund : le seuil aurait dû être 80.89 EUR écrit à l'entrée. Sans chiffre explicite, le stop reste vague. → toujours écrire stop_price_eur dans exit_rule pour chaque position 🟠/⚪."
+      "lesson": "Stop -8% (🟠 ambre §H) non documenté en EUR explicite dans ai-fund : le seuil aurait dû être 80.89 EUR écrit à l'entrée. Sans chiffre explicite, le stop reste vague. → toujours écrire stop_price_eur dans exit_rule pour chaque position 🟠/⚪.",
+      "origin": "hérité",
+      "restatement": {
+        "date": "2026-08-30",
+        "motif": "`entry` d'origine = coût de revient du GROUPE (avg_cost hérité du clone), pas le prix payé par l'IA. Corrigé §H/§I.",
+        "entry_ia": 71.2,
+        "opened_ia": "2026-06-08",
+        "realized_pnl_pct": -0.0285,
+        "benchmark_return_pct": 0.0013,
+        "alpha_pct": -0.0298,
+        "exclu_des_buckets": true
+      }
     },
     {
       "thesis_id": "ho-defense",
@@ -143,7 +231,18 @@
       "alpha_pct": -0.0966,
       "outcome": "neutre",
       "hit": false,
-      "lesson": "Gate 🔴 composite -0.312 + stop -8% touché (218.4€ < 226.61€) → sortie forcée même avec thèse défense EU intacte (Q1 commandes +27%, Défense +75%). La thèse saine ne reporte jamais une règle de sortie déclenchée. Ré-entrée prioritaire si gate composite > -0.2 (même logique NOVOB/SAP). Candidat H1 23 juillet."
+      "lesson": "Gate 🔴 composite -0.312 + stop -8% touché (218.4€ < 226.61€) → sortie forcée même avec thèse défense EU intacte (Q1 commandes +27%, Défense +75%). La thèse saine ne reporte jamais une règle de sortie déclenchée. Ré-entrée prioritaire si gate composite > -0.2 (même logique NOVOB/SAP). Candidat H1 23 juillet.",
+      "origin": "hérité",
+      "restatement": {
+        "date": "2026-08-30",
+        "motif": "`entry` d'origine = coût de revient du GROUPE (avg_cost hérité du clone), pas le prix payé par l'IA. Corrigé §H/§I.",
+        "entry_ia": 234.7,
+        "opened_ia": "2026-06-08",
+        "realized_pnl_pct": -0.0499,
+        "benchmark_return_pct": 0.0088,
+        "alpha_pct": -0.0587,
+        "exclu_des_buckets": true
+      }
     },
     {
       "thesis_id": "crh-infra-us",
@@ -159,7 +258,13 @@
       "alpha_pct": -0.2165,
       "outcome": "neutre",
       "hit": false,
-      "lesson": "Gate slip 🟢→🟠 + DERNIER override déclenché + stop USD $107.37 toujours franchi : 3 déclencheurs simultanés le 13/08. Q2 beat ($2.21/$2.03 ✓) et thèse IIJA intacte — mais la règle pré-enregistrée gouverne sans débat (leçon 13/08 CRH/GATE-SLIP-ÉTEINT-L'OVERRIDE). La rotation vers GVA (même thème IIJA, gate frais 🟢 F7/9 +0.577, pivot marge livré, 17x fwd) illustre que sortir ≠ abandonner la thèse."
+      "lesson": "Gate slip 🟢→🟠 + DERNIER override déclenché + stop USD $107.37 toujours franchi : 3 déclencheurs simultanés le 13/08. Q2 beat ($2.21/$2.03 ✓) et thèse IIJA intacte — mais la règle pré-enregistrée gouverne sans débat (leçon 13/08 CRH/GATE-SLIP-ÉTEINT-L'OVERRIDE). La rotation vers GVA (même thème IIJA, gate frais 🟢 F7/9 +0.577, pivot marge livré, 17x fwd) illustre que sortir ≠ abandonner la thèse.",
+      "origin": "conviction",
+      "restatement": {
+        "entry_ref": "achat IA 2026-06-27 — inchangé",
+        "note": "dossier propre de l'IA : aucune correction nécessaire."
+      }
     }
-  ]
+  ],
+  "_restatement_2026_08_30": "RETRAITEMENT (sans effacement — l'append-only est respecté : les champs d'origine sont conservés, la correction vit dans `restatement`). Les 9 sorties héritées du clone étaient scorées contre `avg_cost` = coût de revient du GROUPE (parfois vieux de plusieurs années) au lieu du prix payé par l'IA au clone du 2026-06-08. Effet : P&L moyen logué -24,5 % contre -2,9 % réel (MSTR -65% logué / -0,8% réel ; NOVOB -23,3% logué / +2,0% RÉEL, c'était un gagnant). Un hit_rate de 0 % sur tous les buckets en découlait, ce qui aurait fini par rétrograder le sizing §H d'un moteur qui n'avait pas démérité. Les 9 entrées héritées portent désormais `origin:\"hérité\"` et sont EXCLUES des buckets de confiance (§I) : elles mesurent la mécanique du gate, pas le jugement de l'IA. Seul CRH est une décision `conviction`."
 }
