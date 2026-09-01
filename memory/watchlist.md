@@ -1,15 +1,20 @@
-# Watchlist — maj 2026-08-27 (Deep-dive W35)
+# Watchlist — maj 2026-09-01 (Trend Radar W37)
 
-> **Deep-dive W35 (27/08) fait** : EME ★ → **ACHETER (Moyenne)** ; AZZ ★ → **SURVEILLER (Moyenne)**. Revue book GVA + MSCI → **2 GARDER**. ★ retirés. Fiches complètes → `convictions.md`.
+> **AUCUNE tendance W37** : pivot Warsh/hawkish (28/08) = événement de régime, pas de tendance investissable. Thèmes à surveiller : Financials NIM, Healthcare défensif, GVA exit-risk IIJA.
 
-> Mode : **tendance CONTINUATION W35 RISK-ON SAIN** — Power-Grid / Infrastructure Électrique IA. **⚡ NVDA Q2 BEAT CONFIRMÉ** (TipRanks "Easily Beats Expectations" / "Smashing EPS Estimates", after-close 26/08) — thèse power-grid intacte ≥$85B DC, surveiller ENR.DE re-rate demain matin. **IIJA extension Senate 90-6 → 11/12/2026** — falaise 30/09 neutralisée pour GVA. Rotation sectorielle Tech→Industrials toujours en cours.
-> Régime : **RISK-ON SAIN** · VIX 15.13 · EUR/USD 1.152 · plancher cash **5%** · T10Y2Y 0.46 · HY 2.70% · FOMC Sep 17 91% cut · CPI août 09/09 = dernier verrou.
-> Signaux book (engine/signals.js 25/08) : GVA 🟢 c=+0.558 F7/9 RSI51.7 | SAF.PA 🟢 RSI42.1 | MSCI 🟢 F7/9 RSI49.9 | BNP.PA 🟢 RSI30.7 (bas) | AMZN 🟠 F5/9 RSI33.6 | AI.PA 🟠 RSI36.5
-> Signaux nouveaux candidats (engine/signals.js 26/08) : EME 🟢 c=+0.365 F6/9 RSI30.4 | AZZ 🟢 c=+0.576 F7/9 RSI25.5 | ABBN.SW 🟢 mom+47% RSI37.3 cov39% | FCX 🟢 c=+0.28 RSI70.4 | LR.PA 🟠 c=−0.006 | ATKR 🔴
-> ✅ **SAF.PA** 🟢 · RSI 42.1 (sain) · 2.0929 parts avg 324.60€ · stop 298.63€. GARDER.
-> ⚠️ **MSCI** 🟢 F7/9 · RSI 49.9 (rebond depuis 28.9 — call Grok msci-oversold-rebound expire 01/09) · stop USD $540.54. Surveiller — P-002 levée.
-> ⚠️ **CEG** 🟢 F6/9 · RSI 55.9 · stop EUR 232.29€ franchi MAIS **P-001 prime** : stop USD $212.45 intact (marge +28.5%). §G gouverne. GARDER.
-> ⚠️ **AI.PA** 🟠 · RSI 36.5 · 3.07935 parts avg 165.25€ · stop 152.03€ · cap 5% §H. Aucune action.
+> Mode : **SURCHAUFFE** — Warsh hawkish 57% hike FOMC 17/09. Aucune entrée/renforcement cette semaine. Cash 41.7% dans corridor (30-50%). Vigilance IIJA Chambre 30/09 (29 jours).
+> Régime : **SURCHAUFFE** · VIX 14.43 · T10Y 4.725% · plancher cash **30%** · FOMC Sep 17 57% HIKE · CPI août 09/09 = verrou décisif · NFP 05/09 = signal intermédiaire.
+> Signaux book (engine/signals.js 01/09) : GVA 🟢 F7/9 RSI40.6 mom+14% | SAF.PA 🟢 RSI31.9 | MSCI 🟢 F7/9 RSI55.3 | BNP.PA 🟢 RSI25.7 (survendu extrême — rebond CT potentiel) | AMZN 🟢 F5/9 RSI38.1 | AI.PA 🟢 F· RSI43.7 (repassé 🟢 — hystérésis : pas de renforcement sans 2 relevés consécutifs) | EIMI 🟢 RSI57.8 | CEG 🟢 F6/9 RSI46.1 | EME 🟢 F6/9 RSI33.4 | LOTB 🟢 RSI61.7
+> ⚠️⚠️ **GVA** 🟢 F7/9 · RSI 40.6 · 6.57 parts · stop USD $116.93 (marge ~4.8% = TRÈS FAIBLE) · **DOUBLE RISQUE** : IIJA Chambre 30/09 (non voté, 29 jours) + taux hausse (T10Y 4.725%). SeekingAlpha SELL « IIJA Ending And Margin Peaking ». SURVEILLER URGENT.
+> ✅ **SAF.PA** 🟢 · RSI 31.9 (sain, légèrement survendu) · 2.0929 parts avg 324.60€ · stop 298.63€. GARDER (défensif aéronautique, moins rate-sensitive).
+> ✅ **MSCI** 🟢 F7/9 · RSI 55.3 · stop USD $540.54. GARDER (Grok call W34 scoré CORRECT +3.6%). P-002 levée.
+> ⚠️ **CEG** 🟢 F6/9 · RSI 46.1 · stop USD $212.45 (P-001, marge +33% confortable). §G gouverne. GARDER — surveiller si T10Y > 5% (impact discount rate PPA).
+> ✅ **AI.PA** 🟢 F· · RSI 43.7 · 3.07935 parts avg 165.25€ · stop 152.03€ · gate repassé 🟢 mais cap 5% §H + hystérésis (gelé 8 semaines depuis trim 15/08) → pas de renforcement.
+> ✅ **BNP.PA** 🟢 · RSI 25.7 (survendu extrême) · BÉNÉFICIAIRE rate hike (NIM expansion) · GARDER (rebond CT potentiel). Call Grok bnp-rate-rebound-w37 ouvert pour scoring.
+> ⚠️ **EIMI** 🟢 · RSI 57.8 · USD fort = headwind EM ETF. GARDER pour l'instant mais surveiller EUR/USD : si < 1.10 durablement → envisager trim.
+> ✅ **AMZN** 🟢 F5/9 · RSI 38.1 · stop USD $221.30. GARDER (AWS non rate-sensitive, thèse intacte).
+> ✅ **EME** 🟢 F6/9 · RSI 33.4 · stop USD $702. GARDER (MEP DC, fondamentaux solides).
+> ✅ **LOTB** 🟢 · RSI 61.7 · position petite ~4.9% NAV. GARDER (position défensive). Surveiller valo 44x en SURCHAUFFE.
 > ✅ **GVA** 🟢 F7/9 · RSI 51.7 · stop USD $116.93 (P-001). IIJA falaise → 11/12. GARDER.
 > ⚠️ **BNP.PA** 🟢 · RSI 30.7 (bas). GARDER.
 

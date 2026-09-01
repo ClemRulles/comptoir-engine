@@ -1,6 +1,6 @@
 {
   "_doc": "Sentiment X (Grok) transformé en PRÉDICTIONS SCORÉES (method §F) — le sentiment ne décide jamais sur la foi : il se MÉRITE une voix en prouvant qu'il prédit. Le lundi (pouls Grok) enregistre 0-3 'calls' directionnels court terme ; engine/grok.js les score contre le prix réel à l'horizon. Schéma d'un call : { id (kebab-case), opened (YYYY-MM-DD), ticker, direction ('hausse'|'baisse' attendue à court terme), confidence (0.5-0.9, force du signal de sentiment), thesis (1 ligne : ce que Grok 'sent'), horizon (YYYY-MM-DD, ~2 semaines), source (semaine du pouls), played (bool : le book a-t-il pris une position tactique ?), status ('ouvert' | 'joué' | 'résolu' | 'expiré'), resolution ({ date, move_pct (variation réelle sur l'horizon), correct (bool : le mouvement a-t-il suivi la direction au-delà de ±2 %), brier ((confidence − correct)²), trade_alpha_pct (si joué : alpha — mesure SÉPARÉE) }) }. 'stats' (recalculé par engine/grok.js) : resolved, hits, hit_rate, brier, tactical_cap = budget MAX du NAV pour les paris Grok, MÉRITÉ : 0 % tant que < 6 calls résolus, puis 3/6/8 % selon hit_rate (≥0.55/0.65/0.70), 0 % si < 0.45. Garde-fous §F : jamais sur gate 🔴, jamais contre la checklist bulle §B, demi-taille tactique, stop serré, sortie datée. L'euphorie reste un signal contrarien de top. Ne jamais réécrire un call résolu.",
-  "updated": "2026-08-29",
+  "updated": "2026-09-01",
   "calls": [
     {
       "id": "ceg-ai-power-demand-w35",
@@ -38,8 +38,43 @@
       "horizon": "2026-09-01",
       "source": "2026-W34 (Grok API grok-4.3)",
       "played": false,
+      "status": "résolu",
+      "guard_note": "⚠️ P-002 actif : marge stop +1.87% seulement. Call NON JOUÉ (played:false) — tactical_cap = 0% (5 calls résolus seulement, seuil = 6). Score uniquement. Si P-002 déclenche exit jeudi, call expiré avant horizon.",
+      "resolution": {
+        "date": "2026-09-01",
+        "price_open_usd": 551,
+        "price_close_usd": 570.76,
+        "move_pct": 3.59,
+        "correct": true,
+        "brier": 0.16,
+        "note": "MSCI ~$551 (18/08, RSI 28.9 survendu, marge stop +1.87%) → $570.76 (28/08, dernier connu). Move +3.6% > seuil +2% → correct. Rebond RSI 28.9→55 en 2 semaines sur compounder F7/9 solide : la qualité fondamentale protège le titre même en environnement macro hawkish naissant. NB : call ouvert 18/08 (avant Warsh hawkish 28/08) — la qualité du business (rétention 95.3%, F7/9) a absorbé le choc macro de CT."
+      }
+    },
+    {
+      "id": "gva-iija-hike-risk-w37",
+      "opened": "2026-09-01",
+      "ticker": "GVA",
+      "direction": "baisse",
+      "confidence": 0.55,
+      "thesis": "Double risque GVA W37 : (1) IIJA Chambre non voté → exit_rule 30/09 potentiellement réarmée dans 29 jours ; (2) Warsh hawkish 57% hike → T10Y 4.725% = infrastructure long-duration sous pression de valorisation. SeekingAlpha 'IIJA Ending And Margin Peaking' = risque analystes visible. Stop très faible ~4.8% (cours ~$122 vs stop $116.93). Signal de vulnérabilité CT.",
+      "horizon": "2026-09-15",
+      "source": "2026-W37 (repli web — signaux macro/IIJA)",
+      "played": false,
       "status": "ouvert",
-      "guard_note": "⚠️ P-002 actif : marge stop +1.87% seulement. Call NON JOUÉ (played:false) — tactical_cap = 0% (5 calls résolus seulement, seuil = 6). Score uniquement. Si P-002 déclenche exit jeudi, call expiré avant horizon."
+      "guard_note": "NON JOUÉ — tactical_cap = 0% (6 calls résolus maintenant mais hit_rate 3/6 = 0.5 < 0.55, seuil pour 3%). Score uniquement. Position DÉTENUE au book cœur (§G gouverne la sortie, pas le gate)."
+    },
+    {
+      "id": "bnp-rate-rebound-w37",
+      "opened": "2026-09-01",
+      "ticker": "BNP.PA",
+      "direction": "hausse",
+      "confidence": 0.6,
+      "thesis": "BNP.PA RSI 25.7 (survendu extrême, 01/09) — BÉNÉFICIAIRE direct du régime SURCHAUFFE/rate hike (NIM expansion, Q2 +33% net income déjà confirmé). Warsh 57% hike 17/09 = catalyseur narratif pour banques EU. Sentiment récent : rotation vers Financials en SURCHAUFFE = positif CT. Double convergence RSI survendu extrême + catalyseur sectoriel NIM.",
+      "horizon": "2026-09-15",
+      "source": "2026-W37 (repli web — Warsh speech + signals.js 01/09)",
+      "played": false,
+      "status": "ouvert",
+      "guard_note": "NON JOUÉ — tactical_cap = 0% (6 calls résolus, hit_rate 0.5 < 0.55). Score uniquement. Position DÉTENUE au book cœur (3.7222 parts). Call pur scoring sentiment : mesure si RSI survendu extrême + rate hike narrative → rebond CT ≥ 2%."
     },
     {
       "id": "amzn-nfp-tailwind-w29",
@@ -145,11 +180,12 @@
     }
   ],
   "stats": {
-    "resolved": 5,
-    "hits": 2,
-    "hit_rate": 0.4,
-    "brier": 0.283,
-    "tactical_cap": 0
+    "resolved": 6,
+    "hits": 3,
+    "hit_rate": 0.5,
+    "brier": 0.2625,
+    "tactical_cap": 0,
+    "_note": "hit_rate 0.5 < 0.55 seuil → tactical_cap reste 0%. MSCI call W34 scoré CORRECT (6e call résolu). Brier moyen : (0.283×5 + 0.16)/6 = 0.2625. Il faut encore 2 calls supplémentaires avec hit_rate > 0.55 pour ouvrir le droit au tactical (borne : résoudre W35 calls le 08/09 + W37 calls le 15/09)."
   },
   "data_gaps": []
 }

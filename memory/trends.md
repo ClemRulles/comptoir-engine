@@ -1,3 +1,20 @@
+## Tendance de la semaine — 1 septembre 2026 (W37)
+
+- **Statut** : AUCUNE cette semaine — PIVOT DE RÉGIME (SURCHAUFFE)
+- **Tendance** : Aucune tendance sectorielle assez solide identifiée. L'événement majeur de W37 est le basculement du régime (Warsh hawkish Jackson Hole 28/08 → 57% hike FOMC 17/09 vs 91% cut) — un événement DE RÉGIME, pas une tendance SECTORIELLE investissable.
+- **Pourquoi AUCUNE** : En régime SURCHAUFFE, la barre pour valider une tendance est plus haute (marge de sécurité + durabilité exigées). Trois candidats analysés :
+  1. **Continuation supercycle power-grid** (W33-W36) — toujours valide côté demande (hyperscaler capex intact), mais fragilisée par (a) le pivot Warsh/hawkish qui pèse sur les actifs long-duration (GVA, CEG) et (b) l'incertitude IIJA Chambre 30/09. La tendance ne passe pas la Porte 4 (stade fin de cycle + facteur adverse materiel).
+  2. **Healthcare défensif** (rotation W37 : +4.8% vs Tech −4.8%) — preuves dures = company-specific (Biogen +3%, BioMarin +20%, BioCryst +45% YoY). Aucun catalyseur systémique commun identifiable. FAIL Porte 1 (< 2 preuves dures indépendantes avec mécanisme économique unifié).
+  3. **Financials/Banks NIM expansion** (bénéficiaires Warsh hike) — plausible mais durabilité conditionnelle à un événement binaire (hike 17/09 : 57% probable, 43% non). FAIL Porte 2 (durabilité non structurelle — dépend d'une décision de banque centrale, pas d'un moteur sectoriel autonome).
+- **Droit au blanc** : appliqué intégralement. Un blanc honnête vaut mieux qu'un faux signal en SURCHAUFFE.
+- **Thèmes à surveiller (2-3 pour les semaines suivantes)** :
+  1. **Financials/Banks EU** (BNP.PA déjà détenu, puis SG, KBC...) : Si FOMC 17/09 hike confirmé → NIM expansion systémique EU (ECB restera longtemps haute) → deep-dive vendredi si hike 17/09 acté. Catalyseur daté = 17/09.
+  2. **Healthcare défensif** : Si données de flux institutionnels (13F Q3) et guidances H2 secteur confirment la rotation au-delà de W37 → candidat pour W38-W39. Attendre 2 semaines de confirmation avec données sectorielles (pas juste prix).
+  3. **GVA exit-risk** : Pas une opportunité mais un RISQUE ACTIF. Vote Chambre IIJA avant 30/09 = surveillance absolue. Si non voté → exit_rule déclenchée (sortie GVA sans débat).
+- **Sources** : engine/signals.js 2026-09-01 ; Warsh Jackson Hole (CNBC, NPR, PBS, 28/08) ; CME FedWatch 57% hike (28/08) ; StockCharts sector performance W37 (Investing.com/Morningstar) ; PCE core (AdvisorPerspectives 26/08) ; IIJA statut (NACo, legis1.com, ENR.com).
+
+---
+
 ## Tendance de la semaine — 29 août 2026 (W36)
 
 - **Statut** : VALIDÉE — CONTINUATION W35 · NVDA Q2 BEAT ✓ · thèse intacte
