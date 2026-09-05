@@ -40,17 +40,18 @@ Effet mesuré : {rempli par les revues mensuelles ; « pas encore évalué » au
 
 ## Amendements actifs
 
-### P-001 · Stop USD natif pour les positions US · à l'essai · 2026-08-07
+### P-001 · Stop USD natif pour les positions US · confirmé · 2026-08-07 → 2026-09-05
 Règle : pour toute position US libellée en EUR, le stop de référence est le **stop en USD
 natif** (avg_cost USD × 0,92). Un franchissement EUR-only ne déclenche jamais une vente si le
 stop USD tient ET que la thèse est intacte. Vérifier le stop dans la devise de cotation, pas
-dans la devise du book.
+dans la devise du book. Post-migration §H 30/08 : pour les positions CŒUR, le seuil USD sert
+de **référence de monitoring** (saisine mercredi si franchi), jamais de déclencheur automatique.
 Preuves : 2026-07-04 · CRH/STOP-EUR-vs-USD (« règle définitive » du moteur) ; 2026-07-03 ·
 CRH/PRIX-DISCORDANT ; 2026-07-02 · CEG/STOP-🟢-vs-🟠 (breach partiellement FX) ; leçon
 FX/STOP-SYSTÉMIQUE antérieure.
 Falsificateur : une position US dont le stop USD tenait mais qui aggrave sa perte de ≥ 8 %
 supplémentaires pendant que l'« artefact FX » se révèle être un vrai mouvement — 2 cas suffisent.
-Effet mesuré : pas encore évalué.
+Effet mesuré (revue sept. 2026) : 3 cas protecteurs identifiés — CEG EUR-stop franchi 19/08 (stop USD +25.7% intact → bonne décision de tenir), SAF.PA gate-flip discipline sans faux stop EUR, GVA signal nocturne $119.3 vs intraday $122-126 (04/09 : double-source aurait évité vente sur signal nocturne). Aucun cas négatif (coût d'artefact FX non matérialisé). CONFIRMÉ.
 
 ### P-002 · Double source de prix avant toute exécution proche du stop · à l'essai · 2026-08-07
 Règle : pour toute position dont le cours `signals.js` est à < 2 % du stop, **recouper avec une
@@ -64,7 +65,7 @@ Falsificateur : un soir où la double source retarde une sortie qui aurait évit
 supplémentaire (le coût du délai dépasse le bénéfice anti-artefact) — 2 cas suffisent.
 Effet mesuré : pas encore évalué.
 
-### P-003 · Gate élevé ≠ acheter — valo, marge et redondance tranchent · à l'essai · 2026-08-07
+### P-003 · Gate élevé ≠ acheter — valo, marge et redondance tranchent · confirmé · 2026-08-07 → 2026-09-05
 Règle : un gate quantitatif élevé (même F9/9) est une condition **nécessaire, jamais suffisante**.
 Avant tout Acheter : (a) le DCF inversé laisse une marge de sécurité dans le régime courant —
 en SURCHAUFFE elle doit être réelle, pas espérée ; (b) si le book détient déjà le même thème en
@@ -75,7 +76,7 @@ Preuves : 2026-07-09 · DEEP-DIVE/GATE-ÉLEVÉ-≠-ACHETER (VMC/GVA, « deux rè
 (LLY/UNH/ABT, 3 Surveiller).
 Falsificateur : ≥ 3 candidats refusés sur cette règle qui délivrent ensuite un alpha > 0 sur
 leur horizon pendant que le book sous-performe — la prudence serait devenue du coût d'opportunité.
-Effet mesuré : pas encore évalué.
+Effet mesuré (revue sept. 2026) : 3 cas concordants post-création : MYRG vs GVA 20/08 (gate +0.732 refusé vs GVA 17x → correct, GVA tenu et gate fort), AZZ vs EME 27/08 (gate +0.732 momentum-porté refusé, EME gate +0.495 acheté avec marge réelle), ABBV vs CB 03/09 (gate le plus fort de la nuit Surveiller, CB plus faible Acheter conditionnel). Aucun des refusés n'a livré d'alpha observé supérieur à la décision retenue sur l'horizon disponible. CONFIRMÉ.
 
 ---
 

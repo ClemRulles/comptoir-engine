@@ -1,7 +1,7 @@
 {
   "_doc": "Agrégats recalculés à chaque passe (vendredi + revue mensuelle) à partir de decisions.json. 'buckets' = un objet par niveau de confiance annoncé : n (décisions clôturées), hits (résultats qui valident la confiance), hit_rate (hits/n), avg_return (rendement réalisé moyen). 'global' = stats du book IA. Une IA bien calibrée a un hit_rate qui CROÎT avec la confiance (Basse < Moyenne < Haute) ; sinon la passe mensuelle corrige le sizing (method §I). RETRAITEMENT 2026-08-30 : les buckets ne comptent QUE les décisions `origin:\"conviction\"` (nées d'un débat §D). Les sorties de lignes héritées du clone sont regroupées dans `mechanics` : elles jugent les verrous du gate, pas le jugement de l'IA. P&L et alpha lus dans `restatement` quand il existe.",
-  "updated": "2026-08-30",
-  "note_n_insuffisant": "ATTENTION — après retraitement, n_conviction = 1 (CRH). Le hit_rate par bucket n'existe pas encore : la 1re vraie mesure de calibration viendra de MSCI/CEG/GVA/EME à leur clôture. Seuil §I : n ≥ 8 par bucket. NE PAS ajuster les tailles cibles. Tailles maintenues : Haute≈12%, Moyenne≈7%, Basse≈3%.",
+  "updated": "2026-09-05",
+  "note_n_insuffisant": "CALIBRATION SEPTEMBRE 2026 — n_conviction=1 (CRH). Seuil §I n≥8 par bucket non atteint : aucun ajustement de sizing. Tailles maintenues : Haute≈12%, Moyenne≈7%, Basse≈3%. Playbook : P-001 CONFIRMÉ (3 cas protecteurs datés), P-002 à l'essai maintenu (4 semaines, aucun coût mesuré d'un délai), P-003 CONFIRMÉ (3 cas concordants : MYRG 20/08, AZZ 27/08, ABBV 03/09). Prochaine mesure réelle quand MSCI/CEG/GVA/EME clôturent (horizon Q3 oct. 2026).",
   "buckets": [
     {
       "confidence": "Haute",

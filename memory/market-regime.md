@@ -1,31 +1,26 @@
-# Régime de marché — mis à jour le 2026-09-04 (Portfolio Doctor W37)
+# Régime de marché — mis à jour le 2026-09-05 (Brief W38)
 
-- **Cadran** : **SURCHAUFFE** maintenu (override manuel). Warsh hawkish 28/08 (PCE core 3.3% YoY) → 57% hike FOMC 17/09. **⚠️ NUANCE 03/09** : Waller (Fed Governor) dovish — penche pour HOLD vs hike, cite marché emploi qui ralentit. Hike odds ramenées à ~50%. Ambiguïté SURCHAUFFE/RISK-ON SAIN réelle. Régime maintenu SURCHAUFFE jusqu'à NFP 05/09 + CPI 09/09. T10Y 4.725%. VIX ~14. CPI YoY 3.3% (juillet). Fedfunds 3.63%. **EUR/USD 1.1609** (USD refluant légèrement sur discours Waller).
-- **Consigne au système** : **plancher cash 30%, plafond 50%** (SURCHAUFFE) — cash actuel 41.7% = DANS LE CORRIDOR → ne PAS déployer ; sélectivité maximale ; P-001/P-002/P-003 actifs ; 10 positions actives ; budget déploiement gelé en attente **NFP 05/09 (aujourd'hui)** + CPI 09/09 + FOMC 17/09. ✅ IIJA RÉSOLU (03/09) : Chambre a voté la CR 370-48 → autorisations surface-transport étendues au 11/12/2026 ; exit_rule GVA 30/09 NE se réarme pas.
-- **Valorisation indice** : S&P 500 — rotation sectorielle W36-W37 : Healthcare +4.8%, Tech −4.8% (dernière semaine). Défensives (Consumer Staples +15% YTD, Energy +21% YTD) surperforment largement. Transition typique SURCHAUFFE. Méga-cap tech sous pression de valorisation (taux longs 4.725% = discount rate en hausse).
-- **Rotation sectorielle (W37)** : Défensives/Healthcare → RISK-ON → SURCHAUFFE classique. Financials/Banks bénéficiaires du régime (NIM expansion). Infrastructure long-duration (GVA, CEG, EME) sous pression taux. EIMI (EM ETF) : USD fort = headwind.
-- **Zones de bulle** : FIX momentum +145% (§B actif) ; MYRG +116% (§B) ; PRY.MI +170% parabolic ; ENR.DE mom +57% RSI69.9. Aucune entrée sur ces noms.
-- **⚠️ WARSH HAWKISH 28/08** : PCE core 3.3% YoY stuck (≠ juillet 3.3%, pas de progression), Warsh: « Otherwise, we have work to do. » FOMC 17/09 — 57% hike 25bps (vs 91% cut antérieur). La mémoire W36 avait « Powell dovish » — ERREUR : Warsh est Fed Chair depuis le 22/05/2026 (confirmé 13/05, sermenté 22/05). La note Jackson Hole 22/08 (= remarques du Warsh, pas Powell) avait été lue comme dovish ; le discours principal du 28/08 était hawkish. Correction effectuée dans cette mise à jour.
-- **✅ IIJA VOTE CHAMBRE — RÉSOLU (03/09)** : la Chambre a voté la CR **370-48** (19 R + 29 D contre) qui **étend les autorisations surface-transport → 11/12/2026** (NSSGA 01/09 + naco). La falaise 30/09 est neutralisée, **exit_rule GVA 30/09 NE se réarme pas**. Senate avait voté 90-6 (08/08). Nuance : la CR n'étend PAS les crédits avancés Division J ($36,8B/an) — surveiller la réautorisation pluriannuelle avant le 11/12.
-- **✅ GVA** — GARDER (revue book Opus 03/09). ✅ Risque IIJA levé (CR 370-48 → 11/12). Reste 1 vent de face macro : taux hausse (T10Y 4.7%) → infra long-duration sous pression (pas une cassure de thèse — backlog signé, pivot marge livré). Gate le plus propre du book 🟢 F7/9 +0.567 (03/09). Stop USD $116.93 (cours $119.03) — mais cœur = pas de stop de prix (§H), seuil réexamen −25% loin (−6.4% vs entry). Renforcement gelé avant binaire Q3'26 (§J) + SURCHAUFFE.
-- **⚠️ CEG** — §G gouverne (falsificateurs hyperscaler non déclenchés ✓). MAIS taux 4.725% = pression sur PPA long-duration (actualisation des flux). Stop USD $212.45 (P-001, marge +33%). Confortable. GARDER tant que §G non déclenché.
-- **⚠️ EIMI** — EM ETF. USD fort (hawkish Fed) = headwind structurel. Gate 🟢 +0.615, RSI 57.8 (01/09). Surveiller trim si USD s'apprécie significativement (EUR/USD < 1.10 durablement).
-- **⚠️ BNP.PA** — RSI 25.7 (survendu extrême, 01/09). BÉNÉFICIAIRE du régime SURCHAUFFE/rate hike (NIM expansion). Gate 🟢. GARDER — rebond CT potentiel si hike narrative s'installe.
-- **Positions book IA — gates au 01/09 (engine/signals.js) :**
-  - **SAF.PA** 🟢 F· RSI31.9, mom+22% · 2.0929 parts ≈ 7.0% NAV · stop 298.63€. GARDER.
-  - **AMZN** 🟢 F5/9 RSI38.1, mom+21% · 3.1138 parts ≈ 7.0% NAV · stop USD $221.30. GARDER.
-  - **EIMI** 🟢 F· RSI57.8, mom+28% · 9.7751 parts ≈ 4.6% NAV. Surveiller USD.
-  - **AI.PA** 🟢 F· RSI43.7, mom+8% · 3.0794 parts ≈ 5.0% NAV · cap 5% §H · stop 152.03€. GARDER (gate repassé 🟢 : ne pas renforcer sans 2 relevés consécutifs + hystérésis).
-  - **LOTB** 🟢 F· RSI61.7, mom+35% · 0.0394 parts ≈ 4.9% NAV. Surveiller (valo 44x, SURCHAUFFE exige marge).
-  - **BNP.PA** 🟢 F· RSI25.7, mom+43% · 3.7222 parts ≈ 3.7% NAV. GARDER (rebond CT potentiel, bénéficiaire rate hike).
-  - **MSCI** 🟢 F7/9 RSI55.3, mom+3% · 1.36 parts · stop USD $540.54 · cours ~$570. GARDER.
-  - **CEG** 🟢 F6/9 RSI46.1, mom−14% · 2.465 parts · stop USD $212.45 · §G gouverne. GARDER.
-  - **GVA** 🟢 F7/9 RSI40.6, mom+14% · 6.57 parts · stop USD $116.93 ⚠️ marge ~4.8%. SURVEILLER URGENT (IIJA Chambre 30/09).
-  - **EME** 🟢 F6/9 RSI33.4, mom+29% · 1.09 parts ≈ 7.0% NAV · stop USD $702. GARDER.
-- **Crypto** : hors scope book. USD fort → BTC en USD potentiellement soutenu mais attention bull-trap.
+- **Cadran** : **SURCHAUFFE CONFIRMÉE** (override maintenu et validé par NFP). NFP août 2026 = **+162 000** vs consensus +56K (×2.9). T10Y **4.823%** (+10bps sur le print). Unemployment 4.1% (inchangé). FOMC 17/09 : **~52% hike** 25bps (stable vs pré-NFP). EUR/USD **1.1609** (référence — post-NFP USD potentiellement plus fort, à confirmer lundi).
+- **Consigne au système** : **plancher cash 30%, plafond 50%** (SURCHAUFFE) — cash actuel **41.9%** = DANS LE CORRIDOR → aucun déploiement. Sélectivité maximale. P-001/P-002/P-003 actifs. 10 positions actives. 0 trades W38. Budget déploiement gelé en attente **CPI 09/09** (verrou décisif) + **FOMC 17/09**.
+- **NFP août (05/09) : +162K CONFIRMÉ** — le pivot Waller dovish (03/09) était temporaire : NFP a rétabli la narrative hawkish. Override SURCHAUFFE était correct. Résumé : Jun +31K (révisé +11K), Jul +21K (révisé +44K), Aug +162K → les 3 derniers mois restent faibles, mais Aug est un fort rebond. Chômage 4.1% ≠ signal de basculement RISK-ON SAIN (seuil = > 4.3%).
+- **Valorisation indice** : S&P 500 — rotation SURCHAUFFE classique. Healthcare/Financials leaders. Tech sous pression de valorisation (T10Y 4.823% = discount rate). Défensives (Consumer Staples) surperforment. Infra long-duration (GVA, CEG, EME) sous pression taux.
+- **Rotation sectorielle (W38)** : Financials/Banks = gagnants du régime SURCHAUFFE (NIM expansion sur hike). Infrastructure long-duration = headwind T10Y croissant. Tech growth = pression discount rate.
+- **Positions book IA — gates au 05/09 (signals.js nocturne 00:02 UTC)** :
+  - **SAF.PA** 🟢 F· RSI25.3 survendu, mom+28% · 2.0929 parts ≈ 6.8% NAV · cours 333.5€
+  - **AMZN** 🟢 F· RSI46.4, mom+17% · 3.1138 parts ≈ 6.8% NAV · cours $258.51
+  - **EIMI** 🟢 F· RSI53.3, mom+33% · 9.7751 parts ≈ 4.6% NAV. Surveiller USD fort.
+  - **AI.PA** 🟢 F· RSI65.8, mom+8% · 3.0794 parts ≈ 5.1% NAV · rebond +38pts RSI depuis 27.1
+  - **LOTB** 🟢 F· RSI47.3, mom+33% · 0.0394 parts ≈ 4.7% NAV. RSI normalisé depuis 80.5.
+  - **BNP.PA** 🟢 F· RSI31.0 survendu, mom+46% · 3.7222 parts ≈ 3.8% NAV. BÉNÉFICIAIRE rate hike (NIM). Rebond CT potentiel.
+  - **MSCI** 🟢 F7/9 RSI53.1, mom+3% · 1.36 parts ≈ 6.6% NAV · cours $573.01 · seuil réexamen $401
+  - **CEG** 🟢 F6/9 RSI52.1, mom−12% · 2.465 parts ≈ 6.2% NAV · §G gouverne · cours $298.96
+  - **GVA** 🟢 F7/9 RSI33.4, mom+14% · 6.57 parts ≈ 6.6% NAV · cours nocturne $119.3 / intraday 05/09 : $122-$126 · seuil réexamen $96
+  - **EME** 🟢 F6/9 RSI29.7 survendu · 1.09 parts ≈ 6.9% NAV · cours $754.16 · entrée récente 29/08
+- **⚠️ CB CONDITIONNEL** : Chubb (assureur P&C) verdict Acheter Moyenne CONDITIONNEL post-CPI 09/09. Prix 05/09 : $346-349 USD. NII $100B float = bénéficiaire rate hike. Gate à recalculer avant entrée.
+- **Crypto** : hors scope book.
 - **Macro (3 lignes)** :
-  - US : PCE core juillet 3.3% YoY (stuck). T10Y 4.725%. Fedfunds 3.63%. FOMC 17/09 : ~50% hike (Waller dovish 03/09 a ramené de 57%). **NFP août = AUJOURD'HUI (05/09) consensus +53K très faible**. CPI août (09/09) = verrou décisif. Si NFP < +40K ou chômage > 4.3% → shift RISK-ON SAIN possible.
-  - Zone euro : ECB ~2.25%. EUR/USD 1.1609 (USD refluant sur Waller). BNP.PA bénéficiaire si hike confirmé (NIM). Healthcare/Financials leaders YTD EU.
-  - Régime SURCHAUFFE maintenu mais ambiguïté croissante (Warsh hawkish vs Waller dovish). Cash 41.7% dans corridor. Patience = position jusqu'à NFP+CPI+FOMC. La tension HOLD/HIKE au FOMC 17/09 est le risque directionnel majeur.
-- **NAV book IA estimée** : ≈ **10 186€** (−2.2% vs start_capital 10 417€, estimation 04/09). Cash 4 290.86€ = **42.1% NAV** (dans corridor SURCHAUFFE 30-50% ✓). 10 positions actives. 0 trades W37 (régime gelé). EUR/USD 1.1609 (impact USD positions : NAV réduite vs 10 296€ du 29/08). Benchmark IWDA ± à évaluer W38.
-- **Sources** : engine/signals.js 2026-09-04 ; Fed Chair Warsh Jackson Hole 28/08 ; Fed Governor Waller 03/09 (dovish) ; CME FedWatch ~50% hike ; Core PCE juillet ; IIJA : NSSGA/NACo House HR 9770 vote 03/09 ; EUR/USD Investing.com 04/09.
+  - US : NFP août +162K (beat ×2.9 vs consensus). T10Y 4.823%. Fedfunds 3.63%. FOMC 17/09 : ~52% hike. CPI août 09/09 = verrou décisif pour arbitrage HOLD/HIKE.
+  - Zone euro : ECB ~2.25%. EUR/USD 1.1609 (USD potentiellement apprécie post-NFP). BNP.PA bénéficiaire si hike confirmé.
+  - Override SURCHAUFFE VALIDÉ par NFP. Cash 41.9% dans corridor. Attendre CPI 09/09 + FOMC 17/09 avant tout déploiement.
+- **NAV book IA estimée** : ≈ **10 239€** (−1.71% vs start_capital 10 417€, +0.5% vs W37 10 186€). Cash 4 290.86€ = **41.9% NAV**. 10 positions actives. 0 trades W38. EUR/USD 1.1609 (ref signals.js nocturne).
+- **Sources** : BLS NFP août 2026 (05/09) ; Investing.com T10Y spike 4.823% ; engine/signals.js 2026-09-05 ; CME FedWatch ~52% hike 17/09 ; GVA intraday heygotrade.com $125-$126.
