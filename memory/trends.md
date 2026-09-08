@@ -1,3 +1,27 @@
+## Tendance de la semaine — 8 septembre 2026 (W39)
+
+- **Statut** : VALIDÉE — FINANCIALS EU / NIM EXPANSION · Catalyseurs frais BNP dividende + FOMC 66% hike
+- **Tendance** : Le cycle de hausse de taux est plus avancé qu'estimé en W38. CME FedWatch post-NFP : **~66% hike** au FOMC 17/09 (vs 52% estimé vendredi). PCE 3.7-4.1% (Warsh JH). CPI août prévu **+0.3% MoM** (11/09) — plus chaud que le +0.1% de juillet. **Les banques EU en NIM expansion sont la tendance de la semaine** : BNP.PA confirme avec dividende intermédiaire €3.23 le 28/09, revenus CIB +12.7% au Q2. Stade : milieu — CPI 11/09 + FOMC 17/09 sont les prochains jalons de validation.
+- **Pourquoi maintenant** : FOMC hike probability révisée à 66% (vs 52% vendredi) après intégration complète du NFP +162K. BNP.PA dividende intermédiaire €3.23 le 28/09 = catalyseur frais et daté. CPI août consensus +0.3% MoM = confirmation attendue du régime hawkish. Sector: financials déjà leader dans la rotation SURCHAUFFE (upward earnings revisions NIM + capital markets).
+- **Preuves dures** :
+  1. **CME FedWatch** : ~66% hike FOMC 17/09 post-NFP (Forbes/CME 31/08 → ajusté NFP 05/09). PCE 3.7-4.1% (Warsh JH 28/08 — "concerning").
+  2. **BNP.PA Q2 2026** : Net income +33.4% (€4 345M). CIB revenues +12.7% (€5 281M). Dividende intermédiaire €3.23/action → 28/09/2026.
+  3. **Consensus CPI août** : +0.3% MoM (Morningstar/banques — vs +0.1% juillet) → renforce scénario hike FOMC.
+  4. **Secteur financials** : Upward earnings revisions (steeper yield curve, NIM solide), capital markets actifs (BNP MSCI India rebalancing). XLF/Financials = leader de la rotation SURCHAUFFE Q3 2026.
+- **Durabilité** : Structurelle si cycle de hausse prolongé (Fed hawkish → NIM expansion pluriannuelle). Conditionnelle court terme au CPI 11/09 + FOMC 17/09.
+- **Stade** : Milieu. NFP (05/09) = déclencheur initial, FOMC (17/09) = prochaine confirmation majeure. Pas parabolique.
+- **Manières de la jouer (cotées)** :
+  - **BNP.PA** (détenu 3.8% NAV, RSI33.8 survendu) — bénéficiaire direct NIM hike. Dividende 28/09 = catalyseur CT. NE PAS RENFORCER (SURCHAUFFE, corridor cash).
+  - **SG.PA** (Société Générale) — angle pioches/pelles, moins premium, même thèse NIM EU. À screener mardi Scout.
+  - **KBC** (Belgium) — compounder bancaire EU, exposure taux EU. À screener mardi Scout.
+  - **CB (Chubb)** — assureur P&C, NII $100B float, conditionnel CPI 11/09 (garder comme candidat CB mais refaire le gate).
+- **Drapeau bulle** : improbable — PE ratio bancaire EU bas (< 10x), NIM expansion = fondamentaux, pas hype.
+- **Ce qui tuerait la thèse** : CPI août MoM ≤ 0.1% (désinflation surprise → FOMC HOLD → NIM stagnent). Chômage > 4.3% (récession naissante → risque crédit > NIM benefit). Choc crédit systémique EU.
+- **Effet de second ordre** : FOMC hike → USD fort → EIMI (EM ETF, détenu) headwind. À surveiller.
+- **Sources** : CME FedWatch/Forbes 31/08 (66%) ; BNP.PA communiqué Q2 + dividende ; Morningstar August CPI consensus ; ad-hoc-news BNP.PA sept. 2026 ; sector performance search sept. 2026 ; engine/signals.js 2026-09-08.
+
+---
+
 ## Tendance de la semaine — 5 septembre 2026 (W38)
 
 - **Statut** : VALIDÉE — SURCHAUFFE CONFIRMÉE, ROTATION FINANCIALS/BANQUES

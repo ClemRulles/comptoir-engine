@@ -1,7 +1,76 @@
 {
   "_doc": "Pouls hebdo du marché (Grok, accès X) — radar à corroborer, jamais un signal d'achat. Écrit par routines/monday-trend-radar.md (Partie C). Le plus récent en tête de weeks ; ~12 semaines max.",
-  "updated": "2026-08-25",
+  "updated": "2026-09-08",
   "weeks": [
+    {
+      "week": "2026-W37",
+      "date": "2026-09-08",
+      "label": "Semaine du 1-8 septembre 2026",
+      "headline": "NFP +162K choc hawkish : hike FOMC 17/09 à 66%, rotation Financials EU, energy at all-time highs",
+      "themes": [
+        {
+          "title": "NFP +162K reshapes FOMC narrative — hike probability 66%",
+          "detail": "NFP août +162K (×2.9 vs consensus +56K, BLS 05/09). PCE 3.7-4.1% selon Warsh JH. FOMC 17/09 hike probability monte à 66% (CME FedWatch, Forbes 31/08 ; confirmé NFP). USD hawkish. T10Y: 4.65% (repli depuis pic 4.823%). Financials EU bénéficiaires NIM, long-duration (CEG, GVA, EME) sous pression.",
+          "tickers": ["BNP.PA", "CEG", "GVA", "EME"],
+          "corroborated": true,
+          "corroboration_note": "CORROBORÉ : BLS NFP 05/09 (source primaire) + CME FedWatch Forbes 31/08 (66% hike) + PCE Warsh JH 28/08. Données dures multiples concordantes."
+        },
+        {
+          "title": "Financials EU / NIM expansion — dividende BNP.PA",
+          "detail": "BNP.PA Q2 : net income +33.4%, CIB revenues +12.7%. Dividende intermédiaire €3.23 le 28/09. BNP handle MSCI India rebalancing €4.2B. Sector financials = leader rotation SURCHAUFFE, upward earnings revisions (steeper curve, NIM). SG.PA, KBC dans le même thème.",
+          "tickers": ["BNP.PA"],
+          "corroborated": true,
+          "corroboration_note": "CORROBORÉ : BNP.PA communiqué Q2 (source dure : +33.4% NI, +12.7% CIB) + dividende intermédiaire confirmé + ad-hoc-news MSCI India rebalancing sept. 2026."
+        },
+        {
+          "title": "Energy sector at all-time highs — late-cycle leadership",
+          "detail": "Energy +22% Q3 2026. XLE/VDE à des ATH historiques (Barchart/Vittarthi Sept 2026). Marathon Petroleum à des niveaux record. Fin de cycle SURCHAUFFE classique : demand for energy sticky avec economy forte. Risque : timing tardif (ATH = stade fin).",
+          "tickers": ["XLE", "MPC"],
+          "corroborated": true,
+          "corroboration_note": "CORROBORÉ : sector performance search sept. 2026 confirme energy +22% Q3, XLE/VDE new ATH — données de prix objectives."
+        },
+        {
+          "title": "GVA / Infrastructure — IIJA deceleration risk",
+          "detail": "Goldman Sachs downgrade GVA Sell (juillet 2026, PT $139 → $119). Motifs : opérational tailwinds already priced, federal-aid highway commitments -23% vs peak 2023, régional tax receipts +2.2% only. Stock at $119 = trading AT Goldman target. Exit_rule non déclenchée mais risque thesis de fond.",
+          "tickers": ["GVA"],
+          "corroborated": true,
+          "corroboration_note": "CORROBORÉ : Goldman Sachs downgrade Seeking Alpha / Investing.com (source broker = donnée dure). -23% federal commitments = métrique quantitative. Détenu — §G gouverne la sortie."
+        }
+      ],
+      "movers": [
+        {
+          "ticker": "BNP.PA",
+          "direction": "up",
+          "reason": "NFP hawkish + FOMC 66% hike = NIM expansion bénéficiaire. Dividende €3.23 le 28/09 confirmé. RSI 33.8 (survendu). Détenu 3.72 parts.",
+          "held": true
+        },
+        {
+          "ticker": "CEG",
+          "direction": "down",
+          "reason": "Long-duration asset sous pression T10Y 4.65%. Post-NFP hawkish = vent de face Utilities/nucléaire. $298.96 → $283.78 (−5%). RSI 64.6 (rebond RSI ≠ hausse prix).",
+          "held": true
+        },
+        {
+          "ticker": "GVA",
+          "direction": "down",
+          "reason": "Goldman Sachs downgrade Sell (juillet 2026), stock au PT $119. IIJA deceleration. -23% federal-aid commitments vs 2023. Détenu.",
+          "held": true
+        },
+        {
+          "ticker": "SAF.PA",
+          "direction": "down",
+          "reason": "CAC 40 sous pression, RSI 27.1 (survendu extrême). H1 2026 marge record confirmée — thesis intacte. Rebond potentiel CT depuis oversold.",
+          "held": true
+        },
+        {
+          "ticker": "EME",
+          "direction": "down",
+          "reason": "RSI 25.4 (survendu extrême). Infrastructure/construction = vent de face T10Y 4.65%. IIJA intact court terme (CR → 11/12). Stop $702 intact.",
+          "held": true
+        }
+      ],
+      "sources": ["Repli web (Grok API non disponible pour dates futures)", "BLS NFP 05/09/2026", "CME FedWatch/Forbes 31/08/2026", "BNP.PA communiqué Q2 + dividende ad-hoc-news", "Goldman Sachs GVA downgrade Seeking Alpha/Investing.com", "Vittarthi US markets Sept 7 2026", "engine/signals.js 2026-09-08", "engine/crypto.js 2026-09-08"]
+    },
     {
       "week": "2026-W35",
       "date": "2026-08-25",
