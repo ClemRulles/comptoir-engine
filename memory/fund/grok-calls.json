@@ -1,6 +1,6 @@
 {
   "_doc": "Sentiment X (Grok) transformé en PRÉDICTIONS SCORÉES (method §F) — le sentiment ne décide jamais sur la foi : il se MÉRITE une voix en prouvant qu'il prédit. Le lundi (pouls Grok) enregistre 0-3 'calls' directionnels court terme ; engine/grok.js les score contre le prix réel à l'horizon. Schéma d'un call : { id (kebab-case), opened (YYYY-MM-DD), ticker, direction ('hausse'|'baisse' attendue à court terme), confidence (0.5-0.9, force du signal de sentiment), thesis (1 ligne : ce que Grok 'sent'), horizon (YYYY-MM-DD, ~2 semaines), source (semaine du pouls), played (bool : le book a-t-il pris une position tactique ?), status ('ouvert' | 'joué' | 'résolu' | 'expiré'), resolution ({ date, move_pct (variation réelle sur l'horizon), correct (bool : le mouvement a-t-il suivi la direction au-delà de ±2 %), brier ((confidence − correct)²), trade_alpha_pct (si joué : alpha — mesure SÉPARÉE) }) }. 'stats' (recalculé par engine/grok.js) : resolved, hits, hit_rate, brier, tactical_cap = budget MAX du NAV pour les paris Grok, MÉRITÉ : 0 % tant que < 6 calls résolus, puis 3/6/8 % selon hit_rate (≥0.55/0.65/0.70), 0 % si < 0.45. Garde-fous §F : jamais sur gate 🔴, jamais contre la checklist bulle §B, demi-taille tactique, stop serré, sortie datée. L'euphorie reste un signal contrarien de top. Ne jamais réécrire un call résolu.",
-  "updated": "2026-09-08",
+  "updated": "2026-09-12",
   "calls": [
     {
       "id": "saf-oversold-defense-w39",
@@ -119,6 +119,32 @@
       "played": false,
       "status": "ouvert",
       "guard_note": "NON JOUÉ — tactical_cap = 0% (6 calls résolus, hit_rate 0.5 < 0.55). Score uniquement. Position DÉTENUE au book cœur (3.7222 parts). Call pur scoring sentiment : mesure si RSI survendu extrême + rate hike narrative → rebond CT ≥ 2%."
+    },
+    {
+      "id": "fomc-sept-hike-w40",
+      "opened": "2026-09-12",
+      "ticker": "FOMC",
+      "direction": "hausse",
+      "confidence": 0.72,
+      "thesis": "CPI août +0.4% MoM (BLS 11/09) — plus chaud que consensus +0.3%. 3e confirmation macro consécutive (NFP+162K, PCE 3.7-4.1%, CPI +0.4%). FOMC 17/09 probabilité hike ~75-80% estimée. Call méta-FOMC : prédit que la Fed monte les taux le 17/09.",
+      "horizon": "2026-09-17",
+      "source": "2026-W40 (BLS CPI résultat 11/09 + brief vendredi)",
+      "played": false,
+      "status": "ouvert",
+      "guard_note": "NON JOUÉ — tactical_cap = 0%. Score uniquement. Call binaire sur décision FOMC. Résolution le 17/09 (annonce Fed)."
+    },
+    {
+      "id": "gva-oversold-rebound-w40",
+      "opened": "2026-09-12",
+      "ticker": "GVA",
+      "direction": "hausse",
+      "confidence": 0.65,
+      "thesis": "GVA RSI 28.4 (survendu technique) — meilleur gate du book 🟢 +0.612 (F7/9, insider 2B/0S). Thèse IIJA intacte (extension 11/12). EBITDA marge dans guide 12.25-13.25%. Rebond technique depuis survendu extrême probable à 10 jours. GS PT $119 = cours actuel $118.92 → marché a intégré le downgrade.",
+      "horizon": "2026-09-22",
+      "source": "2026-W40 (signals.js 12/09 RSI 28.4 + gate +0.612)",
+      "played": false,
+      "status": "ouvert",
+      "guard_note": "NON JOUÉ — tactical_cap = 0%. Score uniquement. Position DÉTENUE au book cœur (6.57 parts). Mesure si RSI survendu + fort gate fondamental → rebond CT ≥ 2%."
     },
     {
       "id": "amzn-nfp-tailwind-w29",

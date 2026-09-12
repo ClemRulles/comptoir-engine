@@ -1,3 +1,25 @@
+## Tendance de la semaine — 12 septembre 2026 (W40)
+
+- **Statut** : VALIDÉE — FINANCIALS EU / NIM EXPANSION · CPI +0.4% confirme hawkish
+- **Tendance** : CPI août +0.4% MoM (+3.4% YoY) — plus chaud que consensus +0.3%. 3e confirmation macro consécutive (NFP+162K, PCE 3.7-4.1%, CPI +0.4%). FOMC 17/09 hike probability ~75-80%. **Les banques EU en NIM expansion restent la tendance** : BNP.PA (ex-div 23/09), thèse intacte. CB (Chubb) et GLE.PA (SG) attendent FOMC 17/09 pour entrée éventuelle.
+- **Pourquoi maintenant** : CPI surpasse le consensus pour la 3e confirmation macro. FOMC 17/09 = prochain jalon décisif. BNP.PA ex-div 23/09 = catalyseur daté prochain.
+- **Preuves dures** :
+  1. **BLS CPI août 2026** : +0.4% MoM, +3.4% YoY (11/09/2026). Énergie +2.1% MoM. Plus chaud que consensus +0.3%.
+  2. **FOMC 17/09** : ~75-80% hike (estimé post-CPI, vs 66% pré-CPI).
+  3. **BNP.PA** : ex-div €3.23 le 23/09, gate 🟢 +0.462, thèse NIM confirmée Q2 +33%.
+- **Durabilité** : Conditionnelle à FOMC 17/09 (hike → NIM expansion prolongée). Structurelle si cycle hawkish prolongé.
+- **Stade** : Milieu. CPI (11/09) = 3e confirmation. FOMC (17/09) = prochaine validation majeure.
+- **Manières de la jouer** :
+  - **BNP.PA** (détenu 3.72% NAV) — bénéficiaire NIM direct. Ex-div 23/09. NE PAS RENFORCER (corridor cash).
+  - **CB (Chubb)** — NII float $100B. Conditionnel FOMC hike 17/09 confirmé. Sizing Moyenne si hike.
+  - **GLE.PA** — NIM EU, même thèse. Conditionnel FOMC 17/09.
+- **Drapeau bulle** : improbable — PE bancaire EU < 10x.
+- **Ce qui tuerait la thèse** : FOMC HOLD + guidance dovish ; CDS EU banks > 200bps ; chômage > 4.5%.
+- **Effet de second ordre** : FOMC hike → USD fort → EIMI (EM ETF) headwind. Surveiller.
+- **Sources** : BLS CPI août 2026 (11/09) ; Fox Business/CNBC/Kiplinger ; engine/signals.js 2026-09-12 ; CME FedWatch estimé.
+
+---
+
 ## Tendance de la semaine — 8 septembre 2026 (W39)
 
 - **Statut** : VALIDÉE — FINANCIALS EU / NIM EXPANSION · Catalyseurs frais BNP dividende + FOMC 66% hike

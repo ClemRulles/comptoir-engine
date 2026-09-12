@@ -1,4 +1,4 @@
-# Calendrier des catalyseurs — maj 2026-09-08 (Trend Radar W39)
+# Calendrier des catalyseurs — maj 2026-09-12 (Brief W40)
 
 Événements **datés et publics** des ~6 prochaines semaines qui peuvent bouger nos secteurs/titres.
 On **anticipe le connu**, on ne devine pas une annonce surprise. Chaque ligne = un risque daté.
@@ -16,8 +16,8 @@ Statut : `À surveiller` → `ACTIF` (pré-positionnement ou risque connu) → `
 
 | Date | Événement | Type | Ce qui bouge (secteurs/tickers) | Sens du risque | Analyse de l'IA | Confiance | Statut |
 |------|-----------|------|--------------------------------|----------------|-----------------|-----------|--------|
-| **11/09/2026** | CPI août 2026 (BLS, 8h30 ET) — ⚠️ DATE CORRIGÉE (pas le 09/09) | Macro | Toutes positions, FOMC 17/09, BNP.PA, CB | Binaire fort | Pourquoi : verrou décisif du régime. Consensus +0.3% MoM (plus chaud que juillet +0.1%), YoY ~3.4-3.5%. · Prise en compte : budget déploiement gelé, CB conditionnel, aucun trade avant. · Orientation : si ≥ 0.3% MoM → SURCHAUFFE confirmée, déploiement CB envisageable post-FOMC ; si ≤ 0.1% → réexamen override, shift RISK-ON SAIN possible, NIM banks moins favorable. | Haute | ⚠️ ACTIF |
-| **17/09/2026** | FOMC — décision taux (**~66% hike** 25bps — révisé vs 52% vendredi) | Macro | Toutes positions, obligataire, USD, BNP.PA | Binaire fort | Pourquoi : NFP +162K + PCE 3.7-4.1% (Warsh) portent hike probability à 66% (CME post-NFP). · Prise en compte : NIM expansion BNP.PA ≈ bénéficiaire direct si hike ; CEG/GVA/EME = vent de face T10Y ; EIMI = headwind USD. Garder cash 30-50%. · Orientation : hike → renforcer thèse Financials EU (SG.PA, CB si gate ok) ; hold + guidance dovish → réactiver déploiement infra/tech. | Haute | ⚠️ ACTIF |
+| **11/09/2026** | CPI août 2026 (BLS, 8h30 ET) — ⚠️ DATE CORRIGÉE (pas le 09/09) | Macro | Toutes positions, FOMC 17/09, BNP.PA, CB | Binaire fort | **RÉSULTAT : +0.4% MoM, +3.4% YoY** (plus chaud que consensus +0.3%). Énergie +2.1% MoM. SURCHAUFFE CONFIRMÉE. FOMC 17/09 hike ~75-80%. CB+GLE.PA attendent FOMC. | Haute | ✅ PASSÉ |
+| **17/09/2026** | FOMC — décision taux (**~75-80% hike** 25bps — révisé post-CPI +0.4%) | Macro | Toutes positions, obligataire, USD, BNP.PA, CB, GLE.PA | Binaire fort | Pourquoi : CPI +0.4% (11/09) renforce hike probability. · Prise en compte : si hike → évaluer CB (Acheter Moyenne, NII float $100B) + GLE.PA (Acheter Moyenne, NIM EU) ; CEG/GVA/EME = vent de face T10Y ; EIMI = headwind USD. Cash 41.3% dans corridor. · Orientation : hike → déployer CB+GLE.PA post-FOMC (sizing Moyenne = ~7% NAV chacun) ; hold dovish → garder cash, différer. | Haute | ⚠️ ACTIF |
 | **~23/09/2026** | BNP.PA ex-dividende (€3.23/action, paiement 28/09) | Micro | BNP.PA (détenu 3.72 parts) | Directionnel (positif connu) | Pourquoi : dividende intermédiaire €3.23 confirmé, paiement cash 28/09. Position 3.72 parts → +€12.02 cash au book. · Prise en compte : catalyseur CT confirmé, pas de décision requise. · Orientation : noter le rendement (indicateur que le marché valorise les banques EU malgré SURCHAUFFE). | Haute | À surveiller |
 | **22/10/2026** | GVA — résultats Q3 2026 (22 oct. confirmé) | Micro | GVA (détenu) | Binaire fort | Horizon-test Q3'26 : adj EBITDA marge dans guide 12.25-13.25%, rev +25%+, backlog $7.4B+ stable. Falsificateur : marge <10% OU write-down >$50M OU backlog <$6.5B → sortie immédiate. En SURCHAUFFE + T10Y 4.823%, surveiller les coûts de financement des chantiers. | Moyenne | ACTIF |
 | **~Octobre 2026** | EMCOR Q3 2026 / MSCI Q3 2026 / CEG Q3 2026 | Micro | EME, MSCI, CEG (détenus) | Binaire | Horizon-tests de thèse pour ces 3 positions : EME (marge MEP > 8%, RPO intact), MSCI (rétention > 93%), CEG (falsificateurs §G non déclenchés). | Moyenne | À surveiller |
@@ -28,6 +28,7 @@ Statut : `À surveiller` → `ACTIF` (pré-positionnement ou risque connu) → `
 
 | Date | Événement | Résultat | Leçon/Impact book |
 |------|-----------|----------|-------------------|
+| **11/09/2026** | CPI août 2026 (BLS) | **+0.4% MoM, +3.4% YoY**. Énergie +2.1% MoM. Plus chaud que consensus +0.3%. | SURCHAUFFE CONFIRMÉE (3e confirmation). FOMC hike ~75-80%. 0 trades W40. CB+GLE.PA attendent FOMC 17/09. |
 | **05/09/2026** | NFP août 2026 (BLS) | **+162K** vs consensus +56K. Unemployment 4.1% (inchangé). T10Y spike 4.746%→**4.823%**. FOMC 52% hike. | SURCHAUFFE CONFIRMÉE. Override régime validé. Cash 41.9% dans corridor. 0 trades W38. CB conditionnel CPI 09/09. |
 | 03/09/2026 | IIJA Chambre vote CR 370-48 (extension → 11/12/2026) | Chambre a voté 370-48. Exit_rule GVA 30/09 ne se réarme pas. Nuance : Division J non étendue. | GVA DE-RISQUÉE falaise 30/09. "SURVEILLER URGENT" → "GARDER". Thèse intacte. Surveiller réautorisation avant 11/12. |
 | 03/09/2026 | Waller (Fed Governor) — dovish | Hike odds 57%→~50%. NFP 05/09 a tranché : +162K ramène hike à ~52%. | NFP confirme override SURCHAUFFE. Pivot Waller était temporaire. |

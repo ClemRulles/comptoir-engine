@@ -1,116 +1,89 @@
-# Brief du vendredi — 5 septembre 2026 (W38)
+# Brief du vendredi — 12 septembre 2026 (W40)
 
-> Généré par la routine nocturne du Comptoir Engine. Sources : BLS NFP août 2026 (05/09) ; Investing.com T10Y ; engine/signals.js 2026-09-05 00:02 UTC ; CME FedWatch ; heygotrade.com (GVA intraday).
-
----
-
-## 1. RÉGIME — SURCHAUFFE CONFIRMÉE
-
-**Cadran : SURCHAUFFE** (override validé par NFP)
-
-| Indicateur | Valeur | Signal |
-|---|---|---|
-| NFP août 2026 | +162 000 (vs consensus +56K, ×2.9) | 🔴 Surchauffe |
-| T10Y | 4.823% (+8bps post-NFP) | 🔴 Hawkish |
-| Unemployment | 4.1% (inchangé) | Neutre (seuil basculement >4.3%) |
-| FOMC 17/09 | ~52% hike 25bps (CME FedWatch) | 🔴 Hawkish |
-| EUR/USD | 1.1609 (ref nocturne) | — |
-
-**Consigne** : Cash plancher 30% / plafond 50%. Cash actuel **41.9%** = dans le corridor → **0 déploiement**. Budget gelé jusqu'à CPI 09/09 (verrou décisif). Pivot Waller dovish du 03/09 (hike 57%→50%) était du bruit — NFP l'a rétabli à 52%.
+> Généré par la routine nocturne du Comptoir Engine. Sources : BLS CPI août 2026 (11/09, Fox Business/CNBC/Kiplinger) ; engine/signals.js 2026-09-12 00:02 UTC ; engine/guard.js (ok, 0 réparations) ; engine/grok.js (0 résolutions ce run) ; engine/forecasts.js (0 scénarios à scorer).
 
 ---
 
-## 2. POSITIONS — BOOK IA (10 positions, 0 trades W38)
+## 🌡 Régime de marché : SURCHAUFFE CONFIRMÉE
 
-NAV estimée ≈ **10 239€** (−1.71% vs start 10 417€ / +0.5% vs W37 10 186€). Cash 4 290.86€ = 41.9% NAV.
+**CPI août 2026 : +0.4% MoM, +3.4% YoY** (BLS 11/09/2026). Plus chaud que le consensus +0.3%. 3e confirmation macro consécutive :
 
-| Ticker | Gate | RSI | NAV% | Seuil réexamen mercredi | Statut |
-|---|---|---|---|---|---|
-| SAF.PA | 🟢 F | 25.3 survendu | 6.8% | <234€ | OK — bénéficiaire rotation défensive. RSI survendu = rebond CT potentiel, ne pas renforcer (cash corridor) |
-| AMZN | 🟢 F | 46.4 | 6.8% | <$165 | OK — AWS +37% Q2 ✓. Tech sous pression discount rate T10Y. |
-| EIMI | 🟢 F | 53.3 | 4.6% | (thèse) | OK — surveiller USD fort post-NFP (EIMI = USD haut = headwind EM) |
-| AI.PA | 🟢 F | 65.8 | 5.1% | <126€ | OK — RSI rebondi +38pts depuis 27.1. Ne pas renforcer sans hystérésis 2 sem. |
-| LOTB | 🟢 F | 47.3 | 4.7% | <8205€ | OK — RSI normalisé depuis 80.5. Taille petite = garde-fou naturel. |
-| BNP.PA | 🟢 F | 31.0 survendu | 3.8% | <70€ | BÉNÉFICIAIRE rate hike (NIM expansion). RSI 31 = rebond CT probable. Ne pas renforcer (corridor cash). |
-| MSCI | 🟢 F7/9 | 53.1 | 6.6% | <$401 | OK — rétention 95.3% Q2 ✓. Horizon-test Q3 oct. 2026. |
-| CEG | 🟢 F6/9 | 52.1 | 6.2% | <$189 | §G gouverne — 3 falsificateurs non déclenchés ✓. Pression long-duration T10Y. Horizon Q3 oct. |
-| GVA | 🟢 F7/9 | 33.4 survendu | 6.6% | <$96 | Signal nocturne $119.3 (cours intraday 05/09 : $122-126). Falaise IIJA → 11/12. Horizon Q3 22 oct. |
-| EME | 🟢 F6/9 | 29.7 survendu | 6.9% | <$572 | RSI survendu. Entrée récente 29/08. Horizon Q3 oct. |
+1. NFP août +162K (05/09) — 2.9× consensus
+2. PCE 3.7-4.1% / Warsh hawkish (28/08)
+3. **CPI août +0.4% MoM (11/09)** ← nouveau
 
-**Décision W38 : 0 trade IA.** Cash dans corridor. 3 positions RSI survendu (SAF.PA, GVA, EME) = rebond CT potentiel sans action requise.
+FOMC 17/09 : probabilité hike estimée **~75-80%** (vs 66% pré-CPI). Override SURCHAUFFE **MAINTENU**.
 
-### ⚠️ CB (Chubb) — conditionnel CPI 09/09
-Verdict Acheter Moyenne CONDITIONNEL. Prix 05/09 : ~$346-349. NII $100B float = bénéficiaire direct rate hike (NIM). CPI MoM ≥ 0.3% → SURCHAUFFE confirmée → recalculer gate CB → Acheter si marge confirmée. CPI MoM ≤ 0.1% → attendre FOMC 17/09.
+signals.js diverge : RISK-ON SAIN (FRED lag) → override market-regime.md prime. Cash corridor 30-50%.
 
 ---
 
-## 3. TENDANCE W38 — SURCHAUFFE : ROTATION FINANCIALS/BANQUES EU
+## 📊 Book IA — état au 12/09/2026
 
-**Thèse** : NFP août +162K × 2.9 le consensus valide la narrative hawkish. FOMC 17/09 ~52% hike → cycle de taux restrictif prolongé → NIM des banques EU en expansion systémique (BNP.PA, SG, KBC).
+**NAV estimée : ~10 379€** (−0.37% vs start_capital 10 417€, EUR/USD ~1.10).
+**Cash : 4 291€ — 41.3% NAV → dans corridor SURCHAUFFE (30-50%). Aucun déploiement requis.**
 
-**Bénéficiaires directs dans le book** :
-- **BNP.PA** (détenu, 3.8% NAV, RSI 31 survendu) — Q2 +33% net income ✓, thèse NIM intacte. Ne pas renforcer (corridor cash). Rebond CT potentiel.
-- **CB (Chubb)** (conditionnel CPI 09/09) — assureur P&C, NII $100B float = même thème rate hike.
+| # | Ticker | Gate | Contrib | Action | Note |
+|---|--------|------|---------|--------|------|
+| 1 | SAF.PA | 🟢 +0.418 | 6.65% | GARDER | RSI 30.1 survendu |
+| 2 | AMZN | 🟢 +0.236 | 7.00% | GARDER | F5/9, thesis Q3 oct. |
+| 3 | EIMI | 🟢 +0.519 | 4.77% | GARDER | EM ETF, thesis intacte |
+| 4 | **AI** | **🟠 +0.183** | **4.94%** | **GARDER** | **Lecture 1/2 — hystérésis** |
+| 5 | LOTB | 🟢 +0.462 | 4.51% | GARDER | RSI sain |
+| 6 | BNP.PA | 🟢 +0.462 | 3.72% | GARDER | Ex-div 23/09 → +€12 |
+| 7 | MSCI | 🟢 +0.529 | 6.60% | GARDER | F7/9, meilleur gate |
+| 8 | CEG | 🟢 +0.392 | 6.15% | GARDER | §G gouverne |
+| 9 | **GVA** | **🟢 +0.612** | **6.84%** | **GARDER** | **RSI 28.4, insider 2B/0S** |
+| 10 | EME | 🟢 +0.468 | 7.45% | GARDER | EPS +25.3%, thesis ✓ |
 
-**Ce qui tuerait la thèse** : CPI 09/09 MoM ≤ 0.1% → désinflation surprise → Fed Hold → NIM plateau. FOMC HOLD 17/09 avec forward guidance dovish.
+**0 trades cette semaine.** Aucune position clôturée.
 
-**Stade** : Début. NFP du 05/09 = 1er déclencheur. CPI 09/09 + FOMC 17/09 = validation complète ou retournement.
+### Détail AI 🟠 — lecture 1/2 (hystérésis active)
+Gate composite +0.183 < seuil 🟢 (0.20). Cause : revenue_growth FMP −35.7% — **artefact documenté** (même signal observé 18/06/2026, leçon AI/DATA : attribution d'actions + FX produit ce type de résultat en données FMP annuelles). ROIC H1 2026 +10.2% confirmé. Falsificateurs non déclenchés (volumes non coupés, F-Score > 3, ROIC > 8%). Position 4.94% NAV < cap 5% 🟠 → **aucun rognage même en cas de confirmation**. Surveillance mercredi.
 
----
+### Détail GVA — meilleur gate + survendu
+Gate 🟢 +0.612 (F7/9, insider 2B/0S). RSI 28.4 = survendu extrême. Stop USD < $96 (cours $118.92 → marge +23.8%). Thèse IIJA intacte (extension 11/12). Horizon-test Q3 22/10.
 
-## 4. ARBITRAGE — 0 TRADE, ATTENDRE CPI 09/09
-
-**Gel du budget déploiement** : cash 41.9% dans corridor SURCHAUFFE (30-50%). Toute entrée CB et tout renforcement sont suspendus jusqu'à CPI 09/09.
-
-**Scénario A — CPI MoM ≥ 0.3%** (SURCHAUFFE confirmée) :
-- Recalculer gate CB → si gate 🟢 : Acheter Moyenne CB (≈7% NAV, ~$24K équivalent 1.07 part environ)
-- BNP.PA : tenir, ne pas renforcer (déjà 3.8% NAV, cash corridor)
-- Surveiller SG.PA, KBC pour éventuel deep-dive post-FOMC
-
-**Scénario B — CPI MoM ≤ 0.1%** (désinflation surprise) :
-- Override SURCHAUFFE réévalué — possible retour RISK-ON SAIN
-- CB : remettre à FOMC 17/09
-- Positions long-duration (GVA, CEG, EME) bénéficient du shift
-
-**Scénario C — CPI MoM 0.1-0.3%** (zone grise) :
-- FOMC reste le déclencheur
-- 0 trade jusqu'au 17/09
+### CB et GLE.PA — pendants FOMC
+CPI ≥ +0.3% confirmé (condition 1/2). **FOMC 17/09 non encore tranché** (condition 2/2). Aucune entrée avant le 17/09.
 
 ---
 
-## 5. RISQUES DE LA SEMAINE
+## 📅 Prochains catalyseurs
 
-| Date | Risque | Impact | Probabilité |
-|---|---|---|---|
-| **09/09/2026** | CPI août (BLS) | Verrou décisif — arbitrage HIKE/HOLD | Haute (daté) |
-| **17/09/2026** | FOMC décision | Hike 52% → NIM BNP/CB ✓ ; Hold → shift RISK-ON | Haute (daté) |
-| **22/10/2026** | GVA Q3 résultats | Horizon-test marge/backlog | Moyen (daté) |
-| **~Oct. 2026** | MSCI/CEG/EME Q3 | Horizon-tests des 3 positions | Moyen |
-| **11/12/2026** | IIJA expiration | Division J — exit_rule GVA si non voté | Élevé (structurel) |
-
-**USD fort** (post-NFP +162K) = headwind pour EIMI (EM libellé USD) et translation EUR pour SAF.PA/AI.PA — surveiller.
+| Date | Événement | Impact |
+|------|-----------|--------|
+| **17/09** | FOMC (~75-80% hike) | Déclencheur CB + GLE.PA si hike |
+| **22/09** | Grok W37 BNP+GVA expiration (horizon 09/15, scoring lundi) | Calibration grok |
+| **23/09** | BNP.PA ex-div €3.23 | +€12.02 cash book IA |
+| **22/10** | GVA Q3 2026 | Horizon-test thèse |
+| **11/12** | Expiration IIJA | Surveiller réautorisation |
 
 ---
 
-## 6. ACTIONS LUNDI / SEMAINE
+## 📈 Tendance W40 : CONTINUATION — Financials EU / NIM Expansion
 
-1. **Mardi avant CPI** : pas d'action. Surveiller EUR/USD (impact positions EUR).
-2. **Mercredi 09/09 post-CPI** : si MoM ≥ 0.3% → recalculer gate CB → décision entrée. Si MoM ≤ 0.1% → réévaluer override SURCHAUFFE.
-3. **Doctor jeudi 11/09** : vérifier seuils réexamen GVA/EME (RSI survendu, prix OK mais surveiller).
-4. **FOMC 17/09** : décision finale hike/hold → ajuster régime + CB.
-5. **GVA 22/10** : horizon-test marge guide 12.25-13.25%, rev +25%+, backlog $7.4B+. Falsificateurs écrits.
+**Statut : VALIDÉE — FINANCIALS EU / NIM EXPANSION · CPI +0.4% > consensus +0.3%**
 
----
+CPI août +0.4% renforce le scénario hike FOMC 17/09. Tendance en phase milieu (NFP → CPI → FOMC comme jalons). Thèse NIM expansion intacte. BNP.PA ex-div 23/09 = catalyseur CT confirmé.
 
-## 7. CALIBRATION MENSUELLE (1er vendredi de septembre)
+**FOMC 17/09 = prochain jalon décisif.** Si hike → évaluer CB (P&C NII float $100B) + GLE.PA (NIM EU). Cash corridor à réévaluer post-FOMC.
 
-**Résumé** : n_conviction=1 (CRH, Moyenne, hit=false). Seuil §I n≥8 non atteint → aucun ajustement sizing. Playbook :
-- **P-001 → CONFIRMÉ** : 3 cas protecteurs (CEG 19/08, SAF.PA gate-flip, GVA nocturne 04/09)
-- **P-002 → à l'essai maintenu** : 4 semaines, appliqué mais aucun coût mesuré d'un délai
-- **P-003 → CONFIRMÉ** : 3 cas concordants (MYRG 20/08, AZZ 27/08, ABBV 03/09)
-
-Tailles cibles inchangées : Haute ≈ 12% NAV / Moyenne ≈ 7% NAV / Basse ≈ 3% NAV.
+Ce qui tuerait la thèse : FOMC HOLD + forward guidance dovish (improbable avec CPI +0.4%) ; choc crédit EU ; chômage US > 4.5%.
 
 ---
 
-*Brief généré automatiquement — sources BLS, CME FedWatch, signals.js. Aucun trade exécuté. L'humain décide.*
+## 🎯 Grok W40 (scoring — non tradés, tactical_cap=0)
+
+- `fomc-sept-hike-w40` : FOMC 17/09 hike confirmé. Conf. 0.72. Horizon 17/09.
+- `gva-oversold-rebound-w40` : GVA rebond technique (RSI 28.4 survendu, gate fort). Conf. 0.65. Horizon 22/09.
+
+---
+
+## ⚙️ Moteur
+
+- guard.js : ok (0 réparations)
+- signals.js : 🟢9 🟠1(AI) 🔴0 — 13 data gaps (EU tickers, FRED partial)
+- grok.js : 0 résolutions (W37 calls expirent 15/09)
+- forecasts.js : 0 scénarios actifs
+- Calibration : inchangée (0 clôtures cette semaine, n_conviction=1)
