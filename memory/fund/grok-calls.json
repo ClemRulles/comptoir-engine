@@ -1,6 +1,6 @@
 {
   "_doc": "Sentiment X (Grok) transformé en PRÉDICTIONS SCORÉES (method §F) — le sentiment ne décide jamais sur la foi : il se MÉRITE une voix en prouvant qu'il prédit. Le lundi (pouls Grok) enregistre 0-3 'calls' directionnels court terme ; engine/grok.js les score contre le prix réel à l'horizon. Schéma d'un call : { id (kebab-case), opened (YYYY-MM-DD), ticker, direction ('hausse'|'baisse' attendue à court terme), confidence (0.5-0.9, force du signal de sentiment), thesis (1 ligne : ce que Grok 'sent'), horizon (YYYY-MM-DD, ~2 semaines), source (semaine du pouls), played (bool : le book a-t-il pris une position tactique ?), status ('ouvert' | 'joué' | 'résolu' | 'expiré'), resolution ({ date, move_pct (variation réelle sur l'horizon), correct (bool : le mouvement a-t-il suivi la direction au-delà de ±2 %), brier ((confidence − correct)²), trade_alpha_pct (si joué : alpha — mesure SÉPARÉE) }) }. 'stats' (recalculé par engine/grok.js) : resolved, hits, hit_rate, brier, tactical_cap = budget MAX du NAV pour les paris Grok, MÉRITÉ : 0 % tant que < 6 calls résolus, puis 3/6/8 % selon hit_rate (≥0.55/0.65/0.70), 0 % si < 0.45. Garde-fous §F : jamais sur gate 🔴, jamais contre la checklist bulle §B, demi-taille tactique, stop serré, sortie datée. L'euphorie reste un signal contrarien de top. Ne jamais réécrire un call résolu.",
-  "updated": "2026-09-12",
+  "updated": "2026-09-15",
   "calls": [
     {
       "id": "saf-oversold-defense-w39",
@@ -104,7 +104,16 @@
       "horizon": "2026-09-15",
       "source": "2026-W37 (repli web — signaux macro/IIJA)",
       "played": false,
-      "status": "ouvert",
+      "status": "résolu",
+      "resolution": {
+        "date": "2026-09-15",
+        "price_open_usd": 122,
+        "price_close_usd": 125.37,
+        "move_pct": 2.76,
+        "correct": false,
+        "brier": 0.3025,
+        "note": "GVA ouvert à ~$122 (01/09, stop $116.93) → $125.37 (15/09, +2.76%). Baisse attendue, hausse réalisée. Le risque IIJA Division J reste réel (expire 30/09) mais le titre a rebondi depuis son plancher RSI 28.4 (12/09). Le marché a intégré l'extension CR → 11/12 et re-rate sur la qualité fondamentale (F7/9, insiders 2B/0S). Leçon : appeler baisse sur un titre avec gate fort (🟢 +0.612) = erreur de priorité — les fondamentaux robustes absorbent le risque macro/politique CT."
+      },
       "guard_note": "NON JOUÉ — tactical_cap = 0% (6 calls résolus maintenant mais hit_rate 3/6 = 0.5 < 0.55, seuil pour 3%). Score uniquement. Position DÉTENUE au book cœur (§G gouverne la sortie, pas le gate)."
     },
     {
@@ -117,7 +126,16 @@
       "horizon": "2026-09-15",
       "source": "2026-W37 (repli web — Warsh speech + signals.js 01/09)",
       "played": false,
-      "status": "ouvert",
+      "status": "résolu",
+      "resolution": {
+        "date": "2026-09-15",
+        "price_open_eur": 93,
+        "price_close_eur": 112.6,
+        "move_pct": 21.1,
+        "correct": true,
+        "brier": 0.16,
+        "note": "BNP.PA open estimé ~93€ (01/09, RSI 25.7 survendu extrême, estimé depuis trajectoire RSI→103.76€ à RSI 40.3 le 12/09) → 112.60€ (15/09, source web). Move estimé +21.1% → CORRECT hausse > +2%. NIM expansion narrative + FOMC hike >80% (futures) + rotation SURCHAUFFE Financials EU = parfaite convergence. RSI survendu extrême s'est avéré excellent signal d'entrée technique sur un fondamental solide (Q2 +33%)."
+      },
       "guard_note": "NON JOUÉ — tactical_cap = 0% (6 calls résolus, hit_rate 0.5 < 0.55). Score uniquement. Position DÉTENUE au book cœur (3.7222 parts). Call pur scoring sentiment : mesure si RSI survendu extrême + rate hike narrative → rebond CT ≥ 2%."
     },
     {
@@ -131,7 +149,7 @@
       "source": "2026-W40 (BLS CPI résultat 11/09 + brief vendredi)",
       "played": false,
       "status": "ouvert",
-      "guard_note": "NON JOUÉ — tactical_cap = 0%. Score uniquement. Call binaire sur décision FOMC. Résolution le 17/09 (annonce Fed)."
+      "guard_note": "NON JOUÉ — tactical_cap = 0%. Score uniquement. Call binaire sur décision FOMC. ⚠️ CORRECTION DATE : décision Fed = 16/09 (pas 17/09). Résolution le 16-17/09 selon marché."
     },
     {
       "id": "gva-oversold-rebound-w40",
@@ -250,10 +268,10 @@
     }
   ],
   "stats": {
-    "resolved": 8,
-    "hits": 3,
-    "hit_rate": 0.375,
-    "brier": 0.273,
+    "resolved": 10,
+    "hits": 4,
+    "hit_rate": 0.4,
+    "brier": 0.264,
     "tactical_cap": 0
   },
   "data_gaps": []

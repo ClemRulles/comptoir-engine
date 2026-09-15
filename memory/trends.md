@@ -1,3 +1,21 @@
+## Tendance de la semaine — 15 septembre 2026 (W41)
+
+- **Statut** : AUCUNE NOUVELLE — TENDANCE W40 EN ATTENTE DU VERROU FOMC (décision demain 16/09)
+- **Tendance** : Aucune nouvelle tendance sectorielle validée cette semaine. La tendance FINANCIALS EU / NIM EXPANSION de W38-W40 reste la meilleure thèse en cours et attend son catalyseur décisif demain.
+- **Pourquoi AUCUNE nouvelle** : W41 est une semaine de verrou binaire (FOMC 16/09). Avant la décision, valider une nouvelle tendance serait prématuré. Trois candidats analysés :
+  1. **Énergie/Middle East** : Brent ~$90 (+8% récent, +22% YTD XLE) sur tensions Détroit d'Ormuz. REJETÉ — moteur géopolitique binaire (accord US-Iran = -15% immédiat). Pas structurel. Stade : chaud.
+  2. **Rotation Growth→Value** : XLK -2.43% YTD, Energy/Industrials leader. Déjà en cours depuis W37. Stade : milieu-fin. Pas une nouvelle tendance cette semaine.
+  3. **IIJA cliff** : Division J expire 30/09 (Congressional impasse — aucun bill). Risque pour GVA/EME — ce n'est pas une tendance investissable, c'est un risque de position.
+- **Thèmes à surveiller (mûrissement possible)** :
+  - **FOMC hike confirmé 16/09** → déploiement CB/GLE.PA (tendance Financials EU validée au stade avancé)
+  - **IIJA Division J 30/09** → si pas de réautorisation, risque infra US (GVA exit_rule monitoring)
+  - **Énergie** → si tensions ME persistent + FOMC hike (USD fort), cycle commodities = possible tendance W42
+- **Blanc honnête** : Le FOMC de demain rend toute nouvelle conviction sectorielle prématurée aujourd'hui. Mieux vaut attendre 24h.
+- **Ce qui changerait cela** : Hike FOMC confirmé 16/09 → tendance Financials EU W42 = VALIDÉE PLEINEMENT (CB/GLE.PA entrée possible). Hold + dovish guidance → revoir la thèse bancaire.
+- **Sources** : ATFX FOMC preview ; Kalkine sector performance ; BondBuyer IIJA expiration ; JPC Engineering IIJA cliff.
+
+---
+
 ## Tendance de la semaine — 12 septembre 2026 (W40)
 
 - **Statut** : VALIDÉE — FINANCIALS EU / NIM EXPANSION · CPI +0.4% confirme hawkish

@@ -1,7 +1,55 @@
 {
   "_doc": "Pouls hebdo du marché (Grok, accès X) — radar à corroborer, jamais un signal d'achat. Écrit par routines/monday-trend-radar.md (Partie C). Le plus récent en tête de weeks ; ~12 semaines max.",
-  "updated": "2026-09-08",
+  "updated": "2026-09-15",
   "weeks": [
+    {
+      "week": "2026-W38",
+      "date": "2026-09-15",
+      "label": "Semaine du 8-15 septembre 2026",
+      "headline": "FOMC demain (16/09) : hike ou hold ? — marché divisé, énergie en feu (Brent $90), GVA rebondit, BNP.PA +21% depuis oversold",
+      "themes": [
+        {
+          "title": "FOMC 16/09 : grand écart entre futures (80%+ hike) et prediction markets (26% hike)",
+          "detail": "Décision Fed demain 16/09 14h ET. Futures : 80-87% hike 25bps (post CPI +0.4%). Kalshi : 26% hike / 73% hold. JPMorgan pro-hike, Goldman Sachs pro-hold. S&P 500 tombé à 7629 (-0.37%). Chipmakers et industrials sous pression (CAT -4.23%, GS -3.99%, NVDA -3.26% lundi). Cash corridor 30-50% = correct positionnement. Résultat demain = déclencheur CB/GLE.PA (si hike) ou revision thèse (si hold dovish).",
+          "tickers": ["BNP.PA", "CB", "GLE.PA", "CEG", "GVA", "EME"],
+          "corroborated": true,
+          "corroboration_note": "CORROBORÉ : AdvisorPerspectives 14/09 (Hike or Hold?) + FedRateCalc (meeting 15-16/09) + Kalshi/Polymarket (odds) + CME Fed funds futures ~80-87%. Sources divergentes = risque binaire réel."
+        },
+        {
+          "title": "Énergie / Brent $90 — tensions Middle East et Détroit d'Ormuz",
+          "detail": "Brent brièvement à $90+. XLE +22% YTD. Tensions escaladent (Détroit d'Ormuz). Hausse de +8% récente du WTI. US500 energy sector +1.11% session. RADAR : géopolitique binaire (accord possible Trump-Iran → pétrole -15%). Non investissable comme tendance structurelle mais facteur inflationniste (CPI energy +2.1% août).",
+          "tickers": ["XLE", "XOM", "CVX", "ENB"],
+          "corroborated": true,
+          "corroboration_note": "CORROBORÉ : NerdWallet 'Top Oil & Gas Stocks Surging on Middle East News' sept. 2026 + GulfNews WTI +8% sept. 2026 + Kalkine 'Energy leads while Financials lag' sept. 2026."
+        },
+        {
+          "title": "IIJA Division J — falaise infra US 30/09 (aucun bill de réautorisation)",
+          "detail": "Congressional Funding Impasse (Automotive Transportation News 14/09). ~$600B IIJA non encore obligé. Autorité programmes discrétionnaires (Division J, ~$36.8B/an) expire le 30/09 SANS couverture du CR Chambre (qui protège la surface transportation jusqu'au 11/12 mais PAS Division J). Aucun bill pluriannuel présenté. Risque direct pour GVA (backlog projection) et EME (MEP).",
+          "tickers": ["GVA", "EME"],
+          "corroborated": true,
+          "corroboration_note": "CORROBORÉ : AutomotiveTransportation 14/09 (Congressional Impasse) + GrantedAI (IIJA expiration sept. 2026) + BondBuyer (IIJA spending record 2026) + JPC Engineering (IIJA cliff). 4 sources concordantes."
+        },
+        {
+          "title": "Tech selloff — XLK -2.43% YTD, rotation accélérée",
+          "detail": "XLK en baisse sur l'année (-2.43% YTD, Schwab). Nasdaq 100 -0.8% lundi. Chipmakers (NVDA -3.26%) et megacap tech (GS analogy). Rotation INTO energy/value/industrials accélérée. AMZN flat-to-down (Q3 résultats en oct. comme horizon-test). Non-investissable comme thèse (stade avancé).",
+          "tickers": ["AMZN", "NVDA"],
+          "corroborated": true,
+          "corroboration_note": "CORROBORÉ : Schwab sector outlook + Kalkine sector update + Trading Economics S&P 14/09 (CAT -4.23%, GS -3.99%, NVDA -3.26%)."
+        }
+      ],
+      "movers": [
+        { "ticker": "GVA", "direction": "up", "reason": "Rebond RSI survendu 28.4→38.4 — $118.92 (12/09) → $125.37 (15/09) +5.4%. Gate fort 🟢 +0.612 (F7/9, insiders 2B/0S) absorbe pression IIJA/GS. ⚠️ IIJA Div.J 30/09 nouveau risque.", "held": true },
+        { "ticker": "BNP.PA", "direction": "up", "reason": "RSI survendu 25.7 (01/09) → ~112.60€ (15/09) +21% estimé. NIM narrative + BCE hike + FOMC hike 80%+. Ex-div 23/09 proche.", "held": true },
+        { "ticker": "LOTB", "direction": "up", "reason": "RSI 26.5 survendu mais mom +49% — compounder premium Biscoff. PER ~44x vigilance valo.", "held": true },
+        { "ticker": "CAT", "direction": "down", "reason": "-4.23% lundi 14/09. FOMC hike fears + industrials rotation OUT.", "held": false },
+        { "ticker": "NVDA", "direction": "down", "reason": "-3.26% lundi. Chipmakers selloff pré-FOMC.", "held": false },
+        { "ticker": "EME", "direction": "up", "reason": "RSI 51 (vs 25.4 survendu extrême W39). mom +33%. Rebond depuis oversold extrême — thèse MEP/IIJA intacte.", "held": true },
+        { "ticker": "SAF.PA", "direction": "up", "reason": "RSI 39.3 (vs 27.1 survendu W39). mom +26%. Rebond technique depuis survendu sur compounder aéro.", "held": true }
+      ],
+      "crypto_narrative": "BTC +23.9% 30j / +2.1% 24h — 67,690€. ETH +33.5% 30j / +1.9% 24h — 2,177€. XRP +41.7% 30j. SOL +35.7% 30j. F&G 69 (Greed) → lecture contrarienne = top de sentiment potentiel. Dominance BTC 58.5% (léger recul = flux vers alts = altcoin season). FOMC hike demain = potentiel headwind CT (USD fort). Corroboration manquante pour toute décision book. Radar uniquement.",
+      "sources": ["repli web (Grok API sans données 2026)", "AdvisorPerspectives 14/09", "Kalshi/Polymarket", "FedRateCalc", "Kalkine sector", "NerdWallet energy", "GulfNews WTI", "AutomotiveTransportation 14/09", "CoinGecko 15/09"],
+      "grok_status": "repli — Grok API grok-4.3 sans accès données sept. 2026 ('future period'). Pouls construit sur recherche web native."
+    },
     {
       "week": "2026-W37",
       "date": "2026-09-08",

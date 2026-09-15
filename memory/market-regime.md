@@ -1,32 +1,33 @@
-# Régime de marché — mis à jour le 2026-09-12 (Brief W40)
+# Régime de marché — mis à jour le 2026-09-15 (Trend Radar W41)
 
-- **Cadran** : **SURCHAUFFE CONFIRMÉE** (override maintenu). NFP août +162K (05/09), PCE 3.7-4.1% (Warsh JH 28/08), **CPI août +0.4% MoM, +3.4% YoY** (BLS 11/09), FOMC 17/09 **~75-80% hike** (estimé post-CPI). T10Y ~4.65%. USD haussier. 3e confirmation macro consécutive.
-- **✅ CPI août 11/09 CONFIRMÉ** : +0.4% MoM, +3.4% YoY (BLS 11/09/2026 — Fox Business/CNBC/Kiplinger). Plus chaud que consensus +0.3%. Énergie +2.1% MoM, essence +4%. SURCHAUFFE validée. Override CONFIRMÉ. CB + GLE.PA conditionnels : 1ère condition (CPI ≥+0.3%) ✅, 2ème condition (FOMC hike 17/09) en attente.
-- **BCE hike 10/09 (+25bps → 2.50%)** : Facteur nouveau. NIM expansion directe pour BNP.PA, GLE.PA (candidat). FOMC 17/09 reste le verrou US, mais la BCE confirme la dynamique SURCHAUFFE zone euro.
-- **⚠️ Divergence algo/override** : `signals.js` lit RISK-ON SAIN (FRED lag). Override manuel SURCHAUFFE prime (NFP +162K + PCE 3.7-4.1% + CPI +0.4%). Override DÉFINITIVEMENT CONFIRMÉ par CPI 11/09.
-- **Consigne au système** : **plancher cash 30%, plafond 50%** — cash actuel **41.3% NAV** = DANS LE CORRIDOR. Aucun déploiement. P-001/P-002/P-003 actifs. 10 positions actives. 0 trades W40.
-- **⚡ CORRECTION DATE** : CPI août 2026 publié le **vendredi 11 septembre** (BLS, 8h30 ET) — pas le 09/09 comme précédemment noté. Verrou décisif FOMC 17/09 maintenu. Consensus CPI août : **+0.3% MoM** (vs +0.1% en juillet — plus chaud), YoY ~3.4-3.5%.
-- **Valorisation** : Financials/Banks = leaders SURCHAUFFE (NIM expansion). Energy +22% Q3 (XLE ATH). Tech growth = discount rate headwind (T10Y 4.65%). Infrastructure long-duration (CEG, GVA, EME) = vent de face T10Y.
-- **⚠️ GVA radar** : Goldman Sachs a dégradé GVA en Sell (juillet 2026), PT $139 → $119. Motifs : opérational improvement déjà pricé, IIJA tailwinds ralentissent (federal-aid highway commitments -23% sous pics 2023, -4% YTD). Stock à $119 (AT GS target). Exit_rule non déclenchée (backlog >$6.5B, marge >10% à vérifier Q3 22/10). Signaler jeudi Portfolio Doctor.
-- **BNP.PA dividende intermédiaire** : €3.23/action en cash le **28 septembre 2026** (ex-div ~23/09). Catalyseur CT positif, position 3.72 parts ≈ +€12 cash additionnel.
-- **Positions book IA — gates au 12/09 (signals.js W40)** :
-  - **SAF.PA** 🟢 +0.418 RSI30.1 (survendu) · 2.0929 parts ≈ 6.65% NAV · 330.2€
-  - **AMZN** 🟢 +0.236 F5/9 RSI40.5 · 3.1138 parts ≈ 7.00% NAV · $256.78
-  - **EIMI** 🟢 +0.519 RSI56.5 · 9.7751 parts ≈ 4.77% NAV · $55.71
-  - **AI.PA** **🟠 +0.183** RSI48.7 · 3.0794 parts ≈ **4.94% NAV** · 166.52€ · **lecture 1/2 (artefact FMP probable)**
-  - **LOTB** 🟢 +0.462 RSI39.5 · 0.0394 parts ≈ 4.51% NAV · 11900€
-  - **BNP.PA** 🟢 +0.462 RSI40.3 · 3.7222 parts ≈ 3.72% NAV · 103.76€. Ex-div 23/09.
-  - **MSCI** 🟢 +0.529 F7/9 RSI37.5 · 1.36 parts ≈ 6.60% NAV · $554.61
-  - **CEG** 🟢 +0.392 F6/9 RSI60.1 · 2.465 parts ≈ 6.15% NAV · $284.75
-  - **GVA** 🟢 **+0.612** F7/9 RSI**28.4** (survendu), insider 2B/0S · 6.57 parts ≈ 6.84% NAV · $118.92
-  - **EME** 🟢 +0.468 F6/9 RSI39.6, EPS+25.3% · 1.09 parts ≈ 7.45% NAV · $780.66
-- **Crypto (radar)** : BTC 59.1% dominance / ETH 11.3% / F&G **69 (Greed)** → lecture contrarienne = caution. Hors scope book.
+- **Cadran** : **SURCHAUFFE CONFIRMÉE** (override maintenu). NFP août +162K (05/09), PCE 3.7-4.1% (Warsh JH 28/08), **CPI août +0.4% MoM, +3.4% YoY** (BLS 11/09). T10Y ~4.65%. USD haussier. 3e confirmation macro consécutive. **FOMC réunit AUJOURD'HUI 15-16/09**, décision **16/09** (corr. : la mémoire précédente notait « 17/09 » à tort).
+- **⚡ CORRECTION FOMC DATE** : Meeting Fed = **15-16 septembre 2026**, annonce **16/09 à 14h ET** (source : FedRateCalc / Cambridge Currencies). Les conditions CB + GLE.PA sont déclenchables **dès le 16/09** si hike confirmé.
+- **✅ CPI août 11/09 CONFIRMÉ** : +0.4% MoM, +3.4% YoY. Énergie +2.1% MoM. SURCHAUFFE validée. Override CONFIRMÉ.
+- **⚠️ Divergence FOMC : futures vs marchés prédictifs**. Futures/options (Fed funds): ~80-87% hike 25bps. Prediction markets (Kalshi): 26% hike / 73% hold. Divergence réelle — résultat binaire incertain. Hike = CB/GLE.PA entrée possible 16/09. Hold = garder cash corridor.
+- **BCE hike 10/09 (+25bps → 2.50%)** : NIM expansion directe pour BNP.PA, GLE.PA. Zone euro hawkish confirmée.
+- **⚠️ Divergence algo/override** : `signals.js` lit RISK-ON SAIN (FRED lag). Override manuel SURCHAUFFE prime. All 10 gates 🟢 (W41).
+- **Consigne au système** : **plancher cash 30%, plafond 50%** — cash actuel **~41% NAV** = DANS LE CORRIDOR. Aucun déploiement avant décision FOMC 16/09. P-001/P-002/P-003 actifs.
+- **GVA rebond** : GVA ~$125.37 (15/09, range $122.76-$126.63) vs $118.92 (12/09) → +5.4% en 3 jours depuis RSI 28.4 survendu. Thèse intacte. **⚠️ NOUVEAU RISQUE : IIJA Division J expire le 30/09** — Congressional Funding Impasse (article 14/09). Aucun bill de réautorisation présenté. Surveiller avant exit_rule 11/12. GS PT $119 intégré par le marché ($125.37 > $119 = rebond outperformance).
+- **BNP.PA** : ~112.60€ (15/09 — source web vs 103.76€ le 12/09). Ex-div 23/09 (€3.23). Forte hausse confirmée (NIM + FOMC narrative).
+- **Energy surge** : Énergie +22% YTD (XLE). Pétrole (Brent ~$90) sur tensions Middle East (Détroit d'Ormuz). Hors book — radar.
+- **Positions book IA — gates au 15/09 (signals.js W41)** :
+  - **SAF.PA** 🟢 +0.418 RSI39.3 · 2.0929 parts · mom +26%
+  - **AMZN** 🟢 +0.236 F5/9 RSI48 · 3.1138 parts · mom +15%
+  - **EIMI** 🟢 +0.519 RSI55.8 · 9.7751 parts · mom +27%
+  - **AI.PA** 🟢 RSI48.7 · 3.0794 parts · mom +6% · *gates 🟢 W41 (vs 🟠 W40, artefact FMP résolu?)*
+  - **LOTB** 🟢 RSI26.5 (survendu) · 0.0394 parts · mom +49%
+  - **BNP.PA** 🟢 RSI38.8 → ~112.60€ · 3.7222 parts · Ex-div 23/09
+  - **MSCI** 🟢 F7/9 RSI44.9 · 1.36 parts · mom −2%
+  - **CEG** 🟢 F6/9 RSI59 · 2.465 parts · mom −16% (T10Y headwind)
+  - **GVA** 🟢 F7/9 RSI38.4 · 6.57 parts · ~$125.37 (rebond +5.4%) · ⚠️ IIJA Div.J 30/09
+  - **EME** 🟢 F6/9 RSI51 · 1.09 parts · mom +33%
+- **Crypto (radar 15/09)** : BTC 67,690€ / 58.5% dominance (+2.1% 24h / +23.9% 30j) · ETH 2,177€ / 11.4% dominance (+1.9% 24h / +33.5% 30j) · XRP +41.7% 30j · F&G 69 (Greed) → lecture contrarienne, caution. Altcoin season sentiment. FOMC hike demain = potentiel headwind CT crypto (USD fort).
 - **Macro (3 lignes)** :
-  - US : NFP août +162K (×2.9 vs consensus). PCE 3.7-4.1% (Warsh). T10Y 4.65%. FOMC 17/09 : **~66% hike** 25bps. CPI août **11/09** = verrou.
-  - Zone euro : BNP.PA Q2 +33.4% NI, div €3.23 le 28/09. SAF.PA H1 marge record confirmée. EUR/USD ~1.155-1.165. BCEhawkish de fond.
-  - Override SURCHAUFFE VALIDÉ : NFP + PCE + FOMC odds prime sur signal FRED en lag. Cash 41.9% dans corridor. Aucun déploiement avant CPI 11/09 + FOMC 17/09.
-- **NAV book IA** : ≈ **10 379€** (−0.37% vs start_capital). Cash 4 291€ = 41.3% NAV. 10 positions actives. 0 trades W40.
-- **Sources** : BLS CPI août 2026 (11/09 — Fox Business/CNBC/Kiplinger) ; BLS NFP août (05/09) ; CME FedWatch estimé post-CPI ; engine/signals.js 2026-09-12 ; BCE hike 10/09 ; BNP.PA div €3.23.
+  - US : NFP août +162K / CPI +0.4% / T10Y ~4.65%. FOMC décision **16/09** : futures ~80-87% hike vs prediction markets 26%. S&P 500 : 7629 pts (14/09), -0.37% session, -1.5% mois, +15.3% an. Chipmakers en correction.
+  - Zone euro : BNP.PA ex-div 23/09. SAF.PA H1 marge record. EUR/USD ~1.155-1.165. BCE hawkish (taux 2.50%).
+  - Override SURCHAUFFE VALIDÉ. Cash corridor 30-50%. Energy surge (Brent $90 / Middle East). Tech headwind (XLK -2.43% YTD).
+- **NAV book IA** : ≈ **10 379€** (−0.37% vs start_capital, dernier calculé 12/09). 10 positions actives. 0 trades W41 (avant FOMC).
+- **Sources** : FedRateCalc / Cambridge Currencies (FOMC 15-16/09) ; AdvisorPerspectives 14/09 ; Kalshi prediction markets ; engine/signals.js 2026-09-15 ; CoinGecko 15/09 ; Trading Economics S&P 500 ; Kalkine Energy/Financials performance.
 ---
 ## Tendance de la semaine — 5 septembre 2026 (W38)
 
