@@ -231,3 +231,6 @@ Format : `YYYY-MM-DD · [TICKER ou MÉTHODE] · ce qui s'est passé → ce que j
 ## Archives
 
 (rien encore)
+2026-09-16 · [ISP.MI/SCOUT] · Intesa Sanpaolo H1 2026 = ROTE 25% / NII well above €15B / guidance €10B NI → candidat supérieur à GLE.PA sur les fondamentaux EU bancaires mais pas analysé : starred pour deep-dive W42.
+2026-09-16 · [ODFL/SCOUT] · RSI 20.9 sur qualité LTL (Q2 +32% EPS, OR 70.1%) = survendu extrême sur cycle freight (volume -4.1%). Gate 0.207 faible → deep-dive pour trancher repli cyclique vs cassure structurelle.
+2026-09-16 · [FOMC/MÉTHODE] · Routine lancée le soir du 16/09 (après annonce FOMC 20h CET) mais résultat non indexé en temps réel. → Décision conditionnelle reste suspendue 1 nuit. Protocoler : en cas de doute sur une décision binaire récente, noter statut PENDING plutôt que de présumer.
