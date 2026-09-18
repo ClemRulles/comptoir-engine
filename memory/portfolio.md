@@ -1,4 +1,4 @@
-# Portefeuille du groupe — état au 2026-09-11
+# Portefeuille du groupe — état au 2026-09-18
 
 Positions réelles encodées depuis Trade Republic. **NAV des positions ≈ 6 309 €** (valeurs seed T0 — les apports membres enrichissent le cash via l'interface). La colonne « Depuis achat » = perf TR au moment du seed (2026-06-04/08). Le book IA gère ses propres positions depuis `memory/fund/ai-fund.json`. Le Portfolio Doctor (jeudi) met à jour Statut / Règle de sortie / Vérifié le.
 
@@ -6,20 +6,20 @@ Positions réelles encodées depuis Trade Republic. **NAV des positions ≈ 6 30
 
 | Ticker | Nom | Valeur € | Poids % | Depuis achat | Coût base € | Horizon | Statut | Règle de sortie | Vérifié le |
 |--------|-----|---------:|-------:|------------:|------------:|---------|--------|-----------------|-----------|
-| SAF.PA  | Safran                | 732,81 | 11,6 | −8,99 %  | 805,20 | cœur | INTACT | sortie si thèse MRO/aéro cassée (guide FY coupé, carnets CFM déclinants) ; **gate 🟢 (RSI 27.7 — survendu extrême persistant, cours ~€331.5, PT consensus €389.50 = upside +17.6%)** — H1 guide RELEVÉ (ROI €6.4-6.5B, LEAP +41%, spare parts +28%, marge 18.4%) ; thèse MRO intacte ; RSI technique, pas signal de sortie | 2026-09-11 |
+| SAF.PA  | Safran                | 732,81 | 11,6 | −8,99 %  | 805,20 | cœur | INTACT | sortie si thèse MRO/aéro cassée (guide FY coupé, carnets CFM déclinants) ; **gate 🟢 W42 (RSI 30.5, cours €331.6, mom +26.8% ; PT consensus €389.50 = upside +17.6%)** — H1 guide RELEVÉ (ROI €6.4-6.5B, LEAP +41%, spare parts +28%, marge 18.4%) ; thèse MRO intacte + S&P A upgrade confirmé ; RSI bas = pression taux longs (T10Y 5.01%), pas cassure thèse | 2026-09-18 |
 | HO.PA   | Thales                | 723,41 | 11,5 | −10,14 % | 805,04 | cœur | À SURVEILLER | sortie si thèse défense EU se retourne (commandes/carnet guidé en baisse) ; **gate non actualisé (non-US, F-Score null)** ; thèse budgets NATO +5% La Haye intacte ; book IA sorti le 26/06 | 2026-08-21 |
-| AMZN    | Amazon                | 703,31 | 11,1 | +16,83 % | 602,00 | cœur | INTACT | sortie si croissance AWS cassée (<25% YoY) OU capex coupé >15% — **FALSIFICATEUR NON DÉCLENCHÉ ✓ (AWS +37% Q2)** ; **gate 🟢 (RSI 36.2, momentum +21%)** ; stop USD $221.30 P-001 (marge confortable) ✓ | 2026-09-11 |
+| AMZN    | Amazon                | 703,31 | 11,1 | +16,83 % | 602,00 | cœur | INTACT | sortie si croissance AWS cassée (<25% YoY) OU capex coupé >15% — **FALSIFICATEUR NON DÉCLENCHÉ ✓ (AWS +37% Q2)** ; **gate 🟢 W42 (F5/9, RSI 36.3, initiés 0B/3S nets vendeurs — surveiller, cours $251.19)** ; stop USD P-001 marge confortable ✓ ; thèse AWS intacte | 2026-09-18 |
 | NFLX    | Netflix               | 632,58 | 10,0 | −14,75 % | 742,03 | cœur | À SURVEILLER | sortie si décélération abonnés confirmée OU rupture stratégique post-Hastings ; gate non actualisé ; book IA sorti sur stop -8% (13/06) | 2026-06-19 |
-| EIMI    | MSCI Emerging Markets (ETF) | 449,46 | 7,1 | +12,09 % | 401,00 | cœur | INTACT | rebalancement ; **gate 🟢 (RSI 69.3, momentum fort)** ; Section 301 10-12.5% impact neutre/mixte EM ; USD fort (hawkish) = headwind surveiller | 2026-09-11 |
-| AI.PA   | Air Liquide           | 436,31 | 6,9 | +8,39 %  | 402,54 | cœur | INTACT | sortie si ROIC/volumes se dégradent durablement (<8% ROIC) ; **gate 🟢 (RSI 53.5, normalisé)** ; ROIC H1 +10.2% confirmé ✓ ; thèse compounder intacte ; hystérésis §H active (ne pas renforcer sans 2 relevés 🟢 consécutifs) | 2026-09-11 |
-| LOTB.BR | Lotus Bakeries        | 418,88 | 6,6 | +39,16 % | 300,99 | cœur | INTACT | alléger si DCF inversé PER >50x devient irréaliste (PER ~44x) ; **gate 🟢 (RSI 38.8 normalisé, momentum +35%)** ; taille petite ~4.9% NAV (garde-fou naturel) ; régime SURCHAUFFE exige marge | 2026-09-11 |
+| EIMI    | MSCI Emerging Markets (ETF) | 449,46 | 7,1 | +12,09 % | 401,00 | cœur | INTACT | rebalancement ; **gate 🟢 W42 (RSI 43.8, mom +28.1%, range52 0.906 — près du haut, cours $54.86)** ; USD fort (T10Y 5.01% post-FOMC) = headwind EM à surveiller ; thèse diversification intacte | 2026-09-18 |
+| AI.PA   | Air Liquide           | 436,31 | 6,9 | +8,39 %  | 402,54 | cœur | INTACT | sortie si ROIC/volumes se dégradent durablement (<8% ROIC) ; **gate 🟢 W42 (RSI 44.9, EPS surprise +6.25%, cours €165.24)** ; ROIC H1 +10.2% confirmé ✓ ; thèse compounder intacte ; hystérésis §H active (ne pas renforcer sans 2 relevés 🟢 consécutifs) | 2026-09-18 |
+| LOTB.BR | Lotus Bakeries        | 418,88 | 6,6 | +39,16 % | 300,99 | cœur | INTACT | alléger si DCF inversé PER >50x devient irréaliste (PER ~44x) ; **gate 🟢 W42 (RSI 26.4 — survendu, mom +53.8%, cours €12040 ; range52 0.804)** ; taille petite ~4.9% NAV (garde-fou naturel) ; RSI bas = correction mécanique, pas thèse | 2026-09-18 |
 | BYD     | BYD                   | 407,08 | 6,5 | +1,52 %  | 401,08 | cœur | À SURVEILLER | sortie si guerre des prix EV écrase les marges durablement ; gate 🔴 last known (12/06) — book IA sorti ; tarifs douaniers EU/Chine H2 à surveiller | 2026-06-19 |
 | CI2     | MSCI India Swap EUR (ETF, Acc) | 359,69 | 5,7 | −10,30 % | 401,00 | cœur | À SURVEILLER | thèse macro Inde intacte (PIB +6,9 %) ; gate 🔴 momentum last known (12/06) — book IA sorti ; tarifs US Inde à surveiller | 2026-06-19 |
-| BNP.PA  | BNP Paribas           | 333,83 | 5,3 | +32,47 % | 252,00 | cœur | INTACT | sortie si taux/risque crédit cassent la thèse banque ; **Q2 +33% net income ✓ ; gate 🟢 (RSI 38.7 normalisé) ; BCE +25bps 10/09 → 2.50% = NIM expansion CONFIRMÉE ; FOMC 17/09 ~66% hike = upside additionnel** ; dividende intermédiaire €3.23/action ex-div ~23/09 | 2026-09-11 |
+| BNP.PA  | BNP Paribas           | 333,83 | 5,3 | +32,47 % | 252,00 | cœur | INTACT | sortie si taux/risque crédit cassent la thèse banque ; **gate 🟢 W42 (RSI 39.2, mom +41.8%, cours €103.78 post-FOMC correction −7.8% vs €112.60) ; NIM double-expansion CONFIRMÉE : BCE +25bps 10/09 + FOMC +25bps 16/09 → taux plus hauts plus longtemps = NIM bancaire** ; ex-div ~24/09 (€3.23/action) ; correction = opportunité NIM, pas thèse cassée | 2026-09-18 |
 | SGO.PA  | Compagnie de Saint-Gobain | 294,06 | 4,7 | −16,57 % | 352,46 | cœur | À SURVEILLER | sortie si cycle construction se retourne durablement ; gate 🔴 last known (12/06) — T1 −2,3 % organique, construction neuve US faible | 2026-06-19 |
 | SAP     | SAP                   | 238,15 | 3,8 | −40,61 % | 401,00 | cœur | À SURVEILLER | sortie si guidance FY2026 coupée ; cloud +19%, backlog +20% — thèse cloud RISE intacte ; gate 🔴 last known (12/06) | 2026-06-19 |
 | NOVOB   | Novo-Nordisk (B)      | 234,11 | 3,7 | −22,26 % | 301,15 | cœur | À SURVEILLER | sortie si pipeline concurrent écrase la part de marché ; **Q2 résultats passés : Wegovy US −22% CER (transition formulaire), international +37%, guidance FY relevée (0% → −6% vs −12%/−4%) ; EMA approuve Wegovy pill 7.2mg** ; adoption Medicare Q3 pas encore publiée → surveiller Q3 données CMS | 2026-08-21 |
-| MSTR    | MicroStrategy (A)     | 200,39 | 3,2 | −50,15 % | 402,00 | tactique | SORTIE | prime NAV effondrée, thèse cassée — **⚠️⚠️⚠️ SIGNAL GROUPE : VENDRE (confirmé 19/06 — PAS ENCORE EXÉCUTÉ depuis 13 SEMAINES). Urgence maximale : 13 semaines sur une thèse morte = anomalie de gouvernance grave. Agir en priorité absolue.** | 2026-09-11 |
+| MSTR    | MicroStrategy (A)     | 200,39 | 3,2 | −50,15 % | 402,00 | tactique | SORTIE | prime NAV effondrée, thèse cassée — **⚠️⚠️⚠️ SIGNAL GROUPE : VENDRE (confirmé 19/06 — PAS ENCORE EXÉCUTÉ depuis 14 SEMAINES). Urgence maximale : 14 semaines sur une thèse morte = anomalie de gouvernance critique. Agir en priorité absolue.** | 2026-09-18 |
 | RMS.PA  | Hermès                | 145,18 | 2,3 | −28,06 % | 201,81 | cœur | À SURVEILLER | sortie si pricing power cassé durablement ; premiums resale Birkin/Kelly en baisse ; expo Moyen-Orient ; gate 🔴 last known (12/06) | 2026-06-19 |
 
 **Total seed : 6 309,28 € investis · 15 positions · cash ≈ 0 €** (les apports membres alimentent le cash, cf. interface).
@@ -30,21 +30,56 @@ Positions réelles encodées depuis Trade Republic. **NAV des positions ≈ 6 30
 
 ## SORTIE — MSTR (MicroStrategy) · signal confirmé 2026-06-19
 
-Règle de sortie touchée : la prime sur NAV bitcoin s'est effondrée. F-Score Piotroski 3/9 (drapeau dur §H), EPS surprise −149 % (mai 2026), momentum −51 %, composite gate −0,620. La thèse « proxy bitcoin à prime » est cassée : BTC en chute et prime de holding disparaît simultanément. **⚠️⚠️⚠️ Signal groupe : VENDRE — signalé le 12/06, confirmé le 19/06. PAS ENCORE EXÉCUTÉ — 13 SEMAINES (11/09). Urgence maximale. La discipline de sortie du groupe est en question : 13 semaines sur une thèse morte est une anomalie de gouvernance grave. Agir en priorité absolue.**
+Règle de sortie touchée : la prime sur NAV bitcoin s'est effondrée. F-Score Piotroski 3/9 (drapeau dur §H), EPS surprise −149 % (mai 2026), momentum −51 %, composite gate −0,620. La thèse « proxy bitcoin à prime » est cassée : BTC en chute et prime de holding disparaît simultanément. **⚠️⚠️⚠️ Signal groupe : VENDRE — signalé le 12/06, confirmé le 19/06. PAS ENCORE EXÉCUTÉ — 14 SEMAINES (18/09). Urgence maximale. La discipline de sortie du groupe est en question : 14 semaines sur une thèse morte est une anomalie de gouvernance critique. Agir en priorité absolue.**
 
 ---
 
-## À SURVEILLER — groupe (état 2026-09-11)
+## À SURVEILLER — groupe (état 2026-09-18)
 
-**SAF.PA (Safran)** — Gate 🟢, RSI 27.7 (survendu extrême persistant). Cours ~€331.5. PT consensus €389.50 (+17.6% upside). H1 guide relevé (ROI €6.4-6.5B, LEAP +41%, spare parts +28%, marge 18.4%). Thèse MRO intacte. RSI bas = correction macro taux longs (4.823%), pas cassure thèse.
+**SAF.PA (Safran)** — Gate 🟢 W42, RSI 30.5 (survendu persistant). Cours €331.6. PT consensus €389.50 (+17.6% upside). H1 guide relevé (ROI €6.4-6.5B, LEAP +41%, spare parts +28%, marge 18.4%), S&P A upgrade. Thèse MRO intacte. INTACT.
 
-**HO.PA (Thales)** — Gate non actualisé (non-US). Thèse défense EU structurellement intacte (budgets NATO +5% La Haye, commandes H1). Book IA sorti le 26/06 sur mécanique §H (gate 🔴 + stop -8%). Le groupe détient toujours. Surveiller gate.
+**HO.PA (Thales)** — Gate non actualisé (non-US). Thèse défense EU structurellement intacte (budgets NATO +5% La Haye, commandes H1). Book IA sorti le 26/06 sur mécanique §H (gate 🔴 + stop -8%). Le groupe détient toujours. Vérifié 2026-08-21.
 
-**MSCI** — Cours $551 vs $573 seed (−3.8%). Thèse intacte (rétention 95.3% Q2 ✓, seuil ≥93%). Seuil réexamen $401 loin. Horizon-test Q3 ~20/10. Surveiller.
+**BNP.PA (BNP Paribas)** — Gate 🟢 W42 (RSI 39.2). Cours €103.78 (−7.8% post-FOMC correction vs €112.60 il y a 3 jours). Thèse NIM double-expansion CONFIRMÉE : BCE +25bps 10/09 + FOMC +25bps 16/09. La correction = repricing "higher for longer", pas retournement crédit. Ex-div ~24/09 (€3.23/action). INTACT.
 
-**NOVOB (Novo-Nordisk)** — Q2 : Wegovy US −22% CER (transition formulaire), international +37%, EMA approuve pill 7.2mg. FY guidance relevée (−6% à 0%). Données adoption Medicare Q3 non encore publiées. Thèse GLP-1 solide LT. Surveiller chiffres CMS T3'26.
+**NOVOB (Novo-Nordisk)** — Q2 : Wegovy US −22% CER (transition formulaire), international +37%, EMA approuve pill 7.2mg. FY guidance relevée (−6% à 0%). Données adoption Medicare Q3 non encore publiées. Thèse GLP-1 solide LT. Surveiller chiffres CMS T3'26. Vérifié 2026-08-21.
 
-> BNP.PA : upgrade INTACT (BCE hike +25bps 10/09 = NIM expansion confirmée). AI.PA, LOTB, AMZN : INTACT (gate 🟢 confirmé).
+> AMZN, EIMI, AI.PA, LOTB : INTACT (gate 🟢 W42 confirmé, thèses intactes, cf. tableau).
+
+---
+
+## Alertes book IA — 2026-09-18
+
+Régime **SURCHAUFFE HARD-CONFIRMED** (FOMC hike +25bps 16/09 → 3.75-4.00%, 12-0 vote unanime ; T10Y ~5.01% = plus haut depuis 2007 ; BCE +25bps 10/09 → 2.50%) · plancher cash 30-50% · **10 positions actives · NAV estimée ≈ €10,064 (−3.4% vs start_capital €10,417) · cash €4,291 (42.6% NAV — dans corridor SURCHAUFFE ✓)** · gates W42 (18/09) : 🟢10 🟠0 🔴0.
+
+### Sorties exécutées ce jeudi
+
+Aucune — 0 déclencheur §H armé :
+- Gate 🔴 fondamental : 0 position (10/10 🟢).
+- F-Score ≤3 ou earnings quality rouge : 0 (F le plus bas = AMZN F5/9, dans les seuils).
+- Stop prix franchi sur TACTIQUE : 0 (toutes CŒUR — seuil réexamen §H = −25% vs entry_price, loin pour toutes ; **GVA P-001 $116.93 franchi = saisine mercredi, pas vente jeudi — §H migration 30/08**).
+- Verdict Opus SORTIR non exécuté : 0 (convictions 17/09 : GVA GARDER, SAF.PA GARDER).
+
+### À SURVEILLER — book IA
+
+| Ticker | Gate | Alerte | Détail |
+|--------|------|--------|--------|
+| GVA | 🟢 F7/9 +0.646 | ⚠️ P-001 FRANCHI ($115.23 < $116.93) — SAISINE MERCREDI 23/09 | Stop USD P-001 $116.93 (entry $127.10 × 0.92) = BREACHED. §H migration 30/08 : cœur → saisine mercredi 23/09 obligatoire, pas vente jeudi. Seuil réexamen $82.75 (−25%) loin. Gate F7/9 +0.646 (meilleur du book), initiés 1B/0S. **IIJA Division J expire 30/09 (12 jours) — backlog $7.4B sous contrat (non-discrétionnaire), CEO Larkin : nouveau highway bill "significativement plus élevé" que IIJA, dépenses continuent 2027-2030.** Thèse intacte. Q3 22/10 = falsificateur. |
+| CEG | 🟢 F6/9 +0.322 | T10Y 5.01% headwind + range52 0.186 (près du bas) | Cours $262.80 vs entry $252.49 (+4.1%). Momentum −13.8%, down ~18% en 2026. Range52 0.186 = près des plus bas 52 semaines. T10Y 5.01% = vent de face PPA longue durée. Falsificateurs non déclenchés, initiés 1B/0S nets acheteurs. PT moyen ~$348. §G gouverne. Surveiller Q3 ~oct. |
+| BNP.PA | 🟢 +0.462 | Post-FOMC correction €112.60 → €103.78 (−7.8%) | NIM double-expansion CONFIRMÉE (BCE +25bps + FOMC +25bps). Correction "higher for longer" = peur du crédit, pas retournement thèse. Thèse NIM intacte. **Ex-div ~24/09 → +€12.02 cash book IA** (3.72219 × €3.23). RSI 39.2 = sain. |
+| MSCI | 🟢 F7/9 +0.558 | Cours $549.47 — pullback W42 | Range52 0.337 (moitié basse). Momentum −1%. Cours $549.47 vs entry $535.40 (+2.6%). F7/9 intact, initiés 1B/0S nets acheteurs. Horizon-test Q3 ~20/10 (rétention ≥93%). Seuil réexamen $401 loin. |
+
+### Catalyseurs imminents (impact book IA)
+
+- **30/09/2026 IIJA Division J — URGENT (12 jours)** : expiration autorité programmes discrétionnaires ~$36.8B/an. Si extension non votée avant 25/09 → confirmer que le backlog GVA ($7.4B) est entièrement sous contrat. Saisine mercredi 23/09 couvre ce risque.
+- **~24/09/2026 BNP.PA ex-dividende (€3.23/action)** — +€12.02 cash book IA (3.72219 parts × €3.23). Paiement 28/09.
+- **22/10/2026 GVA Q3** — Horizon-test (marge ≥12.25%, backlog $7.4B+, rev +25%+). Falsificateurs : marge <10% OU write-down >$50M OU backlog <$6.5B → sortie immédiate.
+- **~Octobre EME / MSCI / CEG Q3** — Horizon-tests de thèse.
+
+### Candidats entrée vendredi (INTERDITS ce jeudi)
+
+- **CB (Chubb)** — FOMC hike +25bps 16/09 = CONDITION REMPLIE (NIM float + pricing power). Gate 🟢. Sizing Moyenne ~7% NAV (~€705). Stop §H à définir avant exécution (~−8% entry). **Contrainte §H déploiement : max 10 pts NAV/semaine.** CB OU GLE.PA ce vendredi, pas les deux.
+- **GLE.PA (SG/Société Générale)** — FOMC hike = condition remplie. BCE +25bps déjà actif. P/TBV 0.94x. Acheter Moyenne ~7% NAV. **Choisir entre CB et GLE.PA pour cette semaine (10 pts/sem max §H), second candidat W43.**
 
 ---
 
