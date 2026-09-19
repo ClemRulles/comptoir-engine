@@ -1,6 +1,6 @@
 {
   "_doc": "Sentiment X (Grok) transformé en PRÉDICTIONS SCORÉES (method §F) — le sentiment ne décide jamais sur la foi : il se MÉRITE une voix en prouvant qu'il prédit. Le lundi (pouls Grok) enregistre 0-3 'calls' directionnels court terme ; engine/grok.js les score contre le prix réel à l'horizon. Schéma d'un call : { id (kebab-case), opened (YYYY-MM-DD), ticker, direction ('hausse'|'baisse' attendue à court terme), confidence (0.5-0.9, force du signal de sentiment), thesis (1 ligne : ce que Grok 'sent'), horizon (YYYY-MM-DD, ~2 semaines), source (semaine du pouls), played (bool : le book a-t-il pris une position tactique ?), status ('ouvert' | 'joué' | 'résolu' | 'expiré'), resolution ({ date, move_pct (variation réelle sur l'horizon), correct (bool : le mouvement a-t-il suivi la direction au-delà de ±2 %), brier ((confidence − correct)²), trade_alpha_pct (si joué : alpha — mesure SÉPARÉE) }) }. 'stats' (recalculé par engine/grok.js) : resolved, hits, hit_rate, brier, tactical_cap = budget MAX du NAV pour les paris Grok, MÉRITÉ : 0 % tant que < 6 calls résolus, puis 3/6/8 % selon hit_rate (≥0.55/0.65/0.70), 0 % si < 0.45. Garde-fous §F : jamais sur gate 🔴, jamais contre la checklist bulle §B, demi-taille tactique, stop serré, sortie datée. L'euphorie reste un signal contrarien de top. Ne jamais réécrire un call résolu.",
-  "updated": "2026-09-15",
+  "updated": "2026-09-19",
   "calls": [
     {
       "id": "saf-oversold-defense-w39",
@@ -148,8 +148,15 @@
       "horizon": "2026-09-17",
       "source": "2026-W40 (BLS CPI résultat 11/09 + brief vendredi)",
       "played": false,
-      "status": "ouvert",
-      "guard_note": "NON JOUÉ — tactical_cap = 0%. Score uniquement. Call binaire sur décision FOMC. ⚠️ CORRECTION DATE : décision Fed = 16/09 (pas 17/09). Résolution le 16-17/09 selon marché."
+      "status": "résolu",
+      "resolution": {
+        "date": "2026-09-16",
+        "move_pct": null,
+        "correct": true,
+        "brier": 0.0784,
+        "note": "FOMC HIKE +25bps le 16/09 (vote 12-0, unanime). Fed funds 3.75-4.00%. Direction 'hausse' CORRECT. Brier 0.0784 (excellent score : conf.0.72, correct=1 → (0.72−1)²=0.0784). Futures ~80-87% étaient bien plus précis que les prediction markets Kalshi (26% hike) pour ce call FOMC. Quand CPI + NFP convergent hawkish 3 fois consécutives, les marchés à terme surpassent les marchés prédictifs."
+      },
+      "guard_note": "NON JOUÉ — tactical_cap = 0%. Score uniquement. Call binaire sur décision FOMC. Résolu 19/09 manuellement (FOMC non stocké comme ticker prix)."
     },
     {
       "id": "gva-oversold-rebound-w40",
@@ -163,6 +170,19 @@
       "played": false,
       "status": "ouvert",
       "guard_note": "NON JOUÉ — tactical_cap = 0%. Score uniquement. Position DÉTENUE au book cœur (6.57 parts). Mesure si RSI survendu + fort gate fondamental → rebond CT ≥ 2%."
+    },
+    {
+      "id": "cb-nim-float-post-fomc-w42",
+      "opened": "2026-09-19",
+      "ticker": "CB",
+      "direction": "hausse",
+      "confidence": 0.65,
+      "thesis": "CB (Chubb) acheté 19/09 à $339.42 — NII $100B float réinvesti à T10Y ~5.01% (plus haut depuis 2007) = expansion directe des revenus financiers. Combined ratio 83.8% = protection downside. FOMC hike +25bps acté (vote 12-0). Gate 🟢 +0.424 cov92%. Narrative NIM float + SURCHAUFFE HARD-CONFIRMÉE = contexte favorable pour CB CT. Signal : position fraîchement entrée à des conditions favorables.",
+      "horizon": "2026-10-03",
+      "source": "2026-W42 (brief vendredi + entrée CB)",
+      "played": true,
+      "status": "ouvert",
+      "guard_note": "JOUÉ — position CB ouverte ce jour 19/09 (Moyenne ~7% NAV). Call joué = position book coeur, §G gouverne la sortie (pas ce call). Score uniquement pour mesurer si le sentiment NIM post-FOMC prédit un mouvement positif CT sur CB."
     },
     {
       "id": "amzn-nfp-tailwind-w29",
@@ -268,11 +288,13 @@
     }
   ],
   "stats": {
-    "resolved": 10,
-    "hits": 4,
-    "hit_rate": 0.4,
-    "brier": 0.264,
+    "resolved": 11,
+    "hits": 5,
+    "hit_rate": 0.4545,
+    "brier": 0.247,
     "tactical_cap": 0
   },
-  "data_gaps": []
+  "data_gaps": [
+    "fomc-sept-hike-w40 (FOMC): prix Yahoo indisponible — call laissé ouvert"
+  ]
 }

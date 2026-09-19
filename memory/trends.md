@@ -1,3 +1,23 @@
+## Tendance de la semaine — 19 septembre 2026 (W42)
+
+- **Statut** : VALIDÉE — FINANCIALS/NIM EXPANSION · PHASE DÉPLOIEMENT · CB entré 19/09
+- **Tendance** : FOMC +25bps acté (16/09, 12-0, unanime) + T10Y ~5.01% (plus haut depuis 2007) = cycle hawkish HARD-CONFIRMÉ. Thème financiers/NIM passe du mode « attente FOMC » au mode « exécution » : CB (Chubb) entré ce vendredi (NII float $100B réinvesti à T10Y 5%), GLE.PA prévu vendredi 26/09 (NIM EU, BCE +25bps 10/09 → 2.50%).
+- **Pourquoi maintenant** : FOMC débloque le trade NIM float US (CB/Chubb). BCE a déjà bougé (10/09). BNP.PA ex-div 23/09 (€3.23). Le thème n'est plus conditionnel : il est acté.
+- **Preuves dures** :
+  1. **FOMC 16/09** : HIKE +25bps → 3.75-4.00% (vote 12-0). Dot plot : 16/18 membres voient ≥1 hausse de plus en 2026, médiane 4.1-4.4%.
+  2. **T10Y ~5.01%** (post-FOMC, clôture 16/09) — plus haut depuis 2007. Float CB ($100B) réinvesti au taux marché → NII +15-20% estimé sur 12 mois.
+  3. **BCE +25bps à 2.50%** (10/09) — NIM EU expansion pour GLE.PA/BNP.PA déjà enclenchée.
+  4. **CB gate 🟢 +0.424 cov92% F6/9** — combined ratio 83.8% record, ROE 14.5%, fwd PE 13x = marge réelle.
+- **Durabilité** : structurelle si cycle hawkish prolongé (dot plot médiane 4.1-4.4% = encore ≥1 hike probable). Fin du cycle si récession ou CPI <2.5% deux trimestres consécutifs.
+- **Stade** : milieu → exécution. CB entré, GLE.PA à initier 26/09. BNP.PA tenu (thèse confirmée).
+- **Manières de la jouer** : CB (entré) · GLE.PA (prochain vendredi) · BNP.PA (détenu, ex-div 23/09)
+- **Drapeau bulle** : improbable — PE bancaire EU < 10x, CB 13x fwd justifié par ROE 14.5%.
+- **Ce qui tuerait la thèse** : FOMC HOLD surprise + guidance dovish OR NIM EU/US stagne 2Q OR CDS EU banks > 200bps.
+- **Effet de second ordre** : T10Y 5% = vent de face valo pour infra long-duration (GVA, CEG, EME) — §G gouverne ces positions (thèse non cassée par les taux). EIMI headwind USD fort.
+- **Sources** : Fed statement 16/09 ; CNBC/TheStreet 16/09 ; Investrade DXY ; BCE décision 10/09 ; convictions.md 17/09 (CB/GLE.PA deep-dive) ; engine/signals.js 2026-09-19.
+
+---
+
 ## Tendance de la semaine — 15 septembre 2026 (W41)
 
 - **Statut** : AUCUNE NOUVELLE — TENDANCE W40 EN ATTENTE DU VERROU FOMC (décision demain 16/09)
