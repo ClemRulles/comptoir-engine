@@ -1,5 +1,18 @@
-# Régime de marché — mis à jour le 2026-09-17 (Deep-dive W42, note FOMC)
+# Régime de marché — mis à jour le 2026-09-24 (Trend Radar W43)
 
+- **✅ RÉGIME SURCHAUFFE HARD-CONFIRMÉE — INCHANGÉ**. T10Y **~5,12 %** (post-FOMC, tendance haussière). S&P 500 ~7 699 (légère hausse depuis 7 552 post-FOMC). DXY stable ~100. Cash **~35,8 % NAV** = corridor 30-50 % ✓. Pas de nouvelle confirmation macro cette semaine (pas de print BLS/CPI/NFP — prochain FOMC **27-28 octobre 2026**).
+- **⚡ BNP.PA ex-div AUJOURD'HUI 24/09 (€3,23, paiement 28/09)** — correction d'une erreur mémoire (précédents fichiers notaient 23/09). Position 3,7222 parts → +€12,02 cash (automatique au 28/09).
+- **⚠️ IIJA Division J expire le 30/09** (6 jours) — aucun bill de réautorisation. Surveiller avant jeudi Portfolio Doctor 25/09 si possible.
+- **⚠️ GLE.PA — CONTRAINTE CASH** : entrée Moyenne (~7 % NAV) prévue vendredi 26/09 MAIS cash post-entrée = ~28,8 % NAV < plancher 30 %. Entrée possible uniquement en **Basse (~3 % NAV)** pour rester dans le corridor, ou reporter. Décision vendredi.
+- **Nouveau thème W43** : Choc d'offre Hormuz (Brent $120+, XLE +40 % YTD) → demande sécurité énergétique US → **substituts (nucléaire CEG, infra ETN, défense LMT) en début de re-rating**. LMT −3,6 % YTD (non-parabolique). Falsifiable : accord US-Iran.
+- **Gates signals.js W43** : AI.PA passe 🟠 (1er relevé — hystérésis 2 relevés : cap 5 % NAV applicable mais pas de trim mécanique avant 2e relevé consécutif) ; LOTB passe 🟠 (même logique). Toutes autres positions : 🟢 maintenues. Memo §H : 2 relevés consécutifs 🟠 + 2pts NAV de dépassement → trim vers 5 % NAV.
+- **Discordance signals.js / override** : `signals.js` lit RISK-ON SAIN (FRED lag). Override manuel SURCHAUFFE prime (FOMC hike acté + T10Y 5,12 % + dot plot hawkish).
+- **Sources** : engine/signals.js 2026-09-24 ; web search XLE/Brent/Hormuz ; engine/crypto.js 2026-09-24.
+
+---
+## Tendance de la semaine — 17 septembre 2026 (W42, Deep-dive)
+
+- **Tendance W43** : VALIDÉE — Choc Hormuz → Sécurité énergétique US (substituts CEG/ETN/LMT). Financials/NIM W42 : phase exécution CB détenu, GLE.PA 26/09 (Basse contrainte cash).
 - **✅ FOMC 16/09 — HIKE +25 bps à 3,75-4,00 %** (12-0, 1er hike depuis 2023), **dot plot hawkish** (16/18 des membres voient ≥1 hausse de plus en 2026, médiane 2026 relevée à 4,1-4,4 %, neutre LT ~3,0 %). Warsh presser hawkish (« inflation too high for too long »). **Réaction : T10Y clôture ~5,01 % (plus haut depuis 2007)**, DXY +0,61 % à 100,28, S&P −0,45 % (~7 552, 3e séance de baisse), **banques US −2,6 % (KBE, peur « plus de hikes »)**. → **SURCHAUFFE désormais HARD-CONFIRMÉE** (plus un override de jugement, un fait acté). Cash floor 30 %, plafond 50 % maintenus. Verrou d'entrée levé pour CB (bénéf. NII float) + GLE.PA — décision vendredi. Sources : Fed statement 16/09 ; CNBC/TheStreet 16/09 ; Investrade DXY.
 - **Cadran** : **SURCHAUFFE CONFIRMÉE** (override + FOMC hike acté). NFP août +162K (05/09), PCE 3.7-4.1% (Warsh JH 28/08), **CPI août +0.4% MoM, +3.4% YoY** (BLS 11/09). T10Y **~5,01 %** (post-FOMC, plus haut depuis 2007). USD haussier. 4e confirmation macro consécutive.
 - **⚡ CORRECTION FOMC DATE** : Meeting Fed = **15-16 septembre 2026**, annonce **16/09 à 14h ET** (source : FedRateCalc / Cambridge Currencies). Les conditions CB + GLE.PA sont déclenchables **dès le 16/09** si hike confirmé.
@@ -9,7 +22,7 @@
 - **⚠️ Divergence algo/override** : `signals.js` lit RISK-ON SAIN (FRED lag). Override manuel SURCHAUFFE prime. All 10 gates 🟢 (W41).
 - **Consigne au système** : **plancher cash 30%, plafond 50%** — cash actuel **~41% NAV** = DANS LE CORRIDOR. Aucun déploiement avant décision FOMC 16/09. P-001/P-002/P-003 actifs.
 - **GVA rebond** : GVA ~$125.37 (15/09, range $122.76-$126.63) vs $118.92 (12/09) → +5.4% en 3 jours depuis RSI 28.4 survendu. Thèse intacte. **⚠️ NOUVEAU RISQUE : IIJA Division J expire le 30/09** — Congressional Funding Impasse (article 14/09). Aucun bill de réautorisation présenté. Surveiller avant exit_rule 11/12. GS PT $119 intégré par le marché ($125.37 > $119 = rebond outperformance).
-- **BNP.PA** : ~112.60€ (15/09 — source web vs 103.76€ le 12/09). Ex-div 23/09 (€3.23). Forte hausse confirmée (NIM + FOMC narrative).
+- **BNP.PA** : ~112.60€ (15/09 — source web vs 103.76€ le 12/09). Ex-div **24/09** (€3.23 — correction : 23/09 était erroné). Forte hausse confirmée (NIM + FOMC narrative).
 - **Energy surge** : Énergie +22% YTD (XLE). Pétrole (Brent ~$90) sur tensions Middle East (Détroit d'Ormuz). Hors book — radar.
 - **Positions book IA — gates au 15/09 (signals.js W41)** :
   - **SAF.PA** 🟢 +0.418 RSI39.3 · 2.0929 parts · mom +26%

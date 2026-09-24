@@ -1,7 +1,54 @@
 {
   "_doc": "Pouls hebdo du marché (Grok, accès X) — radar à corroborer, jamais un signal d'achat. Écrit par routines/monday-trend-radar.md (Partie C). Le plus récent en tête de weeks ; ~12 semaines max.",
-  "updated": "2026-09-15",
+  "updated": "2026-09-24",
   "weeks": [
+    {
+      "week": "2026-W39",
+      "date": "2026-09-24",
+      "label": "Semaine du 22-24 septembre 2026",
+      "headline": "Choc Hormuz s'intensifie (Brent $120+, XLE +40% YTD) — substituts énergétiques (nucléaire, défense) en début de re-rating ; BTC +10% 7j, F&G 71 (Greed) ; FOMC Oct 27-28 en approche",
+      "themes": [
+        {
+          "title": "Choc d'offre Hormuz → sécurité énergétique US : substituts en re-rating",
+          "detail": "Brent $120+ (XLE +40% YTD, Kalkine/Tickeron sept. 2026). L'énergie directe est parabolique → rejetée §B. Mais les substituts non-paraboliques commencent à re-rater : LMT −3.6% YTD (compressé vs defense ETF +14% YTD), CEG détenu (PPA 20 ans fixes = couverture vs Hormuz), ETN (grid infra, surveiller). Falsifiable : accord US-Iran → normalisation Brent $70-80.",
+          "tickers": ["CEG", "LMT", "ETN", "XLE"],
+          "corroborated": true,
+          "corroboration_note": "CORROBORÉ : Kalkine Energy XLE +40% YTD (sept. 2026) + Tickeron secteur energy leader + BLS CPI énergie +2.1% MoM août (11/09) + Wood Mackenzie/IEA Brent $120+ (Hormuz). 4 sources concordantes sur le choc. LMT YTD performance corroborée web search sept. 2026."
+        },
+        {
+          "title": "Financials NIM : CB détenu, GLE.PA vendredi — phase exécution",
+          "detail": "T10Y 5.12% (tendance haussière post-FOMC). CB entré 19/09 ($339.42, NII $100B float). GLE.PA entrée prévue 26/09 en Basse (~3% NAV) — contrainte cash plancher 30%. BNP.PA ex-div AUJOURD'HUI 24/09 (€3.23, paiement 28/09). Prochaine confirmation : FOMC 27-28 oct. (2e hike potentiel).",
+          "tickers": ["CB", "GLE.PA", "BNP.PA"],
+          "corroborated": true,
+          "corroboration_note": "CORROBORÉ : T10Y 5.12% (post-FOMC 16/09, web search) + BNP.PA ex-div 24/09 (AdHoc News / confirmation web) + FOMC date 27-28 oct. (FedRateCalc). Thème Financials/NIM acté depuis FOMC 16/09."
+        },
+        {
+          "title": "Crypto : BTC +10.3% 7j, F&G 71 (Greed) — signal contrarien",
+          "detail": "BTC €74,283 (+10.3% 7j, +6.6% 30j). ETH €2,364 (+9.4% 7j). SOL +19.6% 30j. F&G 71 (Greed) = vigilance contrarienne. Dominance BTC 58.6% (stable, pas d'altseason franche). Bitcoin ETF inflows: narratif persistant (pas encore confirmé via source dure cette semaine). Hors book §F.",
+          "tickers": [],
+          "corroborated": true,
+          "corroboration_note": "CORROBORÉ : engine/crypto.js 2026-09-24 (CoinGecko) — données de prix objectives. F&G 71 = source alternative.me. Bitcoin ETF $999M inflows narratif web (non vérifiable via source primaire aujourd'hui)."
+        },
+        {
+          "title": "IIJA Division J — 6 jours avant expiration, aucun bill",
+          "detail": "Division J expire le 30/09. Aucun bill de réautorisation présenté au Congrès au 24/09. GVA backlog $7.4B essentiellement sous contrats fermes (non-discrétionnaires per CEO Larkin) — résistance probable. EME MEP : backlog électrique dominant (moins exposé Division J). Signal : risque de book, pas de tendance investissable.",
+          "tickers": ["GVA", "EME"],
+          "corroborated": true,
+          "corroboration_note": "CORROBORÉ : sources web congressional impasse + GVA IR/CEO Larkin ($7.4B backlog sous contrats fermes). Non-investissable comme tendance (risque de position book)."
+        }
+      ],
+      "movers": [
+        { "ticker": "BTC", "direction": "up", "reason": "Rally +10.3% 7j — momentum crypto, F&G 71 Greed. Signal contrarien LT. Hors book.", "held": false },
+        { "ticker": "CEG", "direction": "neutral", "reason": "Détenu. Gate 🟢 F6/9. T10Y 5.12% = vent de face valo long-duration mais PPA 20 ans intacts. Thème Hormuz substitut = bénéficiaire indirect.", "held": true },
+        { "ticker": "BNP.PA", "direction": "neutral", "reason": "Ex-div AUJOURD'HUI 24/09 (€3.23). Paiement 28/09. Détenu, thèse NIM intacte.", "held": true },
+        { "ticker": "GVA", "direction": "neutral", "reason": "IIJA Division J expire 30/09. Backlog $7.4B sous contrats fermes. Cours ~$116 (P-001 ref $116.93 noté W42 — surveiller jeudi Doctor).", "held": true },
+        { "ticker": "AI.PA", "direction": "neutral", "reason": "Gate basculé 🟠 (1er relevé W43). Hystérésis §H : pas de trim avant 2e consécutif. Surveiller.", "held": true },
+        { "ticker": "LOTB", "direction": "neutral", "reason": "Gate basculé 🟠 (1er relevé W43). Valo 44x fwd en SURCHAUFFE — vigilance accrue. Pas de trim avant 2e consécutif.", "held": true }
+      ],
+      "crypto_narrative": "BTC €74,283 (+10.3% 7j / +6.6% 30j / +0.3% 24h). ETH €2,364 (+9.4% 7j). SOL €103 (+19.6% 30j). XRP €1.35 (+18.3% 7j). BNB €686 (+7.3% 7j). F&G 71 (Greed) → lecture contrarienne, vigilance. Dominance BTC 58.6% stable. Total market cap €2,549B (+2.5T). La hausse crypto récente (+10-20% 7j sur tout le marché) est en phase Greed — pas d'allocation book §F. Radar uniquement.",
+      "sources": ["engine/crypto.js 2026-09-24 (CoinGecko)", "engine/signals.js 2026-09-24", "Kalkine Energy XLE +40% YTD", "Tickeron sector performance sept. 2026", "BLS CPI août (énergie +2.1%)", "web search Hormuz Brent $120+ / Wood Mackenzie", "web search defense ETF YTD", "FedRateCalc FOMC 27-28 oct.", "alternative.me F&G", "web search BNP.PA ex-div 24/09"],
+      "grok_status": "repli web — Grok API sans accès données sept. 2026 (période future pour le modèle). Pouls construit sur recherche web native + signals.js + crypto.js."
+    },
     {
       "week": "2026-W38",
       "date": "2026-09-15",

@@ -1,8 +1,32 @@
+## Tendance de la semaine — 24 septembre 2026 (W43)
+
+- **Statut** : VALIDÉE — CHOC HORMUZ → SÉCURITÉ ÉNERGÉTIQUE US · SUBSTITUTS EN DÉBUT DE RE-RATING
+- **Tendance** : Le choc d'offre Hormuz (Brent $72→$120+, +66 % YTD ; XLE +40 % YTD) restructure la demande de sécurité énergétique US. Les **substituts non-paraboliques** (nucléaire, infra électrique, défense) entrent en phase de re-rating : LMT −3,6 % YTD = compressé, non-parabolique ; CEG détenu (PPA 20 ans fixes = couverture de prix hors Hormuz) ; ETN (infra grid, surveiller). Thème distinct du trade « énergie directe » (XLE parabolique = rejeté §B W41) : ici l'entrée se fait sur les bénéficiaires indirects à valorisation non-chère.
+- **Pourquoi maintenant** : (1) Brent $120+ = pression structurelle sur la sécurité énergétique US, (2) LMT premier gagnant mesurable (−3,6 % YTD = compressé non-parabolique, exposure naval/defense), (3) CEG déjà détenu — thèse PPA renforcée par le contexte Hormuz, (4) XLE parabolique (+40 % YTD) = porte 1 du trend-gate REFUSÉE pour l'énergie directe, mais les substituts passent la porte 1.
+- **Preuves dures** :
+  1. **Brent $120+** — Wood Mackenzie / IEA 2026 : +66 % vs $72 début d'année, choc d'offre Détroit d'Ormuz.
+  2. **XLE +40 % YTD** (Tickeron / Kalkine Energy, sept. 2026) — énergie = secteur leader US. Énergie CPI +2,1 % MoM août (BLS 11/09).
+  3. **Defense ETF +14 % YTD** (search sept. 2026) — LMT −3,6 % YTD = retard significatif vs secteur.
+  4. **CEG détenu, PPA 20 ans** — contrats fixes protègent le revenu indépendamment du prix spot Brent.
+- **Durabilité** : structurelle si Hormuz blocus persist (pas d'accord US-Iran). Cycle hawkish T10Y 5 % = vent de face valo long-duration MAIS falsificateurs CEG (§G) non déclenchés. LMT : cycle défense pluriannuel (NATO+2 %, Moyen-Orient).
+- **Stade** : DÉBUT pour les substituts. XLE = FIN (parabolique). LMT = valeur retardée. CEG = milieu (thème PPA).
+- **Manières de la jouer** :
+  - **CEG** (détenu ~6 % NAV) — nuclear PPA / bénéficiaire indirect Hormuz. §G gouverne. GARDER.
+  - **LMT** — Lockheed Martin, defense naval/air. Surveiller (pré-score non calculé ce cycle — à faire Scout mardi). À ne pas initier sans deep-dive complet.
+  - **ETN** (Surveiller watchlist, 34x fwd) — infra électrique. Acheté sur repli ~$375-385.
+- **Drapeau bulle** :
+  - XLE/énergie directe : **REJETÉ** — parabolique +40 % YTD (porte 1 §B).
+  - LMT/CEG/ETN : stade début, non-paraboliques — pas de drapeau.
+- **Ce qui tuerait la thèse** : accord US-Iran → normalisation Brent $70-80 → disparition de la prime sécurité énergétique → LMT sans catalyst immédiat. T10Y >5,5 % = compression multiple long-duration additionnelle (CEG).
+- **Sources** : Tickeron / Kalkine Energy YTD sectors sept. 2026 ; Wood Mackenzie/IEA Brent $120+ ; BLS CPI août (énergie +2,1 %) ; engine/signals.js 2026-09-24 ; search défense ETF +14 % ; LMT YTD performance web.
+
+---
+
 ## Tendance de la semaine — 19 septembre 2026 (W42)
 
 - **Statut** : VALIDÉE — FINANCIALS/NIM EXPANSION · PHASE DÉPLOIEMENT · CB entré 19/09
 - **Tendance** : FOMC +25bps acté (16/09, 12-0, unanime) + T10Y ~5.01% (plus haut depuis 2007) = cycle hawkish HARD-CONFIRMÉ. Thème financiers/NIM passe du mode « attente FOMC » au mode « exécution » : CB (Chubb) entré ce vendredi (NII float $100B réinvesti à T10Y 5%), GLE.PA prévu vendredi 26/09 (NIM EU, BCE +25bps 10/09 → 2.50%).
-- **Pourquoi maintenant** : FOMC débloque le trade NIM float US (CB/Chubb). BCE a déjà bougé (10/09). BNP.PA ex-div 23/09 (€3.23). Le thème n'est plus conditionnel : il est acté.
+- **Pourquoi maintenant** : FOMC débloque le trade NIM float US (CB/Chubb). BCE a déjà bougé (10/09). BNP.PA ex-div **24/09** (€3.23 — corrigé de 23/09). Le thème n'est plus conditionnel : il est acté.
 - **Preuves dures** :
   1. **FOMC 16/09** : HIKE +25bps → 3.75-4.00% (vote 12-0). Dot plot : 16/18 membres voient ≥1 hausse de plus en 2026, médiane 4.1-4.4%.
   2. **T10Y ~5.01%** (post-FOMC, clôture 16/09) — plus haut depuis 2007. Float CB ($100B) réinvesti au taux marché → NII +15-20% estimé sur 12 mois.

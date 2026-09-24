@@ -1,6 +1,6 @@
 {
   "_doc": "Sentiment X (Grok) transformé en PRÉDICTIONS SCORÉES (method §F) — le sentiment ne décide jamais sur la foi : il se MÉRITE une voix en prouvant qu'il prédit. Le lundi (pouls Grok) enregistre 0-3 'calls' directionnels court terme ; engine/grok.js les score contre le prix réel à l'horizon. Schéma d'un call : { id (kebab-case), opened (YYYY-MM-DD), ticker, direction ('hausse'|'baisse' attendue à court terme), confidence (0.5-0.9, force du signal de sentiment), thesis (1 ligne : ce que Grok 'sent'), horizon (YYYY-MM-DD, ~2 semaines), source (semaine du pouls), played (bool : le book a-t-il pris une position tactique ?), status ('ouvert' | 'joué' | 'résolu' | 'expiré'), resolution ({ date, move_pct (variation réelle sur l'horizon), correct (bool : le mouvement a-t-il suivi la direction au-delà de ±2 %), brier ((confidence − correct)²), trade_alpha_pct (si joué : alpha — mesure SÉPARÉE) }) }. 'stats' (recalculé par engine/grok.js) : resolved, hits, hit_rate, brier, tactical_cap = budget MAX du NAV pour les paris Grok, MÉRITÉ : 0 % tant que < 6 calls résolus, puis 3/6/8 % selon hit_rate (≥0.55/0.65/0.70), 0 % si < 0.45. Garde-fous §F : jamais sur gate 🔴, jamais contre la checklist bulle §B, demi-taille tactique, stop serré, sortie datée. L'euphorie reste un signal contrarien de top. Ne jamais réécrire un call résolu.",
-  "updated": "2026-09-19",
+  "updated": "2026-09-24",
   "calls": [
     {
       "id": "saf-oversold-defense-w39",
@@ -12,8 +12,14 @@
       "horizon": "2026-09-22",
       "source": "2026-W39 (repli web + signals.js)",
       "played": false,
-      "status": "ouvert",
-      "guard_note": "NON JOUÉ — tactical_cap = 0% (hit_rate 37.5% < seuil 45% après scoring CEG/AMZN W35). Calls enregistrés pour scoring uniquement — le sentiment doit prouver avant de voter. Position SAF.PA déjà détenue book coeur (§G gouverne)."
+      "status": "résolu",
+      "guard_note": "NON JOUÉ — tactical_cap = 0% (hit_rate 37.5% < seuil 45% après scoring CEG/AMZN W35). Calls enregistrés pour scoring uniquement — le sentiment doit prouver avant de voter. Position SAF.PA déjà détenue book coeur (§G gouverne).",
+      "resolution": {
+        "date": "2026-09-24",
+        "move_pct": -0.0048,
+        "correct": false,
+        "brier": 0.423
+      }
     },
     {
       "id": "eme-oversold-bounce-w39",
@@ -25,8 +31,14 @@
       "horizon": "2026-09-22",
       "source": "2026-W39 (repli web + signals.js)",
       "played": false,
-      "status": "ouvert",
-      "guard_note": "NON JOUÉ — tactical_cap = 0% (hit_rate 37.5% < seuil 45%). Calls enregistrés pour scoring uniquement. Position EME déjà détenue book coeur (§G gouverne)."
+      "status": "résolu",
+      "guard_note": "NON JOUÉ — tactical_cap = 0% (hit_rate 37.5% < seuil 45%). Calls enregistrés pour scoring uniquement. Position EME déjà détenue book coeur (§G gouverne).",
+      "resolution": {
+        "date": "2026-09-24",
+        "move_pct": -0.02,
+        "correct": false,
+        "brier": 0.36
+      }
     },
     {
       "id": "ceg-ai-power-demand-w35",
@@ -168,8 +180,27 @@
       "horizon": "2026-09-22",
       "source": "2026-W40 (signals.js 12/09 RSI 28.4 + gate +0.612)",
       "played": false,
+      "status": "résolu",
+      "guard_note": "NON JOUÉ — tactical_cap = 0%. Score uniquement. Position DÉTENUE au book cœur (6.57 parts). Mesure si RSI survendu + fort gate fondamental → rebond CT ≥ 2%.",
+      "resolution": {
+        "date": "2026-09-24",
+        "move_pct": 0.0156,
+        "correct": false,
+        "brier": 0.423
+      }
+    },
+    {
+      "id": "ceg-hormuz-nuclear-w43",
+      "opened": "2026-09-24",
+      "ticker": "CEG",
+      "direction": "hausse",
+      "confidence": 0.55,
+      "thesis": "Choc Hormuz (Brent $120+, XLE +40% YTD) renforce la narrative sécurité énergétique US → les substituts nucléaires (PPA 20 ans fixes = prix stabiles hors spot Brent) deviennent plus attractifs dans un contexte de coût énergie élevé. CEG gate 🟢 F6/9. T10Y 5.12% est un vent de face sur la valo long-duration MAIS les PPA protègent les revenus. Signal modéré : Hormuz = catalyseur narratif, pas fondamental direct sur CEG. Horizon 2 semaines.",
+      "horizon": "2026-10-08",
+      "source": "2026-W39 (repli web — Grok API sans données sept. 2026)",
+      "played": false,
       "status": "ouvert",
-      "guard_note": "NON JOUÉ — tactical_cap = 0%. Score uniquement. Position DÉTENUE au book cœur (6.57 parts). Mesure si RSI survendu + fort gate fondamental → rebond CT ≥ 2%."
+      "guard_note": "NON JOUÉ — tactical_cap = 0% (hit_rate 35.7% < seuil 45%). Score uniquement. Position DÉTENUE au book cœur (2.465 parts, §G gouverne). Ce call mesure si la narrative Hormuz/sécurité énergétique prédit un mouvement CT sur un substitut nucléaire à horizon 2 semaines. Confiance conservatrice (0.55) : signal indirect, T10Y headwind."
     },
     {
       "id": "cb-nim-float-post-fomc-w42",
@@ -288,13 +319,11 @@
     }
   ],
   "stats": {
-    "resolved": 11,
+    "resolved": 14,
     "hits": 5,
-    "hit_rate": 0.4545,
-    "brier": 0.247,
+    "hit_rate": 0.357,
+    "brier": 0.28,
     "tactical_cap": 0
   },
-  "data_gaps": [
-    "fomc-sept-hike-w40 (FOMC): prix Yahoo indisponible — call laissé ouvert"
-  ]
+  "data_gaps": []
 }
