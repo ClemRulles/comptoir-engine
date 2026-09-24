@@ -94,15 +94,34 @@ export interface AppData {
   // chiffres faux en silence — c'est ce silence qui a caché l'incident de juillet 2026.
   aiBookReadable: boolean;
   // Âge (jours entiers) du dernier commit des routines sur memory/ (branche runtime), ou null
-  // si illisible. Les routines écrivent 5 nuits/semaine : au-delà de MEMORY_STALE_DAYS, la
-  // persistance est cassée (endpoint /api/memory/push en panne, token, routines à l'arrêt…)
-  // même si le book reste lisible — c'est l'angle mort qui a duré un mois en juillet 2026.
+  // si illisible. Sert au texte du bandeau ; le déclencheur est memoryMissedRuns.
   memoryAgeDays: number | null;
+  // Nombre de nuits de routine passées SANS commit mémoire depuis le dernier commit, ou null
+  // si illisible. ≥ 1 = la persistance est cassée (app GitHub Claude désinstallée, token,
+  // routines à l'arrêt…) même si le book reste lisible. Angle mort vécu deux fois : un mois
+  // en juillet 2026, puis 3 nuits en septembre 2026 avec l'ancien seuil fixe de 4 jours.
+  memoryMissedRuns: number | null;
 }
 
-// Seuil d'alerte de persistance : le plus grand trou normal est le week-end (routine du
-// vendredi → sam 0:00, celle du lundi → mar 0:00, soit 3 jours). 4+ jours = panne.
-export const MEMORY_STALE_DAYS = 4;
+// Les 5 routines distantes partent à 00:00 UTC du mardi au samedi (lundi→mar … vendredi→sam)
+// et durent < 40 min. Une nuit est « due » à partir de 02:00 UTC (marge de fin de run).
+const ROUTINE_UTC_DAYS = new Set([2, 3, 4, 5, 6]);
+const ROUTINE_GRACE_H = 2;
+
+// Compte les nuits de routine dues entre le dernier commit mémoire et maintenant. Calé sur le
+// calendrier réel : le week-end (sam→mar, 3 jours sans run) ne déclenche rien, mais une seule
+// nuit ratée en semaine suffit — au lieu d'attendre 4 jours comme l'ancien seuil fixe.
+export function missedRoutineRuns(lastCommit: Date, now: Date = new Date()): number {
+  let missed = 0;
+  const day = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  // Remonte jour par jour (borné à 60 j) tant que la nuit est postérieure au dernier commit.
+  for (let i = 0; i < 60 && day.getTime() > lastCommit.getTime(); i++) {
+    const due = day.getTime() + ROUTINE_GRACE_H * 3_600_000 <= now.getTime();
+    if (due && ROUTINE_UTC_DAYS.has(day.getUTCDay())) missed++;
+    day.setUTCDate(day.getUTCDate() - 1);
+  }
+  return missed;
+}
 
 // Agrège les apports par date (somme du jour) → 1 marqueur par date sur la courbe.
 function aggregateContribsByDate(rows: { ts?: string | null; amount: number }[]): { date: string; amount: number }[] {
@@ -302,6 +321,7 @@ function demoData(): AppData {
     contributions: aggregateContribsByDate(DEMO_CONTRIBUTIONS),
     aiBookReadable: true,
     memoryAgeDays: 0,
+    memoryMissedRuns: 0,
   };
 }
 
@@ -462,6 +482,7 @@ export async function getAppData(): Promise<AppData> {
       memoryAgeDays: memCommits[0]?.date
         ? Math.floor((Date.now() - new Date(memCommits[0].date).getTime()) / 86_400_000)
         : null,
+      memoryMissedRuns: memCommits[0]?.date ? missedRoutineRuns(new Date(memCommits[0].date)) : null,
     };
   } catch (e) {
     // Base pas encore prête OU panne en prod : on retombe sur la démo, mais en le LOGGANT —

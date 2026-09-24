@@ -1,7 +1,7 @@
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { getActivity, getAppData, getMovers, MEMORY_STALE_DAYS } from "@/lib/data";
+import { getActivity, getAppData, getMovers } from "@/lib/data";
 import { eur, pct } from "@/lib/fund";
 import { PerfChart } from "@/components/PerfChart";
 import { AllocationDonut } from "@/components/Charts";
@@ -43,12 +43,13 @@ export default async function DashboardPage() {
           mémoire (endpoint /api/memory/push en panne, token d'écriture, routines à l'arrêt…).
           C'est l'angle mort qui a duré un mois en juillet 2026 : brief, signaux, trades IA
           figés sans que rien ne l'affiche. Distinct du bandeau « book illisible » ci-dessus. */}
-      {!data.demo && data.aiBookReadable && data.memoryAgeDays != null && data.memoryAgeDays >= MEMORY_STALE_DAYS && (
+      {!data.demo && data.aiBookReadable && data.memoryMissedRuns != null && data.memoryMissedRuns >= 1 && (
         <div className="rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-          ⚠️ <b>Routines de nuit muettes depuis {data.memoryAgeDays} jours</b> — le dernier
-          commit mémoire sur <code>claude/memory</code> date de plus de {MEMORY_STALE_DAYS} jours.
-          Brief, signaux et book IA n&apos;évoluent plus. Vérifier le token d&apos;écriture
-          (<code>GITHUB_WRITE_TOKEN</code> sur Vercel) et les routines sur claude.ai/code.
+          ⚠️ <b>Routines de nuit muettes : {data.memoryMissedRuns} nuit{data.memoryMissedRuns > 1 ? "s" : ""} sans sauvegarde</b>
+          {data.memoryAgeDays != null && <> (dernier commit mémoire il y a {data.memoryAgeDays} j)</>}. Brief,
+          signaux et book IA n&apos;évoluent plus. À vérifier dans l&apos;ordre : l&apos;app GitHub
+          « Claude » est installée sur <code>comptoir-engine</code> (github.com → Settings → Applications),
+          puis les logs du dernier run sur claude.ai/code → Routines.
         </div>
       )}
       {/* Mobile : graphique en premier (order-1). Desktop : KPIs en premier (md:order-1). */}
