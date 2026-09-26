@@ -1,7 +1,33 @@
 {
   "_doc": "Sentiment X (Grok) transformé en PRÉDICTIONS SCORÉES (method §F) — le sentiment ne décide jamais sur la foi : il se MÉRITE une voix en prouvant qu'il prédit. Le lundi (pouls Grok) enregistre 0-3 'calls' directionnels court terme ; engine/grok.js les score contre le prix réel à l'horizon. Schéma d'un call : { id (kebab-case), opened (YYYY-MM-DD), ticker, direction ('hausse'|'baisse' attendue à court terme), confidence (0.5-0.9, force du signal de sentiment), thesis (1 ligne : ce que Grok 'sent'), horizon (YYYY-MM-DD, ~2 semaines), source (semaine du pouls), played (bool : le book a-t-il pris une position tactique ?), status ('ouvert' | 'joué' | 'résolu' | 'expiré'), resolution ({ date, move_pct (variation réelle sur l'horizon), correct (bool : le mouvement a-t-il suivi la direction au-delà de ±2 %), brier ((confidence − correct)²), trade_alpha_pct (si joué : alpha — mesure SÉPARÉE) }) }. 'stats' (recalculé par engine/grok.js) : resolved, hits, hit_rate, brier, tactical_cap = budget MAX du NAV pour les paris Grok, MÉRITÉ : 0 % tant que < 6 calls résolus, puis 3/6/8 % selon hit_rate (≥0.55/0.65/0.70), 0 % si < 0.45. Garde-fous §F : jamais sur gate 🔴, jamais contre la checklist bulle §B, demi-taille tactique, stop serré, sortie datée. L'euphorie reste un signal contrarien de top. Ne jamais réécrire un call résolu.",
-  "updated": "2026-09-24",
+  "updated": "2026-09-26",
   "calls": [
+    {
+      "id": "gva-iija-expiry-w44",
+      "opened": "2026-09-26",
+      "ticker": "GVA",
+      "direction": "baisse",
+      "confidence": 0.60,
+      "thesis": "IIJA Division J expire 30/09 (4 jours, aucun bill présenté). P-001 franchi ($115.08 < $116.93 ref). Incertitude sur nouvelles attributions post-30/09. RSI 29.9 déjà survendu = rebond difficile sans catalyseur positif. Gate 🟢 fondamental solide MAIS pression politique/législative court terme.",
+      "horizon": "2026-10-10",
+      "source": "2026-W44 (signals.js 26/09 + IIJA cliff monitoring)",
+      "played": false,
+      "status": "ouvert",
+      "guard_note": "NON JOUÉ — tactical_cap = 0% (hit_rate 35.7% < seuil 45%). Score uniquement. Position DÉTENUE au book cœur (§G gouverne la sortie, pas ce call)."
+    },
+    {
+      "id": "cb-oversold-rebound-w44",
+      "opened": "2026-09-26",
+      "ticker": "CB",
+      "direction": "hausse",
+      "confidence": 0.60,
+      "thesis": "CB RSI 23.6 = survendu extrême. Gate 🟢 +0.376 F6/9. NII float $100B réinvesti à T10Y 5.12% = expansion directe. Combined ratio record 83.8% = protection downside. 2 ventes insiders nettes (0B/2S) = signal modéré défavorable. P-001 ref $312 tient (marge +6.8%). Rebond technique depuis survendu extrême probable à 2 semaines.",
+      "horizon": "2026-10-10",
+      "source": "2026-W44 (signals.js 26/09 RSI 23.6 + post-FOMC NIM narrative)",
+      "played": false,
+      "status": "ouvert",
+      "guard_note": "NON JOUÉ — tactical_cap = 0% (hit_rate 35.7% < seuil 45%). Score uniquement. Position DÉTENUE au book cœur (§G gouverne)."
+    },
     {
       "id": "saf-oversold-defense-w39",
       "opened": "2026-09-08",

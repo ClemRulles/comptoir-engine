@@ -1,3 +1,20 @@
+## Tendance de la semaine — 26 septembre 2026 (W44)
+
+- **Statut** : W43 CONFIRMÉE — VEILLE IIJA CLIFF 30/09 · AUCUNE NOUVELLE TENDANCE CE CYCLE
+- **Focus W44 : IIJA Division J cliff — risque réel pour le book infra (GVA)**
+
+  IIJA Division J expire le 30/09/2026. Analyse de l'impact réel sur GVA :
+  - **Contrats fermes ($7,4B backlog signé)** : non affectés par une expiration. CEO Larkin (Q2) : 95%+ du backlog = contrats pluriannuels signés, non-discrétionnaires. Une expiration ne résilie pas un contrat existant.
+  - **Nouvelles attributions post-30/09** : gelées si pas de CR (Continuing Resolution) ou FY2027 bill. GVA backlog croissance récente (+$250M séquentiel Q2) = nouvelles attributions déjà signées.
+  - **Scénario central** : CR court terme voté avant ou juste après 30/09 (précédent systématique — 18 CR depuis 2010). Extension → 11/12 (Sénat 90-6) tient.
+  - **Scénario adverse** : Shutdown ≥14j → gel nouvelles attributions → backlog croissance ralentie Q4/Q1. Thèse non cassée (contrats signés protégés) mais modération.
+  - **Décision book** : GARDER GVA. Saisine mercredi 30/09 pour évaluation P-001 + cliff simultanés.
+
+- **Hormuz W43 suite** : CEG détenu, LMT non-scripté (pré-score manquant ce cycle). ETN 34x fwd = P-003 actif, Surveiller. Aucune nouvelle entrée requise (cash à plancher 30% post-GLE.PA).
+- **Ce qui invaliderait le focus IIJA** : CR voté avant 30/09 → alerte levée → GVA redevient candidat renforcement post-Q3.
+
+---
+
 ## Tendance de la semaine — 24 septembre 2026 (W43)
 
 - **Statut** : VALIDÉE — CHOC HORMUZ → SÉCURITÉ ÉNERGÉTIQUE US · SUBSTITUTS EN DÉBUT DE RE-RATING

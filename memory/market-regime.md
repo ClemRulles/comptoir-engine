@@ -1,4 +1,15 @@
-# Régime de marché — mis à jour le 2026-09-24 (Trend Radar W43)
+# Régime de marché — mis à jour le 2026-09-26 (W44)
+
+- **✅ SURCHAUFFE HARD-CONFIRMÉE — INCHANGÉ**. T10Y ~5,12 %. Prochain FOMC 27-28/10/2026.
+- **Signals.js W44 26/09** : RISK-ON SAIN (FRED lag — override prime, SURCHAUFFE acté). 10🟢 / 2🟠 (AI.PA + LOTB) / 0🔴.
+- **AI.PA 🟠 2e relevé consécutif** (W43+W44) — hystérésis armée §H. Excédent vs cap 5% NAV = 3,9€ < frais friction → **trim 0** exécuté. Monitoring W45.
+- **LOTB 🟠 2e relevé consécutif** (W43+W44) — hystérésis armée §H. Position 4,78% NAV < cap 5% → **aucun trim** (position conforme).
+- **GVA P-001 FRANCHI** : $115,08 < $116,93 ref. **Saisine mercredi 30/09 OBLIGATOIRE** (coïncide avec IIJA Division J expiration).
+- **Cash 32,2% NAV** (post-GLE.PA Basse 26/09, BNP.PA div +12,02€) → corridor 30-50% ✓ (plancher 30% respecté).
+- **1 trade W44** : GLE.PA (SG) Basse achetée (1,01 part @ 303€ = 3,0% NAV). 12 positions.
+
+---
+# Régime de marché — W43 2026-09-24 (archivé)
 
 - **✅ RÉGIME SURCHAUFFE HARD-CONFIRMÉE — INCHANGÉ**. T10Y **~5,12 %** (post-FOMC, tendance haussière). S&P 500 ~7 699 (légère hausse depuis 7 552 post-FOMC). DXY stable ~100. Cash **~35,8 % NAV** = corridor 30-50 % ✓. Pas de nouvelle confirmation macro cette semaine (pas de print BLS/CPI/NFP — prochain FOMC **27-28 octobre 2026**).
 - **⚡ BNP.PA ex-div AUJOURD'HUI 24/09 (€3,23, paiement 28/09)** — correction d'une erreur mémoire (précédents fichiers notaient 23/09). Position 3,7222 parts → +€12,02 cash (automatique au 28/09).

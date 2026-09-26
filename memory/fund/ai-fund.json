@@ -1,9 +1,9 @@
 {
   "_doc": "Cache des signaux QUANTITATIFS calculés par engine/signals.js. 'regime' = score macro FRED agrégé (gate global). 'tickers' = map ticker -> { fscore, momentum_12_1, earnings_quality, gate } horodatés. L'IA LIT ce fichier avant d'ouvrir/fermer une position (method §A/§H) : les signaux sont des garde-fous factuels, pas une boîte noire. 'data_gaps' liste les sources indisponibles (clé manquante / quota) pour rester honnête sur l'incertitude. Régénéré par les routines ; ne pas éditer à la main.",
-  "as_of": "2026-09-19",
+  "as_of": "2026-09-26",
   "seeded": true,
   "start_capital": 10417.28,
-  "cash": 3588.61,
+  "cash": 3293.68,
   "positions": [
     {
       "ticker": "SAF.PA",
@@ -61,7 +61,7 @@
       "target": null,
       "exit_rule": "sortie si ROIC durablement < 8% OU volumes industriels guidance coupée OU F-Score ≤ 3/9 ; horizon_test H2 2026 (fév. 2027) ; seuil réexamen mercredi : cours < 126€ (entry_price 167.79€ × 0.75) ; ne pas renforcer sans gate 🟢 confirmé 2 semaines consécutives (hystérésis) ; 3.07935 parts ≈ 5.1% NAV",
       "seed": false,
-      "thesis": "Air Liquide — compounder gaz industriels, défensif. ROIC H1 +10.2% confirmé. Gate 🟠 +0.090 (RSI 27.3 survendu, potentiel rebond). TRIM EXÉCUTÉ 15/08 : 1.130 parts vendues à 168.26€, reste 3.07935 parts = 5.0% NAV (cap 5% §H respecté). Stop 152.03€ intact (marge +10.8%). Thèse compounder intacte.",
+      "thesis": "Air Liquide — compounder gaz industriels, défensif. ROIC H1 +10.2% confirmé. Gate 🟠 W44 2e relevé consécutif (composite +0.144, cov39%, RSI167.5€ — hystérésis armée §H). Excédent vs cap 5% NAV : 3.9€ = 0.023 parts — inférieur aux frais de friction → trim 0 exécuté W44. Thèse compounder intacte. Monitoring W45 : si 3e relevé consécutif 🟠, réévaluer.",
       "entry_price": 167.7897,
       "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée"
     },
@@ -91,7 +91,7 @@
       "target": null,
       "exit_rule": "sortie si CDS EU banks > 200bps (risque crédit systémique) OU NII guidance coupée OU BCE coupe agressivement (-100bps) OU F-Score ≤ 3/9 ; horizon_test Q3 2026 (nov. 2026) ; seuil réexamen mercredi : cours < 70€ (entry_price 93.66€ × 0.75) ; thèse bancaire CONFIRMÉE ✓ Q2 +33% NI",
       "seed": false,
-      "thesis": "Banque diversifiée, +66% depuis avg_cost. Gate 🟢 vert (composite +0.259, RSI 81.6 suracheté). Q2 +33% net income = thèse bancaire CONFIRMÉE. ECB favorable, NIM solide. RSI 81.6 suracheté — ne pas renforcer. Position 4.03% NAV.",
+      "thesis": "Banque diversifiée, +66% depuis avg_cost. Gate 🟢 vert (composite +0.385, RSI 28.8 post-exdiv survendu). Q2 +33% net income = thèse bancaire CONFIRMÉE. ECB favorable, NIM solide. Ex-div 24/09 : +12.02€ (paiement 28/09, comptabilisé 26/09). Cours post-exdiv ~99.3€ (correction normale exdiv). Position 3.6% NAV.",
       "entry_price": 93.66,
       "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée"
     },
@@ -136,7 +136,7 @@
       "target": null,
       "exit_rule": "sortie si adj EBITDA marge < 10% durablement OU write-down projet > $50M OU backlog < $6.5B OU F-Score ≤ 3/9 ; horizon_test Q3 2026 (22 oct. 2026) : guide marge 12.25-13.25%, rev +25%+, backlog $7.4B+ ; IIJA : réautorisation pluriannuelle avant 11/12 — sortie si non voté ; seuil réexamen mercredi : cours USD < $96 (entry_price 110.33€ × 1.152 × 0.75)",
       "seed": false,
-      "thesis": "Granite Construction — infrastructures US + data centers. Pivot marge Q2 LIVRÉ (adj EBITDA 12.8% dans guide 12.25-13.25%). Rev +29% ($1.46B), backlog record $7.4B (+$250M séquentiel), data centers cités en Q2 call (supercycle W33). Gate 🟢 F7/9 vert (+0.469, cov 86%). Momentum refroidi (+6.7% 12-1, vs +50% juil.). RSI 42.9 sain. 17x fwd (décote vs pairs VMC 30x, ETN 34x). Stop USD $116.93 (P-001, marge +4.8% vs $122.52 — surveiller si pression). Extension IIJA Senate 90-6 → 11/12 : falaise 30/09 neutralisée (Chambre non confirmée, à vérifier). Position 6.8% NAV.",
+      "thesis": "Granite Construction — infrastructures US + data centers. Pivot marge Q2 LIVRÉ (adj EBITDA 12.8% dans guide 12.25-13.25%). Rev +29% ($1.46B), backlog record $7.4B (+$250M séquentiel), data centers cités. Gate 🟢 F7/9 vert (+0.583, cov86%). RSI 29.9 survendu (W44). P-001 TOUJOURS FRANCHI (cours $115.08 < ref $116.93) — saisine mercredi 30/09 OBLIGATOIRE (coïncide avec IIJA Division J expiration). Thèse INTACTE : backlog $7.4B sous contrats fermes (CEO Larkin Q2), marge dans guide. Position 6.6% NAV.",
       "entry_price": 110.33,
       "entry_price_source": "achats IA, moyenne pondérée"
     },
@@ -169,6 +169,21 @@
       "thesis": "EMCOR Group — contracteur MEP (mechanical-electrical-plumbing) pour data centers et infra critique US. Couche chaîne de valeur supérieure à GVA (MEP intérieur vs génie civil). F6/9 EDGAR solide, PEG ~0.65 (EPS +35% livrés), RPO $17.14B (+44% YoY), marge opérationnelle ~10.6% (2.5× GVA). RSI 39.8 au moment de la convictions (post-record, correction technique). Non redondant avec GVA (P-003b : couches différentes de la chaîne DC). Entrée 29/08 à 662.33€ ($763/1.152). Stop USD $702 (marge −8%). Position 7.0% NAV.",
       "entry_price": 662.33,
       "entry_price_source": "achats IA, moyenne pondérée"
+    },
+    {
+      "ticker": "GLE.PA",
+      "quantity": 1.01,
+      "avg_cost": 303.0,
+      "confidence": "Basse",
+      "horizon": "coeur",
+      "thesis_id": "gle-nim-banque",
+      "entry_date": "2026-09-26",
+      "target": null,
+      "exit_rule": "sortie si ROTE < 8% durablement OU CDS EU banks > 200bps OU BCE coupe agressivement (-100bps) OU F-Score ≤ 3/9 ; horizon_test Q3 2026 résultats (nov. 2026) ; seuil réexamen mercredi : cours < 227€ (entry_price 303€ × 0.75)",
+      "seed": false,
+      "thesis": "Société Générale — banque universelle EU. P/TBV 0.94x (sous valeur de reconstitution), ROTE 12.2% Q2 confirmé, bénéficiaire NIM expansion BCE/FOMC. Deep-dive 10/09 : Acheter analytique Moyenne ; sizing contraint à Basse par couloir de cash SURCHAUFFE (Moyenne mettrait cash ~28.8% < plancher 30%). Gate 🟢 +0.462 mom+46% RSI41.7 cov39% (watchlist 24/09 — data gap signals.js EU). Entrée 26/09 @ 303€. Position 1.01 × 303€ = 306€ ≈ 3.0% NAV. Non-redondant avec CB (USD assurance vs EUR banque commerciale).",
+      "entry_price": 303.0,
+      "entry_price_source": "estimation watchlist/catalysts 26/09 — GLE.PA absent signals.js (data gap EU)"
     }
   ],
   "trades": [
@@ -564,8 +579,21 @@
       "horizon": "coeur",
       "gate": "🟢 vert +0.495 F6/9 coverage 96% (convictions 27/08)",
       "rationale": "Nouvelle entrée vendredi §H — verdict Acheter Moyenne deep-dive 27/08. EMCOR Group : couche MEP (mechanical-electrical-plumbing) de data centers et infra critique. Meilleur dossier qualité/croissance de la nuit : F6/9 EDGAR solide, PEG ~0.65 (croissance forte + valo raisonnable), RPO $17.14B +44% YoY (backlog recurrences) — marge opérationnelle ~10.6% (vs GVA ~4% génie civil). RSI 39.8 post-record = entrée sur correction technique, pas sur surchauffe. Thèse complémentaire à GVA (couche différente de la chaîne de valeur DC : civil GVA vs MEP intérieur EME — P-003b validé : non-redondant). Cap thème post-EME : GVA(6.8%) + CEG(5.8%) + EME(7.0%) = 19.6% << 40% §H ✓. Prix EUR : $763 / 1.152 = 662.33€ (prix convictions 27/08 — EME non dans signals.js, approximation). Stop USD $702 = avg_cost × 0.92 (marge −8%). Stop EUR = 609.34€. Sizing Moyenne = 7% NAV (~722€). Coût total : 1.09 × 662.33€ = 721.94€ + frais 2.17€ = 724.11€."
+    },
+    {
+      "ts": "2026-09-26",
+      "side": "buy",
+      "ticker": "GLE.PA",
+      "quantity": 1.01,
+      "price": 303.0,
+      "fee": 0.92,
+      "confidence": "Basse",
+      "thesis_id": "gle-nim-banque",
+      "horizon": "coeur",
+      "gate": "🟢 +0.462 mom+46% RSI41.7 cov39% (watchlist 24/09)",
+      "rationale": "Entrée vendredi §H — NIM EU expansion. Deep-dive 10/09 → Acheter analytique Moyenne, sizing réduit à Basse par contrainte couloir de cash SURCHAUFFE (Moyenne mettrait cash ~28.8% < plancher 30%). Société Générale : P/TBV 0.94x, ROTE 12.2% Q2 ✓, bénéficiaire direct BCE +25bps + FOMC +25bps 16/09 (NIM expansion). Non-redondant avec CB (USD assurance vs EUR banque commerciale). Reportée depuis W42 (CB priorisé sur gate cov92% > cov39%). BNP.PA div +12.02€ comptabilisé (ex-div 24/09, paiement 28/09). AI.PA hystérésis 2e🟠 : trim 0 (excédent 3.9€ < frais friction). LOTB hystérésis 2e🟠 : trim 0 (déjà <5% NAV). Coût total : 1.01 × 303€ = 306.03€ + frais 0.92€ = 306.95€. Cash post-trade : 3 293.68€ = 32.2% NAV (corridor 30-50% ✓, plancher 30% respecté)."
     }
   ],
-  "note": "Brief W42 2026-09-19. SURCHAUFFE HARD-CONFIRMÉE (FOMC +25bps 16/09, T10Y ~5.01%, BCE +25bps 10/09). 1 TRADE W42 : CB (Chubb) acheté Moyenne (2.4 parts @ $339.42 = €702.25). NAV ≈ 10 008€ (−3.9% vs start, 11 positions). Cash 3 589€ = 35.8% NAV (corridor 30-50% ✓). Signals W42 19/09 : 🟢11 🟠0 🔴0. GVA : P-001 ref $116.93 franchi ($115.97 < $116.93) — saisine mercredi 23/09, §G gouverne, thèse intacte. BNP.PA ex-div 23/09 → +€12.02 cash (paiement 28/09). GLE.PA : entrée REPORTÉE à vendredi 26/09 (même thèse NIM EU, budget 10pts/semaine épuisé par CB). CB gates : 🟢 +0.424 cov92% F6/9 RSI38.2 (convictions 17/09). IIJA Division J expire 30/09 — surveillance active. Grok W40 : fomc-sept-hike-w40 RÉSOLU correct (brier 0.08) ; gva-oversold-rebound-w40 ouvert (hor.22/09).",
+  "note": "Brief W44 2026-09-26. SURCHAUFFE HARD-CONFIRMÉE (T10Y ~5.12%, FOMC hike acté 16/09, BCE hike acté 10/09). 1 TRADE W44 : GLE.PA acheté Basse (1.01 parts @ 303€ = 306€, contrainte couloir cash — Moyenne mettrait cash <30%). BNP.PA div +12.02€ (ex-div 24/09, paiement 28/09). NAV ≈ 10 238€ (−1.7% vs start_capital, 12 positions). Cash 3 294€ = 32.2% NAV (corridor 30-50% ✓, plancher 30% respecté). Signaux W44 26/09 : AI.PA 🟠 2e relevé consécutif (hystérésis armée, trim 0 — excédent 3.9€ < frais), LOTB 🟠 2e relevé consécutif (déjà <5% cap, aucun trim). GVA : P-001 $116.93 toujours franchi ($115.08) — saisine mercredi 30/09 OBLIGATOIRE + IIJA Division J expire 30/09. CB RSI 23.6 survendu extrême, gate 🟢, §G gouverne. Grok W44 : 2 calls ouverts + 2 nouveaux calls enregistrés (gva-iija-expiry-w44, cb-oversold-rebound-w44 — scoring uniquement, tactical_cap 0%).",
   "note_migration_2026_08_30": "MIGRATION §H/§I COMPLÈTE (vendredi 05/09/2026) : (1) `entry_price` = prix réellement payé par l'IA. (2) `avg_cost` hors jugement IA. (3) Toutes les exit_rules CŒUR RÉÉCRITES en critères de thèse + seuil réexamen −25% vs entry_price : stops de prix (stop -8% avg_cost, stop EUR X€, stop USD $Y) SUPPRIMÉS de toutes les exit_rules. P-001 conservé comme RÉFÉRENCE de monitoring USD pour les positions US, jamais comme déclencheur automatique sur CŒUR — franchissement P-001 = saisine mercredi, pas vente jeudi. Hystérésis : gate flip ne déclenche sizing change qu'après 2 relevés consécutifs confirmés."
 }

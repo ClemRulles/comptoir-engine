@@ -1,3 +1,130 @@
+# Brief IA — vendredi 26 septembre 2026 (W44)
+
+_Généré automatiquement · Routine friday-brief · Sources : signals.js 26/09, memory/ 26/09_
+
+---
+
+## Régime de marché
+
+**SURCHAUFFE HARD-CONFIRMÉE — INCHANGÉ.** T10Y ~5,12 %. Prochain FOMC 27-28/10/2026.
+
+- Algo signals.js W44 : RISK-ON SAIN (FRED lag — override prime, SURCHAUFFE acté) · 10🟢 / 2🟠 / 0🔴
+- Cash corridor SURCHAUFFE : plancher 30 %, plafond 50 %
+- §E actif : marge de sécurité RÉELLE exigée avant toute confiance haute
+
+---
+
+## Tendance W44 — W43 CONFIRMÉE · VEILLE IIJA CLIFF · DROIT AU BLANC NOUVELLES TENDANCES
+
+**Statut : W43 (Choc Hormuz → sécurité énergétique US) CONFIRMÉE mais aucune entrée recommandée — droit au blanc.**
+
+Focus W44 : IIJA Division J expire le 30/09 (dans 4 jours). Aucun nouveau bill présenté au 26/09.
+
+**Analyse IIJA cliff :**
+- Contrats fermes GVA ($7,4B backlog signé) : non affectés par une expiration du programme discrétionnaire Division J
+- Scénario central (probabilité ~75%) : CR court terme voté avant ou juste après 30/09 (précédent systématique — 2011, 2013, 2019, 2021)
+- Scénario adverse (probabilité ~25%) : Shutdown ≥14j → gel nouvelles attributions. Impact GVA : backlog Q3 en danger si < $6.5B
+- **Action requise** : saisine mercredi 30/09 (§G CŒUR = thèse cassée seulement)
+
+---
+
+## Book IA — 12 positions · NAV ≈ 10 238 € · Cash 3 294 € (32,2 % NAV ✓)
+
+_Gates W44 : 🟢10 🟠2 🔴0 · Signals : 2026-09-26T00:11 UTC_
+
+| Ticker   | Parts    | Entrée IA   | Gate W44              | Note |
+|----------|----------|-------------|------------------------|------|
+| SAF.PA   | 2,0929   | 312,48 €    | 🟢 +0,411 RSI39.3      | GARDER. |
+| AMZN     | 3,1138   | 219,50 $    | 🟢 +0,264 F5/9 RSI48   | GARDER. |
+| EIMI     | 9,7751   | 46,52 €     | 🟢 +0,526 RSI55.8      | GARDER. USD fort = vent de face CT. |
+| AI.PA    | 3,0794   | 167,79 €    | 🟠 +0,144 (2e relevé)  | **Hystérésis armée**. Excédent cap 5% = 3,9€ < frais friction → trim 0. Surveiller W45. |
+| LOTB     | 0,0394   | 10 940 €    | 🟠 +0,064 (2e relevé)  | **Hystérésis armée**. Position 4,78% NAV < cap 5% → aucun trim. Valo 44x fwd à surveiller. |
+| BNP.PA   | 3,7222   | 93,66 €     | 🟢 +0,385 RSI28.8      | GARDER. Ex-div 24/09 ✅ +€12,02 cash (paiement 28/09). RSI survendu post-exdiv. |
+| MSCI     | 1,36     | 535,40 $    | 🟢 +0,550 F7/9         | GARDER. |
+| CEG      | 2,465    | 252,49 $    | 🟢 +0,333 F6/9 RSI59   | GARDER. T10Y headwind. §G gouverne. |
+| **GVA**  | **6,57** | **110,33 $**| 🟢 +0,638 F7/9 RSI29.9 | ⚠️ **P-001 FRANCHI** ($115,08 < ref $116,93). **Saisine mercredi 30/09 OBLIGATOIRE** (coïncide IIJA cliff). §G gouverne. |
+| EME      | 1,09     | 662,33 $    | 🟢 +0,435 F6/9 RSI51   | GARDER. |
+| CB       | 2,4      | 339,42 $    | 🟢 +0,424 F6/9 RSI23.6 | GARDER. NII float $100B. RSI survendu. |
+| **GLE.PA** ★ | **1,01** | **303,00 €** | 🟢 +0,462 mom+46% | ★ **ENTRÉ CE JOUR 26/09.** NIM EU expansion. Sizing Basse (contrainte cash SURCHAUFFE). |
+
+### Alertes actives
+
+- **🔴 GVA** : P-001 $116,93 toujours franchi ($115,08). IIJA Division J expire 30/09. Saisine mercredi 30/09 — §G : CŒUR = thèse cassée seulement (backlog s'effondre, marge < 10%). Pas de sortie automatique sur prix.
+- **⚠️ AI.PA 🟠 × 2** : Hystérésis armée. W45 = 3e relevé → trim obligatoire si toujours 🟠 (excédent recalculé).
+- **⚠️ LOTB 🟠 × 2** : Hystérésis armée. Position < cap → pas de trim sauf retour en zone d'excédent.
+- **CB RSI 23,6** : Survente extrême post-correction. Thèse NII intact. §G gouverne (CŒUR).
+
+---
+
+## Trade exécuté W44
+
+**GLE.PA (Société Générale) — ACHAT Basse**
+- Quantité : 1,01 parts
+- Prix entry : 303,00 €
+- Coût total : 1,01 × 303€ = 306,03€ + frais 0,92€ = **306,95 €**
+- % NAV : **~3,0 %** (Basse §H — Moyenne impossible : cash corridor SURCHAUFFE)
+- Gate : 🟢 +0,462 mom+46% RSI41.7 cov39% (watchlist 24/09)
+- Exit rule : ROTE < 8% durablement OU CDS EU banks > 200bps OU BCE coupe agressivement (−100bps) OU F-Score ≤ 3/9 ; horizon_test Q3 2026 (nov. 2026) ; seuil réexamen mercredi : cours < 227€
+- P-001 ref EUR : non applicable (EU ticker, P-001 USD uniquement per §H)
+- Thèse pivot : NIM expansion BCE + FOMC → ROTE reste > 10% sur 4 trimestres
+
+**Rationale :** Deep-dive 10/09 → Acheter analytique Moyenne. Sizing contraint à Basse par couloir de cash SURCHAUFFE (Moyenne = 7% NAV = cash 28,8% < plancher 30%). P/TBV 0,94x = décote rare pour ROTE 12,2%. Non-redondant dans book (seule banque EU universelle vs CB assurance US). GLE.PA manque dans signals.js (data gap EU) → prix estimé watchlist ~303€.
+
+---
+
+## Calibration & Grok W44
+
+- **Calibration** : n_conviction=1 (CRH sorti) — n<8, aucun ajustement sizing. Tailles maintenues.
+- **Grok hit_rate** : 5/14 résolus = 35,7% (brier 0,28). Tactical_cap = **0%** (< 45%).
+- **2 nouveaux calls W44 ouverts** (non joués — tactical_cap = 0%) :
+  - `gva-iija-expiry-w44` : GVA baisse (conf. 0,60, horizon 10/10) — IIJA Division J cliff
+  - `cb-oversold-rebound-w44` : CB hausse (conf. 0,60, horizon 10/10) — RSI 23,6 survendu extrême
+- **Calls ouverts** : ceg-hormuz-nuclear-w43 (hor. 08/10), cb-nim-float-post-fomc-w42 (hor. 03/10), + 2 W44
+
+---
+
+## Catalyseurs à surveiller W45-W47
+
+| Date | Événement | Impact |
+|------|-----------|--------|
+| **30/09/2026** | **🔴 GVA saisine mercredi** (P-001 + IIJA Division J expiration) | §G : CŒUR = sortie si thèse cassée |
+| **03/10/2026** | Horizon cb-nim-float-post-fomc-w42 (scorer) | Résoudre call Grok + mettre à jour calibration |
+| **08/10/2026** | Horizon ceg-hormuz-nuclear-w43 (scorer) | Résoudre call Grok |
+| **10/10/2026** | Horizons gva-iija-expiry-w44 + cb-oversold-rebound-w44 (scorer) | Résoudre 2 calls Grok W44 |
+| **27-28/10/2026** | **FOMC prochain meeting** | Bénéficiaires NIM : CB/GLE.PA/BNP.PA. Vent de face : CEG/GVA/EME. |
+| **~22/10/2026** | GVA Q3 2026 | Horizon-test backlog/marge : exit_rule si < $6.5B + marge < 10% |
+| **~oct. 2026** | CB / EME / MSCI / CEG Q3 résultats | Horizon-tests thèses |
+| **Nov. 2026** | GLE.PA Q3 2026 | Horizon-test ROTE > 10%, NIM expansion |
+| **11/12/2026** | IIJA authorities FY2027 | Exit_rule GVA finale |
+
+---
+
+## Watchlist — mouvements semaine
+
+- **GLE.PA → DÉTENU** (entré 26/09, Basse 1.01 parts @ 303€)
+- **AI.PA 🟠 × 2** — hystérésis armée (trim 0 — excédent < frais friction)
+- **LOTB 🟠 × 2** — hystérésis armée (trim 0 — position déjà < cap 5%)
+- **CB RSI 23,6** — survente extrême, thèse NII intact, GARDER
+- **GVA** — P-001 toujours franchi, saisine 30/09
+
+---
+
+## Leçons W44
+
+1. **HYSTÉRÉSIS-TRIM-INFÉRIEUR-FRAIS-FRICTION** : AI.PA 🟠 × 2 (excédent 3,9€ = 0,023 parts vs cap). Frais minimum > trim → trade nul économiquement. Règle : si excédent < 3× frais minimum (~5€ pour ce book), ne PAS exécuter le trim mécanique.
+
+---
+
+## Performance book IA
+
+- **NAV** : ≈ 10 238 € (−1,7% vs start_capital 10 412€)
+- **Cash** : 3 293,68€ = 32,2% NAV — corridor 30-50% ✓
+- **12 positions** (11 cœur/long + 1 court-terme GLE.PA)
+- **Start capital** : 10 412€ (clone groupe W32)
+
+---
+
+# --- ARCHIVE ---
 # Brief IA — vendredi 19 septembre 2026 (W42)
 
 _Généré automatiquement · Routine friday-brief · Sources : signals.js 19/09, convictions.md 17/09, portfolio.md 18/09_
