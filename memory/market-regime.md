@@ -1,3 +1,15 @@
+# Régime de marché — mis à jour le 2026-09-29 (W45)
+
+- **✅ SURCHAUFFE HARD-CONFIRMÉE — INCHANGÉ**. T10Y **~5,21 %** (nouveau plus haut, +9bps vs W44). S&P 500 ~7 683 (−0,77% sem., −1,7% depuis ATH 7 816). Brent **~$106,89** (+2,46% sem., rebond après rejet des pourparlers de paix Trump). FOMC 27-28/10 : **69 % hike** (Kalshi) / ~49 % (CME FedWatch). Crypto : BTC −3,36 % 7j, F&G 73 (Greed).
+- **Signals.js W45 29/09** : RISK-ON SAIN (FRED lag — override prime, SURCHAUFFE acté). 10🟢 / 2🟠 (AI.PA + LOTB) / 0🔴.
+- **⚠️ AI.PA 🟠 3e relevé consécutif** (W43+W44+W45) — hystérésis armée §H. Excédent vs cap 5% NAV ≈ 4-5€ ≈ frais friction → **trim 0** (seuil économique non atteint, règle 26/09). Monitoring W46 : si 4e relevé consécutif, saisine mercredi.
+- **⚠️ LOTB 🟠 3e relevé consécutif** (W43+W44+W45) — hystérésis armée §H. Position 4,78% NAV < cap 5% → **aucun trim** requis (pas d'excédent).
+- **🔴 GVA P-001 TOUJOURS FRANCHI** : signals.js W45 = $115,77 < $116,93 ref. IIJA Division J **EXPIRÉ LE 30/09** (aucun CR, aucun bill — confirmé). **Saisine MERCREDI 30/09 (aujourd'hui)** : §G CŒUR — évaluer backlog Q3 + impact division J. Backlog $7,4B = contrats fermes (résistants à l'expiration). Nouvelles attributions gelées jusqu'à CR ou FY2027 bill. Exit_rule : backlog Q3 < $6,5B OU falsificateurs fondamentaux déclenchés.
+- **Cash 32,2% NAV** = corridor 30-50% ✓ (plancher 30% respecté). Pas de trade W45.
+- **Rotation sectorielle W45** : XLK worst YTD (−0,40 %), Healthcare +7,97 % QTD (meilleur du trimestre), rotation valeur/défensif en cours. Sector data : FMP/web search 28/09.
+- **Tendance W45** : AUCUNE NOUVELLE — Hormuz/Substituts (W43) reste le thème de fond, Brent rebondi $106,89. Healthcare rotation candidate mais pas de signal d'entrée actionnable (cap cash). Voir trends.md.
+
+---
 # Régime de marché — mis à jour le 2026-09-26 (W44)
 
 - **✅ SURCHAUFFE HARD-CONFIRMÉE — INCHANGÉ**. T10Y ~5,12 %. Prochain FOMC 27-28/10/2026.

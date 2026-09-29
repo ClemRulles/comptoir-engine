@@ -1,3 +1,37 @@
+## Tendance de la semaine — 29 septembre 2026 (W45)
+
+- **Statut** : AUCUNE NOUVELLE TENDANCE CE CYCLE — TROIS CANDIDATS ANALYSÉS, AUCUN NE PASSE LE GATE
+- **Focus W45 : Rotation défensive confirmée MAIS sans entrée disponible**
+
+### Candidats analysés (trend-gate.md)
+
+**Candidat 1 : Healthcare / Rotation défensive**
+- **Preuves dures (porte 2)** :
+  1. XLV Healthcare +7,97 % QTD = meilleur secteur Q3 2026 (FMP sector-performance + web search 28/09)
+  2. XLK Tech pire secteur YTD (−0,40 %) + 3e trimestre consécutif de rotation Growth→Value
+  3. ABBV +13 % QTD (Skyrizi/Rinvoq +24 % ; guidance relevée) ; MCK +24 % (EPS Q1FY27 +20 %)
+  4. Medicare/GLP-1 backdrop structurel confirmé (Bridge opérationnel depuis W27)
+- **Durabilité (porte 3)** : structurelle (rotation défensive en SURCHAUFFE = classique, cycle de hike). Solidité : élevée.
+- **Investissable ≥2 tickers (porte 4)** : LLY (Surveiller watchlist, ~30x fwd), ABBV (Surveiller watchlist, 17,5x fwd), MCK (Surveiller watchlist). Pas de position en book.
+- **Stade (porte 5)** : MILIEU — les noms principaux (LLY, ABBV) ont déjà couru (+13-18 % QTD). Aucun ticker à RSI < 50 avec marge de valo réelle actuellement identifié.
+- **Bulle (porte 6)** : LLY ~30x = vigilance. ABBV à 97 % du range 52w. **Porte 6 : ORANGE** — pas de drapeau rouge mais marge absente.
+- **Falsifiabilité (porte 7)** : Falsificateur = FOMC Hold + guidance dovish OR déception Q3 résultats LLY/ABBV. Testable.
+- **Verdict gate : REJETÉ — porte 5/6**. Rotation réelle et prouvée (preuves dures ✓) MAIS stade milieu-fin sur les leaders + marge de valo absente + cash corridor 30-50 % (plancher 30 %) = aucune entrée possible sans violer le corridor. **Droit au blanc : rotation confirmée mais non investissable à ce stade dans ce régime (SURCHAUFFE, corridor cash, noms à haut RSI).**
+
+**Candidat 2 : Hormuz / Sécurité énergétique US — substituts (continuation W43)**
+- **Preuves dures** : Brent $106,89 (+2,46 % sem.) après rejet pourparlers Trump — rebond confirmé. XLE +40 % YTD (parabolique — porte 1 rejetée pour énergie directe). CEG détenu (§G), LMT deep-dive non complété, ETN Surveiller (34x P-003 actif).
+- **Stade** : EN COURS — thème W43 confirmé, pas de changement de stade. LMT pré-score non calculé.
+- **Verdict gate : CONTINUATION W43 — pas de nouvelle entrée**. Cash plancher 30 % = aucune entrée supplémentaire permise. Pas de ticker actionnable à marge réelle. La continuation du thème Hormuz est un SURVEILLER sur les positions existantes, pas une nouvelle tendance.
+
+**Candidat 3 : Financials / NIM FOMC octobre**
+- **Preuves dures** : FOMC 27-28/10 = 69 % hike (Kalshi). T10Y 5,21 % (plus haut cycle). BNP.PA + GLE.PA + CB détenus = thème DÉJÀ EN BOOK.
+- **Verdict gate : DÉJÀ JOUÉ**. Book IA détient CB + GLE.PA + BNP.PA (3 positions = max redondance §H). Aucune nouvelle entrée financials sans sortie préalable. Pas une nouvelle tendance.
+
+### Conclusion W45
+**AUCUNE** tendance nouvelle cette semaine. La rotation Healthcare est la seule candidate structurelle prouvée mais elle n'est pas investissable maintenant (stade milieu, cash plancher, noms RSI élevés). Prochain test : Q3 LLY (~23/10) + ABBV (~25/10) — si beat + guidance + RSI revenu < 50 sur repli, réévaluer à W47.
+
+---
+
 ## Tendance de la semaine — 26 septembre 2026 (W44)
 
 - **Statut** : W43 CONFIRMÉE — VEILLE IIJA CLIFF 30/09 · AUCUNE NOUVELLE TENDANCE CE CYCLE
