@@ -30,6 +30,12 @@
 ### Conclusion W45
 **AUCUNE** tendance nouvelle cette semaine. La rotation Healthcare est la seule candidate structurelle prouvée mais elle n'est pas investissable maintenant (stade milieu, cash plancher, noms RSI élevés). Prochain test : Q3 LLY (~23/10) + ABBV (~25/10) — si beat + guidance + RSI revenu < 50 sur repli, réévaluer à W47.
 
+### Scout mardi 30/09 — Mode qualité pur (AUCUNE tendance → scan qualité/défense)
+- **RTX ★** : gate 🟢 F6/9, RSI 23.3 oversold extrême, backlog $289B record, Hormuz direct (missiles/munitions). Correction technique (+tariff headwind $850M + rumeur cessez-le-feu), pas fondamentale. PT MS $240 vs ~$188 = 28% upside. Deep-dive mercredi. Entrée conditionnelle libération cash (GVA saisine auj.).
+- **MCO ★** : gate 🟢 F7/9, RSI 35.2 (repli technique), Q2 EPS +31%, bénéficiaire hawkish. 30x fwd PE = vigilance marge en SURCHAUFFE. Deep-dive mercredi. Entrée conditionnelle libération cash.
+- **LMT Surveiller** : gate 🟠 F5/9 (cap 5% NAV), fwd PE 16.4x (bon marché pour la qualité), PT $637 vs $519. Attendre gate 🟢 (F ≥ 6) ou RSI < 30.
+- **Contrainte W45** : cash 32.2% NAV = plancher 30% quasi-atteint. Aucun achat possible sans exit préalable. Les ★ servent le deep-dive mercredi + entrée vendredi si GVA sort.
+
 ---
 
 ## Tendance de la semaine — 26 septembre 2026 (W44)
