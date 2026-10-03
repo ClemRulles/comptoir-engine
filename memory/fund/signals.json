@@ -1,6 +1,6 @@
 {
   "_doc": "Cache des signaux QUANTITATIFS calculés par engine/signals.js. 'regime' = score macro FRED agrégé (gate global). 'tickers' = map ticker -> { fscore, momentum_12_1, earnings_quality, gate } horodatés. L'IA LIT ce fichier avant d'ouvrir/fermer une position (method §A/§H) : les signaux sont des garde-fous factuels, pas une boîte noire. 'data_gaps' liste les sources indisponibles (clé manquante / quota) pour rester honnête sur l'incertitude. Régénéré par les routines ; ne pas éditer à la main.",
-  "updated": "2026-10-02T00:02:30.405Z",
+  "updated": "2026-10-03T00:11:07.057Z",
   "regime": {
     "label": "RISK-ON SAIN",
     "score": {
@@ -12,44 +12,44 @@
     "flags": [],
     "ok": true,
     "inputs": {
-      "t10y2y": 0.46,
-      "unrate": 4.1,
+      "t10y2y": 0.45,
+      "unrate": 4.2,
       "unrate_prev": null,
       "cpi_yoy": 0.034,
       "fedfunds": 3.75,
-      "vix": 16.34,
-      "hy_spread": 3.12,
+      "vix": 16.39,
+      "hy_spread": 3.24,
       "eu_hicp_yoy": 0.032,
       "eu_unrate": 6.7,
       "eu_unrate_prev": null
     },
-    "asof": "2026-10-01"
+    "asof": "2026-10-02"
   },
   "tickers": {
     "SAF.PA": {
       "ticker": "SAF.PA",
-      "asof": "2026-10-02",
+      "asof": "2026-10-03",
       "momentum_12_1": {
-        "value": 0.094,
+        "value": 0.1027,
         "sign": "positif",
         "overheated": false,
         "ok": true
       },
       "rsi_14": {
-        "value": 60.7,
-        "zone": "fort",
+        "value": 47.2,
+        "zone": "sain",
         "ok": true
       },
       "rel_volume": {
-        "value": 1.27,
+        "value": 1.12,
         "ok": true
       },
       "range_52w": {
-        "value": 0.62,
+        "value": 0.65,
         "zone": "moitié haute",
         "ok": true
       },
-      "price": 327,
+      "price": 330.1,
       "currency": "EUR",
       "insider_90d": null,
       "earnings_quality": null,
@@ -59,7 +59,7 @@
       "revenue_growth": null,
       "gate": {
         "verdict": "vert",
-        "composite": 0.351,
+        "composite": 0.311,
         "coverage": 0.39,
         "reasons": [
           "range 52 sem. favorable"
@@ -67,12 +67,12 @@
         "contributions": [
           {
             "key": "momentum_12_1",
-            "sub_score": 0.31,
+            "sub_score": 0.34,
             "weight": 0.15
           },
           {
             "key": "rsi_14",
-            "sub_score": 0.4,
+            "sub_score": 0.2,
             "weight": 0.1
           },
           {
@@ -91,16 +91,16 @@
     },
     "AMZN": {
       "ticker": "AMZN",
-      "asof": "2026-10-02",
+      "asof": "2026-10-03",
       "momentum_12_1": {
-        "value": 0.168,
+        "value": 0.1613,
         "sign": "positif",
         "overheated": false,
         "ok": true
       },
       "rsi_14": {
-        "value": 46.9,
-        "zone": "sain",
+        "value": 39.4,
+        "zone": "faible",
         "ok": true
       },
       "rel_volume": {
@@ -108,13 +108,19 @@
         "ok": true
       },
       "range_52w": {
-        "value": 0.573,
+        "value": 0.609,
         "zone": "moitié haute",
         "ok": true
       },
-      "price": 248.23,
+      "price": 251.52,
       "currency": "USD",
-      "insider_90d": null,
+      "insider_90d": {
+        "ratio": 0,
+        "buys": 0,
+        "sells": 2,
+        "zone": "ventes nettes",
+        "ok": true
+      },
       "earnings_quality": {
         "accruals_ratio": -0.0756,
         "fcf_to_ni": null,
@@ -143,20 +149,16 @@
       },
       "fundamentals_source": "SEC EDGAR (10-K)",
       "eps_surprise": null,
-      "revenue_growth": {
-        "yoy": 0.124,
-        "fiscalDate": "2025-12-31",
-        "ok": true
-      },
+      "revenue_growth": null,
       "gate": {
         "verdict": "vert",
-        "composite": 0.377,
-        "coverage": 0.86,
+        "composite": 0.218,
+        "coverage": 0.92,
         "reasons": [
           "qualité earnings favorable",
           "momentum 12-1 favorable",
           "range 52 sem. favorable",
-          "croissance CA favorable"
+          "initiés 90j défavorable"
         ],
         "contributions": [
           {
@@ -171,12 +173,12 @@
           },
           {
             "key": "momentum_12_1",
-            "sub_score": 0.56,
+            "sub_score": 0.54,
             "weight": 0.15
           },
           {
             "key": "rsi_14",
-            "sub_score": 0.2,
+            "sub_score": -0.2,
             "weight": 0.1
           },
           {
@@ -185,13 +187,13 @@
             "weight": 0.1
           },
           {
-            "key": "rel_volume",
-            "sub_score": 0,
-            "weight": 0.04
+            "key": "insider_90d",
+            "sub_score": -0.6,
+            "weight": 0.1
           },
           {
-            "key": "revenue_growth",
-            "sub_score": 0.5,
+            "key": "rel_volume",
+            "sub_score": 0,
             "weight": 0.04
           }
         ],
@@ -200,28 +202,28 @@
     },
     "EIMI": {
       "ticker": "EIMI",
-      "asof": "2026-10-02",
+      "asof": "2026-10-03",
       "momentum_12_1": {
-        "value": 0.2685,
+        "value": 0.2602,
         "sign": "positif",
         "overheated": false,
         "ok": true
       },
       "rsi_14": {
-        "value": 47.5,
-        "zone": "sain",
+        "value": 41.4,
+        "zone": "faible",
         "ok": true
       },
       "rel_volume": {
-        "value": 0,
+        "value": 0.88,
         "ok": true
       },
       "range_52w": {
-        "value": 0.897,
-        "zone": "près du haut",
+        "value": 0.712,
+        "zone": "moitié haute",
         "ok": true
       },
-      "price": 54.31,
+      "price": 55.34,
       "currency": "USD",
       "insider_90d": null,
       "earnings_quality": null,
@@ -231,7 +233,7 @@
       "revenue_growth": null,
       "gate": {
         "verdict": "vert",
-        "composite": 0.524,
+        "composite": 0.411,
         "coverage": 0.39,
         "reasons": [
           "momentum 12-1 favorable",
@@ -240,12 +242,12 @@
         "contributions": [
           {
             "key": "momentum_12_1",
-            "sub_score": 0.9,
+            "sub_score": 0.87,
             "weight": 0.15
           },
           {
             "key": "rsi_14",
-            "sub_score": 0.2,
+            "sub_score": -0.2,
             "weight": 0.1
           },
           {
@@ -264,28 +266,28 @@
     },
     "AI": {
       "ticker": "AI",
-      "asof": "2026-10-02",
+      "asof": "2026-10-03",
       "momentum_12_1": {
-        "value": 0.1096,
+        "value": 0.1157,
         "sign": "positif",
         "overheated": false,
         "ok": true
       },
       "rsi_14": {
-        "value": 64.9,
-        "zone": "fort",
+        "value": 49.8,
+        "zone": "sain",
         "ok": true
       },
       "rel_volume": {
-        "value": 1.03,
+        "value": 1.48,
         "ok": true
       },
       "range_52w": {
-        "value": 0.619,
+        "value": 0.708,
         "zone": "moitié haute",
         "ok": true
       },
-      "price": 166.44,
+      "price": 170.16,
       "currency": "EUR",
       "insider_90d": null,
       "earnings_quality": null,
@@ -295,7 +297,7 @@
       "revenue_growth": null,
       "gate": {
         "verdict": "vert",
-        "composite": 0.371,
+        "composite": 0.348,
         "coverage": 0.39,
         "reasons": [
           "range 52 sem. favorable"
@@ -303,71 +305,7 @@
         "contributions": [
           {
             "key": "momentum_12_1",
-            "sub_score": 0.37,
-            "weight": 0.15
-          },
-          {
-            "key": "rsi_14",
-            "sub_score": 0.4,
-            "weight": 0.1
-          },
-          {
-            "key": "range_52w",
-            "sub_score": 0.5,
-            "weight": 0.1
-          },
-          {
-            "key": "rel_volume",
-            "sub_score": 0,
-            "weight": 0.04
-          }
-        ],
-        "note": "garde-fou VERT : sizing normal selon conviction, plafond 20% (§H)."
-      }
-    },
-    "LOTB": {
-      "ticker": "LOTB",
-      "asof": "2026-10-02",
-      "momentum_12_1": {
-        "value": 0.6336,
-        "sign": "positif",
-        "overheated": true,
-        "ok": true
-      },
-      "rsi_14": {
-        "value": 48.5,
-        "zone": "sain",
-        "ok": true
-      },
-      "rel_volume": {
-        "value": 0.87,
-        "ok": true
-      },
-      "range_52w": {
-        "value": 0.788,
-        "zone": "moitié haute",
-        "ok": true
-      },
-      "price": 11940,
-      "currency": "EUR",
-      "insider_90d": null,
-      "earnings_quality": null,
-      "fscore": null,
-      "fundamentals_source": null,
-      "eps_surprise": null,
-      "revenue_growth": null,
-      "gate": {
-        "verdict": "ambre",
-        "composite": 0.064,
-        "coverage": 0.39,
-        "reasons": [
-          "range 52 sem. favorable",
-          "momentum en surchauffe (>+60%/an)"
-        ],
-        "contributions": [
-          {
-            "key": "momentum_12_1",
-            "sub_score": -0.3,
+            "sub_score": 0.39,
             "weight": 0.15
           },
           {
@@ -382,37 +320,101 @@
           },
           {
             "key": "rel_volume",
-            "sub_score": 0,
+            "sub_score": 0.2,
             "weight": 0.04
           }
         ],
-        "note": "garde-fou ORANGE : taille max 5% du book + stop-loss −8% obligatoire (§H)."
+        "note": "garde-fou VERT : sizing normal selon conviction, plafond 20% (§H)."
       }
     },
-    "BNP.PA": {
-      "ticker": "BNP.PA",
-      "asof": "2026-10-02",
+    "LOTB": {
+      "ticker": "LOTB",
+      "asof": "2026-10-03",
       "momentum_12_1": {
-        "value": 0.3154,
+        "value": 0.555,
         "sign": "positif",
         "overheated": false,
         "ok": true
       },
       "rsi_14": {
-        "value": 28.4,
+        "value": 51,
+        "zone": "sain",
+        "ok": true
+      },
+      "rel_volume": {
+        "value": 1.42,
+        "ok": true
+      },
+      "range_52w": {
+        "value": 0.808,
+        "zone": "moitié haute",
+        "ok": true
+      },
+      "price": 12060,
+      "currency": "EUR",
+      "insider_90d": null,
+      "earnings_quality": null,
+      "fscore": null,
+      "fundamentals_source": null,
+      "eps_surprise": null,
+      "revenue_growth": null,
+      "gate": {
+        "verdict": "vert",
+        "composite": 0.585,
+        "coverage": 0.39,
+        "reasons": [
+          "momentum 12-1 favorable",
+          "range 52 sem. favorable"
+        ],
+        "contributions": [
+          {
+            "key": "momentum_12_1",
+            "sub_score": 1,
+            "weight": 0.15
+          },
+          {
+            "key": "rsi_14",
+            "sub_score": 0.2,
+            "weight": 0.1
+          },
+          {
+            "key": "range_52w",
+            "sub_score": 0.5,
+            "weight": 0.1
+          },
+          {
+            "key": "rel_volume",
+            "sub_score": 0.2,
+            "weight": 0.04
+          }
+        ],
+        "note": "garde-fou VERT : sizing normal selon conviction, plafond 20% (§H)."
+      }
+    },
+    "BNP.PA": {
+      "ticker": "BNP.PA",
+      "asof": "2026-10-03",
+      "momentum_12_1": {
+        "value": 0.3656,
+        "sign": "positif",
+        "overheated": false,
+        "ok": true
+      },
+      "rsi_14": {
+        "value": 19.5,
         "zone": "survendu",
         "ok": true
       },
       "rel_volume": {
-        "value": 1.94,
+        "value": 1.43,
         "ok": true
       },
       "range_52w": {
-        "value": 0.543,
+        "value": 0.553,
         "zone": "moitié haute",
         "ok": true
       },
-      "price": 91.54,
+      "price": 92.06,
       "currency": "EUR",
       "insider_90d": null,
       "earnings_quality": null,
@@ -456,28 +458,28 @@
     },
     "MSCI": {
       "ticker": "MSCI",
-      "asof": "2026-10-02",
+      "asof": "2026-10-03",
       "momentum_12_1": {
-        "value": 0.0176,
+        "value": 0.0053,
         "sign": "neutre",
         "overheated": false,
         "ok": true
       },
       "rsi_14": {
-        "value": 44,
+        "value": 43.8,
         "zone": "faible",
         "ok": true
       },
       "rel_volume": {
-        "value": 0.97,
+        "value": 0.84,
         "ok": true
       },
       "range_52w": {
-        "value": 0.308,
-        "zone": "moitié basse",
+        "value": 0.243,
+        "zone": "près du bas",
         "ok": true
       },
-      "price": 545.39,
+      "price": 535.95,
       "currency": "USD",
       "insider_90d": {
         "ratio": 1,
@@ -513,7 +515,11 @@
         "ok": true
       },
       "fundamentals_source": "SEC EDGAR (10-K)",
-      "eps_surprise": null,
+      "eps_surprise": {
+        "surprise_pct": 0.82,
+        "date": "2026-07-21",
+        "ok": true
+      },
       "revenue_growth": {
         "yoy": 0.097,
         "fiscalDate": "2025-12-31",
@@ -521,8 +527,8 @@
       },
       "gate": {
         "verdict": "vert",
-        "composite": 0.561,
-        "coverage": 0.96,
+        "composite": 0.509,
+        "coverage": 1,
         "reasons": [
           "F-Score favorable",
           "qualité earnings favorable",
@@ -542,7 +548,7 @@
           },
           {
             "key": "momentum_12_1",
-            "sub_score": 0.06,
+            "sub_score": 0.02,
             "weight": 0.15
           },
           {
@@ -552,7 +558,7 @@
           },
           {
             "key": "range_52w",
-            "sub_score": 0,
+            "sub_score": -0.4,
             "weight": 0.1
           },
           {
@@ -566,6 +572,11 @@
             "weight": 0.04
           },
           {
+            "key": "eps_surprise",
+            "sub_score": 0.4,
+            "weight": 0.04
+          },
+          {
             "key": "revenue_growth",
             "sub_score": 0.5,
             "weight": 0.04
@@ -576,28 +587,28 @@
     },
     "CEG": {
       "ticker": "CEG",
-      "asof": "2026-10-02",
+      "asof": "2026-10-03",
       "momentum_12_1": {
-        "value": -0.2313,
+        "value": -0.2214,
         "sign": "négatif",
         "overheated": false,
         "ok": true
       },
       "rsi_14": {
-        "value": 26.7,
-        "zone": "survendu",
+        "value": 32.1,
+        "zone": "faible",
         "ok": true
       },
       "rel_volume": {
-        "value": 1.42,
+        "value": 1.21,
         "ok": true
       },
       "range_52w": {
-        "value": 0.165,
+        "value": 0.157,
         "zone": "près du bas",
         "ok": true
       },
-      "price": 258.92,
+      "price": 257.49,
       "currency": "USD",
       "insider_90d": {
         "ratio": 1,
@@ -637,13 +648,12 @@
       "revenue_growth": null,
       "gate": {
         "verdict": "vert",
-        "composite": 0.209,
+        "composite": 0.238,
         "coverage": 0.92,
         "reasons": [
           "F-Score favorable",
           "qualité earnings favorable",
           "momentum 12-1 défavorable",
-          "RSI 14j défavorable",
           "initiés 90j favorable"
         ],
         "contributions": [
@@ -659,12 +669,12 @@
           },
           {
             "key": "momentum_12_1",
-            "sub_score": -0.77,
+            "sub_score": -0.74,
             "weight": 0.15
           },
           {
             "key": "rsi_14",
-            "sub_score": -0.5,
+            "sub_score": -0.2,
             "weight": 0.1
           },
           {
@@ -679,7 +689,7 @@
           },
           {
             "key": "rel_volume",
-            "sub_score": 0.2,
+            "sub_score": 0,
             "weight": 0.04
           }
         ],
@@ -688,28 +698,28 @@
     },
     "GVA": {
       "ticker": "GVA",
-      "asof": "2026-10-02",
+      "asof": "2026-10-03",
       "momentum_12_1": {
-        "value": 0.1045,
+        "value": 0.0795,
         "sign": "positif",
         "overheated": false,
         "ok": true
       },
       "rsi_14": {
-        "value": 51.4,
-        "zone": "sain",
+        "value": 44.8,
+        "zone": "faible",
         "ok": true
       },
       "rel_volume": {
-        "value": 1.3,
+        "value": 1.1,
         "ok": true
       },
       "range_52w": {
-        "value": 0.302,
+        "value": 0.35,
         "zone": "moitié basse",
         "ok": true
       },
-      "price": 116.85,
+      "price": 119.92,
       "currency": "USD",
       "insider_90d": {
         "ratio": 1,
@@ -743,7 +753,11 @@
         "ok": true
       },
       "fundamentals_source": "SEC EDGAR (10-K)",
-      "eps_surprise": null,
+      "eps_surprise": {
+        "surprise_pct": -7.49,
+        "date": "2026-07-30",
+        "ok": true
+      },
       "revenue_growth": {
         "yoy": 0.104,
         "fiscalDate": "2025-12-31",
@@ -751,12 +765,13 @@
       },
       "gate": {
         "verdict": "vert",
-        "composite": 0.657,
-        "coverage": 0.96,
+        "composite": 0.53,
+        "coverage": 1,
         "reasons": [
           "F-Score favorable",
           "qualité earnings favorable",
           "initiés 90j favorable",
+          "EPS surprise défavorable",
           "croissance CA favorable"
         ],
         "contributions": [
@@ -772,12 +787,12 @@
           },
           {
             "key": "momentum_12_1",
-            "sub_score": 0.35,
+            "sub_score": 0.27,
             "weight": 0.15
           },
           {
             "key": "rsi_14",
-            "sub_score": 0.2,
+            "sub_score": -0.2,
             "weight": 0.1
           },
           {
@@ -792,7 +807,12 @@
           },
           {
             "key": "rel_volume",
-            "sub_score": 0.2,
+            "sub_score": 0,
+            "weight": 0.04
+          },
+          {
+            "key": "eps_surprise",
+            "sub_score": -1,
             "weight": 0.04
           },
           {
@@ -806,28 +826,28 @@
     },
     "CB": {
       "ticker": "CB",
-      "asof": "2026-10-02",
+      "asof": "2026-10-03",
       "momentum_12_1": {
-        "value": 0.2034,
+        "value": 0.1929,
         "sign": "positif",
         "overheated": false,
         "ok": true
       },
       "rsi_14": {
-        "value": 20.6,
-        "zone": "survendu",
+        "value": 37.8,
+        "zone": "faible",
         "ok": true
       },
       "rel_volume": {
-        "value": 0.82,
+        "value": 1.19,
         "ok": true
       },
       "range_52w": {
-        "value": 0.656,
+        "value": 0.652,
         "zone": "moitié haute",
         "ok": true
       },
-      "price": 331.3,
+      "price": 330.89,
       "currency": "USD",
       "insider_90d": {
         "ratio": 0,
@@ -872,13 +892,12 @@
       },
       "gate": {
         "verdict": "vert",
-        "composite": 0.366,
+        "composite": 0.392,
         "coverage": 0.96,
         "reasons": [
           "F-Score favorable",
           "qualité earnings favorable",
           "momentum 12-1 favorable",
-          "RSI 14j défavorable",
           "range 52 sem. favorable",
           "initiés 90j défavorable",
           "croissance CA favorable"
@@ -896,12 +915,12 @@
           },
           {
             "key": "momentum_12_1",
-            "sub_score": 0.68,
+            "sub_score": 0.64,
             "weight": 0.15
           },
           {
             "key": "rsi_14",
-            "sub_score": -0.5,
+            "sub_score": -0.2,
             "weight": 0.1
           },
           {
@@ -930,28 +949,28 @@
     },
     "EME": {
       "ticker": "EME",
-      "asof": "2026-10-02",
+      "asof": "2026-10-03",
       "momentum_12_1": {
-        "value": 0.1125,
+        "value": 0.1235,
         "sign": "positif",
         "overheated": false,
         "ok": true
       },
       "rsi_14": {
-        "value": 52,
+        "value": 45.6,
         "zone": "sain",
         "ok": true
       },
       "rel_volume": {
-        "value": 0.9,
+        "value": 1.04,
         "ok": true
       },
       "range_52w": {
-        "value": 0.527,
+        "value": 0.573,
         "zone": "moitié haute",
         "ok": true
       },
-      "price": 769.03,
+      "price": 786.61,
       "currency": "USD",
       "insider_90d": null,
       "earnings_quality": {
@@ -982,15 +1001,20 @@
       },
       "fundamentals_source": "SEC EDGAR (10-K)",
       "eps_surprise": null,
-      "revenue_growth": null,
+      "revenue_growth": {
+        "yoy": 0.166,
+        "fiscalDate": "2025-12-31",
+        "ok": true
+      },
       "gate": {
         "verdict": "vert",
-        "composite": 0.508,
-        "coverage": 0.82,
+        "composite": 0.537,
+        "coverage": 0.86,
         "reasons": [
           "F-Score favorable",
           "qualité earnings favorable",
-          "range 52 sem. favorable"
+          "range 52 sem. favorable",
+          "croissance CA favorable"
         ],
         "contributions": [
           {
@@ -1005,7 +1029,7 @@
           },
           {
             "key": "momentum_12_1",
-            "sub_score": 0.38,
+            "sub_score": 0.41,
             "weight": 0.15
           },
           {
@@ -1021,6 +1045,11 @@
           {
             "key": "rel_volume",
             "sub_score": 0,
+            "weight": 0.04
+          },
+          {
+            "key": "revenue_growth",
+            "sub_score": 1,
             "weight": 0.04
           }
         ],
@@ -1029,56 +1058,52 @@
     },
     "GLE.PA": {
       "ticker": "GLE.PA",
-      "asof": "2026-10-02",
+      "asof": "2026-10-03",
       "momentum_12_1": {
-        "value": 0.2921,
+        "value": 0.3349,
         "sign": "positif",
         "overheated": false,
         "ok": true
       },
       "rsi_14": {
-        "value": 36.8,
-        "zone": "faible",
+        "value": 27.3,
+        "zone": "survendu",
         "ok": true
       },
       "rel_volume": {
-        "value": 1.93,
+        "value": 1.19,
         "ok": true
       },
       "range_52w": {
-        "value": 0.429,
+        "value": 0.436,
         "zone": "moitié basse",
         "ok": true
       },
-      "price": 66.08,
+      "price": 66.3,
       "currency": "EUR",
       "insider_90d": null,
       "earnings_quality": null,
       "fscore": null,
       "fundamentals_source": null,
       "eps_surprise": null,
-      "revenue_growth": {
-        "yoy": 0.107,
-        "fiscalDate": "2024-06-30",
-        "ok": true
-      },
+      "revenue_growth": null,
       "gate": {
         "verdict": "vert",
-        "composite": 0.358,
-        "coverage": 0.43,
+        "composite": 0.256,
+        "coverage": 0.39,
         "reasons": [
           "momentum 12-1 favorable",
-          "croissance CA favorable"
+          "RSI 14j défavorable"
         ],
         "contributions": [
           {
             "key": "momentum_12_1",
-            "sub_score": 0.97,
+            "sub_score": 1,
             "weight": 0.15
           },
           {
             "key": "rsi_14",
-            "sub_score": -0.2,
+            "sub_score": -0.5,
             "weight": 0.1
           },
           {
@@ -1088,12 +1113,7 @@
           },
           {
             "key": "rel_volume",
-            "sub_score": 0.2,
-            "weight": 0.04
-          },
-          {
-            "key": "revenue_growth",
-            "sub_score": 0.5,
+            "sub_score": 0,
             "weight": 0.04
           }
         ],
@@ -1104,7 +1124,6 @@
   "data_gaps": [
     "SAF.PA: initiés OpenInsider indisponibles (non-US ?)",
     "SAF.PA: états financiers FMP incomplets",
-    "AMZN: initiés OpenInsider indisponibles (non-US ?)",
     "EIMI: initiés OpenInsider indisponibles (non-US ?)",
     "EIMI: états financiers FMP incomplets",
     "AI: initiés OpenInsider indisponibles (non-US ?)",

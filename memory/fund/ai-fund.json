@@ -1,9 +1,9 @@
 {
   "_doc": "Cache des signaux QUANTITATIFS calculés par engine/signals.js. 'regime' = score macro FRED agrégé (gate global). 'tickers' = map ticker -> { fscore, momentum_12_1, earnings_quality, gate } horodatés. L'IA LIT ce fichier avant d'ouvrir/fermer une position (method §A/§H) : les signaux sont des garde-fous factuels, pas une boîte noire. 'data_gaps' liste les sources indisponibles (clé manquante / quota) pour rester honnête sur l'incertitude. Régénéré par les routines ; ne pas éditer à la main.",
-  "as_of": "2026-10-02",
+  "as_of": "2026-10-03",
   "seeded": true,
   "start_capital": 10417.28,
-  "cash": 3295.80,
+  "cash": 3535.09,
   "positions": [
     {
       "ticker": "SAF.PA",
@@ -173,17 +173,17 @@
     {
       "ticker": "GLE.PA",
       "quantity": 1.01,
-      "avg_cost": 303.0,
+      "avg_cost": 66.08,
       "confidence": "Basse",
       "horizon": "coeur",
       "thesis_id": "gle-nim-banque",
       "entry_date": "2026-09-26",
       "target": null,
-      "exit_rule": "sortie si ROTE < 8% durablement OU CDS EU banks > 200bps OU BCE coupe agressivement (-100bps) OU F-Score ≤ 3/9 ; horizon_test Q3 2026 résultats (nov. 2026) ; seuil réexamen mercredi : cours < 227€ (entry_price 303€ × 0.75)",
+      "exit_rule": "sortie si ROTE < 8% durablement OU CDS EU banks > 200bps OU BCE coupe agressivement (-100bps) OU F-Score ≤ 3/9 ; horizon_test Q3 2026 résultats (nov. 2026) ; seuil réexamen mercredi : cours < 49.56€ (entry_price 66.08€ × 0.75) ; ex-div 05/10 €0.75/part",
       "seed": false,
-      "thesis": "Société Générale — banque universelle EU. P/TBV 0.94x (sous valeur de reconstitution), ROTE 12.2% Q2 confirmé, bénéficiaire NIM expansion BCE/FOMC. Deep-dive 10/09 : Acheter analytique Moyenne ; sizing contraint à Basse par couloir de cash SURCHAUFFE (Moyenne mettrait cash ~28.8% < plancher 30%). Gate 🟢 +0.462 mom+46% RSI41.7 cov39% (watchlist 24/09 — data gap signals.js EU). Entrée 26/09 @ 303€. Position 1.01 × 303€ = 306€ ≈ 3.0% NAV. Non-redondant avec CB (USD assurance vs EUR banque commerciale).",
-      "entry_price": 303.0,
-      "entry_price_source": "estimation watchlist/catalysts 26/09 — GLE.PA absent signals.js (data gap EU)"
+      "thesis": "Société Générale — banque universelle EU. P/TBV 0.94x (sous valeur de reconstitution), ROTE 12.2% Q2 confirmé, bénéficiaire NIM expansion BCE/FOMC. Deep-dive 10/09 : Acheter analytique Moyenne ; sizing contraint à Basse par couloir de cash SURCHAUFFE (Moyenne mettrait cash ~28.8% < plancher 30%). Gate 🟢 +0.462 mom+46% RSI41.7 cov39% (watchlist 24/09 — data gap signals.js EU). Entrée 26/09 @ ~66.08€ (réconciliation W47 : entrée initialement enregistrée @ 303€ par erreur watchlist EU, corrigée 03/10). Position 1.01 × 66.08€ = 66.74€ ≈ 0.66% NAV — SOUS-TAILLE vs cible Basse ~3% NAV (erreur de sizing liée au prix erroné ; renforcement possible si gate 🟢 confirmé 2 semaines consécutives et cash > 32% NAV). Non-redondant avec CB (USD assurance vs EUR banque commerciale). Falsificateurs : ROTE<8%, CDS>200bps, BCE coupe agressivement. Ex-div 05/10 €0.75.",
+      "entry_price": 66.08,
+      "entry_price_source": "cours réel Yahoo Finance GLE.PA ~€66 (01/10/2026) — réconciliation W47 ; entrée 26/09 initialement enregistrée à €303 par erreur watchlist non vérifiée (leçon 02/10, règle : NE JAMAIS estimer prix EU depuis watchlist non vérifiée)"
     }
   ],
   "trades": [
@@ -585,15 +585,16 @@
       "side": "buy",
       "ticker": "GLE.PA",
       "quantity": 1.01,
-      "price": 303.0,
+      "price": 66.08,
+      "price_note": "CORRIGÉ W47 — prix initialement enregistré à 303€ (erreur watchlist EU, GLE.PA absent signals.js). Prix réel ~66€ confirmé Yahoo Finance 01/10. Règle : ne jamais encoder un prix EU depuis une watchlist non vérifiée.",
       "fee": 0.92,
       "confidence": "Basse",
       "thesis_id": "gle-nim-banque",
       "horizon": "coeur",
       "gate": "🟢 +0.462 mom+46% RSI41.7 cov39% (watchlist 24/09)",
-      "rationale": "Entrée vendredi §H — NIM EU expansion. Deep-dive 10/09 → Acheter analytique Moyenne, sizing réduit à Basse par contrainte couloir de cash SURCHAUFFE (Moyenne mettrait cash ~28.8% < plancher 30%). Société Générale : P/TBV 0.94x, ROTE 12.2% Q2 ✓, bénéficiaire direct BCE +25bps + FOMC +25bps 16/09 (NIM expansion). Non-redondant avec CB (USD assurance vs EUR banque commerciale). Reportée depuis W42 (CB priorisé sur gate cov92% > cov39%). BNP.PA div +12.02€ comptabilisé (ex-div 24/09, paiement 28/09). AI.PA hystérésis 2e🟠 : trim 0 (excédent 3.9€ < frais friction). LOTB hystérésis 2e🟠 : trim 0 (déjà <5% NAV). Coût total : 1.01 × 303€ = 306.03€ + frais 0.92€ = 306.95€. Cash post-trade : 3 293.68€ = 32.2% NAV (corridor 30-50% ✓, plancher 30% respecté)."
+      "rationale": "Entrée vendredi §H — NIM EU expansion. Deep-dive 10/09 → Acheter analytique Moyenne, sizing réduit à Basse par contrainte couloir de cash SURCHAUFFE (Moyenne mettrait cash ~28.8% < plancher 30%). Société Générale : P/TBV 0.94x, ROTE 12.2% Q2 ✓, bénéficiaire direct BCE +25bps + FOMC +25bps 16/09 (NIM expansion). Non-redondant avec CB (USD assurance vs EUR banque commerciale). Reportée depuis W42 (CB priorisé sur gate cov92% > cov39%). BNP.PA div +12.02€ comptabilisé (ex-div 24/09, paiement 28/09). AI.PA hystérésis 2e🟠 : trim 0 (excédent 3.9€ < frais friction). LOTB hystérésis 2e🟠 : trim 0 (déjà <5% NAV). Coût total CORRIGÉ : 1.01 × 66.08€ = 66.74€ + frais 0.92€ = 67.66€. Cash post-trade CORRIGÉ : 3 535.09€ = 35.2% NAV (avant CB div) — [Réconciliation W47 03/10 : prix 303€ erroné → 66.08€, cash récupéré +239.29€]."
     }
   ],
-  "note": "Portfolio Doctor W46 2026-10-02. SURCHAUFFE HARD-CONFIRMÉE (T10Y ~5.21%, FOMC hike acté 16/09, BCE 2.50%, FOMC 27-28/10 69% hike). 0 TRADES W46. CB dividende $1.02/part × 2.4 = $2.448 = €2.12 crédités (ex-date ~30/09, paiement 02/10). NAV ≈ €10 035 (anomalie GLE.PA incluse — entry €303 vs cours réel €66.08 = erreur enregistrement 26/09). Cash 3 295.80€ = 32.8% NAV (corridor 30-50% ✓). Signaux W46 02/10 : 11🟢 1🟠 — AI.PA FLIP 🟠×3→🟢 (hystérésis désarmée) ; LOTB 🟠 4e consécutif (saisine mercredi W47 OBLIGATOIRE) ; CEG Amazon PPA 690MW 01/10 (thèse renforcée) ; CB RSI 20.6 = ex-div mécanique. GLE.PA anomalie prix : saisine mercredi W47 OBLIGATOIRE pour réconciliation.",
+  "note": "Brief W47 2026-10-03. SURCHAUFFE HARD-CONFIRMÉE (T10Y ~5.21%, FOMC 27-28/10 69% hike). 0 TRADES W47. RÉCONCILIATION GLE.PA : avg_cost 303€→66.08€, entry_price corrigé, cash +239.29€ (3 295.80€→3 535.09€). NAV ≈ €10 035 (inchangé — la correction GLE.PA décale le cash +239.29€ et la valeur position −239.29€, NAV neutre). Signaux W47 03/10 : 12🟢 0🟠 0🔴 — LOTB streak 🟠×4 CASSÉE → 🟢 (momentum normalisé). AI.PA 2e🟢 consécutif (hystérésis levée, renforcement possible mais bloqué par cash et SURCHAUFFE). Cash 3 535.09€ = 35.2% NAV (corridor 30-50% ✓). Calibration mensuelle : n_conviction=1 (CRH), tous buckets n<8, aucun ajustement sizing.",
   "note_migration_2026_08_30": "MIGRATION §H/§I COMPLÈTE (vendredi 05/09/2026) : (1) `entry_price` = prix réellement payé par l'IA. (2) `avg_cost` hors jugement IA. (3) Toutes les exit_rules CŒUR RÉÉCRITES en critères de thèse + seuil réexamen −25% vs entry_price : stops de prix (stop -8% avg_cost, stop EUR X€, stop USD $Y) SUPPRIMÉS de toutes les exit_rules. P-001 conservé comme RÉFÉRENCE de monitoring USD pour les positions US, jamais comme déclencheur automatique sur CŒUR — franchissement P-001 = saisine mercredi, pas vente jeudi. Hystérésis : gate flip ne déclenche sizing change qu'après 2 relevés consécutifs confirmés."
 }

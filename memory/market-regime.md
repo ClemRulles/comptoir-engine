@@ -1,3 +1,16 @@
+# Régime de marché — mis à jour le 2026-10-03 (W47)
+
+- **✅ SURCHAUFFE HARD-CONFIRMÉE — INCHANGÉ**. T10Y **~5,21 %** (stable). FOMC 27-28/10 : **69 % hike** (Kalshi). S&P 500 ~7 680. Brent ~$107.
+- **Signals.js W47 03/10** : RISK-ON SAIN (FRED lag — override prime, SURCHAUFFE acté). **12🟢 / 0🟠 / 0🔴** (toutes positions vertes).
+- **✅ LOTB streak 🟠×4 CASSÉE → 🟢 W47** (momentum revenu à la normale, RSI normalisé). Saisine mercredi W47 non déclenchante : pas de trim (position < 5% NAV). Hystérésis renforcement : 1er🟢 depuis la série, pas actionnable avant 2e🟢 consécutif (W48 si confirmé).
+- **✅ AI.PA 2e🟢 consécutif** (W46→W47). Hystérésis levée. Renforcement possible mais bloqué : SURCHAUFFE + cash 35.2% = aucune marge pour déploiement supplémentaire.
+- **✅ GLE.PA RÉCONCILIATION PRIX W47** : entry_price corrigée 303€ → 66.08€ (cours Yahoo Finance confirmé ~€66). Cash récupéré +€239.29 (3 295.80€ → 3 535.09€). NAV inchangé (~€10 035). Position GLE.PA = 1.01 × 66.08€ = €66.74 ≈ 0.66% NAV (sous-taille vs cible Basse 3% NAV). Ex-div GLE.PA 05/10 (€0.75/part = €0.76 cash).
+- **Grok W47** : cb-nim-float-post-fomc-w42 résolu INCORRECT (CB $331.66 < $339.42, −2.29%). hit_rate 5/15 = 33.3%, tactical_cap 0%.
+- **Cash 3 535.09€ = 35.2% NAV** (corridor 30-50% ✓, plus confortable qu'en W46 après réconciliation). 0 trade W47.
+- **Catalysts à 14 jours** : GLE.PA ex-div 05/10 (€0.75) ; CB Q3 ~20-21/10 (combined ratio/NII — test de thèse) ; FOMC 27-28/10 (69% hike, binaire fort pour tout le book) ; EME Q3 octobre.
+- **Sources** : engine/signals.js 03/10 ; Yahoo Finance CB $331.66 03/10 ; Yahoo Finance GLE.PA €66.08 01/10.
+
+---
 # Régime de marché — mis à jour le 2026-10-02 (W46)
 
 - **✅ SURCHAUFFE HARD-CONFIRMÉE — INCHANGÉ**. T10Y **~5,21 %** (stable vs W45). FOMC 27-28/10 : **69 % hike** (Kalshi) / ~49 % (CME). S&P 500 ~7 680. Brent stable ~$107.

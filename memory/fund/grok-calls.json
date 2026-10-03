@@ -1,6 +1,7 @@
 {
   "_doc": "Sentiment X (Grok) transformé en PRÉDICTIONS SCORÉES (method §F) — le sentiment ne décide jamais sur la foi : il se MÉRITE une voix en prouvant qu'il prédit. Le lundi (pouls Grok) enregistre 0-3 'calls' directionnels court terme ; engine/grok.js les score contre le prix réel à l'horizon. Schéma d'un call : { id (kebab-case), opened (YYYY-MM-DD), ticker, direction ('hausse'|'baisse' attendue à court terme), confidence (0.5-0.9, force du signal de sentiment), thesis (1 ligne : ce que Grok 'sent'), horizon (YYYY-MM-DD, ~2 semaines), source (semaine du pouls), played (bool : le book a-t-il pris une position tactique ?), status ('ouvert' | 'joué' | 'résolu' | 'expiré'), resolution ({ date, move_pct (variation réelle sur l'horizon), correct (bool : le mouvement a-t-il suivi la direction au-delà de ±2 %), brier ((confidence − correct)²), trade_alpha_pct (si joué : alpha — mesure SÉPARÉE) }) }. 'stats' (recalculé par engine/grok.js) : resolved, hits, hit_rate, brier, tactical_cap = budget MAX du NAV pour les paris Grok, MÉRITÉ : 0 % tant que < 6 calls résolus, puis 3/6/8 % selon hit_rate (≥0.55/0.65/0.70), 0 % si < 0.45. Garde-fous §F : jamais sur gate 🔴, jamais contre la checklist bulle §B, demi-taille tactique, stop serré, sortie datée. L'euphorie reste un signal contrarien de top. Ne jamais réécrire un call résolu.",
-  "updated": "2026-09-29",
+  "updated": "2026-10-03",
+  "_scoring_w47": "cb-nim-float-post-fomc-w42 résolu 03/10 — hausse prédite, CB -2.29% → incorrect.",
   "calls": [
     {
       "id": "ceg-oversold-nuclear-w45",
@@ -251,8 +252,17 @@
       "horizon": "2026-10-03",
       "source": "2026-W42 (brief vendredi + entrée CB)",
       "played": true,
-      "status": "ouvert",
-      "guard_note": "JOUÉ — position CB ouverte ce jour 19/09 (Moyenne ~7% NAV). Call joué = position book coeur, §G gouverne la sortie (pas ce call). Score uniquement pour mesurer si le sentiment NIM post-FOMC prédit un mouvement positif CT sur CB."
+      "status": "résolu",
+      "guard_note": "JOUÉ — position CB ouverte ce jour 19/09 (Moyenne ~7% NAV). Call joué = position book coeur, §G gouverne la sortie (pas ce call). Score uniquement pour mesurer si le sentiment NIM post-FOMC prédit un mouvement positif CT sur CB.",
+      "resolution": {
+        "date": "2026-10-03",
+        "price_open_usd": 339.42,
+        "price_close_usd": 331.66,
+        "move_pct": -2.29,
+        "correct": false,
+        "brier": 0.4225,
+        "note": "CB ouvert à $339.42 (19/09, entrée position) → $331.66 (03/10, horizon passé). Move -2.29% < seuil +2% → hausse non réalisée. Le RSI 20.6 post-ex-div mécanique (ex-date ~30/09) a créé une pression technique qui a dominé CT. Thèse NIM float intacte (combined ratio 83.8%, NII T10Y ~5.21%, Q3 résultats ~20-21/10 = vrai test). Ce call mesurait un rebond CT post-FOMC/NIM, pas la thèse LT. Seuil réexamen $312 tient (cours $331.66, marge +6.3%)."
+      }
     },
     {
       "id": "amzn-nfp-tailwind-w29",
@@ -358,11 +368,12 @@
     }
   ],
   "stats": {
-    "resolved": 14,
+    "resolved": 15,
     "hits": 5,
-    "hit_rate": 0.357,
-    "brier": 0.28,
-    "tactical_cap": 0
+    "hit_rate": 0.333,
+    "brier": 0.29,
+    "tactical_cap": 0,
+    "_note": "cb-nim-float-post-fomc-w42 résolu 03/10 (incorrect, brier 0.4225). hit_rate 5/15=0.333 < 0.45 → tactical_cap 0%."
   },
   "data_gaps": []
 }
