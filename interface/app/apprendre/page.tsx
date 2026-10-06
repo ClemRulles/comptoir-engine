@@ -43,7 +43,7 @@ export default async function ApprendrePage({ searchParams }: { searchParams: Pr
               <Empty icon={BookOpen} title={MODULES.length ? "Aucun module avec cette étiquette" : "Le premier module arrive bientôt"}>
                 {MODULES.length
                   ? "Essaie une autre étiquette."
-                  : "Personne n'a encore publié de module. Tu as un sujet qui te passionne ? La carte « Écris ton module » t'aide à l'écrire avec ton IA."}
+                  : "Personne n'a encore publié de module. Tu as un sujet qui te passionne ? La carte « Écris ton module » t'aide à l'écrire avec ton IA."}
               </Empty>
             </Card>
           ) : (
