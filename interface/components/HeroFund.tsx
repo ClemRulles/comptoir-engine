@@ -97,6 +97,7 @@ export function HeroFund({
   demo,
   compare = { label: "Fonds IA", href: "/ia", tone: "ai" },
   contrib,
+  tone = "group",
 }: {
   title?: string;
   points: Pt[];
@@ -106,6 +107,7 @@ export function HeroFund({
   demo: boolean;
   compare?: { label: string; href: string; tone: "ai" | "group" };
   contrib?: ContribRule; // règle des apports, rappelée sous la courbe
+  tone?: "ai" | "group"; // couleur du fonds affiché : vert (groupe) ou orange (IA)
 }) {
   const [range, setRange] = useState<string>("3M");
   const [hover, setHover] = useState<number | null>(null);
@@ -190,8 +192,14 @@ export function HeroFund({
   );
   useEffect(() => () => { if (raf.current != null) cancelAnimationFrame(raf.current); }, []);
 
-  const color = up ? "#16a34a" : "#ef4444";
-  const colorSoft = up ? "#22c55e" : "#f87171";
+  const isAi = tone === "ai";
+  // La couleur de la courbe identifie le fonds (orange IA, vert groupe, rouge si le groupe baisse) ;
+  // pour l'IA elle reste orange en baisse, c'est la pastille (rouge) qui dit la tendance.
+  const color = isAi ? "#d97706" : up ? "#16a34a" : "#ef4444";
+  const colorSoft = isAi ? "#f59e0b" : up ? "#22c55e" : "#f87171";
+  const posText = isAi ? "text-amber-700 dark:text-ai" : "text-brand-600 dark:text-brand-500";
+  const posBg = isAi ? "bg-ai/[0.14]" : "bg-brand/[0.12]";
+  const posBorder = isAi ? "border-ai/30" : "border-brand/25";
   const mk = useMemo(() => {
     if (!market || win.length < 2) return null;
     const md = Object.keys(market).sort();
@@ -215,7 +223,7 @@ export function HeroFund({
   const aiNav = aiPoints[aiPoints.length - 1]?.v ?? null;
 
   return (
-    <section className={`hero-fund relative overflow-hidden rounded-[28px] border border-line/70 bg-card ${up ? "is-up" : "is-down"}`}>
+    <section className={`hero-fund relative overflow-hidden rounded-[28px] border border-line/70 bg-card ${up ? "is-up" : "is-down"} ${isAi ? "tone-ai" : ""}`}>
       {/* Halo d'ambiance, teinté par la tendance de la période (transition douce). */}
       <div aria-hidden className="hero-aura pointer-events-none absolute inset-0" />
       <div className="relative px-5 pb-4 pt-5 md:px-8 md:pt-7">
@@ -229,7 +237,7 @@ export function HeroFund({
             {demo && <span className="rounded-full bg-ai/15 px-2 py-0.5 text-[10px] font-semibold text-amber-700 dark:text-ai">DÉMO</span>}
           </div>
           {day && (
-            <span className={`hero-day inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[12px] font-semibold tabular-nums ${day.pct >= 0 ? "border-brand/25 text-brand-600 dark:text-brand-500" : "border-danger/25 text-danger"}`} title="Variation sur la dernière séance, hors apports">
+            <span className={`hero-day inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[12px] font-semibold tabular-nums ${day.pct >= 0 ? `${posBorder} ${posText}` : "border-danger/25 text-danger"}`} title="Variation sur la dernière séance, hors apports">
               <span className="font-normal text-muted">{shortDay(day.date)}</span>
               {day.pct >= 0 ? "▲" : "▼"} {signedPct(day.pct).replace(/^[+−]/, "")}
               <span className="hidden font-normal sm:inline">· {signedEur(day.eur)}</span>
@@ -242,7 +250,7 @@ export function HeroFund({
         </div>
 
         <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
-          <span key={`${range}-${up}`} className={`hero-pill inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[13px] font-semibold tabular-nums ${up ? "bg-brand/[0.12] text-brand-600 dark:text-brand-500" : "bg-danger/10 text-danger"}`}>
+          <span key={`${range}-${up}`} className={`hero-pill inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[13px] font-semibold tabular-nums ${up ? `${posBg} ${posText}` : "bg-danger/10 text-danger"}`}>
             {up ? <ArrowUpRight size={15} strokeWidth={2.5} className="hero-arrow" /> : <ArrowDownRight size={15} strokeWidth={2.5} className="hero-arrow" />}
             {signedEur(gain)} · {signedPct(perf)}
           </span>
@@ -363,7 +371,7 @@ export function HeroFund({
         </div>
         {/* D'où vient le montant : départ + apports + gains = valeur affichée (au centime près). */}
         <div className="flex items-center gap-3 bg-card/80 px-5 py-3.5 md:px-6">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand-600 dark:text-brand-500"><HandCoins size={17} /></span>
+          <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${isAi ? "bg-ai/[0.12]" : "bg-brand/10"} ${posText}`}><HandCoins size={17} /></span>
           <span className="grid min-w-0 flex-1 grid-cols-[auto_auto_auto_auto_auto] items-end justify-start gap-x-2 text-[12px] text-muted">
             <span>{shortDay(win[0]?.date)}</span>
             <span />
@@ -374,7 +382,7 @@ export function HeroFund({
             <span className="pb-px">+</span>
             <span className="num text-[15px] font-semibold text-ink">{eur0(flowsTo[at] ?? 0)}</span>
             <span className="pb-px">{gain >= 0 ? "+" : "−"}</span>
-            <span className={`num text-[15px] font-semibold ${gain >= 0 ? "text-brand-600 dark:text-brand-500" : "text-danger"}`}>{eur0(Math.abs(gain))}</span>
+            <span className={`num text-[15px] font-semibold ${gain >= 0 ? posText : "text-danger"}`}>{eur0(Math.abs(gain))}</span>
           </span>
         </div>
       </div>
