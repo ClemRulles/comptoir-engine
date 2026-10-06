@@ -252,19 +252,23 @@ const addDays = (date: string, d: number) => new Date(Date.parse(`${date}T00:00:
 
 type AnswerRow = { user_id: string; user_name: string | null; quiz_date: string; correct: boolean };
 
-export function buildBoard(rows: AnswerRow[], month: string, today: string, meId: string | null): Pick<QuizBoard, "questions" | "rows"> {
-  const start = `${month}-01`;
+// `launch` = premier jour où le quiz a existé (la plus ancienne réponse enregistrée) : les jours
+// d'avant ne sont pas des questions « ratées », ils n'ont jamais eu de question. Sans lui, le
+// premier mois afficherait « 1/6 » pour quelqu'un qui a tout joué depuis le lancement.
+export function buildBoard(rows: AnswerRow[], month: string, today: string, meId: string | null, launch: string | null = null): Pick<QuizBoard, "questions" | "rows"> {
+  const monthStart = `${month}-01`;
+  const start = launch && launch > monthStart ? launch : monthStart;
   const end = lastDay(month);
   const upTo = today < end ? today : end;
-  const questions = today < start ? 0 : dayNumber(upTo) - dayNumber(start) + 1;
-  const isCurrent = today >= start && today <= end;
+  const questions = upTo < start ? 0 : dayNumber(upTo) - dayNumber(start) + 1;
+  const isCurrent = today >= monthStart && today <= end;
 
   const byUser = new Map<string, AnswerRow[]>();
   for (const r of rows) byUser.set(r.user_id, [...(byUser.get(r.user_id) ?? []), r]);
 
   const out: QuizBoardRow[] = [];
   for (const [userId, list] of byUser) {
-    const inMonth = list.filter((r) => r.quiz_date >= start && r.quiz_date <= end);
+    const inMonth = list.filter((r) => r.quiz_date >= monthStart && r.quiz_date <= end);
     if (!inMonth.length) continue;
     const correct = inMonth.filter((r) => r.correct).length;
     const latest = [...list].sort((a, b) => b.quiz_date.localeCompare(a.quiz_date))[0];
@@ -305,7 +309,10 @@ export async function getQuizBoard(monthParam?: string | null): Promise<QuizBoar
   const current = today.slice(0, 7);
   const month = monthParam && /^\d{4}-\d{2}$/.test(monthParam) && monthParam <= current ? monthParam : current;
   const nav = { month, prev: shiftMonth(month, -1), next: month < current ? shiftMonth(month, 1) : null };
-  if (!isConfigured()) return { demo: true, ready: true, ...nav, ...buildBoard(DEMO_BOARD, month, today, "demo-2") };
+  if (!isConfigured()) {
+    const first = DEMO_BOARD.reduce((m, r) => (r.quiz_date < m ? r.quiz_date : m), today);
+    return { demo: true, ready: true, ...nav, ...buildBoard(DEMO_BOARD, month, today, "demo-2", first) };
+  }
   try {
     const supabase = await createClient();
     const {
@@ -318,7 +325,10 @@ export async function getQuizBoard(monthParam?: string | null): Promise<QuizBoar
       .gte("quiz_date", from)
       .lte("quiz_date", lastDay(month));
     if (error) return { demo: false, ready: !tableMissing(error), ...nav, questions: 0, rows: [] };
-    return { demo: false, ready: true, ...nav, ...buildBoard((data ?? []) as AnswerRow[], month, today, user?.id ?? null) };
+    // Premier jour de jeu, toutes périodes confondues (même si le mois affiché est plus récent).
+    const { data: firstRow } = await supabase.from("quiz_answers").select("quiz_date").order("quiz_date", { ascending: true }).limit(1);
+    const launch = (firstRow as { quiz_date: string }[] | null)?.[0]?.quiz_date ?? today;
+    return { demo: false, ready: true, ...nav, ...buildBoard((data ?? []) as AnswerRow[], month, today, user?.id ?? null, launch) };
   } catch (e) {
     console.error("getQuizBoard:", e);
     return { demo: false, ready: false, ...nav, questions: 0, rows: [] };
