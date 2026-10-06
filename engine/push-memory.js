@@ -125,21 +125,38 @@ async function main() {
 
   const files = paths.map((p) => ({ path: p, content: readFileSync(resolve(REPO_ROOT, p), "utf8") }));
 
-  try {
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${secret}` },
-      body: JSON.stringify({ message, files }),
-    });
-    const json = await res.json().catch(() => ({}));
-    if (!res.ok || !json.ok) {
-      console.error(`push-memory: ÉCHEC (${res.status}) ${json.error ?? ""} → mémoire NON persistée.`);
-      process.exit(0);
+  // L'endpoint refuse plus de 24 fichiers par envoi : on coupe en lots (20 par défaut) pour
+  // qu'une routine qui a beaucoup écrit (ou la liste de repli complète) passe quand même.
+  const size = Math.max(1, Number(flag("batch")) || 20);
+  const batches = [];
+  for (let i = 0; i < files.length; i += size) batches.push(files.slice(i, i + size));
+
+  let done = 0;
+  let last = null;
+  for (const [i, batch] of batches.entries()) {
+    const msg = batches.length > 1 ? `${message} (${i + 1}/${batches.length})` : message;
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${secret}` },
+        body: JSON.stringify({ message: msg, files: batch }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json.ok) {
+        console.error(`push-memory: ÉCHEC (${res.status}) ${json.error ?? ""} → lot ${i + 1}/${batches.length} NON persisté.`);
+        break;
+      }
+      done += batch.length;
+      last = json;
+    } catch (e) {
+      console.error(`push-memory: exception ${String(e)} → lot ${i + 1}/${batches.length} NON persisté.`);
+      break;
     }
-    console.log(`push-memory: ✅ ${files.length} fichier(s) commités sur ${json.branch} (${json.commit?.slice(0, 7)}).`);
-  } catch (e) {
-    console.error(`push-memory: exception ${String(e)} → mémoire NON persistée.`);
-    process.exit(0);
+  }
+  if (done === files.length && last) {
+    console.log(`push-memory: ✅ ${done} fichier(s) commités sur ${last.branch} (${last.commit?.slice(0, 7)}).`);
+  } else {
+    console.error(`push-memory: ⚠️ ${done}/${files.length} fichier(s) persistés → mémoire INCOMPLÈTE (le commit local existe, rejouer).`);
   }
 }
 
