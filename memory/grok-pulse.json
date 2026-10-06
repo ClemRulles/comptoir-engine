@@ -1,7 +1,47 @@
 {
   "_doc": "Pouls hebdomadaire du sentiment X/Grok — contexte narratif des marchés, 0 à 3 calls directionnels CT enregistrés (§F). Source : Grok API ou fallback web search. Ne jamais utiliser comme signal d'achat seul. Alimentation : routines Trend Radar du lundi.",
-  "updated": "2026-09-29",
+  "updated": "2026-10-06",
   "entries": [
+    {
+      "week": "2026-W48",
+      "date": "2026-10-06",
+      "label": "Semaine du 6 octobre 2026",
+      "source": "Grok-3 API (xAI) — NOTE: grok-beta OBSOLÈTE depuis 15/09/2025, migré grok-3",
+      "headline": "FOMC 73% hike Oct, courbe steepen T10Y 5.21%, rotation Energy/Tech dominante, narratif nucléaire solide, crypto greed prudent.",
+      "themes": [
+        {
+          "title": "US Macro / Courbe hawkish",
+          "detail": "FOMC Oct 27-28 à 73% hike (Goldman Sachs, 16/18 membres dot hawkish). T10Y 5.21% stable — pression sur duration. Courbe steepen T10Y-2Y +0.47. Contexte inflationniste persistant (CPI 3.4%, UNRATE 4.2%).",
+          "tickers": ["MSCI", "BNP.PA", "GLE.PA"],
+          "corroborated": true
+        },
+        {
+          "title": "Nuclear / AI Power PPAs",
+          "detail": "4 hyperscalers ont signé des PPAs nucléaires 20 ans (Meta >2600MW Vistra, Microsoft 835MW CEG, Amazon 690MW CEG, Google 50MW Kairos). Narratif dominant sur X cette semaine selon Grok-3. CEG mom −20% mais thesis renforcée.",
+          "tickers": ["CEG", "VST"],
+          "corroborated": true
+        },
+        {
+          "title": "Tech / IA résurgence",
+          "detail": "Tech T6M +45.6% (FMP). AMZN/AI portés par narratif IA. Emerging markets (EIMI) bénéficient des flux tech.",
+          "tickers": ["AMZN", "AI", "EIMI"],
+          "corroborated": true
+        },
+        {
+          "title": "European Financials / steepening curve",
+          "detail": "BNP.PA RSI 22.6 (survendu extrême) — pression courbe + narratif hawkish. GLE.PA RSI 30.1. Banques EU en consolidation. NIM expansion structurelle avec hike imminent.",
+          "tickers": ["BNP.PA", "GLE.PA", "LOTB"],
+          "corroborated": true
+        }
+      ],
+      "movers": [
+        {"ticker": "CEG", "direction": "up", "reason": "narrative nucléaire / PPA Amazon", "held": true},
+        {"ticker": "AMZN", "direction": "up", "reason": "AI momentum / AWS capex", "held": true},
+        {"ticker": "BNP.PA", "direction": "down", "reason": "yield curve pressure sur banques EU", "held": true}
+      ],
+      "crypto_note": "BTC 58.7% dominance, F&G 73 (Greed) — contrarienne: niveau d'euphorie propice à correction CT. Aucun catalyseur on-chain identifié cette semaine. Pas d'allocation.",
+      "note": "Grok-3 API — réponse basée sur prompt context (pas X temps réel : modèle génère depuis training data + prompt). Corroboration via web search indépendant. 0 calls créés (tactical_cap 0%, hit_rate 33.3%)."
+    },
     {
       "week": "2026-W45",
       "date": "2026-09-29",

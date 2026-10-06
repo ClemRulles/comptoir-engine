@@ -1,3 +1,49 @@
+## Tendance de la semaine — 6 octobre 2026 (W48)
+
+- **Statut** : AUCUNE cette semaine
+- **Tendance** : —
+- **Pourquoi AUCUNE** : En SURCHAUFFE (plancher cash 30 %, cash actuel 35,2 %), tous les candidats identifiés butent sur P-003 (positions déjà détenues) ou sur l'absence de marge de sécurité. Droit au blanc appliqué — 3 semaines consécutives sans tendance nouvelle (W45/W46/W48).
+
+### Candidats analysés (trend-gate.md)
+
+**Candidat 1 : P&C Insurance / investment income tailwind**
+- **Preuves dures** : (1) FOMC Sep +25bps à 3,75-4,00 % — portefeuilles obligataires P&C se réinvestissent à des taux record ; (2) S&P Global : 5-6 % premium growth US P&C en 2026 (févr. 2026) ; (3) CB Q2 EPS $7,26 vs $6,77 consensus (+7,2 % beat) — NII record $840M T3 guidance.
+- **Durabilité** : structurelle — bond portfolio roll-over à des taux élevés dure 2-4 ans (lag des maturités). Pas une mode.
+- **Investissable** : CB (détenu, P-003), TRV (Travelers), HIG (Hartford), AXA.PA, MUV2.DE.
+- **Stade** : milieu — NII en croissance mais pas encore intégralement reflété dans les prix.
+- **Bulle** : faible — multiples P/B 1.5-2x, pas parabolic.
+- **Falsifiabilité** : FOMC pivot dovish + T10Y retombe sous 4 % → investment income guidance coupée.
+- **Verdict REJETÉ** : CB déjà détenu (P-003). Concentration financiers déjà élevée (BNP.PA + GLE.PA + CB = 3 positions book). Aucun angle nouveau actionnable sans dépasser l'exposition secteur. En SURCHAUFFE avec cash 35,2 %, pas de marge pour un 4e financier.
+
+**Candidat 2 : Nuclear/SMR long cycle — expansion accélérée des PPAs**
+- **Preuves dures** : (1) Meta PPA 20 ans > 2 600 MW (Vistra + TerraPower, janv. 2026) ; (2) Microsoft PPA 835 MW TMI Constellation ; (3) Amazon PPA 690 MW Calvert Cliffs (01/10) ; (4) Google + Kairos Power 50 MW Hermes 2 (août 2026). 4 hyperscalers tous signés = secteur capturé.
+- **Durabilité** : structurelle 10-20 ans (PPA fixes).
+- **Investissable** : CEG (détenu, P-003), VST (Vistra, non détenu mais parabolique +130 % 12M), NRG, NEX.PA.
+- **Stade** : milieu — PPAs se signent, SMRs en construction 2030+.
+- **Bulle** : VST à 25x PE après +130 % — **drapeau orange**. CEG mom −20 % (RSI 43.4, refroidissement relatif).
+- **Falsifiabilité** : au moins 2 hyperscalers coupent capex >15 % OU regulatory setback SMR → non-réalisation.
+- **Verdict REJETÉ** : CEG détenu (P-003). VST parabolique sans marge. No angle nouveau coté avec marge réelle en SURCHAUFFE.
+
+**Candidat 3 : Tech résurgence IA**
+- **Preuves dures** : (1) Tech T6M +45,6 % (FMP sector, 05/10) ; (2) AMZN AWS +37 % Q2, capex relevé ; (3) AI adoption narratif fort (X/Grok).
+- **Stade** : milieu/fin (6M +45 %).
+- **Bulle** : drapeau ÉLEVÉ — multiples growth en SURCHAUFFE à 30-40x PE sans marge de sécurité.
+- **Verdict REJETÉ** : stade avancé + bulle + AMZN/AI.PA déjà détenus.
+
+**Candidat 4 : IIJA deadline-driven Q4 rush**
+- **Preuves dures** : (1) IIJA expire 11/12/2026 (CR P.L. 119-416) ; (2) GVA backlog $7,4B, guidance relevée $5,3-5,5B.
+- **Durabilité** : COURT TERME — deadline dans 10 semaines, pas structurel.
+- **Verdict REJETÉ** : catalyseur de fin de cycle, pas tendance structurelle. GVA + EME déjà détenus. Stade fin.
+
+### 3 thèmes à surveiller (pas actionnables cette semaine)
+1. **P&C Insurance Q3 earnings** — CB ~20/10, Travelers, Hartford : si NII guidance confirmée > $870M T4 et combined ratio < 95 % → tendance investissable cristallisée (sauf P-003 CB).
+2. **Nuclear/SMR VST satellite** — CEG refroidissement (−20 % 6M) créera peut-être une entrée sur VST ou NRG post-consolidation — surveiller W49-51 si cash corridor s'ouvre (exit possible).
+3. **European banks steepening curve** — BNP.PA RSI 22,6 / GLE.PA RSI 30,1 (oversold). FOMC hike Oct 28 = catalyseur NIM direct pour les deux positions déjà détenues — pas de nouvelle entrée mais thèse renforcée.
+
+- **Sources** : engine/signals.js 06/10 ; S&P Global P&C outlook (28/02/2026) ; web search PPAs nucléaires ; Morningstar sector rotation ; FMP sector T6M 05/10.
+
+---
+
 ## Tendance de la semaine — 29 septembre 2026 (W45)
 
 - **Statut** : AUCUNE NOUVELLE TENDANCE CE CYCLE — TROIS CANDIDATS ANALYSÉS, AUCUN NE PASSE LE GATE

@@ -1,3 +1,18 @@
+# Régime de marché — mis à jour le 2026-10-06 (W48)
+
+- **✅ SURCHAUFFE HARD-CONFIRMÉE — INCHANGÉ**. T10Y **~5,21 %** (stable). FOMC 27-28/10 : **~73 % hike** (Goldman Sachs révisé, up from 69 % — 12/18 membres voient ≥1 hausse, 16/18 dot hawkish). S&P 500 ~7 680. Brent ~$107.
+- **Signals.js W48 06/10** : RISK-ON SAIN (FRED lag — override prime, SURCHAUFFE acté). **12🟢 / 0🟠 / 0🔴** (toutes positions vertes, inchangé vs W47).
+- **✅ GLE.PA ex-div 05/10** : €0.75/part × 1.01 parts = +€0.76 cash. Cash 3 535.09€ → **3 535.85€ = 35.2% NAV** (corridor 30-50% ✓). NAV ~€10 036.
+- **Tendance W48** : AUCUNE NOUVELLE. Candidats analysés : P&C Insurance (CB détenu, P-003), Nuclear/SMR (CEG détenu, pas d'angle nouveau), Tech résurgence (bulle drapeau SURCHAUFFE), IIJA deadline (catalyseur CT Dec 11). Droit au blanc appliqué.
+- **Grok W48** : Grok-3 API appelé (**grok-beta OBSOLÈTE 15/09/2025 → migrer grok-3**). 3 thèmes partiellement corroborés : Macro/courbe (✓ FOMC 73%), Énergie/Infra (✓ PPAs), Tech/IA/Crypto (partiel). Movers: CEG↑ (nucléaire), AMZN↑ (IA), BNP.PA↓ (courbe — cohérent RSI 22.6). **0 calls créés** (tactical_cap 0%, hit_rate 33.3% trop bas).
+- **Rotation sectorielle W48** : Energy T12M +39,2 %, Tech T6M +45,6 % (résurgence IA — déjà bien capturée par AMZN/AI.PA), Financials T6M +15,5 %. VIX ~16,4 (calme malgré hike imminent). Sources : FMP/web search 06/10.
+- **Crypto (radar)** : BTC 58,7 % dominance, F&G 73 (Greed) — lecture **contrarienne** : niveau propice à une correction CT, aucune allocation forcée.
+- **Calls Grok expirés à scorer** : ceg-hormuz-nuclear-w43 (horizon **08/10**) ; gva-iija-expiry-w44 + cb-oversold-rebound-w44 (horizon **10/10**) ; ceg-oversold-nuclear-w45 (horizon **13/10**). Résolution par engine/grok.js.
+- **Cash 3 535.85€ = 35.2% NAV** (corridor 30-50% ✓). **0 trade W48**. Déploiement bloqué : plancher 30% + SURCHAUFFE, aucune libération de cash.
+- **Catalysts 14 jours** : ceg-hormuz-nuclear-w43 08/10 (scoring) ; gva+cb calls 10/10 (scoring) ; CB Q3 ~20/10 (combined ratio test) ; FOMC 27-28/10 (73% hike — binaire fort).
+- **Sources** : engine/signals.js 06/10 ; Goldman Sachs FOMC outlook (web, 23/09) ; FMP sector perf T12M/T6M ; engine/crypto.js 06/10 ; Grok-3 API 06/10.
+
+---
 # Régime de marché — mis à jour le 2026-10-03 (W47)
 
 - **✅ SURCHAUFFE HARD-CONFIRMÉE — INCHANGÉ**. T10Y **~5,21 %** (stable). FOMC 27-28/10 : **69 % hike** (Kalshi). S&P 500 ~7 680. Brent ~$107.
