@@ -10,10 +10,12 @@ amendements actifs s'appliquent à toutes tes décisions de ce soir)**, `memory/
 `memory/convictions.md`, `memory/portfolio.md`, `memory/market-regime.md`, `memory/lessons.md`,
 `memory/catalysts.md`, `memory/fund/ai-fund.json`, `memory/fund/decisions.json`,
 `memory/fund/calibration.json`, `memory/fund/signals.json`, `memory/fund/forecasts.json`,
-`memory/fund/grok-calls.json`.
+`memory/fund/grok-calls.json`, `memory/fund/allocation.json`, `memory/fund/attribution.json`,
+`memory/fund/crypto.json`, `skills/desks.md`.
 
-C'est la routine la plus chargée : elle **apprend**, **gère le book IA**, puis **packagé** la semaine.
-Fais les trois passes dans l'ordre.
+Tu es le **CIO** du book (method §L) : tu **apprends**, tu **convoques les desks**, tu **gères le
+book** (sorties, entrées, poches, cash), puis tu **packages** la semaine. Objectif unique : la
+richesse du book à 3-5 ans, nette de frais, à risque équilibré (method §H). Passes dans l'ordre.
 
 ---
 
@@ -57,7 +59,19 @@ dans `ai-fund.json`) — ou règle de sortie touchée cette semaine :
    (catalyseur absent, valo tendue, momentum suivi trop tard, taille trop grosse…) → correction.
 7. **Recompute** `memory/fund/calibration.json` (buckets par confiance + global). Mets `updated`.
 
+8. **Compare au taux de base** (§I) : `node engine/history.js {ticker}` — le résultat est-il
+   dans la fourchette p25-p75 des analogues (variance : la règle tient) ou en dehors (signal :
+   la thèse ou la règle avait un défaut) ? Écris-le dans la leçon. Renseigne aussi `desk` et
+   `sleeve` dans l'entrée de `decisions.json` (repris de la position).
+
 S'il n'y a eu aucune fermeture, écris-le et ne fabrique pas de leçon.
+
+**Attribution (qui a raison, qui se trompe).** Joue `node engine/risk.js` puis
+`node engine/attribution.js`. Lis : le **regret des ventes** (12 semaines), l'**alpha par desk,
+par poche, par confiance**, les **multiplicateurs de desk** (ils s'appliquent au sizing de ce
+soir), et les **opportunités manquées** (refus qui ont battu l'indice de > 5 points). Une leçon
+datée si un de ces chiffres change une décision future (ex. « desk-tech : 3 refus sur 4 ont
+battu l'indice → le filtre valo est trop sévère sur les compounders »).
 
 **Mise à jour du playbook (l'apprentissage qui CHANGE le comportement).** Une leçon notée dans
 `lessons.md` est un souvenir ; une règle du playbook est appliquée par toutes les routines. Après
@@ -112,11 +126,29 @@ Si le cours d'un ticker est introuvable (ETF/européen non couvert), garde la li
 toute ligne encore en mode seed) — l'interface s'appuie sur ce flag, prioritaire sur l'heuristique
 `quantity:1`, pour ne jamais reconvertir une vraie position d'exactement 1 part.
 
+## PASSE 1ter — Étiquetage des positions (tant qu'il en manque)
+
+`allocation.json → data_gaps` liste les lignes sans `desk`/`sector`. Pour chacune, écris dans
+`ai-fund.json` : `sleeve` (coeur | socle | tactique | crypto — un ETF va au socle), `desk`
+(skills/desks.md : le desk de son SECTEUR), `sector`, et `theme` si la ligne appartient à un pari
+concentré (ex. « infra data centers US »). C'est de la comptabilité, pas un trade : rien ne
+s'achète ni ne se vend ici. Sans ces champs, l'attribution ne sait pas qui a eu raison.
+
 ## PASSE 2 — Gestion du book IA (entrées/sorties)
 
+**Convoque d'abord les desks du vendredi, en parallèle (un seul message, outil Agent).**
+- `desk-tactique` : les coups de la semaine (catalyseurs §J qui survivent au test du vendredi,
+  scénarios §K validés, calls Grok ouverts), chacun avec date, stop et taille ≤ 4 %.
+- `desk-macro` : posture, **rééquilibrage poche par poche** en points de NAV, ETF du socle.
+- `desk-crypto` : posture de la poche crypto (cible, répartition BTC/ETH/alts, palier de la semaine).
+Transmets-leur le régime, les alertes de `allocation.json`, les multiplicateurs de
+`attribution.json` et les verdicts du mercredi. Un desk qui n'a rien répond en trois lignes.
+Tu arbitres : un pitch tactique ou une alt crypto passe au `risk-manager` (un appel groupé) si
+sa taille dépasse 2 % du NAV.
+
 Rafraîchis les signaux : `node engine/signals.js` (positions + convictions retenues). En appliquant
-**method §H** (gate quantitatif → sizing pondéré conviction × calibration, plafonds, couloir de cash (plancher ET plafond)
-selon le régime, garde-fou drawdown) **et les amendements actifs de `memory/playbook.md`** (chaque
+**method §H** (gate quantitatif → sizing conviction × calibration × desk × volatilité, plafonds,
+poches à cibles et cash à 10 %, garde-fou drawdown) et **§M** pour la crypto **et les amendements actifs de `memory/playbook.md`** (chaque
 trade dont un amendement a modifié la décision le cite dans son `rationale` : `[P-00N]`).
 **Ordre des sources** :
 1. **Vérifie d'abord ce que le jeudi a déjà exécuté** (bloc `### Sorties exécutées` de
@@ -154,9 +186,20 @@ trade dont un amendement a modifié la décision le cite dans son `rationale` : 
 - **Sorties** d'abord : toute position dont la règle de sortie est touchée, la thèse cassée,
   **ou frappée d'un drapeau fondamental 🔴** (F-Score ≤3 / earnings rouges → sortie forcée §H).
   Un 🔴 de composite seul **ne se vend pas** : il gèle la ligne et saisit le mercredi (§H).
-- **Entrées** ensuite : alloue le cash disponible aux meilleures convictions, **taille selon §H**
-  (un gate 🟠/⚪ plafonne l'entrée à 5 % ; un drapeau fondamental 🔴 l'interdit). **Chaque trade
-  cite son gate** (verdict + composite) dans le `rationale`.
+- **Entrées** ensuite : alloue le cash disponible aux meilleures convictions, **taille selon §H** :
+  `conviction (H 9 % / M 6 % / B 3 %) × calibration × multiplicateur du desk × volatilité`, puis
+  plafonnée par le gate (🟠/⚪ ⇒ ≤ 5 % ; drapeau fondamental 🔴 ⇒ 0) et les plafonds (10 % à
+  l'entrée, secteur 30 %, thème 35 %). **Chaque trade cite son gate et sa chaîne de sizing** dans
+  le `rationale`, et porte `sleeve`, `desk`, `sector`.
+- **Zone d'achat (method §N)** : une conviction cœur ne s'achète que selon sa `buy_zone`
+  (`convictions.json`) — cours ≤ `high` : taille pleine ; jusqu'à `high × 1,05` : demi-taille ;
+  au-delà : pas d'achat, « en attente de zone », capital prévu au socle ; sous `low` : §D express
+  d'abord. Le `rationale` cite le cours et la zone. Une zone de plus de 30 jours ne s'utilise pas.
+- **On laisse courir les gagnants** : aucun allègement d'une ligne cœur sous 18 % du NAV sans
+  fait nouveau sur la thèse. Au-delà de 18 % : retour à 15 %.
+- **Crypto** (§M) : applique la posture du `desk-crypto` — palier ≤ 3 points de NAV/semaine,
+  BTC+ETH ≥ 70 % de la poche, alt ≤ 1,5 % du NAV, aucun achat neuf si Fear & Greed > 80.
+  Tickers `BTC-EUR`, `ETH-EUR`… ; frais 0,50 %.
 - **Hystérésis et budget de rotation (§H)** : un trade de *dimensionnement* (trim ou renforcement
   d'une ligne déjà détenue, thèse inchangée) n'est autorisé que si le changement de gate est
   confirmé sur **2 relevés consécutifs**, que l'écart de taille dépasse **2 points de NAV**, que
@@ -165,46 +208,45 @@ trade dont un amendement a modifié la décision le cite dans son `rationale` : 
   pas. Ces 4 conditions se vérifient **avant** d'écrire le trade, et le `rationale` dit laquelle
   a été vérifiée.
 - **Frais de friction (honnêteté du duel)** : le groupe paie de vrais frais et du spread —
-  le book IA aussi. Chaque trade (achat ET vente) coûte **0,30 % du montant**, débité du cash
-  et loggé dans le trade (`fee: montant × 0.003`, arrondi au centime). Le P&L réalisé scoré en
+  le book IA aussi. Chaque trade (achat ET vente) coûte **0,30 % du montant** (actions, ETF) ou
+  **0,50 %** (crypto), débité du cash et loggé dans le trade (`fee`, arrondi au centime). Le P&L réalisé scoré en
   PASSE 1 est **net** de ces frais. Effet voulu : sur-trader coûte, la patience est gratuite.
 - **Chaque trade est loggé** dans `ai-fund.json.trades` avec `side, ticker, quantity, price,
-  fee, confidence, thesis_id, horizon, rationale`, et chaque position porte `entry_date, target,
-  exit_rule, confidence, horizon, thesis_id`. Mets `as_of` à jour et garde `cash` cohérent.
+  fee, confidence, thesis_id, horizon, sleeve, desk, rationale`, et chaque position porte
+  `entry_date, entry_price, target, exit_rule, confidence, horizon, thesis_id, sleeve, desk,
+  sector`. Mets `as_of` à jour et garde `cash` cohérent.
 
-### PASSE 2bis — Contrôle d'exposition (obligatoire, avant d'écrire le brief)
+### PASSE 2bis — Contrôle d'allocation (obligatoire, avant d'écrire le brief)
 
-Calcule `cash_pct = cash / NAV` et compare-le au **couloir de cash du régime** (§H). Écris les
-deux bornes et le résultat, même quand tout va bien.
+Rejoue `node engine/risk.js` **après** tes trades : c'est lui qui fait foi. Écris dans le brief,
+même quand tout va bien : chaque poche vs sa cible, `cash %` vs la bande **5-15 % (cible 10 %)**,
+la volatilité du book vs 13-20 %, les 3 plus gros contributeurs au risque, le drawdown.
 
-- `cash_pct` **sous le plancher** → réduis le risque (§H, garde-fou).
-- `cash_pct` **dans le couloir** → rien à faire, dis-le en une ligne.
-- `cash_pct` **au-dessus du plafond** → **déploiement obligatoire cette semaine**, dans cet ordre :
-  1. les convictions `Acheter` de `convictions.md` non encore exécutées, sizées §H ;
-  2. les renforcements éligibles (hystérésis + budget de rotation respectés) ;
-  3. **le solde va sur le résidu indiciel `IWDA.AS`** (§H) jusqu'à revenir sous le plafond.
-     Un achat de résidu indiciel **ne consomme pas** le budget de rotation, n'a ni gate ni stop,
-     et se logue avec `thesis_id: "residu-indiciel"`, `horizon: "coeur"`,
-     `rationale: "déploiement §H — cash {x} % > plafond {y} % du régime {régime}, palier {n}/{N}"`.
+- **Cash au-dessus de 15 %** → **déploiement obligatoire cette semaine**, par paliers de
+  **10 points de NAV maximum** (§H), dans cet ordre :
+  1. les convictions `Acheter` du mercredi non encore exécutées, sizées §H ;
+  2. les coups tactiques validés ce soir ;
+  3. la construction de la poche crypto (palier ≤ 3 points, §M) ;
+  4. **le solde au socle** (IWDA.AS par défaut, ou l'ETF du `desk-macro`), `sleeve: "socle"`,
+     `thesis_id: "socle-indiciel"`, `rationale: "déploiement §H — cash {x} % > 15 %, palier {n}/{N}"`.
+  Si l'écart dépasse 10 points, déploie 10 points et écris le palier suivant avec sa date.
+- **Cash sous 5 %** → finance les prochaines entrées par la vente de socle d'abord.
+- **Une poche hors bande** (`allocation.json → alerts`) → rééquilibre vers la cible, par le
+  socle d'abord (il absorbe et finance sans consommer de budget de rotation).
+- **Volatilité sous 13 %** → le book n'utilise pas son budget de risque : déplace du socle vers
+  le cœur et la crypto au prochain palier. **Au-dessus de 20 %** → réduis d'abord les plus gros
+  contributeurs au risque.
+- **Garde-fou drawdown déclenché** (`drawdown.guard_triggered`) → §H : tactique et alts d'abord,
+  crypto à 3 %, cash jusqu'à 15 % maximum, aucune nouvelle prise de risque.
 
-  **Cadence : 10 points de NAV par semaine maximum** (§H). Si l'écart au plafond dépasse 10
-  points, tu déploies 10 points cette semaine et tu écris dans le brief le palier suivant avec
-  sa date. On comble un écart en plusieurs fois ; on ne met pas un quart du NAV au marché sur
-  une seule date de cotation.
+**Ce que ce contrôle interdit explicitement :** terminer un vendredi avec plus de 15 % de cash
+sans palier de déploiement daté. Le cash au-delà de la réserve de tir est une position vendeuse
+que personne n'a décidée (état constaté le 2026-08-29 et toujours le 2026-10-03 : 35-42 % de
+cash, 6 points de retard sur l'indice).
 
-Le résidu indiciel est **financé en priorité** quand une vraie conviction apparaît : on vend
-l'IWDA nécessaire avant de toucher au cash de plancher.
-
-**Ce que ce contrôle interdit explicitement :** terminer un vendredi en RISK-ON SAIN avec 40 %
-de cash et zéro ligne dans le brief pour l'expliquer. Rester liquide est une **décision**, elle
-s'argumente comme une position ; sinon c'est une position vendeuse par défaut, et le book perd
-la moitié du bêta du marché sans que personne l'ait voulu (état constaté le 2026-08-29 : 42 % de
-cash, régime RISK-ON SAIN, benchmark +4 %).
-
-Discipline : mieux vaut rester en cash qu'entrer **dans un single-stock** sans marge de sécurité
-— mais le défaut du book n'est pas le cash, c'est l'indice (§H). Le droit au blanc porte sur la
-**sélection**, jamais sur l'**exposition**. La surchauffe n'est jamais un feu vert. On ne moyenne
-pas à la baisse une thèse cassée.
+Discipline : mieux vaut le socle qu'un **single-stock** sans marge de sécurité — le droit au
+blanc porte sur la **sélection**, jamais sur l'**exposition**. La surchauffe n'est jamais un
+feu vert. On ne moyenne pas à la baisse une thèse cassée.
 
 **Apports membres (convention) :** le `cash` de `ai-fund.json` ne représente QUE le cash de
 trading du book (issu des ventes/achats). Les apports des membres (25 €/mois/personne) sont gérés
@@ -233,7 +275,11 @@ Max 3, triés par confiance puis score (depuis convictions.md). Pour chacun : th
 3 arguments, ⚠ risque qui invalide (hypothèse pivot), règle de sortie suggérée.
 
 ## Idées tactiques (court terme)
-Max 2, catalyseur daté + stop serré. Taille plus petite. Surchauffe = risque, pas feu vert.
+Max 3 (depuis le desk-tactique), catalyseur daté + stop serré. Taille ≤ 4 %. Surchauffe = risque, pas feu vert.
+
+## Crypto
+Posture de la poche (cible, répartition, palier de la semaine) et climat (Fear & Greed,
+dominance) en 3 lignes, depuis le desk-crypto. Si rien ne bouge, une ligne.
 
 ## 📅 Catalyseurs à l'horizon
 Reprends de `memory/catalysts.md` les 2-4 événements datés les plus importants des prochaines
@@ -245,16 +291,19 @@ on ne réagit pas dans la panique.
 Reprends de portfolio.md tout statut À SURVEILLER / SORTIE avec la raison. Si tout INTACT, une ligne.
 
 ## Le book IA cette semaine
-Ce que l'IA a acheté/vendu et pourquoi (depuis la passe 2). Puis **les 3 chiffres, toujours** (§I) :
+Ce que l'IA a acheté/vendu et pourquoi (depuis la passe 2), avec le desk qui portait l'idée.
+Puis **les chiffres, toujours** (§I) :
 - **NAV IA vs NAV groupe** — la course.
 - **NAV IA vs IWDA.AS** depuis le t0 — le bêta. Perdre contre l'indice en portant du cash est un
   problème d'**exposition**, pas de sélection : dis lequel des deux tu constates.
-- **Exposition** : `cash %` et le couloir du régime (PASSE 2bis). Si le cash est hors couloir,
-  dis ce que tu as déployé — ou pourquoi tu ne l'as pas fait.
+- **Allocation** (PASSE 2bis) : poches vs cibles, `cash %` vs 10 %, volatilité du book, drawdown.
+- **Desks** : une ligne par desk ayant un track record (alpha clos, latent, multiplicateur).
 
-Et une ligne d'**attribution des ventes** : sur les ventes des 12 dernières semaines, combien se
-traitent aujourd'hui **au-dessus** de leur prix de vente ? Si c'est la majorité, le moteur vend
-bas — c'est un défaut de règle (§H), pas de malchance, et il se dit franchement.
+Et une ligne d'**attribution des ventes** (`attribution.json → sells`) : sur les ventes des 12
+dernières semaines, combien se traitent aujourd'hui **au-dessus** de leur prix de vente ? Si
+c'est la majorité, le moteur vend bas — c'est un défaut de règle (§H), pas de malchance, et il
+se dit franchement. Plus une ligne **opportunités manquées** (`missed`) : refus qui ont battu
+l'indice de plus de 5 points.
 
 ## 🎓 Leçon de la semaine
 La leçon la plus actionnable tirée de la passe 1 (ou « rien clôturé cette semaine »).
@@ -281,6 +330,26 @@ La chose la plus importante pour le groupe cette semaine.
 
 Mets aussi à jour `memory/watchlist.md` : recopie les meilleures idées au format prêt à
 importer dans Comptoir.
+
+**Réécris `memory/fund/digest.json` — la semaine EN CLAIR** (schéma dans son `_doc`). C'est ce
+que lisent les membres sur l'accueil de l'app : ils n'ont lu ni la méthode ni le playbook.
+`posture` (2-4 mots + une phrase), `headline`, **3 points maximum**, chaque **décision** de la
+semaine (mercredi tactique + vendredi + dimanche crypto) avec son *pourquoi* en ≤ 25 mots et
+*ce qui ferait changer d'avis* en ≤ 20 mots, les **4 prochains rendez-vous**, et la phrase de
+la semaine. **Interdit : §, P-00N, gate, saisine, hystérésis, cov, F7/9** — traduis
+(« les fondamentaux sont solides », « on attend un meilleur prix », « la règle de sortie est
+touchée »). Si une décision n'a pas d'explication simple, c'est qu'elle n'est pas claire :
+retravaille-la.
+
+**Carré « investir » de l'accueil (`memory/fund/spotlight.json → invest`, schéma dans son
+`_doc`).** Réécris-le après la décision principale : `value` = le nom court de ce que l'IA achète
+ou achèterait cette semaine (le meilleur achat validé, dans sa zone d'achat) — ou exactement
+`RIEN` si rien n'est assez solide, avec la raison dans `line` (≤ 90 caractères, en clair). C'est
+la première chose que les membres voient : une seule idée, la plus forte, jamais une liste.
+
+**Quiz du jour (OBLIGATOIRE, 2 minutes — `skills/quiz.md`).** Vérifie que `memory/fund/quiz.json`
+a une question pour les **2 prochains jours** (date de Paris) et écris celles qui manquent (thème du
+jour, une seule bonne réponse, fait sourcé). Ne touche jamais à une date déjà publiée.
 
 Commit : `brief+book: {date} — {n} trades IA, {k} leçons`.
 

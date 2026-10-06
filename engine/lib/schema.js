@@ -251,7 +251,111 @@ const grokCalls = {
   },
 };
 
-export const SCHEMAS = { decisions, calibration, signals, aiFund, forecasts, grokCalls };
+// ---------------------------------------------------------------------------
+// Caches RÉGÉNÉRÉS par le moteur (risk.js / attribution.js / history.js). Le garde-fou
+// garantit seulement qu'ils existent et sont lisibles ; leur contenu se recalcule à
+// chaque run, jamais à la main.
+// ---------------------------------------------------------------------------
+const generated = (file, required, doc, extra = {}) => ({
+  file,
+  required,
+  generated: true, // absent = simple initialisation (pas une perte d'historique à signaler)
+  template: () => ({ _doc: doc, updated: null, ...Object.fromEntries(required.map((k) => [k, extra[k] ?? {}])) }),
+  check(obj) {
+    return required
+      .filter((k) => obj[k] == null || typeof obj[k] !== "object")
+      .map((k) => ({ hard: false, msg: `\`${k}\` manquant ou invalide`, resetKey: k }));
+  },
+});
+
+const allocation = generated(
+  "allocation.json",
+  ["sleeves", "alerts", "nav_history"],
+  "Allocation & budget de risque du book IA — régénéré par node engine/risk.js (method §H/§L/§M). Jamais calculé : joue risk.js.",
+  { alerts: [], nav_history: [] }
+);
+const attribution = generated(
+  "attribution.json",
+  ["sells", "by_desk", "desk_multipliers"],
+  "Attribution des gains et des erreurs — régénéré par node engine/attribution.js (method §I/§L). Jamais calculé : joue attribution.js."
+);
+const history = generated(
+  "history.json",
+  ["tickers"],
+  "Taux de base historiques par titre — régénéré par node engine/history.js (method §I). Jamais calculé : joue history.js."
+);
+
+const pros = generated(
+  "pros.json",
+  ["investors"],
+  "Ce que font les investisseurs pros (13F-HR SEC) — régénéré par node engine/pros.js. Jamais calculé : joue pros.js.",
+  { investors: [] }
+);
+
+// ---------------------------------------------------------------------------
+// Fichiers ÉCRITS PAR LES ROUTINES pour l'interface (lecture humaine, sans jargon).
+// Le garde-fou garantit leur forme ; le contenu est celui de la routine du jour.
+// ---------------------------------------------------------------------------
+const news = generated(
+  "news.json",
+  ["items"],
+  "L'actualité MONDIALE qui compte pour le book, en clair (lundi : refonte complète ; jeudi : mise à jour). Lu par l'interface (page Monde, accueil). 6 à 12 items, les plus importants d'abord. Schéma d'un item : { id (kebab-case), date (YYYY-MM-DD de l'événement), category ('politique-us' | 'geopolitique' | 'banques-centrales' | 'macro' | 'entreprises' | 'energie' | 'crypto' | 'regulation' | 'investisseurs'), title (≤ 12 mots, factuel), summary (1-2 phrases : ce qui s'est passé, chiffres sourcés), why (1 phrase : pourquoi ça compte pour un investisseur), impact ([{ target (ticker ou secteur), kind ('ticker'|'secteur'), direction ('positif'|'negatif'|'incertain'), held (bool : détenu par le book IA ou le groupe) }]), ai_take (1 phrase : ce que l'IA en fait concrètement — 'rien' est une réponse valable), importance (1 = majeur, 2 = notable, 3 = contexte), sources ([{ name, url }], au moins une source datée) }. Règles : AUCUN jargon interne (pas de §, P-00N, gate, saisine, hystérésis) ; aucune rumeur non sourcée ; une déclaration politique (ex. Trump, tarifs) n'est un item que si elle a un effet observable (marché, calendrier, décret).",
+  { items: [] }
+);
+const digest = generated(
+  "digest.json",
+  ["points", "decisions"],
+  "LA SEMAINE EN CLAIR — la version lisible du brief, pour les membres du groupe (écrite le vendredi, posture mise à jour lundi et mercredi). Lue par l'accueil de l'interface. Schéma : { updated, week (ISO ex 2026-W41), posture { label (2-4 mots, ex. 'Investi mais sélectif'), tone ('offensif'|'neutre'|'defensif'), line (1 phrase : ce que l'IA fait et pourquoi) }, headline (LA phrase de la semaine), points ([≤ 3 × { title (≤ 6 mots), text (≤ 30 mots), kind ('marche'|'portefeuille'|'risque'|'opportunite') }]), decisions ([{ date, ticker, name, action ('achat'|'vente'|'renforcement'|'allegement'|'conserver'|'surveiller'), sleeve ('coeur'|'socle'|'tactique'|'crypto'), desk, why (≤ 25 mots, en clair), risk (≤ 20 mots : ce qui ferait changer d'avis), confidence ('Haute'|'Moyenne'|'Basse'), amount_eur, weight_pct }]), next ([≤ 4 × { date, label, why (≤ 15 mots) }]), in_one_sentence }. Règles : écrit pour quelqu'un qui n'a lu ni la méthode ni le playbook — zéro jargon interne (§, P-00N, gate, saisine, hystérésis, cov, F7/9), des chiffres simples, pas plus de mots que nécessaire. Le brief complet (morning-brief.md) reste la référence détaillée.",
+  { points: [], decisions: [], next: [] }
+);
+
+// quiz.json — LA question du jour, écrite par les routines de nuit (skills/quiz.md). L'interface
+// pose la question du jour (heure de Paris) et vérifie la réponse côté serveur ; sans question
+// pour la date, elle pioche dans sa réserve. Une entrée malformée est retirée par le garde-fou
+// plutôt que montrée de travers aux membres.
+const QUIZ_THEMES = new Set(["bases", "histoire", "actualite", "nos-lignes", "psychologie", "crypto", "fiscalite"]);
+const quiz = {
+  ...generated(
+    "quiz.json",
+    ["questions"],
+    "LE QUIZ DU JOUR — une question par jour pour faire apprendre la bourse aux membres (accueil de l'app, classement mensuel dans Groupe). Écrit par CHAQUE routine de nuit : elle s'assure que les 2 prochains jours (date de Paris) ont leur question, sans jamais réécrire une date déjà publiée. Règles complètes dans skills/quiz.md. Schéma d'une entrée : { date (YYYY-MM-DD, jour où la question est posée), theme ('bases'|'histoire'|'actualite'|'nos-lignes'|'psychologie'|'crypto'|'fiscalite'), level ('facile'|'moyen'|'difficile'), question (≤ 160 caractères), choices ([4 réponses courtes, ≤ 60 caractères chacune]), answer (index 0-3 de la bonne réponse — varie sa position), explanation (≤ 300 caractères : pourquoi c'est la bonne réponse, ce qu'il faut en retenir), source ({ name, url? } : d'où vient le fait) }. Garder ~60 jours, les plus récents en dernier.",
+    { questions: [] }
+  ),
+  check(obj) {
+    const problems = [];
+    if (!Array.isArray(obj.questions)) return [{ hard: false, msg: "`questions` manquant ou invalide", resetKey: "questions" }];
+    obj.questions.forEach((q, i) => {
+      const bad = (why) => problems.push({ hard: false, msg: `questions[${i}] ${why}`, dropQuestion: i });
+      if (q == null || typeof q !== "object") return bad("n'est pas un objet");
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(q.date ?? "")) return bad(`date invalide ("${q.date}")`);
+      if (typeof q.question !== "string" || !q.question.trim()) return bad("question vide");
+      if (!Array.isArray(q.choices) || q.choices.length !== 4 || q.choices.some((c) => typeof c !== "string" || !c.trim()))
+        return bad("doit avoir exactement 4 réponses");
+      if (new Set(q.choices.map((c) => c.trim().toLowerCase())).size !== 4) return bad("réponses en double");
+      if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer > 3) return bad(`answer hors 0-3 ("${q.answer}")`);
+      if (typeof q.explanation !== "string" || !q.explanation.trim()) return bad("explication manquante");
+      if (q.theme != null && !QUIZ_THEMES.has(q.theme)) problems.push({ hard: false, msg: `questions[${i}].theme inconnu ("${q.theme}")` });
+    });
+    const seen = new Set();
+    obj.questions.forEach((q, i) => {
+      if (!q || typeof q !== "object") return;
+      if (seen.has(q.date)) problems.push({ hard: false, msg: `questions[${i}] date en double (${q.date}) — la première est gardée`, dropQuestion: i });
+      seen.add(q.date);
+    });
+    return problems;
+  },
+};
+
+// spotlight.json — les DEUX CARRÉS de l'accueil : sur quoi l'IA investirait cette semaine, et
+// le chiffre ou la news qu'elle a à l'œil. Un clic mène à ses analyses.
+const spotlight = generated(
+  "spotlight.json",
+  ["invest", "watch"],
+  "LES DEUX CARRÉS DE L'ACCUEIL — ce qui doit sauter aux yeux d'un membre qui ouvre l'app 10 secondes. invest = écrit le VENDREDI après la décision principale (valable la semaine suivante) : { date, week (ISO), value (le nom court de ce que l'IA achèterait cette semaine, ex. 'Chubb' ; ou exactement 'RIEN' s'il n'y a rien d'assez solide — le droit au blanc est une réponse), ticker (ou null), line (≤ 90 caractères : pourquoi, en clair), confidence ('Haute'|'Moyenne'|'Basse'|null) }. watch = écrit le LUNDI (actualité) et mis à jour le mercredi ou le jeudi si quelque chose de plus important arrive : { date, kind ('chiffre'|'news'), value (un chiffre frappant ex. '5,2 %' ou un titre ≤ 7 mots), label (≤ 40 caractères : de quoi il s'agit, ex. 'Taux à 10 ans américain'), line (≤ 90 caractères : ce que ça change pour nous) }. Zéro jargon interne. Aucun chiffre sans source vérifiée dans la routine.",
+  { invest: {}, watch: {} }
+);
+
+export const SCHEMAS = { decisions, calibration, signals, aiFund, forecasts, grokCalls, allocation, attribution, history, pros, news, digest, quiz, spotlight };
 
 // Complète un objet parsé avec les clés requises manquantes de son template,
 // SANS écraser les valeurs présentes. Retourne { obj, added: [clés ajoutées] }.

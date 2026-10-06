@@ -184,17 +184,20 @@ export function regimeScore(inputs) {
   }
 
   const known = ["t10y2y", "unrate", "cpi_yoy", "vix", "hy_spread", "eu_hicp_yoy", "eu_unrate"].filter((k) => inputs[k] != null).length;
+  // Mandat 2026-10 : le cash NE dépend PLUS du régime (cible 10 %, bande 5-15 %, §H).
+  // Le régime module la COMPOSITION des poches (crypto, tactique), pas l'exposition.
+  const cash = { cash_floor: MANDATE.cash.floor, cash_target: MANDATE.cash.target, cash_ceiling: MANDATE.cash.ceiling };
   if (known === 0) {
-    return { label: "inconnu", score: null, cash_floor: 0.15, fear_greed: null, flags: ["aucune donnée FRED"], ok: false };
+    return { label: "inconnu", score: null, ...cash, sleeves: sleeveTargets("NORMAL"), fear_greed: null, flags: ["aucune donnée FRED"], ok: false };
   }
 
-  let label, cash_floor;
-  if (stress >= 2) { label = "STRESS"; cash_floor = 0.3; }
-  else if (heat >= 1 && stress === 0) { label = "SURCHAUFFE"; cash_floor = 0.3; }
-  else if (stress === 1) { label = "NORMAL"; cash_floor = 0.15; }
-  else { label = "RISK-ON SAIN"; cash_floor = 0.05; }
+  let label;
+  if (stress >= 2) label = "STRESS";
+  else if (heat >= 1 && stress === 0) label = "SURCHAUFFE";
+  else if (stress === 1) label = "NORMAL";
+  else label = "RISK-ON SAIN";
 
-  return { label, score: { stress, heat }, cash_floor, fear_greed, flags, ok: true };
+  return { label, score: { stress, heat }, ...cash, sleeves: sleeveTargets(label), fear_greed, flags, ok: true };
 }
 
 // ===========================================================================
@@ -286,8 +289,8 @@ export function gate(sig) {
       verdict === "rouge"
         ? "garde-fou ROUGE : position INTERDITE / sortie forcée (§H). Pas de débat — drapeau dur ou composite ≤ −0.2."
         : verdict === "ambre"
-        ? "garde-fou ORANGE : taille max 5% du book + stop-loss −8% obligatoire (§H)."
-        : "garde-fou VERT : sizing normal selon conviction, plafond 20% (§H).",
+        ? "garde-fou ORANGE : plafond d'ENTRÉE 5 % du NAV (§H) ; une ligne cœur détenue n'est pas retaillée pour autant."
+        : "garde-fou VERT : sizing normal selon conviction × calibration × desk × volatilité (§H).",
   };
 }
 
@@ -372,6 +375,355 @@ export function grokStats(calls) {
     brier: round(brierSum / resolved.length, 3),
     ok: true,
   };
+}
+
+// ===========================================================================
+// MANDAT D'ALLOCATION (method §H/§L/§M) — la politique du book, en chiffres.
+// Objectif : maximiser la richesse à long terme NET de frais, avec un risque
+// équilibré. Le cash est une réserve de tir (10 %), pas un abri.
+// ===========================================================================
+export const SLEEVES = ["coeur", "socle", "tactique", "crypto"];
+
+export const MANDATE = {
+  cash: { floor: 0.05, target: 0.1, ceiling: 0.15 },
+  sleeves: {
+    coeur: { target: 0.6, min: 0.45, max: 0.75 }, // convictions single-stock 3-5 ans
+    socle: { target: 0.12, min: 0, max: 0.2 }, // ETF indiciels/thématiques : bêta de complément
+    tactique: { target: 0.1, min: 0, max: 0.15 }, // catalyseurs datés, §K, Grok, momentum
+    crypto: { target: 0.08, min: 0, max: 0.1 }, // BTC/ETH d'abord, alts plafonnées
+  },
+  caps: {
+    coeur_entry: 0.1, // taille max à l'ENTRÉE d'une ligne cœur (Haute)
+    coeur_hold: 0.18, // on laisse courir un gagnant jusque-là, puis retour à 15 %
+    coeur_trim_to: 0.15,
+    socle_line: 0.2,
+    tactique_line: 0.04,
+    crypto_major: 0.06, // BTC, ETH
+    crypto_alt: 0.015, // toute autre crypto (top 20 capi uniquement)
+    sector: 0.3,
+    theme: 0.35,
+  },
+  vol_target: { low: 0.13, high: 0.2 }, // volatilité annualisée visée du book
+  drawdown_guard: -0.2, // drawdown du NAV vs son plus haut déclenchant la réduction de risque
+};
+
+// Inflexion des poches selon le régime : le CASH NE BOUGE PAS ; seules crypto et
+// tactique respirent. Le poids libéré va au socle indiciel (on garde le bêta sans
+// forcer de stock-picking), puis au cœur si le socle est plein.
+const REGIME_TILT = {
+  "RISK-ON SAIN": { crypto: 0.08, tactique: 0.1 },
+  NORMAL: { crypto: 0.06, tactique: 0.1 },
+  SURCHAUFFE: { crypto: 0.05, tactique: 0.08 },
+  STRESS: { crypto: 0.03, tactique: 0.05 },
+};
+
+export function sleeveTargets(label) {
+  const t = REGIME_TILT[label] ?? REGIME_TILT.NORMAL;
+  const S = MANDATE.sleeves;
+  const out = { coeur: S.coeur.target, socle: S.socle.target, tactique: t.tactique, crypto: t.crypto };
+  const freed = S.crypto.target - t.crypto + (S.tactique.target - t.tactique);
+  const toSocle = Math.min(freed, S.socle.max - out.socle);
+  out.socle += toSocle;
+  out.coeur += freed - toSocle;
+  for (const k of Object.keys(out)) out[k] = round(out[k], 4);
+  out.cash = MANDATE.cash.target;
+  return out;
+}
+
+const ETF_TICKERS = new Set([
+  "IWDA", "IWDA.AS", "EUNL", "EUNL.DE", "VWCE", "VWCE.DE", "VWRL", "CSPX", "SXR8", "SPY", "VOO", "QQQ",
+  "EIMI", "EIMI.L", "CI2", "CI2.MI", "MEUD", "PAEEM", "IS3N", "XDWD", "SMH", "URA", "ICLN",
+]);
+
+export function isCryptoTicker(t) {
+  return /^[A-Z0-9]{2,10}-(EUR|USD|USDT)$/i.test(String(t || ""));
+}
+
+// Poche d'une position : champ explicite d'abord, sinon inférence prudente.
+export function inferSleeve(p) {
+  if (p && SLEEVES.includes(p.sleeve)) return p.sleeve;
+  const t = String(p?.ticker || "").toUpperCase();
+  if (p?.asset_type === "crypto" || isCryptoTicker(t)) return "crypto";
+  if (p?.asset_type === "etf" || ETF_TICKERS.has(t) || p?.thesis_id === "residu-indiciel") return "socle";
+  if (p?.horizon === "tactique") return "tactique";
+  return "coeur";
+}
+
+// Taille ajustée de la volatilité : une ligne 2× plus volatile que la référence
+// (30 %/an, une action de qualité typique) prend ~moitié de la taille de conviction.
+export function volAdjust(baseSize, vol, ref = 0.3) {
+  if (!(baseSize > 0)) return 0;
+  if (!(vol > 0)) return round(baseSize, 4);
+  return round(baseSize * clamp(ref / vol, 0.5, 1.25), 4);
+}
+
+// ===========================================================================
+// RISQUE — séries de prix { "YYYY-MM-DD": close } → volatilité, drawdown,
+// risque du portefeuille et contributions. Pur, testable hors-ligne.
+// ===========================================================================
+function sortedPoints(points) {
+  if (!points || typeof points !== "object") return [];
+  return Object.keys(points)
+    .filter((d) => Number.isFinite(points[d]) && points[d] > 0)
+    .sort()
+    .map((d) => [d, points[d]]);
+}
+
+function std(xs) {
+  if (xs.length < 2) return null;
+  const m = xs.reduce((a, b) => a + b, 0) / xs.length;
+  return Math.sqrt(xs.reduce((a, b) => a + (b - m) ** 2, 0) / (xs.length - 1));
+}
+
+const DAY = 86400000;
+function yearsBetween(a, b) {
+  return (new Date(b).getTime() - new Date(a).getTime()) / (365.25 * DAY);
+}
+
+// Volatilité annualisée ; la fréquence est déduite des dates (gère crypto 7j/7).
+export function annualVol(points) {
+  const s = sortedPoints(points);
+  if (s.length < 31) return null;
+  const rets = [];
+  for (let i = 1; i < s.length; i++) rets.push(s[i][1] / s[i - 1][1] - 1);
+  const yrs = yearsBetween(s[0][0], s[s.length - 1][0]);
+  if (!(yrs > 0)) return null;
+  const sd = std(rets);
+  return sd == null ? null : round(sd * Math.sqrt(rets.length / yrs), 4);
+}
+
+// Drawdown max d'une suite de valeurs (closes ou NAV), négatif ou 0.
+export function maxDrawdown(values) {
+  let peak = -Infinity, mdd = 0;
+  for (const v of values) {
+    if (!Number.isFinite(v)) continue;
+    if (v > peak) peak = v;
+    if (peak > 0) mdd = Math.min(mdd, v / peak - 1);
+  }
+  return round(mdd, 4);
+}
+
+function isWeekday(d) {
+  const w = new Date(d + "T12:00:00Z").getUTCDay();
+  return w !== 0 && w !== 6;
+}
+
+// Risque du portefeuille à poids CONSTANTS (les poids du jour rejoués sur l'année
+// écoulée). weights = { ticker: part du NAV } (le cash est le reste, risque nul).
+// Les week-ends crypto sont repliés sur le lundi (séries alignées sur jours ouvrés).
+// Renvoie vol annualisée, drawdown max, vol par ligne et contribution au risque
+// (fractions qui somment à 1) — la ligne qui pèse 5 % du NAV mais 25 % du risque se voit.
+export function portfolioRisk(weights, series) {
+  const all = Object.keys(weights || {}).filter((t) => weights[t] > 0);
+  const tickers = all.filter((t) => sortedPoints(series?.[t]).length > 30);
+  const missing = all.filter((t) => !tickers.includes(t));
+  if (!tickers.length) return null;
+
+  const dateSet = new Set();
+  for (const t of tickers) for (const d of Object.keys(series[t])) if (isWeekday(d)) dateSet.add(d);
+  const dates = [...dateSet].sort();
+  if (dates.length < 31) return null;
+
+  const prev = {};
+  const R = Object.fromEntries(tickers.map((t) => [t, []]));
+  const rp = [];
+  dates.forEach((d, i) => {
+    let p = 0;
+    for (const t of tickers) {
+      const c = series[t][d];
+      let r = 0;
+      if (Number.isFinite(c) && c > 0) {
+        if (prev[t]) r = c / prev[t] - 1;
+        prev[t] = c;
+      }
+      if (i > 0) R[t].push(r);
+      p += weights[t] * r;
+    }
+    if (i > 0) rp.push(p);
+  });
+
+  const ppy = rp.length / Math.max(yearsBetween(dates[0], dates[dates.length - 1]), 1 / 52);
+  const mean = (xs) => xs.reduce((a, b) => a + b, 0) / xs.length;
+  const mp = mean(rp);
+  const varP = rp.reduce((a, b) => a + (b - mp) ** 2, 0) / (rp.length - 1);
+  const contributions = {};
+  const vols = {};
+  for (const t of tickers) {
+    const mt = mean(R[t]);
+    let cov = 0;
+    for (let i = 0; i < rp.length; i++) cov += (R[t][i] - mt) * (rp[i] - mp);
+    cov /= rp.length - 1;
+    contributions[t] = varP > 0 ? round((weights[t] * cov) / varP, 4) : 0;
+    const sd = std(R[t]);
+    vols[t] = sd == null ? null : round(sd * Math.sqrt(ppy), 4);
+  }
+  let nav = 1;
+  const curve = [1];
+  for (const r of rp) curve.push((nav *= 1 + r));
+
+  return {
+    vol_annual: round(Math.sqrt(varP) * Math.sqrt(ppy), 4),
+    max_drawdown_1y: maxDrawdown(curve),
+    return_1y_constant_weights: round(nav - 1, 4),
+    covered_weight: round(tickers.reduce((a, t) => a + weights[t], 0), 4),
+    missing,
+    vols,
+    contributions,
+    n_days: rp.length,
+    ok: true,
+  };
+}
+
+// ===========================================================================
+// HISTORIQUE DES COURS (method §I « apprendre du passé des cours ») — taux de base
+// sur 5-10 ans : CAGR, vol, pire drawdown, % de fenêtres 12 mois positives, et
+// ANALOGUES : ce qui a suivi, historiquement, quand le titre était aussi loin de
+// son plus haut qu'aujourd'hui. Un taux de base, pas une prédiction.
+// ===========================================================================
+function quantile(sorted, q) {
+  if (!sorted.length) return null;
+  const pos = (sorted.length - 1) * q;
+  const lo = Math.floor(pos), hi = Math.ceil(pos);
+  return sorted[lo] + (sorted[hi] - sorted[lo]) * (pos - lo);
+}
+
+export function historyStats(points, { horizonDays = 365, band = 0.05, step = 21 } = {}) {
+  const s = sortedPoints(points);
+  if (s.length < 260) return null;
+  const yrs = yearsBetween(s[0][0], s[s.length - 1][0]);
+  if (!(yrs >= 1)) return null;
+  const closes = s.map((x) => x[1]);
+  const last = closes[closes.length - 1];
+
+  const dd = [];
+  let peak = -Infinity;
+  for (const c of closes) {
+    peak = Math.max(peak, c);
+    dd.push(c / peak - 1);
+  }
+  const currentDd = dd[dd.length - 1];
+
+  // Fenêtres « 1 an » par DATE (pas par index : la crypto cote 7j/7).
+  const fwd = [];
+  let j = 0;
+  for (let i = 0; i < s.length; i++) {
+    const target = new Date(s[i][0]).getTime() + horizonDays * DAY;
+    if (j < i) j = i;
+    while (j < s.length && new Date(s[j][0]).getTime() < target) j++;
+    if (j >= s.length) break;
+    fwd.push({ i, ret: closes[j] / closes[i] - 1 });
+  }
+  const sampled = fwd.filter((_, k) => k % 5 === 0).map((f) => f.ret);
+  const sortedR = [...sampled].sort((a, b) => a - b);
+
+  const analogs = [];
+  let lastIdx = -Infinity;
+  for (const f of fwd) {
+    if (Math.abs(dd[f.i] - currentDd) <= band && f.i - lastIdx >= step) {
+      analogs.push(f.ret);
+      lastIdx = f.i;
+    }
+  }
+  const sortedA = [...analogs].sort((a, b) => a - b);
+
+  return {
+    from: s[0][0],
+    to: s[s.length - 1][0],
+    years: round(yrs, 1),
+    cagr: round((last / closes[0]) ** (1 / yrs) - 1, 4),
+    vol_annual: annualVol(points),
+    max_drawdown: maxDrawdown(closes),
+    current_drawdown: round(currentDd, 4),
+    pct_positive_12m: sampled.length ? round(sampled.filter((r) => r > 0).length / sampled.length, 3) : null,
+    median_12m: sortedR.length ? round(quantile(sortedR, 0.5), 4) : null,
+    worst_12m: sortedR.length ? round(sortedR[0], 4) : null,
+    best_12m: sortedR.length ? round(sortedR[sortedR.length - 1], 4) : null,
+    analog: {
+      condition: `drawdown vs plus haut à ±${Math.round(band * 100)} pts de ${Math.round(currentDd * 100)} %`,
+      n: analogs.length,
+      median_fwd_12m: sortedA.length ? round(quantile(sortedA, 0.5), 4) : null,
+      p25_fwd_12m: sortedA.length ? round(quantile(sortedA, 0.25), 4) : null,
+      p75_fwd_12m: sortedA.length ? round(quantile(sortedA, 0.75), 4) : null,
+      pct_positive: sortedA.length ? round(analogs.filter((r) => r > 0).length / analogs.length, 3) : null,
+    },
+    ok: true,
+  };
+}
+
+// ===========================================================================
+// APPRENTISSAGE — attribution des erreurs (method §I).
+// ===========================================================================
+const NON_TRADES = new Set(["SEED", "RECLONE"]);
+
+// Regret des ventes : pour chaque vente, cours d'aujourd'hui vs prix de vente (€).
+// regret > 0 = le titre vaut plus aujourd'hui qu'à la vente (vendu trop tôt).
+// pricesEUR = { ticker: prix € actuel }. sinceDate filtre les ventes récentes.
+export function sellRegret(trades, pricesEUR, { sinceDate = null } = {}) {
+  const sells = (Array.isArray(trades) ? trades : []).filter(
+    (t) => t && t.side === "sell" && !NON_TRADES.has(t.ticker) && t.price > 0 && (!sinceDate || t.ts >= sinceDate)
+  );
+  const items = [];
+  for (const t of sells) {
+    const now = pricesEUR?.[t.ticker];
+    if (!(now > 0)) continue;
+    items.push({ ts: t.ts, ticker: t.ticker, sold_at: t.price, now: round(now, 2), regret_pct: round(now / t.price - 1, 4) });
+  }
+  const above = items.filter((i) => i.regret_pct > 0).length;
+  return {
+    n: items.length,
+    above,
+    share_above: items.length ? round(above / items.length, 3) : null,
+    avg_regret_pct: items.length ? round(items.reduce((a, i) => a + i.regret_pct, 0) / items.length, 4) : null,
+    unpriced: sells.length - items.length,
+    items,
+  };
+}
+
+// Performance groupée (par desk, poche ou confiance) : décisions clôturées (alpha
+// réalisé) + positions ouvertes (P&L latent vs prix d'entrée de l'IA).
+// open = [{ key, unrealized_pct }] déjà calculés par l'appelant.
+export function groupPerformance(decisions, open, keyOf) {
+  const g = {};
+  const bucket = (k) => (g[k] ??= { n_closed: 0, alpha_sum: 0, n_alpha: 0, wins: 0, n_open: 0, unrealized_sum: 0 });
+  for (const d of Array.isArray(decisions) ? decisions : []) {
+    if (!d || d.origin === "hérité") continue; // les sorties héritées jugent la mécanique, pas un desk
+    const b = bucket(keyOf(d) || "non-attribué");
+    b.n_closed++;
+    if (typeof d.alpha_pct === "number") {
+      b.alpha_sum += d.alpha_pct;
+      b.n_alpha++;
+    }
+    if (typeof d.realized_pnl_pct === "number" && d.realized_pnl_pct > 0) b.wins++;
+  }
+  for (const o of Array.isArray(open) ? open : []) {
+    const b = bucket(o.key || "non-attribué");
+    b.n_open++;
+    if (typeof o.unrealized_pct === "number") b.unrealized_sum += o.unrealized_pct;
+  }
+  const out = {};
+  for (const [k, b] of Object.entries(g)) {
+    out[k] = {
+      n_closed: b.n_closed,
+      avg_alpha_closed: b.n_alpha ? round(b.alpha_sum / b.n_alpha, 4) : null,
+      win_rate_closed: b.n_closed ? round(b.wins / b.n_closed, 3) : null,
+      n_open: b.n_open,
+      avg_unrealized_open: b.n_open ? round(b.unrealized_sum / b.n_open, 4) : null,
+    };
+  }
+  return out;
+}
+
+// Multiplicateur de sizing MÉRITÉ par desk (method §L) : neutre tant que le desk
+// n'a pas ≥ 4 décisions clôturées avec alpha, puis il grandit ou rétrécit selon
+// l'alpha moyen PROUVÉ. Un desk qui se trompe voit ses idées dimensionnées plus petit.
+export function deskMultiplier(stats) {
+  const n = stats?.n_closed ?? 0;
+  const a = stats?.avg_alpha_closed;
+  if (n < 4 || typeof a !== "number") return 1;
+  if (a >= 0.05) return 1.25;
+  if (a >= 0) return 1;
+  if (a >= -0.05) return 0.85;
+  return 0.6;
 }
 
 // ---- petits utilitaires --------------------------------------------------

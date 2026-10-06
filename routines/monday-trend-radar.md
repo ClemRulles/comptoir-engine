@@ -9,18 +9,21 @@ ses amendements actifs s'appliquent), et `memory/trends.md` (semaine passée).
 
 ## Partie A — Régime de marché
 Joue `node engine/signals.js` : `signals.regime` te donne un **cadran chiffré** (courbe 10Y-2Y,
-chômage, inflation) + couloir de cash (plancher ET plafond, §H). Recoupe avec FMP sector-performance + recherche web, puis
+chômage, inflation) + les **cibles de poches** du régime (`regime.sleeves` — le cash reste à 10 %, §H). Recoupe avec FMP sector-performance + recherche web, puis
 règle le cadran : RISK-ON SAIN / NORMAL / SURCHAUFFE / STRESS.
 Écris-le dans `memory/market-regime.md` (format : cadran, consigne au système,
 valorisation indice, zones de bulle, largeur, macro en 3 lignes, sources).
 
-**Contexte crypto (radar, pas signal).** Joue `node engine/crypto.js` → `memory/fund/crypto.json`
-(CoinGecko : cap/dominance BTC-ETH/cours EUR ; alternative.me : Fear & Greed). Lis-le pour situer
-le climat crypto : sentiment (peur/avidité, lecture **contrarienne**), dominance BTC, variations
-24h/7j/30j des majors. Les signaux quantitatifs actions (F-Score, earnings, initiés) **n'ont aucun
-sens sur la crypto** : pour ces actifs, raisonne **momentum + régime macro + sentiment** uniquement.
-Le crypto reste un **radar à corroborer** (preuve dure on-chain/chiffres/catalyseur exigée) et **sans
-allocation forcée** — résume-le en 2 lignes dans `memory/market-regime.md` si pertinent cette semaine.
+**Poche crypto et allocation (desks, method §L/§M).** Joue `node engine/crypto.js` →
+`memory/fund/crypto.json` (CoinGecko : cap, dominance BTC-ETH, cours EUR ; alternative.me : Fear &
+Greed), puis `node engine/risk.js` → `memory/fund/allocation.json` (poches vs cibles, cash,
+volatilité, drawdown). Convoque ensuite **en parallèle** (un seul message, outil Agent) :
+- `desk-macro` — posture de la semaine, écart des poches à leurs cibles, ETF du socle ;
+- `desk-crypto` — climat crypto (sentiment **contrarien**, dominance, cycle), cible de la poche et
+  répartition BTC/ETH/alts. Les signaux actions (F-Score, earnings, initiés) n'ont aucun sens ici.
+Écris dans `memory/market-regime.md` une section **« Allocation de la semaine »** : cible par poche
+(régime), poids actuel (`allocation.json`), posture des deux desks en 2 lignes chacun. Rien ne
+s'exécute le lundi : le vendredi arbitre et exécute.
 
 ## Partie B — LA tendance de la semaine (anti-bullshit)
 1. Génère 3 à 6 tendances candidates, en croisant des **données dures**, pas du buzz :
@@ -141,6 +144,39 @@ Format `memory/grok-pulse.json` :
   ]
 }
 ```
+
+## Partie E — Le monde en clair (`memory/fund/news.json`) + ce que font les pros
+
+Le groupe veut comprendre **ce qui se passe dans le monde et ce que l'IA en fait**, sans lire la
+méthode. Joue d'abord `node engine/pros.js` (déclarations 13F officielles des grands
+investisseurs → `memory/fund/pros.json` ; il ne retélécharge que les nouveaux dépôts).
+
+Puis **réécris entièrement** `memory/fund/news.json` (schéma complet dans son `_doc`) :
+- **6 à 12 items** de la semaine écoulée, les plus importants d'abord, couvrant ce qui bouge
+  réellement les marchés : **politique US** (Maison-Blanche, Trump, tarifs, décrets, Congrès),
+  **géopolitique** (conflits, sanctions, pétrole), **banques centrales** (Fed, BCE),
+  **macro** (inflation, emploi), **entreprises** (résultats et annonces qui touchent nos lignes
+  ou la watchlist), **énergie**, **crypto**, **régulation** ;
+- **1 item `investisseurs`** si `pros.json` montre un mouvement notable (ex. « Buffett renforce
+  Alphabet ») — en rappelant que c'est une photo trimestrielle datée ;
+- chaque item : faits **sourcés et datés** (recherche web, FRED, communiqués), `why` en une
+  phrase, `impact` sur nos lignes (`held:true` si détenu), et `ai_take` = ce que l'IA fait
+  concrètement (« rien » est une réponse honnête). **Zéro jargon interne.**
+- Une déclaration politique n'est un item que si elle a un **effet observable** (marché,
+  calendrier, décret signé). Pas de rumeur, pas d'item sans source.
+
+Mets aussi à jour la `posture` de `memory/fund/digest.json` (label, ton, une phrase) si le
+régime a changé ; laisse le reste du fichier au vendredi.
+
+**Carré « à l'œil » de l'accueil (`memory/fund/spotlight.json → watch`, schéma dans son
+`_doc`).** Réécris-le : le chiffre frappant (`kind: chiffre`, ex. `5,2 %` + « Taux à 10 ans
+américain ») ou la news (`kind: news`, titre ≤ 7 mots) que l'IA surveille le plus cette semaine,
+tiré de `news.json` ou du régime, déjà sourcé ; `line` = ce que ça change pour nous (≤ 90
+caractères). Laisse `invest` au vendredi.
+
+**Quiz du jour (OBLIGATOIRE, 2 minutes — `skills/quiz.md`).** Vérifie que `memory/fund/quiz.json`
+a une question pour les **2 prochains jours** (date de Paris) et écris celles qui manquent (thème du
+jour, une seule bonne réponse, fait sourcé). Ne touche jamais à une date déjà publiée.
 
 Commit : `trend-radar: {date} — tendance: {nom ou AUCUNE}, {n} catalyseurs · pouls maj`.
 

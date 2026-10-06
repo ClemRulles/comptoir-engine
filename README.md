@@ -19,8 +19,37 @@ Paper trading d'abord. Ce n'est pas un conseil en investissement.
 | Mer | `wednesday-deepdive` | **Opus** | Débat haussier/baissier sur ≤3 candidats **+ revue de risque Opus de ≤2 positions du book IA** |
 | Jeu | `thursday-portfolio-doctor` | Sonnet | État des **deux books** + **exécution des sorties défensives du book IA** (vente seule) |
 | Ven | `friday-brief` | Sonnet | Apprentissage + gestion du book IA + synthèse + revue hebdo ; **1er vendredi du mois = calibration profonde** |
+| Dim | `sunday-crypto` | Sonnet | **Fenêtre crypto** : paliers de la poche, achats contrariens, stops des alts (crypto uniquement) |
 
-**5 tâches planifiées, point.** La revue de calibration mensuelle n'est PAS une 6ᵉ tâche : elle
+Fenêtres d'exécution du book IA : **mercredi** = coups tactiques datés, **jeudi** = ventes
+défensives + suivi des résultats, **vendredi** = fenêtre principale (cœur dans sa zone d'achat,
+socle, rééquilibrage), **dimanche** = crypto. Le lundi écrit aussi l'actualité mondiale en clair
+(`memory/fund/news.json`) et les mouvements 13F des grands investisseurs (`engine/pros.js`) ; le
+vendredi écrit la semaine en clair (`memory/fund/digest.json`) pour l'accueil de l'app. Chaque
+nuit, la routine ajoute le **quiz du jour** des 2 prochains jours (`memory/fund/quiz.json`,
+`skills/quiz.md`) ; les deux carrés de l'accueil (`memory/fund/spotlight.json`) disent sur quoi
+l'IA investirait cette semaine (vendredi) et ce qu'elle a à l'œil (lundi).
+
+### Le mandat du book IA (depuis 2026-10-06)
+Faire fructifier le book au maximum sur 3-5 ans, net de frais, à risque équilibré — comme un
+investisseur professionnel (`skills/engine-method.md` §H, §L, §M) :
+
+| Poche | Cible | Bande |
+|-------|:-----:|:-----:|
+| Cœur — convictions single-stock 3-5 ans | 60 % | 45-75 % |
+| Socle — ETF indiciels/thématiques | 12 % | 0-20 % |
+| Tactique — coups datés avec stop | 10 % | 0-15 % |
+| Crypto — BTC/ETH d'abord | 8 % | 0-10 % |
+| **Cash — réserve de tir** | **10 %** | 5-15 % |
+
+Le régime fait varier crypto et tactique, jamais le cash. La routine du soir joue le **CIO** et
+convoque des **desks spécialisés** (`.claude/agents/` : tech, santé, industrie-énergie, finance,
+conso, macro, crypto, tactique) plus un **risk-manager** qui attaque chaque idée. Chaque desk
+gagne ou perd du poids selon l'alpha qu'il a prouvé (`engine/attribution.js`). Les taux de base
+historiques (`engine/history.js`) et le budget de risque (`engine/risk.js`) encadrent chaque
+décision. Les sous-agents augmentent la consommation : surveille Réglages → Usage la 1re semaine.
+
+**6 tâches planifiées** (la 6ᵉ, le dimanche crypto, est courte). La revue de calibration mensuelle n'est PAS une 6ᵉ tâche : elle
 est repliée dans le `friday-brief` du 1er vendredi du mois. Opus n'est sollicité que le mercredi
 (≤5 titres : ≤3 candidats + ≤2 positions du book). Surveille Réglages → Usage la 1re semaine.
 
@@ -31,6 +60,7 @@ tuesday-scout             0 22 * * 2
 wednesday-deepdive        0 22 * * 3
 thursday-portfolio-doctor 0 22 * * 4
 friday-brief              0 22 * * 5
+sunday-crypto             0 22 * * 0
 ```
 
 ---

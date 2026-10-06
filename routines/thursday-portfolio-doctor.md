@@ -13,7 +13,16 @@ book IA via `ai-fund.json`) à sa thèse et sa règle de sortie écrites — et,
 **exécuter les sorties défensives sans attendre vendredi** (§H : sortir vite est urgent,
 entrer vite ne l'est jamais ; le jeudi ne fait JAMAIS d'achat).
 
-Joue d'abord `node engine/signals.js` (positions du book) pour rafraîchir le gate de chaque ligne.
+Joue d'abord `node engine/signals.js` (positions du book) pour rafraîchir le gate de chaque ligne,
+puis `node engine/crypto.js` et `node engine/risk.js` (poches, cash, risque, drawdown du book).
+Ce soir pas de desks : le jeudi est une nuit de contrôle, menée par le CIO seul.
+
+**Suivi des résultats (le test des thèses cœur, method §G).** Pour chaque position dont les
+résultats sont sortis depuis lundi (`catalysts.md`, presse) : l'hypothèse pivot tient-elle,
+chiffres publiés à l'appui ? Écris une ligne par résultat dans le bloc d'alertes (confirmée /
+affaiblie / cassée) — une thèse cassée se vend ce soir (déclencheur ci-dessous), une thèse
+affaiblie saisit le mercredi. Ajoute un item `entreprises` à `memory/fund/news.json` pour chaque
+résultat qui touche une ligne détenue (en clair : ce qui a été publié, ce que l'IA en conclut).
 
 Pour chaque position (groupe **et** book IA) :
 1. News récentes : Finnhub (résultats, guidance), EDGAR 8-K (événements), recherche web,
@@ -45,9 +54,12 @@ par l'un des **4 déclencheurs — et AUCUN autre** :
 - la **règle de sortie écrite** (`exit_rule`) touchée, ou la **thèse cassée** (pivot faux) ;
 - un **drapeau fondamental 🔴** (F-Score ≤ 3 ou earnings quality rouge) → sortie forcée §H,
   pas de débat ;
-- le **stop de prix d'une position TACTIQUE** (§G/§H). Les positions **cœur n'ont pas de stop
-  de prix** : à −25 % vs `entry_price`, on ouvre un **réexamen** (saisine du mercredi), on ne
-  vend pas mécaniquement ;
+- le **stop de prix d'une position TACTIQUE** (§G/§H) ou d'une **alt crypto** (−30 % vs
+  entrée, §M), ou la date d'horizon d'un coup tactique dépassée. Les positions **cœur et
+  BTC/ETH n'ont pas de stop de prix** : à −25 % vs `entry_price`, une ligne cœur ouvre un
+  **réexamen** (saisine du mercredi), on ne vend pas mécaniquement ;
+- le **garde-fou de drawdown** (`allocation.json → drawdown.guard_triggered`) : réduction de
+  risque §H — tactiques et alts d'abord, crypto ramenée à 3 % ;
 - un verdict Opus **SORTIR** (ou **ALLÉGER**, en vente partielle) de `memory/convictions.md`
   encore non exécuté.
 
@@ -60,7 +72,7 @@ le cours d'aujourd'hui — le retaillage mécanique sur signal de prix a coûté
 protégé. **Le jeudi vend des thèses cassées, pas des cours qui baissent.**
 
 Exécution dans `ai-fund.json` : log du trade (`side:"sell"`, `quantity`, `price` = cours du jour,
-`fee` = montant × 0,003, `rationale` citant le déclencheur + le gate), retire/réduis la position,
+`fee` = montant × 0,003 (0,005 en crypto), `sleeve`, `desk`, `rationale` citant le déclencheur + le gate), retire/réduis la position,
 crédite le `cash` (net de frais), mets `as_of` à jour. La passe d'apprentissage du **vendredi**
 score ces fermetures (P&L net, alpha via `engine/bench.js`) — n'écris PAS `decisions.json` ici.
 
@@ -73,6 +85,14 @@ le vendredi tranchera. Mieux vaut une sortie retardée de 24 h qu'une vente impu
 d'abord `### Sorties exécutées` (`{ticker} — vendu {n} parts à {prix} € — déclencheur — frais`),
 puis les `À SURVEILLER` restants (`{ticker} — raison 1 ligne`). Le vendredi vérifie et complète.
 Pour le groupe, **tu signales, tu ne vends pas** : le groupe décide.
+
+**Carré « à l'œil » de l'accueil** : si un fait plus important que l'actuel
+`memory/fund/spotlight.json → watch` est apparu (résultats, banque centrale, choc de marché), remplace-le
+(même schéma, sourcé). Sinon n'y touche pas.
+
+**Quiz du jour (OBLIGATOIRE, 2 minutes — `skills/quiz.md`).** Vérifie que `memory/fund/quiz.json`
+a une question pour les **2 prochains jours** (date de Paris) et écris celles qui manquent (thème du
+jour, une seule bonne réponse, fait sourcé). Ne touche jamais à une date déjà publiée.
 
 Commit : `portfolio-doctor: {date} — {n} positions (groupe+IA), {k} alertes, {s} sorties exécutées`.
 

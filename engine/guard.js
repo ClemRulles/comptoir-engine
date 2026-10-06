@@ -46,6 +46,13 @@ function applySoftRepairs(schema, obj, problems) {
     actions.push(`calls[${i}] retiré (entrée invalide)`);
   }
 
+  // Même logique pour questions[] (quiz.json) : une question malformée ne s'affiche jamais.
+  const qdrops = [...new Set(problems.filter((p) => typeof p.dropQuestion === "number").map((p) => p.dropQuestion))];
+  for (const i of qdrops.sort((a, b) => b - a)) {
+    obj.questions.splice(i, 1);
+    actions.push(`questions[${i}] retirée (entrée invalide)`);
+  }
+
   for (const p of problems) {
     if (p.addBucket) {
       obj.buckets.push(bucketFor(p.addBucket));
@@ -67,6 +74,10 @@ function applySoftRepairs(schema, obj, problems) {
       obj.trades = [];
       actions.push("`trades` réinitialisé");
     }
+    if (p.resetKey) {
+      obj[p.resetKey] = schema.template()[p.resetKey];
+      actions.push(`\`${p.resetKey}\` réinitialisé`);
+    }
     if (p.resetStats || p.resetGrokStats) {
       obj.stats = schema.template().stats;
       actions.push("`stats` réinitialisé");
@@ -85,6 +96,11 @@ function guardOne(schema) {
     let quarantined = null;
     if (res.status === "corrupt") quarantined = quarantine(path);
     writeJson(path, schema.template());
+    // Un cache régénéré absent n'a rien perdu : on l'initialise sans alerte (exit 0).
+    if (schema.generated && res.status === "missing") {
+      report.actions.push("cache absent -> initialisé (régénéré par le moteur au prochain run)");
+      return report;
+    }
     report.recreated = true;
     report.actions.push(
       res.status === "missing"

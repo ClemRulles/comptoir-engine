@@ -49,15 +49,17 @@ Si une clé manque ou une API plafonne → bascule sur la recherche web native e
 - Indicateurs techniques (RSI, MACD, moyennes) et séries de prix.
 - Usage : momentum **plafonné** (method §A) en appoint. À doses modérées vu le quota serré.
 
-### Crypto : CoinGecko + alternative.me — gratuit, sans clé (RADAR, pas signal)
+### Crypto : CoinGecko + alternative.me — gratuit, sans clé (timing de la poche crypto §M)
 - `engine/crypto.js` → `memory/fund/crypto.json`. CoinGecko `/global` (cap totale, **dominance
   BTC/ETH**, variation 24h, EUR) + `/coins/markets` (cours + variations 24h/7j/30j des majors, EUR)
   + alternative.me `/fng` (**Fear & Greed Index** crypto, 0 peur extrême → 100 avidité extrême).
 - Usage : situer le **climat crypto** (sentiment contrarien, dominance, momentum). Les signaux
   quantitatifs actions (F-Score, earnings, initiés) **ne s'appliquent PAS** à la crypto → momentum
   + régime macro + sentiment uniquement.
-- **Discipline** : radar à corroborer (preuve dure on-chain/chiffres/catalyseur), **jamais un signal
-  d'achat seul**, **pas d'allocation forcée**. Sans réseau → champs `null` + `data_gaps`, ne bloque pas.
+- **Discipline** : sert au **timing contrarien** de la poche crypto (method §M : paliers doublés en
+  peur extrême, aucun achat neuf au-dessus de 80) ; le sentiment ne déclenche **jamais seul** un
+  achat. Cours historiques crypto : Yahoo `BTC-EUR`, `ETH-EUR`… (`engine/history.js`, `risk.js`).
+  Sans réseau → champs `null` + `data_gaps`, ne bloque pas.
 
 ### Recherche web native — toujours disponible, gratuite
 - News, contexte qualitatif, vérification croisée, lecture de filings/articles.

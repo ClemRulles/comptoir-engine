@@ -8,7 +8,7 @@ recompute à partir de `decisions.json` : un registre corrompu fausserait tout, 
 
 Lis `CLAUDE.md`, `skills/engine-method.md` (§H sizing, §I calibration),
 `memory/fund/decisions.json`, `memory/fund/calibration.json`, `memory/lessons.md`,
-`memory/playbook.md`.
+`memory/playbook.md`, `memory/fund/attribution.json`, `memory/fund/history.json`.
 
 Objectif : prendre du recul sur **tout l'historique** de décisions, vérifier que l'IA est
 **honnêtement calibrée**, et **ajuster le sizing et le ton** en conséquence. C'est la passe qui
@@ -52,12 +52,30 @@ Pour chaque amendement de `memory/playbook.md` :
 - **Plafond : 10 amendements actifs.** Au-delà, retire le moins utile avant d'en confirmer un
   nouveau. Un playbook obèse ne s'applique plus.
 
+## 4 bis. Revue des desks et des poches (method §L/§M)
+À partir de `memory/fund/attribution.json` (joue `node engine/attribution.js` si périmé) :
+- **Par desk** : alpha réalisé, latent, multiplicateur. À **n ≥ 8** décisions clôturées, un desk
+  à alpha moyen négatif passe à **1 idée par semaine** ; un desk à alpha ≥ +5 % peut passer à
+  **3 idées**. Note le quota dans `memory/playbook.md` (section « Quotas des desks ») — c'est une
+  règle appliquée, pas un souvenir.
+- **Par poche** : la poche crée-t-elle de la valeur vs IWDA ? À n ≥ 8, une poche tactique ou
+  crypto qui détruit de la valeur voit sa **cible réduite** de moitié jusqu'à la revue suivante
+  (écris-le dans `lessons.md` ; le cash cible de 10 % ne bouge jamais, il est fixé par le mandat).
+- **Opportunités manquées** : si la majorité des refus du mois ont battu l'indice de > 5 points,
+  le filtre est trop sévère — c'est le falsificateur de P-003, à juger ici.
+- **Taux de base** : sur les clôtures du mois, combien tombent hors de la fourchette p25-p75 de
+  leurs analogues (`history.json`) ? Ce sont elles, et seulement elles, qui méritent une règle.
+
 ## 5. Écris la correction
 - Ajoute un **bloc daté** dans `memory/lessons.md` sous « Leçons vives » :
   `YYYY-MM-DD · CALIBRATION · {constat chiffré} → {ajustement de sizing/critère appliqué}.`
 - Si un barème de sizing a changé, c'est désormais la référence pour les vendredis suivants.
 - Mouvements du playbook (promotions, retraits, effets mesurés) : une ligne chacun dans le
   même bloc CALIBRATION.
+
+**Quiz du jour (OBLIGATOIRE, 2 minutes — `skills/quiz.md`).** Vérifie que `memory/fund/quiz.json`
+a une question pour les **2 prochains jours** (date de Paris) et écris celles qui manquent (thème du
+jour, une seule bonne réponse, fait sourcé). Ne touche jamais à une date déjà publiée.
 
 Commit : `calibration: {mois} — hit-rate H/M/B {x}/{y}/{z}, {ajustement}, playbook {p} confirmés/{r} retirés`.
 

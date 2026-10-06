@@ -9,6 +9,8 @@ import { join } from "node:path";
 import {
   momentum12_1, momentumFromCloses, rsi, relativeVolume, range52w, insiderSignal,
   piotroski, earningsQuality, regimeScore, gate, GATE_WEIGHTS, periodReturn, forecastStats, directionalHit, grokStats,
+  MANDATE, sleeveTargets, inferSleeve, isCryptoTicker, volAdjust, annualVol, maxDrawdown, portfolioRisk,
+  historyStats, sellRegret, groupPerformance, deskMultiplier,
 } from "./lib/calc.js";
 import { annualFromFacts, cikForSymbol } from "./lib/edgar.js";
 
@@ -242,6 +244,130 @@ const ok = (cond, label) => {
 }
 
 // ---- guard: réparation sur fichiers temporaires ---------------------------
+
+// ---- mandat d'allocation (§H/§L/§M) ------------------------------------------
+{
+  for (const lbl of ["RISK-ON SAIN", "NORMAL", "SURCHAUFFE", "STRESS", "???"]) {
+    const t = sleeveTargets(lbl);
+    const sum = t.coeur + t.socle + t.tactique + t.crypto + t.cash;
+    ok(Math.abs(sum - 1) < 1e-9, `mandat: poches + cash = 100 % (${lbl})`);
+    ok(t.cash === 0.1, `mandat: cash cible 10 % quel que soit le régime (${lbl})`);
+    ok(t.socle <= MANDATE.sleeves.socle.max + 1e-9, `mandat: socle ≤ max (${lbl})`);
+  }
+  ok(sleeveTargets("STRESS").crypto < sleeveTargets("RISK-ON SAIN").crypto, "mandat: le stress réduit la crypto");
+  const rg = regimeScore({ t10y2y: 1.5, cpi_yoy: 0.05 });
+  ok(rg.cash_target === 0.1 && rg.cash_floor === 0.05 && rg.cash_ceiling === 0.15, "regime: bande de cash fixe 5/10/15 % même en SURCHAUFFE");
+  ok(rg.sleeves && rg.sleeves.crypto === 0.05, "regime: expose les cibles de poches infléchies");
+
+  ok(isCryptoTicker("BTC-EUR") && isCryptoTicker("eth-usd"), "sleeve: BTC-EUR/ETH-USD reconnus crypto");
+  ok(!isCryptoTicker("NOVO-B.CO") && !isCryptoTicker("AI"), "sleeve: NOVO-B.CO / AI ne sont pas des cryptos");
+  ok(inferSleeve({ ticker: "BTC-EUR" }) === "crypto", "sleeve: crypto inférée");
+  ok(inferSleeve({ ticker: "EIMI", horizon: "coeur" }) === "socle", "sleeve: ETF -> socle");
+  ok(inferSleeve({ ticker: "NVDA", horizon: "tactique" }) === "tactique", "sleeve: horizon tactique -> tactique");
+  ok(inferSleeve({ ticker: "MSCI", horizon: "coeur" }) === "coeur", "sleeve: action cœur par défaut");
+  ok(inferSleeve({ ticker: "MSCI", sleeve: "tactique" }) === "tactique", "sleeve: le champ explicite prime");
+
+  ok(volAdjust(0.08, 0.6) === 0.04, "volAdjust: vol 2× la référence -> moitié de taille");
+  ok(volAdjust(0.08, 0.15) === 0.1, "volAdjust: titre calme -> bonus plafonné à ×1.25");
+  ok(volAdjust(0.08, null) === 0.08, "volAdjust: vol inconnue -> taille inchangée");
+}
+
+// ---- risque : vol, drawdown, portefeuille -----------------------------------
+{
+  // Deux séries synthétiques sur ~1 an de jours ouvrés : A oscille ±1 %, B ±3 %, en phase.
+  const mk = (amp, phase = 0) => {
+    const pts = {};
+    let c = 100;
+    const d0 = new Date("2025-01-06T00:00:00Z").getTime();
+    for (let i = 0; i < 360; i++) {
+      const d = new Date(d0 + i * 86400000);
+      const w = d.getUTCDay();
+      if (w === 0 || w === 6) continue;
+      c *= 1 + amp * (i % 2 === phase ? 1 : -1);
+      pts[d.toISOString().slice(0, 10)] = c;
+    }
+    return pts;
+  };
+  const A = mk(0.01), B = mk(0.03);
+  const vA = annualVol(A), vB = annualVol(B);
+  ok(vA > 0.1 && vA < 0.2, `annualVol: ±1 %/jour ≈ 16 %/an (obtenu ${vA})`);
+  ok(Math.abs(vB / vA - 3) < 0.05, "annualVol: amplitude ×3 -> vol ×3");
+  ok(maxDrawdown([100, 120, 90, 130]) === -0.25, "maxDrawdown: 120 -> 90 = −25 %");
+  ok(maxDrawdown([1, 2, 3]) === 0, "maxDrawdown: série croissante -> 0");
+
+  const pr = portfolioRisk({ A: 0.5, B: 0.4, MISSING: 0.1 }, { A, B });
+  ok(pr && pr.ok, "portfolioRisk: calcule");
+  const sumC = Object.values(pr.contributions).reduce((a, b) => a + b, 0);
+  ok(Math.abs(sumC - 1) < 1e-3, "portfolioRisk: contributions au risque somment à 1");
+  ok(pr.contributions.B > pr.contributions.A, "portfolioRisk: la ligne la plus volatile domine le risque");
+  ok(pr.missing.includes("MISSING") && Math.abs(pr.covered_weight - 0.9) < 1e-9, "portfolioRisk: ligne sans historique signalée");
+  ok(portfolioRisk({}, {}) === null, "portfolioRisk: rien à mesurer -> null");
+}
+
+// ---- historique des cours : taux de base -------------------------------------
+{
+  const pts = {};
+  const d0 = new Date("2016-01-01T00:00:00Z").getTime();
+  let c = 100;
+  for (let i = 0; i < 3650; i++) {
+    c *= 1 + 0.0003 + 0.01 * Math.sin(i / 40);
+    pts[new Date(d0 + i * 86400000).toISOString().slice(0, 10)] = c;
+  }
+  const h = historyStats(pts);
+  ok(h && h.ok && h.years > 9, "history: calcule sur ~10 ans");
+  ok(h.cagr > 0, "history: tendance haussière -> CAGR > 0");
+  ok(h.max_drawdown < 0 && h.current_drawdown <= 0, "history: drawdowns négatifs");
+  ok(h.pct_positive_12m >= 0 && h.pct_positive_12m <= 1, "history: % de 12 mois positifs dans [0,1]");
+  ok(h.analog && typeof h.analog.n === "number", "history: analogues calculés");
+  ok(historyStats({ "2024-01-01": 1 }) === null, "history: trop court -> null");
+}
+
+// ---- apprentissage : regret des ventes, desks ------------------------------
+{
+  const trades = [
+    { ts: "2026-06-04", side: "buy", ticker: "SEED", price: 0 },
+    { ts: "2026-06-12", side: "sell", ticker: "X", price: 100 },
+    { ts: "2026-08-12", side: "sell", ticker: "Y", price: 50 },
+    { ts: "2026-08-14", side: "sell", ticker: "Z", price: 10 },
+  ];
+  const sr = sellRegret(trades, { X: 120, Y: 40 });
+  ok(sr.n === 2 && sr.above === 1 && sr.unpriced === 1, "sellRegret: 1 vendu trop tôt, 1 bien vendu, 1 sans prix");
+  ok(sr.items.find((i) => i.ticker === "X").regret_pct === 0.2, "sellRegret: regret X = +20 %");
+  ok(sellRegret(trades, { X: 120, Y: 40 }, { sinceDate: "2026-08-01" }).n === 1, "sellRegret: filtre par date");
+
+  const decisions = [
+    { desk: "desk-tech-us", origin: "conviction", alpha_pct: 0.08, realized_pnl_pct: 0.1 },
+    { desk: "desk-tech-us", origin: "conviction", alpha_pct: 0.04, realized_pnl_pct: 0.05 },
+    { desk: "desk-tech-us", origin: "conviction", alpha_pct: 0.06, realized_pnl_pct: 0.07 },
+    { desk: "desk-tech-us", origin: "conviction", alpha_pct: 0.02, realized_pnl_pct: 0.03 },
+    { desk: "desk-europe", origin: "hérité", alpha_pct: -0.3, realized_pnl_pct: -0.3 },
+  ];
+  const g = groupPerformance(decisions, [{ key: "desk-europe", unrealized_pct: 0.1 }], (d) => d.desk);
+  ok(g["desk-tech-us"].n_closed === 4 && g["desk-tech-us"].avg_alpha_closed === 0.05, "groupPerformance: alpha moyen du desk");
+  ok(g["desk-europe"].n_closed === 0 && g["desk-europe"].n_open === 1, "groupPerformance: sorties héritées exclues, latent compté");
+  ok(deskMultiplier(g["desk-tech-us"]) === 1.25, "deskMultiplier: alpha prouvé ≥ 5 % -> ×1.25");
+  ok(deskMultiplier(g["desk-europe"]) === 1, "deskMultiplier: rien prouvé -> neutre");
+  ok(deskMultiplier({ n_closed: 5, avg_alpha_closed: -0.1 }) === 0.6, "deskMultiplier: alpha négatif prouvé -> ×0.6");
+}
+
+
+// ---- 13F (investisseurs pros) -------------------------------------------------
+{
+  const { parseInfoTable, diffHoldings } = await import("./lib/thirteenf.js");
+  const row = (issuer, cusip, value, sh, pc = "") =>
+    `<infoTable><nameOfIssuer>${issuer}</nameOfIssuer><titleOfClass>COM</titleOfClass><cusip>${cusip}</cusip><value>${value}</value><shrsOrPrnAmt><sshPrnamt>${sh}</sshPrnamt><sshPrnamtType>SH</sshPrnamtType></shrsOrPrnAmt>${pc ? `<putCall>${pc}</putCall>` : ""}</infoTable>`;
+  const cur = parseInfoTable(`<informationTable>${row("ALPHABET INC", "02079K305", 600, 60)}${row("ALPHABET INC", "02079K107", 400, 40)}${row("APPLE INC", "037833100", 1000, 10)}${row("NEW CO", "999999101", 500, 5)}${row("APPLE INC", "037833100", 50, 1, "Put")}${row("BANK AMERICA CORP", "060505104", 200, 10)}</informationTable>`);
+  const prev = parseInfoTable(`<ns1:informationTable><ns1:infoTable><ns1:nameOfIssuer>ALPHABET INC</ns1:nameOfIssuer><ns1:cusip>02079K305</ns1:cusip><ns1:value>500</ns1:value><ns1:sshPrnamt>50</ns1:sshPrnamt></ns1:infoTable>${row("APPLE INC", "037833100", 1000, 20)}${row("OLD CO", "888888101", 300, 3)}${row("BANK OF AMER CORP", "060505104", 200, 10)}</ns1:informationTable>`);
+  ok(cur.filter((r) => !r.put_call).length === 4, "13F: classes A/C fusionnées (CUSIP-6), options séparées");
+  ok(prev.length === 4, "13F: balises préfixées (ns1:) lues");
+  const d = diffHoldings(cur, prev);
+  const act = Object.fromEntries(d.moves.map((m) => [m.issuer, m.action]));
+  ok(act["NEW CO"] === "nouvelle" && act["OLD CO"] === "sortie", "13F: nouvelle ligne et sortie détectées");
+  ok(act["ALPHABET INC"] === "renforce" && act["APPLE INC"] === "allege", "13F: renforcement (+100 %) et allègement (−50 %)");
+  ok(!act["BANK AMERICA CORP"] && !act["BANK OF AMER CORP"], "13F: libellé changé, même CUSIP → aucun faux mouvement");
+  ok(Math.abs(d.top.reduce((a, r) => a + r.weight_pct, 0) - 1) < 1e-3, "13F: poids du portefeuille long = 100 %");
+}
+
 // On exécute guard.js dans un répertoire jetable en réutilisant son code via import dynamique
 // n'est pas trivial (chemins figés) ; on teste donc directement les schémas + io.
 {
@@ -268,6 +394,27 @@ const ok = (cond, label) => {
   // ai-fund: positions non-tableau = problème dur
   const broken = SCHEMAS.aiFund.check({ seeded: true, positions: "oops", trades: [] });
   ok(broken.some((p) => p.hard), "schema: positions non-tableau -> problème dur");
+
+  // caches régénérés : template complet, clé manquante détectée et réparable
+  for (const k of ["allocation", "attribution", "history", "pros", "news", "digest", "quiz", "spotlight"]) {
+    const tpl = SCHEMAS[k].template();
+    ok(SCHEMAS[k].check(tpl).length === 0, `schema: template ${k} valide`);
+  }
+  ok(SCHEMAS.allocation.check({ sleeves: {} }).some((p) => p.resetKey === "alerts"), "schema: allocation.alerts manquant -> réparable");
+
+  // quiz : une bonne question passe ; 3 réponses, answer hors bornes, date en double -> retirées
+  const goodQ = { date: "2026-10-07", theme: "bases", level: "facile", question: "Que mesure le PER ?", choices: ["Le prix payé pour 1 € de bénéfice", "Le dividende", "La dette", "Le chiffre d'affaires"], answer: 0, explanation: "Cours ÷ bénéfice par action.", source: { name: "AMF" } };
+  ok(SCHEMAS.quiz.check({ questions: [goodQ] }).length === 0, "schema: quiz valide accepté");
+  const badQs = [
+    goodQ,
+    { ...goodQ, date: "2026-10-08", choices: ["a", "b", "c"] },
+    { ...goodQ, date: "2026-10-09", answer: 4 },
+    { ...goodQ },
+    { ...goodQ, date: "2026-10-10", choices: ["a", "a", "b", "c"] },
+  ];
+  const qp = SCHEMAS.quiz.check({ questions: badQs });
+  ok(qp.filter((p) => typeof p.dropQuestion === "number").map((p) => p.dropQuestion).sort().join(",") === "1,2,3,4", "schema: quiz malformé ou en double -> retiré");
+  ok(SCHEMAS.spotlight.check({ invest: {} }).some((p) => p.resetKey === "watch"), "schema: spotlight.watch manquant -> réparable");
 }
 
 console.log(`\n${fail === 0 ? "✅" : "❌"} tests: ${pass} passés, ${fail} échoués`);
