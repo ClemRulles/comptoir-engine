@@ -115,6 +115,14 @@ Les coups tactiques vivent de leur date : on ne les fait pas attendre vendredi. 
 **Interdits du mercredi** : tout achat cœur, socle ou crypto ; toute vente hors stop tactique.
 Zéro coup est le résultat normal de beaucoup de mercredis.
 
+**Carré « à l'œil » de l'accueil** : si un fait plus important que l'actuel
+`memory/fund/spotlight.json → watch` est apparu (résultats, banque centrale, choc de marché), remplace-le
+(même schéma, sourcé). Sinon n'y touche pas.
+
+**Quiz du jour (OBLIGATOIRE, 2 minutes — `skills/quiz.md`).** Vérifie que `memory/fund/quiz.json`
+a une question pour les **2 prochains jours** (date de Paris) et écris celles qui manquent (thème du
+jour, une seule bonne réponse, fait sourcé). Ne touche jamais à une date déjà publiée.
+
 Commit : `deepdive: {date} — {tickers} + revue book ({n} positions) + {t} coups tactiques`.
 
 **Persistance (OBLIGATOIRE — le sandbox ne peut pas `git push`, 403).** Après le commit local,

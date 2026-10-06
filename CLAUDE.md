@@ -94,6 +94,11 @@ Le fonds IA (`memory/fund/ai-fund.json`) est un vrai portefeuille fictif qu'on c
   (l'actualité mondiale qui compte : politique, géopolitique, banques centrales, entreprises),
   sans aucun jargon interne. `node engine/pros.js` suit les déclarations 13F officielles des
   grands investisseurs (Buffett, Ackman, Druckenmiller…) : des idées à instruire, jamais des preuves.
+- **Donner envie de revenir, sans jamais mentir** : chaque nuit la routine assure le **quiz du
+  jour** des 2 prochains jours (`memory/fund/quiz.json`, `skills/quiz.md` : un fait sourcé, une
+  seule bonne réponse, aucun conseil). Le vendredi écrit le carré **« investir »** de l'accueil
+  (`memory/fund/spotlight.json → invest` : une idée, ou `RIEN`) ; le lundi le carré **« à
+  l'œil »** (`→ watch` : le chiffre ou la news qui compte), mis à jour mercredi/jeudi si besoin.
 - **Prédire est permis, mais seulement pré-enregistré (method §K)** : un jugement sur le futur
   (effets de second ordre d'un événement — ex. IPO majeure → secteur impacté) ne se joue que via
   `memory/fund/forecasts.json` : scénario écrit AVANT, probabilisé, falsifiable, horizon daté,

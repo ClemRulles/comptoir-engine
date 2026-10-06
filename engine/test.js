@@ -396,11 +396,25 @@ const ok = (cond, label) => {
   ok(broken.some((p) => p.hard), "schema: positions non-tableau -> problème dur");
 
   // caches régénérés : template complet, clé manquante détectée et réparable
-  for (const k of ["allocation", "attribution", "history", "pros", "news", "digest"]) {
+  for (const k of ["allocation", "attribution", "history", "pros", "news", "digest", "quiz", "spotlight"]) {
     const tpl = SCHEMAS[k].template();
     ok(SCHEMAS[k].check(tpl).length === 0, `schema: template ${k} valide`);
   }
   ok(SCHEMAS.allocation.check({ sleeves: {} }).some((p) => p.resetKey === "alerts"), "schema: allocation.alerts manquant -> réparable");
+
+  // quiz : une bonne question passe ; 3 réponses, answer hors bornes, date en double -> retirées
+  const goodQ = { date: "2026-10-07", theme: "bases", level: "facile", question: "Que mesure le PER ?", choices: ["Le prix payé pour 1 € de bénéfice", "Le dividende", "La dette", "Le chiffre d'affaires"], answer: 0, explanation: "Cours ÷ bénéfice par action.", source: { name: "AMF" } };
+  ok(SCHEMAS.quiz.check({ questions: [goodQ] }).length === 0, "schema: quiz valide accepté");
+  const badQs = [
+    goodQ,
+    { ...goodQ, date: "2026-10-08", choices: ["a", "b", "c"] },
+    { ...goodQ, date: "2026-10-09", answer: 4 },
+    { ...goodQ },
+    { ...goodQ, date: "2026-10-10", choices: ["a", "a", "b", "c"] },
+  ];
+  const qp = SCHEMAS.quiz.check({ questions: badQs });
+  ok(qp.filter((p) => typeof p.dropQuestion === "number").map((p) => p.dropQuestion).sort().join(",") === "1,2,3,4", "schema: quiz malformé ou en double -> retiré");
+  ok(SCHEMAS.spotlight.check({ invest: {} }).some((p) => p.resetKey === "watch"), "schema: spotlight.watch manquant -> réparable");
 }
 
 console.log(`\n${fail === 0 ? "✅" : "❌"} tests: ${pass} passés, ${fail} échoués`);

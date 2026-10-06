@@ -46,6 +46,13 @@ function applySoftRepairs(schema, obj, problems) {
     actions.push(`calls[${i}] retiré (entrée invalide)`);
   }
 
+  // Même logique pour questions[] (quiz.json) : une question malformée ne s'affiche jamais.
+  const qdrops = [...new Set(problems.filter((p) => typeof p.dropQuestion === "number").map((p) => p.dropQuestion))];
+  for (const i of qdrops.sort((a, b) => b - a)) {
+    obj.questions.splice(i, 1);
+    actions.push(`questions[${i}] retirée (entrée invalide)`);
+  }
+
   for (const p of problems) {
     if (p.addBucket) {
       obj.buckets.push(bucketFor(p.addBucket));

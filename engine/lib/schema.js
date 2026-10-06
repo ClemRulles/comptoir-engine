@@ -309,7 +309,53 @@ const digest = generated(
   { points: [], decisions: [], next: [] }
 );
 
-export const SCHEMAS = { decisions, calibration, signals, aiFund, forecasts, grokCalls, allocation, attribution, history, pros, news, digest };
+// quiz.json — LA question du jour, écrite par les routines de nuit (skills/quiz.md). L'interface
+// pose la question du jour (heure de Paris) et vérifie la réponse côté serveur ; sans question
+// pour la date, elle pioche dans sa réserve. Une entrée malformée est retirée par le garde-fou
+// plutôt que montrée de travers aux membres.
+const QUIZ_THEMES = new Set(["bases", "histoire", "actualite", "nos-lignes", "psychologie", "crypto", "fiscalite"]);
+const quiz = {
+  ...generated(
+    "quiz.json",
+    ["questions"],
+    "LE QUIZ DU JOUR — une question par jour pour faire apprendre la bourse aux membres (accueil de l'app, classement mensuel dans Groupe). Écrit par CHAQUE routine de nuit : elle s'assure que les 2 prochains jours (date de Paris) ont leur question, sans jamais réécrire une date déjà publiée. Règles complètes dans skills/quiz.md. Schéma d'une entrée : { date (YYYY-MM-DD, jour où la question est posée), theme ('bases'|'histoire'|'actualite'|'nos-lignes'|'psychologie'|'crypto'|'fiscalite'), level ('facile'|'moyen'|'difficile'), question (≤ 160 caractères), choices ([4 réponses courtes, ≤ 60 caractères chacune]), answer (index 0-3 de la bonne réponse — varie sa position), explanation (≤ 300 caractères : pourquoi c'est la bonne réponse, ce qu'il faut en retenir), source ({ name, url? } : d'où vient le fait) }. Garder ~60 jours, les plus récents en dernier.",
+    { questions: [] }
+  ),
+  check(obj) {
+    const problems = [];
+    if (!Array.isArray(obj.questions)) return [{ hard: false, msg: "`questions` manquant ou invalide", resetKey: "questions" }];
+    obj.questions.forEach((q, i) => {
+      const bad = (why) => problems.push({ hard: false, msg: `questions[${i}] ${why}`, dropQuestion: i });
+      if (q == null || typeof q !== "object") return bad("n'est pas un objet");
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(q.date ?? "")) return bad(`date invalide ("${q.date}")`);
+      if (typeof q.question !== "string" || !q.question.trim()) return bad("question vide");
+      if (!Array.isArray(q.choices) || q.choices.length !== 4 || q.choices.some((c) => typeof c !== "string" || !c.trim()))
+        return bad("doit avoir exactement 4 réponses");
+      if (new Set(q.choices.map((c) => c.trim().toLowerCase())).size !== 4) return bad("réponses en double");
+      if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer > 3) return bad(`answer hors 0-3 ("${q.answer}")`);
+      if (typeof q.explanation !== "string" || !q.explanation.trim()) return bad("explication manquante");
+      if (q.theme != null && !QUIZ_THEMES.has(q.theme)) problems.push({ hard: false, msg: `questions[${i}].theme inconnu ("${q.theme}")` });
+    });
+    const seen = new Set();
+    obj.questions.forEach((q, i) => {
+      if (!q || typeof q !== "object") return;
+      if (seen.has(q.date)) problems.push({ hard: false, msg: `questions[${i}] date en double (${q.date}) — la première est gardée`, dropQuestion: i });
+      seen.add(q.date);
+    });
+    return problems;
+  },
+};
+
+// spotlight.json — les DEUX CARRÉS de l'accueil : sur quoi l'IA investirait cette semaine, et
+// le chiffre ou la news qu'elle a à l'œil. Un clic mène à ses analyses.
+const spotlight = generated(
+  "spotlight.json",
+  ["invest", "watch"],
+  "LES DEUX CARRÉS DE L'ACCUEIL — ce qui doit sauter aux yeux d'un membre qui ouvre l'app 10 secondes. invest = écrit le VENDREDI après la décision principale (valable la semaine suivante) : { date, week (ISO), value (le nom court de ce que l'IA achèterait cette semaine, ex. 'Chubb' ; ou exactement 'RIEN' s'il n'y a rien d'assez solide — le droit au blanc est une réponse), ticker (ou null), line (≤ 90 caractères : pourquoi, en clair), confidence ('Haute'|'Moyenne'|'Basse'|null) }. watch = écrit le LUNDI (actualité) et mis à jour le mercredi ou le jeudi si quelque chose de plus important arrive : { date, kind ('chiffre'|'news'), value (un chiffre frappant ex. '5,2 %' ou un titre ≤ 7 mots), label (≤ 40 caractères : de quoi il s'agit, ex. 'Taux à 10 ans américain'), line (≤ 90 caractères : ce que ça change pour nous) }. Zéro jargon interne. Aucun chiffre sans source vérifiée dans la routine.",
+  { invest: {}, watch: {} }
+);
+
+export const SCHEMAS = { decisions, calibration, signals, aiFund, forecasts, grokCalls, allocation, attribution, history, pros, news, digest, quiz, spotlight };
 
 // Complète un objet parsé avec les clés requises manquantes de son template,
 // SANS écraser les valeurs présentes. Retourne { obj, added: [clés ajoutées] }.

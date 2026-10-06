@@ -168,6 +168,16 @@ Puis **réécris entièrement** `memory/fund/news.json` (schéma complet dans so
 Mets aussi à jour la `posture` de `memory/fund/digest.json` (label, ton, une phrase) si le
 régime a changé ; laisse le reste du fichier au vendredi.
 
+**Carré « à l'œil » de l'accueil (`memory/fund/spotlight.json → watch`, schéma dans son
+`_doc`).** Réécris-le : le chiffre frappant (`kind: chiffre`, ex. `5,2 %` + « Taux à 10 ans
+américain ») ou la news (`kind: news`, titre ≤ 7 mots) que l'IA surveille le plus cette semaine,
+tiré de `news.json` ou du régime, déjà sourcé ; `line` = ce que ça change pour nous (≤ 90
+caractères). Laisse `invest` au vendredi.
+
+**Quiz du jour (OBLIGATOIRE, 2 minutes — `skills/quiz.md`).** Vérifie que `memory/fund/quiz.json`
+a une question pour les **2 prochains jours** (date de Paris) et écris celles qui manquent (thème du
+jour, une seule bonne réponse, fait sourcé). Ne touche jamais à une date déjà publiée.
+
 Commit : `trend-radar: {date} — tendance: {nom ou AUCUNE}, {n} catalyseurs · pouls maj`.
 
 **Persistance (OBLIGATOIRE — le sandbox ne peut pas `git push`, 403).** Après le commit local,

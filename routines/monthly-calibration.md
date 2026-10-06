@@ -73,6 +73,10 @@ Pour chaque amendement de `memory/playbook.md` :
 - Mouvements du playbook (promotions, retraits, effets mesurés) : une ligne chacun dans le
   même bloc CALIBRATION.
 
+**Quiz du jour (OBLIGATOIRE, 2 minutes — `skills/quiz.md`).** Vérifie que `memory/fund/quiz.json`
+a une question pour les **2 prochains jours** (date de Paris) et écris celles qui manquent (thème du
+jour, une seule bonne réponse, fait sourcé). Ne touche jamais à une date déjà publiée.
+
 Commit : `calibration: {mois} — hit-rate H/M/B {x}/{y}/{z}, {ajustement}, playbook {p} confirmés/{r} retirés`.
 
 **Persistance (OBLIGATOIRE — le sandbox ne peut pas `git push`, 403).** Après le commit local,

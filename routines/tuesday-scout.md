@@ -39,6 +39,10 @@ Sortie → réécris `memory/watchlist.md` (max ~40 lignes, meilleurs scores en 
 ```
 (Tag = [tendance] ou [qualité]. Desk = l'agent qui a porté l'idée — il la plaidera mercredi.)
 
+**Quiz du jour (OBLIGATOIRE, 2 minutes — `skills/quiz.md`).** Vérifie que `memory/fund/quiz.json`
+a une question pour les **2 prochains jours** (date de Paris) et écris celles qui manquent (thème du
+jour, une seule bonne réponse, fait sourcé). Ne touche jamais à une date déjà publiée.
+
 Commit : `scout: {date} — {n} candidats, {k} marqués ★`. Reste léger, pas d'analyse profonde ici.
 
 **Persistance (OBLIGATOIRE — le sandbox ne peut pas `git push`, 403).** Après le commit local,

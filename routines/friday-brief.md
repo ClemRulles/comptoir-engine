@@ -341,6 +341,16 @@ la semaine. **Interdit : §, P-00N, gate, saisine, hystérésis, cov, F7/9** —
 touchée »). Si une décision n'a pas d'explication simple, c'est qu'elle n'est pas claire :
 retravaille-la.
 
+**Carré « investir » de l'accueil (`memory/fund/spotlight.json → invest`, schéma dans son
+`_doc`).** Réécris-le après la décision principale : `value` = le nom court de ce que l'IA achète
+ou achèterait cette semaine (le meilleur achat validé, dans sa zone d'achat) — ou exactement
+`RIEN` si rien n'est assez solide, avec la raison dans `line` (≤ 90 caractères, en clair). C'est
+la première chose que les membres voient : une seule idée, la plus forte, jamais une liste.
+
+**Quiz du jour (OBLIGATOIRE, 2 minutes — `skills/quiz.md`).** Vérifie que `memory/fund/quiz.json`
+a une question pour les **2 prochains jours** (date de Paris) et écris celles qui manquent (thème du
+jour, une seule bonne réponse, fait sourcé). Ne touche jamais à une date déjà publiée.
+
 Commit : `brief+book: {date} — {n} trades IA, {k} leçons`.
 
 **Persistance (OBLIGATOIRE — le sandbox ne peut pas `git push`, 403).** Après le commit local,

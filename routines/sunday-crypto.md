@@ -28,6 +28,10 @@ Décider vendredi sur un cours de samedi déjà périmé, c'est décider à l'av
 
 **Interdits du dimanche** : toute action, tout ETF, toute modification hors poche crypto.
 
+**Quiz du jour (OBLIGATOIRE, 2 minutes — `skills/quiz.md`).** Vérifie que `memory/fund/quiz.json`
+a une question pour les **2 prochains jours** (date de Paris) et écris celles qui manquent (thème du
+jour, une seule bonne réponse, fait sourcé). Ne touche jamais à une date déjà publiée.
+
 Commit : `crypto-window: {date} — {n} trades crypto, poche {x} % (cible {y} %)`.
 
 **Persistance (OBLIGATOIRE).** `node engine/push-memory.js "{le message de commit ci-dessus}"`.

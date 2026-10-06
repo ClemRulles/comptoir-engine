@@ -25,7 +25,10 @@ Fenêtres d'exécution du book IA : **mercredi** = coups tactiques datés, **jeu
 défensives + suivi des résultats, **vendredi** = fenêtre principale (cœur dans sa zone d'achat,
 socle, rééquilibrage), **dimanche** = crypto. Le lundi écrit aussi l'actualité mondiale en clair
 (`memory/fund/news.json`) et les mouvements 13F des grands investisseurs (`engine/pros.js`) ; le
-vendredi écrit la semaine en clair (`memory/fund/digest.json`) pour l'accueil de l'app.
+vendredi écrit la semaine en clair (`memory/fund/digest.json`) pour l'accueil de l'app. Chaque
+nuit, la routine ajoute le **quiz du jour** des 2 prochains jours (`memory/fund/quiz.json`,
+`skills/quiz.md`) ; les deux carrés de l'accueil (`memory/fund/spotlight.json`) disent sur quoi
+l'IA investirait cette semaine (vendredi) et ce qu'elle a à l'œil (lundi).
 
 ### Le mandat du book IA (depuis 2026-10-06)
 Faire fructifier le book au maximum sur 3-5 ans, net de frais, à risque équilibré — comme un
