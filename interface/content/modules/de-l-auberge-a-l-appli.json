@@ -5,7 +5,7 @@
     "auteur": "Clément",
     "resume": "Une auberge flamande, un sac d'épices, un platane new-yorkais et ton téléphone racontent la même histoire : laquelle ?",
     "niveau": "découverte",
-    "duree_lecture_min": 7,
+    "duree_lecture_min": 10,
     "etiquettes": [
       "histoire",
       "bourse",
@@ -18,6 +18,32 @@
         "type": "texte",
         "titre": "Une énigme pour commencer",
         "contenu": "Qu'ont en commun une auberge de Bruges du XIIIe siècle, un sac d'épices, un platane de New York et l'appli de bourse dans ton téléphone ? Ils racontent l'histoire d'une idée très simple, devenue l'une des machines les plus puissantes de l'économie. À chaque étape, la même boucle se répète. Garde l'énigme en tête : la réponse est à la fin."
+      },
+      {
+        "type": "enigme",
+        "question": "Qu'ont en commun une auberge, un sac d'épices, un platane et ton téléphone ?",
+        "indices": [
+          {
+            "id": "auberge",
+            "emoji": "🏨",
+            "label": "L'auberge"
+          },
+          {
+            "id": "epices",
+            "emoji": "🌶️",
+            "label": "Le sac d'épices"
+          },
+          {
+            "id": "platane",
+            "emoji": "🌳",
+            "label": "Le platane"
+          },
+          {
+            "id": "telephone",
+            "emoji": "📱",
+            "label": "Le téléphone"
+          }
+        ]
       },
       {
         "type": "chiffre_cle",
@@ -41,6 +67,24 @@
         "alt": "Façade de la maison Ter Beurze à Bruges"
       },
       {
+        "type": "indice",
+        "id": "auberge",
+        "titre": "L'auberge",
+        "texte": "Le nom des Van der Buerse et leurs trois bourses ont donné le mot bourse.",
+        "source_id": "s1"
+      },
+      {
+        "type": "devine",
+        "question": "À ton avis, en quelle année ouvre le premier bâtiment construit exprès pour servir de bourse ?",
+        "min": 1300,
+        "max": 1800,
+        "pas": 1,
+        "unite": "",
+        "reponse": 1531,
+        "explication": "Au XVIe siècle, Anvers prend le relais de Bruges. En 1531, la ville ouvre sa nouvelle bourse, considérée comme le premier bâtiment construit pour servir de bourse de commerce. Londres lance la sienne en 1565, sur le modèle d'Anvers.",
+        "source_id": "s23"
+      },
+      {
         "type": "texte",
         "titre": "Le problème de 1602",
         "contenu": "Imagine : tu veux envoyer une flotte chercher des épices en Asie. Le voyage est très long, les navires peuvent couler, et la somme à avancer dépasse ce que n'importe quel marchand peut payer seul. Si ça marche, c'est la fortune ; si ça rate, tout est perdu. Comment financer un projet aussi gros et aussi risqué ? La réponse inventée aux Pays-Bas en 1602 est encore au cœur de la bourse aujourd'hui."
@@ -60,7 +104,7 @@
       {
         "type": "exemple",
         "titre": "Pieter, actionnaire à 150 florins",
-        "scenario": "En 1602, la Compagnie néerlandaise des Indes orientales (VOC) ouvre sa souscription à tout le monde : à Enkhuizen, on trouve parmi les souscripteurs beaucoup d'artisans, de petits entrepreneurs et de simples habitants. Parmi eux, Pieter Harmensz, messager de la ville, autorisé à payer ses 150 florins en plusieurs fois, qui règle le dernier versement le 9 septembre 1606. Le reçu obtenu ce jour-là est aujourd'hui considéré comme la plus vieille action connue au monde, retrouvée en 2010 dans les archives d'Enkhuizen. La vraie nouveauté de l'époque : ces parts pouvaient s'échanger publiquement. Et les premiers dividendes ? Versés en épices, difficiles à revendre parce que la VOC avait elle-même inondé le marché des épices.",
+        "scenario": "En 1602, la Compagnie néerlandaise des Indes orientales (VOC) ouvre sa souscription à tout le monde : à Enkhuizen, on trouve parmi les souscripteurs beaucoup d'artisans, de petits entrepreneurs et de simples habitants. Parmi eux, Pieter Harmensz, messager de la ville, autorisé à payer ses 150 florins en plusieurs fois, qui règle le dernier versement le 9 septembre 1606.",
         "chiffres": [
           {
             "label": "Mise de Pieter",
@@ -84,12 +128,48 @@
         ]
       },
       {
+        "type": "exergue",
+        "texte": "Le reçu obtenu ce jour-là est aujourd'hui considéré comme la plus vieille action connue au monde, retrouvée en 2010 dans les archives d'Enkhuizen.",
+        "source_id": "s2"
+      },
+      {
         "type": "image",
         "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/VOC_aandeel_9_september_1606.jpg/960px-VOC_aandeel_9_september_1606.jpg",
         "legende": "Le reçu de Pieter Harmensz, 9 septembre 1606, conservé au Westfries Archief à Hoorn.",
         "credit": "Domaine public, via Wikimedia Commons",
         "page": "https://commons.wikimedia.org/wiki/File:VOC_aandeel_9_september_1606.jpg",
         "alt": "Reçu manuscrit de la VOC daté du 9 septembre 1606"
+      },
+      {
+        "type": "texte",
+        "contenu": "La vraie nouveauté de l'époque : ces parts pouvaient s'échanger publiquement. Et les premiers dividendes ? Versés en épices, difficiles à revendre parce que la VOC avait elle-même inondé le marché des épices."
+      },
+      {
+        "type": "indice",
+        "id": "epices",
+        "titre": "Le sac d'épices",
+        "texte": "Les premiers actionnaires de la VOC ont touché leurs dividendes… en épices."
+      },
+      {
+        "type": "exemple",
+        "titre": "1609 : le pari à la baisse d'Isaac Le Maire",
+        "scenario": "Sept ans à peine après la création de la VOC, un de ses gros actionnaires imagine l'inverse. En 1609, le marchand Isaac Le Maire s'associe à dix autres marchands pour vendre des actions de la VOC à terme, en pariant sur la baisse de leur prix. C'est probablement la naissance de la vente à découvert. Les autorités finissent par interdire de vendre des actions qu'on ne possède pas. Garde cette méthode en tête : elle revient en 2021.",
+        "chiffres": [
+          {
+            "label": "Année du pari",
+            "valeur": "1609",
+            "source_id": "s25"
+          },
+          {
+            "label": "Marchands associés à Le Maire",
+            "valeur": "10",
+            "source_id": "s25"
+          }
+        ],
+        "source_id": [
+          "s24",
+          "s25"
+        ]
       },
       {
         "type": "saviez_vous",
@@ -107,6 +187,12 @@
         ]
       },
       {
+        "type": "texte",
+        "titre": "De Wall Street à ta poche",
+        "contenu": "Les Néerlandais n'ont pas seulement inventé l'action. En 1653, dans leur colonie de La Nouvelle-Amsterdam, le directeur Peter Stuyvesant fait construire un mur de bois et de terre pour protéger la ville. Le mur est démoli en 1699, mais la rue qui le longeait en tire son nom : Wall Street, la rue du mur. La colonie, elle, s'appelle aujourd'hui New York.",
+        "source_id": "s26"
+      },
+      {
         "type": "chronologie",
         "titre": "Ce que chaque date a changé pour toi",
         "etapes": [
@@ -118,6 +204,12 @@
               "s6",
               "s21"
             ]
+          },
+          {
+            "quand": "15 novembre 1867",
+            "titre": "Les cours en direct",
+            "detail": "Edward Calahan présente à New York le téléscripteur boursier, qui imprime les cours sur un ruban de papier. Pour toi : l'ancêtre des cours qui défilent dans ton appli.",
+            "source_id": "s28"
           },
           {
             "quand": "26 mai 1896",
@@ -162,10 +254,13 @@
             "source_id": "s13"
           },
           {
-            "quand": "2013",
+            "quand": "Mars 2015",
             "titre": "Le courtage gratuit",
-            "detail": "L'application Robinhood propose d'acheter des actions sans commission.",
-            "source_id": "s19"
+            "detail": "Fondée en 2013, Robinhood lance officiellement son application, qui permet d'acheter des actions sans commission.",
+            "source_id": [
+              "s19",
+              "s27"
+            ]
           },
           {
             "quand": "Octobre 2019",
@@ -174,6 +269,24 @@
             "source_id": "s20"
           }
         ]
+      },
+      {
+        "type": "indice",
+        "id": "platane",
+        "titre": "Le platane",
+        "texte": "En 1792, 24 courtiers signent des règles communes qui portent le nom d'un platane de Wall Street : c'est la naissance de la bourse de New York.",
+        "source_id": "s6"
+      },
+      {
+        "type": "devine",
+        "question": "Entre son record de 1929 et son plancher de 1932, de combien le Dow Jones a-t-il chuté ?",
+        "min": 0,
+        "max": 100,
+        "pas": 1,
+        "unite": "%",
+        "reponse": 89,
+        "explication": "Il a ensuite fallu attendre novembre 1954 pour revoir le record de 1929.",
+        "source_id": "s9"
       },
       {
         "type": "graphique",
@@ -215,6 +328,11 @@
         "source_id": "s14"
       },
       {
+        "type": "texte",
+        "titre": "La boucle dans ta poche",
+        "contenu": "Retour à notre époque. Avec une appli sans commission, n'importe qui peut acheter une action en quelques secondes, depuis son canapé. En janvier 2021, une foule de petits investisseurs va s'en servir contre des fonds qui pariaient à la baisse : la vieille méthode d'Isaac Le Maire, mais cette fois face à la foule."
+      },
+      {
         "type": "exemple",
         "titre": "GameStop, janvier 2021 : la boucle dans ta poche",
         "scenario": "GameStop, une chaîne américaine de magasins de jeux vidéo, valait un peu moins de 20 dollars l'action fin 2020. Des fonds pariaient sur sa baisse grâce à la vente à découvert : on emprunte des actions, on les vend, et on espère les racheter moins cher plus tard. Une foule de petits investisseurs, réunis sur un forum Reddit, achète en masse ; les vendeurs à découvert doivent racheter en urgence, ce qui fait encore monter le cours. Le 28 janvier, Robinhood limite les achats, ce qui déclenche colère et procès. Des experts estimaient que le courtage gratuit avait rendu cet emballement plus facile.",
@@ -235,6 +353,12 @@
             "source_id": "s17"
           }
         ]
+      },
+      {
+        "type": "indice",
+        "id": "telephone",
+        "titre": "Le téléphone",
+        "texte": "Les applis sans commission ont mis la bourse à portée de pouce, pour le meilleur et pour l'emballement."
       },
       {
         "type": "attention",
@@ -264,7 +388,7 @@
     {
       "id": "s1",
       "titre": "Musée de la Banque nationale de Belgique : The origins of the stock exchange, from the Ter Buerse inn to Wall Street",
-      "url": "https://acc.museum.nbb.be/en/node/242",
+      "url": "https://museum.nbb.be/en/node/242",
       "date_consultee": "2026-10"
     },
     {
@@ -380,7 +504,43 @@
       "titre": "Wikipedia : U.S. Securities and Exchange Commission (définition du marché secondaire)",
       "url": "https://en.wikipedia.org/wiki/U.S._Securities_and_Exchange_Commission",
       "date_consultee": "2026-10"
+    },
+    {
+      "id": "s23",
+      "titre": "Wikipedia : Stock Exchange (Antwerp)",
+      "url": "https://en.wikipedia.org/wiki/Antwerp_Bourse",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s24",
+      "titre": "Wikipedia : Short (finance), histoire",
+      "url": "https://en.wikipedia.org/wiki/Short_(finance)",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s25",
+      "titre": "Wikipedia : Isaac Le Maire",
+      "url": "https://en.wikipedia.org/wiki/Isaac_Le_Maire",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s26",
+      "titre": "Wikipedia : Wall Street",
+      "url": "https://en.wikipedia.org/wiki/Wall_Street",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s27",
+      "titre": "Wikipedia : Robinhood Markets",
+      "url": "https://en.wikipedia.org/wiki/Robinhood_Markets",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s28",
+      "titre": "Wikipedia : Ticker tape",
+      "url": "https://en.wikipedia.org/wiki/Ticker_tape",
+      "date_consultee": "2026-10"
     }
   ],
-  "notes_pour_clement": "Intégré le 2026-10-06 : les deux images sont ajoutées (Wikimedia Commons, crédits en légende), et les sources du vrai/faux (s4, s5), du quiz (s14) et de l'étape 1792 (s6, s21) sont reliées."
+  "notes_pour_clement": "Intégré le 2026-10-06. Texte de l'auteur conservé ; histoire de Pieter découpée en trois (récit, exergue, suite). Ajouts sourcés de l'IA du club : énigme et indices, Anvers 1531 (s23), Isaac Le Maire 1609 (s24, s25), Wall Street et le mur de 1653 (s26), téléscripteur 1867 (s28), deux jeux « devine ». Correction : Robinhood fondée en 2013, appli lancée officiellement en mars 2015 (s27). Source s1 : adresse publique du musée de la BNB."
 }

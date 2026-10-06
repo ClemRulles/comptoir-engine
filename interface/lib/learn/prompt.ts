@@ -2,7 +2,7 @@
 // pour co-écrire un module. Il fixe le format lu par lib/learn/module.ts : toute évolution du
 // format passe par ici ET par le lecteur, et on incrémente PROMPT_VERSION.
 
-export const PROMPT_VERSION = "2.2";
+export const PROMPT_VERSION = "2.3";
 
 export const MODULE_PROMPT = `Tu es mon complice d'écriture pour créer un « module de découverte » pour HypeInvest, l'app de notre petit club d'investissement entre amis. Un module est un mini-contenu à lire et à découvrir (pas une formation à étudier) : il raconte, explique ou fait découvrir quelque chose en lien avec la finance, l'argent, l'économie ou l'investissement, comme je le ferais autour d'un café.
 
@@ -62,7 +62,7 @@ Seuls ces 4 champs sont obligatoires : \`titre\`, \`auteur\`, \`resume\` (une ph
 
 \`\`\`json
 {
-  "version_prompt": "2.2",
+  "version_prompt": "2.3",
   "module": {
     "titre": "…",
     "auteur": "prénom ou pseudo",
@@ -91,6 +91,7 @@ Texte et mise en avant
 - \`citation\` : \`texte\`, \`source?\` (voir règles sur les citations)
 - \`saviez_vous\` : \`texte\`, \`source_id?\`
 - \`attention\` : \`niveau\` ("info" | "attention"), \`texte\`
+- \`exergue\` : \`texte\`, \`source_id?\` (une phrase forte du module, affichée en grand)
 - \`chiffre_cle\` : \`valeur\` (ex. « 1602 », « 99 % »), \`label\`, \`detail?\`, \`source_id?\`
 
 Structure et visuels
@@ -111,6 +112,9 @@ Interaction
 - \`quiz\` : \`question\`, \`choix\` (liste), \`bonne_reponse\` (numéro du bon choix, en partant de 0), \`explication\`, \`source_id?\`
 - \`vrai_faux\` : \`affirmation\`, \`reponse\` (true/false), \`explication\`, \`source_id?\`
 - \`cartes\` : \`cartes\` (liste de { \`recto\`, \`verso\` })
+- \`devine\` : \`question\`, \`min\`, \`max\`, \`pas?\`, \`unite?\`, \`reponse\` (un nombre), \`explication\`, \`source_id?\` (le lecteur estime avec un curseur, puis découvre la vraie valeur)
+- \`enigme\` : \`question\`, \`indices\` (liste de { \`id\`, \`emoji\`, \`label\` }) : une énigme posée au début, un seul bloc par module
+- \`indice\` : \`id\` (celui d'un indice de l'énigme), \`titre\`, \`texte\` : à placer là où la réponse apparaît, il se débloque quand le lecteur l'atteint
 
 Autres
 - \`image\` : \`url\` (adresse directe de l'image), \`legende\`, \`credit\` (auteur et licence), \`page?\` (page d'origine de l'image), \`alt?\`. Uniquement une image sous licence libre dont tu es certain de l'adresse (Wikimedia Commons par exemple). Sinon, décris l'image voulue dans un bloc \`libre\` : Clément la cherchera.

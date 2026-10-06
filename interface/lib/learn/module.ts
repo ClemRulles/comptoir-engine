@@ -37,6 +37,7 @@ export const KNOWN_BLOCKS = [
   "exemple", "temoignage", "faq",
   "quiz", "vrai_faux", "cartes",
   "image", "lien", "libre",
+  "enigme", "indice", "devine", "exergue",
 ] as const;
 
 export const TAGS = ["bases", "bourse", "crypto", "immobilier", "budget", "histoire", "psychologie", "fiscalité", "entreprise", "risque", "métiers"];
