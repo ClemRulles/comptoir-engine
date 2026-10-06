@@ -19,7 +19,7 @@ export function Topbar({ demo }: { demo: boolean }) {
       className="sticky top-0 z-20 border-b border-line bg-card/85 backdrop-blur"
       style={{ paddingTop: "env(safe-area-inset-top)" }}
     >
-      <div className="flex min-w-0 items-center gap-2 px-4 py-3 md:gap-3 md:px-8">
+      <div className="flex min-w-0 items-center gap-2 px-3 py-3 sm:px-4 md:gap-3 md:px-8">
         <div className="min-w-0 md:hidden">
           <Brand size={28} />
         </div>

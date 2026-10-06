@@ -1,10 +1,11 @@
-import { getAppData, getBook, getMovers, getWeek, getWorld, MEMORY_STALE_DAYS } from "@/lib/data";
+import { getAppData, getBook, getClubData, getMovers, getWeek, getWorld, MEMORY_STALE_DAYS } from "@/lib/data";
+import { AllocationDonut } from "@/components/Charts";
 import { TopMovers } from "@/components/TopMovers";
 import { AgendaCard, DecisionsCard, WeekCard, WindowsStrip, WorldPreview } from "@/components/home";
 import { HeroFund } from "@/components/HeroFund";
-import { Card, CardHead } from "@/components/ui";
+import { Card, CardHead, MoreLink } from "@/components/ui";
 import { ProsBoard } from "@/components/world";
-import { Activity } from "lucide-react";
+import { Activity, PieChart } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +13,9 @@ export default async function DashboardPage() {
   const data = await getAppData();
   const heldTickers = [...data.group.holdings, ...data.ai.holdings].map((h) => h.ticker);
   const book = await getBook(data);
-  const [week, world, movers] = await Promise.all([getWeek(book), getWorld(heldTickers), getMovers(heldTickers)]);
+  const [week, world, movers, club] = await Promise.all([getWeek(book), getWorld(heldTickers), getMovers(heldTickers), getClubData()]);
+  const g = data.group;
+  const slices = [...g.holdings.map((h) => ({ name: h.ticker, value: h.marketValue })), { name: "Cash", value: g.cash }].filter((x) => x.value > 0);
   // Indice MSCI World (base 1) aligné sur les dates du fonds — pour « le marché a fait… ».
   const marketIndex = data.perf.some((p) => p.market != null)
     ? Object.fromEntries(data.perf.filter((p) => p.market != null).map((p) => [p.date, 1 + (p.market as number)]))
@@ -41,7 +44,18 @@ export default async function DashboardPage() {
         flows={data.contributions}
         market={marketIndex}
         demo={data.demo}
+        contrib={club.rule}
       />
+
+      <Card>
+        <CardHead
+          icon={PieChart}
+          title="Répartition du groupe"
+          sub={`${g.holdings.length} positions et le cash, au cours du jour.`}
+          right={<MoreLink href="/groupe">Détail</MoreLink>}
+        />
+        <AllocationDonut slices={slices} total={g.nav} row />
+      </Card>
 
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-5">

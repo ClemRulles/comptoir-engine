@@ -69,6 +69,16 @@ summary {
   touch-action: manipulation;
 }
 
+/* iPhone zoome tout seul sur un champ en dessous de 16 px (connexion, recherche, chat) et RESTE
+   zoomé après la navigation : la page sortait alors des deux bords de l'écran. 16 px sur mobile. */
+@media (max-width: 767px) {
+  input:not([type="checkbox"]):not([type="radio"]),
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
 /* Garde-fou mobile : aucun élément ne doit élargir la page (sinon le navigateur dézoome et la
    barre de navigation fixe sort de l'écran). */
 body {

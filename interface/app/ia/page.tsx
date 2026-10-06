@@ -1,5 +1,5 @@
 import { Layers, PieChart, ScrollText } from "lucide-react";
-import { getAppData, getBook, getBuyZones } from "@/lib/data";
+import { getAppData, getBook, getBuyZones, getClubData } from "@/lib/data";
 import { HeroFund } from "@/components/HeroFund";
 import { PositionsBySleeve, SleeveBars, TradesJournal } from "@/components/book";
 import { BuyZones } from "@/components/zones";
@@ -12,7 +12,7 @@ export default async function IaPage() {
   const data = await getAppData();
   const book = await getBook(data);
   const held = [...data.group.holdings, ...data.ai.holdings].map((h) => h.ticker);
-  const zones = await getBuyZones(held);
+  const [zones, club] = await Promise.all([getBuyZones(held), getClubData()]);
   const f = data.ai;
   const cashShare = f.nav ? f.cash / f.nav : 0;
   const vsMarket = data.marketPerf == null ? null : data.aiPerf.sinceInception - data.marketPerf;
@@ -43,6 +43,7 @@ export default async function IaPage() {
         flows={data.contributions}
         market={marketIndex}
         demo={data.demo}
+        contrib={club.rule}
       />
 
       <div className="grid grid-cols-2 gap-3 md:gap-4 xl:grid-cols-4">

@@ -9,6 +9,7 @@ import { MaintenancePanel } from "@/components/MaintenancePanel";
 import { TickerCell } from "@/components/StockDrawer";
 import { Badge, Card, CardHead, Change, DemoTag, PageHeader, Stat, fmtEur, fmtPct, fmtShare } from "@/components/ui";
 import { fmtDay } from "@/lib/insights";
+import { ruleSentence } from "@/lib/contrib-rule";
 
 export const dynamic = "force-dynamic";
 
@@ -41,6 +42,7 @@ export default async function GroupePage() {
         flows={data.contributions}
         market={marketIndex}
         demo={data.demo}
+        contrib={club.rule}
       />
 
       <div className="grid grid-cols-2 gap-3 md:gap-4 xl:grid-cols-4">
@@ -118,7 +120,7 @@ export default async function GroupePage() {
         <CardHead
           icon={Users}
           title="Membres & apports"
-          sub={`${club.activeMembers} membres × 25 € versés le 5 de chaque mois — l'IA reçoit la même somme pour rester à armes égales.`}
+          sub={`Apports : ${ruleSentence(club.rule)}. L'IA reçoit la même somme pour rester à armes égales ; un apport n'est jamais compté comme un gain.`}
           right={<span className="eyebrow">{eur(club.monthlyTotal)} / mois</span>}
         />
         <MembersManager club={club} />

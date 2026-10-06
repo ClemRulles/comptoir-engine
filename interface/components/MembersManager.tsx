@@ -105,7 +105,8 @@ export function MembersManager({ club }: { club: ClubData }) {
         <div className="card-p">
           <div className="label">Apport mensuel</div>
           <div className="kpi mt-1">{eur(monthlyTotal)}</div>
-          <div className="mt-2 text-sm text-muted">{activeMembers} × {eur(monthlyPerMember)} / mois</div>
+          <div className="mt-2 text-sm text-muted">{activeMembers} × {eur(monthlyPerMember)}, le 1er du mois</div>
+          {club.rule.previous != null && <div className="mt-0.5 text-xs text-muted">{eur(club.rule.previous)} par membre avant septembre 2026</div>}
         </div>
         <div className="card-p col-span-2 xl:col-span-1">
           <div className="label">Apports cumulés</div>
@@ -183,7 +184,7 @@ export function MembersManager({ club }: { club: ClubData }) {
                 <tr key={m.id} className="border-b border-line/60">
                   <td className="py-2.5 font-semibold">{m.name}</td>
                   <td className="text-muted hidden sm:table-cell">{m.joined_on}</td>
-                  <td className="text-right tabular-nums">{eur(m.monthly_amount)}</td>
+                  <td className="text-right tabular-nums">{m.active ? eur(monthlyPerMember) : "—"}</td>
                   <td className="text-right">
                     <button
                       onClick={() => toggleMember(m.id, m.active)}

@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowRight, ArrowDownRight, ArrowUpRight, Bot, Globe2, HandCoins, Users } from "lucide-react";
 import { Odometer } from "@/components/Odometer";
+import { ruleSentence, type ContribRule } from "@/lib/contrib-rule";
 
 type Pt = { date: string; v: number };
 type Flow = { date: string; amount: number };
@@ -95,6 +96,7 @@ export function HeroFund({
   market,
   demo,
   compare = { label: "Fonds IA", href: "/ia", tone: "ai" },
+  contrib,
 }: {
   title?: string;
   points: Pt[];
@@ -103,8 +105,9 @@ export function HeroFund({
   market: Record<string, number> | null;
   demo: boolean;
   compare?: { label: string; href: string; tone: "ai" | "group" };
+  contrib?: ContribRule; // règle des apports, rappelée sous la courbe
 }) {
-  const [range, setRange] = useState<string>("ALL");
+  const [range, setRange] = useState<string>("3M");
   const [hover, setHover] = useState<number | null>(null);
   const { win, idx, flowsTo } = useWindow(points, flows, range);
   const ai = useWindow(aiPoints, flows, range);
@@ -140,13 +143,33 @@ export function HeroFund({
     lo -= span * 0.12;
     hi += span * 0.12;
     const t0 = new Date(win[0].date).getTime(), t1 = new Date(win[last].date).getTime();
-    const xs = win.map((p) => ((new Date(p.date).getTime() - t0) / Math.max(1, t1 - t0)) * (w - 8) + 4);
+    // 16 px de marge à droite : le point final et son halo restent entiers dans la carte.
+    const xs = win.map((p) => ((new Date(p.date).getTime() - t0) / Math.max(1, t1 - t0)) * (w - 20) + 4);
     const ys = vals.map((v) => pad.t + (1 - (v - lo) / (hi - lo)) * (H - pad.t - pad.b));
     const path = smoothPath(xs, ys);
     const area = `${path} L${xs[xs.length - 1].toFixed(2)},${H} L${xs[0].toFixed(2)},${H} Z`;
     const baseY = pad.t + (1 - (vals[0] - lo) / (hi - lo)) * (H - pad.t - pad.b);
     return { xs, ys, path, area, baseY };
   }, [win, w, last, pad.t, pad.b]);
+
+  // Apports des membres visibles sur la courbe : un anneau au point où l'apport est entré (la
+  // marche qu'on voit dans la courbe), avec son montant quand la place le permet.
+  const flowMarks = useMemo(() => {
+    const out: { i: number; amount: number; label: boolean }[] = [];
+    if (xs.length < 2) return out;
+    for (const f of flows) {
+      if (f.date <= win[0].date || f.date > win[last].date) continue;
+      const i = win.findIndex((p) => p.date >= f.date);
+      if (i < 0) continue;
+      const prev = out[out.length - 1];
+      if (prev && prev.i === i) prev.amount += f.amount;
+      else out.push({ i, amount: f.amount, label: false });
+    }
+    let lastX = -Infinity;
+    for (const m of out) if (xs[m.i] - lastX >= 56 && xs[m.i] < w - 24) { m.label = true; lastX = xs[m.i]; }
+    return out;
+  }, [flows, win, last, xs, w]);
+  const flowAt = hover != null ? flowMarks.find((m) => m.i === hover) : undefined;
 
   // Survol cadencé sur l'affichage (1 calcul par image) : fluide même sur un vieux téléphone.
   const raf = useRef<number | null>(null);
@@ -223,7 +246,10 @@ export function HeroFund({
             {up ? <ArrowUpRight size={15} strokeWidth={2.5} className="hero-arrow" /> : <ArrowDownRight size={15} strokeWidth={2.5} className="hero-arrow" />}
             {signedEur(gain)} · {signedPct(perf)}
           </span>
-          <span className="text-[13px] text-muted">{hover == null ? r.word : dayLabel(win[at].date)}</span>
+          <span className="text-[13px] text-muted">
+            {hover == null ? r.word : dayLabel(win[at].date)}
+            {flowAt && <span className="font-medium text-ink"> · apport des membres +{eur0(flowAt.amount)}</span>}
+          </span>
         </div>
       </div>
 
@@ -254,6 +280,16 @@ export function HeroFund({
             <line x1="0" x2={w} y1={baseY} y2={baseY} stroke="rgb(var(--chart-axis))" strokeOpacity="0.45" strokeDasharray="2 5" />
             <path key={`a-${range}`} d={area} fill="url(#hero-fill)" className="hero-area" />
             <path key={`l-${range}`} d={path} fill="none" stroke="url(#hero-stroke)" strokeWidth={2.75} strokeLinecap="round" strokeLinejoin="round" pathLength={1} className="hero-line" />
+            {flowMarks.map((m) => (
+              <g key={`f-${range}-${m.i}`} className="hero-flow">
+                <circle cx={xs[m.i]} cy={ys[m.i]} r={4} fill="rgb(var(--c-card))" stroke="rgb(var(--c-ink))" strokeOpacity={0.55} strokeWidth={1.75} />
+                {m.label && hover == null && (
+                  <text x={xs[m.i]} y={ys[m.i] < 34 ? ys[m.i] + 18 : ys[m.i] - 10} textAnchor="middle" fontSize={10.5} fontWeight={600} fill="rgb(var(--c-muted))">
+                    +{eur0(m.amount)}
+                  </text>
+                )}
+              </g>
+            ))}
             {hover != null ? (
               <g>
                 <line x1={xs[at]} x2={xs[at]} y1={8} y2={H - 6} stroke="rgb(var(--c-ink))" strokeOpacity="0.18" />
@@ -285,7 +321,14 @@ export function HeroFund({
             </button>
           ))}
         </div>
-        <span className="text-[11px] text-muted">Gains hors apports des membres</span>
+        <span className="flex items-start gap-1.5 text-[11px] leading-snug text-muted sm:max-w-[60%] sm:text-right">
+          <svg width="10" height="10" viewBox="0 0 10 10" className="mt-[2px] shrink-0" aria-hidden>
+            <circle cx="5" cy="5" r="3.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+          </svg>
+          <span>
+            {contrib && contrib.members > 0 ? <>Apports : {ruleSentence(contrib)}.</> : "Apports des membres."} Jamais comptés comme des gains.
+          </span>
+        </span>
       </div>
 
       {/* Contexte : l'IA et le marché, en seconde lecture. */}

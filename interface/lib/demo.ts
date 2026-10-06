@@ -1,5 +1,6 @@
 import type { AiFundFile, Calibration, ClubMember, Contribution, ConvictionsFile, CryptoFile, Decision, DigestFile, GrokPulseWeek, MarketSignals, NewsFile, ProsFile } from "./types";
 import { CLONE_SHARES, DEMO_FLOWS, REAL_PRICES_EUR, REAL_SERIES } from "./demo-history";
+import { perMemberFor } from "./contrib-rule";
 
 // Données de DÉMONSTRATION (affichées tant que Supabase n'est pas branché).
 // Clairement étiquetées « Démo » dans l'UI — remplacées par les vraies données en prod.
@@ -81,8 +82,21 @@ export const DEMO_AI: AiFundFile = {
 
 // Courbe : la reconstitution réelle (lib/demo-history.ts). Le dernier point est recalé par
 // demoData() sur la NAV des cartes, exactement comme le point « aujourd'hui » en production.
+// Apports démo selon la VRAIE règle du club (lib/contrib-rule.ts) : 10 membres, le 1er du mois,
+// 25 € puis 30 € dès septembre. La reconstitution (demo-history.ts) a été générée avec d'anciens
+// apports fictifs (DEMO_FLOWS) : on les remplace jour par jour, le reste de la courbe est inchangé.
+const DEMO_MEMBER_NAMES = ["Clément", "Henri", "Alex", "Sam", "Léa", "Nico", "Inès", "Tom", "Jules", "Sarah"];
+export const DEMO_RULE_FLOWS: { date: string; amount: number }[] = ["2026-07", "2026-08", "2026-09", "2026-10"].map((ym) => ({
+  date: `${ym}-01`,
+  amount: DEMO_MEMBER_NAMES.length * perMemberFor(ym),
+}));
+const flowsUpTo = (flows: { date: string; amount: number }[], d: string) => flows.reduce((s, f) => s + (f.date <= d ? f.amount : 0), 0);
+
 export function demoSeries(): { date: string; group: number; ai: number }[] {
-  return REAL_SERIES.map(({ date, group, ai }) => ({ date, group, ai }));
+  return REAL_SERIES.map(({ date, group, ai }) => {
+    const adj = flowsUpTo(DEMO_RULE_FLOWS, date) - flowsUpTo(DEMO_FLOWS, date);
+    return { date, group: group + adj, ai: ai + adj };
+  });
 }
 
 // MSCI World € (IWDA.AS) réel sur la même période.
@@ -176,16 +190,17 @@ export const DEMO_CALIBRATION: Calibration = {
 };
 
 // ── Membres & apports (démo) ──────────────────────────────────────────
-export const DEMO_MEMBERS: ClubMember[] = [
-  { id: "m1", name: "Clément", joined_on: "2025-09-01", monthly_amount: 25, active: true },
-  { id: "m2", name: "Henri", joined_on: "2025-09-01", monthly_amount: 25, active: true },
-  { id: "m3", name: "Alex", joined_on: "2025-11-01", monthly_amount: 25, active: true },
-  { id: "m4", name: "Sam", joined_on: "2026-02-01", monthly_amount: 25, active: true },
-];
+export const DEMO_MEMBERS: ClubMember[] = DEMO_MEMBER_NAMES.map((name, i) => ({
+  id: `m${i + 1}`,
+  name,
+  joined_on: i < 4 ? "2025-09-01" : "2026-01-01",
+  monthly_amount: 30,
+  active: true,
+}));
 
-// Apports (le 5 du mois) : 4 membres × 25 € — mêmes dates que la courbe reconstituée.
-export const DEMO_CONTRIBUTIONS: Contribution[] = DEMO_FLOWS.flatMap((f, k) =>
-  ["Clément", "Henri", "Alex", "Sam"].map((n, i) => ({ id: `c${k}-${i}`, member_id: `m${i + 1}`, member_name: n, ts: f.date, amount: f.amount / 4, note: "Apport mensuel" }))
+// Apports (le 1er du mois) : une cotisation par membre, montant de la règle du mois.
+export const DEMO_CONTRIBUTIONS: Contribution[] = DEMO_RULE_FLOWS.flatMap((f, k) =>
+  DEMO_MEMBER_NAMES.map((n, i) => ({ id: `c${k}-${i}`, member_id: `m${i + 1}`, member_name: n, ts: f.date, amount: perMemberFor(f.date.slice(0, 7)), note: "Apport mensuel" }))
 ).reverse();
 
 export const DEMO_LESSONS = `# Journal d'apprentissage

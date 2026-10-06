@@ -1,3 +1,4 @@
+import { currentRule, type ContribRule } from "./contrib-rule";
 import { createClient } from "@/lib/supabase/server";
 import {
   fetchAiFund,
@@ -566,6 +567,7 @@ export interface ClubData {
   members: ClubMember[];
   contributions: Contribution[];
   monthlyPerMember: number;
+  rule: ContribRule;
   activeMembers: number;
   monthlyTotal: number; // activeMembers × monthlyPerMember
   contributedTotal: number; // somme des apports enregistrés
@@ -574,32 +576,33 @@ export interface ClubData {
 function buildClub(
   demo: boolean,
   members: ClubMember[],
-  contributions: Contribution[],
-  monthlyPerMember: number
+  contributions: Contribution[]
 ): ClubData {
   const active = members.filter((m) => m.active);
-  const monthlyTotal = active.reduce((s, m) => s + (m.monthly_amount || monthlyPerMember), 0);
+  // La cotisation suit la règle datée (lib/contrib-rule.ts), la même que le cron : pas le
+  // montant historique stocké par membre, resté à 25 € depuis l'amorçage.
+  const rule = currentRule(active.length);
   return {
     demo,
     members,
     contributions,
-    monthlyPerMember,
+    monthlyPerMember: rule.perMember,
     activeMembers: active.length,
-    monthlyTotal,
+    monthlyTotal: rule.total,
+    rule,
     contributedTotal: contributions.reduce((s, c) => s + c.amount, 0),
   };
 }
 
 export async function getClubData(): Promise<ClubData> {
   if (!isConfigured()) {
-    return buildClub(true, DEMO_MEMBERS, DEMO_CONTRIBUTIONS, 25);
+    return buildClub(true, DEMO_MEMBERS, DEMO_CONTRIBUTIONS);
   }
   try {
     const supabase = await createClient();
-    const [{ data: mem }, { data: contrib }, { data: setting }] = await Promise.all([
+    const [{ data: mem }, { data: contrib }] = await Promise.all([
       supabase.from("club_members").select("*").order("created_at", { ascending: true }),
       supabase.from("contributions").select("*").order("ts", { ascending: false }).limit(100),
-      supabase.from("settings").select("value").eq("key", "monthly_per_member").maybeSingle(),
     ]);
     const members = (mem ?? []) as ClubMember[];
     const byId = new Map(members.map((m) => [m.id, m.name]));
@@ -607,11 +610,10 @@ export async function getClubData(): Promise<ClubData> {
       ...c,
       member_name: c.member_id ? byId.get(c.member_id) ?? null : null,
     }));
-    const monthlyPerMember = Number(setting?.value ?? 25) || 25;
-    return buildClub(false, members, contributions, monthlyPerMember);
+    return buildClub(false, members, contributions);
   } catch (e) {
     console.error("getClubData: repli démo après erreur:", e);
-    return buildClub(true, DEMO_MEMBERS, DEMO_CONTRIBUTIONS, 25);
+    return buildClub(true, DEMO_MEMBERS, DEMO_CONTRIBUTIONS);
   }
 }
 

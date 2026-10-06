@@ -21,7 +21,7 @@ export function AppShell({ demo, children }: { demo: boolean; children: React.Re
       <div className="md:pl-64">
         <Topbar demo={demo} />
         {/* key=pathname → léger fondu à chaque changement de page */}
-        <main key={pathname} className="mx-auto max-w-6xl animate-fade-in px-4 py-5 pb-28 md:px-8 md:pb-8">
+        <main key={pathname} className="mx-auto max-w-6xl animate-fade-in px-3 py-4 pb-28 sm:px-4 sm:py-5 md:px-8 md:pb-8">
           {children}
         </main>
       </div>
