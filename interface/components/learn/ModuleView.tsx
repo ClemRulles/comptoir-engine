@@ -91,13 +91,18 @@ function groupBlocks(blocs: Block[]): (Block | Block[])[] {
 
 type SI = Map<string, number>;
 
+// Renvoi vers une ou plusieurs sources (source_id : "s1" ou ["s1", "s2"]).
 function SrcRef({ id, srcIndex }: { id: unknown; srcIndex: SI }) {
-  const n = srcIndex.get(str(id));
-  if (!n) return null;
+  const ids = (Array.isArray(id) ? id : [id]).map(str).filter((x) => srcIndex.has(x));
+  if (!ids.length) return null;
   return (
-    <a href={`#src-${str(id)}`} className="ml-1 inline-flex translate-y-[-1px] items-center rounded bg-slate-100 px-1 text-[10px] font-semibold text-slate-600 no-underline hover:text-ink" title="Voir la source">
-      {n}
-    </a>
+    <>
+      {ids.map((x) => (
+        <a key={x} href={`#src-${x}`} className="ml-1 inline-flex translate-y-[-1px] items-center rounded bg-slate-100 px-1 text-[10px] font-semibold text-slate-600 no-underline hover:text-ink" title="Voir la source">
+          {srcIndex.get(x)}
+        </a>
+      ))}
+    </>
   );
 }
 
@@ -174,7 +179,7 @@ function BlockView({ b, srcIndex }: { b: Block; srcIndex: SI }) {
       const steps = strs(b.etapes);
       return (
         <section className="well p-4">
-          {str(b.titre) && <Title>{str(b.titre)}</Title>}
+          {str(b.titre) && <Title>{str(b.titre)}<SrcRef id={b.source_id} srcIndex={srcIndex} /></Title>}
           <ol className="flex flex-col gap-2 md:flex-row md:flex-wrap md:items-center">
             {steps.map((s, i) => (
               <li key={i} className="flex items-center gap-2 md:contents">
@@ -335,9 +340,11 @@ function BlockView({ b, srcIndex }: { b: Block; srcIndex: SI }) {
         </section>
       );
     case "quiz":
-      return <QuizBlock b={b} />;
+      return <QuizBlock b={b} srcIndex={srcIndex} />;
     case "vrai_faux":
-      return <TrueFalse b={b} />;
+      return <TrueFalse b={b} srcIndex={srcIndex} />;
+    case "image":
+      return <ImageBlock b={b} />;
     case "cartes":
       return <Flashcards b={b} />;
     case "lien": {
@@ -415,10 +422,10 @@ function Chart({ b, srcIndex }: { b: Block; srcIndex: SI }) {
       {line && data.length >= 2 ? (
         <LineChart data={data} unit={unit} />
       ) : (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2.5">
           {data.map((d, i) => (
-            <div key={i} className="grid grid-cols-[minmax(0,7.5rem)_1fr] items-center gap-3 text-[13px] sm:grid-cols-[minmax(0,10rem)_1fr]">
-              <span className="truncate text-muted" title={d.label}>{d.label}</span>
+            <div key={i} className="flex flex-col gap-1 text-[13px] sm:grid sm:grid-cols-[minmax(0,12rem)_1fr] sm:items-center sm:gap-3">
+              <span className="text-muted">{d.label}</span>
               <span className="flex items-center gap-2">
                 <span className={`h-5 rounded-md ${d.v < 0 ? "bg-danger/70" : "bg-brand/80"}`} style={{ width: `${Math.max(2, (Math.abs(d.v) / max) * 100)}%` }} />
                 <span className="num shrink-0 font-semibold">{fmtN(d.v)}{unit ? ` ${unit}` : ""}</span>
@@ -468,19 +475,20 @@ function LineChart({ data, unit }: { data: { label: string; v: number }[]; unit:
   );
 }
 
-function Verdict({ ok, text }: { ok: boolean; text: string }) {
+function Verdict({ ok, text, src }: { ok: boolean; text: string; src?: React.ReactNode }) {
   return (
     <div className={`mt-3 flex gap-2 rounded-xl p-3 text-[14px] leading-relaxed ${ok ? "bg-brand/[0.08]" : "bg-danger/[0.06]"}`}>
       {ok ? <Check size={17} className="mt-0.5 shrink-0 text-brand-600 dark:text-brand-500" /> : <X size={17} className="mt-0.5 shrink-0 text-danger" />}
       <span>
         <span className="font-semibold">{ok ? "Bien vu. " : "Pas tout à fait. "}</span>
         {text}
+        {src}
       </span>
     </div>
   );
 }
 
-function QuizBlock({ b }: { b: Block }) {
+function QuizBlock({ b, srcIndex }: { b: Block; srcIndex: SI }) {
   const choices = strs(b.choix);
   const good = num(b.bonne_reponse);
   const [pick, setPick] = useState<number | null>(null);
@@ -508,7 +516,7 @@ function QuizBlock({ b }: { b: Block }) {
           );
         })}
       </div>
-      {pick != null && <Verdict ok={pick === good} text={str(b.explication)} />}
+      {pick != null && <Verdict ok={pick === good} text={str(b.explication)} src={<SrcRef id={b.source_id} srcIndex={srcIndex} />} />}
       {pick != null && (
         <button type="button" onClick={() => setPick(null)} className="mt-2 inline-flex items-center gap-1 text-[12px] font-medium text-muted hover:text-ink">
           <RotateCcw size={12} /> Rejouer
@@ -518,7 +526,7 @@ function QuizBlock({ b }: { b: Block }) {
   );
 }
 
-function TrueFalse({ b }: { b: Block }) {
+function TrueFalse({ b, srcIndex }: { b: Block; srcIndex: SI }) {
   const truth = b.reponse === true || str(b.reponse).toLowerCase() === "true" || str(b.reponse).toLowerCase() === "vrai";
   const [pick, setPick] = useState<boolean | null>(null);
   return (
@@ -540,8 +548,42 @@ function TrueFalse({ b }: { b: Block }) {
           </button>
         ))}
       </div>
-      {pick != null && <Verdict ok={pick === truth} text={`C'est ${truth ? "vrai" : "faux"}. ${str(b.explication)}`} />}
+      {pick != null && (
+        <Verdict
+          ok={pick === truth}
+          text={/^(vrai|faux)\b/i.test(str(b.explication)) ? str(b.explication) : `C'est ${truth ? "vrai" : "faux"}. ${str(b.explication)}`}
+          src={<SrcRef id={b.source_id} srcIndex={srcIndex} />}
+        />
+      )}
     </section>
+  );
+}
+
+// Image hébergée ailleurs (Wikimedia Commons…), toujours avec légende et crédit. Si elle ne
+// charge pas, on garde la légende et un lien vers la page de l'image.
+function ImageBlock({ b }: { b: Block }) {
+  const url = safeUrl(b.url);
+  const page = safeUrl(b.page);
+  const [broken, setBroken] = useState(false);
+  const caption = (
+    <figcaption className="mt-2 text-[13px] leading-snug text-muted">
+      {str(b.legende)}
+      {str(b.credit) && <span className="mt-0.5 block text-[11px]">{page ? <a href={page} target="_blank" rel="noopener noreferrer" className="underline-offset-2 hover:underline">{str(b.credit)}</a> : str(b.credit)}</span>}
+    </figcaption>
+  );
+  if (!url || broken)
+    return (
+      <figure className="rounded-2xl border border-dashed border-line p-4">
+        {page && <a href={page} target="_blank" rel="noopener noreferrer" className="link text-[13px]">Voir l&apos;image <ExternalLink size={13} /></a>}
+        {caption}
+      </figure>
+    );
+  return (
+    <figure>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={url} alt={str(b.alt) || str(b.legende)} loading="lazy" onError={() => setBroken(true)} className="max-h-[440px] w-full rounded-2xl border border-line bg-elev object-contain" />
+      {caption}
+    </figure>
   );
 }
 

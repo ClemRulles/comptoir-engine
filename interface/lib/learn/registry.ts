@@ -1,12 +1,12 @@
 // registry.ts — les modules publiés. Pour en ajouter un : déposer le JSON reçu (validé dans
 // Apprendre → Aperçu) dans content/modules/<slug>.json, puis l'ajouter à RAW avec sa date.
 import { parseModule, type LearnModule } from "./module";
-// import tulipes from "@/content/modules/bulle-des-tulipes.json";
+import aubergeAppli from "@/content/modules/de-l-auberge-a-l-appli.json";
 
 export type Published = LearnModule & { publie: string };
 
 const RAW: { slug: string; publie: string; data: unknown }[] = [
-  // { slug: "bulle-des-tulipes", publie: "2026-10-07", data: tulipes },
+  { slug: "de-l-auberge-a-l-appli", publie: "2026-10-06", data: aubergeAppli },
 ];
 
 export const MODULES: Published[] = RAW.flatMap((r) => {

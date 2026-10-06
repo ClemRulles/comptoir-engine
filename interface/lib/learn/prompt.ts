@@ -2,7 +2,7 @@
 // pour co-écrire un module. Il fixe le format lu par lib/learn/module.ts : toute évolution du
 // format passe par ici ET par le lecteur, et on incrémente PROMPT_VERSION.
 
-export const PROMPT_VERSION = "2.1";
+export const PROMPT_VERSION = "2.2";
 
 export const MODULE_PROMPT = `Tu es mon complice d'écriture pour créer un « module de découverte » pour HypeInvest, l'app de notre petit club d'investissement entre amis. Un module est un mini-contenu à lire et à découvrir (pas une formation à étudier) : il raconte, explique ou fait découvrir quelque chose en lien avec la finance, l'argent, l'économie ou l'investissement, comme je le ferais autour d'un café.
 
@@ -62,7 +62,7 @@ Seuls ces 4 champs sont obligatoires : \`titre\`, \`auteur\`, \`resume\` (une ph
 
 \`\`\`json
 {
-  "version_prompt": "2.1",
+  "version_prompt": "2.2",
   "module": {
     "titre": "…",
     "auteur": "prénom ou pseudo",
@@ -84,7 +84,7 @@ Seuls ces 4 champs sont obligatoires : \`titre\`, \`auteur\`, \`resume\` (une ph
 \`\`\`
 
 ## Types de blocs
-Tous ont un champ \`"type"\`. Un champ marqué ? est facultatif. \`source_id?\` renvoie à l'id d'une source de la liste « sources ».
+Tous ont un champ \`"type"\`. Un champ marqué ? est facultatif. \`source_id?\` renvoie à l'id d'une source de la liste « sources », ou à une liste d'ids si plusieurs sources (ex. ["s1", "s2"]).
 
 Texte et mise en avant
 - \`texte\` : \`titre?\`, \`contenu\`, \`source_id?\`
@@ -95,7 +95,7 @@ Texte et mise en avant
 
 Structure et visuels
 - \`chronologie\` : \`titre?\`, \`etapes\` (liste de { \`quand\`, \`titre\`, \`detail?\`, \`source_id?\` })
-- \`schema\` : \`titre?\`, \`etapes\` (suite d'étapes courtes), \`explication?\`
+- \`schema\` : \`titre?\`, \`etapes\` (suite d'étapes courtes), \`explication?\`, \`source_id?\`
 - \`tableau\` : \`titre?\`, \`colonnes\` (liste), \`lignes\` (liste de listes), \`legende?\`, \`source_id?\`
 - \`comparaison\` : \`gauche\` { \`titre\`, \`points\` }, \`droite\` { \`titre\`, \`points\` }, \`conclusion?\`
 - \`graphique\` : \`titre\`, \`forme\` ("ligne" | "barres"), \`unite\`, \`donnees\` (liste de { \`label\`, \`valeur\` }), \`legende?\`, \`source_id\` (obligatoire)
@@ -108,11 +108,12 @@ Récit et exemples
 - \`faq\` : \`questions\` (liste de { \`q\`, \`r\` })
 
 Interaction
-- \`quiz\` : \`question\`, \`choix\` (liste), \`bonne_reponse\` (numéro du bon choix, en partant de 0), \`explication\`
-- \`vrai_faux\` : \`affirmation\`, \`reponse\` (true/false), \`explication\`
+- \`quiz\` : \`question\`, \`choix\` (liste), \`bonne_reponse\` (numéro du bon choix, en partant de 0), \`explication\`, \`source_id?\`
+- \`vrai_faux\` : \`affirmation\`, \`reponse\` (true/false), \`explication\`, \`source_id?\`
 - \`cartes\` : \`cartes\` (liste de { \`recto\`, \`verso\` })
 
 Autres
+- \`image\` : \`url\` (adresse directe de l'image), \`legende\`, \`credit\` (auteur et licence), \`page?\` (page d'origine de l'image), \`alt?\`. Uniquement une image sous licence libre dont tu es certain de l'adresse (Wikimedia Commons par exemple). Sinon, décris l'image voulue dans un bloc \`libre\` : Clément la cherchera.
 - \`lien\` : \`titre\`, \`url\`, \`pourquoi\` (uniquement une URL dont tu es certain qu'elle existe)
 - \`libre\` : \`description\` (ce que tu imagines), \`contenu\` (le contenu brut)
 
