@@ -47,27 +47,45 @@ export default async function ApprendrePage({ searchParams }: { searchParams: Pr
               </Empty>
             </Card>
           ) : (
-            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-              {list.map((m) => (
-                <Link key={m.slug} href={`/apprendre/${m.slug}`} className="card lift group flex flex-col gap-3 p-4 md:p-5">
-                  <div className="flex items-start gap-3">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-[22px]" aria-hidden>{m.emoji || "📘"}</span>
-                    <div className="min-w-0">
-                      <h2 className="text-[16px] font-semibold leading-snug tracking-tight group-hover:text-brand-600 dark:group-hover:text-brand-500">{m.titre}</h2>
-                      <div className="mt-0.5 flex flex-wrap items-center gap-x-2 text-[12px] text-muted">
-                        <span>par {m.auteur}</span>
-                        <span className="inline-flex items-center gap-1"><Clock size={12} /> {readingMinutes(m)} min</span>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {list.map((m, idx) => {
+                const cover = m.look?.cover?.url;
+                const featured = idx === 0 && list.length % 2 === 1;
+                return (
+                  <Link
+                    key={m.slug}
+                    href={`/apprendre/${m.slug}`}
+                    data-accent={m.look?.accent ?? "vert"}
+                    className={`learn group relative isolate flex flex-col overflow-hidden rounded-[26px] border border-line/70 bg-card shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-lift ${featured ? "md:col-span-2" : ""}`}
+                  >
+                    <div className={`relative overflow-hidden ${featured ? "h-48 md:h-64" : "h-40"} ${cover ? "bg-[#0b1220]" : ""}`}>
+                      {cover ? (
+                        <>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={cover} alt="" loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" style={{ objectPosition: m.look?.cover?.position ?? "center" }} />
+                          <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                        </>
+                      ) : (
+                        <div aria-hidden className="absolute inset-0">
+                          <div className="absolute -left-10 -top-16 h-48 w-48 rounded-full bg-[rgb(var(--acc)/0.25)] blur-3xl" />
+                          <div className="absolute -right-10 top-4 h-40 w-40 rounded-full bg-[rgb(var(--acc2)/0.2)] blur-3xl" />
+                          <div className="dot-grid absolute inset-0 opacity-40" />
+                        </div>
+                      )}
+                      <span className="absolute bottom-3 left-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-white/85 text-[24px] shadow-sm backdrop-blur dark:bg-black/40" aria-hidden>{m.emoji || "📘"}</span>
+                      <span className="absolute bottom-3 right-4 inline-flex items-center gap-1 rounded-full bg-black/40 px-2.5 py-1 text-[12px] font-medium text-white backdrop-blur"><Clock size={12} /> {readingMinutes(m)} min</span>
+                    </div>
+                    <div className="flex flex-1 flex-col gap-2 p-5">
+                      <h2 className={`font-semibold leading-snug tracking-tight transition-colors group-hover:text-[rgb(var(--acc-ink))] ${featured ? "text-[20px] md:text-[24px]" : "text-[17px]"}`}>{m.titre}</h2>
+                      {m.resume && <p className="line-clamp-2 text-[14px] leading-relaxed text-muted">{m.resume}</p>}
+                      <div className="mt-auto flex flex-wrap items-center gap-1.5 pt-2">
+                        <span className="mr-1 text-[12px] text-muted">par <span className="font-medium text-ink">{m.auteur}</span></span>
+                        {m.etiquettes.map((t) => <span key={t} className="chip bg-[rgb(var(--acc)/0.10)] text-[rgb(var(--acc-ink))]">{t}</span>)}
                       </div>
                     </div>
-                  </div>
-                  {m.resume && <p className="line-clamp-2 text-[14px] leading-relaxed text-muted">{m.resume}</p>}
-                  {m.etiquettes.length > 0 && (
-                    <div className="mt-auto flex flex-wrap gap-1.5">
-                      {m.etiquettes.map((t) => <span key={t} className="chip bg-slate-100 text-slate-600">{t}</span>)}
-                    </div>
-                  )}
-                </Link>
-              ))}
+                  </Link>
+                );
+              })}
             </div>
           )}
         </section>

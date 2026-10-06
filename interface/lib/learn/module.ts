@@ -7,6 +7,13 @@ export type Src = { id: string; titre: string; url: string | null; date: string 
 
 export type Block = { type: string; [k: string]: unknown };
 
+// Habillage visuel choisi à l'intégration (registre) : couleur d'accent et image de couverture.
+export type Accent = "vert" | "bleu" | "violet" | "teal" | "rose";
+export interface Look {
+  accent?: Accent;
+  cover?: { url: string; credit?: string; page?: string; position?: string };
+}
+
 export interface LearnModule {
   slug: string;
   titre: string;
@@ -21,6 +28,7 @@ export interface LearnModule {
   sources: Src[];
   notes: string | null;
   version: string | null;
+  look?: Look;
 }
 
 export const KNOWN_BLOCKS = [

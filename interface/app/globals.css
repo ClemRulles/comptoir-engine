@@ -310,6 +310,35 @@ body {
   100% { opacity: 0; transform: rotate(var(--a)) translateY(-120px) scale(0.4); }
 }
 
+/* ── Modules « Apprendre » ─────────────────────────────────────────────
+   Accent par module (data-accent) : --acc = couleur, --acc2 = fin de dégradé,
+   --acc-ink = version lisible en texte (plus claire en sombre). */
+.learn { --acc: 22 163 74; --acc2: 13 148 136; --acc-ink: 21 128 61; }
+.dark .learn { --acc-ink: 74 222 128; }
+.learn[data-accent="bleu"] { --acc: 37 99 235; --acc2: 14 165 233; --acc-ink: 29 78 216; }
+.dark .learn[data-accent="bleu"] { --acc-ink: 96 165 250; }
+.learn[data-accent="violet"] { --acc: 124 58 237; --acc2: 192 38 211; --acc-ink: 109 40 217; }
+.dark .learn[data-accent="violet"] { --acc-ink: 167 139 250; }
+.learn[data-accent="teal"] { --acc: 13 148 136; --acc2: 6 182 212; --acc-ink: 15 118 110; }
+.dark .learn[data-accent="teal"] { --acc-ink: 45 212 191; }
+.learn[data-accent="rose"] { --acc: 225 29 72; --acc2: 249 115 22; --acc-ink: 190 18 60; }
+.dark .learn[data-accent="rose"] { --acc-ink: 251 113 133; }
+.learn-grad-text {
+  background-image: linear-gradient(120deg, rgb(var(--acc)), rgb(var(--acc2)));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.learn-grad { background-image: linear-gradient(135deg, rgb(var(--acc)), rgb(var(--acc2))); }
+/* Apparition au défilement : seuls les blocs encore sous l'écran attendent (data-reveal="wait"). */
+.learn-reveal { transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+.learn-reveal[data-reveal="wait"] { opacity: 0; transform: translateY(18px); }
+/* Cartes à retourner (3D) : les deux faces partagent la même case de grille → hauteur auto. */
+.flip { perspective: 1200px; }
+.flip-inner { display: grid; transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); transform-style: preserve-3d; }
+.flip.is-flipped .flip-inner { transform: rotateY(180deg); }
+.flip-face { grid-area: 1 / 1; -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+.flip-back { transform: rotateY(180deg); }
+.learn-bar { transition: width 1.1s cubic-bezier(0.22, 1, 0.36, 1); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
 }
