@@ -7,6 +7,13 @@ export type Src = { id: string; titre: string; url: string | null; date: string 
 
 export type Block = { type: string; [k: string]: unknown };
 
+// Habillage visuel choisi à l'intégration (registre) : couleur d'accent et image de couverture.
+export type Accent = "vert" | "bleu" | "violet" | "teal" | "rose";
+export interface Look {
+  accent?: Accent;
+  cover?: { url: string; credit?: string; page?: string; position?: string };
+}
+
 export interface LearnModule {
   slug: string;
   titre: string;
@@ -21,6 +28,7 @@ export interface LearnModule {
   sources: Src[];
   notes: string | null;
   version: string | null;
+  look?: Look;
 }
 
 export const KNOWN_BLOCKS = [
@@ -28,7 +36,8 @@ export const KNOWN_BLOCKS = [
   "chronologie", "schema", "tableau", "comparaison", "graphique", "liste", "vocabulaire",
   "exemple", "temoignage", "faq",
   "quiz", "vrai_faux", "cartes",
-  "lien", "libre",
+  "image", "lien", "libre",
+  "enigme", "indice", "devine", "exergue",
 ] as const;
 
 export const TAGS = ["bases", "bourse", "crypto", "immobilier", "budget", "histoire", "psychologie", "fiscalité", "entreprise", "risque", "métiers"];
@@ -72,6 +81,24 @@ export function slugify(s: string): string {
   );
 }
 
+// Typographie française : espaces insécables dans « 5 000 », avant : ; ? ! » et après «, pour
+// qu'un retour à la ligne ne laisse jamais un signe ou un bout de nombre seul.
+export function typo(s: string): string {
+  return s
+    .replace(/(\d)[ \u00a0](?=\d{3}\b)/g, "$1\u202f")
+    .replace(/ ([:;?!»%€$])/g, "\u00a0$1")
+    .replace(/« /g, "«\u00a0");
+}
+
+// Champs techniques jamais retouchés par typo().
+const RAW_KEYS = new Set(["type", "url", "page", "source_id", "niveau", "forme", "bonne_reponse", "reponse", "ordonnee"]);
+function typoDeep(v: unknown, key = ""): unknown {
+  if (typeof v === "string") return RAW_KEYS.has(key) ? v : typo(v);
+  if (Array.isArray(v)) return v.map((x) => typoDeep(x, key));
+  if (isObj(v)) return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, typoDeep(x, k)]));
+  return v;
+}
+
 // Accepte le JSON complet { module, sources, … } ou directement l'objet module.
 export function parseModule(raw: unknown, slug?: string): { module: LearnModule | null; issues: string[] } {
   const issues: string[] = [];
@@ -93,7 +120,7 @@ export function parseModule(raw: unknown, slug?: string): { module: LearnModule 
     }
     const type = str(b.type);
     if (!(KNOWN_BLOCKS as readonly string[]).includes(type)) issues.push(`Bloc ${i + 1} : forme nouvelle « ${type} », affichée telle quelle pour l'instant (Clément pourra lui créer un rendu sur mesure).`);
-    blocs.push({ ...b, type });
+    blocs.push({ ...(typoDeep(b) as Record<string, unknown>), type });
   });
   if (!blocs.length) issues.push("Champ obligatoire manquant : blocs (au moins un).");
   else if (blocs.length > 25) issues.push(`${blocs.length} blocs : le prompt en demande 25 au plus.`);
@@ -103,8 +130,9 @@ export function parseModule(raw: unknown, slug?: string): { module: LearnModule 
     .map((s, i) => ({ id: str(s.id) || `s${i + 1}`, titre: str(s.titre) || "Source", url: safeUrl(s.url), date: str(s.date_consultee) || null }));
   const ids = new Set(sources.map((s) => s.id));
   const cited = new Set<string>();
+  // source_id : un id ou une liste d'ids.
   JSON.stringify(blocs, (k, v) => {
-    if (k === "source_id" && typeof v === "string") cited.add(v);
+    if (k === "source_id") for (const id of Array.isArray(v) ? v : [v]) if (typeof id === "string") cited.add(id);
     return v;
   });
   for (const id of cited) if (!ids.has(id)) issues.push(`source_id « ${id} » cité mais absent de la liste des sources.`);
@@ -114,9 +142,9 @@ export function parseModule(raw: unknown, slug?: string): { module: LearnModule 
 
   const module: LearnModule = {
     slug: slug ?? slugify(titre),
-    titre: titre || "Module sans titre",
+    titre: typo(titre) || "Module sans titre",
     auteur: auteur || "Anonyme",
-    resume,
+    resume: typo(resume),
     niveau: str(m.niveau) || null,
     duree: num(m.duree_lecture_min),
     etiquettes,

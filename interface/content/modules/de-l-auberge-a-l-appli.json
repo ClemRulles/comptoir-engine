@@ -1,0 +1,546 @@
+{
+  "version_prompt": "2.0",
+  "module": {
+    "titre": "De l'auberge à l'appli : comment la bourse est arrivée dans ta poche",
+    "auteur": "Clément",
+    "resume": "Une auberge flamande, un sac d'épices, un platane new-yorkais et ton téléphone racontent la même histoire : laquelle ?",
+    "niveau": "découverte",
+    "duree_lecture_min": 10,
+    "etiquettes": [
+      "histoire",
+      "bourse",
+      "psychologie"
+    ],
+    "ton": "raconté, avec une énigme",
+    "emoji": "🏛️",
+    "blocs": [
+      {
+        "type": "texte",
+        "titre": "Une énigme pour commencer",
+        "contenu": "Qu'ont en commun une auberge de Bruges du XIIIe siècle, un sac d'épices, un platane de New York et l'appli de bourse dans ton téléphone ? Ils racontent l'histoire d'une idée très simple, devenue l'une des machines les plus puissantes de l'économie. À chaque étape, la même boucle se répète. Garde l'énigme en tête : la réponse est à la fin."
+      },
+      {
+        "type": "enigme",
+        "question": "Qu'ont en commun une auberge, un sac d'épices, un platane et ton téléphone ?",
+        "indices": [
+          {
+            "id": "auberge",
+            "emoji": "🏨",
+            "label": "L'auberge"
+          },
+          {
+            "id": "epices",
+            "emoji": "🌶️",
+            "label": "Le sac d'épices"
+          },
+          {
+            "id": "platane",
+            "emoji": "🌳",
+            "label": "Le platane"
+          },
+          {
+            "id": "telephone",
+            "emoji": "📱",
+            "label": "Le téléphone"
+          }
+        ]
+      },
+      {
+        "type": "chiffre_cle",
+        "valeur": "1285",
+        "label": "Une auberge à Bruges, et déjà des marchands qui négocient",
+        "detail": "Dès 1285, Robrecht Van der Buerse tient l'auberge Ter Buerse. Garde ce nom en tête, il est caché dans ton appli de bourse.",
+        "source_id": "s1"
+      },
+      {
+        "type": "texte",
+        "titre": "Le mot vient de chez nous",
+        "contenu": "La famille Van der Buerse tient l'auberge pendant cinq générations, et au XIVe siècle la place devant chez eux devient le centre commercial et financier de Bruges. Leur blason porte trois bourses, au sens de porte-monnaie. Ce nom et ce blason ont fait le lien entre la place et l'idée de marché, et le mot est passé par Anvers pour devenir bourse, borsa, bolsa et Börse. Mais on y échange encore des marchandises et de l'argent, pas des actions. Pour ça, il faudra un problème énorme, trois siècles plus tard.",
+        "source_id": "s1"
+      },
+      {
+        "type": "image",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Huis_ter_Beurze.JPG/960px-Huis_ter_Beurze.JPG",
+        "legende": "La maison Ter Beurze à Bruges, telle qu'elle est aujourd'hui.",
+        "credit": "Photo : Chivista, licence CC BY-SA 3.0, via Wikimedia Commons",
+        "page": "https://commons.wikimedia.org/wiki/File:Huis_ter_Beurze.JPG",
+        "alt": "Façade de la maison Ter Beurze à Bruges"
+      },
+      {
+        "type": "indice",
+        "id": "auberge",
+        "titre": "L'auberge",
+        "texte": "Le nom des Van der Buerse et leurs trois bourses ont donné le mot bourse.",
+        "source_id": "s1"
+      },
+      {
+        "type": "devine",
+        "question": "À ton avis, en quelle année ouvre le premier bâtiment construit exprès pour servir de bourse ?",
+        "min": 1300,
+        "max": 1800,
+        "pas": 1,
+        "unite": "",
+        "reponse": 1531,
+        "explication": "Au XVIe siècle, Anvers prend le relais de Bruges. En 1531, la ville ouvre sa nouvelle bourse, considérée comme le premier bâtiment construit pour servir de bourse de commerce. Londres lance la sienne en 1565, sur le modèle d'Anvers.",
+        "source_id": "s23"
+      },
+      {
+        "type": "texte",
+        "titre": "Le problème de 1602",
+        "contenu": "Imagine : tu veux envoyer une flotte chercher des épices en Asie. Le voyage est très long, les navires peuvent couler, et la somme à avancer dépasse ce que n'importe quel marchand peut payer seul. Si ça marche, c'est la fortune ; si ça rate, tout est perdu. Comment financer un projet aussi gros et aussi risqué ? La réponse inventée aux Pays-Bas en 1602 est encore au cœur de la bourse aujourd'hui."
+      },
+      {
+        "type": "schema",
+        "titre": "Les deux inventions de la VOC",
+        "etapes": [
+          "Un projet trop gros et trop risqué pour une seule personne",
+          "On le découpe en une multitude de petites parts",
+          "Chacun peut en acheter, même avec peu d'argent",
+          "Et surtout, chacun peut revendre sa part sans attendre la fin du projet",
+          "Il faut un endroit pour échanger ces parts : la bourse moderne est née"
+        ],
+        "explication": "Financer des entreprises et permettre de revendre facilement, c'est encore exactement le rôle d'une bourse. Le mot savant pour la deuxième invention est la liquidité : pouvoir transformer rapidement un placement en argent."
+      },
+      {
+        "type": "exemple",
+        "titre": "Pieter, actionnaire à 150 florins",
+        "scenario": "En 1602, la Compagnie néerlandaise des Indes orientales (VOC) ouvre sa souscription à tout le monde : à Enkhuizen, on trouve parmi les souscripteurs beaucoup d'artisans, de petits entrepreneurs et de simples habitants. Parmi eux, Pieter Harmensz, messager de la ville, autorisé à payer ses 150 florins en plusieurs fois, qui règle le dernier versement le 9 septembre 1606.",
+        "chiffres": [
+          {
+            "label": "Mise de Pieter",
+            "valeur": "150 florins",
+            "source_id": "s2"
+          },
+          {
+            "label": "Montant total levé par la VOC",
+            "valeur": "plus de 6 millions de florins",
+            "source_id": "s2"
+          },
+          {
+            "label": "Souscripteurs à Enkhuizen",
+            "valeur": "538",
+            "source_id": "s3"
+          },
+          {
+            "label": "Âge du reçu en 2026",
+            "valeur": "420 ans"
+          }
+        ]
+      },
+      {
+        "type": "exergue",
+        "texte": "Le reçu obtenu ce jour-là est aujourd'hui considéré comme la plus vieille action connue au monde, retrouvée en 2010 dans les archives d'Enkhuizen.",
+        "source_id": "s2"
+      },
+      {
+        "type": "image",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/VOC_aandeel_9_september_1606.jpg/960px-VOC_aandeel_9_september_1606.jpg",
+        "legende": "Le reçu de Pieter Harmensz, 9 septembre 1606, conservé au Westfries Archief à Hoorn.",
+        "credit": "Domaine public, via Wikimedia Commons",
+        "page": "https://commons.wikimedia.org/wiki/File:VOC_aandeel_9_september_1606.jpg",
+        "alt": "Reçu manuscrit de la VOC daté du 9 septembre 1606"
+      },
+      {
+        "type": "texte",
+        "contenu": "La vraie nouveauté de l'époque : ces parts pouvaient s'échanger publiquement. Et les premiers dividendes ? Versés en épices, difficiles à revendre parce que la VOC avait elle-même inondé le marché des épices."
+      },
+      {
+        "type": "indice",
+        "id": "epices",
+        "titre": "Le sac d'épices",
+        "texte": "Les premiers actionnaires de la VOC ont touché leurs dividendes… en épices."
+      },
+      {
+        "type": "exemple",
+        "titre": "1609 : le pari à la baisse d'Isaac Le Maire",
+        "scenario": "Sept ans à peine après la création de la VOC, un de ses gros actionnaires imagine l'inverse. En 1609, le marchand Isaac Le Maire s'associe à dix autres marchands pour vendre des actions de la VOC à terme, en pariant sur la baisse de leur prix. C'est probablement la naissance de la vente à découvert. Les autorités finissent par interdire de vendre des actions qu'on ne possède pas. Garde cette méthode en tête : elle revient en 2021.",
+        "chiffres": [
+          {
+            "label": "Année du pari",
+            "valeur": "1609",
+            "source_id": "s25"
+          },
+          {
+            "label": "Marchands associés à Le Maire",
+            "valeur": "10",
+            "source_id": "s25"
+          }
+        ],
+        "source_id": [
+          "s24",
+          "s25"
+        ]
+      },
+      {
+        "type": "saviez_vous",
+        "texte": "Quand tu achètes une action en bourse aujourd'hui, ton argent ne va pas à l'entreprise : il va à l'investisseur qui te la vend. L'entreprise ne reçoit de l'argent que lorsqu'elle émet de nouvelles actions, par exemple lors de son entrée en bourse : c'est le marché primaire. Tous les échanges qui suivent, entre investisseurs, forment le marché secondaire. Pieter finançait directement la VOC ; quelqu'un qui lui aurait racheté sa part aurait simplement payé Pieter.",
+        "source_id": "s22"
+      },
+      {
+        "type": "vrai_faux",
+        "affirmation": "La tulipomanie de 1637 a ruiné la Hollande.",
+        "reponse": false,
+        "explication": "Faux, selon l'historienne Anne Goldgar. Dans les archives, elle a trouvé un marché du luxe assez restreint et de courte durée, et pas une seule personne ruinée par la chute. Les reçus les plus chers atteignaient 5 000 florins, le prix d'une belle maison en 1637. Les récits de ruine générale viennent surtout d'un livre de Charles Mackay paru en 1841, deux siècles plus tard. Leçon bonus : les krachs ont souvent une meilleure histoire que la réalité.",
+        "source_id": [
+          "s4",
+          "s5"
+        ]
+      },
+      {
+        "type": "texte",
+        "titre": "De Wall Street à ta poche",
+        "contenu": "Les Néerlandais n'ont pas seulement inventé l'action. En 1653, dans leur colonie de La Nouvelle-Amsterdam, le directeur Peter Stuyvesant fait construire un mur de bois et de terre pour protéger la ville. Le mur est démoli en 1699, mais la rue qui le longeait en tire son nom : Wall Street, la rue du mur. La colonie, elle, s'appelle aujourd'hui New York.",
+        "source_id": "s26"
+      },
+      {
+        "type": "chronologie",
+        "titre": "Ce que chaque date a changé pour toi",
+        "etapes": [
+          {
+            "quand": "17 mai 1792",
+            "titre": "Des règles communes",
+            "detail": "24 courtiers signent un accord sur Wall Street, considéré comme la naissance de la bourse de New York. Il porte le nom du platane sous lequel ils se retrouvaient ; qu'ils l'aient signé dessous relève plutôt de la légende. Ils y fixent des commissions minimales et s'engagent à traiter en priorité entre eux. Pour toi : un marché ne marche que si on fait confiance à ses règles.",
+            "source_id": [
+              "s6",
+              "s21"
+            ]
+          },
+          {
+            "quand": "15 novembre 1867",
+            "titre": "Les cours en direct",
+            "detail": "Edward Calahan présente à New York le téléscripteur boursier, qui imprime les cours sur un ruban de papier. Pour toi : l'ancêtre des cours qui défilent dans ton appli.",
+            "source_id": "s28"
+          },
+          {
+            "quand": "26 mai 1896",
+            "titre": "On peut mesurer le marché",
+            "detail": "Le journaliste Charles Dow lance un indice de 12 entreprises, démarré à 40,94 points. Pour toi : un indice est un thermomètre qui résume un groupe d'actions en un chiffre, comme ceux que suivent les fonds indiciels.",
+            "source_id": "s8"
+          },
+          {
+            "quand": "28 octobre 1929",
+            "titre": "On découvre le risque",
+            "detail": "Ce lundi noir, le Dow Jones perd près de 13 % en une journée, et la chute dure jusqu'en 1932.",
+            "source_id": "s9"
+          },
+          {
+            "quand": "1934",
+            "titre": "Le gendarme de la bourse",
+            "detail": "Après le krach, une loi américaine crée la SEC, chargée de surveiller les marchés. Pour toi : les comptes que les entreprises cotées doivent publier régulièrement.",
+            "source_id": "s15"
+          },
+          {
+            "quand": "8 février 1971",
+            "titre": "Le marché devient électronique",
+            "detail": "Le Nasdaq démarre comme premier marché boursier entièrement électronique.",
+            "source_id": "s10"
+          },
+          {
+            "quand": "27 octobre 1986",
+            "titre": "La criée disparaît",
+            "detail": "À Londres, le Big Bang remplace la criée par les écrans. Pour l'anecdote, les femmes n'avaient été admises sur le parquet londonien qu'en 1973.",
+            "source_id": "s11"
+          },
+          {
+            "quand": "10 mars 2000",
+            "titre": "La bulle internet éclate",
+            "detail": "Le Nasdaq atteint son sommet, puis perd 78 % jusqu'en octobre 2002.",
+            "source_id": "s16"
+          },
+          {
+            "quand": "22 septembre 2000",
+            "titre": "Bruxelles rejoint la grande famille",
+            "detail": "Euronext naît de la fusion des bourses d'Amsterdam, Bruxelles et Paris, une première mondiale entre bourses de pays différents. Pour toi : les entreprises restent cotées sur leur place d'origine, comme Bruxelles, mais toutes les transactions passent par une plateforme unique.",
+            "source_id": "s13"
+          },
+          {
+            "quand": "Mars 2015",
+            "titre": "Le courtage gratuit",
+            "detail": "Fondée en 2013, Robinhood lance officiellement son application, qui permet d'acheter des actions sans commission.",
+            "source_id": [
+              "s19",
+              "s27"
+            ]
+          },
+          {
+            "quand": "Octobre 2019",
+            "titre": "La bourse arrive dans la poche",
+            "detail": "Le géant Charles Schwab supprime à son tour ses commissions de 4,95 dollars par ordre. Pour toi : acheter une action prend quelques secondes, depuis un canapé.",
+            "source_id": "s20"
+          }
+        ]
+      },
+      {
+        "type": "indice",
+        "id": "platane",
+        "titre": "Le platane",
+        "texte": "En 1792, 24 courtiers signent des règles communes qui portent le nom d'un platane de Wall Street : c'est la naissance de la bourse de New York.",
+        "source_id": "s6"
+      },
+      {
+        "type": "devine",
+        "question": "Entre son record de 1929 et son plancher de 1932, de combien le Dow Jones a-t-il chuté ?",
+        "min": 0,
+        "max": 100,
+        "pas": 1,
+        "unite": "%",
+        "reponse": 89,
+        "explication": "Il a ensuite fallu attendre novembre 1954 pour revoir le record de 1929.",
+        "source_id": "s9"
+      },
+      {
+        "type": "graphique",
+        "titre": "Le krach de 1929 et le long retour",
+        "forme": "barres",
+        "unite": "points",
+        "donnees": [
+          {
+            "label": "Août 1921",
+            "valeur": 63
+          },
+          {
+            "label": "Sept. 1929 (record)",
+            "valeur": 381
+          },
+          {
+            "label": "Juil. 1932 (plancher)",
+            "valeur": 41
+          },
+          {
+            "label": "Nov. 1954 (record retrouvé)",
+            "valeur": 381
+          }
+        ],
+        "legende": "Dow Jones, valeurs de clôture arrondies. Multiplié par six en huit ans, puis 89 % de chute jusqu'en 1932, et un record retrouvé seulement en novembre 1954.",
+        "source_id": "s9"
+      },
+      {
+        "type": "quiz",
+        "question": "Le Dow Jones a mis 25 ans à retrouver son record de 1929. Pourtant, un investisseur entré au plus haut pouvait être revenu à l'équilibre vers 1936. Pourquoi ?",
+        "choix": [
+          "L'indice était mal calculé",
+          "L'indice ne compte pas les dividendes, et les prix ont fortement baissé dans les années 1930",
+          "L'État a remboursé les pertes",
+          "La bourse est restée fermée plusieurs années"
+        ],
+        "bonne_reponse": 1,
+        "explication": "Selon l'analyse du journaliste financier Mark Hulbert, en tenant compte de ces effets, un investisseur entré au sommet de 1929 était revenu à l'équilibre fin 1936, environ 7 ans plus tard. Très long, mais bien moins que 25 ans. Leçon : un indice ne raconte jamais toute l'histoire.",
+        "source_id": "s14"
+      },
+      {
+        "type": "texte",
+        "titre": "La boucle dans ta poche",
+        "contenu": "Retour à notre époque. Avec une appli sans commission, n'importe qui peut acheter une action en quelques secondes, depuis son canapé. En janvier 2021, une foule de petits investisseurs va s'en servir contre des fonds qui pariaient à la baisse : la vieille méthode d'Isaac Le Maire, mais cette fois face à la foule."
+      },
+      {
+        "type": "exemple",
+        "titre": "GameStop, janvier 2021 : la boucle dans ta poche",
+        "scenario": "GameStop, une chaîne américaine de magasins de jeux vidéo, valait un peu moins de 20 dollars l'action fin 2020. Des fonds pariaient sur sa baisse grâce à la vente à découvert : on emprunte des actions, on les vend, et on espère les racheter moins cher plus tard. Une foule de petits investisseurs, réunis sur un forum Reddit, achète en masse ; les vendeurs à découvert doivent racheter en urgence, ce qui fait encore monter le cours. Le 28 janvier, Robinhood limite les achats, ce qui déclenche colère et procès. Des experts estimaient que le courtage gratuit avait rendu cet emballement plus facile.",
+        "chiffres": [
+          {
+            "label": "Prix fin 2020",
+            "valeur": "un peu moins de 20 dollars",
+            "source_id": "s18"
+          },
+          {
+            "label": "Hausse depuis début 2021, au 28 janvier",
+            "valeur": "près de 950 %",
+            "source_id": "s18"
+          },
+          {
+            "label": "28 janvier 2021",
+            "valeur": "achats limités sur Robinhood",
+            "source_id": "s17"
+          }
+        ]
+      },
+      {
+        "type": "indice",
+        "id": "telephone",
+        "titre": "Le téléphone",
+        "texte": "Les applis sans commission ont mis la bourse à portée de pouce, pour le meilleur et pour l'emballement."
+      },
+      {
+        "type": "attention",
+        "niveau": "attention",
+        "texte": "Ce genre d'emballement est spectaculaire, mais très risqué : un cours poussé par l'enthousiasme collectif peut retomber aussi vite qu'il est monté. Ce module raconte l'histoire, il ne recommande d'acheter ou de vendre aucune action."
+      },
+      {
+        "type": "schema",
+        "titre": "La boucle",
+        "etapes": [
+          "Une innovation : les actions, internet, les applis",
+          "De l'enthousiasme : tout le monde veut en être",
+          "De l'excès : les prix s'emballent",
+          "Une chute brutale",
+          "De nouvelles règles, jusqu'à la prochaine innovation"
+        ],
+        "explication": "Tu viens de la voir trois fois dans ce module, en 1929, en 2000 et en 2021. Les outils changent à chaque fois, les réflexes humains beaucoup moins."
+      },
+      {
+        "type": "texte",
+        "titre": "Réponse à l'énigme",
+        "contenu": "L'auberge a donné son nom au marché. Le sac d'épices rappelle que les premiers actionnaires étaient payés en nature. Le platane a donné ses règles à Wall Street. Et ton téléphone a mis tout ça à portée de pouce. Selon moi, le vrai fil rouge, c'est que chaque innovation rend la bourse plus accessible, et que chaque fois l'enthousiasme finit par déborder. L'histoire aide à reconnaître ces moments, pas à prédire le prochain."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "s1",
+      "titre": "Musée de la Banque nationale de Belgique : The origins of the stock exchange, from the Ter Buerse inn to Wall Street",
+      "url": "https://museum.nbb.be/en/node/242",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s2",
+      "titre": "Westfries Archief : The world's oldest share",
+      "url": "https://westfriesarchief.nl/historie/thema-s/geld-en-handel/the-oldest-share",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s3",
+      "titre": "DutchNews : World's oldest share found in Hoorn archive",
+      "url": "https://www.dutchnews.nl/2010/09/worlds_oldest_share_found_in_h/",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s4",
+      "titre": "Smithsonian Magazine : There Never Was a Real Tulip Fever",
+      "url": "https://www.smithsonianmag.com/history/there-never-was-real-tulip-fever-180964915/",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s5",
+      "titre": "History.com : The Real Story Behind the 17th-Century Tulip Mania Financial Crash",
+      "url": "https://www.history.com/news/tulip-mania-financial-crash-holland",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s6",
+      "titre": "Wikipedia : Buttonwood Agreement",
+      "url": "https://en.wikipedia.org/wiki/Buttonwood_Agreement",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s8",
+      "titre": "S&P Dow Jones Indices : The Dow",
+      "url": "https://www.spglobal.com/spdji/en/landing/investment-themes/the-dow/",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s9",
+      "titre": "Federal Reserve History : Stock Market Crash of 1929",
+      "url": "https://www.federalreservehistory.org/essays/stock-market-crash-of-1929",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s10",
+      "titre": "Wikipedia : Nasdaq",
+      "url": "https://en.wikipedia.org/wiki/Nasdaq",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s11",
+      "titre": "City A.M. : On this day, Big Bang hits the Square Mile",
+      "url": "https://www.cityam.com/on-this-day-big-bang-hits-the-square-mile/",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s13",
+      "titre": "ABC Bourse : Qu'est-ce qu'Euronext ?",
+      "url": "https://www.abcbourse.com/apprendre/1_euronext.html",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s14",
+      "titre": "History News Network, Mark Hulbert : 25 Years to Bounce Back? Try 4 1/2",
+      "url": "https://www.historynewsnetwork.org/article/mark-hulbert-25-years-to-bounce-back-try-4-12",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s15",
+      "titre": "Wikipedia : United States securities regulation",
+      "url": "https://en.wikipedia.org/wiki/United_States_securities_regulation",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s16",
+      "titre": "Wikipedia : Dot-com bubble",
+      "url": "https://en.wikipedia.org/wiki/Dot-com_bubble",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s17",
+      "titre": "CBC News : GameStop shares sell off after Robinhood, TD and other brokerages move to limit trading",
+      "url": "https://www.cbc.ca/lite/story/1.5891363",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s18",
+      "titre": "ABC17 News (CNN) : Robinhood shuts down GameStop trades, sending stock into a tizzy",
+      "url": "https://abc17news.com/money/2021/01/28/robinhood-shuts-down-gamestop-trades-sending-stock-into-a-tizzy/",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s19",
+      "titre": "ETF Trends : Brokerage firm commission cuts could be good for investors and bad for profits",
+      "url": "https://www.etftrends.com/equity-etf-content-hub/brokerage-firm-commission-cuts-could-be-good-for-investors-and-bad-for-profits/amp/",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s20",
+      "titre": "CNN Business : Charles Schwab eliminates commissions",
+      "url": "https://edition.cnn.com/2019/10/01/investing/charles-schwab-eliminates-commissions",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s21",
+      "titre": "CultureNOW : Buttonwood Agreement",
+      "url": "https://culturenow.org/site/buttonwood-agreement",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s22",
+      "titre": "Wikipedia : U.S. Securities and Exchange Commission (définition du marché secondaire)",
+      "url": "https://en.wikipedia.org/wiki/U.S._Securities_and_Exchange_Commission",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s23",
+      "titre": "Wikipedia : Stock Exchange (Antwerp)",
+      "url": "https://en.wikipedia.org/wiki/Antwerp_Bourse",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s24",
+      "titre": "Wikipedia : Short (finance), histoire",
+      "url": "https://en.wikipedia.org/wiki/Short_(finance)",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s25",
+      "titre": "Wikipedia : Isaac Le Maire",
+      "url": "https://en.wikipedia.org/wiki/Isaac_Le_Maire",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s26",
+      "titre": "Wikipedia : Wall Street",
+      "url": "https://en.wikipedia.org/wiki/Wall_Street",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s27",
+      "titre": "Wikipedia : Robinhood Markets",
+      "url": "https://en.wikipedia.org/wiki/Robinhood_Markets",
+      "date_consultee": "2026-10"
+    },
+    {
+      "id": "s28",
+      "titre": "Wikipedia : Ticker tape",
+      "url": "https://en.wikipedia.org/wiki/Ticker_tape",
+      "date_consultee": "2026-10"
+    }
+  ],
+  "notes_pour_clement": "Intégré le 2026-10-06. Texte de l'auteur conservé ; histoire de Pieter découpée en trois (récit, exergue, suite). Ajouts sourcés de l'IA du club : énigme et indices, Anvers 1531 (s23), Isaac Le Maire 1609 (s24, s25), Wall Street et le mur de 1653 (s26), téléscripteur 1867 (s28), deux jeux « devine ». Correction : Robinhood fondée en 2013, appli lancée officiellement en mars 2015 (s27). Source s1 : adresse publique du musée de la BNB."
+}

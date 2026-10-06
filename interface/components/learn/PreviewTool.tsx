@@ -73,11 +73,7 @@ export function PreviewTool() {
               <span><span className="font-semibold">Notes pour Clément : </span>{res.module.notes}</span>
             </div>
           )}
-          {res.module && (
-            <div className="card p-4 md:p-8">
-              <ModuleView module={res.module} />
-            </div>
-          )}
+          {res.module && <ModuleView module={res.module} preview />}
         </div>
       )}
     </div>
