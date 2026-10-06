@@ -4,7 +4,6 @@
 import { useState } from "react";
 import { AlertTriangle, CheckCircle2, Eraser, Eye, MessageSquareText } from "lucide-react";
 import { parseModule, type LearnModule } from "@/lib/learn/module";
-import { EXAMPLE_MODULE } from "@/lib/learn/example";
 import { ModuleView } from "./ModuleView";
 
 type Result = { module: LearnModule | null; issues: string[]; error?: string };
@@ -24,10 +23,9 @@ function run(text: string): Result {
   }
 }
 
-export function PreviewTool({ example }: { example: boolean }) {
-  const initial = example ? JSON.stringify(EXAMPLE_MODULE, null, 2) : "";
-  const [text, setText] = useState(initial);
-  const [res, setRes] = useState<Result | null>(example ? run(initial) : null);
+export function PreviewTool() {
+  const [text, setText] = useState("");
+  const [res, setRes] = useState<Result | null>(null);
 
   function show() {
     setRes(run(text));
@@ -47,7 +45,6 @@ export function PreviewTool({ example }: { example: boolean }) {
         />
         <div className="mt-3 flex flex-wrap gap-2">
           <button type="button" onClick={show} disabled={!text.trim()} className="btn btn-primary"><Eye size={16} /> Afficher l&apos;aperçu</button>
-          <button type="button" onClick={() => { const t = JSON.stringify(EXAMPLE_MODULE, null, 2); setText(t); setRes(run(t)); }} className="btn">Charger l&apos;exemple</button>
           {text && <button type="button" onClick={() => { setText(""); setRes(null); }} className="btn btn-ghost text-muted"><Eraser size={15} /> Effacer</button>}
         </div>
       </div>
@@ -60,7 +57,7 @@ export function PreviewTool({ example }: { example: boolean }) {
             </div>
           ) : res.issues.length ? (
             <div className="rounded-2xl border border-ai/40 bg-ai/[0.08] p-4">
-              <div className="mb-2 flex items-center gap-2 text-[14px] font-semibold"><AlertTriangle size={17} className="text-amber-700 dark:text-ai" /> {res.issues.length} remarque{res.issues.length > 1 ? "s" : ""} à corriger avec ton IA</div>
+              <div className="mb-2 flex items-center gap-2 text-[14px] font-semibold"><AlertTriangle size={17} className="text-amber-700 dark:text-ai" /> {res.issues.length} remarque{res.issues.length > 1 ? "s" : ""} avant l&apos;envoi</div>
               <ul className="flex list-disc flex-col gap-1 pl-5 text-[14px] leading-snug">
                 {res.issues.map((x, i) => <li key={i}>{x}</li>)}
               </ul>

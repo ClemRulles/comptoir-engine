@@ -9,9 +9,9 @@ export const dynamic = "force-dynamic";
 
 const STEPS = [
   "Copie le prompt et colle-le dans ton IA (Claude, ChatGPT…).",
-  "Réponds à ses questions : ton sujet, ton vécu, ton ton.",
-  "Relis la version lisible et ajuste jusqu'à ce que ça te ressemble.",
-  "Colle le JSON final dans l'aperçu pour le voir en vrai, puis envoie-le à Clément.",
+  "Lâche-toi : le sujet, la forme et le ton sont libres, tant que ça parle d'argent.",
+  "Ajuste avec ton IA jusqu'à ce que ça te ressemble.",
+  "Vérifie le rendu dans l'aperçu, puis envoie-le à Clément.",
 ];
 
 export default async function ApprendrePage({ searchParams }: { searchParams: Promise<{ tag?: string }> }) {
@@ -74,7 +74,7 @@ export default async function ApprendrePage({ searchParams }: { searchParams: Pr
 
         <aside className="lg:sticky lg:top-20 lg:col-span-4">
           <Card>
-            <CardHead icon={PenLine} title="Écris ton module" sub="Sur ce que tu maîtrises ou ce qui te passionne, avec l'aide de ton IA." />
+            <CardHead icon={PenLine} title="Écris ton module" sub="Une histoire, ton parcours, une idée reçue à démonter, un jeu… Surprends-nous." />
             <ol className="mb-4 flex flex-col gap-2.5">
               {STEPS.map((s, i) => (
                 <li key={i} className="flex gap-3 text-[14px] leading-snug">
@@ -84,10 +84,7 @@ export default async function ApprendrePage({ searchParams }: { searchParams: Pr
               ))}
             </ol>
             <CopyPrompt />
-            <div className="mt-4 grid grid-cols-2 gap-2 border-t border-line pt-4">
-              <Link href="/apprendre/apercu" className="btn text-[13px]"><Eye size={15} /> Aperçu</Link>
-              <Link href="/apprendre/apercu?exemple=1" className="btn text-[13px]"><BookOpen size={15} /> Exemple</Link>
-            </div>
+            <Link href="/apprendre/apercu" className="btn mt-4 w-full text-[13px]"><Eye size={15} /> Voir mon module avant de l&apos;envoyer</Link>
           </Card>
         </aside>
       </div>

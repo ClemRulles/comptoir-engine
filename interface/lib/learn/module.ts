@@ -92,7 +92,7 @@ export function parseModule(raw: unknown, slug?: string): { module: LearnModule 
       return;
     }
     const type = str(b.type);
-    if (!(KNOWN_BLOCKS as readonly string[]).includes(type)) issues.push(`Bloc ${i + 1} : type « ${type} » inconnu, affiché comme bloc libre.`);
+    if (!(KNOWN_BLOCKS as readonly string[]).includes(type)) issues.push(`Bloc ${i + 1} : forme nouvelle « ${type} », affichée telle quelle pour l'instant (Clément pourra lui créer un rendu sur mesure).`);
     blocs.push({ ...b, type });
   });
   if (!blocs.length) issues.push("Champ obligatoire manquant : blocs (au moins un).");
@@ -110,7 +110,7 @@ export function parseModule(raw: unknown, slug?: string): { module: LearnModule 
   for (const id of cited) if (!ids.has(id)) issues.push(`source_id « ${id} » cité mais absent de la liste des sources.`);
 
   const etiquettes = strs(m.etiquettes).map((t) => t.toLowerCase()).slice(0, 3);
-  for (const t of etiquettes) if (!TAGS.includes(t)) issues.push(`Étiquette « ${t} » hors liste (gardée telle quelle).`);
+  for (const t of etiquettes) if (!TAGS.includes(t)) issues.push(`Nouvelle étiquette « ${t} » : gardée, Clément décidera de l'ajouter à la liste.`);
 
   const module: LearnModule = {
     slug: slug ?? slugify(titre),
