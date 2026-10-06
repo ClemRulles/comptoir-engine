@@ -17,6 +17,13 @@ Joue d'abord `node engine/signals.js` (positions du book) pour rafraîchir le ga
 puis `node engine/crypto.js` et `node engine/risk.js` (poches, cash, risque, drawdown du book).
 Ce soir pas de desks : le jeudi est une nuit de contrôle, menée par le CIO seul.
 
+**Suivi des résultats (le test des thèses cœur, method §G).** Pour chaque position dont les
+résultats sont sortis depuis lundi (`catalysts.md`, presse) : l'hypothèse pivot tient-elle,
+chiffres publiés à l'appui ? Écris une ligne par résultat dans le bloc d'alertes (confirmée /
+affaiblie / cassée) — une thèse cassée se vend ce soir (déclencheur ci-dessous), une thèse
+affaiblie saisit le mercredi. Ajoute un item `entreprises` à `memory/fund/news.json` pour chaque
+résultat qui touche une ligne détenue (en clair : ce qui a été publié, ce que l'IA en conclut).
+
 Pour chaque position (groupe **et** book IA) :
 1. News récentes : Finnhub (résultats, guidance), EDGAR 8-K (événements), recherche web,
    mouvement de cours notable.

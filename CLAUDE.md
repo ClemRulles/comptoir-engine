@@ -80,13 +80,20 @@ Le fonds IA (`memory/fund/ai-fund.json`) est un vrai portefeuille fictif qu'on c
   clôture se compare à eux pour distinguer la malchance (variance) de l'erreur (signal).
   `attribution.js` mesure chaque semaine le regret des ventes, l'alpha par desk et par poche, et
   les opportunités refusées qui ont battu l'indice.
-- **Deux fenêtres de décision, asymétriques (method §H)** : le **jeudi** (Portfolio Doctor)
-  exécute les **ventes défensives** du book (règle de sortie touchée, thèse cassée, drapeau
-  fondamental 🔴, stop tactique ou alt crypto) — jamais d'achat ; le **vendredi** reste la seule
-  fenêtre d'entrée, après instruction complète. Sortir vite est urgent, entrer vite ne l'est
-  jamais. Entre les deux, l'hystérésis §H (2 relevés, 2 points de NAV, gel 8 semaines, budgets
-  de rotation par poche) empêche le book de se retailler pour du bruit. **On laisse courir les
-  gagnants** : une ligne cœur n'est allégée qu'au-delà de 18 % du NAV ou sur un fait de thèse.
+- **Quatre fenêtres de décision (method §H)** : le **mercredi** exécute les entrées
+  **tactiques** validées le soir même (≤ 4 % chacune) ; le **jeudi** (Portfolio Doctor) exécute
+  les **ventes défensives** (règle de sortie, thèse cassée, drapeau 🔴, stops tactiques/alts) et
+  suit les résultats publiés — jamais d'achat ; le **vendredi** est la fenêtre principale (cœur,
+  socle, rééquilibrage) ; le **dimanche** gère la seule crypto. Une conviction cœur ne s'achète
+  que dans sa **zone d'achat** (method §N) : le prix d'entrée est décidé avant l'envie d'acheter.
+  L'hystérésis §H (2 relevés, 2 points de NAV, gel 8 semaines, budgets de rotation par poche)
+  empêche le book de se retailler pour du bruit. **On laisse courir les gagnants** : une ligne
+  cœur n'est allégée qu'au-delà de 18 % du NAV ou sur un fait de thèse.
+- **Le groupe doit pouvoir lire l'IA sans la méthode** : le vendredi écrit
+  `memory/fund/digest.json` (la semaine en clair) et le lundi `memory/fund/news.json`
+  (l'actualité mondiale qui compte : politique, géopolitique, banques centrales, entreprises),
+  sans aucun jargon interne. `node engine/pros.js` suit les déclarations 13F officielles des
+  grands investisseurs (Buffett, Ackman, Druckenmiller…) : des idées à instruire, jamais des preuves.
 - **Prédire est permis, mais seulement pré-enregistré (method §K)** : un jugement sur le futur
   (effets de second ordre d'un événement — ex. IPO majeure → secteur impacté) ne se joue que via
   `memory/fund/forecasts.json` : scénario écrit AVANT, probabilisé, falsifiable, horizon daté,

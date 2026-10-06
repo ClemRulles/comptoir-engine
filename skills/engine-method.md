@@ -311,12 +311,20 @@ tactique | crypto), `desk` (l'agent qui a porté l'idée, §L), `sector`, `theme
 concentré), en plus de `confidence, horizon, thesis_id, entry_date, entry_price, exit_rule`.
 Sans `desk`, l'attribution ne peut pas apprendre qui a raison.
 
-**Fenêtres de décision asymétriques (jeudi = vente seule, vendredi = tout).**
-- **Jeudi (Portfolio Doctor)** : **ventes défensives uniquement** — `exit_rule` touchée, thèse
-  cassée, drapeau fondamental 🔴, stop d'une position tactique ou d'une alt crypto, verdict
-  SORTIR/ALLÉGER non exécuté. **Aucun achat, aucun renforcement le jeudi.**
-- **Vendredi (Brief/Book)** : sorties restantes, puis entrées/renforcements, rééquilibrage des
-  poches et du cash. C'est la SEULE fenêtre d'achat de la semaine.
+**Fenêtres de décision (quatre par semaine, chacune son rôle).** Sortir vite est urgent ;
+entrer vite ne l'est presque jamais — sauf sur ce qui a une date. D'où :
+
+| Jour | Fenêtre | Ce qui s'exécute | Interdit |
+|------|---------|------------------|----------|
+| **Mercredi** | Tactique | entrées **tactiques** validées le soir même (desk-tactique → risk-manager FEU VERT), ≤ 4 % chacune | tout achat cœur, socle, crypto |
+| **Jeudi** | Défense | ventes défensives (`exit_rule`, thèse cassée, drapeau 🔴, stops tactiques/alts, verdict SORTIR) + **suivi des résultats** publiés dans la semaine | tout achat |
+| **Vendredi** | Principale | sorties restantes, entrées cœur dans leur **zone d'achat** (§N), rééquilibrage des poches et du cash | — |
+| **Dimanche** | Crypto | paliers de construction §M, achats contrariens, stops des alts (la crypto cote 7 j/7 et ses gros mouvements tombent souvent le week-end) | toute action ou ETF |
+
+Motif du mercredi : un catalyseur daté validé mercredi peut être passé vendredi ; la poche
+tactique vit de son timing. Motif du dimanche : attendre le vendredi pour un actif qui a bougé
+de 15 % le samedi revient à décider sur un cours périmé. Le cœur, lui, reste au vendredi :
+une conviction de 3-5 ans ne perd rien à attendre deux jours l'instruction complète.
 
 **Frais de friction (réalisme du paper trading).** Chaque trade coûte **0,30 % du montant**
 (actions, ETF) et **0,50 %** (crypto : spread plus large), débité du cash et loggé (`fee`).
@@ -526,9 +534,10 @@ société de gestion : un **CIO** et des **desks spécialisés**, définis comme
 
 **Cycle hebdomadaire.** Lundi : `desk-macro` + `desk-crypto` (posture, poches). Mardi : les 5
 desks sectoriels en parallèle (sourcing). Mercredi : deep-dive — pour chaque ★, le desk
-d'origine plaide, le `risk-manager` attaque, le CIO tranche ; le `risk-manager` audite le book.
-Jeudi : le CIO seul (ventes défensives). Vendredi : `desk-tactique` + `desk-macro`, puis le CIO
-exécute l'allocation.
+d'origine plaide, le `risk-manager` attaque, le CIO tranche ; le `risk-manager` audite le book ;
+puis **fenêtre tactique** (`desk-tactique` → `risk-manager` → exécution). Jeudi : le CIO seul
+(ventes défensives, suivi des résultats). Vendredi : `desk-tactique` + `desk-macro` +
+`desk-crypto`, puis le CIO exécute l'allocation. Dimanche : `desk-crypto` (fenêtre crypto).
 
 **La voix d'un desk se MÉRITE** (miroir de la calibration §I et du budget Grok §F). Chaque
 position, trade et décision porte son `desk`. `node engine/attribution.js` calcule l'alpha
@@ -567,4 +576,32 @@ a été exceptionnel — mais une place **dimensionnée par son risque**, pas pa
 - **Scoring** : alpha vs IWDA comme le reste du book (la poche doit battre l'indice pour valoir
   son risque) ; une alt est aussi jugée vs BTC sur la même période (`node engine/bench.js
   {opened} {closed} BTC-EUR`) — battre l'indice en sous-performant BTC n'est pas un edge.
+
+---
+
+## N. Zones d'achat — décider du PRIX avant de décider d'acheter
+
+Une bonne entreprise achetée trop cher est un mauvais investissement. Le book a mesuré l'erreur
+inverse de la vente trop précoce : acheter après la hausse (« les 5 convictions propres sont
+toutes négatives », 2026-08-30). La zone d'achat la corrige en écrivant le prix d'entrée
+acceptable AVANT de regarder si on a envie d'acheter.
+
+- **Chaque verdict `Acheter`** (deep-dive du mercredi) porte une `buy_zone` dans
+  `convictions.json` : `{ low, high, currency, basis }`.
+  - `high` = le prix au-delà duquel le rendement attendu ne paie plus le risque (DCF inversé §C :
+    la croissance implicite devient irréaliste, ou multiple cible × bénéfice attendu) ;
+  - `low` = le prix sous lequel le marché sait probablement quelque chose : on **ré-instruit la
+    thèse** (§D express) avant d'acheter, plutôt que de se réjouir du rabais ;
+  - `basis` = une phrase : d'où viennent les bornes (multiple, DCF, analogues `history.js`).
+- **Le vendredi exécute selon la zone** :
+  - cours ≤ `high` → taille pleine (§H) ;
+  - cours entre `high` et `high × 1,05` → **demi-taille**, l'autre moitié si le cours revient
+    dans la zone ;
+  - cours > `high × 1,05` → **pas d'achat** : la conviction reste « en attente de zone », et le
+    capital prévu va au socle en attendant (jamais au cash au-delà de la réserve de 10 %) ;
+  - cours < `low` → §D express ; si la thèse tient, taille pleine.
+- **Une zone a 30 jours de validité** : au-delà, le mercredi la recalcule ou retire le verdict.
+- La zone vaut pour les **renforcements** aussi : on ne renforce pas un gagnant au-dessus de sa
+  zone recalculée, même thèse confirmée.
+- Tactique : la « zone » est le niveau d'invalidation du catalyseur ; crypto : les paliers §M.
 

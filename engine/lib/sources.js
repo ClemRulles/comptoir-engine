@@ -179,7 +179,7 @@ export async function yahooRange(ticker, fromDate, toDate) {
 // Source primaire du F-Score / qualité des earnings pour les titres US : les 10-K
 // XBRL de data.sec.gov remplacent FMP (free tier devenu lacunaire). La SEC demande
 // un User-Agent identifiant (politique fair-access, ~10 req/s max — on en fait 2).
-const SEC_UA = "comptoir-engine/0.3 (club d'investissement; contact: henri.lobeau@gmail.com)";
+export const SEC_UA = "comptoir-engine/0.3 (club d'investissement; contact: henri.lobeau@gmail.com)";
 
 async function fetchSecJson(url) {
   const ctrl = new AbortController();

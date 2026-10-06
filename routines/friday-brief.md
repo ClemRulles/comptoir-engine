@@ -191,6 +191,10 @@ trade dont un amendement a modifié la décision le cite dans son `rationale` : 
   plafonnée par le gate (🟠/⚪ ⇒ ≤ 5 % ; drapeau fondamental 🔴 ⇒ 0) et les plafonds (10 % à
   l'entrée, secteur 30 %, thème 35 %). **Chaque trade cite son gate et sa chaîne de sizing** dans
   le `rationale`, et porte `sleeve`, `desk`, `sector`.
+- **Zone d'achat (method §N)** : une conviction cœur ne s'achète que selon sa `buy_zone`
+  (`convictions.json`) — cours ≤ `high` : taille pleine ; jusqu'à `high × 1,05` : demi-taille ;
+  au-delà : pas d'achat, « en attente de zone », capital prévu au socle ; sous `low` : §D express
+  d'abord. Le `rationale` cite le cours et la zone. Une zone de plus de 30 jours ne s'utilise pas.
 - **On laisse courir les gagnants** : aucun allègement d'une ligne cœur sous 18 % du NAV sans
   fait nouveau sur la thèse. Au-delà de 18 % : retour à 15 %.
 - **Crypto** (§M) : applique la posture du `desk-crypto` — palier ≤ 3 points de NAV/semaine,
@@ -326,6 +330,16 @@ La chose la plus importante pour le groupe cette semaine.
 
 Mets aussi à jour `memory/watchlist.md` : recopie les meilleures idées au format prêt à
 importer dans Comptoir.
+
+**Réécris `memory/fund/digest.json` — la semaine EN CLAIR** (schéma dans son `_doc`). C'est ce
+que lisent les membres sur l'accueil de l'app : ils n'ont lu ni la méthode ni le playbook.
+`posture` (2-4 mots + une phrase), `headline`, **3 points maximum**, chaque **décision** de la
+semaine (mercredi tactique + vendredi + dimanche crypto) avec son *pourquoi* en ≤ 25 mots et
+*ce qui ferait changer d'avis* en ≤ 20 mots, les **4 prochains rendez-vous**, et la phrase de
+la semaine. **Interdit : §, P-00N, gate, saisine, hystérésis, cov, F7/9** — traduis
+(« les fondamentaux sont solides », « on attend un meilleur prix », « la règle de sortie est
+touchée »). Si une décision n'a pas d'explication simple, c'est qu'elle n'est pas claire :
+retravaille-la.
 
 Commit : `brief+book: {date} — {n} trades IA, {k} leçons`.
 

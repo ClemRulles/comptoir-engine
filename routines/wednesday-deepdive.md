@@ -53,11 +53,19 @@ structurée des verdicts de la semaine, garde les ~6 plus pertinents (les meille
     { "ticker": "VRT", "name": "Vertiv", "verdict": "Acheter|Surveiller|Éviter",
       "confidence": "Haute|Moyenne|Basse", "horizon": "coeur|tactique",
       "sleeve": "coeur|tactique|crypto|socle", "desk": "desk-industrie-energie",
-      "thesis": "thèse en UNE ligne", "risk": "le risque qui invaliderait la thèse", "date": "{date}" }
+      "headline": "la thèse en ≤ 15 mots, sans jargon",
+      "thesis": "thèse en UNE ligne", "risk": "le risque qui invaliderait la thèse",
+      "price": 0.0, "currency": "USD",
+      "buy_zone": { "low": 0.0, "high": 0.0, "currency": "USD", "basis": "d'où viennent les bornes (DCF, multiple cible, analogues)" },
+      "date": "{date}" }
   ]
 }
 ```
 `verdict` = ta conviction (Acheter/Surveiller/Éviter) ; `confidence` = force des preuves (method §E).
+**Tout `Acheter` porte une `buy_zone`** (method §N) : `high` = prix au-delà duquel le rendement
+attendu ne paie plus le risque (DCF inversé / multiple cible), `low` = prix sous lequel on
+ré-instruit la thèse. Un `Surveiller` peut porter la zone qui le ferait passer `Acheter`.
+Recalcule la zone de tout verdict de plus de 30 jours, ou retire-le.
 Garde aussi les **Surveiller/Éviter** avec leur `date` : `attribution.js` mesure ensuite si la
 prudence a coûté (opportunités manquées, §I). Un refus non daté ne peut pas apprendre.
 
@@ -89,14 +97,30 @@ tu peux grouper ces appels avec ceux de la partie A. Demande aussi au `risk-mana
    le dossier, le verdict est GARDER.
 
 Sortie → ajoute un bloc `## Revue book IA — {date}` en haut de `memory/convictions.md` listant
-ces verdicts. Le vendredi (PASSE 2) les exécute en priorité. Ne touche à rien d'autre du book ici.
+ces verdicts. Le vendredi (PASSE 2) les exécute en priorité. Ne touche à rien d'autre du book dans cette partie :
+la fenêtre tactique (C) est la seule exécution du mercredi.
 
-Commit : `deepdive: {date} — {tickers} + revue book ({n} positions)`.
+## C. Fenêtre TACTIQUE du mercredi (exécution — method §H)
+
+Les coups tactiques vivent de leur date : on ne les fait pas attendre vendredi. Après A et B :
+1. Convoque le `desk-tactique` (catalyseurs datés des 3 prochaines semaines, scénarios §K
+   validés ce soir, calls Grok ouverts) — puis passe ses idées au `risk-manager` (tu peux
+   grouper avec l'appel de la partie A).
+2. N'exécute que les **FEU VERT** : poche tactique ≤ sa cible (allocation.json), ≤ 4 % du NAV
+   par coup, ≤ 6 entrées tactiques par mois, gate non-🔴, checklist bulle passée, **stop écrit**
+   et **date de sortie** écrite. Financement : socle d'abord, puis cash (jamais sous 5 %).
+3. Logge chaque trade dans `ai-fund.json` (`sleeve:"tactique"`, `desk`, `fee` 0,30 %,
+   `rationale` avec le catalyseur, la date de sortie et le stop) et ajoute la décision en clair
+   dans `memory/fund/digest.json → decisions`.
+**Interdits du mercredi** : tout achat cœur, socle ou crypto ; toute vente hors stop tactique.
+Zéro coup est le résultat normal de beaucoup de mercredis.
+
+Commit : `deepdive: {date} — {tickers} + revue book ({n} positions) + {t} coups tactiques`.
 
 **Persistance (OBLIGATOIRE — le sandbox ne peut pas `git push`, 403).** Après le commit local,
 lance `node engine/push-memory.js "{le message de commit ci-dessus}"` : l'endpoint Vercel
 (`/api/memory/push`) commite tes fichiers `memory/` sur `claude/memory` — c'est ce qui les fait
 apparaître sur la plateforme. Vérifie la sortie : `✅` = persisté, sinon signale-le.
 
-Plafond total Opus : **≤ 3 candidats + ≤ 2 positions book = 5 titres**, instruits par au plus
+Plafond total Opus : **≤ 3 candidats + ≤ 2 positions book = 5 titres** (+ la fenêtre tactique C), instruits par au plus
 **5 appels de desks + 1 appel risk-manager**. Le reste attend la semaine suivante.

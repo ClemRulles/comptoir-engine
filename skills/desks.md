@@ -64,3 +64,8 @@ Climat de l'univers : {2 lignes max : ce qui a changé dans les FAITS cette sema
 ```
 
 Le `risk-manager` répond dans son propre format (voir son fichier d'agent).
+
+**Pour un verdict `Acheter`, le desk propose aussi la zone d'achat** (method §N) : `high` (prix
+au-delà duquel le rendement attendu ne paie plus le risque) et `low` (prix sous lequel il faut
+ré-instruire la thèse), avec leur base de calcul. Ajoute la ligne
+`- Zone d'achat : {low}–{high} {devise} · base : {…} · cours actuel : {…}` à l'idée.

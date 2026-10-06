@@ -145,6 +145,29 @@ Format `memory/grok-pulse.json` :
 }
 ```
 
+## Partie E — Le monde en clair (`memory/fund/news.json`) + ce que font les pros
+
+Le groupe veut comprendre **ce qui se passe dans le monde et ce que l'IA en fait**, sans lire la
+méthode. Joue d'abord `node engine/pros.js` (déclarations 13F officielles des grands
+investisseurs → `memory/fund/pros.json` ; il ne retélécharge que les nouveaux dépôts).
+
+Puis **réécris entièrement** `memory/fund/news.json` (schéma complet dans son `_doc`) :
+- **6 à 12 items** de la semaine écoulée, les plus importants d'abord, couvrant ce qui bouge
+  réellement les marchés : **politique US** (Maison-Blanche, Trump, tarifs, décrets, Congrès),
+  **géopolitique** (conflits, sanctions, pétrole), **banques centrales** (Fed, BCE),
+  **macro** (inflation, emploi), **entreprises** (résultats et annonces qui touchent nos lignes
+  ou la watchlist), **énergie**, **crypto**, **régulation** ;
+- **1 item `investisseurs`** si `pros.json` montre un mouvement notable (ex. « Buffett renforce
+  Alphabet ») — en rappelant que c'est une photo trimestrielle datée ;
+- chaque item : faits **sourcés et datés** (recherche web, FRED, communiqués), `why` en une
+  phrase, `impact` sur nos lignes (`held:true` si détenu), et `ai_take` = ce que l'IA fait
+  concrètement (« rien » est une réponse honnête). **Zéro jargon interne.**
+- Une déclaration politique n'est un item que si elle a un **effet observable** (marché,
+  calendrier, décret signé). Pas de rumeur, pas d'item sans source.
+
+Mets aussi à jour la `posture` de `memory/fund/digest.json` (label, ton, une phrase) si le
+régime a changé ; laisse le reste du fichier au vendredi.
+
 Commit : `trend-radar: {date} — tendance: {nom ou AUCUNE}, {n} catalyseurs · pouls maj`.
 
 **Persistance (OBLIGATOIRE — le sandbox ne peut pas `git push`, 403).** Après le commit local,

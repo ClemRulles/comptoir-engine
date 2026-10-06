@@ -27,8 +27,8 @@ on:
         required: false
         default: ""
   schedule:
-    # 21:00 UTC = 23h Paris (été CEST) / 22h Paris (hiver CET), du lundi au vendredi.
-    - cron: "0 21 * * 1-5"
+    # 21:00 UTC = 23h Paris (été CEST) / 22h Paris (hiver CET), du dimanche au vendredi.
+    - cron: "0 21 * * 0-5"
 
 permissions:
   contents: write
@@ -78,7 +78,8 @@ jobs:
               3) R="wednesday-deepdive.md" ;;
               4) R="thursday-portfolio-doctor.md" ;;
               5) R="friday-brief.md" ;;
-              *) echo "Week-end — pas de routine."; echo "skip=1" >> "$GITHUB_OUTPUT"; exit 0 ;;
+              7) R="sunday-crypto.md" ;;
+              *) echo "Samedi — pas de routine."; echo "skip=1" >> "$GITHUB_OUTPUT"; exit 0 ;;
             esac
           fi
           case "$R" in *deepdive*) M="opus" ;; esac
