@@ -179,6 +179,8 @@ export async function answerQuiz(date: string, choice: number): Promise<AnswerRe
     data: { user },
   } = await supabase.auth.getUser();
   if (!user) return { ok: false, status: 401, error: "Connecte-toi pour répondre." };
+  // Sans clé serveur (ex. un environnement d'aperçu mal configuré), on corrige sans enregistrer.
+  if (!process.env.SUPABASE_SERVICE_ROLE_KEY) return { ok: true, reveal: reveal(q, choice), stats: null, stored: false, demo: false };
 
   const admin = createAdminClient();
   const { data: existing, error: readErr } = await admin

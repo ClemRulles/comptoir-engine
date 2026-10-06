@@ -1,12 +1,11 @@
 // home.tsx — les blocs de l'accueil v2 : la course, la semaine en clair, les décisions
 // expliquées, le monde qui compte, l'agenda et les fenêtres de décision.
-import { AlertTriangle, CalendarClock, Compass, Gavel, Globe2, Lightbulb, ShieldAlert, ShoppingCart, TrendingUp } from "lucide-react";
-import type { WeekView, WorldView } from "@/lib/data";
+import { AlertTriangle, Compass, Gavel, Globe2, Lightbulb, ShieldAlert, ShoppingCart, TrendingUp } from "lucide-react";
+import type { WeekView } from "@/lib/data";
 import type { DigestDecision } from "@/lib/types";
 import { ACTION_LABEL, DESK_LABEL, SLEEVE_META, WINDOWS, fmtDay, nextBuyWindow } from "@/lib/insights";
-import { NewsRow } from "@/components/news";
 import { TickerCell } from "@/components/StockDrawer";
-import { Badge, Card, CardHead, DemoTag, Empty, Explain, MoreLink, fmtEur, fmtShare } from "@/components/ui";
+import { Card, CardHead, DemoTag, Empty, Explain, MoreLink, fmtEur } from "@/components/ui";
 
 // ── La semaine en clair ──────────────────────────────────────────────────────────────
 const KIND_ICON = { marche: Globe2, portefeuille: TrendingUp, risque: ShieldAlert, opportunite: Lightbulb } as const;
@@ -124,64 +123,6 @@ export function DecisionRow({ d }: { d: DigestDecision }) {
   );
 }
 
-// ── Le monde (aperçu) ────────────────────────────────────────────────────────────────
-export function WorldPreview({ world, limit = 3 }: { world: WorldView; limit?: number }) {
-  return (
-    <Card className="h-full animate-fade-up">
-      <CardHead
-        icon={Globe2}
-        title="Le monde cette semaine"
-        sub="Ce qui bouge les marchés, et ce que ça change pour nous."
-        right={<MoreLink href="/monde">Tout le monde</MoreLink>}
-      />
-      {world.news.length === 0 ? (
-        <Empty icon={Globe2} title="Pas encore d'actualité structurée">La routine du lundi publiera ici l&apos;actualité mondiale qui compte, en clair.</Empty>
-      ) : (
-        <ul className="space-y-4">
-          {world.news.slice(0, limit).map((n) => (
-            <NewsRow key={n.id} n={n} compact />
-          ))}
-        </ul>
-      )}
-      <div className="mt-3 flex gap-2">
-        <DemoTag show={world.demo} />
-        {world.derived && <Badge>Tiré du pouls hebdo</Badge>}
-      </div>
-    </Card>
-  );
-}
-
-// ── Agenda ───────────────────────────────────────────────────────────────────────────
-export function AgendaCard({ items, demo }: { items: { date: string; label: string; why?: string }[]; demo: boolean }) {
-  return (
-    <Card className="animate-fade-up">
-      <CardHead icon={CalendarClock} title="À l'agenda" sub="Les rendez-vous datés qui peuvent bouger nos lignes." right={<DemoTag show={demo} />} />
-      {items.length === 0 ? (
-        <Empty title="Rien d'important au calendrier" />
-      ) : (
-        <ul className="space-y-3">
-          {items.slice(0, 4).map((e, i) => {
-            const m = e.date.match(/^(\d{4})-(\d{2})-(\d{2})/);
-            const months = ["JANV", "FÉVR", "MARS", "AVR", "MAI", "JUIN", "JUIL", "AOÛT", "SEPT", "OCT", "NOV", "DÉC"];
-            return (
-              <li key={i} className="flex items-start gap-3">
-                <div className="well flex h-12 w-12 shrink-0 flex-col items-center justify-center">
-                  <span className="num text-[17px] font-semibold leading-none">{m ? Number(m[3]) : "—"}</span>
-                  <span className="mt-0.5 text-[9px] font-semibold tracking-wider text-muted">{m ? months[Number(m[2]) - 1] : ""}</span>
-                </div>
-                <div className="min-w-0">
-                  <div className="text-sm font-semibold">{e.label}</div>
-                  {e.why && <div className="text-[13px] leading-snug text-muted">{e.why}</div>}
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      )}
-    </Card>
-  );
-}
-
 // ── Fenêtres de décision ─────────────────────────────────────────────────────────────
 export function WindowsStrip() {
   const now = new Date();
@@ -231,13 +172,3 @@ export function WindowsStrip() {
   );
 }
 
-// ── Cash vs réserve cible ────────────────────────────────────────────────────────────
-export function CashNote({ cash, nav }: { cash: number; nav: number }) {
-  const share = nav ? cash / nav : 0;
-  const ok = share >= 0.05 && share <= 0.15;
-  return (
-    <span className={`text-[12px] ${ok ? "text-muted" : "text-amber-700 dark:text-ai"}`}>
-      Cash {fmtShare(share)} {ok ? "· dans la réserve visée (≈ 10 %)" : share > 0.15 ? "· au-dessus des 10 % visés, en cours de déploiement" : "· sous la réserve minimale"}
-    </span>
-  );
-}

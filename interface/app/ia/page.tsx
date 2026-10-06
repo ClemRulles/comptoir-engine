@@ -63,7 +63,7 @@ export default async function IaPage() {
         <Stat
           label="Face au marché"
           value={<span className={vsMarket == null ? "" : vsMarket >= 0 ? "text-brand-600 dark:text-brand-500" : "text-danger"}>{vsMarket == null ? "—" : `${vsMarket >= 0 ? "+" : "−"}${Math.abs(vsMarket * 100).toFixed(1).replace(".", ",")} pts`}</span>}
-          sub={<span className="text-[12px] text-muted">MSCI World : {fmtPct(data.marketPerf)}</span>}
+          sub={<span className="text-[12px] text-muted">depuis le début · MSCI World {fmtPct(data.marketPerf)}</span>}
         />
         <Stat
           label="Réserve de cash"

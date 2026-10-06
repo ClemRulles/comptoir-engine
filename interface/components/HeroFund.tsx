@@ -166,7 +166,7 @@ export function HeroFund({
       else out.push({ i, amount: f.amount, label: false });
     }
     let lastX = -Infinity;
-    for (const m of out) if (xs[m.i] - lastX >= 56 && xs[m.i] < w - 24) { m.label = true; lastX = xs[m.i]; }
+    for (const m of out) if (xs[m.i] - lastX >= 56) { m.label = true; lastX = xs[m.i]; }
     return out;
   }, [flows, win, last, xs, w]);
   const flowAt = hover != null ? flowMarks.find((m) => m.i === hover) : undefined;
@@ -284,7 +284,14 @@ export function HeroFund({
               <g key={`f-${range}-${m.i}`} className="hero-flow">
                 <circle cx={xs[m.i]} cy={ys[m.i]} r={4} fill="rgb(var(--c-card))" stroke="rgb(var(--c-ink))" strokeOpacity={0.55} strokeWidth={1.75} />
                 {m.label && hover == null && (
-                  <text x={xs[m.i]} y={ys[m.i] < 34 ? ys[m.i] + 18 : ys[m.i] - 10} textAnchor="middle" fontSize={10.5} fontWeight={600} fill="rgb(var(--c-muted))">
+                  <text
+                    x={xs[m.i] > w - 44 ? xs[m.i] + 6 : xs[m.i]}
+                    y={ys[m.i] < 34 ? ys[m.i] + 18 : ys[m.i] - 10}
+                    textAnchor={xs[m.i] > w - 44 ? "end" : "middle"}
+                    fontSize={10.5}
+                    fontWeight={600}
+                    fill="rgb(var(--c-muted))"
+                  >
                     +{eur0(m.amount)}
                   </text>
                 )}

@@ -49,7 +49,7 @@ export default async function GroupePage({ searchParams }: { searchParams: Promi
       />
 
       <div className="grid grid-cols-2 gap-3 md:gap-4 xl:grid-cols-4">
-        <Stat label="Gain net" value={<span className={data.groupPerf.gainEur >= 0 ? "text-brand-600 dark:text-brand-500" : "text-danger"}>{data.groupPerf.gainEur >= 0 ? "+" : "−"}{fmtEur(Math.abs(data.groupPerf.gainEur))}</span>} sub={<span className="text-[12px] text-muted">hors apports des membres</span>} />
+        <Stat label="Gain net" value={<span className={data.groupPerf.gainEur >= 0 ? "text-brand-600 dark:text-brand-500" : "text-danger"}>{data.groupPerf.gainEur >= 0 ? "+" : "−"}{fmtEur(Math.abs(data.groupPerf.gainEur))}</span>} sub={<span className="text-[12px] text-muted">depuis le début, hors apports</span>} />
         <Stat label="Cette semaine" value={fmtPct(data.groupPerf.week)} sub={<span className="text-[12px] text-muted">performance sur 7 jours</span>} />
         <Stat label="Cash" value={fmtEur(f.cash)} sub={<span className="text-[12px] text-muted">{fmtShare(cashShare)} du fonds</span>} />
         <Stat label="Positions" value={String(f.holdings.length)} sub={<span className="text-[12px] text-muted">{alerts.length} à regarder</span>} />

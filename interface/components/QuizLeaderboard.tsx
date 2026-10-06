@@ -14,7 +14,7 @@ export function QuizLeaderboard({ board }: { board: QuizBoard }) {
       <CardHead
         icon={Trophy}
         title="Le classement du quiz"
-        sub={`${monthLabel(board.month)} · ${questions} question${questions > 1 ? "s" : ""} posée${questions > 1 ? "s" : ""}. Remis à zéro chaque mois.`}
+        sub={`${monthLabel(board.month)} · ${questions} question${questions > 1 ? "s" : ""}`}
         right={
           <div className="flex items-center gap-1">
             <DemoTag show={board.demo} />
@@ -72,7 +72,7 @@ export function QuizLeaderboard({ board }: { board: QuizBoard }) {
       )}
       {board.ready && rows.length > 0 && (
         <p className="mt-3 text-[11px] text-muted">
-          Score = bonnes réponses sur les questions du mois · % juste = sur les questions jouées · 🔥 = bonnes réponses d&apos;affilée.
+          Remis à zéro chaque mois. Score = bonnes réponses sur les questions du mois · % juste = sur les questions jouées · 🔥 = bonnes réponses d&apos;affilée.
         </p>
       )}
     </section>
