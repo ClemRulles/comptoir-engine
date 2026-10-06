@@ -20,6 +20,25 @@ Paper trading d'abord. Ce n'est pas un conseil en investissement.
 | Jeu | `thursday-portfolio-doctor` | Sonnet | État des **deux books** + **exécution des sorties défensives du book IA** (vente seule) |
 | Ven | `friday-brief` | Sonnet | Apprentissage + gestion du book IA + synthèse + revue hebdo ; **1er vendredi du mois = calibration profonde** |
 
+### Le mandat du book IA (depuis 2026-10-06)
+Faire fructifier le book au maximum sur 3-5 ans, net de frais, à risque équilibré — comme un
+investisseur professionnel (`skills/engine-method.md` §H, §L, §M) :
+
+| Poche | Cible | Bande |
+|-------|:-----:|:-----:|
+| Cœur — convictions single-stock 3-5 ans | 60 % | 45-75 % |
+| Socle — ETF indiciels/thématiques | 12 % | 0-20 % |
+| Tactique — coups datés avec stop | 10 % | 0-15 % |
+| Crypto — BTC/ETH d'abord | 8 % | 0-10 % |
+| **Cash — réserve de tir** | **10 %** | 5-15 % |
+
+Le régime fait varier crypto et tactique, jamais le cash. La routine du soir joue le **CIO** et
+convoque des **desks spécialisés** (`.claude/agents/` : tech, santé, industrie-énergie, finance,
+conso, macro, crypto, tactique) plus un **risk-manager** qui attaque chaque idée. Chaque desk
+gagne ou perd du poids selon l'alpha qu'il a prouvé (`engine/attribution.js`). Les taux de base
+historiques (`engine/history.js`) et le budget de risque (`engine/risk.js`) encadrent chaque
+décision. Les sous-agents augmentent la consommation : surveille Réglages → Usage la 1re semaine.
+
 **5 tâches planifiées, point.** La revue de calibration mensuelle n'est PAS une 6ᵉ tâche : elle
 est repliée dans le `friday-brief` du 1er vendredi du mois. Opus n'est sollicité que le mercredi
 (≤5 titres : ≤3 candidats + ≤2 positions du book). Surveille Réglages → Usage la 1re semaine.

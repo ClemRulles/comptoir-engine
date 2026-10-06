@@ -13,7 +13,9 @@ book IA via `ai-fund.json`) à sa thèse et sa règle de sortie écrites — et,
 **exécuter les sorties défensives sans attendre vendredi** (§H : sortir vite est urgent,
 entrer vite ne l'est jamais ; le jeudi ne fait JAMAIS d'achat).
 
-Joue d'abord `node engine/signals.js` (positions du book) pour rafraîchir le gate de chaque ligne.
+Joue d'abord `node engine/signals.js` (positions du book) pour rafraîchir le gate de chaque ligne,
+puis `node engine/crypto.js` et `node engine/risk.js` (poches, cash, risque, drawdown du book).
+Ce soir pas de desks : le jeudi est une nuit de contrôle, menée par le CIO seul.
 
 Pour chaque position (groupe **et** book IA) :
 1. News récentes : Finnhub (résultats, guidance), EDGAR 8-K (événements), recherche web,
@@ -45,9 +47,12 @@ par l'un des **4 déclencheurs — et AUCUN autre** :
 - la **règle de sortie écrite** (`exit_rule`) touchée, ou la **thèse cassée** (pivot faux) ;
 - un **drapeau fondamental 🔴** (F-Score ≤ 3 ou earnings quality rouge) → sortie forcée §H,
   pas de débat ;
-- le **stop de prix d'une position TACTIQUE** (§G/§H). Les positions **cœur n'ont pas de stop
-  de prix** : à −25 % vs `entry_price`, on ouvre un **réexamen** (saisine du mercredi), on ne
-  vend pas mécaniquement ;
+- le **stop de prix d'une position TACTIQUE** (§G/§H) ou d'une **alt crypto** (−30 % vs
+  entrée, §M), ou la date d'horizon d'un coup tactique dépassée. Les positions **cœur et
+  BTC/ETH n'ont pas de stop de prix** : à −25 % vs `entry_price`, une ligne cœur ouvre un
+  **réexamen** (saisine du mercredi), on ne vend pas mécaniquement ;
+- le **garde-fou de drawdown** (`allocation.json → drawdown.guard_triggered`) : réduction de
+  risque §H — tactiques et alts d'abord, crypto ramenée à 3 % ;
 - un verdict Opus **SORTIR** (ou **ALLÉGER**, en vente partielle) de `memory/convictions.md`
   encore non exécuté.
 
@@ -60,7 +65,7 @@ le cours d'aujourd'hui — le retaillage mécanique sur signal de prix a coûté
 protégé. **Le jeudi vend des thèses cassées, pas des cours qui baissent.**
 
 Exécution dans `ai-fund.json` : log du trade (`side:"sell"`, `quantity`, `price` = cours du jour,
-`fee` = montant × 0,003, `rationale` citant le déclencheur + le gate), retire/réduis la position,
+`fee` = montant × 0,003 (0,005 en crypto), `sleeve`, `desk`, `rationale` citant le déclencheur + le gate), retire/réduis la position,
 crédite le `cash` (net de frais), mets `as_of` à jour. La passe d'apprentissage du **vendredi**
 score ces fermetures (P&L net, alpha via `engine/bench.js`) — n'écris PAS `decisions.json` ici.
 

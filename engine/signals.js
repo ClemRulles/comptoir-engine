@@ -12,7 +12,8 @@
 //
 // Usage :
 //   node engine/signals.js                  # tickers = positions du book IA
-//   node engine/signals.js AMZN NFLX SAF.PA # tickers ciblés (Scout/Deep-dive/Doctor)
+//   node engine/signals.js AMZN NFLX SAF.PA # tickers ciblés (fusionnés dans le cache, rien n'est effacé)
+//   node engine/signals.js NVDA --dry       # calcule et affiche SANS écrire (desks spécialisés, §L)
 //
 // Discipline (CLAUDE.md) : aucune clé requise pour tourner. Sans FMP/FRED/Alpha Vantage,
 // les signaux de prix + initiés (gratuits) suffisent à produire un gate exploitable ;
@@ -162,7 +163,7 @@ async function main() {
   console.log(
     `   régime macro : ${regime.label}` +
       (regime.fear_greed ? ` · ${regime.fear_greed}` : "") +
-      (regime.cash_floor != null ? ` (plancher cash ${Math.round(regime.cash_floor * 100)}%)` : "")
+      (regime.cash_target != null ? ` (cash cible ${Math.round(regime.cash_target * 100)}% · bande ${Math.round(regime.cash_floor * 100)}-${Math.round(regime.cash_ceiling * 100)}%)` : "")
   );
 
   const tickerMap = {};
@@ -179,14 +180,28 @@ async function main() {
     console.log(`   ${icon} ${t.padEnd(8)} ${fs}  mom ${mom.padStart(5)}  ${rs.padEnd(7)} ${cov}`);
   }
 
+  // --dry : calcule et affiche sans écrire (desks spécialisés en parallèle, method §L —
+  // seul le CIO écrit l'état, ce qui évite les écritures concurrentes du cache).
+  if (process.argv.includes("--dry")) {
+    console.log("   (--dry : signals.json non modifié)");
+    console.log("SIGNALS_JSON:" + JSON.stringify({ ok: true, dry: true, regime: regime.label, tickers: tickerMap }));
+    return;
+  }
+
+  // FUSION avec le cache : analyser un candidat ne doit pas effacer les signaux du book.
+  // Les entrées non rafraîchies depuis > 60 jours sont élaguées (pas de signal périmé).
   const doc = readJsonSafe(fundPath("signals.json"));
+  const cutoff = new Date(Date.now() - 60 * 86400000).toISOString().slice(0, 10);
+  const kept = {};
+  for (const [t, v] of Object.entries((doc.status === "ok" && doc.data.tickers) || {}))
+    if (!(t in tickerMap) && v?.asof && v.asof >= cutoff) kept[t] = v;
   const out = {
     _doc:
       (doc.status === "ok" && doc.data._doc) ||
       "Cache des signaux QUANTITATIFS calculés par engine/signals.js. Voir engine/README.md et skills/quant-signals.md.",
     updated: new Date().toISOString(),
     regime,
-    tickers: tickerMap,
+    tickers: { ...kept, ...tickerMap },
     data_gaps: gaps,
   };
   writeJson(fundPath("signals.json"), out);

@@ -95,6 +95,7 @@ jobs:
         run: |
           node engine/guard.js || true
           node engine/signals.js || true
+          node engine/risk.js || true
 
       - name: Installer Claude Code
         if: steps.precheck.outputs.ready == '1' && steps.pick.outputs.skip != '1'

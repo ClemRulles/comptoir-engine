@@ -251,7 +251,41 @@ const grokCalls = {
   },
 };
 
-export const SCHEMAS = { decisions, calibration, signals, aiFund, forecasts, grokCalls };
+// ---------------------------------------------------------------------------
+// Caches RÉGÉNÉRÉS par le moteur (risk.js / attribution.js / history.js). Le garde-fou
+// garantit seulement qu'ils existent et sont lisibles ; leur contenu se recalcule à
+// chaque run, jamais à la main.
+// ---------------------------------------------------------------------------
+const generated = (file, required, doc, extra = {}) => ({
+  file,
+  required,
+  generated: true, // absent = simple initialisation (pas une perte d'historique à signaler)
+  template: () => ({ _doc: doc, updated: null, ...Object.fromEntries(required.map((k) => [k, extra[k] ?? {}])) }),
+  check(obj) {
+    return required
+      .filter((k) => obj[k] == null || typeof obj[k] !== "object")
+      .map((k) => ({ hard: false, msg: `\`${k}\` manquant ou invalide`, resetKey: k }));
+  },
+});
+
+const allocation = generated(
+  "allocation.json",
+  ["sleeves", "alerts", "nav_history"],
+  "Allocation & budget de risque du book IA — régénéré par node engine/risk.js (method §H/§L/§M). Jamais calculé : joue risk.js.",
+  { alerts: [], nav_history: [] }
+);
+const attribution = generated(
+  "attribution.json",
+  ["sells", "by_desk", "desk_multipliers"],
+  "Attribution des gains et des erreurs — régénéré par node engine/attribution.js (method §I/§L). Jamais calculé : joue attribution.js."
+);
+const history = generated(
+  "history.json",
+  ["tickers"],
+  "Taux de base historiques par titre — régénéré par node engine/history.js (method §I). Jamais calculé : joue history.js."
+);
+
+export const SCHEMAS = { decisions, calibration, signals, aiFund, forecasts, grokCalls, allocation, attribution, history };
 
 // Complète un objet parsé avec les clés requises manquantes de son template,
 // SANS écraser les valeurs présentes. Retourne { obj, added: [clés ajoutées] }.

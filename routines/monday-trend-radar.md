@@ -9,18 +9,21 @@ ses amendements actifs s'appliquent), et `memory/trends.md` (semaine passée).
 
 ## Partie A — Régime de marché
 Joue `node engine/signals.js` : `signals.regime` te donne un **cadran chiffré** (courbe 10Y-2Y,
-chômage, inflation) + couloir de cash (plancher ET plafond, §H). Recoupe avec FMP sector-performance + recherche web, puis
+chômage, inflation) + les **cibles de poches** du régime (`regime.sleeves` — le cash reste à 10 %, §H). Recoupe avec FMP sector-performance + recherche web, puis
 règle le cadran : RISK-ON SAIN / NORMAL / SURCHAUFFE / STRESS.
 Écris-le dans `memory/market-regime.md` (format : cadran, consigne au système,
 valorisation indice, zones de bulle, largeur, macro en 3 lignes, sources).
 
-**Contexte crypto (radar, pas signal).** Joue `node engine/crypto.js` → `memory/fund/crypto.json`
-(CoinGecko : cap/dominance BTC-ETH/cours EUR ; alternative.me : Fear & Greed). Lis-le pour situer
-le climat crypto : sentiment (peur/avidité, lecture **contrarienne**), dominance BTC, variations
-24h/7j/30j des majors. Les signaux quantitatifs actions (F-Score, earnings, initiés) **n'ont aucun
-sens sur la crypto** : pour ces actifs, raisonne **momentum + régime macro + sentiment** uniquement.
-Le crypto reste un **radar à corroborer** (preuve dure on-chain/chiffres/catalyseur exigée) et **sans
-allocation forcée** — résume-le en 2 lignes dans `memory/market-regime.md` si pertinent cette semaine.
+**Poche crypto et allocation (desks, method §L/§M).** Joue `node engine/crypto.js` →
+`memory/fund/crypto.json` (CoinGecko : cap, dominance BTC-ETH, cours EUR ; alternative.me : Fear &
+Greed), puis `node engine/risk.js` → `memory/fund/allocation.json` (poches vs cibles, cash,
+volatilité, drawdown). Convoque ensuite **en parallèle** (un seul message, outil Agent) :
+- `desk-macro` — posture de la semaine, écart des poches à leurs cibles, ETF du socle ;
+- `desk-crypto` — climat crypto (sentiment **contrarien**, dominance, cycle), cible de la poche et
+  répartition BTC/ETH/alts. Les signaux actions (F-Score, earnings, initiés) n'ont aucun sens ici.
+Écris dans `memory/market-regime.md` une section **« Allocation de la semaine »** : cible par poche
+(régime), poids actuel (`allocation.json`), posture des deux desks en 2 lignes chacun. Rien ne
+s'exécute le lundi : le vendredi arbitre et exécute.
 
 ## Partie B — LA tendance de la semaine (anti-bullshit)
 1. Génère 3 à 6 tendances candidates, en croisant des **données dures**, pas du buzz :

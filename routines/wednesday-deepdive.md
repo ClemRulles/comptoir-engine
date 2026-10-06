@@ -5,24 +5,31 @@
 
 Lis `CLAUDE.md`, `skills/engine-method.md`, `skills/data-sources.md`, `skills/quant-signals.md`,
 `memory/playbook.md` (jurisprudence — ses amendements actifs s'appliquent),
-`memory/watchlist.md`, `memory/market-regime.md`, `memory/fund/ai-fund.json`.
+`memory/watchlist.md`, `memory/market-regime.md`, `memory/fund/ai-fund.json`, `skills/desks.md`,
+`memory/fund/allocation.json`, `memory/fund/attribution.json`.
+
+Tu es le **CIO** (method §L) : ce soir le débat §D se joue à **trois voix** — le desk qui a sourcé
+l'idée plaide, le `risk-manager` attaque, toi tu tranches.
 
 Objectif : analyser en profondeur les candidats marqués `★` (**plafond strict : 3**) **et**
 passer le cerveau Opus sur les positions à risque du book IA. C'est la seule nuit Opus de la
 semaine — on l'utilise à fond : trouver ET protéger. Sois rigoureux, pas bavard.
 
 ## A. Candidats neufs (≤ 3 titres ★)
-Pour CHAQUE titre ★ :
-1. Données : `node engine/signals.js {ticker}` (F-Score, momentum 12-1, qualité des earnings,
-   gate) + EDGAR companyfacts (chiffres officiels), Finnhub financials, FMP ratios, recherche
-   web pour les news récentes. Recoupe les chiffres clés. **Le baissier (étape 4) doit citer le
-   gate** : un F-Score faible ou des accruals rouges sont des munitions à charge.
-2. **DCF inversé** (method §C) : quelle croissance/marge le cours price-t-il ? plausible ?
-3. **Checklist bulle** (method §B) : conclus en une phrase.
-4. **Débat** (method §D) : Haussier → Baissier → Arbitre. Si le baissier marque des
-   points faciles, baisse la confiance.
-5. Fixe : score (long + tactique), conviction (Acheter/Surveiller/Éviter), **confiance**
-   (method §E, modulée par le régime), l'hypothèse pivot, la règle de sortie suggérée.
+1. **Plaidoiries — en parallèle** (un seul message, outil Agent) : pour chaque ★, convoque son
+   **desk d'origine** (colonne Desk de la watchlist) et demande-lui le **dossier haussier complet**
+   au format `skills/desks.md` : données officielles recoupées (EDGAR, rapports annuels),
+   `node engine/signals.js {ticker} --dry`, `node engine/history.js {ticker} --dry`, **DCF inversé**
+   (§C), **checklist bulle** (§B), hypothèse pivot, exit_rule, taille proposée.
+2. **Attaque — un appel groupé** : transmets tous les dossiers au `risk-manager`. Il est le
+   **baissier** de chaque débat (§D) : il doit citer le gate (un F-Score faible ou des accruals
+   rouges sont des munitions à charge), le taux de base, la corrélation avec le book et les
+   erreurs passées de `lessons.md`. Il rend FEU VERT / FEU VERT RÉDUIT / REFUS.
+3. **Arbitrage — toi** : qui gagne et de combien ? Si le baissier marque des points faciles que
+   le desk avait « oubliés », la confiance baisse automatiquement (§D). Fixe : score (long +
+   tactique), conviction (Acheter/Surveiller/Éviter), **confiance** (§E, modulée par le régime),
+   hypothèse pivot, règle de sortie, **poche** et **taille indicative** selon §H (conviction ×
+   calibration × multiplicateur du desk × volatilité). Ne recopie pas le desk : juge.
 
 Sortie → écris une fiche par titre dans `memory/convictions.md` (format method §D,
 remplace une fiche existante si tu réanalyses le même titre, garde < 30 jours).
@@ -45,11 +52,14 @@ structurée des verdicts de la semaine, garde les ~6 plus pertinents (les meille
   "items": [
     { "ticker": "VRT", "name": "Vertiv", "verdict": "Acheter|Surveiller|Éviter",
       "confidence": "Haute|Moyenne|Basse", "horizon": "coeur|tactique",
+      "sleeve": "coeur|tactique|crypto|socle", "desk": "desk-industrie-energie",
       "thesis": "thèse en UNE ligne", "risk": "le risque qui invaliderait la thèse", "date": "{date}" }
   ]
 }
 ```
 `verdict` = ta conviction (Acheter/Surveiller/Éviter) ; `confidence` = force des preuves (method §E).
+Garde aussi les **Surveiller/Éviter** avec leur `date` : `attribution.js` mesure ensuite si la
+prudence a coûté (opportunités manquées, §I). Un refus non daté ne peut pas apprendre.
 
 ## B. Revue de risque du book IA (≤ 2 positions, ciblée)
 
@@ -63,8 +73,11 @@ protège la position du bruit hebdomadaire, ton débat décide si la thèse mér
 S'il y a ≥ 2 saisines, elles consomment tout le quota et le choix libre saute.
 
 Sinon, choisis dans `ai-fund.json` **au plus 2 positions** qui méritent le cerveau Opus : soit les
-**2 plus gros poids** du NAV, soit celles dont la **règle de sortie est proche d'être touchée**
-(d'après le Portfolio Doctor de la veille / le mouvement de cours). Pour chacune :
+**2 plus gros contributeurs au risque** (`allocation.json → lines.risk_contribution`), soit celles
+dont la **règle de sortie est proche d'être touchée** (d'après le Portfolio Doctor de la veille).
+Fais-les instruire par leur desk (`desk` de la position) et attaquer par le `risk-manager` —
+tu peux grouper ces appels avec ceux de la partie A. Demande aussi au `risk-manager` son
+**audit du book** (corrélations cachées, poches vs cibles, drawdown). Pour chacune :
 1. L'**hypothèse pivot** écrite à l'entrée tient-elle toujours, chiffres officiels à l'appui (EDGAR/Finnhub) ?
 2. **DCF inversé express** (method §C) : la marge de sécurité a-t-elle disparu depuis l'achat ?
 3. Mini-débat baissier : qu'est-ce qui casserait la thèse d'ici 3 mois ? est-ce déjà en train d'arriver ?
@@ -85,4 +98,5 @@ lance `node engine/push-memory.js "{le message de commit ci-dessus}"` : l'endpoi
 (`/api/memory/push`) commite tes fichiers `memory/` sur `claude/memory` — c'est ce qui les fait
 apparaître sur la plateforme. Vérifie la sortie : `✅` = persisté, sinon signale-le.
 
-Plafond total Opus : **≤ 3 candidats + ≤ 2 positions book = 5 titres**. Le reste attend la semaine suivante.
+Plafond total Opus : **≤ 3 candidats + ≤ 2 positions book = 5 titres**, instruits par au plus
+**5 appels de desks + 1 appel risk-manager**. Le reste attend la semaine suivante.

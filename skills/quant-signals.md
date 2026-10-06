@@ -55,13 +55,14 @@ le gate ; absentes → `null` + `data_gaps` (jamais de plantage, jamais de chiff
 - **Croissance du CA YoY** : `CA[N] / CA[N-1] − 1`. >+15% fort, <0 contraction.
 
 ### Régime macro — FRED (clé `FRED_API_KEY`), US **et zone euro**
-Cadran **RISK-ON SAIN / NORMAL / SURCHAUFFE / STRESS** + plancher de cash (5/15/30%) depuis :
+Cadran **RISK-ON SAIN / NORMAL / SURCHAUFFE / STRESS** + **cibles de poches** (`regime.sleeves` : crypto
+et tactique respirent selon le régime ; le cash reste à 10 %, bande 5-15 %, method §H) depuis :
 - **Courbe des taux** `T10Y2Y` (inversion <0 = stress) · **chômage** `UNRATE` · **inflation**
   `CPIAUCSL` (YoY) ;
 - **Zone euro** (le book est majoritairement européen) : inflation HICP `CP0000EZ19M086NEST`
   (YoY, >4 % = surchauffe) et chômage EA `LRHUTTTTEZM156S` — mêmes clé et API FRED ;
 - **Proxy peur/avidité** : `VIXCLS` (VIX) + `BAMLH0A0HYM2` (spreads High Yield). VIX>28 ou
-  spreads>6% = « peur » ; VIX<15 + spreads<3,5% = « avidité ». Alimente le plancher de cash §H.
+  spreads>6% = « peur » ; VIX<15 + spreads<3,5% = « avidité ». Alimente la lecture du régime (et le timing contrarien).
 
 ## Le `gate` : score composite pondéré
 

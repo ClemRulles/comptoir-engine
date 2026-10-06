@@ -5,30 +5,39 @@
 
 Lis `CLAUDE.md`, `skills/engine-method.md`, `skills/data-sources.md`, `skills/quant-signals.md`,
 `memory/playbook.md` (jurisprudence — ses amendements actifs s'appliquent),
-`memory/trends.md` (la tendance validée lundi), `memory/watchlist.md`, `memory/market-regime.md`.
+`memory/trends.md` (la tendance validée lundi), `memory/watchlist.md`, `memory/market-regime.md`,
+`skills/desks.md`, `memory/fund/attribution.json`, `memory/fund/ai-fund.json`.
 
 Objectif : transformer la tendance de la semaine en **candidats cotés concrets**, et
 ajouter quelques idées de qualité hors-tendance pour ne pas mettre tous les œufs au même endroit.
+Tu es le **CIO** (method §L) : ce sont les desks spécialisés qui sourcent, toi qui tries.
 
 Étapes :
-1. À partir de la tendance validée (memory/trends.md), élargis la liste des sociétés
-   cotées exposées via FMP screener + Finnhub peers + recherche web. Vise des profils
-   variés : un acteur direct, une « pioches et pelles » (infra/fournisseur), une small/mid
-   cap rentable sous le radar. Évite les noms déjà parabolitiques sauf pour les marquer « à éviter ».
-2. Si la tendance de la semaine = AUCUNE, bascule en mode qualité pur : screene des
-   sociétés solides (bon FCF, bilan sain) en repli temporaire non structurel.
-3. Joue `node engine/signals.js {tickers candidats}` : pré-score rapide (method §A simplifiée
-   **ancrée sur F-Score + momentum 12-1** du gate), horizon (long/tactique), thèse en une ligne,
-   et check express de la checklist bulle. Un candidat au gate 🔴 se marque « à éviter ».
-4. Marque les 2-3 meilleurs candidats non encore analysés d'un `★` : ce sont ceux que
-   le Deep-dive de mercredi traitera (plafond strict de 3 pour rester dans Pro).
+1. **Convoque les 5 desks sectoriels en parallèle** (un seul message, outil Agent) :
+   `desk-tech`, `desk-sante`, `desk-industrie-energie`, `desk-finance`, `desk-conso`. Transmets
+   à chacun : la tendance validée (memory/trends.md) ou « AUCUNE », le régime, les positions
+   détenues de son univers (`ai-fund.json`), les noms déjà en watchlist, et son multiplicateur
+   (`attribution.json → desk_multipliers`). Chacun renvoie **au plus 2 idées** au format
+   `skills/desks.md` (gate et taux de base en `--dry`) — profils variés : acteur direct, « pioches
+   et pelles », small/mid cap rentable sous le radar, compounder de qualité en repli non
+   structurel. Zéro idée est une réponse valable.
+2. Si la tendance de la semaine = AUCUNE, les desks basculent en mode qualité pur : sociétés
+   solides (bon FCF, bilan sain) en repli temporaire non structurel.
+3. Joue `node engine/signals.js {tickers retenus}` et `node engine/history.js {tickers retenus}`
+   (versions qui écrivent le cache) sur l'union des idées : pré-score (method §A simplifiée
+   **ancrée sur F-Score + momentum 12-1**), horizon, thèse en une ligne, check express de la
+   checklist bulle. Un candidat au gate 🔴 se marque « à éviter ».
+4. Marque d'un `★` les **3 meilleurs** candidats non encore analysés, **au plus 1 par desk** (la
+   diversité des sources d'idées est un actif) : ce sont ceux que le Deep-dive de mercredi
+   traitera avec leur desk d'origine. Un desk dont le multiplicateur est < 1 ne place un ★ que
+   si son idée est la meilleure de la nuit.
 
 Sortie → réécris `memory/watchlist.md` (max ~40 lignes, meilleurs scores en haut) :
 ```
 # Watchlist — maj {date}
-| ★ | Ticker | Nom | Tag | Horizon | Pré-score | Gate | Drapeau bulle | Thèse 1 ligne | Vu le |
+| ★ | Ticker | Nom | Desk | Tag | Horizon | Pré-score | Gate | Drapeau bulle | Taux de base (DD actuel · analogues 12 m) | Thèse 1 ligne | Vu le |
 ```
-(Tag = [tendance] ou [qualité].)
+(Tag = [tendance] ou [qualité]. Desk = l'agent qui a porté l'idée — il la plaidera mercredi.)
 
 Commit : `scout: {date} — {n} candidats, {k} marqués ★`. Reste léger, pas d'analyse profonde ici.
 
