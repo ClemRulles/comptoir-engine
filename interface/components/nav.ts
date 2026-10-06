@@ -13,9 +13,9 @@ export interface NavItem {
 
 export const NAV: NavItem[] = [
   { href: "/", label: "Accueil", short: "Accueil", title: "Accueil", icon: Home, mobile: true },
-  { href: "/ia", label: "Fonds IA", short: "IA", title: "Fonds IA", icon: Bot, mobile: true },
-  { href: "/monde", label: "Le monde", short: "Monde", title: "Le monde", icon: Globe2, mobile: true },
   { href: "/groupe", label: "Fonds du groupe", short: "Groupe", title: "Fonds du groupe", icon: Users, mobile: true },
+  { href: "/monde", label: "Le monde", short: "Monde", title: "Le monde", icon: Globe2, mobile: true },
+  { href: "/ia", label: "Fonds IA", short: "IA", title: "Fonds IA", icon: Bot, mobile: true },
   { href: "/apprentissages", label: "Apprentissages", short: "Appris", title: "Ce que l'IA a appris", icon: GraduationCap, mobile: false },
   { href: "/recherche", label: "Recherche", short: "Recherche", title: "Recherche", icon: Search, mobile: false },
   { href: "/propositions", label: "Chat du groupe", short: "Chat", title: "Chat du groupe", icon: MessageCircle, mobile: true },

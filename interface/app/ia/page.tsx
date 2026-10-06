@@ -38,6 +38,7 @@ export default async function IaPage() {
 
       <HeroFund
         title="Fonds IA"
+        tone="ai"
         points={data.series.filter((p) => p.ai != null).map((p) => ({ date: p.date, v: p.ai as number }))}
         aiPoints={data.series.filter((p) => p.group != null).map((p) => ({ date: p.date, v: p.group as number }))}
         compare={{ label: "Notre fonds", href: "/groupe", tone: "group" }}
