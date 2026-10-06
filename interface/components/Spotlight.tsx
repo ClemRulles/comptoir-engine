@@ -72,8 +72,9 @@ function Tile({ t }: { t: SpotTile }) {
         }`}
       >
         {t.value}
-        {t.label && <span className="ml-1.5 align-middle text-[11px] font-semibold tracking-normal text-muted">{t.label}</span>}
+        {t.label && t.label.length <= 8 && <span className="ml-1.5 align-middle text-[11px] font-semibold tracking-normal text-muted">{t.label}</span>}
       </p>
+      {t.label && t.label.length > 8 && <p className="mt-0.5 text-[12px] font-semibold leading-tight text-ink/70">{t.label}</p>}
       {t.sub && <p className="mt-auto line-clamp-3 pt-2 text-[12px] leading-snug text-muted md:text-[13px]">{t.sub}</p>}
     </Link>
   );

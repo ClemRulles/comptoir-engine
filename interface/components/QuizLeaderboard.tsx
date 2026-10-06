@@ -57,7 +57,7 @@ export function QuizLeaderboard({ board }: { board: QuizBoard }) {
                   <span className="block h-full rounded-full bg-violet-500" style={{ width: `${Math.round(r.pct * 100)}%` }} />
                 </span>
               </span>
-              <span className="w-14 shrink-0 text-right">
+              <span className="w-[76px] shrink-0 whitespace-nowrap text-right">
                 <span className="num block text-[15px] font-semibold">
                   {r.correct}/{questions}
                 </span>
