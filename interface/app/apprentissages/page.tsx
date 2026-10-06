@@ -3,6 +3,7 @@ import { CalibrationChart } from "@/components/Charts";
 import { KpiCard, SectionTitle, Reveal } from "@/components/Kpi";
 import { TickerCell } from "@/components/StockDrawer";
 import { BriefTendance } from "@/components/BriefTendance";
+import { PageHeader } from "@/components/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -25,11 +26,16 @@ export default async function ApprentissagesPage() {
 
   return (
     <div className="space-y-6">
-      <p className="text-sm text-muted">
-        Ce que l&apos;IA a <strong>appris de son passé</strong>. Chaque décision clôturée est
-        notée : la confiance annoncée était-elle méritée ? Une IA honnête a un taux de réussite
-        qui <strong>monte avec la confiance</strong>. {demo && <em>(Données de démonstration.)</em>}
-      </p>
+      <PageHeader
+        eyebrow="Mémoire · calibration · erreurs"
+        title="Ce que l'IA a appris"
+        lead={
+          <>
+            Chaque décision clôturée est notée : la confiance annoncée était-elle méritée, et a-t-elle battu le marché ? Une IA honnête a un taux
+            de réussite qui monte avec sa confiance — sinon elle réduit d&apos;elle-même la taille de ses paris. {demo && <em>(Données de démonstration.)</em>}
+          </>
+        }
+      />
 
       <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
         <KpiCard

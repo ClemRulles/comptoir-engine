@@ -10,9 +10,15 @@ import {
   fetchGrokPulse,
   fetchMemoryMarkdown,
   fetchSignals,
+  fetchDigest,
+  fetchNews,
+  fetchPros,
+  fetchAllocation,
 } from "@/lib/github";
+import { perfSeries, summarize, trailingReturn, windowReturn, type PerfPoint, type PerfSummary } from "@/lib/perf";
+import { firstSentence, inferSleeve, regimePlain, sleeveTargets, SLEEVES } from "@/lib/insights";
 import { fetchPrices } from "@/lib/prices";
-import { fetchYahooChanges } from "@/lib/yahoo";
+import { fetchYahooChanges, fetchYahooHistory, fetchYahooNative } from "@/lib/yahoo";
 import {
   DEMO_AI,
   DEMO_AI_TRADES,
@@ -29,7 +35,13 @@ import {
   DEMO_LESSONS,
   DEMO_MEMBERS,
   DEMO_PRICES,
+  DEMO_AI_PRICES,
   DEMO_SIGNALS,
+  DEMO_DIGEST,
+  DEMO_NEWS,
+  DEMO_PROS,
+  DEMO_MARKET,
+  DEMO_PORTFOLIO_MD,
   demoSeries,
 } from "@/lib/demo";
 import type {
@@ -47,6 +59,14 @@ import type {
   MarketSignals,
   NavSnapshot,
   Trade,
+  AiFundFile,
+  AllocationFile,
+  DigestDecision,
+  DigestFile,
+  NewsItem,
+  ProInvestor,
+  Sleeve,
+  BuyZone,
 } from "@/lib/types";
 
 export interface EnrichedHolding {
@@ -83,6 +103,12 @@ export interface AppData {
   // Valeur absente pour un fonds à une date (pas de snapshot ce jour-là) = null — jamais NaN,
   // que Recharts ne sait pas relier (connectNulls ne gère que null).
   series: { date: string; group: number | null; ai: number | null }[];
+  // Performance cumulée (TWR, apports neutralisés) des deux fonds + indice MSCI World en € :
+  // LA source de tous les % affichés (cartes, légende de la courbe, semaine). Voir lib/perf.ts.
+  perf: PerfPoint[];
+  groupPerf: PerfSummary;
+  aiPerf: PerfSummary;
+  marketPerf: number | null; // MSCI World € depuis le même départ (null si indisponible)
   weekDeltaGroup: number;
   weekDeltaAi: number;
   brief: string | null;
@@ -229,6 +255,7 @@ function enrich(
     quantity: number;
     avg_cost: number;
     entry_price?: number;
+    entry_price_source?: string;
     value_t0?: number;
     thesis?: string;
   }[],
@@ -241,8 +268,14 @@ function enrich(
     // servir affiche la performance de quelqu'un d'autre sur la page du fonds IA (MSTR :
     // −65 % au lieu de −0,8 %). `entry_price` est le prix d'entrée de l'IA ; on ne retombe
     // sur avg_cost que s'il est absent (groupe, ou book antérieur à la migration).
-    const unitCost =
-      typeof h.entry_price === "number" && h.entry_price > 0 ? h.entry_price : h.avg_cost;
+    // Garde-fou devise : un entry_price à plus de 15 % de avg_cost sur une ligne achetée par
+    // l'IA (pas héritée du clone) trahit un prix noté dans la devise de cotation (CB : 339 $
+    // noté comme 339 €, soit un faux −13 %). On retombe alors sur avg_cost (le prix payé en €).
+    const entryOk =
+      typeof h.entry_price === "number" &&
+      h.entry_price > 0 &&
+      (!(h.avg_cost > 0) || /clone/i.test(h.entry_price_source ?? "") || Math.abs(h.entry_price / h.avg_cost - 1) <= 0.15);
+    const unitCost = entryOk ? (h.entry_price as number) : h.avg_cost;
     // ⚠️ Le repli « cours manquant » reste sur avg_cost : c'est ce que font `cron/value` et
     // `cron/gapfill` pour écrire les snapshots. En changer un seul ferait diverger le point
     // live de la courbe sur ce chemin dégradé. La migration entry_price ne touche QUE le P&L.
@@ -278,31 +311,63 @@ function enrich(
   };
 }
 
+// Applique la définition unique de la performance (lib/perf.ts) aux deux fonds : leur `perf`
+// devient le TWR depuis l'origine — exactement le chiffre de la courbe en vue « Max ».
+function withPerf(
+  base: Omit<AppData, "perf" | "groupPerf" | "aiPerf" | "marketPerf" | "weekDeltaGroup" | "weekDeltaAi">,
+  market: Record<string, number> | null
+): AppData {
+  const perf = perfSeries(base.series, base.contributions, market);
+  const groupPerf = summarize(perf, "group", base.group.nav, base.group.startCapital);
+  const aiPerf = summarize(perf, "ai", base.ai.nav, base.ai.startCapital);
+  return {
+    ...base,
+    group: { ...base.group, perf: groupPerf.sinceInception },
+    ai: { ...base.ai, perf: aiPerf.sinceInception },
+    perf,
+    groupPerf,
+    aiPerf,
+    marketPerf: market ? windowReturn(perf, "market") : null,
+    weekDeltaGroup: groupPerf.week ?? 0,
+    weekDeltaAi: aiPerf.week ?? 0,
+  };
+}
+
 function demoData(): AppData {
   const prices = DEMO_PRICES;
-  const group = enrich("group", DEMO_GROUP.name, DEMO_GROUP.startCapital, DEMO_GROUP.cash, DEMO_GROUP.holdings, prices);
-  const ai = enrich("ai", "Fonds IA", DEMO_AI.start_capital, DEMO_AI.cash, DEMO_AI.positions, prices);
-  const series = demoSeries();
-  const win = (sel: (p: { group: number; ai: number }) => number) => {
-    const i = series.length - 1;
-    const j = Math.max(0, i - 7);
-    const a = sel(series[i]);
-    const b = sel(series[j]);
-    return b ? (a - b) / b : 0;
-  };
-  return {
-    configured: false,
-    demo: true,
-    group,
-    ai,
-    series,
-    weekDeltaGroup: win((p) => p.group),
-    weekDeltaAi: win((p) => p.ai),
-    brief: DEMO_BRIEF,
-    contributions: aggregateContribsByDate(DEMO_CONTRIBUTIONS),
-    aiBookReadable: true,
-    memoryAgeDays: 0,
-  };
+  const contributions = aggregateContribsByDate(DEMO_CONTRIBUTIONS);
+  const apports = contributions.reduce((s, c) => s + c.amount, 0);
+  const group = enrich("group", DEMO_GROUP.name, DEMO_GROUP.startCapital + apports, DEMO_GROUP.cash + apports, DEMO_GROUP.holdings, prices);
+  const ai = enrich("ai", "Fonds IA", DEMO_AI.start_capital + apports, DEMO_AI.cash + apports, DEMO_AI.positions, DEMO_AI_PRICES);
+  // Série démo construite pour finir EXACTEMENT sur les NAV affichées (sinon cartes et courbe
+  // divergent — c'était le cas : cartes « −0,0 % », courbe « IA +8 % »).
+  const series = demoSeries(group.nav, ai.nav, DEMO_GROUP.startCapital, contributions);
+  return withPerf(
+    {
+      configured: false,
+      demo: true,
+      group,
+      ai,
+      series,
+      brief: DEMO_BRIEF,
+      contributions,
+      aiBookReadable: true,
+      memoryAgeDays: 0,
+    },
+    DEMO_MARKET(series.map((p) => p.date))
+  );
+}
+
+// Indice de référence (MSCI World en €, celui du moteur) depuis le premier point de la courbe.
+async function fetchMarket(fromDate?: string): Promise<Record<string, number> | null> {
+  if (!fromDate) return null;
+  try {
+    const h = await fetchYahooHistory(["IWDA.AS"], fromDate);
+    const pts = h["IWDA.AS"];
+    return pts && Object.keys(pts).length > 1 ? pts : null;
+  } catch {
+    return null;
+  }
 }
 
 export async function getAppData(): Promise<AppData> {
@@ -414,14 +479,6 @@ export async function getAppData(): Promise<AppData> {
       }
     }
 
-    const weekDelta = (arr: NavSnapshot[]) => {
-      if (arr.length < 2) return 0;
-      const i = arr.length - 1;
-      const j = Math.max(0, i - 5);
-      const a = arr[i].nav;
-      const b = arr[j].nav;
-      return b ? (a - b) / b : 0;
-    };
 
     // ── CLONE AVANT DIVERGENCE (le cœur de la correction) ──────────────────────────────
     // Tant que l'IA n'a pas pris ses PROPRES décisions, c'est un clone exact du groupe : les
@@ -446,23 +503,26 @@ export async function getAppData(): Promise<AppData> {
       if (p.date < divergenceDate) p.ai = p.group;
     }
 
-    return {
-      configured: true,
-      demo: false,
-      group,
-      ai,
-      // Filet de sécurité d'affichage : retire les « pics en V » des snapshots historiques
-      // (artefacts de prix manquants) même si la base contient encore de vieux points sales.
-      series: despikeSeries(series),
-      weekDeltaGroup: weekDelta(gSnaps),
-      weekDeltaAi: weekDelta(aSnaps),
-      brief,
-      contributions,
-      aiBookReadable: Boolean(aiFile),
-      memoryAgeDays: memCommits[0]?.date
-        ? Math.floor((Date.now() - new Date(memCommits[0].date).getTime()) / 86_400_000)
-        : null,
-    };
+    // Filet de sécurité d'affichage : retire les « pics en V » des snapshots historiques
+    // (artefacts de prix manquants) même si la base contient encore de vieux points sales.
+    const clean = despikeSeries(series);
+    const market = await fetchMarket(clean[0]?.date);
+    return withPerf(
+      {
+        configured: true,
+        demo: false,
+        group,
+        ai,
+        series: clean,
+        brief,
+        contributions,
+        aiBookReadable: Boolean(aiFile),
+        memoryAgeDays: memCommits[0]?.date
+          ? Math.floor((Date.now() - new Date(memCommits[0].date).getTime()) / 86_400_000)
+          : null,
+      },
+      market
+    );
   } catch (e) {
     // Base pas encore prête OU panne en prod : on retombe sur la démo, mais en le LOGGANT —
     // sinon une panne Supabase afficherait des chiffres fictifs sans aucune trace.
@@ -612,7 +672,8 @@ const byWeekDesc = (a: GrokPulseWeek, b: GrokPulseWeek) =>
 export async function getGrokPulse(): Promise<GrokPulseData> {
   if (!isConfigured()) return { demo: true, weeks: [...DEMO_GROK_PULSE].sort(byWeekDesc) };
   const file = await fetchGrokPulse();
-  const weeks = file?.weeks ?? [];
+  // La routine écrit `entries` ; l'ancien format était `weeks`. On lit les deux.
+  const weeks = file?.entries ?? file?.weeks ?? [];
   if (weeks.length === 0) return { demo: true, weeks: [...DEMO_GROK_PULSE].sort(byWeekDesc) };
   return { demo: false, weeks: [...weeks].sort(byWeekDesc) };
 }
@@ -793,4 +854,290 @@ export async function getLearningData(): Promise<LearningData> {
     decisions: decisions ?? DEMO_DECISIONS,
     lessons: lessonsMd ? parseLessons(lessonsMd) : parseLessons(DEMO_LESSONS),
   };
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════════════════
+// Vues « en clair » de l'interface v2 : book détaillé, semaine, monde, zones d'achat.
+// Chaque vue lit d'abord le fichier écrit par les routines (digest/news/pros/allocation) et,
+// s'il n'existe pas encore, se DÉRIVE des fichiers existants — jamais d'écran vide en prod.
+// ══════════════════════════════════════════════════════════════════════════════════════
+
+export interface BookPosition extends EnrichedHolding {
+  sleeve: Sleeve;
+  desk?: string;
+  sector?: string;
+  confidence?: string;
+  horizon?: string;
+  exitRule?: string;
+  thesisShort: string;
+  entryDate?: string;
+}
+export interface SleeveView {
+  key: Sleeve | "cash";
+  weight: number;
+  target: number;
+  band: [number, number];
+  value: number;
+}
+export interface TradeView {
+  ts: string;
+  side: "buy" | "sell";
+  ticker: string;
+  quantity: number;
+  price: number;
+  amount: number;
+  why: string;
+  full: string;
+  confidence?: string;
+  sleeve: Sleeve;
+  desk?: string;
+}
+export interface BookData {
+  demo: boolean;
+  asOf?: string;
+  regime: string | null;
+  positions: BookPosition[];
+  sleeves: SleeveView[];
+  trades: TradeView[];
+  risk: { vol: number; maxdd: number } | null;
+  alerts: string[];
+}
+
+const BANDS_FOR: Record<Sleeve | "cash", [number, number]> = {
+  coeur: [0.45, 0.75], socle: [0, 0.2], tactique: [0, 0.15], crypto: [0, 0.1], cash: [0.05, 0.15],
+};
+
+export async function getBook(app: AppData): Promise<BookData> {
+  const demo = app.demo;
+  const [file, signals, alloc] = demo
+    ? [DEMO_AI as AiFundFile, DEMO_SIGNALS as MarketSignals, null as AllocationFile | null]
+    : await Promise.all([fetchAiFund(), fetchSignals(), fetchAllocation()]);
+  const meta = new Map((file?.positions ?? []).map((p) => [p.ticker.toUpperCase(), p]));
+  const positions: BookPosition[] = app.ai.holdings.map((h) => {
+    const m = meta.get(h.ticker);
+    return {
+      ...h,
+      sleeve: inferSleeve({ ticker: h.ticker, sleeve: m?.sleeve, horizon: m?.horizon, thesis_id: m?.thesis_id }),
+      desk: m?.desk,
+      sector: m?.sector,
+      confidence: m?.confidence,
+      horizon: m?.horizon,
+      exitRule: m?.exit_rule ? firstSentence(m.exit_rule.split(";")[0], 140) : undefined,
+      thesisShort: firstSentence(m?.thesis ?? h.thesis, 150),
+      entryDate: m?.entry_date,
+    };
+  });
+  const regime = signals?.regime?.label ?? alloc?.regime ?? null;
+  const targets = sleeveTargets(regime);
+  const nav = app.ai.nav || 1;
+  const sleeves: SleeveView[] = [...SLEEVES, "cash" as const].map((k) => {
+    const value = k === "cash" ? app.ai.cash : positions.filter((p) => p.sleeve === k).reduce((s, p) => s + p.marketValue, 0);
+    return { key: k, value, weight: value / nav, target: targets[k], band: BANDS_FOR[k] };
+  });
+  const isReal = (t: { ticker?: string; quantity?: number }) => Boolean(t.ticker) && !["SEED", "RECLONE"].includes(String(t.ticker).toUpperCase()) && Number(t.quantity) > 0;
+  const trades: TradeView[] = (file?.trades ?? [])
+    .filter(isReal)
+    .map((t) => {
+      const m = meta.get(t.ticker.toUpperCase());
+      return {
+        ts: String(t.ts).slice(0, 10),
+        side: t.side,
+        ticker: t.ticker.toUpperCase(),
+        quantity: t.quantity,
+        price: t.price,
+        amount: t.quantity * t.price,
+        why: firstSentence(t.rationale, 170),
+        full: t.rationale ?? "",
+        confidence: t.confidence,
+        sleeve: inferSleeve({ ticker: t.ticker, sleeve: t.sleeve ?? m?.sleeve, horizon: t.horizon ?? m?.horizon, thesis_id: t.thesis_id }),
+        desk: t.desk ?? m?.desk,
+      };
+    })
+    .sort((a, b) => b.ts.localeCompare(a.ts));
+  return {
+    demo,
+    asOf: file?.as_of,
+    regime,
+    positions,
+    sleeves,
+    trades,
+    risk: alloc?.risk ? { vol: alloc.risk.vol_annual, maxdd: alloc.risk.max_drawdown_1y } : null,
+    alerts: alloc?.alerts ?? [],
+  };
+}
+
+// ── La semaine en clair (accueil) ──────────────────────────────────────────────────────
+export interface WeekView {
+  demo: boolean;
+  derived: boolean; // true = reconstruit faute de digest.json (routines pas encore à jour)
+  updated?: string;
+  posture: { label: string; tone: "offensif" | "neutre" | "defensif"; line: string };
+  headline?: string;
+  points: NonNullable<DigestFile["points"]>;
+  decisions: DigestDecision[];
+  next: { date: string; label: string; why?: string }[];
+  regime: string | null;
+}
+
+export async function getWeek(book: BookData): Promise<WeekView> {
+  const file: DigestFile | null = book.demo ? DEMO_DIGEST : await fetchDigest();
+  const cat = await getCatalysts();
+  const upcoming = cat.upcoming.slice(0, 4).map((c) => ({ date: c.date, label: c.event, why: firstSentence(c.positioning.replace(/^Pourquoi\s*:\s*/i, ""), 90) }));
+  const rp = regimePlain(book.regime);
+  const derivedDecisions: DigestDecision[] = book.trades.slice(0, 4).map((t) => ({
+    date: t.ts,
+    ticker: t.ticker,
+    action: t.side === "buy" ? "achat" : "vente",
+    sleeve: t.sleeve,
+    desk: t.desk,
+    why: t.why,
+    confidence: t.confidence as DigestDecision["confidence"],
+    amount_eur: t.amount,
+  }));
+  const hasFile = Boolean(file && ((file.points?.length ?? 0) > 0 || (file.decisions?.length ?? 0) > 0 || file.posture));
+  return {
+    demo: book.demo,
+    derived: !hasFile,
+    updated: file?.updated,
+    posture: file?.posture?.label
+      ? { label: file.posture.label, tone: file.posture.tone ?? rp.tone, line: file.posture.line ?? rp.line }
+      : rp,
+    headline: file?.headline ?? file?.in_one_sentence,
+    points: file?.points ?? [],
+    decisions: file?.decisions?.length ? file.decisions : derivedDecisions,
+    next: file?.next?.length ? file.next : upcoming,
+    regime: book.regime,
+  };
+}
+
+// ── Le monde : actualité + investisseurs pros ─────────────────────────────────────────
+export interface WorldView {
+  demo: boolean;
+  derived: boolean;
+  updated?: string;
+  news: NewsItem[];
+  pros: ProInvestor[];
+  prosUpdated?: string;
+}
+
+export async function getWorld(heldTickers: string[]): Promise<WorldView> {
+  if (!isConfigured()) {
+    return { demo: true, derived: false, updated: DEMO_NEWS.updated, news: DEMO_NEWS.items, pros: DEMO_PROS.investors, prosUpdated: DEMO_PROS.updated };
+  }
+  const [news, pros, pulse] = await Promise.all([fetchNews(), fetchPros(), getGrokPulse()]);
+  const held = new Set(heldTickers.map((t) => t.toUpperCase()));
+  let items = news?.items ?? [];
+  let derived = false;
+  if (!items.length && !pulse.demo && pulse.weeks[0]) {
+    // Repli : les thèmes du pouls hebdo (déjà corroborés par la routine du lundi).
+    const w = pulse.weeks[0];
+    derived = true;
+    items = (w.themes ?? []).map((t, i) => ({
+      id: `pulse-${w.week}-${i}`,
+      date: w.date,
+      category: "macro",
+      title: t.title,
+      summary: firstSentence(t.detail, 220),
+      impact: (t.tickers ?? []).map((tk) => ({ target: tk, kind: "ticker" as const, direction: "incertain" as const, held: held.has(tk.toUpperCase()) })),
+      importance: (i < 2 ? 1 : 2) as 1 | 2,
+      sources: [{ name: t.corroborated ? "Pouls hebdo · recoupé" : "Pouls hebdo · à confirmer" }],
+    }));
+  }
+  items = [...items].sort((a, b) => (a.importance ?? 2) - (b.importance ?? 2) || b.date.localeCompare(a.date));
+  return { demo: false, derived, updated: news?.updated ?? pulse.weeks[0]?.date, news: items, pros: pros?.investors ?? [], prosUpdated: pros?.updated };
+}
+
+// ── Zones d'achat (method §N) ─────────────────────────────────────────────────────────
+export interface ZoneView {
+  ticker: string;
+  name?: string;
+  verdict: string;
+  confidence: string;
+  headline: string;
+  risk: string;
+  zone: BuyZone | null;
+  price: number | null;
+  currency?: string;
+  status: "dans-la-zone" | "proche" | "au-dessus" | "sous-la-zone" | "a-definir";
+  distance: number | null; // écart relatif au haut de la zone (positif = au-dessus)
+  date?: string;
+  held: boolean;
+}
+
+export async function getBuyZones(heldTickers: string[]): Promise<{ demo: boolean; items: ZoneView[] }> {
+  const conv = await getConvictions();
+  const held = new Set(heldTickers.map((t) => t.toUpperCase()));
+  const wanted = conv.items.filter((i) => i.verdict !== "Éviter");
+  const native: Record<string, { price: number; currency: string }> = conv.demo
+    ? Object.fromEntries(wanted.filter((i) => typeof i.price === "number").map((i) => [i.ticker.toUpperCase(), { price: i.price as number, currency: i.currency ?? i.buy_zone?.currency ?? "USD" }]))
+    : await fetchYahooNative(wanted.map((i) => i.ticker)).catch(() => ({}));
+  const items: ZoneView[] = wanted.map((i) => {
+    const q = native[i.ticker.toUpperCase()];
+    const z = i.buy_zone && i.buy_zone.high > 0 ? i.buy_zone : null;
+    let status: ZoneView["status"] = "a-definir";
+    let distance: number | null = null;
+    if (z && q) {
+      distance = q.price / z.high - 1;
+      if (q.price < z.low) status = "sous-la-zone";
+      else if (q.price <= z.high) status = "dans-la-zone";
+      else if (q.price <= z.high * 1.05) status = "proche";
+      else status = "au-dessus";
+    }
+    return {
+      ticker: i.ticker,
+      name: i.name,
+      verdict: i.verdict,
+      confidence: i.confidence,
+      headline: i.headline ?? firstSentence(i.thesis, 150),
+      risk: firstSentence(i.risk, 140),
+      zone: z,
+      price: q?.price ?? null,
+      currency: q?.currency ?? z?.currency,
+      status,
+      distance,
+      date: i.date,
+      held: held.has(i.ticker.toUpperCase()),
+    };
+  });
+  return { demo: conv.demo, items };
+}
+
+
+
+
+// ── L'avis de l'IA sur les positions RÉELLES du groupe (Portfolio Doctor du jeudi) ─────────
+export interface GroupAdvice {
+  status: "INTACT" | "À SURVEILLER" | "SORTIE" | string;
+  note: string;
+  checked?: string;
+}
+
+export function parseGroupAdvice(md: string): Record<string, GroupAdvice> {
+  const out: Record<string, GroupAdvice> = {};
+  for (const raw of md.split("\n")) {
+    const line = raw.trim();
+    if (!line.startsWith("|")) continue;
+    const c = line.split("|").slice(1, -1).map((x) => x.trim());
+    if (c.length < 10 || /^ticker$/i.test(c[0]) || /^-+$/.test(c[0].replace(/[:\s]/g, ""))) continue;
+    const [ticker, , , , , , , status, rule, checked] = c;
+    if (!ticker) continue;
+    out[ticker.toUpperCase()] = { status: status.replace(/\*/g, "").trim(), note: firstSentence(rule.replace(/\*/g, ""), 170), checked };
+  }
+  return out;
+}
+
+export async function getGroupAdvice(): Promise<{ demo: boolean; byTicker: Record<string, GroupAdvice> }> {
+  if (!isConfigured()) return { demo: true, byTicker: parseGroupAdvice(DEMO_PORTFOLIO_MD) };
+  const md = await fetchMemoryMarkdown("portfolio.md");
+  return { demo: false, byTicker: md ? parseGroupAdvice(md) : {} };
+}
+
+// Retrouve l'avis d'un ticker de l'app (« AI ») dans le tableau du moteur (« AI.PA »).
+export function adviceFor(map: Record<string, GroupAdvice>, ticker: string): GroupAdvice | null {
+  const t = ticker.toUpperCase();
+  if (map[t]) return map[t];
+  const base = t.split(".")[0];
+  const hit = Object.keys(map).find((k) => k.split(".")[0] === base);
+  return hit ? map[hit] : null;
 }

@@ -14,9 +14,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],
+      },
       colors: {
         // Tokens sémantiques (thématisés)
         bg: v("--c-bg"),
+        elev: v("--c-elev"),
         card: v("--c-card"),
         line: v("--c-line"),
         ink: v("--c-ink"),
@@ -30,6 +34,15 @@ const config: Config = {
           emerald: "#10b981",
         },
         ai: "#f59e0b",
+        // Séries de graphiques (validées daltonisme + contraste, clair ET sombre) : mêmes
+        // teintes que la marque, une nuance plus profonde pour rester lisibles en trait fin.
+        series: {
+          group: "#15803d",
+          ai: "#d97706",
+          socle: "#2563eb",
+          crypto: "#9333ea",
+          market: "#94a3b8",
+        },
         danger: "#ef4444",
         // Palette slate : on garde toutes les nuances par défaut et on rend
         // thématiques les 5 nuances réellement employées dans l'app.
@@ -45,6 +58,8 @@ const config: Config = {
       boxShadow: {
         card: "0 1px 2px rgba(16,36,56,0.04), 0 8px 24px rgba(16,36,56,0.06)",
         glow: "0 10px 30px rgba(22,163,74,0.25)",
+        soft: "0 1px 0 rgba(255,255,255,0.6) inset, 0 1px 2px rgba(16,36,56,0.05), 0 12px 32px -12px rgba(16,36,56,0.12)",
+        lift: "0 1px 0 rgba(255,255,255,0.6) inset, 0 2px 4px rgba(16,36,56,0.06), 0 24px 48px -16px rgba(16,36,56,0.18)",
       },
       borderRadius: {
         xl2: "1rem",

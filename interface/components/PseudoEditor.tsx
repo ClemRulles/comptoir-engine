@@ -68,7 +68,7 @@ export function PseudoEditor({ demo }: { demo: boolean }) {
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.42 0-8 2.69-8 6v2h16v-2c0-3.31-3.58-6-8-6Z" />
         </svg>
-        <span className="max-w-[8rem] truncate">{current}</span>
+        <span className="hidden max-w-[8rem] truncate sm:inline">{current}</span>
         {ok && <span className="text-brand-600">✓</span>}
       </button>
 

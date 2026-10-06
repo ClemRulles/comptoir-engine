@@ -1,114 +1,82 @@
-import { getAppData } from "@/lib/data";
-import { fetchAiFund } from "@/lib/github";
-import { DEMO_AI } from "@/lib/demo";
-import { eur, pct } from "@/lib/fund";
-import { AllocationDonut } from "@/components/Charts";
-import { PerfChart } from "@/components/PerfChart";
+import { BookOpenCheck, Layers, PieChart, ScrollText } from "lucide-react";
+import { getAppData, getBook, getBuyZones } from "@/lib/data";
+import { DuelChart } from "@/components/DuelChart";
+import { PositionsBySleeve, SleeveBars, TradesJournal } from "@/components/book";
+import { BuyZones } from "@/components/zones";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
-import { KpiCard, Delta, SectionTitle, Reveal } from "@/components/Kpi";
-import { TickerCell } from "@/components/StockDrawer";
+import { Card, CardHead, Change, DemoTag, MoreLink, PageHeader, Stat, fmtPct, fmtShare } from "@/components/ui";
+import { regimePlain } from "@/lib/insights";
 
 export const dynamic = "force-dynamic";
 
 export default async function IaPage() {
   const data = await getAppData();
+  const book = await getBook(data);
+  const held = [...data.group.holdings, ...data.ai.holdings].map((h) => h.ticker);
+  const zones = await getBuyZones(held);
   const f = data.ai;
-  const file = data.demo ? DEMO_AI : await fetchAiFund();
-  const slices = [
-    ...f.holdings.map((h) => ({ name: h.ticker, value: h.marketValue })),
-    { name: "Cash", value: f.cash },
-  ].filter((s) => s.value > 0);
-  const trades = file?.trades ?? [];
+  const cashShare = f.nav ? f.cash / f.nav : 0;
+  const vsMarket = data.marketPerf == null ? null : data.aiPerf.sinceInception - data.marketPerf;
+  const rp = regimePlain(book.regime);
 
   return (
-    <div className="flex flex-col gap-6">
-      <p className="text-sm text-muted">
-        Portefeuille <strong>fictif</strong> géré par l&apos;IA à partir de ses convictions. 100 % paper —
-        aucun ordre réel. Mis à jour le vendredi par le moteur.
-      </p>
+    <div className="flex flex-col gap-5 md:gap-6">
+      <PageHeader
+        eyebrow="Fonds fictif · géré par l'IA"
+        title="Fonds IA"
+        lead={
+          <>
+            Objectif : faire fructifier le fonds sur 3 à 5 ans, comme un gérant professionnel. Des convictions long terme au centre, des
+            coups datés, une poche crypto, et 10 % de cash pour saisir les occasions. <span className="text-ink">{rp.line}</span>
+          </>
+        }
+        right={<MoreLink href="/apprentissages">Ce que l&apos;IA a appris</MoreLink>}
+      />
 
-      {/* Mobile : graphique en premier, KPIs après. Desktop : KPIs en premier (md:order-1). */}
-      <div className="grid grid-cols-2 gap-4 xl:grid-cols-4 order-2 md:order-1">
-        <KpiCard label="Valeur (NAV)" accent="ai" delay={0} value={<AnimatedNumber value={f.nav} kind="eur" />} sub={<Delta value={f.perf} />} spark={data.series.map((s) => s.ai).filter((v): v is number => v != null)} />
-        <KpiCard label="Investi" accent="neutral" delay={60} value={<AnimatedNumber value={f.positionsValue} kind="eur" />} sub={<span className="text-muted">{f.holdings.length} positions</span>} />
-        <KpiCard label="Cash" accent="neutral" delay={120} value={<AnimatedNumber value={f.cash} kind="eur" />} sub={<span className="text-muted">{pct(f.nav ? f.cash / f.nav : 0).replace("+", "")} du fonds</span>} />
-        <KpiCard label="Δ cette semaine" accent="neutral" delay={180} value={pct(data.weekDeltaAi)} sub={<span className="text-muted">vs ~1 semaine</span>} />
+      <div className="grid grid-cols-2 gap-3 md:gap-4 xl:grid-cols-4">
+        <Stat label="Valeur du fonds" demo={data.demo} value={<AnimatedNumber value={f.nav} kind="eur" />} sub={<><Change value={data.aiPerf.sinceInception} /> <span className="text-[11px] text-muted">depuis le début</span></>} />
+        <Stat
+          label="Face au marché"
+          value={<span className={vsMarket == null ? "" : vsMarket >= 0 ? "text-brand-600 dark:text-brand-500" : "text-danger"}>{vsMarket == null ? "—" : `${vsMarket >= 0 ? "+" : "−"}${Math.abs(vsMarket * 100).toFixed(1).replace(".", ",")} pts`}</span>}
+          sub={<span className="text-[12px] text-muted">MSCI World : {fmtPct(data.marketPerf)}</span>}
+        />
+        <Stat
+          label="Réserve de cash"
+          value={fmtShare(cashShare)}
+          sub={<span className={`text-[12px] ${cashShare > 0.15 ? "text-amber-700 dark:text-ai" : "text-muted"}`}>{cashShare > 0.15 ? "au-dessus des 10 % visés" : cashShare < 0.05 ? "sous le minimum de 5 %" : "visée : 10 %"}</span>}
+        />
+        <Stat
+          label={book.risk ? "Risque du fonds" : "Positions"}
+          value={book.risk ? `${Math.round(book.risk.vol * 100)} %/an` : String(book.positions.length)}
+          sub={<span className="text-[12px] text-muted">{book.risk ? "volatilité · visée 13-20 %" : `dans ${new Set(book.positions.map((p) => p.sleeve)).size} poches`}</span>}
+        />
       </div>
 
-      <Reveal delay={150} className="order-1 md:order-2">
-        <div className="card-p">
-          <SectionTitle>Évolution du fonds IA</SectionTitle>
-          <PerfChart data={data.series} mode="ai" contributions={data.contributions} />
-        </div>
-      </Reveal>
-
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 order-3">
-        <Reveal delay={120} className="lg:col-span-2">
-          <div className="card-p overflow-x-auto">
-            <SectionTitle>Positions & thèses</SectionTitle>
-            {f.holdings.length === 0 ? (
-              <p className="text-sm text-muted">100 % cash — aucune position ouverte.</p>
-            ) : (
-              <table className="w-full text-sm row-hover">
-                <thead>
-                  <tr className="label border-b border-line">
-                    <th className="py-2 text-left font-semibold">Titre</th>
-                    <th className="text-right font-semibold hidden sm:table-cell">Qté</th>
-                    <th className="text-right font-semibold">Cours</th>
-                    <th className="text-right font-semibold hidden sm:table-cell">Poids</th>
-                    <th className="text-right font-semibold">P&L</th>
-                    <th className="text-left font-semibold pl-4 hidden lg:table-cell">Thèse</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {f.holdings.map((h) => (
-                    <tr key={h.ticker} className="border-b border-line/60 align-top">
-                      <td className="py-2.5"><TickerCell ticker={h.ticker} /></td>
-                      <td className="text-right tabular-nums hidden sm:table-cell">{h.quantity}</td>
-                      <td className="text-right tabular-nums">{h.price != null ? `${h.price} €` : "—"}</td>
-                      <td className="text-right tabular-nums text-muted hidden sm:table-cell">{pct(h.weight).replace("+", "")}</td>
-                      <td className={`text-right tabular-nums ${h.pnlPct >= 0 ? "up" : "down"}`}>{pct(h.pnlPct)}</td>
-                      <td className="pl-4 text-slate-600 hidden lg:table-cell">{h.thesis ?? "—"}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            )}
-          </div>
-        </Reveal>
-        <Reveal delay={180}>
-          <div className="card-p">
-            <SectionTitle>Allocation</SectionTitle>
-            <AllocationDonut slices={slices} total={f.nav} />
-          </div>
-        </Reveal>
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
+        <Card className="lg:col-span-7">
+          <CardHead icon={BookOpenCheck} title="L'IA face au marché" sub="Performance du fonds IA comparée au MSCI World, depuis le départ." />
+          <DuelChart points={data.perf} show={["ai", "market"]} height={260} />
+        </Card>
+        <Card className="lg:col-span-5">
+          <CardHead icon={PieChart} title="Où est l'argent" sub="Chaque poche face à sa cible (le repère) et sa plage autorisée (la zone grisée)." />
+          <SleeveBars sleeves={book.sleeves} />
+        </Card>
       </div>
 
-      <Reveal delay={120} className="order-4">
-        <div className="card-p">
-          <SectionTitle>Journal des décisions (fictif)</SectionTitle>
-          {trades.length === 0 ? (
-            <p className="text-sm text-muted">Aucun trade enregistré.</p>
-          ) : (
-            <ul className="space-y-3">
-              {[...trades].reverse().slice(0, 12).map((t, i) => (
-                <li key={i} className="flex gap-3 border-b border-line/60 pb-3 last:border-0">
-                  <span className={`chip ${t.side === "buy" ? "bg-brand/10 text-brand-600" : "bg-danger/10 text-danger"}`}>
-                    {t.side === "buy" ? "Achat" : "Vente"}
-                  </span>
-                  <div className="min-w-0">
-                    <div className="text-sm">
-                      <TickerCell ticker={t.ticker} /> · {t.quantity} @ {t.price} €{" "}
-                      <span className="text-muted">· {t.ts}</span>
-                    </div>
-                    <div className="text-sm text-slate-600">{t.rationale}</div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      </Reveal>
+      <Card>
+        <CardHead icon={Layers} title="Les positions et leurs raisons" sub="Touchez une ligne pour voir pourquoi l'IA la détient et ce qui la ferait vendre." right={<DemoTag show={data.demo} />} />
+        {book.positions.length === 0 ? <p className="text-sm text-muted">100 % cash — aucune position ouverte.</p> : <PositionsBySleeve positions={book.positions} />}
+      </Card>
+
+      <BuyZones items={zones.items} demo={zones.demo} />
+
+      <div id="journal" className="scroll-mt-24">
+        <Card>
+          <CardHead icon={ScrollText} title="Journal des décisions" sub="Chaque achat et chaque vente, avec la raison en une phrase." />
+          <TradesJournal trades={book.trades} />
+        </Card>
+      </div>
     </div>
   );
 }
+

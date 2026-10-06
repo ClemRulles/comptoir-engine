@@ -57,6 +57,7 @@ export interface NavSnapshot {
 
 export type Confidence = "Haute" | "Moyenne" | "Basse";
 export type Horizon = "coeur" | "tactique";
+export type Sleeve = "coeur" | "socle" | "tactique" | "crypto";
 
 // memory/catalysts.md — calendrier des événements datés (rempli le lundi, re-validé le vendredi).
 export interface CatalystRow {
@@ -112,6 +113,11 @@ export interface AiFundFile {
     entry_date?: string;
     target?: number;
     exit_rule?: string;
+    entry_price_source?: string;
+    sleeve?: Sleeve;
+    desk?: string;
+    sector?: string;
+    theme?: string;
   }[];
   trades: {
     ts: string;
@@ -123,6 +129,9 @@ export interface AiFundFile {
     confidence?: Confidence;
     thesis_id?: string;
     horizon?: Horizon;
+    sleeve?: Sleeve;
+    desk?: string;
+    fee?: number;
   }[];
   note?: string;
 }
@@ -206,8 +215,11 @@ export interface TickerSignals {
 }
 export interface MarketRegime {
   label: string;
-  score: number | null;
+  score: number | null | { stress?: number; heat?: number };
   cash_floor?: number;
+  cash_target?: number;
+  cash_ceiling?: number;
+  sleeves?: Partial<Record<Sleeve | "cash", number>>;
   fear_greed?: number | null;
   flags?: string[];
   ok?: boolean;
@@ -243,10 +255,14 @@ export interface GrokPulseWeek {
   movers?: GrokPulseMover[];
   sources?: string[];
 }
+// La routine écrit `entries` (plus récente d'abord) ; d'anciennes versions écrivaient `weeks`.
+// L'interface lit les deux — avant ce correctif, `entries` était ignoré et la page affichait
+// le pouls de DÉMO en production.
 export interface GrokPulseFile {
   _doc?: string;
   updated?: string;
-  weeks: GrokPulseWeek[];
+  weeks?: GrokPulseWeek[];
+  entries?: (GrokPulseWeek & { crypto_note?: string; note?: string; source?: string })[];
 }
 
 // ── Radar crypto (CoinGecko + Fear & Greed) — engine: memory/fund/crypto.json ──
@@ -287,9 +303,114 @@ export interface ConvictionItem {
   thesis: string;              // thèse en une ligne
   risk?: string;               // le risque qui invaliderait la thèse
   date?: string;               // date d'analyse
+  headline?: string;           // thèse en ≤ 15 mots, sans jargon (routine ≥ 2026-10)
+  sleeve?: Sleeve;
+  desk?: string;
+  price?: number;              // cours au moment de l'analyse (devise de cotation)
+  currency?: string;
+  buy_zone?: BuyZone | null;   // zone d'achat (method §N)
+}
+
+export interface BuyZone {
+  low: number;
+  high: number;
+  currency?: string;
+  basis?: string;
 }
 export interface ConvictionsFile {
   _doc?: string;
   updated?: string;
   items: ConvictionItem[];
+}
+
+// ── La semaine EN CLAIR — memory/fund/digest.json (routine du vendredi) ──
+export interface DigestDecision {
+  date: string;
+  ticker: string;
+  name?: string;
+  action: "achat" | "vente" | "renforcement" | "allegement" | "conserver" | "surveiller" | string;
+  sleeve?: Sleeve;
+  desk?: string;
+  why: string;
+  risk?: string;
+  confidence?: Confidence;
+  amount_eur?: number;
+  weight_pct?: number;
+}
+export interface DigestFile {
+  updated?: string;
+  week?: string;
+  posture?: { label: string; tone?: "offensif" | "neutre" | "defensif"; line?: string };
+  headline?: string;
+  points?: { title: string; text: string; kind?: "marche" | "portefeuille" | "risque" | "opportunite" }[];
+  decisions?: DigestDecision[];
+  next?: { date: string; label: string; why?: string }[];
+  in_one_sentence?: string;
+}
+
+// ── Le monde en clair — memory/fund/news.json (lundi + jeudi) ──
+export type NewsCategory =
+  | "politique-us" | "geopolitique" | "banques-centrales" | "macro" | "entreprises"
+  | "energie" | "crypto" | "regulation" | "investisseurs";
+export interface NewsImpact {
+  target: string;
+  kind?: "ticker" | "secteur";
+  direction: "positif" | "negatif" | "incertain";
+  held?: boolean;
+}
+export interface NewsItem {
+  id: string;
+  date: string;
+  category: NewsCategory | string;
+  title: string;
+  summary: string;
+  why?: string;
+  impact?: NewsImpact[];
+  ai_take?: string;
+  importance?: 1 | 2 | 3;
+  sources?: { name: string; url?: string }[];
+}
+export interface NewsFile {
+  updated?: string;
+  items: NewsItem[];
+}
+
+// ── Ce que font les pros — memory/fund/pros.json (engine/pros.js, SEC 13F-HR) ──
+export interface ProMove {
+  issuer: string;
+  cusip?: string;
+  action: "nouvelle" | "renforce" | "allege" | "sortie";
+  weight_pct: number;
+  prev_weight_pct?: number | null;
+  shares_change_pct: number | null;
+}
+export interface ProInvestor {
+  cik: string;
+  investor: string;
+  fund: string;
+  style?: string;
+  filed: string;
+  period: string;
+  prev_period?: string | null;
+  age_days?: number;
+  stale?: boolean;
+  n_positions: number;
+  top: { issuer: string; weight_pct: number }[];
+  moves: ProMove[];
+  source?: string;
+}
+export interface ProsFile {
+  updated?: string;
+  investors: ProInvestor[];
+}
+
+// ── Allocation par poche — memory/fund/allocation.json (engine/risk.js) ──
+export interface AllocationFile {
+  updated?: string;
+  regime?: string;
+  nav_eur?: number;
+  sleeves?: Record<Sleeve | "cash", { weight: number; target: number; min: number; max: number; drift: number }>;
+  risk?: { vol_annual: number; max_drawdown_1y: number } | null;
+  drawdown?: { current: number; guard_triggered: boolean } | null;
+  alerts?: string[];
 }

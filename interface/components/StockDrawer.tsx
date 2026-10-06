@@ -249,10 +249,19 @@ function Drawer({ state, onClose }: { state: DrawerState; onClose: () => void })
         className={`fixed inset-x-0 bottom-0 z-50 mx-auto max-w-2xl rounded-t-3xl bg-card shadow-2xl transition-transform duration-300 ${
           open ? "" : "pointer-events-none"
         }`}
+        aria-hidden={!open}
         style={{
           height: "92vh",
           transform: open ? `translateY(${dragY}px)` : "translateY(100%)",
-          transition: startY.current != null ? "none" : undefined,
+          // Fermé : masqué APRÈS la glissade (hors lecteurs d'écran, focus et captures pleine
+          // page — un tiroir simplement translaté restait visible en bas des longues pages).
+          visibility: open ? "visible" : "hidden",
+          transition:
+            startY.current != null
+              ? "none"
+              : open
+              ? "transform 300ms cubic-bezier(0.22,1,0.36,1), visibility 0s"
+              : "transform 300ms cubic-bezier(0.22,1,0.36,1), visibility 0s linear 300ms",
         }}
       >
         {/* Poignée (zone de glissement) */}
