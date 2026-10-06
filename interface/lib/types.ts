@@ -348,6 +348,13 @@ export interface DigestFile {
   in_one_sentence?: string;
 }
 
+// ── Les deux carrés de l'accueil — memory/fund/spotlight.json (vendredi + lundi) ──
+export interface SpotlightFile {
+  updated?: string | null;
+  invest?: { date?: string; week?: string; value?: string; ticker?: string | null; line?: string; confidence?: Confidence | null };
+  watch?: { date?: string; kind?: "chiffre" | "news"; value?: string; label?: string; line?: string };
+}
+
 // ── Le monde en clair — memory/fund/news.json (lundi + jeudi) ──
 export type NewsCategory =
   | "politique-us" | "geopolitique" | "banques-centrales" | "macro" | "entreprises"

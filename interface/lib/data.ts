@@ -1,4 +1,5 @@
 import { currentRule, type ContribRule } from "./contrib-rule";
+import type { SpotlightFile } from "./types";
 import { createClient } from "@/lib/supabase/server";
 import {
   fetchAiFund,
@@ -15,9 +16,10 @@ import {
   fetchNews,
   fetchPros,
   fetchAllocation,
+  fetchRepoJson,
 } from "@/lib/github";
 import { perfSeries, seriesStart, summarize, windowReturn, type PerfPoint, type PerfSummary } from "@/lib/perf";
-import { firstSentence, inferSleeve, regimePlain, sleeveTargets, SLEEVES } from "@/lib/insights";
+import { firstSentence, fmtDay, inferSleeve, regimePlain, sleeveTargets, SLEEVES } from "@/lib/insights";
 import { fetchPrices } from "@/lib/prices";
 import { fetchYahooChanges, fetchYahooHistory, fetchYahooNative } from "@/lib/yahoo";
 import {
@@ -39,6 +41,7 @@ import {
   DEMO_AI_PRICES,
   DEMO_SIGNALS,
   DEMO_DIGEST,
+  DEMO_SPOTLIGHT,
   DEMO_NEWS,
   DEMO_PROS,
   DEMO_MARKET,
@@ -1148,4 +1151,79 @@ export function adviceFor(map: Record<string, GroupAdvice>, ticker: string): Gro
   const base = t.split(".")[0];
   const hit = Object.keys(map).find((k) => k.split(".")[0] === base);
   return hit ? map[hit] : null;
+}
+
+// ── Les deux carrés de l'accueil : sur quoi l'IA investirait, et ce qu'elle a à l'œil ──────
+// Source : memory/fund/spotlight.json (vendredi → invest, lundi → watch). À défaut, dérivés du
+// digest (décisions de la semaine), de l'actualité et de l'agenda. Le week-end, le second carré
+// annonce le grand rendez-vous de la semaine qui vient.
+export interface SpotTile {
+  eyebrow: string;
+  value: string;
+  label?: string;
+  sub?: string;
+  href: string;
+  tone: "buy" | "none" | "watch" | "event";
+  fresh: boolean; // écrit dans les dernières 36 h → pastille « nouveau »
+}
+export interface SpotlightView {
+  demo: boolean;
+  phrase: string;
+  posture: { label: string; tone: "offensif" | "neutre" | "defensif" };
+  tiles: [SpotTile, SpotTile];
+}
+
+const parisToday = () => new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Paris", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+const parisWeekday = () => new Intl.DateTimeFormat("en-US", { timeZone: "Europe/Paris", weekday: "short" }).format(new Date());
+const ageDays = (d?: string | null) => (d ? (Date.parse(parisToday()) - Date.parse(String(d).slice(0, 10))) / 86_400_000 : Infinity);
+const clip = (t: string | undefined, n: number) => (t ? firstSentence(t, n) : undefined);
+
+export async function getSpotlight(week: WeekView, world: WorldView): Promise<SpotlightView> {
+  const file: SpotlightFile | null = week.demo ? DEMO_SPOTLIGHT : await fetchRepoJson<SpotlightFile>("memory/fund/spotlight.json");
+  const weekend = ["Sat", "Sun"].includes(parisWeekday());
+
+  // Carré 1 — investir.
+  let invest: SpotTile;
+  const inv = file?.invest;
+  if (inv?.value && ageDays(inv.date) <= 9) {
+    const none = /^rien$/i.test(inv.value.trim());
+    invest = {
+      eyebrow: weekend ? "La semaine prochaine, l'IA investirait sur" : "Cette semaine, l'IA investirait sur",
+      value: none ? "RIEN" : inv.value,
+      label: !none && inv.ticker && inv.ticker !== inv.value ? inv.ticker : undefined,
+      sub: clip(inv.line, 90),
+      href: "/ia#analyses",
+      tone: none ? "none" : "buy",
+      fresh: ageDays(inv.date) <= 1.5,
+    };
+  } else {
+    const buy = week.decisions.find((d) => ["achat", "renforcement"].includes(String(d.action)) && ageDays(d.date) <= 7);
+    invest = buy
+      ? { eyebrow: "Cette semaine, l'IA a misé sur", value: buy.name || buy.ticker, label: buy.name ? buy.ticker : undefined, sub: clip(buy.why, 90), href: "/ia#analyses", tone: "buy", fresh: ageDays(buy.date) <= 1.5 }
+      : { eyebrow: "Cette semaine, l'IA investirait sur", value: "RIEN", sub: clip(week.headline ?? week.posture.line, 90), href: "/ia#analyses", tone: "none", fresh: false };
+  }
+
+  // Carré 2 — à l'œil (en semaine) / le grand rendez-vous (le week-end).
+  const next = week.next.find((n) => ageDays(n.date) <= 0);
+  const w = file?.watch;
+  const news = world.news.find((n) => n.importance === 1) ?? world.news[0];
+  let watch: SpotTile;
+  if (weekend && next) {
+    watch = { eyebrow: "La semaine prochaine, à surveiller", value: fmtDay(next.date), label: next.label, sub: clip(next.why, 80), href: "/monde#agenda", tone: "event", fresh: false };
+  } else if (w?.value && ageDays(w.date) <= 8) {
+    watch = { eyebrow: "L'IA a l'œil sur", value: w.value, label: w.label, sub: clip(w.line, 90), href: "/monde", tone: "watch", fresh: ageDays(w.date) <= 1.5 };
+  } else if (news) {
+    watch = { eyebrow: "L'IA a l'œil sur", value: news.title, sub: clip(news.ai_take || news.why, 90), href: "/monde", tone: "watch", fresh: ageDays(news.date) <= 1.5 };
+  } else if (next) {
+    watch = { eyebrow: "Prochain rendez-vous", value: fmtDay(next.date), label: next.label, sub: clip(next.why, 80), href: "/monde#agenda", tone: "event", fresh: false };
+  } else {
+    watch = { eyebrow: "L'IA a l'œil sur", value: week.posture.label, sub: clip(week.posture.line, 90), href: "/monde", tone: "watch", fresh: false };
+  }
+
+  return {
+    demo: week.demo,
+    phrase: week.headline ?? week.posture.line,
+    posture: { label: week.posture.label, tone: week.posture.tone },
+    tiles: [invest, watch],
+  };
 }

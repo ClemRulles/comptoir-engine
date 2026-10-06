@@ -1,5 +1,6 @@
 import { Layers, PieChart, ScrollText } from "lucide-react";
-import { getAppData, getBook, getBuyZones, getClubData } from "@/lib/data";
+import { getAppData, getBook, getBuyZones, getClubData, getWeek } from "@/lib/data";
+import { DecisionsCard, WeekCard, WindowsStrip } from "@/components/home";
 import { HeroFund } from "@/components/HeroFund";
 import { PositionsBySleeve, SleeveBars, TradesJournal } from "@/components/book";
 import { BuyZones } from "@/components/zones";
@@ -12,7 +13,7 @@ export default async function IaPage() {
   const data = await getAppData();
   const book = await getBook(data);
   const held = [...data.group.holdings, ...data.ai.holdings].map((h) => h.ticker);
-  const [zones, club] = await Promise.all([getBuyZones(held), getClubData()]);
+  const [zones, club, week] = await Promise.all([getBuyZones(held), getClubData(), getWeek(book)]);
   const f = data.ai;
   const cashShare = f.nav ? f.cash / f.nav : 0;
   const vsMarket = data.marketPerf == null ? null : data.aiPerf.sinceInception - data.marketPerf;
@@ -45,6 +46,18 @@ export default async function IaPage() {
         demo={data.demo}
         contrib={club.rule}
       />
+
+      {/* Les analyses de la semaine — là où mènent les deux carrés de l'accueil. */}
+      <section id="analyses" className="grid scroll-mt-24 grid-cols-1 gap-5 lg:grid-cols-12">
+        <div className="lg:col-span-5">
+          <WeekCard week={week} />
+        </div>
+        <div className="lg:col-span-7">
+          <DecisionsCard decisions={week.decisions} demo={week.demo} href="#journal" />
+        </div>
+      </section>
+
+      <WindowsStrip />
 
       <div className="grid grid-cols-2 gap-3 md:gap-4 xl:grid-cols-4">
         <Stat

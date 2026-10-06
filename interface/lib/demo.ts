@@ -1,4 +1,4 @@
-import type { AiFundFile, Calibration, ClubMember, Contribution, ConvictionsFile, CryptoFile, Decision, DigestFile, GrokPulseWeek, MarketSignals, NewsFile, ProsFile } from "./types";
+import type { AiFundFile, Calibration, ClubMember, Contribution, ConvictionsFile, CryptoFile, Decision, DigestFile, GrokPulseWeek, MarketSignals, NewsFile, ProsFile, SpotlightFile } from "./types";
 import { CLONE_SHARES, DEMO_FLOWS, REAL_PRICES_EUR, REAL_SERIES } from "./demo-history";
 import { perMemberFor } from "./contrib-rule";
 
@@ -114,6 +114,13 @@ export const DEMO_BRIEF = `# Brief de la semaine — démo
 
 ## En une phrase
 On arrête de payer le prix d'être trop prudent : investi, diversifié, chaque achat a son prix plafond.`;
+
+// Les deux carrés de l'accueil (spotlight.json) — démo, cohérents avec le brief démo.
+export const DEMO_SPOTLIGHT: SpotlightFile = {
+  updated: inDays(-1),
+  invest: { date: inDays(-3), value: "Raytheon", ticker: "RTX", line: "Carnet de commandes record et action en repli : achat validé dès que le cash se libère.", confidence: "Moyenne" },
+  watch: { date: inDays(-1), kind: "chiffre", value: "5,2 %", label: "Taux à 10 ans américain", line: "Il pèse sur les valeurs chères : on n'achète qu'avec une vraie marge." },
+};
 
 // La semaine EN CLAIR (digest.json) — démo, réécriture fidèle du brief réel du 3 octobre.
 export const DEMO_DIGEST: DigestFile = {

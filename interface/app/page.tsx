@@ -1,10 +1,11 @@
-import { getAppData, getBook, getClubData, getMovers, getWeek, getWorld, MEMORY_STALE_DAYS } from "@/lib/data";
+import { getAppData, getBook, getClubData, getMovers, getSpotlight, getWeek, getWorld, MEMORY_STALE_DAYS } from "@/lib/data";
+import { getQuizState } from "@/lib/quiz";
 import { AllocationDonut } from "@/components/Charts";
 import { TopMovers } from "@/components/TopMovers";
-import { AgendaCard, DecisionsCard, WeekCard, WindowsStrip, WorldPreview } from "@/components/home";
+import { QuizCard } from "@/components/QuizCard";
+import { Spotlight } from "@/components/Spotlight";
 import { HeroFund } from "@/components/HeroFund";
 import { Card, CardHead, MoreLink } from "@/components/ui";
-import { ProsBoard } from "@/components/world";
 import { Activity, PieChart } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -13,7 +14,8 @@ export default async function DashboardPage() {
   const data = await getAppData();
   const heldTickers = [...data.group.holdings, ...data.ai.holdings].map((h) => h.ticker);
   const book = await getBook(data);
-  const [week, world, movers, club] = await Promise.all([getWeek(book), getWorld(heldTickers), getMovers(heldTickers), getClubData()]);
+  const [week, world, movers, club, quiz] = await Promise.all([getWeek(book), getWorld(heldTickers), getMovers(heldTickers), getClubData(), getQuizState()]);
+  const spotlight = await getSpotlight(week, world);
   const g = data.group;
   const slices = [...g.holdings.map((h) => ({ name: h.ticker, value: h.marketValue })), { name: "Cash", value: g.cash }].filter((x) => x.value > 0);
   // Indice MSCI World (base 1) aligné sur les dates du fonds — pour « le marché a fait… ».
@@ -47,6 +49,11 @@ export default async function DashboardPage() {
         contrib={club.rule}
       />
 
+      {/* Ce qui saute aux yeux en 10 secondes ; les analyses détaillées sont sur la page Fonds IA. */}
+      <Spotlight view={spotlight} />
+
+      <QuizCard quiz={quiz.quiz} initialReveal={quiz.reveal} initialStats={quiz.stats} demo={quiz.demo} ready={quiz.ready} />
+
       <Card>
         <CardHead
           icon={PieChart}
@@ -56,27 +63,6 @@ export default async function DashboardPage() {
         />
         <AllocationDonut slices={slices} total={g.nav} row />
       </Card>
-
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
-        <div className="lg:col-span-5">
-          <WeekCard week={week} />
-        </div>
-        <div className="lg:col-span-7">
-          <DecisionsCard decisions={week.decisions} demo={week.demo} />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
-        <div className="lg:col-span-7">
-          <WorldPreview world={world} />
-        </div>
-        <div className="flex flex-col gap-5 lg:col-span-5">
-          <AgendaCard items={week.next} demo={week.demo} />
-          <ProsBoard pros={world.pros} demo={world.demo} updated={world.prosUpdated} compact />
-        </div>
-      </div>
-
-      <WindowsStrip />
 
       <Card>
         <CardHead icon={Activity} title="Ce qui bouge aujourd'hui" sub="Plus fortes variations du jour parmi les titres détenus." />

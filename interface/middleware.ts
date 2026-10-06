@@ -5,6 +5,7 @@ import { NextResponse, type NextRequest } from "next/server";
 // Public: /login, /api/cron/* et /api/memory/* (protégés par leur propre CRON_SECRET).
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
+  let refreshed = false;
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -17,6 +18,7 @@ export async function middleware(request: NextRequest) {
         return request.cookies.getAll();
       },
       setAll(cookiesToSet: { name: string; value: string; options?: any }[]) {
+        refreshed = true;
         cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
         response = NextResponse.next({ request });
         cookiesToSet.forEach(({ name, value, options }) =>
@@ -42,6 +44,18 @@ export async function middleware(request: NextRequest) {
     const redirect = request.nextUrl.clone();
     redirect.pathname = "/login";
     return NextResponse.redirect(redirect);
+  }
+
+  // Rester connecté : la connexion se fait dans le navigateur, qui écrit le cookie de session
+  // en JavaScript — et Safari (iPhone) efface ces cookies-là au bout de 7 jours. On le réécrit
+  // donc côté serveur à chaque ouverture de page (400 jours, la durée maximale), sauf si
+  // Supabase vient de le renouveler lui-même dans cette requête.
+  if (user && !refreshed && request.method === "GET" && (request.headers.get("accept") ?? "").includes("text/html")) {
+    const secure = request.nextUrl.protocol === "https:";
+    for (const c of request.cookies.getAll()) {
+      if (!c.name.startsWith("sb-") || !c.name.includes("-auth-token") || c.name.endsWith("code-verifier")) continue;
+      response.cookies.set(c.name, c.value, { path: "/", maxAge: 400 * 24 * 60 * 60, sameSite: "lax", secure, httpOnly: false });
+    }
   }
 
   return response;

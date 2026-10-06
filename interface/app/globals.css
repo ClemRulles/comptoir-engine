@@ -284,6 +284,24 @@ body {
 ::-webkit-scrollbar-thumb { background: rgb(var(--scrollbar)); border-radius: 8px; }
 
 /* Respecte la préférence « réduire les animations ». */
+/* Quiz du jour : bonne réponse = petit « pop » + éclats ; mauvaise = secousse. */
+.quiz-pop { animation: quiz-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+.quiz-shake { animation: quiz-shake 0.42s ease-in-out; }
+@keyframes quiz-pop { 0% { transform: scale(1); } 40% { transform: scale(1.035); } 100% { transform: scale(1); } }
+@keyframes quiz-shake { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-5px); } 40%, 80% { transform: translateX(5px); } }
+.quiz-burst { display: flex; align-items: center; justify-content: center; }
+.quiz-burst i {
+  position: absolute; left: 50%; top: 50%; width: 7px; height: 7px; border-radius: 9999px;
+  background: #16a34a; opacity: 0;
+  animation: quiz-burst 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--d) forwards;
+}
+.quiz-burst i:nth-child(3n) { background: #8b5cf6; }
+.quiz-burst i:nth-child(3n + 1) { background: #f59e0b; }
+@keyframes quiz-burst {
+  0% { opacity: 1; transform: rotate(var(--a)) translateY(0) scale(1); }
+  100% { opacity: 0; transform: rotate(var(--a)) translateY(-120px) scale(0.4); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
 }

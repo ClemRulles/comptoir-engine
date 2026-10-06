@@ -59,7 +59,8 @@ export default async function MondePage() {
 
       <MarketPulse weeks={pulse.weeks} demo={pulse.demo} />
 
-      <Card>
+      <Card className="scroll-mt-24" as="section">
+        <span id="agenda" className="relative -top-24 block" aria-hidden />
         <CardHead icon={CalendarDays} title="Le calendrier" sub="Les événements datés des prochaines semaines et la posture de l'IA pour chacun." right={<DemoTag show={cat.demo} />} />
         <CatalystsList upcoming={cat.upcoming} past={cat.past} />
       </Card>

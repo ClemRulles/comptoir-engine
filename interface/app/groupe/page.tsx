@@ -10,14 +10,17 @@ import { TickerCell } from "@/components/StockDrawer";
 import { Badge, Card, CardHead, Change, DemoTag, PageHeader, Stat, fmtEur, fmtPct, fmtShare } from "@/components/ui";
 import { fmtDay } from "@/lib/insights";
 import { ruleSentence } from "@/lib/contrib-rule";
+import { getQuizBoard } from "@/lib/quiz";
+import { QuizLeaderboard } from "@/components/QuizLeaderboard";
 
 export const dynamic = "force-dynamic";
 
 const STATUS_TONE: Record<string, "good" | "ai" | "bad" | "neutral"> = { INTACT: "good", "À SURVEILLER": "ai", SORTIE: "bad" };
 const STATUS_LABEL: Record<string, string> = { INTACT: "Thèse intacte", "À SURVEILLER": "À surveiller", SORTIE: "L'IA vendrait" };
 
-export default async function GroupePage() {
-  const [data, club, advice] = await Promise.all([getAppData(), getClubData(), getGroupAdvice()]);
+export default async function GroupePage({ searchParams }: { searchParams: Promise<{ quiz?: string }> }) {
+  const { quiz: quizMonth } = await searchParams;
+  const [data, club, advice, board] = await Promise.all([getAppData(), getClubData(), getGroupAdvice(), getQuizBoard(quizMonth)]);
   const f = data.group;
   const slices = [...f.holdings.map((h) => ({ name: h.ticker, value: h.marketValue })), { name: "Cash", value: f.cash }].filter((s) => s.value > 0);
   const rows = f.holdings.map((h) => ({ h, a: adviceFor(advice.byTicker, h.ticker) }));
@@ -51,6 +54,8 @@ export default async function GroupePage() {
         <Stat label="Cash" value={fmtEur(f.cash)} sub={<span className="text-[12px] text-muted">{fmtShare(cashShare)} du fonds</span>} />
         <Stat label="Positions" value={String(f.holdings.length)} sub={<span className="text-[12px] text-muted">{alerts.length} à regarder</span>} />
       </div>
+
+      <QuizLeaderboard board={board} />
 
       {alerts.length > 0 && (
         <Card className="border-ai/30">
