@@ -1,10 +1,9 @@
-import { BookOpenCheck, Layers, PieChart, ScrollText } from "lucide-react";
+import { Layers, PieChart, ScrollText } from "lucide-react";
 import { getAppData, getBook, getBuyZones } from "@/lib/data";
-import { DuelChart } from "@/components/DuelChart";
+import { HeroFund } from "@/components/HeroFund";
 import { PositionsBySleeve, SleeveBars, TradesJournal } from "@/components/book";
 import { BuyZones } from "@/components/zones";
-import { AnimatedNumber } from "@/components/AnimatedNumber";
-import { Card, CardHead, Change, DemoTag, MoreLink, PageHeader, Stat, fmtPct, fmtShare } from "@/components/ui";
+import { Card, CardHead, DemoTag, MoreLink, PageHeader, Stat, fmtPct, fmtShare } from "@/components/ui";
 import { regimePlain } from "@/lib/insights";
 
 export const dynamic = "force-dynamic";
@@ -18,6 +17,9 @@ export default async function IaPage() {
   const cashShare = f.nav ? f.cash / f.nav : 0;
   const vsMarket = data.marketPerf == null ? null : data.aiPerf.sinceInception - data.marketPerf;
   const rp = regimePlain(book.regime);
+  const marketIndex = data.perf.some((p) => p.market != null)
+    ? Object.fromEntries(data.perf.filter((p) => p.market != null).map((p) => [p.date, 1 + (p.market as number)]))
+    : null;
 
   return (
     <div className="flex flex-col gap-5 md:gap-6">
@@ -33,8 +35,17 @@ export default async function IaPage() {
         right={<MoreLink href="/apprentissages">Ce que l&apos;IA a appris</MoreLink>}
       />
 
+      <HeroFund
+        title="Fonds IA"
+        points={data.series.filter((p) => p.ai != null).map((p) => ({ date: p.date, v: p.ai as number }))}
+        aiPoints={data.series.filter((p) => p.group != null).map((p) => ({ date: p.date, v: p.group as number }))}
+        compare={{ label: "Notre fonds", href: "/groupe", tone: "group" }}
+        flows={data.contributions}
+        market={marketIndex}
+        demo={data.demo}
+      />
+
       <div className="grid grid-cols-2 gap-3 md:gap-4 xl:grid-cols-4">
-        <Stat label="Valeur du fonds" demo={data.demo} value={<AnimatedNumber value={f.nav} kind="eur" />} sub={<><Change value={data.aiPerf.sinceInception} /> <span className="text-[11px] text-muted">depuis le début</span></>} />
         <Stat
           label="Face au marché"
           value={<span className={vsMarket == null ? "" : vsMarket >= 0 ? "text-brand-600 dark:text-brand-500" : "text-danger"}>{vsMarket == null ? "—" : `${vsMarket >= 0 ? "+" : "−"}${Math.abs(vsMarket * 100).toFixed(1).replace(".", ",")} pts`}</span>}
@@ -50,18 +61,13 @@ export default async function IaPage() {
           value={book.risk ? `${Math.round(book.risk.vol * 100)} %/an` : String(book.positions.length)}
           sub={<span className="text-[12px] text-muted">{book.risk ? "volatilité · visée 13-20 %" : `dans ${new Set(book.positions.map((p) => p.sleeve)).size} poches`}</span>}
         />
+        <Stat label="Mouvements" value={String(book.trades.length)} sub={<span className="text-[12px] text-muted">depuis le départ</span>} />
       </div>
 
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
-        <Card className="lg:col-span-7">
-          <CardHead icon={BookOpenCheck} title="L'IA face au marché" sub="Performance du fonds IA comparée au MSCI World, depuis le départ." />
-          <DuelChart points={data.perf} show={["ai", "market"]} height={260} />
-        </Card>
-        <Card className="lg:col-span-5">
-          <CardHead icon={PieChart} title="Où est l'argent" sub="Chaque poche face à sa cible (le repère) et sa plage autorisée (la zone grisée)." />
-          <SleeveBars sleeves={book.sleeves} />
-        </Card>
-      </div>
+      <Card>
+        <CardHead icon={PieChart} title="Où est l'argent" sub="Chaque poche face à sa cible (le repère) et sa plage autorisée (la zone grisée)." />
+        <SleeveBars sleeves={book.sleeves} />
+      </Card>
 
       <Card>
         <CardHead icon={Layers} title="Les positions et leurs raisons" sub="Touchez une ligne pour voir pourquoi l'IA la détient et ce qui la ferait vendre." right={<DemoTag show={data.demo} />} />

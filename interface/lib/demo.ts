@@ -1,4 +1,5 @@
 import type { AiFundFile, Calibration, ClubMember, Contribution, ConvictionsFile, CryptoFile, Decision, DigestFile, GrokPulseWeek, MarketSignals, NewsFile, ProsFile } from "./types";
+import { CLONE_SHARES, DEMO_FLOWS, REAL_PRICES_EUR, REAL_SERIES } from "./demo-history";
 
 // Données de DÉMONSTRATION (affichées tant que Supabase n'est pas branché).
 // Clairement étiquetées « Démo » dans l'UI — remplacées par les vraies données en prod.
@@ -11,37 +12,20 @@ const daysAgo = (n: number) => iso(new Date(Date.now() - n * DAY));
 const inDays = (n: number) => iso(new Date(Date.now() + n * DAY));
 export const DEMO_INCEPTION_DAYS = 120;
 
-// Cours € (par part) des titres des deux books.
-export const DEMO_PRICES: Record<string, number> = {
-  // book du groupe (quantité 1 par ligne → cours = valeur de la ligne)
-  "SAF.PA": 813.87, "HO.PA": 695.8, AMZN: 718.84, NFLX: 519.57, EIMI: 470.17, AI: 442.08,
-  LOTB: 463.65, BYD: 340.43, CI2: 360.25, "BNP.PA": 339.07, "SGO.PA": 257.4, SAP: 280.03,
-  NOVOB: 214.45, MSTR: 273.62, "RMS.PA": 115.73,
-  // book IA (vraies parts)
-  EME: 693.24, CB: 294.03, GVA: 105.78, MSCI: 491.41, CEG: 238.1, "GLE.PA": 68.13,
-  "IWDA.AS": 131.6, "BTC-EUR": 76578.84, "ETH-EUR": 2417.46, RTX: 163.99,
-};
-// Clés « book IA » distinctes pour les titres communs aux deux books (cours réels par part).
-const AI_PX: Record<string, number> = { "SAF.PA": 331.6, AMZN: 223.67, EIMI: 49.97, AI: 168.92, LOTB: 12220, "BNP.PA": 95.13 };
+// Cours € réels (dernière séance de la reconstitution, lib/demo-history.ts).
+export const DEMO_PRICES: Record<string, number> = { ...REAL_PRICES_EUR };
+export const DEMO_AI_PRICES = DEMO_PRICES; // mêmes cours par part pour les deux fonds
 
-// Positions réelles du groupe (Trade Republic) — coût base € par ligne (portfolio.md).
-const GROUP_BOOK = [
-  { ticker: "SAF.PA", quantity: 1, avg_cost: 805.2 },
-  { ticker: "HO.PA", quantity: 1, avg_cost: 805.04 },
-  { ticker: "AMZN", quantity: 1, avg_cost: 602.0 },
-  { ticker: "NFLX", quantity: 1, avg_cost: 742.03 },
-  { ticker: "EIMI", quantity: 1, avg_cost: 401.0 },
-  { ticker: "AI", quantity: 1, avg_cost: 402.54 },
-  { ticker: "LOTB", quantity: 1, avg_cost: 300.99 },
-  { ticker: "BYD", quantity: 1, avg_cost: 401.08 },
-  { ticker: "CI2", quantity: 1, avg_cost: 401.0 },
-  { ticker: "BNP.PA", quantity: 1, avg_cost: 252.0 },
-  { ticker: "SGO.PA", quantity: 1, avg_cost: 352.46 },
-  { ticker: "SAP", quantity: 1, avg_cost: 401.0 },
-  { ticker: "NOVOB", quantity: 1, avg_cost: 301.15 },
-  { ticker: "MSTR", quantity: 1, avg_cost: 402.0 },
-  { ticker: "RMS.PA", quantity: 1, avg_cost: 201.81 },
-];
+// Positions du groupe : les parts du clone du 8 juin, coût base € (Trade Republic) ramené par part.
+const COST_BASE: Record<string, number> = {
+  "SAF.PA": 805.2, "HO.PA": 805.04, AMZN: 602, NFLX: 742.03, EIMI: 401, AI: 402.54, LOTB: 300.99, BYD: 401.08,
+  CI2: 401, "BNP.PA": 252, "SGO.PA": 352.46, SAP: 401, NOVOB: 301.15, MSTR: 402, "RMS.PA": 201.81,
+};
+const GROUP_BOOK = Object.entries(CLONE_SHARES).map(([ticker, quantity]) => ({
+  ticker,
+  quantity: Math.round(quantity * 10000) / 10000,
+  avg_cost: Math.round((COST_BASE[ticker] / quantity) * 100) / 100,
+}));
 
 export const DEMO_GROUP = {
   name: "Fonds du groupe",
@@ -50,110 +34,60 @@ export const DEMO_GROUP = {
   holdings: GROUP_BOOK,
 };
 
-// Book IA : les 12 lignes réelles + l'état visé par le mandat (socle, crypto, un coup tactique,
-// cash ramené vers 10 %). Les titres communs avec le groupe utilisent leur cours par part.
+// Book IA RÉEL (memory/fund/ai-fund.json, début octobre 2026), thèses réécrites en clair.
 type P = AiFundFile["positions"][number];
 const pos = (p: P): P => p;
 const AI_POSITIONS: P[] = [
-  pos({ ticker: "EME", quantity: 1.09, avg_cost: 662.33, entry_price: 662.33, confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-industrie-energie", sector: "Industrie", entry_date: daysAgo(38), thesis: "EMCOR installe l'électricité et la climatisation des data centers : carnet de commandes +44 % sur un an, marges deux fois plus élevées que le génie civil.", exit_rule: "Sortie si la marge passe durablement sous 8 % ou si le carnet recule de 15 %." }),
-  pos({ ticker: "CB", quantity: 2.4, avg_cost: 292.6, entry_price: 292.6, confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-finance", sector: "Assurance", entry_date: daysAgo(17), thesis: "Chubb, le meilleur assureur au monde sur la rentabilité technique, gagne plus quand les taux montent : son matelas de 100 Md$ se replace mieux.", exit_rule: "Sortie si l'assurance perd de l'argent deux trimestres de suite." }),
-  pos({ ticker: "AMZN", quantity: 3.1138, avg_cost: 208.8, entry_price: 219.5, entry_price_source: "clone 2026-06-08", confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-tech", sector: "Tech", entry_date: daysAgo(120), thesis: "AWS accélère (+37 % au T2) et la pub dope les marges : le cloud reste le moteur, l'investissement massif prépare la suite.", exit_rule: "Sortie si la croissance d'AWS passe sous 25 % ou si les investissements sont coupés de 15 %." }),
-  pos({ ticker: "GVA", quantity: 6.57, avg_cost: 110.33, entry_price: 110.33, confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-industrie-energie", sector: "Infrastructures", entry_date: daysAgo(52), thesis: "Granite construit routes et data centers aux États-Unis : carnet record de 7,4 Md$, marges qui s'améliorent, 17 fois les bénéfices.", exit_rule: "Sortie si le carnet passe sous 6,5 Md$ ou si la marge retombe sous 10 %." }),
-  pos({ ticker: "SAF.PA", quantity: 2.0929, avg_cost: 324.6, entry_price: 312.48, entry_price_source: "clone 2026-06-08", confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-industrie-energie", sector: "Aéronautique", entry_date: daysAgo(120), thesis: "Safran vit de la maintenance des moteurs d'avions : revenus récurrents +29 %, marge record, objectifs relevés.", exit_rule: "Sortie si la maintenance ralentit sous +20 % ou si l'objectif de marge est coupé." }),
-  pos({ ticker: "MSCI", quantity: 1.36, avg_cost: 535.4, entry_price: 535.4, confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-finance", sector: "Services financiers", entry_date: daysAgo(115), thesis: "Quasi-monopole des indices boursiers : 95 % des clients renouvellent chaque année, et la valorisation est sous sa moyenne historique.", exit_rule: "Sortie si le taux de renouvellement passe sous 93 %." }),
-  pos({ ticker: "CEG", quantity: 2.465, avg_cost: 252.49, entry_price: 252.49, confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-industrie-energie", sector: "Énergie", entry_date: daysAgo(108), thesis: "Premier producteur nucléaire américain : Microsoft, Meta et Amazon lui achètent son électricité sur 20 ans pour leurs data centers.", exit_rule: "Sortie si les géants de la tech coupent leurs investissements ou si le redémarrage de Crane glisse d'un an." }),
-  pos({ ticker: "AI", quantity: 3.0794, avg_cost: 165.25, entry_price: 167.79, entry_price_source: "clone 2026-06-08", confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-industrie-energie", sector: "Chimie", entry_date: daysAgo(120), thesis: "Air Liquide, valeur défensive qui compose : contrats de 15 ans indexés, rentabilité du capital au-dessus de 10 %.", exit_rule: "Sortie si la rentabilité passe durablement sous 8 %." }),
-  pos({ ticker: "LOTB", quantity: 0.0394, avg_cost: 7642.82, entry_price: 10940, entry_price_source: "clone 2026-06-08", confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-conso", sector: "Consommation", entry_date: daysAgo(120), thesis: "Lotus (Biscoff) : une marque premium qui gagne des parts dans le monde, mais payée cher (44 fois les bénéfices) — d'où une petite ligne.", exit_rule: "Alléger si la valorisation dépasse 55 fois les bénéfices sans accélération des ventes." }),
-  pos({ ticker: "BNP.PA", quantity: 3.7222, avg_cost: 67.7, entry_price: 93.66, entry_price_source: "clone 2026-06-08", confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-finance", sector: "Banque", entry_date: daysAgo(120), thesis: "BNP profite de taux plus élevés : bénéfice +33 % au T2, banque diversifiée et peu chère.", exit_rule: "Sortie si le risque de crédit des banques européennes s'envole." }),
-  pos({ ticker: "GLE.PA", quantity: 1.01, avg_cost: 66.08, entry_price: 66.08, confidence: "Basse", horizon: "coeur", sleeve: "coeur", desk: "desk-finance", sector: "Banque", entry_date: daysAgo(10), thesis: "Société Générale se paie sous la valeur de ses actifs alors que sa rentabilité remonte à 12 % : pari de rattrapage, en petite taille.", exit_rule: "Sortie si la rentabilité repasse sous 8 %." }),
-  pos({ ticker: "EIMI", quantity: 9.7751, avg_cost: 41.02, entry_price: 46.52, entry_price_source: "clone 2026-06-08", confidence: "Moyenne", horizon: "coeur", sleeve: "socle", desk: "desk-macro", sector: "ETF Émergents", entry_date: daysAgo(120), thesis: "Les marchés émergents en un seul ETF : diversification hors États-Unis et Europe.", exit_rule: "Rééquilibrage seulement — pas de pari sur un titre." }),
-  pos({ ticker: "IWDA.AS", quantity: 9, avg_cost: 130.4, entry_price: 130.4, confidence: "Moyenne", horizon: "coeur", sleeve: "socle", desk: "desk-macro", sector: "ETF Monde", entry_date: daysAgo(3), thesis: "Le MSCI World porte l'exposition au marché en attendant que les convictions trouvent leur prix d'achat.", exit_rule: "Vendu en premier pour financer une nouvelle conviction." }),
-  pos({ ticker: "BTC-EUR", quantity: 0.0072, avg_cost: 75100, entry_price: 75100, confidence: "Moyenne", horizon: "coeur", sleeve: "crypto", desk: "desk-crypto", sector: "Crypto", entry_date: daysAgo(2), thesis: "Premier palier de la poche crypto : Bitcoin d'abord, acheté par étapes plutôt qu'en une fois.", exit_rule: "Pas de stop de prix : sortie si la détention devient interdite en Europe." }),
-  pos({ ticker: "ETH-EUR", quantity: 0.12, avg_cost: 2380, entry_price: 2380, confidence: "Basse", horizon: "coeur", sleeve: "crypto", desk: "desk-crypto", sector: "Crypto", entry_date: daysAgo(2), thesis: "Ether, la deuxième brique de la poche crypto, en plus petite taille que Bitcoin.", exit_rule: "Pas de stop de prix : sortie sur faille majeure du protocole." }),
-  pos({ ticker: "RTX", quantity: 2.4, avg_cost: 160.2, entry_price: 160.2, confidence: "Moyenne", horizon: "tactique", sleeve: "tactique", desk: "desk-tactique", sector: "Défense", entry_date: daysAgo(6), thesis: "Raytheon avant ses résultats du 20 : carnet record de 289 Md$, action revenue au plus bas après la trêve.", exit_rule: "Stop à −15 % ; sortie au plus tard 10 jours après les résultats." }),
+  pos({ ticker: "EME", quantity: 1.09, avg_cost: 662.33, entry_price: 662.33, confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-industrie-energie", sector: "Industrie", entry_date: "2026-08-29", thesis: "EMCOR installe l'électricité et la climatisation des data centers : carnet de commandes +44 % sur un an, marges deux fois plus élevées que le génie civil.", exit_rule: "Sortie si la marge passe durablement sous 8 % ou si le carnet recule de 15 %." }),
+  pos({ ticker: "CB", quantity: 2.4, avg_cost: 292.6, entry_price: 292.6, confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-finance", sector: "Assurance", entry_date: "2026-09-19", thesis: "Chubb, le meilleur assureur au monde sur la rentabilité technique, gagne plus quand les taux montent : ses 100 Md$ de réserves se replacent mieux.", exit_rule: "Sortie si l'assurance perd de l'argent deux trimestres de suite." }),
+  pos({ ticker: "AMZN", quantity: 3.1138, avg_cost: 208.8, entry_price: 219.5, entry_price_source: "clone 2026-06-08", confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-tech", sector: "Tech", entry_date: "2026-06-08", thesis: "AWS accélère (+37 % au T2) et la pub dope les marges : le cloud reste le moteur, l'investissement massif prépare la suite.", exit_rule: "Sortie si la croissance d'AWS passe sous 25 % ou si les investissements sont coupés de 15 %." }),
+  pos({ ticker: "GVA", quantity: 6.57, avg_cost: 110.33, entry_price: 110.33, confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-industrie-energie", sector: "Infrastructures", entry_date: "2026-08-15", thesis: "Granite construit routes et data centers aux États-Unis : carnet record de 7,4 Md$, marges qui s'améliorent, 17 fois les bénéfices.", exit_rule: "Sortie si le carnet passe sous 6,5 Md$ ou si la marge retombe sous 10 %." }),
+  pos({ ticker: "SAF.PA", quantity: 2.0929, avg_cost: 324.6, entry_price: 312.48, entry_price_source: "clone 2026-06-08", confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-industrie-energie", sector: "Aéronautique", entry_date: "2026-06-08", thesis: "Safran vit de la maintenance des moteurs d'avions : revenus récurrents +29 %, marge record, objectifs relevés.", exit_rule: "Sortie si la maintenance ralentit sous +20 % ou si l'objectif de marge est coupé." }),
+  pos({ ticker: "MSCI", quantity: 1.36, avg_cost: 535.4, entry_price: 535.4, confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-finance", sector: "Services financiers", entry_date: "2026-06-13", thesis: "Quasi-monopole des indices boursiers : 95 % des clients renouvellent chaque année, et la valorisation est sous sa moyenne historique.", exit_rule: "Sortie si le taux de renouvellement passe sous 93 %." }),
+  pos({ ticker: "CEG", quantity: 2.465, avg_cost: 252.49, entry_price: 252.49, confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-industrie-energie", sector: "Énergie", entry_date: "2026-06-20", thesis: "Premier producteur nucléaire américain : Microsoft, Meta et Amazon lui achètent son électricité sur 20 ans pour leurs data centers.", exit_rule: "Sortie si les géants de la tech coupent leurs investissements ou si le redémarrage de Crane glisse d'un an." }),
+  pos({ ticker: "AI", quantity: 3.0794, avg_cost: 165.25, entry_price: 167.79, entry_price_source: "clone 2026-06-08", confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-industrie-energie", sector: "Chimie", entry_date: "2026-06-08", thesis: "Air Liquide, valeur défensive qui compose : contrats de 15 ans indexés, rentabilité du capital au-dessus de 10 %.", exit_rule: "Sortie si la rentabilité passe durablement sous 8 %." }),
+  pos({ ticker: "LOTB", quantity: 0.0394, avg_cost: 7642.82, entry_price: 10940, entry_price_source: "clone 2026-06-08", confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-conso", sector: "Consommation", entry_date: "2026-06-08", thesis: "Lotus (Biscoff) : une marque premium qui gagne des parts dans le monde, mais payée cher (44 fois les bénéfices) — d'où une petite ligne.", exit_rule: "Alléger si la valorisation dépasse 55 fois les bénéfices sans accélération des ventes." }),
+  pos({ ticker: "BNP.PA", quantity: 3.7222, avg_cost: 67.7, entry_price: 93.66, entry_price_source: "clone 2026-06-08", confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-finance", sector: "Banque", entry_date: "2026-06-08", thesis: "BNP profite de taux plus élevés : bénéfice +33 % au T2, banque diversifiée et peu chère.", exit_rule: "Sortie si le risque de crédit des banques européennes s'envole." }),
+  pos({ ticker: "GLE.PA", quantity: 1.01, avg_cost: 66.08, entry_price: 66.08, confidence: "Basse", horizon: "coeur", sleeve: "coeur", desk: "desk-finance", sector: "Banque", entry_date: "2026-09-26", thesis: "Société Générale se paie sous la valeur de ses actifs alors que sa rentabilité remonte à 12 % : pari de rattrapage, en petite taille.", exit_rule: "Sortie si la rentabilité repasse sous 8 %." }),
+  pos({ ticker: "EIMI", quantity: 9.7751, avg_cost: 41.02, entry_price: 46.52, entry_price_source: "clone 2026-06-08", confidence: "Moyenne", horizon: "coeur", sleeve: "socle", desk: "desk-macro", sector: "ETF Émergents", entry_date: "2026-06-08", thesis: "Les marchés émergents en un seul ETF : diversification hors États-Unis et Europe.", exit_rule: "Rééquilibrage seulement — pas de pari sur un titre." }),
 ];
-// Cours côté IA : les titres communs au groupe sont valorisés à leur cours PAR PART.
-export const DEMO_AI_PRICES: Record<string, number> = { ...DEMO_PRICES, ...AI_PX };
 
+// Les vrais mouvements du book IA, raisons réécrites en clair.
+const T = (ts: string, side: "buy" | "sell", ticker: string, quantity: number, price: number, rationale: string, extra: Partial<AiFundFile["trades"][number]> = {}) => ({ ts, side, ticker, quantity, price, rationale, ...extra });
 export const DEMO_AI: AiFundFile = {
-  as_of: daysAgo(2),
+  as_of: "2026-10-03",
   seeded: true,
   start_capital: 10417.28,
-  cash: 1054.4,
+  cash: 3535.09,
   positions: AI_POSITIONS,
   trades: [
-    { ts: daysAgo(120), side: "buy", ticker: "SEED", quantity: 0, price: 0, rationale: "Départ : le book IA clone le groupe (mêmes lignes, même cash)." },
-    { ts: daysAgo(114), side: "sell", ticker: "MSTR", quantity: 1.355, price: 103.78, confidence: "Basse", horizon: "tactique", rationale: "Proxy bitcoin à levier : fondamentaux au plus bas et prime effondrée — thèse cassée, sortie." },
-    { ts: daysAgo(115), side: "buy", ticker: "MSCI", quantity: 1.36, price: 535.4, confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-finance", rationale: "Quasi-monopole des indices, 95 % de clients fidèles, valorisation sous sa moyenne : première conviction propre." },
-    { ts: daysAgo(108), side: "buy", ticker: "CEG", quantity: 2.926, price: 252.49, confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-industrie-energie", rationale: "Le nucléaire alimente l'IA : contrats de 20 ans avec Microsoft et Meta, action en repli de 35 % sur son plus haut." },
-    { ts: daysAgo(52), side: "buy", ticker: "GVA", quantity: 6.57, price: 110.33, confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-industrie-energie", rationale: "Le pari marges de Granite est livré (12,8 %), carnet record : relais de CRH sur les infrastructures américaines, moins cher." },
-    { ts: daysAgo(38), side: "buy", ticker: "EME", quantity: 1.09, price: 662.33, confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-industrie-energie", rationale: "EMCOR équipe l'intérieur des data centers : complémentaire de Granite, carnet +44 %, croissance raisonnablement payée." },
-    { ts: daysAgo(17), side: "buy", ticker: "CB", quantity: 2.4, price: 292.6, confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-finance", rationale: "La Fed a remonté ses taux : Chubb replace mieux ses 100 Md$ de réserves. Diversifie un book sans assureur." },
-    { ts: daysAgo(10), side: "buy", ticker: "GLE.PA", quantity: 1.01, price: 66.08, confidence: "Basse", horizon: "coeur", sleeve: "coeur", desk: "desk-finance", rationale: "Banque décotée dont la rentabilité remonte : petite ligne de rattrapage, confiance basse assumée." },
-    { ts: daysAgo(6), side: "buy", ticker: "RTX", quantity: 2.4, price: 160.2, confidence: "Moyenne", horizon: "tactique", sleeve: "tactique", desk: "desk-tactique", rationale: "Coup daté avant résultats : action au plus bas après la trêve, carnet de commandes record. Stop −15 %, sortie 10 jours après les résultats." },
-    { ts: daysAgo(3), side: "buy", ticker: "IWDA.AS", quantity: 9, price: 130.4, confidence: "Moyenne", horizon: "coeur", sleeve: "socle", desk: "desk-macro", rationale: "Le cash dépassait 30 % : premier palier vers 10 %. Sans conviction au bon prix, le surplus va à l'indice mondial." },
-    { ts: daysAgo(2), side: "buy", ticker: "BTC-EUR", quantity: 0.0072, price: 75100, confidence: "Moyenne", horizon: "coeur", sleeve: "crypto", desk: "desk-crypto", rationale: "Premier palier de la poche crypto (5 % visés en marché qui chauffe), acheté un dimanche de repli." },
-    { ts: daysAgo(2), side: "buy", ticker: "ETH-EUR", quantity: 0.12, price: 2380, confidence: "Basse", horizon: "coeur", sleeve: "crypto", desk: "desk-crypto", rationale: "Ether en complément de Bitcoin, taille plus petite : la poche reste majoritairement en Bitcoin." },
+    T("2026-06-08", "buy", "RECLONE", 0, 0, "Départ : le fonds IA clone le groupe (mêmes lignes, même cash)."),
+    T("2026-06-12", "sell", "MSTR", 1.3553, 103.78, "Bitcoin à levier : fondamentaux au plus bas et prime effondrée — thèse cassée, sortie.", { confidence: "Basse", horizon: "tactique" }),
+    T("2026-06-12", "sell", "BYD", 38.9712, 9.37, "Guerre des prix des voitures électriques : sortie (règle d'alors, depuis assouplie).", { confidence: "Moyenne" }),
+    T("2026-06-12", "sell", "SAP", 1.629, 139.9, "Cours cassé malgré un cloud solide : sortie mécanique (règle d'alors, depuis assouplie).", { confidence: "Moyenne" }),
+    T("2026-06-13", "buy", "MSCI", 1.36, 535.4, "Quasi-monopole des indices, 95 % de clients fidèles, valorisation sous sa moyenne : première conviction propre.", { confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-finance" }),
+    T("2026-06-20", "buy", "CEG", 2.926, 252.49, "Le nucléaire alimente l'IA : contrats de 20 ans avec Microsoft et Meta, action en repli de 35 % sur son plus haut.", { confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-industrie-energie" }),
+    T("2026-06-27", "buy", "CRH", 7.12, 102.39, "Leader américain des granulats, décoté face à ses pairs : pari sur les infrastructures.", { confidence: "Moyenne", horizon: "coeur", sleeve: "coeur" }),
+    T("2026-08-08", "buy", "AI", 1.7, 172.38, "Air Liquide sur repli technique, rentabilité confirmée : renfort d'un compounder défensif.", { confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-industrie-energie" }),
+    T("2026-08-14", "sell", "CRH", 7.12, 84.81, "Règle de sortie écrite à l'avance touchée : on la respecte, même si l'entreprise reste solide.", { confidence: "Moyenne", horizon: "coeur", sleeve: "coeur" }),
+    T("2026-08-15", "buy", "GVA", 6.57, 110.33, "Le pari marges de Granite est livré (12,8 %), carnet record : relais de CRH sur les infrastructures américaines, moins cher.", { confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-industrie-energie" }),
+    T("2026-08-29", "buy", "AMZN", 0.84, 231.28, "AWS +37 % : la thèse se confirme, retour à la taille normale.", { confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-tech" }),
+    T("2026-08-29", "buy", "EME", 1.09, 662.33, "EMCOR équipe l'intérieur des data centers : complémentaire de Granite, carnet +44 %, croissance raisonnablement payée.", { confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-industrie-energie" }),
+    T("2026-09-19", "buy", "CB", 2.4, 292.6, "La Fed a remonté ses taux : Chubb replace mieux ses 100 Md$ de réserves. Diversifie un fonds sans assureur.", { confidence: "Moyenne", horizon: "coeur", sleeve: "coeur", desk: "desk-finance" }),
+    T("2026-09-26", "buy", "GLE.PA", 1.01, 66.08, "Banque décotée dont la rentabilité remonte : petite ligne de rattrapage, confiance basse assumée.", { confidence: "Basse", horizon: "coeur", sleeve: "coeur", desk: "desk-finance" }),
   ],
-  note: "Données de démonstration — instantané début octobre 2026.",
+  note: "Données de démonstration — book IA réel début octobre 2026.",
 };
 
-// Série NAV JOURNALIÈRE (jours ouvrés) qui finit EXACTEMENT sur les NAV affichées par les cartes.
-// Les deux fonds sont confondus jusqu'à la 1re décision indépendante de l'IA (clone à t0).
-export function demoSeries(
-  groupNav: number,
-  aiNav: number,
-  start: number,
-  contributions: { date: string; amount: number }[]
-): { date: string; group: number; ai: number }[] {
-  const dates: string[] = [];
-  for (let k = DEMO_INCEPTION_DAYS; k >= 0; k--) {
-    const d = new Date(Date.now() - k * DAY);
-    const w = d.getUTCDay();
-    if (w !== 0 && w !== 6) dates.push(iso(d));
-  }
-  const N = dates.length;
-  const shape = (i: number, a: number, b: number, c: number) =>
-    Math.sin(i * a) * 0.006 + Math.sin(i * b + 1) * 0.014 - Math.exp(-Math.pow((i / N - c) * 7, 2)) * 0.012;
-  const build = (drift: number, a: number, b: number, c: number) => {
-    const out: number[] = [];
-    let nav = start;
-    for (let i = 0; i < N; i++) {
-      if (i > 0) {
-        const flow = contributions.filter((f) => f.date > dates[i - 1] && f.date <= dates[i]).reduce((s, f) => s + f.amount, 0);
-        nav = nav * (1 + drift + shape(i, a, b, c) - shape(i - 1, a, b, c)) + flow;
-      }
-      out.push(nav);
-    }
-    return out;
-  };
-  const solve = (target: number, a: number, b: number, c: number) => {
-    let lo = -0.01, hi = 0.01;
-    for (let it = 0; it < 60; it++) {
-      const mid = (lo + hi) / 2;
-      if (build(mid, a, b, c)[N - 1] < target) lo = mid; else hi = mid;
-    }
-    return build((lo + hi) / 2, a, b, c);
-  };
-  const g = solve(groupNav, 0.21, 0.07, 0.55);
-  const a = solve(aiNav, 0.17, 0.05, 0.62);
-  const split = Math.min(4, N - 1);
-  return dates.map((date, i) => ({
-    date,
-    group: Math.round(g[i] * 100) / 100,
-    ai: Math.round((i <= split ? g[i] : a[i]) * 100) / 100,
-  }));
+// Courbe : la reconstitution réelle (lib/demo-history.ts). Le dernier point est recalé par
+// demoData() sur la NAV des cartes, exactement comme le point « aujourd'hui » en production.
+export function demoSeries(): { date: string; group: number; ai: number }[] {
+  return REAL_SERIES.map(({ date, group, ai }) => ({ date, group, ai }));
 }
 
-// Indice MSCI World € (forme réelle de l'IWDA sur la période : ~+6,7 %).
-export function DEMO_MARKET(dates: string[]): Record<string, number> {
-  const out: Record<string, number> = {};
-  const N = dates.length;
-  dates.forEach((d, i) => {
-    const t = i / Math.max(1, N - 1);
-    out[d] = 123.3 * (1 + 0.067 * t + Math.sin(i * 0.13) * 0.008 - Math.exp(-Math.pow((t - 0.35) * 6, 2)) * 0.018);
-  });
-  return out;
+// MSCI World € (IWDA.AS) réel sur la même période.
+export function DEMO_MARKET(): Record<string, number> {
+  return Object.fromEntries(REAL_SERIES.map((p) => [p.date, p.market]));
 }
 
 export const DEMO_BRIEF = `# Brief de la semaine — démo
@@ -167,30 +101,31 @@ export const DEMO_BRIEF = `# Brief de la semaine — démo
 ## En une phrase
 On arrête de payer le prix d'être trop prudent : investi, diversifié, chaque achat a son prix plafond.`;
 
-// La semaine EN CLAIR (digest.json) — démo.
+// La semaine EN CLAIR (digest.json) — démo, réécriture fidèle du brief réel du 3 octobre.
 export const DEMO_DIGEST: DigestFile = {
-  updated: daysAgo(3),
-  week: "2026-W41",
-  posture: { label: "Investi mais sélectif", tone: "neutre", line: "Les taux montent : on garde des entreprises solides, on remet le cash au travail et on n'achète rien au-dessus de son prix plafond." },
-  headline: "Le book arrête de payer sa prudence : le cash passe de 35 % à 10 %, par paliers.",
+  updated: "2026-10-03",
+  week: "2026-W40",
+  posture: { label: "Investi mais prudent", tone: "neutre", line: "Inflation et taux à 10 ans vers 5,2 % : on garde des entreprises solides et on n'achète qu'avec une vraie marge de sécurité." },
+  headline: "Aucun achat cette semaine : les 12 lignes sont saines, mais 35 % du fonds dort encore en cash.",
   points: [
-    { title: "Les taux restent le sujet", text: "La Fed devrait encore monter ses taux fin octobre. Ça pèse sur les valeurs chères, ça aide nos assureurs et nos banques.", kind: "marche" },
-    { title: "Le cash se remet au travail", text: "35 % de cash coûtaient environ 6 points contre l'indice depuis juin. Premier palier : indice mondial et début de poche crypto.", kind: "portefeuille" },
-    { title: "Trois résultats à suivre", text: "Chubb, Raytheon puis Granite publient d'ici début novembre : ce sont les tests de nos thèses, pas des paris.", kind: "risque" },
+    { title: "Les taux restent le sujet", text: "La Fed pourrait encore monter ses taux fin octobre. Ça pèse sur les valeurs chères et aide nos assureurs et nos banques.", kind: "marche" },
+    { title: "Toutes les lignes au vert", text: "Pour la première fois depuis août, aucune position ne montre de signal d'alerte : rien à vendre.", kind: "portefeuille" },
+    { title: "Trop de cash", text: "35 % de cash ont coûté environ 6 points face au marché depuis juin. Le nouveau mandat le ramène à 10 %, par paliers.", kind: "risque" },
   ],
   decisions: [
-    { date: daysAgo(2), ticker: "BTC-EUR", name: "Bitcoin", action: "achat", sleeve: "crypto", desk: "desk-crypto", why: "Premier palier de la poche crypto, acheté par étapes : 5 % visés tant que le marché chauffe.", risk: "Une interdiction de détention en Europe.", confidence: "Moyenne", amount_eur: 540.7, weight_pct: 0.052 },
-    { date: daysAgo(3), ticker: "IWDA.AS", name: "MSCI World", action: "achat", sleeve: "socle", desk: "desk-macro", why: "Le cash dépassait 30 % : sans conviction au bon prix, le surplus va à l'indice mondial plutôt que de dormir.", risk: "Rien : c'est la position par défaut, vendue en premier pour financer une conviction.", confidence: "Moyenne", amount_eur: 1173.6, weight_pct: 0.113 },
-    { date: daysAgo(6), ticker: "RTX", name: "Raytheon", action: "achat", sleeve: "tactique", desk: "desk-tactique", why: "Action au plus bas après la trêve au Moyen-Orient alors que le carnet de commandes est record : on joue les résultats.", risk: "Stop à −15 % ; sortie 10 jours après les résultats.", confidence: "Moyenne", amount_eur: 384.5, weight_pct: 0.037 },
-    { date: daysAgo(6), ticker: "MCO", name: "Moody's", action: "surveiller", sleeve: "coeur", desk: "desk-finance", why: "Excellente entreprise, mais trop chère aujourd'hui : on achètera si le cours revient sous 420 $.", risk: "Une récession qui ferait chuter les émissions d'obligations.", confidence: "Moyenne" },
+    { date: "2026-10-01", ticker: "GVA", name: "Granite", action: "conserver", sleeve: "coeur", desk: "desk-industrie-energie", why: "Le financement des routes américaines continue et le carnet de commandes est record : la thèse tient.", risk: "Un carnet en recul aux résultats du 5 novembre.", confidence: "Moyenne" },
+    { date: "2026-10-01", ticker: "CEG", name: "Constellation", action: "conserver", sleeve: "coeur", desk: "desk-industrie-energie", why: "Objectifs relevés et contrats nucléaires de 20 ans : la baisse du cours vient des taux, pas de l'entreprise.", risk: "La dette du rachat de Calpine qui coûte plus cher.", confidence: "Moyenne" },
+    { date: "2026-10-01", ticker: "RTX", name: "Raytheon", action: "surveiller", sleeve: "coeur", desk: "desk-industrie-energie", why: "Carnet record de 289 Md$ et action en repli : achat validé, en attente de cash disponible.", risk: "Une paix durable qui ralentirait les commandes.", confidence: "Moyenne" },
+    { date: "2026-09-26", ticker: "GLE.PA", name: "Société Générale", action: "achat", sleeve: "coeur", desk: "desk-finance", why: "Banque décotée dont la rentabilité remonte : petite ligne, confiance basse assumée.", risk: "Une rentabilité qui repasserait sous 8 %.", confidence: "Basse", amount_eur: 66.74, weight_pct: 0.007 },
+    { date: "2026-09-19", ticker: "CB", name: "Chubb", action: "achat", sleeve: "coeur", desk: "desk-finance", why: "La Fed a monté ses taux : Chubb replace mieux ses réserves. Premier assureur du fonds.", risk: "Une assurance qui perd de l'argent deux trimestres de suite.", confidence: "Moyenne", amount_eur: 702.25, weight_pct: 0.069 },
   ],
   next: [
-    { date: inDays(14), label: "Résultats Chubb", why: "Test de la thèse assurance + taux." },
-    { date: inDays(14), label: "Résultats Raytheon", why: "Sortie du coup tactique au plus tard 10 jours après." },
-    { date: inDays(21), label: "Décision de la Fed", why: "Hausse attendue : banques et assureurs favorisés." },
-    { date: inDays(30), label: "Résultats Granite", why: "Carnet de commandes et marges : la thèse se joue là." },
+    { date: "2026-10-20", label: "Résultats Chubb", why: "Test de la thèse « taux hauts = revenus financiers »." },
+    { date: "2026-10-28", label: "Décision de la Fed", why: "Hausse attendue : banques et assureurs favorisés." },
+    { date: "2026-11-05", label: "Résultats Granite", why: "Carnet de commandes et marges : la thèse se joue là." },
+    { date: "2026-12-12", label: "Vote du financement des infrastructures", why: "Sans vote, on réduit le thème." },
   ],
-  in_one_sentence: "Investi, diversifié, et chaque achat a désormais son prix plafond.",
+  in_one_sentence: "Des lignes saines, un marché qui chauffe, et un cash à remettre au travail.",
 };
 
 // Le monde en clair (news.json) — démo, faits repris des fichiers mémoire du moteur.
@@ -200,10 +135,10 @@ export const DEMO_NEWS: NewsFile = {
     { id: "fed-hausse-octobre", date: daysAgo(1), category: "banques-centrales", title: "La Fed se prépare à remonter ses taux fin octobre", summary: "Les marchés donnent ~70 % de chances à une hausse lors de la réunion des 27-28 octobre ; le taux à 10 ans américain tient vers 5,2 %, un sommet depuis 2007.", why: "Des taux plus hauts rendent les actions chères moins attractives et profitent aux banques et assureurs.", impact: [{ target: "CB", kind: "ticker", direction: "positif", held: true }, { target: "BNP.PA", kind: "ticker", direction: "positif", held: true }, { target: "Valeurs de croissance chères", kind: "secteur", direction: "negatif" }], ai_take: "On garde nos financières et on n'achète aucune valeur chère avant la décision.", importance: 1, sources: [{ name: "CME FedWatch / Kalshi" }, { name: "FRED (T10Y)" }] },
     { id: "tarifs-section-301", date: daysAgo(5), category: "politique-us", title: "Washington remplace ses tarifs d'urgence par des tarifs ciblés", summary: "L'administration Trump bascule les droits de douane temporaires vers des tarifs « Section 301 » de 10 à 12,5 % sur une liste de produits, avec un calendrier d'application.", why: "Des tarifs prévisibles valent mieux que des tarifs surprises : le choc est connu, mais il pèse sur les exportateurs.", impact: [{ target: "EIMI", kind: "ticker", direction: "incertain", held: true }, { target: "Industriels exportateurs", kind: "secteur", direction: "negatif" }], ai_take: "Effet jugé neutre pour nos émergents ; on surveille les industriels européens exportateurs.", importance: 1, sources: [{ name: "USTR" }] },
     { id: "nucleaire-ppa-hyperscalers", date: daysAgo(4), category: "energie", title: "Amazon signe à son tour un contrat nucléaire de 20 ans", summary: "Après Microsoft et Meta, Amazon réserve 690 MW de la centrale de Calvert Cliffs pour ses data centers : quatre géants de la tech ont désormais signé des contrats nucléaires longs.", why: "L'électricité devient le goulot de l'IA : les producteurs bas carbone sécurisent des revenus sur deux décennies.", impact: [{ target: "CEG", kind: "ticker", direction: "positif", held: true }], ai_take: "Confirme la thèse Constellation ; pas de renfort tant que la dette (rachat de Calpine) n'est pas digérée.", importance: 1, sources: [{ name: "Communiqué Constellation" }] },
-    { id: "petrole-hormuz-treve", date: daysAgo(6), category: "geopolitique", title: "Trêve fragile au Moyen-Orient, pétrole toujours vers 107 $", summary: "Un cessez-le-feu ralentit le rallye des valeurs de défense ; le Brent reste élevé car le détroit d'Ormuz n'est pas pleinement sécurisé.", why: "Un pétrole cher entretient l'inflation, donc des taux hauts ; la trêve a fait baisser les valeurs de défense.", impact: [{ target: "RTX", kind: "ticker", direction: "incertain", held: true }, { target: "Énergie", kind: "secteur", direction: "positif" }], ai_take: "La baisse de Raytheon a ouvert le coup tactique ; on ne parie pas sur l'issue du conflit.", importance: 2, sources: [{ name: "Reuters" }] },
+    { id: "petrole-hormuz-treve", date: daysAgo(6), category: "geopolitique", title: "Trêve fragile au Moyen-Orient, pétrole toujours vers 107 $", summary: "Un cessez-le-feu ralentit le rallye des valeurs de défense ; le Brent reste élevé car le détroit d'Ormuz n'est pas pleinement sécurisé.", why: "Un pétrole cher entretient l'inflation, donc des taux hauts ; la trêve a fait baisser les valeurs de défense.", impact: [{ target: "RTX", kind: "ticker", direction: "incertain" }, { target: "Énergie", kind: "secteur", direction: "positif" }], ai_take: "La baisse de Raytheon le rend achetable : il est en liste, en attente de cash disponible.", importance: 2, sources: [{ name: "Reuters" }] },
     { id: "infra-iija-division-j", date: daysAgo(8), category: "politique-us", title: "Infrastructures : le Congrès prolonge le financement des routes", summary: "La loi de financement temporaire maintient les programmes routiers de la loi infrastructures ; seule une enveloppe complémentaire expire en attendant un vote avant le 12 décembre.", why: "Les chantiers déjà signés continuent : le risque de « falaise » budgétaire pour les constructeurs s'éloigne.", impact: [{ target: "GVA", kind: "ticker", direction: "positif", held: true }], ai_take: "Thèse Granite intacte ; décision finale à ses résultats début novembre.", importance: 2, sources: [{ name: "Congress.gov (P.L. 119-416)" }] },
     { id: "buffett-alphabet", date: daysAgo(50), category: "investisseurs", title: "Buffett renforce Alphabet, Ackman entre sur Microsoft", summary: "Les dernières déclarations officielles (13F, 2e trimestre) montrent Berkshire augmenter Alphabet de 83 % et Pershing Square ouvrir une ligne Microsoft à 15 % de son portefeuille.", why: "Deux investisseurs très sélectifs misent sur les géants de la tech rentables plutôt que sur les promesses.", impact: [{ target: "Méga-capitalisations tech", kind: "secteur", direction: "positif" }], ai_take: "Idée à instruire par le desk Tech, pas un signal : la photo date de fin juin.", importance: 3, sources: [{ name: "SEC EDGAR 13F-HR" }] },
-    { id: "crypto-greed", date: daysAgo(1), category: "crypto", title: "Le bitcoin rebondit, l'indice de sentiment repasse en « avidité »", summary: "Le Fear & Greed crypto remonte à 73 ; la dominance du bitcoin reste élevée à ~59 %.", why: "L'euphorie précède souvent les replis : c'est le moment d'acheter par petits paliers, pas d'un coup.", impact: [{ target: "BTC-EUR", kind: "ticker", direction: "incertain", held: true }], ai_take: "Palier normal cette semaine ; aucun achat au-dessus de 80 d'avidité.", importance: 3, sources: [{ name: "alternative.me" }, { name: "CoinGecko" }] },
+    { id: "crypto-greed", date: daysAgo(1), category: "crypto", title: "Le bitcoin rebondit, l'indice de sentiment repasse en « avidité »", summary: "Le Fear & Greed crypto remonte à 73 ; la dominance du bitcoin reste élevée à ~59 %.", why: "L'euphorie précède souvent les replis : c'est le moment d'acheter par petits paliers, pas d'un coup.", impact: [{ target: "BTC-EUR", kind: "ticker", direction: "incertain" }], ai_take: "Pas encore de poche crypto : elle démarrera par petits paliers, jamais au-dessus de 80 d'avidité.", importance: 3, sources: [{ name: "alternative.me" }, { name: "CoinGecko" }] },
   ],
 };
 
@@ -248,22 +183,10 @@ export const DEMO_MEMBERS: ClubMember[] = [
   { id: "m4", name: "Sam", joined_on: "2026-02-01", monthly_amount: 25, active: true },
 ];
 
-// Apports mensuels (le 5) depuis le départ : 4 membres × 25 €.
-export const DEMO_CONTRIBUTIONS: Contribution[] = (() => {
-  const out: Contribution[] = [];
-  const names = ["Clément", "Henri", "Alex", "Sam"];
-  const start = Date.now() - DEMO_INCEPTION_DAYS * DAY;
-  const d = new Date(start);
-  d.setUTCDate(5);
-  if (d.getTime() <= start) d.setUTCMonth(d.getUTCMonth() + 1);
-  let k = 0;
-  while (d.getTime() <= Date.now()) {
-    names.forEach((n, i) => out.push({ id: `c${k}-${i}`, member_id: `m${i + 1}`, member_name: n, ts: iso(d), amount: 25, note: "Apport mensuel" }));
-    d.setUTCMonth(d.getUTCMonth() + 1);
-    k++;
-  }
-  return out.reverse();
-})();
+// Apports (le 5 du mois) : 4 membres × 25 € — mêmes dates que la courbe reconstituée.
+export const DEMO_CONTRIBUTIONS: Contribution[] = DEMO_FLOWS.flatMap((f, k) =>
+  ["Clément", "Henri", "Alex", "Sam"].map((n, i) => ({ id: `c${k}-${i}`, member_id: `m${i + 1}`, member_name: n, ts: f.date, amount: f.amount / 4, note: "Apport mensuel" }))
+).reverse();
 
 export const DEMO_LESSONS = `# Journal d'apprentissage
 

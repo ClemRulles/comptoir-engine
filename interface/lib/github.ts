@@ -1,3 +1,4 @@
+import { cache } from "react";
 import type { AiFundFile, AllocationFile, Calibration, ConvictionsFile, CryptoFile, Decision, DecisionsFile, DigestFile, GrokPulseFile, MarketSignals, NewsFile, ProsFile } from "./types";
 
 const GH_REPO = process.env.GITHUB_REPO || "ClemRulles/comptoir-engine";
@@ -16,7 +17,11 @@ function readTokens(): string[] {
 // Lit un fichier texte du repo privé via l'API GitHub.
 // `ref` optionnel : un SHA de commit pour lire une VERSION PASSÉE du fichier
 // (sinon la branche runtime). Sert à la navigation par semaine (historique).
-export async function fetchRepoFile(path: string, ref?: string): Promise<string | null> {
+// Mémorisé PAR REQUÊTE (React cache) : une page qui lit ai-fund.json depuis trois blocs ne fait
+// qu'un appel GitHub — navigation plus rapide, surtout sur mobile.
+export const fetchRepoFile = cache(fetchRepoFileUncached);
+
+async function fetchRepoFileUncached(path: string, ref?: string): Promise<string | null> {
   const tokens = readTokens();
   if (!tokens.length) return null;
 

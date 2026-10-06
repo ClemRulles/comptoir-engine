@@ -1,80 +1,12 @@
 // home.tsx — les blocs de l'accueil v2 : la course, la semaine en clair, les décisions
 // expliquées, le monde qui compte, l'agenda et les fenêtres de décision.
 import { AlertTriangle, CalendarClock, Compass, Gavel, Globe2, Lightbulb, ShieldAlert, ShoppingCart, TrendingUp } from "lucide-react";
-import type { AppData, WeekView, WorldView } from "@/lib/data";
+import type { WeekView, WorldView } from "@/lib/data";
 import type { DigestDecision } from "@/lib/types";
 import { ACTION_LABEL, DESK_LABEL, SLEEVE_META, WINDOWS, fmtDay, nextBuyWindow } from "@/lib/insights";
 import { NewsRow } from "@/components/news";
 import { TickerCell } from "@/components/StockDrawer";
-import { DuelChart } from "@/components/DuelChart";
-import { AnimatedNumber } from "@/components/AnimatedNumber";
-import { Badge, Card, CardHead, Change, DemoTag, Empty, Explain, MoreLink, fmtEur, fmtPct, fmtShare } from "@/components/ui";
-
-// ── La course ────────────────────────────────────────────────────────────────────────
-export function HeroDuel({ data }: { data: AppData }) {
-  const ai = data.aiPerf.sinceInception;
-  const gr = data.groupPerf.sinceInception;
-  const spread = ai - gr;
-  const leader = Math.abs(spread) < 0.0005 ? "Égalité parfaite" : spread > 0 ? "L'IA mène" : "Le groupe mène";
-  const start = data.perf[0]?.date;
-  const mkt = data.marketPerf;
-  const vsMarket = mkt == null ? null : ai - mkt;
-
-  return (
-    <section className="card-hero overflow-hidden p-5 md:p-7 animate-fade-up">
-      <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-brand/10 blur-3xl" />
-      <div className="relative flex flex-col gap-6 lg:flex-row lg:items-stretch">
-        <div className="flex flex-col gap-5 lg:w-[38%]">
-          <div>
-            <div className="eyebrow flex items-center gap-2">
-              La course {start ? `depuis le ${fmtDay(start)}` : ""} <DemoTag show={data.demo} />
-            </div>
-            <div className="mt-2 text-[26px] font-semibold leading-tight tracking-tight md:text-[30px]">
-              {leader}
-              {Math.abs(spread) >= 0.0005 && (
-                <span className="num ml-2 text-muted">de {Math.abs(spread * 100).toFixed(1).replace(".", ",")} pts</span>
-              )}
-            </div>
-            <p className="mt-1.5 text-sm text-muted">
-              {mkt == null
-                ? "Performance des choix d'investissement, apports des membres neutralisés."
-                : `Le marché mondial a fait ${fmtPct(mkt)} sur la même période${vsMarket != null ? ` : l'IA est ${vsMarket >= 0 ? "devant" : "derrière"} de ${Math.abs(vsMarket * 100).toFixed(1).replace(".", ",")} pts` : ""}.`}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            <FundTile label="Fonds IA" dot="bg-series-ai" nav={data.ai.nav} perf={ai} week={data.aiPerf.week} gain={data.aiPerf.gainEur} />
-            <FundTile label="Fonds du groupe" dot="bg-series-group" nav={data.group.nav} perf={gr} week={data.groupPerf.week} gain={data.groupPerf.gainEur} />
-          </div>
-        </div>
-        <div className="min-w-0 flex-1">
-          <DuelChart points={data.perf} height={280} />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function FundTile({ label, dot, nav, perf, week, gain }: { label: string; dot: string; nav: number; perf: number; week: number | null; gain: number }) {
-  return (
-    <div className="well p-3.5">
-      <div className="flex items-center gap-1.5 text-[12px] font-medium text-muted">
-        <span className={`h-2 w-2 rounded-full ${dot}`} /> {label}
-      </div>
-      <div className="num mt-1 text-xl font-semibold md:text-2xl">
-        <AnimatedNumber value={nav} kind="eur" />
-      </div>
-      <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5">
-        <Change value={perf} />
-        <span className="text-[11px] text-muted">depuis le début</span>
-      </div>
-      <div className="mt-1.5 flex flex-wrap gap-x-3 text-[11px] text-muted">
-        <span>7 j : <b className="num text-ink">{fmtPct(week)}</b></span>
-        <span>gain : <b className="num text-ink">{fmtEur(gain)}</b></span>
-      </div>
-    </div>
-  );
-}
+import { Badge, Card, CardHead, DemoTag, Empty, Explain, MoreLink, fmtEur, fmtShare } from "@/components/ui";
 
 // ── La semaine en clair ──────────────────────────────────────────────────────────────
 const KIND_ICON = { marche: Globe2, portefeuille: TrendingUp, risque: ShieldAlert, opportunite: Lightbulb } as const;

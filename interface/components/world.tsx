@@ -4,6 +4,7 @@ import { Building2, Gauge, Landmark, TrendingDown, TrendingUp } from "lucide-rea
 import type { ProInvestor } from "@/lib/types";
 import { SLEEVE_META, fmtDay, regimePlain, sleeveTargets } from "@/lib/insights";
 import { Badge, Card, CardHead, DemoTag, Empty, Explain, MoreLink, fmtShare } from "@/components/ui";
+import { Paged } from "@/components/Paged";
 
 const ACTION = {
   nouvelle: { label: "Nouvelle ligne", tone: "good" as const, icon: TrendingUp },
@@ -51,45 +52,51 @@ export function ProsBoard({ pros, demo, updated, compact = false }: { pros: ProI
       {list.length === 0 ? (
         <Empty icon={Building2} title="Données 13F bientôt disponibles">La routine du lundi récupère les déclarations officielles de Buffett, Ackman, Druckenmiller et d&apos;autres.</Empty>
       ) : (
-        <ul className={compact ? "space-y-4" : "grid grid-cols-1 gap-4 md:grid-cols-2"}>
-          {list.map((p) => (
-            <li key={p.cik} className={compact ? "" : "well p-4"}>
-              <div className="flex items-baseline justify-between gap-2">
-                <div>
-                  <div className="text-sm font-semibold">{p.investor}</div>
-                  <div className="text-[12px] text-muted">
-                    {p.fund}
-                    {p.style ? ` · ${p.style}` : ""}
-                  </div>
-                </div>
-                <span className="shrink-0 text-[11px] text-muted">au {fmtDay(p.period)}</span>
-              </div>
-              <ul className="mt-2 space-y-1">
-                {p.moves.slice(0, compact ? 2 : 4).map((m, i) => {
-                  const a = ACTION[m.action];
-                  return (
-                    <li key={i} className="flex items-center gap-2 text-[13px]">
-                      <Badge tone={a.tone} className="w-[96px] justify-center">{a.label}</Badge>
-                      <span className="truncate font-medium">{issuerName(m.issuer)}</span>
-                      <span className="ml-auto shrink-0 text-[11px] text-muted num">{moveText(m)}</span>
-                    </li>
-                  );
-                })}
-              </ul>
-              {!compact && p.top.length > 0 && (
-                <div className="mt-3 text-[11px] leading-relaxed text-muted">
-                  Plus grosses lignes : {p.top.slice(0, 3).map((t) => `${issuerName(t.issuer)} ${fmtShare(t.weight_pct)}`).join(" · ")}
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
+        <Paged
+          pageSize={compact ? 3 : 4}
+          listClassName={compact ? "space-y-4" : "grid grid-cols-1 gap-4 md:grid-cols-2"}
+          items={list.map((p) => ({ key: p.cik, node: <ProRow p={p} compact={compact} /> }))}
+        />
       )}
       <div className="mt-3 flex items-center gap-2 text-[11px] text-muted">
         <DemoTag show={demo} label="Démo (données 13F réelles)" />
         {updated && !demo && <span>Relevé le {fmtDay(updated)} · source SEC EDGAR</span>}
       </div>
     </Card>
+  );
+}
+
+function ProRow({ p, compact }: { p: ProInvestor; compact: boolean }) {
+  return (
+    <li className={compact ? "" : "well p-4"}>
+      <div className="flex items-baseline justify-between gap-2">
+        <div>
+          <div className="text-sm font-semibold">{p.investor}</div>
+          <div className="text-[12px] text-muted">
+            {p.fund}
+            {p.style ? ` · ${p.style}` : ""}
+          </div>
+        </div>
+        <span className="shrink-0 text-[11px] text-muted">au {fmtDay(p.period)}</span>
+      </div>
+      <ul className="mt-2 space-y-1">
+        {p.moves.slice(0, compact ? 2 : 4).map((m, i) => {
+          const a = ACTION[m.action];
+          return (
+            <li key={i} className="flex items-center gap-2 text-[13px]">
+              <Badge tone={a.tone} className="w-[96px] justify-center">{a.label}</Badge>
+              <span className="truncate font-medium">{issuerName(m.issuer)}</span>
+              <span className="num ml-auto shrink-0 text-[11px] text-muted">{moveText(m)}</span>
+            </li>
+          );
+        })}
+      </ul>
+      {!compact && p.top.length > 0 && (
+        <div className="mt-3 text-[11px] leading-relaxed text-muted">
+          Plus grosses lignes : {p.top.slice(0, 3).map((t) => `${issuerName(t.issuer)} ${fmtShare(t.weight_pct)}`).join(" · ")}
+        </div>
+      )}
+    </li>
   );
 }
 

@@ -9,6 +9,7 @@ import type { Sleeve } from "@/lib/types";
 import { DESK_LABEL, SLEEVE_META, fmtDay } from "@/lib/insights";
 import { TickerCell } from "@/components/StockDrawer";
 import { Badge, Change, fmtEur, fmtShare } from "@/components/ui";
+import { Paged } from "@/components/Paged";
 
 // ── Répartition par poche ────────────────────────────────────────────────────────────
 export function SleeveBars({ sleeves }: { sleeves: SleeveView[] }) {
@@ -153,48 +154,45 @@ function Item({ k, v }: { k: string; v: string }) {
   );
 }
 
-// ── Journal des décisions ────────────────────────────────────────────────────────────
+// ── Journal des décisions (paginé par mois) ─────────────────────────────────────────
 export function TradesJournal({ trades }: { trades: TradeView[] }) {
-  const [all, setAll] = useState(false);
-  const [expanded, setExpanded] = useState<number | null>(null);
-  const list = all ? trades : trades.slice(0, 8);
   if (!trades.length) return <p className="text-sm text-muted">Aucun mouvement enregistré pour l&apos;instant.</p>;
   return (
-    <div>
-      <ol className="relative space-y-0 border-l border-line pl-5">
-        {list.map((t, i) => {
-          const buy = t.side === "buy";
-          const m = SLEEVE_META[t.sleeve];
-          const long = t.full && t.full.length > t.why.length + 20;
-          return (
-            <li key={`${t.ts}-${t.ticker}-${i}`} className="relative pb-5 last:pb-0">
-              <span className={`absolute -left-[27px] top-1 h-3 w-3 rounded-full ring-4 ring-card ${buy ? "bg-brand" : "bg-danger"}`} />
-              <div className="flex flex-wrap items-center gap-2 text-[13px]">
-                <span className={`rounded-md px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide ${buy ? "bg-brand/10 text-brand-600 dark:text-brand-500" : "bg-danger/10 text-danger"}`}>{buy ? "Achat" : "Vente"}</span>
-                <TickerCell ticker={t.ticker} logoSize={18} />
-                <span className="num text-muted">{fmtEur(t.amount)}</span>
-                <span className="inline-flex items-center gap-1 text-[11px] text-muted">
-                  <span className="h-1.5 w-1.5 rounded-full" style={{ background: m.color }} />
-                  {m.short}
-                </span>
-                <span className="ml-auto text-[11px] text-muted">{fmtDay(t.ts)}</span>
-              </div>
-              <p className="mt-1 text-[14px] leading-relaxed">{t.why}</p>
-              {long && (
-                <button type="button" onClick={() => setExpanded(expanded === i ? null : i)} className="mt-1 inline-flex items-center gap-1 text-[12px] font-medium text-muted hover:text-ink">
-                  <Info size={12} /> {expanded === i ? "Masquer le raisonnement complet" : "Raisonnement complet du moteur"}
-                </button>
-              )}
-              {expanded === i && <p className="mt-1.5 rounded-xl bg-elev px-3 py-2 text-[12px] leading-relaxed text-slate-600">{t.full}</p>}
-            </li>
-          );
-        })}
-      </ol>
-      {trades.length > 8 && (
-        <button type="button" onClick={() => setAll((v) => !v)} className="btn mt-4 w-full">
-          {all ? "Réduire" : `Voir les ${trades.length} mouvements`}
+    <Paged
+      by="month"
+      pageSize={8}
+      as="ol"
+      listClassName="relative space-y-0 border-l border-line pl-5"
+      items={trades.map((t, i) => ({ key: `${t.ts}-${t.ticker}-${i}`, month: t.ts.slice(0, 7), node: <TradeRow t={t} /> }))}
+    />
+  );
+}
+
+function TradeRow({ t }: { t: TradeView }) {
+  const [open, setOpen] = useState(false);
+  const buy = t.side === "buy";
+  const m = SLEEVE_META[t.sleeve];
+  const long = t.full && t.full.length > t.why.length + 20;
+  return (
+    <li className="relative pb-5 last:pb-0">
+      <span className={`absolute -left-[27px] top-1 h-3 w-3 rounded-full ring-4 ring-card ${buy ? "bg-brand" : "bg-danger"}`} />
+      <div className="flex flex-wrap items-center gap-2 text-[13px]">
+        <span className={`rounded-md px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide ${buy ? "bg-brand/10 text-brand-600 dark:text-brand-500" : "bg-danger/10 text-danger"}`}>{buy ? "Achat" : "Vente"}</span>
+        <TickerCell ticker={t.ticker} logoSize={18} />
+        <span className="num text-muted">{fmtEur(t.amount)}</span>
+        <span className="inline-flex items-center gap-1 text-[11px] text-muted">
+          <span className="h-1.5 w-1.5 rounded-full" style={{ background: m.color }} />
+          {m.short}
+        </span>
+        <span className="ml-auto text-[11px] text-muted">{fmtDay(t.ts)}</span>
+      </div>
+      <p className="mt-1 text-[14px] leading-relaxed">{t.why}</p>
+      {long && (
+        <button type="button" onClick={() => setOpen((v) => !v)} className="mt-1 inline-flex items-center gap-1 text-[12px] font-medium text-muted hover:text-ink">
+          <Info size={12} /> {open ? "Masquer le raisonnement complet" : "Raisonnement complet du moteur"}
         </button>
       )}
-    </div>
+      {open && <p className="mt-1.5 rounded-xl bg-elev px-3 py-2 text-[12px] leading-relaxed text-slate-600">{t.full}</p>}
+    </li>
   );
 }

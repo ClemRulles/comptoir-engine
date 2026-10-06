@@ -1,5 +1,6 @@
 "use client";
 
+import { Paged } from "@/components/Paged";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { ClubData } from "@/lib/data";
@@ -205,17 +206,24 @@ export function MembersManager({ club }: { club: ClubData }) {
         {contributions.length === 0 ? (
           <p className="text-sm text-muted">Aucun apport enregistré.</p>
         ) : (
-          <ul className="space-y-2">
-            {contributions.slice(0, 12).map((c) => (
-              <li key={c.id} className="flex items-center justify-between border-b border-line/60 pb-2 text-sm last:border-0">
-                <span>
-                  <strong>{c.member_name ?? "Collectif"}</strong>{" "}
-                  <span className="text-muted">· {String(c.ts).slice(0, 10)}{c.note ? ` · ${c.note}` : ""}</span>
-                </span>
-                <span className="tabular-nums font-semibold text-brand-600">+{eur(c.amount)}</span>
-              </li>
-            ))}
-          </ul>
+          <Paged
+            by="month"
+            pageSize={8}
+            listClassName="space-y-2"
+            items={contributions.map((c) => ({
+              key: c.id,
+              month: String(c.ts).slice(0, 7),
+              node: (
+                <li className="flex items-center justify-between border-b border-line/60 pb-2 text-sm last:border-0">
+                  <span>
+                    <strong>{c.member_name ?? "Collectif"}</strong>{" "}
+                    <span className="text-muted">· {String(c.ts).slice(0, 10)}{c.note ? ` · ${c.note}` : ""}</span>
+                  </span>
+                  <span className="tabular-nums font-semibold text-brand-600">+{eur(c.amount)}</span>
+                </li>
+              ),
+            }))}
+          />
         )}
       </div>
     </div>

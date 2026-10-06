@@ -97,7 +97,16 @@ export interface PerfSummary {
   invested: number; // capital de départ + apports
 }
 
-export function summarize(points: PerfPoint[], key: "group" | "ai", nav: number, invested: number): PerfSummary {
+// `start` = premier point de la courbe du fonds et apports versés APRÈS lui : le gain en € se
+// mesure sur la même base que la courbe (sinon « +82 € » sur la courbe et « +53 € » dans une
+// carte, selon qu'on part du premier relevé ou du capital déclaré).
+export function summarize(
+  points: PerfPoint[],
+  key: "group" | "ai",
+  nav: number,
+  invested: number,
+  start?: { nav: number; flowsAfter: number } | null
+): PerfSummary {
   const sinceInception = windowReturn(points, key);
   return {
     // Sans historique (fonds tout neuf), on retombe sur la définition simple : même résultat
@@ -105,7 +114,15 @@ export function summarize(points: PerfPoint[], key: "group" | "ai", nav: number,
     sinceInception: sinceInception ?? (invested ? (nav - invested) / invested : 0),
     week: trailingReturn(points, key, 7),
     month: trailingReturn(points, key, 30),
-    gainEur: nav - invested,
+    gainEur: start ? nav - start.nav - start.flowsAfter : nav - invested,
     invested,
   };
+}
+
+// Premier point d'un fonds dans la série + apports versés après ce point.
+export function seriesStart(series: FundPoint[], flows: Flow[], key: "group" | "ai"): { nav: number; flowsAfter: number } | null {
+  const first = series.find((p) => finite(p[key]) && (p[key] as number) > 0);
+  if (!first) return null;
+  const flowsAfter = flows.filter((f) => f.date > first.date && finite(f.amount)).reduce((s, f) => s + f.amount, 0);
+  return { nav: first[key] as number, flowsAfter };
 }

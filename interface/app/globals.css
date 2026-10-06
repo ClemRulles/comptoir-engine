@@ -58,6 +58,17 @@ body {
   background: rgb(var(--c-bg));
   color: rgb(var(--c-ink));
 }
+/* Toucher : pas de flash gris iOS, pas de délai de double-tap sur les contrôles. */
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+a,
+button,
+[role="button"],
+summary {
+  touch-action: manipulation;
+}
+
 /* Garde-fou mobile : aucun élément ne doit élargir la page (sinon le navigateur dézoome et la
    barre de navigation fixe sort de l'écran). */
 body {
@@ -110,6 +121,15 @@ body {
   }
   .num {
     @apply tabular-nums tracking-tight;
+  }
+  .pager-btn {
+    @apply flex h-8 w-8 items-center justify-center rounded-full border border-line bg-card text-muted transition-colors hover:text-ink disabled:pointer-events-none disabled:opacity-35;
+  }
+  .pager-num {
+    @apply h-8 min-w-8 rounded-full px-2 text-[13px] font-medium tabular-nums text-muted transition-colors hover:bg-bg hover:text-ink;
+  }
+  .pager-num-active {
+    @apply bg-ink text-card hover:bg-ink hover:text-card;
   }
   .link {
     @apply inline-flex items-center gap-1 text-sm font-medium text-brand-600 hover:text-brand dark:text-brand-500;
@@ -169,6 +189,62 @@ body {
     @apply absolute inset-0 -translate-x-full animate-shimmer;
     background-image: linear-gradient(90deg, transparent, rgb(var(--c-card) / 0.55), transparent);
   }
+}
+
+/* ── Odomètre (montant à rouleaux) ─────────────────────────────────────── */
+.odometer { line-height: 1; }
+.odo-col { display: inline-block; height: 1em; overflow: hidden; }
+.odo-strip { display: flex; flex-direction: column; transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1); will-change: transform; }
+.odo-digit { display: block; height: 1em; line-height: 1em; }
+.odo-static { display: inline-block; height: 1em; line-height: 1em; white-space: pre; }
+.odo-in { animation: odo-roll 1.25s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
+@keyframes odo-roll { from { transform: translateY(0%); } }
+
+/* ── Premier écran : halo, tracé, point vivant ───────────────────────────── */
+.hero-fund { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 40px 80px -40px rgba(16, 36, 56, 0.28); }
+.dark .hero-fund { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 40px 80px -40px rgba(0, 0, 0, 0.85); }
+.hero-aura::before,
+.hero-aura::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.7s ease;
+}
+.hero-aura::before {
+  background:
+    radial-gradient(90% 70% at 12% -5%, rgba(34, 197, 94, 0.22), transparent 60%),
+    radial-gradient(70% 55% at 95% 10%, rgba(132, 204, 22, 0.14), transparent 60%),
+    radial-gradient(60% 50% at 70% 100%, rgba(13, 148, 136, 0.10), transparent 70%);
+  opacity: 1;
+}
+.hero-aura::after {
+  background:
+    radial-gradient(90% 70% at 12% -5%, rgba(239, 68, 68, 0.17), transparent 60%),
+    radial-gradient(70% 55% at 95% 10%, rgba(249, 115, 22, 0.10), transparent 60%);
+  opacity: 0;
+}
+.hero-fund.is-down .hero-aura::before { opacity: 0; }
+.hero-fund.is-down .hero-aura::after { opacity: 1; }
+.hero-line { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hero-draw 1.5s cubic-bezier(0.65, 0, 0.35, 1) 0.1s forwards; }
+.hero-area { opacity: 0; animation: hero-fade 0.9s ease 0.6s forwards; }
+.hero-end { opacity: 0; animation: hero-fade 0.4s ease 1.45s forwards; }
+.hero-pulse { animation: hero-ring 2.2s cubic-bezier(0.22, 1, 0.36, 1) 1.6s infinite; }
+.hero-pill { animation: pop-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.hero-day { animation: pop-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both; }
+.is-up .hero-arrow { animation: hero-nudge-up 1.6s ease-in-out 1.2s 2; }
+.is-down .hero-arrow { animation: hero-nudge-down 1.6s ease-in-out 1.2s 2; }
+@keyframes hero-draw { to { stroke-dashoffset: 0; } }
+@keyframes hero-fade { to { opacity: 1; } }
+@keyframes hero-ring { 0% { transform: scale(1); opacity: 0.35; } 100% { transform: scale(2.6); opacity: 0; } }
+@keyframes hero-nudge-up { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(1px, -2px); } }
+@keyframes hero-nudge-down { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(1px, 2px); } }
+@keyframes pop-in { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: scale(1); } }
+
+/* ── Mobile : fluidité d'abord (les grands flous et les dérives coûtent cher au GPU) ── */
+@media (max-width: 767px) {
+  .ambient-blob { display: none; }
+  .card { box-shadow: 0 1px 2px rgba(16, 36, 56, 0.05); }
+  .dark .card { box-shadow: none; }
 }
 
 .up {

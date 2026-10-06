@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import type { NewsItem } from "@/lib/types";
 import { NEWS_CATEGORY } from "@/lib/insights";
 import { NewsRow } from "@/components/news";
+import { Paged } from "@/components/Paged";
 
 export function NewsFeed({ items }: { items: NewsItem[] }) {
   const [cat, setCat] = useState<string>("all");
@@ -25,15 +26,13 @@ export function NewsFeed({ items }: { items: NewsItem[] }) {
           Seulement ce qui touche nos lignes
         </label>
       </div>
-      {list.length === 0 ? (
-        <p className="well px-4 py-6 text-center text-sm text-muted">Rien dans ce filtre cette semaine.</p>
-      ) : (
-        <ul className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-          {list.map((n) => (
-            <NewsRow key={n.id} n={n} />
-          ))}
-        </ul>
-      )}
+      <Paged
+        key={`${cat}-${heldOnly}`}
+        pageSize={6}
+        listClassName="grid grid-cols-1 gap-4 lg:grid-cols-2"
+        items={list.map((n) => ({ key: n.id, node: <NewsRow n={n} /> }))}
+        empty={<p className="well px-4 py-6 text-center text-sm text-muted">Rien dans ce filtre cette semaine.</p>}
+      />
     </div>
   );
 }

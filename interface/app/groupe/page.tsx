@@ -1,9 +1,8 @@
-import { HandCoins, LineChart, ListChecks, PieChart, Stethoscope, Users } from "lucide-react";
+import { HandCoins, ListChecks, PieChart, Stethoscope, Users } from "lucide-react";
 import { adviceFor, getAppData, getClubData, getGroupAdvice } from "@/lib/data";
 import { eur } from "@/lib/fund";
 import { AllocationDonut } from "@/components/Charts";
-import { DuelChart } from "@/components/DuelChart";
-import { AnimatedNumber } from "@/components/AnimatedNumber";
+import { HeroFund } from "@/components/HeroFund";
 import { HoldingsEditor } from "@/components/HoldingsEditor";
 import { MembersManager } from "@/components/MembersManager";
 import { MaintenancePanel } from "@/components/MaintenancePanel";
@@ -23,6 +22,9 @@ export default async function GroupePage() {
   const rows = f.holdings.map((h) => ({ h, a: adviceFor(advice.byTicker, h.ticker) }));
   const alerts = rows.filter((r) => r.a && r.a.status !== "INTACT").sort((x, y) => (x.a!.status === "SORTIE" ? -1 : 0) - (y.a!.status === "SORTIE" ? -1 : 0));
   const cashShare = f.nav ? f.cash / f.nav : 0;
+  const marketIndex = data.perf.some((p) => p.market != null)
+    ? Object.fromEntries(data.perf.filter((p) => p.market != null).map((p) => [p.date, 1 + (p.market as number)]))
+    : null;
 
   return (
     <div className="flex flex-col gap-5 md:gap-6">
@@ -32,11 +34,20 @@ export default async function GroupePage() {
         lead="Les positions réelles du groupe, valorisées chaque jour. L'IA ne touche jamais à ce fonds : elle donne son avis, le groupe décide."
       />
 
+      <HeroFund
+        title="Fonds du groupe"
+        points={data.series.filter((p) => p.group != null).map((p) => ({ date: p.date, v: p.group as number }))}
+        aiPoints={data.series.filter((p) => p.ai != null).map((p) => ({ date: p.date, v: p.ai as number }))}
+        flows={data.contributions}
+        market={marketIndex}
+        demo={data.demo}
+      />
+
       <div className="grid grid-cols-2 gap-3 md:gap-4 xl:grid-cols-4">
-        <Stat label="Valeur du fonds" demo={data.demo} value={<AnimatedNumber value={f.nav} kind="eur" />} sub={<><Change value={data.groupPerf.sinceInception} /> <span className="text-[11px] text-muted">depuis le début</span></>} />
-        <Stat label="Gain net" value={fmtEur(data.groupPerf.gainEur)} sub={<span className="text-[12px] text-muted">hors apports · investi {fmtEur(data.groupPerf.invested)}</span>} />
-        <Stat label="Cette semaine" value={fmtPct(data.groupPerf.week)} sub={<span className="text-[12px] text-muted">IA : {fmtPct(data.aiPerf.week)}</span>} />
+        <Stat label="Gain net" value={<span className={data.groupPerf.gainEur >= 0 ? "text-brand-600 dark:text-brand-500" : "text-danger"}>{data.groupPerf.gainEur >= 0 ? "+" : "−"}{fmtEur(Math.abs(data.groupPerf.gainEur))}</span>} sub={<span className="text-[12px] text-muted">hors apports des membres</span>} />
+        <Stat label="Cette semaine" value={fmtPct(data.groupPerf.week)} sub={<span className="text-[12px] text-muted">performance sur 7 jours</span>} />
         <Stat label="Cash" value={fmtEur(f.cash)} sub={<span className="text-[12px] text-muted">{fmtShare(cashShare)} du fonds</span>} />
+        <Stat label="Positions" value={String(f.holdings.length)} sub={<span className="text-[12px] text-muted">{alerts.length} à regarder</span>} />
       </div>
 
       {alerts.length > 0 && (
@@ -58,16 +69,10 @@ export default async function GroupePage() {
         </Card>
       )}
 
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
-        <Card className="lg:col-span-8">
-          <CardHead icon={LineChart} title="Le groupe face au marché" sub="Performance pondérée dans le temps, apports neutralisés." />
-          <DuelChart points={data.perf} show={["group", "market"]} height={260} />
-        </Card>
-        <Card className="lg:col-span-4">
-          <CardHead icon={PieChart} title="Répartition" />
-          <AllocationDonut slices={slices} total={f.nav} />
-        </Card>
-      </div>
+      <Card>
+        <CardHead icon={PieChart} title="Répartition" />
+        <AllocationDonut slices={slices} total={f.nav} />
+      </Card>
 
       <Card className="overflow-x-auto">
         <CardHead icon={ListChecks} title="Positions" sub="Avec l'avis de l'IA ligne par ligne." />

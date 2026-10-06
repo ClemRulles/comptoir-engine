@@ -15,7 +15,7 @@ import {
   fetchPros,
   fetchAllocation,
 } from "@/lib/github";
-import { perfSeries, summarize, trailingReturn, windowReturn, type PerfPoint, type PerfSummary } from "@/lib/perf";
+import { perfSeries, seriesStart, summarize, windowReturn, type PerfPoint, type PerfSummary } from "@/lib/perf";
 import { firstSentence, inferSleeve, regimePlain, sleeveTargets, SLEEVES } from "@/lib/insights";
 import { fetchPrices } from "@/lib/prices";
 import { fetchYahooChanges, fetchYahooHistory, fetchYahooNative } from "@/lib/yahoo";
@@ -318,8 +318,8 @@ function withPerf(
   market: Record<string, number> | null
 ): AppData {
   const perf = perfSeries(base.series, base.contributions, market);
-  const groupPerf = summarize(perf, "group", base.group.nav, base.group.startCapital);
-  const aiPerf = summarize(perf, "ai", base.ai.nav, base.ai.startCapital);
+  const groupPerf = summarize(perf, "group", base.group.nav, base.group.startCapital, seriesStart(base.series, base.contributions, "group"));
+  const aiPerf = summarize(perf, "ai", base.ai.nav, base.ai.startCapital, seriesStart(base.series, base.contributions, "ai"));
   return {
     ...base,
     group: { ...base.group, perf: groupPerf.sinceInception },
@@ -341,7 +341,13 @@ function demoData(): AppData {
   const ai = enrich("ai", "Fonds IA", DEMO_AI.start_capital + apports, DEMO_AI.cash + apports, DEMO_AI.positions, DEMO_AI_PRICES);
   // Série démo construite pour finir EXACTEMENT sur les NAV affichées (sinon cartes et courbe
   // divergent — c'était le cas : cartes « −0,0 % », courbe « IA +8 % »).
-  const series = demoSeries(group.nav, ai.nav, DEMO_GROUP.startCapital, contributions);
+  const series = demoSeries();
+  // Comme en production : le dernier point de la courbe = la valeur affichée par les cartes.
+  const lastPt = series[series.length - 1];
+  if (lastPt) {
+    lastPt.group = group.nav;
+    lastPt.ai = ai.nav;
+  }
   return withPerf(
     {
       configured: false,
@@ -354,7 +360,7 @@ function demoData(): AppData {
       aiBookReadable: true,
       memoryAgeDays: 0,
     },
-    DEMO_MARKET(series.map((p) => p.date))
+    DEMO_MARKET()
   );
 }
 

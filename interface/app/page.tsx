@@ -1,6 +1,7 @@
 import { getAppData, getBook, getMovers, getWeek, getWorld, MEMORY_STALE_DAYS } from "@/lib/data";
 import { TopMovers } from "@/components/TopMovers";
-import { AgendaCard, DecisionsCard, HeroDuel, WeekCard, WindowsStrip, WorldPreview } from "@/components/home";
+import { AgendaCard, DecisionsCard, WeekCard, WindowsStrip, WorldPreview } from "@/components/home";
+import { HeroFund } from "@/components/HeroFund";
 import { Card, CardHead } from "@/components/ui";
 import { ProsBoard } from "@/components/world";
 import { Activity } from "lucide-react";
@@ -12,6 +13,10 @@ export default async function DashboardPage() {
   const heldTickers = [...data.group.holdings, ...data.ai.holdings].map((h) => h.ticker);
   const book = await getBook(data);
   const [week, world, movers] = await Promise.all([getWeek(book), getWorld(heldTickers), getMovers(heldTickers)]);
+  // Indice MSCI World (base 1) aligné sur les dates du fonds — pour « le marché a fait… ».
+  const marketIndex = data.perf.some((p) => p.market != null)
+    ? Object.fromEntries(data.perf.filter((p) => p.market != null).map((p) => [p.date, 1 + (p.market as number)]))
+    : null;
 
   return (
     <div className="flex flex-col gap-5 md:gap-6">
@@ -30,7 +35,13 @@ export default async function DashboardPage() {
         </div>
       )}
 
-      <HeroDuel data={data} />
+      <HeroFund
+        points={data.series.filter((p) => p.group != null).map((p) => ({ date: p.date, v: p.group as number }))}
+        aiPoints={data.series.filter((p) => p.ai != null).map((p) => ({ date: p.date, v: p.ai as number }))}
+        flows={data.contributions}
+        market={marketIndex}
+        demo={data.demo}
+      />
 
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-5">
