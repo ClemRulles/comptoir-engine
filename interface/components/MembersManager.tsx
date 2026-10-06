@@ -1,5 +1,6 @@
 "use client";
 
+import { Paged } from "@/components/Paged";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { ClubData } from "@/lib/data";
@@ -104,7 +105,8 @@ export function MembersManager({ club }: { club: ClubData }) {
         <div className="card-p">
           <div className="label">Apport mensuel</div>
           <div className="kpi mt-1">{eur(monthlyTotal)}</div>
-          <div className="mt-2 text-sm text-muted">{activeMembers} × {eur(monthlyPerMember)} / mois</div>
+          <div className="mt-2 text-sm text-muted">{activeMembers} × {eur(monthlyPerMember)}, le 1er du mois</div>
+          {club.rule.previous != null && <div className="mt-0.5 text-xs text-muted">{eur(club.rule.previous)} par membre avant septembre 2026</div>}
         </div>
         <div className="card-p col-span-2 xl:col-span-1">
           <div className="label">Apports cumulés</div>
@@ -182,7 +184,7 @@ export function MembersManager({ club }: { club: ClubData }) {
                 <tr key={m.id} className="border-b border-line/60">
                   <td className="py-2.5 font-semibold">{m.name}</td>
                   <td className="text-muted hidden sm:table-cell">{m.joined_on}</td>
-                  <td className="text-right tabular-nums">{eur(m.monthly_amount)}</td>
+                  <td className="text-right tabular-nums">{m.active ? eur(monthlyPerMember) : "—"}</td>
                   <td className="text-right">
                     <button
                       onClick={() => toggleMember(m.id, m.active)}
@@ -205,17 +207,24 @@ export function MembersManager({ club }: { club: ClubData }) {
         {contributions.length === 0 ? (
           <p className="text-sm text-muted">Aucun apport enregistré.</p>
         ) : (
-          <ul className="space-y-2">
-            {contributions.slice(0, 12).map((c) => (
-              <li key={c.id} className="flex items-center justify-between border-b border-line/60 pb-2 text-sm last:border-0">
-                <span>
-                  <strong>{c.member_name ?? "Collectif"}</strong>{" "}
-                  <span className="text-muted">· {String(c.ts).slice(0, 10)}{c.note ? ` · ${c.note}` : ""}</span>
-                </span>
-                <span className="tabular-nums font-semibold text-brand-600">+{eur(c.amount)}</span>
-              </li>
-            ))}
-          </ul>
+          <Paged
+            by="month"
+            pageSize={8}
+            listClassName="space-y-2"
+            items={contributions.map((c) => ({
+              key: c.id,
+              month: String(c.ts).slice(0, 7),
+              node: (
+                <li className="flex items-center justify-between border-b border-line/60 pb-2 text-sm last:border-0">
+                  <span>
+                    <strong>{c.member_name ?? "Collectif"}</strong>{" "}
+                    <span className="text-muted">· {String(c.ts).slice(0, 10)}{c.note ? ` · ${c.note}` : ""}</span>
+                  </span>
+                  <span className="tabular-nums font-semibold text-brand-600">+{eur(c.amount)}</span>
+                </li>
+              ),
+            }))}
+          />
         )}
       </div>
     </div>

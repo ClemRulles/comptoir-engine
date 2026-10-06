@@ -1,4 +1,5 @@
-import type { AiFundFile, Calibration, ConvictionsFile, CryptoFile, Decision, DecisionsFile, GrokPulseFile, MarketSignals } from "./types";
+import { cache } from "react";
+import type { AiFundFile, AllocationFile, Calibration, ConvictionsFile, CryptoFile, Decision, DecisionsFile, DigestFile, GrokPulseFile, MarketSignals, NewsFile, ProsFile } from "./types";
 
 const GH_REPO = process.env.GITHUB_REPO || "ClemRulles/comptoir-engine";
 const GH_BRANCH = process.env.GITHUB_BRANCH || "claude/memory";
@@ -16,7 +17,11 @@ function readTokens(): string[] {
 // Lit un fichier texte du repo privé via l'API GitHub.
 // `ref` optionnel : un SHA de commit pour lire une VERSION PASSÉE du fichier
 // (sinon la branche runtime). Sert à la navigation par semaine (historique).
-export async function fetchRepoFile(path: string, ref?: string): Promise<string | null> {
+// Mémorisé PAR REQUÊTE (React cache) : une page qui lit ai-fund.json depuis trois blocs ne fait
+// qu'un appel GitHub — navigation plus rapide, surtout sur mobile.
+export const fetchRepoFile = cache(fetchRepoFileUncached);
+
+async function fetchRepoFileUncached(path: string, ref?: string): Promise<string | null> {
   const tokens = readTokens();
   if (!tokens.length) return null;
 
@@ -168,3 +173,22 @@ export async function fetchConvictions(): Promise<ConvictionsFile | null> {
     return null;
   }
 }
+
+// Lecture JSON générique (null si absent, illisible ou JSON cassé — jamais d'exception).
+export async function fetchRepoJson<T>(path: string): Promise<T | null> {
+  const raw = await fetchRepoFile(path);
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as T;
+  } catch {
+    return null;
+  }
+}
+
+// Fichiers « en clair » écrits par les routines pour l'app (moteur ≥ 2026-10) et caches du
+// moteur. Absents tant que les routines ne les ont pas produits : l'app retombe alors sur des
+// versions dérivées des fichiers existants (voir lib/data.ts).
+export const fetchDigest = () => fetchRepoJson<DigestFile>("memory/fund/digest.json");
+export const fetchNews = () => fetchRepoJson<NewsFile>("memory/fund/news.json");
+export const fetchPros = () => fetchRepoJson<ProsFile>("memory/fund/pros.json");
+export const fetchAllocation = () => fetchRepoJson<AllocationFile>("memory/fund/allocation.json");

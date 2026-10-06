@@ -1,45 +1,41 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Search } from "lucide-react";
+import { titleFor } from "./nav";
 import { Brand } from "./Brand";
 import { LiveRefresher } from "./LiveRefresher";
 import { NotificationBell } from "./NotificationBell";
 import { PseudoEditor } from "./PseudoEditor";
 import { ThemeToggle } from "./ThemeToggle";
 
-const TITLES: Record<string, string> = {
-  "/": "Tableau de bord",
-  "/groupe": "Fonds du groupe",
-  "/ia": "Fonds IA (fictif)",
-  "/recherche": "Recherche",
-  "/indicateurs": "Indicateurs",
-  "/apprentissages": "Apprentissages de l'IA",
-  "/propositions": "Chat du groupe",
-  "/brief": "Brief & tendance",
-};
-
 export function Topbar({ demo }: { demo: boolean }) {
   const pathname = usePathname();
-  const title = TITLES[pathname] ?? "HypeInvest";
+  const title = titleFor(pathname);
 
   return (
     <header
       className="sticky top-0 z-20 border-b border-line bg-card/85 backdrop-blur"
       style={{ paddingTop: "env(safe-area-inset-top)" }}
     >
-      <div className="flex items-center gap-3 px-4 md:px-8 py-3">
-        <div className="md:hidden">
+      <div className="flex min-w-0 items-center gap-2 px-3 py-3 sm:px-4 md:gap-3 md:px-8">
+        <div className="min-w-0 md:hidden">
           <Brand size={28} />
         </div>
-        <h1 className="hidden md:block text-lg font-bold tracking-tight">{title}</h1>
-        <div className="ml-auto flex items-center gap-2">
+        <div className="hidden text-[15px] font-semibold tracking-tight md:block">{title}</div>
+        <div className="ml-auto flex shrink-0 items-center gap-1 sm:gap-2">
+          <Link href="/recherche" aria-label="Rechercher un actif" className="flex h-9 w-9 items-center justify-center rounded-full text-muted transition-colors hover:bg-bg hover:text-ink md:w-auto md:gap-2 md:rounded-xl md:border md:border-line md:bg-elev md:px-3 md:text-[13px]">
+            <Search size={16} />
+            <span className="hidden md:inline">Rechercher</span>
+          </Link>
           <PseudoEditor demo={demo} />
           <LiveRefresher />
           <ThemeToggle />
           <NotificationBell />
           {demo && (
-            <span className="chip bg-ai/10 text-ai">
-              <span className="h-1.5 w-1.5 rounded-full bg-ai" /> Démo
+            <span className="chip bg-ai/10 text-ai" title="Données de démonstration">
+              <span className="h-1.5 w-1.5 rounded-full bg-ai" /> <span className="hidden sm:inline">Démo</span>
             </span>
           )}
         </div>

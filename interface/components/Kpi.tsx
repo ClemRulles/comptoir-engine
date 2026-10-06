@@ -31,6 +31,8 @@ export function Reveal({
   );
 }
 
+// Tuile chiffrée (même dessin que `Stat` de components/ui.tsx). Le liseré d'accent devient
+// une pastille de couleur devant le libellé : plus sobre, même code couleur (vert groupe, ambre IA).
 export function KpiCard({
   label,
   labelSub,
@@ -50,21 +52,18 @@ export function KpiCard({
   spark?: number[];
   sparkColor?: string;
 }) {
-  const bar = accent === "group" ? "bg-brand" : accent === "ai" ? "bg-ai" : "bg-slate-300";
+  const dot = accent === "group" ? "bg-series-group" : accent === "ai" ? "bg-series-ai" : null;
   return (
-    <div
-      className="group card-p lift relative overflow-hidden animate-fade-up"
-      style={{ animationDelay: `${delay}ms` }}
-    >
-      <div className={`absolute left-0 top-0 h-full w-1 ${bar}`} />
-      <div className="label leading-tight">
+    <div className="card relative overflow-hidden p-4 animate-fade-up md:p-5" style={{ animationDelay: `${delay}ms` }}>
+      <div className="eyebrow flex items-center gap-1.5 leading-tight">
+        {dot && <span className={`h-2 w-2 rounded-full ${dot}`} />}
         {label}
-        {labelSub && <span className="block text-[10px] text-muted font-normal">{labelSub}</span>}
+        {labelSub && <span className="font-normal normal-case tracking-normal text-muted">· {labelSub}</span>}
       </div>
-      <div className={`kpi mt-1${spark && spark.length > 1 ? " pr-14" : ""}`}>{value}</div>
-      {sub && <div className="mt-2 text-sm text-muted">{sub}</div>}
+      <div className={`num mt-1.5 text-2xl font-semibold md:text-[26px]${spark && spark.length > 1 ? " pr-14" : ""}`}>{value}</div>
+      {sub && <div className="mt-1 text-sm text-muted">{sub}</div>}
       {spark && spark.length > 1 && (
-        <div className="pointer-events-none absolute right-2 bottom-3">
+        <div className="pointer-events-none absolute bottom-3 right-2">
           <Sparkline data={spark} color={sparkColor} interactive />
         </div>
       )}
@@ -75,7 +74,7 @@ export function KpiCard({
 export function SectionTitle({ children, right }: { children: React.ReactNode; right?: React.ReactNode }) {
   return (
     <div className="mb-3 flex items-center justify-between">
-      <h2 className="text-base font-bold tracking-tight">{children}</h2>
+      <h2 className="h-section">{children}</h2>
       {right}
     </div>
   );

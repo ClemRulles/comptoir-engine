@@ -3,6 +3,8 @@ import { CalibrationChart } from "@/components/Charts";
 import { KpiCard, SectionTitle, Reveal } from "@/components/Kpi";
 import { TickerCell } from "@/components/StockDrawer";
 import { BriefTendance } from "@/components/BriefTendance";
+import { PageHeader } from "@/components/ui";
+import { Paged, PagedTable } from "@/components/Paged";
 
 export const dynamic = "force-dynamic";
 
@@ -25,11 +27,16 @@ export default async function ApprentissagesPage() {
 
   return (
     <div className="space-y-6">
-      <p className="text-sm text-muted">
-        Ce que l&apos;IA a <strong>appris de son passé</strong>. Chaque décision clôturée est
-        notée : la confiance annoncée était-elle méritée ? Une IA honnête a un taux de réussite
-        qui <strong>monte avec la confiance</strong>. {demo && <em>(Données de démonstration.)</em>}
-      </p>
+      <PageHeader
+        eyebrow="Mémoire · calibration · erreurs"
+        title="Ce que l'IA a appris"
+        lead={
+          <>
+            Chaque décision clôturée est notée : la confiance annoncée était-elle méritée, et a-t-elle battu le marché ? Une IA honnête a un taux
+            de réussite qui monte avec sa confiance — sinon elle réduit d&apos;elle-même la taille de ses paris. {demo && <em>(Données de démonstration.)</em>}
+          </>
+        }
+      />
 
       <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
         <KpiCard
@@ -103,20 +110,20 @@ export default async function ApprentissagesPage() {
           {closed.length === 0 ? (
             <p className="text-sm text-muted">Aucune décision clôturée pour l&apos;instant.</p>
           ) : (
-            <table className="w-full text-sm row-hover">
-              <thead>
-                <tr className="label border-b border-line">
+            <PagedTable
+              className="w-full text-sm row-hover"
+              pageSize={8}
+              head={<tr className="label border-b border-line">
                   <th className="py-2 text-left font-semibold">Titre</th>
                   <th className="text-left font-semibold hidden sm:table-cell">Confiance</th>
                   <th className="text-left font-semibold hidden md:table-cell">Horizon</th>
                   <th className="text-right font-semibold">P&L</th>
                   <th className="text-left font-semibold pl-4">Verdict</th>
                   <th className="text-left font-semibold pl-4 hidden lg:table-cell">Leçon</th>
-                </tr>
-              </thead>
-              <tbody>
-                {closed.map((d) => (
-                  <tr key={d.thesis_id} className="border-b border-line/60 align-top">
+                </tr>}
+              rows={closed.map((d, i) => ({
+                key: `${d.thesis_id}-${i}`,
+                node: (<tr className="border-b border-line/60 align-top">
                     <td className="py-2.5"><TickerCell ticker={d.ticker} /></td>
                     <td className="hidden sm:table-cell">
                       <span className={`chip ${CONF_STYLE[d.confidence]}`}>{d.confidence}</span>
@@ -131,10 +138,9 @@ export default async function ApprentissagesPage() {
                       </span>
                     </td>
                     <td className="pl-4 text-slate-600 hidden lg:table-cell">{d.lesson}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                  </tr>),
+              }))}
+            />
           )}
         </div>
       </Reveal>
@@ -145,15 +151,23 @@ export default async function ApprentissagesPage() {
           {lessons.length === 0 ? (
             <p className="text-sm text-muted">Pas encore de leçon enregistrée.</p>
           ) : (
-            <ol className="relative space-y-4 border-l border-line pl-5">
-              {lessons.slice(0, 20).map((l, i) => (
-                <li key={`${l.date}-${i}`} className="relative">
-                  <span className="absolute -left-[23px] top-1.5 h-2.5 w-2.5 rounded-full bg-ai ring-4 ring-card" />
-                  <div className="label">{l.date}</div>
-                  <div className="text-sm text-slate-700">{l.text}</div>
-                </li>
-              ))}
-            </ol>
+            <Paged
+              by="month"
+              pageSize={10}
+              as="ol"
+              listClassName="relative space-y-4 border-l border-line pl-5"
+              items={lessons.map((l, i) => ({
+                key: `${l.date}-${i}`,
+                month: l.date.slice(0, 7),
+                node: (
+                  <li className="relative">
+                    <span className="absolute -left-[23px] top-1.5 h-2.5 w-2.5 rounded-full bg-ai ring-4 ring-card" />
+                    <div className="label">{l.date}</div>
+                    <div className="text-sm text-slate-700">{l.text}</div>
+                  </li>
+                ),
+              }))}
+            />
           )}
         </div>
       </Reveal>

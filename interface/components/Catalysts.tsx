@@ -1,4 +1,5 @@
 import type { CatalystRow } from "@/lib/types";
+import { Paged } from "@/components/Paged";
 
 const MONTHS = ["jan", "fév", "mar", "avr", "mai", "jun", "jul", "aoû", "sep", "oct", "nov", "déc"];
 
@@ -80,20 +81,12 @@ export function CatalystsList({ upcoming, past }: { upcoming: CatalystRow[]; pas
   return (
     <div className="space-y-6">
       {upcoming.length > 0 && (
-        <ul>
-          {upcoming.map((r, i) => (
-            <CatalystCard key={`${r.date}-${r.event}-${i}`} row={r} />
-          ))}
-        </ul>
+        <Paged pageSize={5} items={upcoming.map((r, i) => ({ key: `${r.date}-${r.event}-${i}`, node: <CatalystCard row={r} /> }))} />
       )}
       {past.length > 0 && (
         <div>
           <h3 className="label mb-2">Passés — ce qu&apos;on en a tiré</h3>
-          <ul className="opacity-80">
-            {past.map((r, i) => (
-              <CatalystCard key={`past-${r.date}-${r.event}-${i}`} row={r} />
-            ))}
-          </ul>
+          <Paged pageSize={3} listClassName="opacity-80" items={past.map((r, i) => ({ key: `past-${r.date}-${r.event}-${i}`, node: <CatalystCard row={r} /> }))} />
         </div>
       )}
     </div>

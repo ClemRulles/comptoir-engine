@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Bar,
   BarChart,
@@ -42,8 +42,10 @@ function renderActiveShape(props: unknown) {
 export function AllocationDonut({
   slices,
   total: totalProp,
+  row = false,
 }: {
   slices: { name: string; value: number }[];
+  row?: boolean; // tablette/desktop : donut à gauche, légende à droite (carte large de l'accueil)
   // Total faisant autorité (le `nav` du fonds). Sans lui, on retombe sur la somme des
   // parts — mais celle-ci, sommée dans un ordre différent du `nav`, peut diverger d'1 €
   // à l'arrondi (l'addition flottante n'est pas associative). On préfère donc le `nav`.
@@ -51,15 +53,19 @@ export function AllocationDonut({
 }) {
   const total = totalProp ?? slices.reduce((s, x) => s + x.value, 0);
   const [active, setActive] = useState<number | null>(null);
+  // Le donut se dessine après le montage : les arcs SVG calculés par Node et par le navigateur
+  // diffèrent à la 15e décimale (trigonométrie), ce qui cassait l'hydratation de la page.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   if (total <= 0) {
     return <div className="flex h-64 items-center justify-center text-sm text-muted">—</div>;
   }
   const sel = active != null ? slices[active] : null;
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="relative" style={{ width: 220, height: 220 }}>
-        <PieChart width={220} height={220}>
+    <div className={`flex flex-col items-center ${row ? "md:flex-row md:items-center md:gap-10" : ""}`}>
+      <div className="relative shrink-0" style={{ width: 220, height: 220 }}>
+        {mounted && <PieChart id="alloc-donut" width={220} height={220}>
           <Pie
             data={slices}
             dataKey="value"
@@ -85,7 +91,7 @@ export function AllocationDonut({
               />
             ))}
           </Pie>
-        </PieChart>
+        </PieChart>}
         {/* Centre : détail de la part survolée, sinon le total. */}
         <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-8 text-center">
           {sel ? (
@@ -105,7 +111,7 @@ export function AllocationDonut({
           )}
         </div>
       </div>
-      <div className="mt-3 grid w-full grid-cols-2 gap-x-4 gap-y-0.5 text-sm">
+      <div className={`mt-3 grid w-full grid-cols-2 gap-x-4 gap-y-0.5 text-sm ${row ? "md:mt-0 md:flex-1 md:grid-cols-3 md:gap-x-6" : ""}`}>
         {slices.map((s, i) => (
           <button
             type="button"

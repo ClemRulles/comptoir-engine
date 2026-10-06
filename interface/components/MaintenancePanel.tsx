@@ -9,6 +9,7 @@ const STEPS: Step[] = [
   { key: "seed", label: "1 · Encoder le groupe", path: "/api/cron/seed-group", hint: "Convertit vos 15 positions en parts réelles via les cours." },
   { key: "value", label: "2 · Valoriser le jour", path: "/api/cron/value", hint: "Écrit le point NAV du jour pour les deux fonds." },
   { key: "backfill", label: "3 · Historique d'origine", path: "/api/cron/backfill?days=180", hint: "Reconstruit le passé figé sur le clone d'origine (IA = groupe avant l'inception)." },
+  { key: "contrib", label: "4 · Apport du mois", path: "/api/cron/contributions", hint: "Enregistre la cotisation du mois (le 1er, montant de la règle) et complète une fois les mois cotisés sous l'ancien montant." },
 ];
 
 export function MaintenancePanel({ demo }: { demo: boolean }) {

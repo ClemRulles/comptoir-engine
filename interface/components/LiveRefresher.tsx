@@ -71,7 +71,7 @@ export function LiveRefresher({ intervalMs = 120000 }: { intervalMs?: number }) 
         </span>
       )}
       <span className="hidden sm:inline">Mis à jour {hh}</span>
-      <span className="sm:hidden">{hh}</span>
+      <span className="sr-only sm:hidden">{hh}</span>
     </button>
   );
 }

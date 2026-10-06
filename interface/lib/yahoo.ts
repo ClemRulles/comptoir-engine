@@ -154,3 +154,18 @@ export async function fetchYahooHistory(
   }
   return out;
 }
+
+// Cours du jour dans la DEVISE DE COTATION (sans conversion) : sert à comparer un cours à une
+// zone d'achat exprimée dans la même devise. { TICKER: { price, currency } }.
+export async function fetchYahooNative(tickers: string[]): Promise<Record<string, { price: number; currency: string }>> {
+  const mapped = tickers.map((t) => ({ t: t.toUpperCase(), y: yahooSym(t) }));
+  const settled = await Promise.all(
+    mapped.map(async ({ t, y }) => {
+      const c = await fetchChart(y, "interval=1d&range=1d", 900);
+      return c?.price && c.price > 0 ? { t, price: c.price, currency: c.currency } : null;
+    })
+  );
+  const out: Record<string, { price: number; currency: string }> = {};
+  for (const x of settled) if (x) out[x.t] = { price: x.price, currency: x.currency };
+  return out;
+}

@@ -2,6 +2,7 @@ import { getAppData, getMovers } from "@/lib/data";
 import { AssetSearch } from "@/components/AssetSearch";
 import { MoversBoard } from "@/components/MoversBoard";
 import { SectionTitle, Reveal } from "@/components/Kpi";
+import { PageHeader } from "@/components/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -12,15 +13,11 @@ export default async function RecherchePage() {
 
   return (
     <div className="space-y-6">
-      {/* Hero */}
-      <div>
-        <h1 className="text-xl font-bold tracking-tight">🔍 Recherche</h1>
-        <p className="mt-1 text-sm text-muted">
-          Cherche n&apos;importe quel actif — <strong>action, ETF ou crypto</strong> — et ouvre son{" "}
-          <strong>graphique de cours</strong>. En attendant, voici les{" "}
-          <strong>plus forts mouvements du jour</strong> parmi les titres suivis.
-        </p>
-      </div>
+      <PageHeader
+        eyebrow="Actions · ETF · crypto"
+        title="Recherche"
+        lead="Cherchez n'importe quel actif et ouvrez son graphique de cours. En attendant, les plus forts mouvements du jour parmi les titres suivis."
+      />
 
       {/* Barre de recherche — pièce maîtresse (z élevé pour que le menu passe au-dessus) */}
       <Reveal delay={40} className="relative z-40">

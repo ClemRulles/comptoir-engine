@@ -1,184 +1,75 @@
-import Link from "next/link";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import { getActivity, getAppData, getMovers, MEMORY_STALE_DAYS } from "@/lib/data";
-import { eur, pct } from "@/lib/fund";
-import { PerfChart } from "@/components/PerfChart";
+import { getAppData, getBook, getClubData, getMovers, getSpotlight, getWeek, getWorld, MEMORY_STALE_DAYS } from "@/lib/data";
+import { getQuizState } from "@/lib/quiz";
 import { AllocationDonut } from "@/components/Charts";
-import { ActivityFeed } from "@/components/ActivityFeed";
 import { TopMovers } from "@/components/TopMovers";
-import { AnimatedNumber } from "@/components/AnimatedNumber";
-import { KpiCard, Delta, SectionTitle, Reveal } from "@/components/Kpi";
-import { TickerCell } from "@/components/StockDrawer";
+import { QuizCard } from "@/components/QuizCard";
+import { Spotlight } from "@/components/Spotlight";
+import { HeroFund } from "@/components/HeroFund";
+import { Card, CardHead, MoreLink } from "@/components/ui";
+import { Activity, PieChart } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
   const data = await getAppData();
   const heldTickers = [...data.group.holdings, ...data.ai.holdings].map((h) => h.ticker);
-  const [activity, movers] = await Promise.all([getActivity(6), getMovers(heldTickers)]);
-  const { group, ai } = data;
-  const spread = ai.perf - group.perf;
-  const leader = Math.abs(spread) < 0.0001 ? "Égalité" : spread > 0 ? "L'IA mène" : "Le groupe mène";
-
-  const slices = [
-    ...group.holdings.map((h) => ({ name: h.ticker, value: h.marketValue })),
-    { name: "Cash", value: group.cash },
-  ].filter((s) => s.value > 0);
-
-  const best = [...group.holdings].sort((a, b) => b.pnlPct - a.pnlPct)[0];
+  const book = await getBook(data);
+  const [week, world, movers, club, quiz] = await Promise.all([getWeek(book), getWorld(heldTickers), getMovers(heldTickers), getClubData(), getQuizState()]);
+  const spotlight = await getSpotlight(week, world);
+  const g = data.group;
+  const slices = [...g.holdings.map((h) => ({ name: h.ticker, value: h.marketValue })), { name: "Cash", value: g.cash }].filter((x) => x.value > 0);
+  // Indice MSCI World (base 1) aligné sur les dates du fonds — pour « le marché a fait… ».
+  const marketIndex = data.perf.some((p) => p.market != null)
+    ? Object.fromEntries(data.perf.filter((p) => p.market != null).map((p) => [p.date, 1 + (p.market as number)]))
+    : null;
 
   return (
-    <div className="flex flex-col gap-6">
-      {/* Bandeau panne : order 0 implicite → passe avant les blocs order-1+ partout */}
+    <div className="flex flex-col gap-5 md:gap-6">
+      {/* Panne : le book IA ne se lit plus (token GitHub expiré…). */}
       {!data.demo && !data.aiBookReadable && (
-        <div className="rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-          ⚠️ <b>Book IA illisible</b> — la lecture de <code>ai-fund.json</code> sur GitHub échoue
-          (token expiré ?). Le fonds IA affiche son cash seul et ses snapshots quotidiens sont
-          suspendus. Renouveler <code>GITHUB_TOKEN</code>/<code>GITHUB_WRITE_TOKEN</code> sur
-          Vercel, puis ouvrir <code>/api/cron/value</code> pour réparer la courbe.
+        <div className="rounded-2xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+          ⚠️ <b>Book IA illisible</b> — la lecture de <code>ai-fund.json</code> sur GitHub échoue (token expiré ?). Le fonds IA affiche son cash seul et ses snapshots
+          quotidiens sont suspendus. Renouveler <code>GITHUB_TOKEN</code>/<code>GITHUB_WRITE_TOKEN</code> sur Vercel, puis ouvrir <code>/api/cron/value</code>.
         </div>
       )}
-      {/* Panne SILENCIEUSE : le book se lit, mais les routines de nuit n'écrivent plus leur
-          mémoire (endpoint /api/memory/push en panne, token d'écriture, routines à l'arrêt…).
-          C'est l'angle mort qui a duré un mois en juillet 2026 : brief, signaux, trades IA
-          figés sans que rien ne l'affiche. Distinct du bandeau « book illisible » ci-dessus. */}
+      {/* Panne SILENCIEUSE : les routines de nuit n'écrivent plus leur mémoire. */}
       {!data.demo && data.aiBookReadable && data.memoryAgeDays != null && data.memoryAgeDays >= MEMORY_STALE_DAYS && (
-        <div className="rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-          ⚠️ <b>Routines de nuit muettes depuis {data.memoryAgeDays} jours</b> — le dernier
-          commit mémoire sur <code>claude/memory</code> date de plus de {MEMORY_STALE_DAYS} jours.
-          Brief, signaux et book IA n&apos;évoluent plus. Vérifier le token d&apos;écriture
-          (<code>GITHUB_WRITE_TOKEN</code> sur Vercel) et les routines sur claude.ai/code.
+        <div className="rounded-2xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+          ⚠️ <b>Routines de nuit muettes depuis {data.memoryAgeDays} jours</b> — brief, signaux et book IA n&apos;évoluent plus. Vérifier
+          <code> GITHUB_WRITE_TOKEN</code> sur Vercel et les routines sur claude.ai/code.
         </div>
       )}
-      {/* Mobile : graphique en premier (order-1). Desktop : KPIs en premier (md:order-1). */}
-      <div className="grid grid-cols-2 gap-4 xl:grid-cols-4 order-2 md:order-1">
-        <KpiCard
-          label="Fonds"
-          labelSub="Groupe"
-          accent="group"
-          delay={0}
-          value={<AnimatedNumber value={group.nav} kind="eur" />}
-          sub={<Delta value={group.perf} />}
-          spark={data.series.map((s) => s.group).filter((v): v is number => v != null)}
+
+      <HeroFund
+        points={data.series.filter((p) => p.group != null).map((p) => ({ date: p.date, v: p.group as number }))}
+        aiPoints={data.series.filter((p) => p.ai != null).map((p) => ({ date: p.date, v: p.ai as number }))}
+        flows={data.contributions}
+        market={marketIndex}
+        demo={data.demo}
+        contrib={club.rule}
+      />
+
+      {/* Ce qui saute aux yeux en 10 secondes ; les analyses détaillées sont sur la page Fonds IA. */}
+      <Spotlight view={spotlight} />
+
+      <QuizCard quiz={quiz.quiz} initialReveal={quiz.reveal} initialStats={quiz.stats} demo={quiz.demo} ready={quiz.ready} />
+
+      <Card>
+        <CardHead
+          icon={PieChart}
+          title="Répartition du groupe"
+          sub={`${g.holdings.length} positions et le cash, au cours du jour.`}
+          right={<MoreLink href="/groupe">Détail</MoreLink>}
         />
-        <KpiCard
-          label="Fonds IA"
-          labelSub="Fictif"
-          accent="ai"
-          delay={60}
-          value={<AnimatedNumber value={ai.nav} kind="eur" />}
-          sub={<Delta value={ai.perf} />}
-          spark={data.series.map((s) => s.ai).filter((v): v is number => v != null)}
-        />
-        <KpiCard
-          label="Classement"
-          accent="neutral"
-          delay={120}
-          value={leader}
-          sub={<span className="text-muted">écart {pct(spread)} (IA − groupe)</span>}
-        />
-        <KpiCard
-          label="Meilleure position"
-          accent="neutral"
-          delay={180}
-          value={best ? best.ticker : "—"}
-          sub={best ? <Delta value={best.pnlPct} /> : <span className="text-muted">aucune</span>}
-        />
-      </div>
+        <AllocationDonut slices={slices} total={g.nav} row />
+      </Card>
 
-      {/* Mobile : le graphique remonte au-dessus des valeurs ; l'allocation passe après.
-          `contents` dissout la grille sur mobile pour que chart/donut s'ordonnent parmi les
-          KPIs (order). À partir de md, c'est une vraie grille (KPIs en tête via md:order-1). */}
-      <div className="contents md:grid md:grid-cols-1 lg:grid-cols-3 md:gap-4 md:order-2">
-        <Reveal delay={150} className="order-1 md:order-none lg:col-span-2">
-          <div className="card-p">
-            <SectionTitle>Performance — Groupe vs IA</SectionTitle>
-            <PerfChart data={data.series} mode="both" contributions={data.contributions} />
-          </div>
-        </Reveal>
-        <Reveal delay={220} className="order-3 md:order-none">
-          <div className="card-p">
-            <SectionTitle>Allocation du groupe</SectionTitle>
-            <AllocationDonut slices={slices} total={group.nav} />
-          </div>
-        </Reveal>
-      </div>
+      <Card>
+        <CardHead icon={Activity} title="Ce qui bouge aujourd'hui" sub="Plus fortes variations du jour parmi les titres détenus." />
+        <TopMovers gainers={movers.gainers} losers={movers.losers} />
+      </Card>
 
-      <Reveal delay={140} className="order-4">
-        <div className="card-p">
-          <SectionTitle right={<span className="text-xs text-muted">variation du jour</span>}>
-            Top mouvements du jour
-          </SectionTitle>
-          <TopMovers gainers={movers.gainers} losers={movers.losers} />
-        </div>
-      </Reveal>
-
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 order-5">
-        <Reveal delay={120}>
-          <div className="card-p">
-            <SectionTitle right={<Link href="/groupe" className="text-sm text-brand hover:underline">Gérer →</Link>}>
-              Positions du groupe
-            </SectionTitle>
-            {group.holdings.length === 0 ? (
-              <p className="text-sm text-muted">Aucune position. Ajoutez-en dans « Fonds groupe ».</p>
-            ) : (
-              <table className="w-full text-sm row-hover">
-                <thead>
-                  <tr className="label border-b border-line">
-                    <th className="py-2 text-left font-semibold">Titre</th>
-                    <th className="text-right font-semibold">Valeur</th>
-                    <th className="text-right font-semibold">Poids</th>
-                    <th className="text-right font-semibold">+/-</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {group.holdings.slice(0, 6).map((h) => (
-                    <tr key={h.ticker} className="border-b border-line/60">
-                      <td className="py-2"><TickerCell ticker={h.ticker} /></td>
-                      <td className="text-right tabular-nums">{eur(h.marketValue)}</td>
-                      <td className="text-right tabular-nums text-muted">{pct(h.weight).replace("+", "")}</td>
-                      <td className={`text-right tabular-nums ${h.pnlPct >= 0 ? "up" : "down"}`}>{pct(h.pnlPct)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            )}
-          </div>
-        </Reveal>
-        <Reveal delay={180}>
-          <div className="card-p">
-            <SectionTitle right={<Link href="/apprentissages" className="text-sm text-brand hover:underline">Lire →</Link>}>
-              🎯 Brief de la semaine
-            </SectionTitle>
-            {data.brief ? (
-              <div className="prose-hi max-h-72 overflow-hidden">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{data.brief.slice(0, 1100)}</ReactMarkdown>
-              </div>
-            ) : (
-              <p className="text-sm text-muted">Le brief sera généré par la routine du vendredi.</p>
-            )}
-          </div>
-        </Reveal>
-      </div>
-
-      <Reveal delay={150} className="order-6">
-        <div className="card-p">
-          <SectionTitle right={<span className="text-xs text-muted">derniers changements réalisés</span>}>
-            Activité récente
-          </SectionTitle>
-          <ActivityFeed
-            ai={activity.ai}
-            group={activity.group}
-            aiNav={ai.nav}
-            groupNav={group.nav}
-          />
-        </div>
-      </Reveal>
-
-      <p className="text-center text-xs text-muted order-7">
-        Valeurs à des fins de comparaison. Paper trading — aucun ordre réel n&apos;est passé.
-      </p>
+      <p className="text-center text-xs text-muted">Paper trading — aucun ordre réel n&apos;est passé. Analyses à visée pédagogique, pas un conseil personnalisé.</p>
     </div>
   );
 }
