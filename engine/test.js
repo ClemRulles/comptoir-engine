@@ -356,14 +356,15 @@ const ok = (cond, label) => {
   const { parseInfoTable, diffHoldings } = await import("./lib/thirteenf.js");
   const row = (issuer, cusip, value, sh, pc = "") =>
     `<infoTable><nameOfIssuer>${issuer}</nameOfIssuer><titleOfClass>COM</titleOfClass><cusip>${cusip}</cusip><value>${value}</value><shrsOrPrnAmt><sshPrnamt>${sh}</sshPrnamt><sshPrnamtType>SH</sshPrnamtType></shrsOrPrnAmt>${pc ? `<putCall>${pc}</putCall>` : ""}</infoTable>`;
-  const cur = parseInfoTable(`<informationTable>${row("ALPHABET INC", "A1", 600, 60)}${row("ALPHABET INC", "C1", 400, 40)}${row("APPLE INC", "B1", 1000, 10)}${row("NEW CO", "N1", 500, 5)}${row("APPLE INC", "B1", 50, 1, "Put")}</informationTable>`);
-  const prev = parseInfoTable(`<ns1:informationTable><ns1:infoTable><ns1:nameOfIssuer>ALPHABET INC</ns1:nameOfIssuer><ns1:cusip>A1</ns1:cusip><ns1:value>500</ns1:value><ns1:sshPrnamt>50</ns1:sshPrnamt></ns1:infoTable>${row("APPLE INC", "B1", 1000, 20)}${row("OLD CO", "O1", 300, 3)}</ns1:informationTable>`);
-  ok(cur.filter((r) => !r.put_call).length === 3, "13F: classes A/C fusionnées, options séparées");
-  ok(prev.length === 3, "13F: balises préfixées (ns1:) lues");
+  const cur = parseInfoTable(`<informationTable>${row("ALPHABET INC", "02079K305", 600, 60)}${row("ALPHABET INC", "02079K107", 400, 40)}${row("APPLE INC", "037833100", 1000, 10)}${row("NEW CO", "999999101", 500, 5)}${row("APPLE INC", "037833100", 50, 1, "Put")}${row("BANK AMERICA CORP", "060505104", 200, 10)}</informationTable>`);
+  const prev = parseInfoTable(`<ns1:informationTable><ns1:infoTable><ns1:nameOfIssuer>ALPHABET INC</ns1:nameOfIssuer><ns1:cusip>02079K305</ns1:cusip><ns1:value>500</ns1:value><ns1:sshPrnamt>50</ns1:sshPrnamt></ns1:infoTable>${row("APPLE INC", "037833100", 1000, 20)}${row("OLD CO", "888888101", 300, 3)}${row("BANK OF AMER CORP", "060505104", 200, 10)}</ns1:informationTable>`);
+  ok(cur.filter((r) => !r.put_call).length === 4, "13F: classes A/C fusionnées (CUSIP-6), options séparées");
+  ok(prev.length === 4, "13F: balises préfixées (ns1:) lues");
   const d = diffHoldings(cur, prev);
   const act = Object.fromEntries(d.moves.map((m) => [m.issuer, m.action]));
   ok(act["NEW CO"] === "nouvelle" && act["OLD CO"] === "sortie", "13F: nouvelle ligne et sortie détectées");
   ok(act["ALPHABET INC"] === "renforce" && act["APPLE INC"] === "allege", "13F: renforcement (+100 %) et allègement (−50 %)");
+  ok(!act["BANK AMERICA CORP"] && !act["BANK OF AMER CORP"], "13F: libellé changé, même CUSIP → aucun faux mouvement");
   ok(Math.abs(d.top.reduce((a, r) => a + r.weight_pct, 0) - 1) < 1e-3, "13F: poids du portefeuille long = 100 %");
 }
 

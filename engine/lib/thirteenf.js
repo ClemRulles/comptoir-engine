@@ -12,7 +12,9 @@ const tag = (block, name) => {
 
 // XML de la table d'information → lignes agrégées par (émetteur, call/put). Les gérants
 // déclarent souvent la même action sur plusieurs lignes (sous-gérants) et une même société
-// sous plusieurs classes (Alphabet A et C = deux CUSIP) : on additionne par émetteur.
+// sous plusieurs classes (Alphabet A et C = deux CUSIP) : on additionne par ÉMETTEUR, identifié
+// par les 6 premiers caractères du CUSIP (code émetteur officiel) — pas par le libellé, qui
+// change d'un trimestre à l'autre (« BANK OF AMER CORP » / « BANK AMERICA CORP »).
 export function parseInfoTable(xml) {
   if (typeof xml !== "string") return [];
   const rows = new Map();
@@ -26,7 +28,7 @@ export function parseInfoTable(xml) {
     const shares = Number(tag(b, "sshPrnamt"));
     const putCall = tag(b, "putCall");
     if (!cusip || !issuer || !Number.isFinite(value)) continue;
-    const key = `${issuerKey(issuer)}|${putCall ?? ""}`;
+    const key = `${issuerId({ cusip, issuer })}|${putCall ?? ""}`;
     const r = rows.get(key) ?? { cusip, issuer: decode(issuer), cls: decode(tag(b, "titleOfClass") ?? ""), put_call: putCall, value: 0, shares: 0 };
     r.value += value;
     r.shares += Number.isFinite(shares) ? shares : 0;
@@ -35,9 +37,11 @@ export function parseInfoTable(xml) {
   return [...rows.values()];
 }
 
-// Clé d'émetteur stable : majuscules, ponctuation et espaces normalisés.
-export function issuerKey(name) {
-  return decode(String(name)).toUpperCase().replace(/[^A-Z0-9]+/g, " ").trim();
+// Identifiant d'émetteur stable : CUSIP-6 si disponible, sinon libellé normalisé.
+export function issuerId(r) {
+  const c = String(r?.cusip ?? "").trim().toUpperCase();
+  if (c.length >= 6) return c.slice(0, 6);
+  return decode(String(r?.issuer ?? "")).toUpperCase().replace(/[^A-Z0-9]+/g, " ").trim();
 }
 
 function decode(s) {
@@ -54,11 +58,11 @@ export function diffHoldings(current, previous, { threshold = 0.2, top = 10, max
   const cur = longs(current), prev = longs(previous);
   const total = cur.reduce((a, r) => a + r.value, 0);
   const prevTotal = prev.reduce((a, r) => a + r.value, 0);
-  const prevBy = new Map(prev.map((r) => [issuerKey(r.issuer), r]));
-  const curBy = new Map(cur.map((r) => [issuerKey(r.issuer), r]));
+  const prevBy = new Map(prev.map((r) => [issuerId(r), r]));
+  const curBy = new Map(cur.map((r) => [issuerId(r), r]));
   const moves = [];
   for (const r of cur) {
-    const p = prevBy.get(issuerKey(r.issuer));
+    const p = prevBy.get(issuerId(r));
     const weight = total ? r.value / total : 0;
     if (!p) moves.push({ issuer: r.issuer, cusip: r.cusip, action: "nouvelle", weight_pct: r4(weight), shares_change_pct: null, value_usd: r.value });
     else if (p.shares > 0) {
@@ -68,7 +72,7 @@ export function diffHoldings(current, previous, { threshold = 0.2, top = 10, max
     }
   }
   for (const p of prev) {
-    if (!curBy.has(issuerKey(p.issuer)))
+    if (!curBy.has(issuerId(p)))
       moves.push({ issuer: p.issuer, cusip: p.cusip, action: "sortie", weight_pct: 0, prev_weight_pct: prevTotal ? r4(p.value / prevTotal) : null, shares_change_pct: -1, value_usd: 0, prev_value_usd: p.value });
   }
   // Les mouvements qui pèsent le plus (en dollars engagés ou retirés) d'abord.
