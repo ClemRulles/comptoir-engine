@@ -1,0 +1,1357 @@
+{
+  "_doc": "Ce que font les investisseurs pros, d'après leurs déclarations officielles 13F-HR (SEC EDGAR), recalculé par node engine/pros.js. Pour chaque gérant : période, date de dépôt, top 10 des lignes et mouvements du trimestre (nouvelle | renforce | allege | sortie, seuil ±20 % de titres). Photo publiée ~45 jours après le trimestre, actions US longues seulement : une IDÉE à instruire, jamais un signal d'achat. Ne pas éditer à la main.",
+  "updated": "2026-10-06",
+  "investors": [
+    {
+      "cik": "0001067983",
+      "investor": "Warren Buffett",
+      "fund": "Berkshire Hathaway",
+      "style": "valeur, très long terme",
+      "filed": "2026-08-14",
+      "period": "2026-06-30",
+      "prev_period": "2026-03-31",
+      "age_days": 53,
+      "stale": false,
+      "total_value_usd": 299253556246,
+      "n_positions": 26,
+      "top": [
+        {
+          "issuer": "APPLE INC",
+          "cusip": "037833100",
+          "weight_pct": 0.2204,
+          "value_usd": 65950296923
+        },
+        {
+          "issuer": "AMERICAN EXPRESS CO",
+          "cusip": "025816109",
+          "weight_pct": 0.1714,
+          "value_usd": 51282319275
+        },
+        {
+          "issuer": "ALPHABET INC",
+          "cusip": "02079K107",
+          "weight_pct": 0.1262,
+          "value_usd": 37764088383
+        },
+        {
+          "issuer": "COCA COLA CO",
+          "cusip": "191216100",
+          "weight_pct": 0.1086,
+          "value_usd": 32508000000
+        },
+        {
+          "issuer": "BANK OF AMER CORP",
+          "cusip": "060505104",
+          "weight_pct": 0.092,
+          "value_usd": 27543790975
+        },
+        {
+          "issuer": "CHEVRON CORPORATION",
+          "cusip": "166764100",
+          "weight_pct": 0.0467,
+          "value_usd": 13986141890
+        },
+        {
+          "issuer": "OCCIDENTAL PETE CORP",
+          "cusip": "674599105",
+          "weight_pct": 0.043,
+          "value_usd": 12868205304
+        },
+        {
+          "issuer": "CHUBB LIMITED",
+          "cusip": "H1467J104",
+          "weight_pct": 0.039,
+          "value_usd": 11670066615
+        },
+        {
+          "issuer": "MOODYS CORP",
+          "cusip": "615369105",
+          "weight_pct": 0.0373,
+          "value_usd": 11173435852
+        },
+        {
+          "issuer": "KRAFT HEINZ CO",
+          "cusip": "500754106",
+          "weight_pct": 0.0257,
+          "value_usd": 7691494401
+        }
+      ],
+      "moves": [
+        {
+          "issuer": "ALPHABET INC",
+          "cusip": "02079K107",
+          "action": "renforce",
+          "weight_pct": 0.1262,
+          "shares_change_pct": 0.8324,
+          "value_usd": 37764088383
+        },
+        {
+          "issuer": "DELTA AIR LINES INC",
+          "cusip": "247361702",
+          "action": "renforce",
+          "weight_pct": 0.0179,
+          "shares_change_pct": 0.4399,
+          "value_usd": 5368591200
+        },
+        {
+          "issuer": "KROGER CO",
+          "cusip": "501044101",
+          "action": "allege",
+          "weight_pct": 0.0072,
+          "shares_change_pct": -0.22,
+          "value_usd": 2165670000
+        },
+        {
+          "issuer": "LENNAR CORP",
+          "cusip": "526057104",
+          "action": "renforce",
+          "weight_pct": 0.0041,
+          "shares_change_pct": 0.2972,
+          "value_usd": 1212927402
+        },
+        {
+          "issuer": "CAPITAL ONE FINL CORP",
+          "cusip": "14040H105",
+          "action": "allege",
+          "weight_pct": 0.002,
+          "shares_change_pct": -0.5804,
+          "value_usd": 601860000
+        },
+        {
+          "issuer": "MACYS INC",
+          "cusip": "55616P104",
+          "action": "renforce",
+          "weight_pct": 0.0006,
+          "shares_change_pct": 1.4182,
+          "value_usd": 173031882
+        },
+        {
+          "issuer": "NUCOR CORP",
+          "cusip": "670346105",
+          "action": "allege",
+          "weight_pct": 0.0014,
+          "shares_change_pct": -0.5245,
+          "value_usd": 413814258
+        },
+        {
+          "issuer": "CONSTELLATION BRANDS INC",
+          "cusip": "21036P108",
+          "action": "sortie",
+          "weight_pct": 0,
+          "prev_weight_pct": 0.0004,
+          "shares_change_pct": -1,
+          "value_usd": 0,
+          "prev_value_usd": 94933500
+        },
+        {
+          "issuer": "D R HORTON INC",
+          "cusip": "23331A109",
+          "action": "nouvelle",
+          "weight_pct": 0,
+          "shares_change_pct": null,
+          "value_usd": 580504
+        }
+      ],
+      "source": "SEC EDGAR 13F-HR 0001193125-26-352200"
+    },
+    {
+      "cik": "0001336528",
+      "investor": "Bill Ackman",
+      "fund": "Pershing Square",
+      "style": "concentré, activiste",
+      "filed": "2026-05-15",
+      "period": "2026-03-31",
+      "prev_period": "2025-12-31",
+      "age_days": 144,
+      "stale": true,
+      "total_value_usd": 13714299861,
+      "n_positions": 10,
+      "top": [
+        {
+          "issuer": "BROOKFIELD CORP",
+          "cusip": "11271J107",
+          "weight_pct": 0.1762,
+          "value_usd": 2415946008
+        },
+        {
+          "issuer": "AMAZON COM INC",
+          "cusip": "023135106",
+          "weight_pct": 0.1739,
+          "value_usd": 2385104083
+        },
+        {
+          "issuer": "UBER TECHNOLOGIES INC",
+          "cusip": "90353T100",
+          "weight_pct": 0.1571,
+          "value_usd": 2154934398
+        },
+        {
+          "issuer": "MICROSOFT CORP",
+          "cusip": "594918104",
+          "weight_pct": 0.1526,
+          "value_usd": 2092970053
+        },
+        {
+          "issuer": "RESTAURANT BRANDS INTL INC",
+          "cusip": "76131D103",
+          "weight_pct": 0.122,
+          "value_usd": 1673501194
+        },
+        {
+          "issuer": "META PLATFORMS INC",
+          "cusip": "30303M102",
+          "weight_pct": 0.111,
+          "value_usd": 1522358404
+        },
+        {
+          "issuer": "HOWARD HUGHES HOLDINGS INC",
+          "cusip": "44267T102",
+          "weight_pct": 0.087,
+          "value_usd": 1192581569
+        },
+        {
+          "issuer": "SEAPORT ENTMT GROUP INC",
+          "cusip": "812215200",
+          "weight_pct": 0.0079,
+          "value_usd": 107910794
+        },
+        {
+          "issuer": "ALPHABET INC",
+          "cusip": "02079K305",
+          "weight_pct": 0.0072,
+          "value_usd": 98731763
+        },
+        {
+          "issuer": "HERTZ GLOBAL HLDGS INC",
+          "cusip": "42806J700",
+          "weight_pct": 0.0051,
+          "value_usd": 70261595
+        }
+      ],
+      "moves": [
+        {
+          "issuer": "MICROSOFT CORP",
+          "cusip": "594918104",
+          "action": "nouvelle",
+          "weight_pct": 0.1526,
+          "shares_change_pct": null,
+          "value_usd": 2092970053
+        },
+        {
+          "issuer": "HILTON WORLDWIDE HLDGS INC",
+          "cusip": "43300A203",
+          "action": "sortie",
+          "weight_pct": 0,
+          "prev_weight_pct": 0.056,
+          "shares_change_pct": -1,
+          "value_usd": 0,
+          "prev_value_usd": 869983734
+        },
+        {
+          "issuer": "ALPHABET INC",
+          "cusip": "02079K305",
+          "action": "allege",
+          "weight_pct": 0.0072,
+          "shares_change_pct": -0.9497,
+          "value_usd": 98731763
+        }
+      ],
+      "source": "SEC EDGAR 13F-HR 0001172661-26-002336"
+    },
+    {
+      "cik": "0001536411",
+      "investor": "Stanley Druckenmiller",
+      "fund": "Duquesne Family Office",
+      "style": "macro, opportuniste",
+      "filed": "2026-08-14",
+      "period": "2026-06-30",
+      "prev_period": "2026-03-31",
+      "age_days": 53,
+      "stale": false,
+      "total_value_usd": 4354220,
+      "n_positions": 85,
+      "top": [
+        {
+          "issuer": "Natera Inc",
+          "cusip": "632307104",
+          "weight_pct": 0.1986,
+          "value_usd": 864923
+        },
+        {
+          "issuer": "Taiwan Semiconductor Manufac",
+          "cusip": "874039100",
+          "weight_pct": 0.0647,
+          "value_usd": 281613
+        },
+        {
+          "issuer": "Stmicroelectronics N V",
+          "cusip": "861012102",
+          "weight_pct": 0.0534,
+          "value_usd": 232375
+        },
+        {
+          "issuer": "Insmed Inc",
+          "cusip": "457669307",
+          "weight_pct": 0.0349,
+          "value_usd": 151900
+        },
+        {
+          "issuer": "Fox Corp",
+          "cusip": "35137L105",
+          "weight_pct": 0.0332,
+          "value_usd": 144623
+        },
+        {
+          "issuer": "Ypf Sociedad Anonima",
+          "cusip": "984245100",
+          "weight_pct": 0.0328,
+          "value_usd": 142726
+        },
+        {
+          "issuer": "Amazon Com Inc",
+          "cusip": "023135106",
+          "weight_pct": 0.0296,
+          "value_usd": 129085
+        },
+        {
+          "issuer": "Bbb Foods Inc",
+          "cusip": "G0896C103",
+          "weight_pct": 0.0278,
+          "value_usd": 120915
+        },
+        {
+          "issuer": "Alphabet Inc",
+          "cusip": "02079K305",
+          "weight_pct": 0.0276,
+          "value_usd": 120184
+        },
+        {
+          "issuer": "Ishares Inc",
+          "cusip": "464286400",
+          "weight_pct": 0.0272,
+          "value_usd": 118548
+        }
+      ],
+      "moves": [
+        {
+          "issuer": "Amazon Com Inc",
+          "cusip": "023135106",
+          "action": "renforce",
+          "weight_pct": 0.0296,
+          "shares_change_pct": 10.8253,
+          "value_usd": 129085
+        },
+        {
+          "issuer": "United Airls Hldgs Inc",
+          "cusip": "910047109",
+          "action": "renforce",
+          "weight_pct": 0.0248,
+          "shares_change_pct": 2.0278,
+          "value_usd": 108084
+        },
+        {
+          "issuer": "Seagate Technology Hldngs Pl",
+          "cusip": "G7997R103",
+          "action": "renforce",
+          "weight_pct": 0.027,
+          "shares_change_pct": 1.4063,
+          "value_usd": 117730
+        },
+        {
+          "issuer": "Fox Corp",
+          "cusip": "35137L105",
+          "action": "nouvelle",
+          "weight_pct": 0.0332,
+          "shares_change_pct": null,
+          "value_usd": 144623
+        },
+        {
+          "issuer": "Alphabet Inc",
+          "cusip": "02079K305",
+          "action": "nouvelle",
+          "weight_pct": 0.0276,
+          "shares_change_pct": null,
+          "value_usd": 120184
+        },
+        {
+          "issuer": "Cdw Corp",
+          "cusip": "12514G108",
+          "action": "nouvelle",
+          "weight_pct": 0.024,
+          "shares_change_pct": null,
+          "value_usd": 104629
+        },
+        {
+          "issuer": "Bitdeer Technologies Group",
+          "cusip": "G11448100",
+          "action": "nouvelle",
+          "weight_pct": 0.0149,
+          "shares_change_pct": null,
+          "value_usd": 64670
+        },
+        {
+          "issuer": "Broadcom Inc",
+          "cusip": "11135F101",
+          "action": "sortie",
+          "weight_pct": 0,
+          "prev_weight_pct": 0.0206,
+          "shares_change_pct": -1,
+          "value_usd": 0,
+          "prev_value_usd": 60650
+        },
+        {
+          "issuer": "Delta Air Lines Inc",
+          "cusip": "247361702",
+          "action": "nouvelle",
+          "weight_pct": 0.013,
+          "shares_change_pct": null,
+          "value_usd": 56477
+        },
+        {
+          "issuer": "Fluor Corp",
+          "cusip": "343412102",
+          "action": "nouvelle",
+          "weight_pct": 0.0118,
+          "shares_change_pct": null,
+          "value_usd": 51457
+        }
+      ],
+      "source": "SEC EDGAR 13F-HR 0001536411-26-000006"
+    },
+    {
+      "cik": "0001656456",
+      "investor": "David Tepper",
+      "fund": "Appaloosa",
+      "style": "contrarien, cycle",
+      "filed": "2026-08-14",
+      "period": "2026-06-30",
+      "prev_period": "2026-03-31",
+      "age_days": 53,
+      "stale": false,
+      "total_value_usd": 7471257999,
+      "n_positions": 25,
+      "top": [
+        {
+          "issuer": "AMAZON COM INC",
+          "cusip": "023135106",
+          "weight_pct": 0.1595,
+          "value_usd": 1191700000
+        },
+        {
+          "issuer": "MICRON TECHNOLOGY INC",
+          "cusip": "595112103",
+          "weight_pct": 0.1506,
+          "value_usd": 1125432750
+        },
+        {
+          "issuer": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "weight_pct": 0.1055,
+          "value_usd": 787990500
+        },
+        {
+          "issuer": "ALPHABET INC",
+          "cusip": "02079K107",
+          "weight_pct": 0.0875,
+          "value_usd": 653660500
+        },
+        {
+          "issuer": "UBER TECHNOLOGIES INC",
+          "cusip": "90353T100",
+          "weight_pct": 0.0743,
+          "value_usd": 555204163
+        },
+        {
+          "issuer": "ISHARES INC",
+          "cusip": "464286772",
+          "weight_pct": 0.0655,
+          "value_usd": 489607500
+        },
+        {
+          "issuer": "META PLATFORMS INC",
+          "cusip": "30303M102",
+          "weight_pct": 0.0509,
+          "value_usd": 380220750
+        },
+        {
+          "issuer": "VISTRA CORP",
+          "cusip": "92840M102",
+          "weight_pct": 0.047,
+          "value_usd": 351408597
+        },
+        {
+          "issuer": "NVIDIA CORPORATION",
+          "cusip": "67066G104",
+          "weight_pct": 0.0408,
+          "value_usd": 305137250
+        },
+        {
+          "issuer": "NRG ENERGY INC",
+          "cusip": "629377508",
+          "weight_pct": 0.0344,
+          "value_usd": 257065600
+        }
+      ],
+      "moves": [
+        {
+          "issuer": "MICRON TECHNOLOGY INC",
+          "cusip": "595112103",
+          "action": "allege",
+          "weight_pct": 0.1506,
+          "shares_change_pct": -0.4144,
+          "value_usd": 1125432750
+        },
+        {
+          "issuer": "META PLATFORMS INC",
+          "cusip": "30303M102",
+          "action": "renforce",
+          "weight_pct": 0.0509,
+          "shares_change_pct": 0.5464,
+          "value_usd": 380220750
+        },
+        {
+          "issuer": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "action": "renforce",
+          "weight_pct": 0.1055,
+          "shares_change_pct": 0.2429,
+          "value_usd": 787990500
+        },
+        {
+          "issuer": "SANDISK CORP",
+          "cusip": "80004C200",
+          "action": "sortie",
+          "weight_pct": 0,
+          "prev_weight_pct": 0.0301,
+          "shares_change_pct": -1,
+          "value_usd": 0,
+          "prev_value_usd": 178689375
+        },
+        {
+          "issuer": "BOEING CO",
+          "cusip": "097023105",
+          "action": "nouvelle",
+          "weight_pct": 0.0232,
+          "shares_change_pct": null,
+          "value_usd": 173176000
+        },
+        {
+          "issuer": "CORNING INC",
+          "cusip": "219350105",
+          "action": "sortie",
+          "weight_pct": 0,
+          "prev_weight_pct": 0.0259,
+          "shares_change_pct": -1,
+          "value_usd": 0,
+          "prev_value_usd": 153578115
+        },
+        {
+          "issuer": "AMERICAN AIRLINES GROUP INC",
+          "cusip": "02376R102",
+          "action": "nouvelle",
+          "weight_pct": 0.0181,
+          "shares_change_pct": null,
+          "value_usd": 135525000
+        },
+        {
+          "issuer": "BAIDU INC",
+          "cusip": "056752108",
+          "action": "renforce",
+          "weight_pct": 0.0198,
+          "shares_change_pct": 0.8711,
+          "value_usd": 148005550
+        },
+        {
+          "issuer": "UBER TECHNOLOGIES INC",
+          "cusip": "90353T100",
+          "action": "renforce",
+          "weight_pct": 0.0743,
+          "shares_change_pct": 0.215,
+          "value_usd": 555204163
+        },
+        {
+          "issuer": "COREWEAVE INC",
+          "cusip": "21873S108",
+          "action": "nouvelle",
+          "weight_pct": 0.0144,
+          "shares_change_pct": null,
+          "value_usd": 107328806
+        }
+      ],
+      "source": "SEC EDGAR 13F-HR 0001656456-26-000003"
+    },
+    {
+      "cik": "0001061768",
+      "investor": "Seth Klarman",
+      "fund": "Baupost Group",
+      "style": "valeur, marge de sécurité",
+      "filed": "2026-08-13",
+      "period": "2026-06-30",
+      "prev_period": "2026-03-31",
+      "age_days": 54,
+      "stale": false,
+      "total_value_usd": 5415853,
+      "n_positions": 23,
+      "top": [
+        {
+          "issuer": "AMAZON COM INC",
+          "cusip": "023135106",
+          "weight_pct": 0.1648,
+          "value_usd": 892310
+        },
+        {
+          "issuer": "ELEVANCE HEALTH INC FORMERLY",
+          "cusip": "036752103",
+          "weight_pct": 0.0911,
+          "value_usd": 493140
+        },
+        {
+          "issuer": "RESTAURANT BRANDS INTL INC",
+          "cusip": "76131D103",
+          "weight_pct": 0.0904,
+          "value_usd": 489612
+        },
+        {
+          "issuer": "ALPHABET INC",
+          "cusip": "02079K107",
+          "weight_pct": 0.0895,
+          "value_usd": 484744
+        },
+        {
+          "issuer": "FERGUSON ENTERPRISES INC",
+          "cusip": "31488V107",
+          "weight_pct": 0.0636,
+          "value_usd": 344269
+        },
+        {
+          "issuer": "GENUINE PARTS CO",
+          "cusip": "372460105",
+          "weight_pct": 0.0613,
+          "value_usd": 332253
+        },
+        {
+          "issuer": "UNION PAC CORP",
+          "cusip": "907818108",
+          "weight_pct": 0.0595,
+          "value_usd": 322427
+        },
+        {
+          "issuer": "VISA INC",
+          "cusip": "92826C839",
+          "weight_pct": 0.0444,
+          "value_usd": 240628
+        },
+        {
+          "issuer": "WESCO INTL INC",
+          "cusip": "95082P105",
+          "weight_pct": 0.0423,
+          "value_usd": 228979
+        },
+        {
+          "issuer": "AON PLC",
+          "cusip": "G0403H108",
+          "weight_pct": 0.0421,
+          "value_usd": 227871
+        }
+      ],
+      "moves": [
+        {
+          "issuer": "GENUINE PARTS CO",
+          "cusip": "372460105",
+          "action": "renforce",
+          "weight_pct": 0.0613,
+          "shares_change_pct": 0.8896,
+          "value_usd": 332253
+        },
+        {
+          "issuer": "WILLIS TOWERS WATSON PLC LTD",
+          "cusip": "G96629103",
+          "action": "sortie",
+          "weight_pct": 0,
+          "prev_weight_pct": 0.0508,
+          "shares_change_pct": -1,
+          "value_usd": 0,
+          "prev_value_usd": 259632
+        },
+        {
+          "issuer": "NORWEGIAN CRUISE LINE HLDGS",
+          "cusip": "G66721104",
+          "action": "renforce",
+          "weight_pct": 0.0301,
+          "shares_change_pct": 1.1295,
+          "value_usd": 163180
+        },
+        {
+          "issuer": "AMAZON COM INC",
+          "cusip": "023135106",
+          "action": "renforce",
+          "weight_pct": 0.1648,
+          "shares_change_pct": 0.2004,
+          "value_usd": 892310
+        },
+        {
+          "issuer": "CME GROUP INC",
+          "cusip": "12572Q105",
+          "action": "nouvelle",
+          "weight_pct": 0.0252,
+          "shares_change_pct": null,
+          "value_usd": 136694
+        },
+        {
+          "issuer": "WESCO INTL INC",
+          "cusip": "95082P105",
+          "action": "allege",
+          "weight_pct": 0.0423,
+          "shares_change_pct": -0.5387,
+          "value_usd": 228979
+        },
+        {
+          "issuer": "UNION PAC CORP",
+          "cusip": "907818108",
+          "action": "allege",
+          "weight_pct": 0.0595,
+          "shares_change_pct": -0.2308,
+          "value_usd": 322427
+        },
+        {
+          "issuer": "EAGLE MATLS INC",
+          "cusip": "26969P108",
+          "action": "allege",
+          "weight_pct": 0.0221,
+          "shares_change_pct": -0.4055,
+          "value_usd": 119422
+        },
+        {
+          "issuer": "VAXCYTE INC",
+          "cusip": "92243G108",
+          "action": "sortie",
+          "weight_pct": 0,
+          "prev_weight_pct": 0.0091,
+          "shares_change_pct": -1,
+          "value_usd": 0,
+          "prev_value_usd": 46488
+        },
+        {
+          "issuer": "AXALTA COATING SYS LTD",
+          "cusip": "G0750C108",
+          "action": "nouvelle",
+          "weight_pct": 0.0081,
+          "shares_change_pct": null,
+          "value_usd": 43608
+        }
+      ],
+      "source": "SEC EDGAR 13F-HR 0001061768-26-000010"
+    },
+    {
+      "cik": "0001709323",
+      "investor": "Li Lu",
+      "fund": "Himalaya Capital",
+      "style": "valeur, très concentré",
+      "filed": "2026-08-14",
+      "period": "2026-06-30",
+      "prev_period": "2026-03-31",
+      "age_days": 53,
+      "stale": false,
+      "total_value_usd": 3702921099,
+      "n_positions": 7,
+      "top": [
+        {
+          "issuer": "ALPHABET INC",
+          "cusip": "02079K305",
+          "weight_pct": 0.4794,
+          "value_usd": 1775016950
+        },
+        {
+          "issuer": "PDD HOLDINGS INC",
+          "cusip": "722304102",
+          "weight_pct": 0.2217,
+          "value_usd": 820858157
+        },
+        {
+          "issuer": "BERKSHIRE HATHAWAY INC DEL",
+          "cusip": "084670702",
+          "weight_pct": 0.1498,
+          "value_usd": 554591244
+        },
+        {
+          "issuer": "EAST WEST BANCORP INC",
+          "cusip": "27579R104",
+          "weight_pct": 0.0968,
+          "value_usd": 358399151
+        },
+        {
+          "issuer": "CROCS INC",
+          "cusip": "227046109",
+          "weight_pct": 0.0289,
+          "value_usd": 107018900
+        },
+        {
+          "issuer": "TENCENT MUSIC ENTERTAINM",
+          "cusip": "88034P109",
+          "weight_pct": 0.0149,
+          "value_usd": 55033481
+        },
+        {
+          "issuer": "APPLE INC",
+          "cusip": "037833100",
+          "weight_pct": 0.0086,
+          "value_usd": 32003216
+        }
+      ],
+      "moves": [
+        {
+          "issuer": "PDD HOLDINGS INC",
+          "cusip": "722304102",
+          "action": "renforce",
+          "weight_pct": 0.2217,
+          "shares_change_pct": 1.3353,
+          "value_usd": 820858157
+        },
+        {
+          "issuer": "BK OF AMERICA CORP",
+          "cusip": "060505104",
+          "action": "sortie",
+          "weight_pct": 0,
+          "prev_weight_pct": 0.0457,
+          "shares_change_pct": -1,
+          "value_usd": 0,
+          "prev_value_usd": 146151866
+        },
+        {
+          "issuer": "BERKSHIRE HATHAWAY INC DEL",
+          "cusip": "084670702",
+          "action": "renforce",
+          "weight_pct": 0.1498,
+          "shares_change_pct": 0.2346,
+          "value_usd": 554591244
+        },
+        {
+          "issuer": "OCCIDENTAL PETE CORP",
+          "cusip": "674599105",
+          "action": "sortie",
+          "weight_pct": 0,
+          "prev_weight_pct": 0.0298,
+          "shares_change_pct": -1,
+          "value_usd": 0,
+          "prev_value_usd": 95322500
+        },
+        {
+          "issuer": "S&P GLOBAL INC",
+          "cusip": "78409V104",
+          "action": "sortie",
+          "weight_pct": 0,
+          "prev_weight_pct": 0.0161,
+          "shares_change_pct": -1,
+          "value_usd": 0,
+          "prev_value_usd": 51663072
+        },
+        {
+          "issuer": "BLOCK H & R INC",
+          "cusip": "093671105",
+          "action": "sortie",
+          "weight_pct": 0,
+          "prev_weight_pct": 0.0161,
+          "shares_change_pct": -1,
+          "value_usd": 0,
+          "prev_value_usd": 51637996
+        },
+        {
+          "issuer": "MOODYS CORP",
+          "cusip": "615369105",
+          "action": "sortie",
+          "weight_pct": 0,
+          "prev_weight_pct": 0.0161,
+          "shares_change_pct": -1,
+          "value_usd": 0,
+          "prev_value_usd": 51383270
+        },
+        {
+          "issuer": "MSCI INC",
+          "cusip": "55354G100",
+          "action": "sortie",
+          "weight_pct": 0,
+          "prev_weight_pct": 0.0032,
+          "shares_change_pct": -1,
+          "value_usd": 0,
+          "prev_value_usd": 10208310
+        }
+      ],
+      "source": "SEC EDGAR 13F-HR 0002043585-26-000022"
+    },
+    {
+      "cik": "0001040273",
+      "investor": "Dan Loeb",
+      "fund": "Third Point",
+      "style": "événementiel, activiste",
+      "filed": "2026-08-14",
+      "period": "2026-06-30",
+      "prev_period": "2026-03-31",
+      "age_days": 53,
+      "stale": false,
+      "total_value_usd": 4650771988,
+      "n_positions": 38,
+      "top": [
+        {
+          "issuer": "WARNER BROS DISCOVERY INC",
+          "cusip": "934423104",
+          "weight_pct": 0.1146,
+          "value_usd": 533200000
+        },
+        {
+          "issuer": "ALPHABET INC",
+          "cusip": "02079K305",
+          "weight_pct": 0.0952,
+          "value_usd": 442521250
+        },
+        {
+          "issuer": "AMAZON COM INC",
+          "cusip": "023135106",
+          "weight_pct": 0.0897,
+          "value_usd": 417095000
+        },
+        {
+          "issuer": "CRH PLC",
+          "cusip": "G25508105",
+          "weight_pct": 0.0505,
+          "value_usd": 234865000
+        },
+        {
+          "issuer": "TELEPHONE & DATA SYS INC",
+          "cusip": "879433829",
+          "weight_pct": 0.0499,
+          "value_usd": 232237750
+        },
+        {
+          "issuer": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "weight_pct": 0.0472,
+          "value_usd": 219682200
+        },
+        {
+          "issuer": "LIVE NATION ENTERTAINMENT IN",
+          "cusip": "538034109",
+          "weight_pct": 0.0447,
+          "value_usd": 207829850
+        },
+        {
+          "issuer": "KEYSIGHT TECHNOLOGIES INC",
+          "cusip": "49338L103",
+          "weight_pct": 0.044,
+          "value_usd": 204790950
+        },
+        {
+          "issuer": "SOMNIGROUP INTERNATIONAL INC",
+          "cusip": "88023U101",
+          "weight_pct": 0.0433,
+          "value_usd": 201548290
+        },
+        {
+          "issuer": "BLOCK INC",
+          "cusip": "852234103",
+          "weight_pct": 0.0418,
+          "value_usd": 194479668
+        }
+      ],
+      "moves": [
+        {
+          "issuer": "ALPHABET INC",
+          "cusip": "02079K305",
+          "action": "renforce",
+          "weight_pct": 0.0952,
+          "shares_change_pct": 13.4286,
+          "value_usd": 442521250
+        },
+        {
+          "issuer": "NORFOLK SOUTHN CORP",
+          "cusip": "655844108",
+          "action": "renforce",
+          "weight_pct": 0.0406,
+          "shares_change_pct": 5,
+          "value_usd": 188754000
+        },
+        {
+          "issuer": "CAPITAL ONE FINL CORP",
+          "cusip": "14040H105",
+          "action": "renforce",
+          "weight_pct": 0.0356,
+          "shares_change_pct": 4.8929,
+          "value_usd": 165511500
+        },
+        {
+          "issuer": "WARNER BROS DISCOVERY INC",
+          "cusip": "934423104",
+          "action": "nouvelle",
+          "weight_pct": 0.1146,
+          "shares_change_pct": null,
+          "value_usd": 533200000
+        },
+        {
+          "issuer": "LIVE NATION ENTERTAINMENT IN",
+          "cusip": "538034109",
+          "action": "renforce",
+          "weight_pct": 0.0447,
+          "shares_change_pct": 1.4409,
+          "value_usd": 207829850
+        },
+        {
+          "issuer": "UNION PAC CORP",
+          "cusip": "907818108",
+          "action": "renforce",
+          "weight_pct": 0.0205,
+          "shares_change_pct": 2.5,
+          "value_usd": 95200000
+        },
+        {
+          "issuer": "TRANSDIGM GROUP INC",
+          "cusip": "893641100",
+          "action": "renforce",
+          "weight_pct": 0.0226,
+          "shares_change_pct": 2.16,
+          "value_usd": 105231160
+        },
+        {
+          "issuer": "KEYSIGHT TECHNOLOGIES INC",
+          "cusip": "49338L103",
+          "action": "nouvelle",
+          "weight_pct": 0.044,
+          "shares_change_pct": null,
+          "value_usd": 204790950
+        },
+        {
+          "issuer": "BLOCK INC",
+          "cusip": "852234103",
+          "action": "nouvelle",
+          "weight_pct": 0.0418,
+          "shares_change_pct": null,
+          "value_usd": 194479668
+        },
+        {
+          "issuer": "FLEX LTD",
+          "cusip": "Y2573F102",
+          "action": "nouvelle",
+          "weight_pct": 0.0359,
+          "shares_change_pct": null,
+          "value_usd": 166932100
+        }
+      ],
+      "source": "SEC EDGAR 13F-HR 0001040273-26-000003"
+    },
+    {
+      "cik": "0001350694",
+      "investor": "Ray Dalio",
+      "fund": "Bridgewater Associates",
+      "style": "macro systématique",
+      "filed": "2026-08-14",
+      "period": "2026-06-30",
+      "prev_period": "2026-03-31",
+      "age_days": 53,
+      "stale": false,
+      "total_value_usd": 24376086530,
+      "n_positions": 992,
+      "top": [
+        {
+          "issuer": "STATE STR SPDR S&P 500 ETF T",
+          "cusip": "78462F103",
+          "weight_pct": 0.163,
+          "value_usd": 3973046405
+        },
+        {
+          "issuer": "ISHARES TR",
+          "cusip": "464287200",
+          "weight_pct": 0.0969,
+          "value_usd": 2362959998
+        },
+        {
+          "issuer": "NVIDIA CORPORATION",
+          "cusip": "67066G104",
+          "weight_pct": 0.0317,
+          "value_usd": 773586958
+        },
+        {
+          "issuer": "ALPHABET INC",
+          "cusip": "02079K305",
+          "weight_pct": 0.0205,
+          "value_usd": 498725596
+        },
+        {
+          "issuer": "BROADCOM INC",
+          "cusip": "11135F101",
+          "weight_pct": 0.0204,
+          "value_usd": 497845413
+        },
+        {
+          "issuer": "AMAZON COM INC",
+          "cusip": "023135106",
+          "weight_pct": 0.0198,
+          "value_usd": 482753142
+        },
+        {
+          "issuer": "LAM RESEARCH CORP",
+          "cusip": "512807306",
+          "weight_pct": 0.0167,
+          "value_usd": 406560606
+        },
+        {
+          "issuer": "VANGUARD INDEX FDS",
+          "cusip": "922908363",
+          "weight_pct": 0.0129,
+          "value_usd": 314820655
+        },
+        {
+          "issuer": "ADVANCED MICRO DEVICES INC",
+          "cusip": "007903107",
+          "weight_pct": 0.0128,
+          "value_usd": 312896715
+        },
+        {
+          "issuer": "ISHARES INC",
+          "cusip": "464286822",
+          "weight_pct": 0.0122,
+          "value_usd": 296373010
+        }
+      ],
+      "moves": [
+        {
+          "issuer": "PG&E CORP",
+          "cusip": "69331C108",
+          "action": "renforce",
+          "weight_pct": 0.0041,
+          "shares_change_pct": 240.7885,
+          "value_usd": 99764701
+        },
+        {
+          "issuer": "BOOKING HOLDINGS INC",
+          "cusip": "09857L108",
+          "action": "renforce",
+          "weight_pct": 0.0003,
+          "shares_change_pct": 778.2407,
+          "value_usd": 7500161
+        },
+        {
+          "issuer": "HALLIBURTON CO",
+          "cusip": "406216101",
+          "action": "renforce",
+          "weight_pct": 0.0022,
+          "shares_change_pct": 54.4145,
+          "value_usd": 53990176
+        },
+        {
+          "issuer": "EOG RES INC",
+          "cusip": "26875P101",
+          "action": "renforce",
+          "weight_pct": 0.0029,
+          "shares_change_pct": 41.9072,
+          "value_usd": 69980124
+        },
+        {
+          "issuer": "LEIDOS HOLDINGS INC",
+          "cusip": "525327102",
+          "action": "renforce",
+          "weight_pct": 0.0007,
+          "shares_change_pct": 119.6608,
+          "value_usd": 16338147
+        },
+        {
+          "issuer": "CHEVRON CORPORATION",
+          "cusip": "166764100",
+          "action": "renforce",
+          "weight_pct": 0.0011,
+          "shares_change_pct": 53.7411,
+          "value_usd": 25651857
+        },
+        {
+          "issuer": "ADOBE INC",
+          "cusip": "00724F101",
+          "action": "renforce",
+          "weight_pct": 0.0007,
+          "shares_change_pct": 66.6456,
+          "value_usd": 18195730
+        },
+        {
+          "issuer": "FEDEX CORP",
+          "cusip": "31428X106",
+          "action": "renforce",
+          "weight_pct": 0.0009,
+          "shares_change_pct": 46.3583,
+          "value_usd": 20775862
+        },
+        {
+          "issuer": "STATE STR SPDR S&P 500 ETF T",
+          "cusip": "78462F103",
+          "action": "renforce",
+          "weight_pct": 0.163,
+          "shares_change_pct": 0.2189,
+          "value_usd": 3973046405
+        },
+        {
+          "issuer": "REGAL REXNORD CORPORATION",
+          "cusip": "758750103",
+          "action": "renforce",
+          "weight_pct": 0.0011,
+          "shares_change_pct": 31.0052,
+          "value_usd": 27817496
+        }
+      ],
+      "source": "SEC EDGAR 13F-HR 0001350694-26-000003"
+    },
+    {
+      "cik": "0001697748",
+      "investor": "Cathie Wood",
+      "fund": "ARK Invest",
+      "style": "croissance disruptive",
+      "filed": "2026-08-14",
+      "period": "2026-06-30",
+      "prev_period": "2026-03-31",
+      "age_days": 53,
+      "stale": false,
+      "total_value_usd": 15402068886,
+      "n_positions": 184,
+      "top": [
+        {
+          "issuer": "Tesla Inc",
+          "cusip": "88160R101",
+          "weight_pct": 0.0754,
+          "value_usd": 1160772073
+        },
+        {
+          "issuer": "Advanced Micro Devices Inc",
+          "cusip": "007903107",
+          "weight_pct": 0.0534,
+          "value_usd": 822826048
+        },
+        {
+          "issuer": "Space Exploration Technologies Corp",
+          "cusip": "84615Q103",
+          "weight_pct": 0.0497,
+          "value_usd": 765113281
+        },
+        {
+          "issuer": "Tempus AI Inc",
+          "cusip": "88023B103",
+          "weight_pct": 0.0377,
+          "value_usd": 580611200
+        },
+        {
+          "issuer": "Robinhood Markets Inc",
+          "cusip": "770700102",
+          "weight_pct": 0.0341,
+          "value_usd": 525069168
+        },
+        {
+          "issuer": "CRISPR Therapeutics AG",
+          "cusip": "H17182108",
+          "weight_pct": 0.0335,
+          "value_usd": 515999631
+        },
+        {
+          "issuer": "Shopify Inc",
+          "cusip": "82509L107",
+          "weight_pct": 0.0308,
+          "value_usd": 474523465
+        },
+        {
+          "issuer": "Twist Bioscience Corp",
+          "cusip": "90184D100",
+          "weight_pct": 0.0304,
+          "value_usd": 468083756
+        },
+        {
+          "issuer": "Alphabet Inc",
+          "cusip": "02079K107",
+          "weight_pct": 0.0272,
+          "value_usd": 418716711
+        },
+        {
+          "issuer": "10X Genomics Inc",
+          "cusip": "88025U109",
+          "weight_pct": 0.0249,
+          "value_usd": 383517223
+        }
+      ],
+      "moves": [
+        {
+          "issuer": "Space Exploration Technologies Corp",
+          "cusip": "84615Q103",
+          "action": "nouvelle",
+          "weight_pct": 0.0497,
+          "shares_change_pct": null,
+          "value_usd": 765113281
+        },
+        {
+          "issuer": "Eli Lilly & Co",
+          "cusip": "532457108",
+          "action": "renforce",
+          "weight_pct": 0.006,
+          "shares_change_pct": 5.0945,
+          "value_usd": 92660897
+        },
+        {
+          "issuer": "Advanced Micro Devices Inc",
+          "cusip": "007903107",
+          "action": "allege",
+          "weight_pct": 0.0534,
+          "shares_change_pct": -0.4779,
+          "value_usd": 822826048
+        },
+        {
+          "issuer": "Alphabet Inc",
+          "cusip": "02079K107",
+          "action": "renforce",
+          "weight_pct": 0.0272,
+          "shares_change_pct": 0.6427,
+          "value_usd": 418716711
+        },
+        {
+          "issuer": "Cerebras Systems Inc",
+          "cusip": "15675D103",
+          "action": "nouvelle",
+          "weight_pct": 0.011,
+          "shares_change_pct": null,
+          "value_usd": 168979473
+        },
+        {
+          "issuer": "Teradyne Inc",
+          "cusip": "880770102",
+          "action": "allege",
+          "weight_pct": 0.0203,
+          "shares_change_pct": -0.4822,
+          "value_usd": 311971420
+        },
+        {
+          "issuer": "Twist Bioscience Corp",
+          "cusip": "90184D100",
+          "action": "allege",
+          "weight_pct": 0.0304,
+          "shares_change_pct": -0.2827,
+          "value_usd": 468083756
+        },
+        {
+          "issuer": "X-Energy Inc",
+          "cusip": "98386P102",
+          "action": "nouvelle",
+          "weight_pct": 0.0065,
+          "shares_change_pct": null,
+          "value_usd": 99361493
+        },
+        {
+          "issuer": "NVIDIA Corp",
+          "cusip": "67066G104",
+          "action": "renforce",
+          "weight_pct": 0.0179,
+          "shares_change_pct": 0.334,
+          "value_usd": 276373746
+        },
+        {
+          "issuer": "Kratos Defense & Security Solutions Inc.",
+          "cusip": "50077B207",
+          "action": "renforce",
+          "weight_pct": 0.0151,
+          "shares_change_pct": 0.3384,
+          "value_usd": 232974116
+        }
+      ],
+      "source": "SEC EDGAR 13F-HR 0001104659-26-096910"
+    }
+  ],
+  "data_gaps": []
+}
