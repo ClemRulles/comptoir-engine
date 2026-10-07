@@ -1,0 +1,36 @@
+{
+  "_doc": "LE QUIZ DU JOUR — une question par jour pour faire apprendre la bourse aux membres (accueil de l'app, classement mensuel dans Groupe). Écrit par CHAQUE routine de nuit : elle s'assure que les 2 prochains jours (date de Paris) ont leur question, sans jamais réécrire une date déjà publiée. Règles complètes dans skills/quiz.md. Schéma d'une entrée : { date (YYYY-MM-DD, jour où la question est posée), theme ('bases'|'histoire'|'actualite'|'nos-lignes'|'psychologie'|'crypto'|'fiscalite'), level ('facile'|'moyen'|'difficile'), question (≤ 160 caractères), choices ([4 réponses courtes, ≤ 60 caractères chacune]), answer (index 0-3 de la bonne réponse — varie sa position), explanation (≤ 300 caractères : pourquoi c'est la bonne réponse, ce qu'il faut en retenir), source ({ name, url? } : d'où vient le fait) }. Garder ~60 jours, les plus récents en dernier.",
+  "updated": "2026-10-07",
+  "questions": [
+    {
+      "date": "2026-10-07",
+      "theme": "nos-lignes",
+      "level": "moyen",
+      "question": "Notre position Chubb (CB) affiche un combined ratio de 83,8 % en 2026. Pour un assureur, ce chiffre signifie :",
+      "choices": [
+        "Il gagne 16 € pour chaque 100 € de prime encaissée",
+        "Il reverse 83 % de ses profits aux actionnaires",
+        "83 % de ses clients ont été remboursés sur l'année",
+        "Sa dette représente 83 % de ses capitaux propres"
+      ],
+      "answer": 0,
+      "explanation": "Combined ratio = (sinistres + frais de gestion) / primes. Sous 100 % = profit d'assurance pure. À 83,8 %, Chubb gagne avant même de placer ses réserves. C'est l'un des meilleurs ratios du secteur mondial.",
+      "source": { "name": "Chubb — rapport trimestriel Q2 2026, résultats underwriting" }
+    },
+    {
+      "date": "2026-10-08",
+      "theme": "actualite",
+      "level": "facile",
+      "question": "En octobre 2026, les taux US à 10 ans (T10Y) flirtent avec 5,2 %. Un niveau invu depuis quelle période ?",
+      "choices": [
+        "La crise financière de 2007-2008",
+        "La crise Covid de 2020",
+        "La bulle internet de 2000",
+        "Ce n'est jamais arrivé avant"
+      ],
+      "answer": 0,
+      "explanation": "Le T10Y à ~5 % renvoie aux niveaux d'avant la crise des subprimes (2007). Des taux élevés profitent aux assureurs et banques qui réinvestissent leurs réserves à des rendements records, mais pèsent sur la valorisation des actions de croissance.",
+      "source": { "name": "market-regime.md 2026-10-06 — T10Y 5,21 % (source : engine/signals.js + web search)" }
+    }
+  ]
+}

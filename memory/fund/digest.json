@@ -1,0 +1,6 @@
+{
+  "_doc": "LA SEMAINE EN CLAIR — la version lisible du brief, pour les membres du groupe (écrite le vendredi, posture mise à jour lundi et mercredi). Lue par l'accueil de l'interface. Schéma : { updated, week (ISO ex 2026-W41), posture { label (2-4 mots, ex. 'Investi mais sélectif'), tone ('offensif'|'neutre'|'defensif'), line (1 phrase : ce que l'IA fait et pourquoi) }, headline (LA phrase de la semaine), points ([≤ 3 × { title (≤ 6 mots), text (≤ 30 mots), kind ('marche'|'portefeuille'|'risque'|'opportunite') }]), decisions ([{ date, ticker, name, action ('achat'|'vente'|'renforcement'|'allegement'|'conserver'|'surveiller'), sleeve ('coeur'|'socle'|'tactique'|'crypto'), desk, why (≤ 25 mots, en clair), risk (≤ 20 mots : ce qui ferait changer d'avis), confidence ('Haute'|'Moyenne'|'Basse'), amount_eur, weight_pct }]), next ([≤ 4 × { date, label, why (≤ 15 mots) }]), in_one_sentence }. Règles : écrit pour quelqu'un qui n'a lu ni la méthode ni le playbook — zéro jargon interne (§, P-00N, gate, saisine, hystérésis, cov, F7/9), des chiffres simples, pas plus de mots que nécessaire. Le brief complet (morning-brief.md) reste la référence détaillée.",
+  "updated": null,
+  "points": [],
+  "decisions": []
+}
