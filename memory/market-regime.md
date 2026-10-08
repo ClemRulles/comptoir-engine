@@ -1,3 +1,13 @@
+# Régime de marché — note Deep-dive 2026-10-08 (W49)
+
+- **⚠️ BASCULE DE MANDAT ACTÉE (correction de cadre, pas un changement de régime).** `engine-method.md` §H (FAIT FOI, depuis 2026-10-06) fixe le cash à **10 % cible / bande 5-15 % dans TOUS les régimes** — « le régime n'achète plus de cash, il change la composition » (crypto/tactique respirent, le cash reste à 10 %). **L'« override plancher 30 % SURCHAUFFE » cité W43→W48 est OBSOLÈTE** : il appartenait à l'ancien mandat. Book ~34,7 % cash (≈€3 535, NAV ≈€10 180) = **+19,7 pts au-dessus du plafond 15 %** → SOUS-investi, redéploiement obligatoire ≤10 pts NAV/sem dès vendredi. Le desk-macro recalera `allocation.json` (node risk.js) lundi/vendredi.
+- **Régime inchangé** : override **SURCHAUFFE** maintenu (T10Y ~5,21 %, FOMC 27-28/10 ~73 % hike, dot plot hawkish) ; `signals.js` 08/10 lit toujours RISK-ON SAIN (FRED lag : T10Y2Y +0,51, VIX 15,0, HY 3,03 %, CPI 3,4 %, HICP EU 3,2 %). §E exige une marge RÉELLE (P-003). **12🟢 / 0🟠 / 0🔴.**
+- **Deep-dive** : CRM + ICE → 2 Acheter Moyenne (déploiement vendredi, CRM ~5 % + ICE ~3,5 % capée MSCI) ; EME + AMZN → GARDER (pivots renforcés). Tactique BLANC. A bis §K 0 candidat.
+- **⚠️ Risque n°1 du book (audit risk-mgr)** : **~27 % NAV sur « le capex IA/data-centers continue »** (GVA+CEG+EME+AMZN) — concentration de FACTEUR, pas de poids. Cf. lessons.md 08/10 (candidat P-004) et convictions.md.
+- **Sources** : engine/signals.js 08/10 ; engine-method.md §H ; dossiers desks + risk-manager 08/10.
+
+---
+
 # Régime de marché — mis à jour le 2026-10-06 (W48)
 
 - **✅ SURCHAUFFE HARD-CONFIRMÉE — INCHANGÉ**. T10Y **~5,21 %** (stable). FOMC 27-28/10 : **~73 % hike** (Goldman Sachs révisé, up from 69 % — 12/18 membres voient ≥1 hausse, 16/18 dot hawkish). S&P 500 ~7 680. Brent ~$107.
