@@ -1,8 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createAdminClient } from "@/lib/supabase/server";
 import { authorizeMaintenance } from "@/lib/cron-auth";
-import type { Fund } from "@/lib/types";
-import { PER_MEMBER_SCHEDULE, perMemberFor, ymOf } from "@/lib/contrib-rule";
+import type { Fund, NavSnapshot } from "@/lib/types";
+import { contribTs, PER_MEMBER_SCHEDULE, perMemberFor, ymOf } from "@/lib/contrib-rule";
 
 export const dynamic = "force-dynamic";
 
@@ -65,28 +65,80 @@ export async function GET(request: NextRequest) {
     report.amount = amount;
   }
 
-  // Rattrapage des mois cotisés automatiquement sous l'ancien montant.
-  const fixes: { month: string; recorded: number; expected: number; added: number }[] = [];
-  const months = new Set(rows.map((r) => /auto-(\d{4}-\d{2})/.exec(r.note ?? "")?.[1]).filter(Boolean) as string[]);
-  // Seulement depuis le dernier changement de règle (septembre 2026) : les mois d'avant restent
-  // tels qu'ils ont été cotisés.
+  // Depuis le dernier changement de règle (septembre 2026), chaque mois cotisé doit apparaître
+  // LE 1er, AU BON MONTANT. L'ancienne version du cron tournait le 5 à 25 € : septembre et
+  // octobre 2026 ont été enregistrés « +250 € le 5 ». Deux corrections, idempotentes :
+  //  1. recalage : un apport auto/rattrapage daté après le 1er est re-daté au 1er ;
+  //  2. complément : s'il manque de l'argent pour le mois, on l'ajoute daté du 1er.
+  // Dans les deux cas, les points NAV déjà écrits entre le 1er et l'entrée réelle de l'argent
+  // ne le contenaient pas : on leur ajoute le montant (cash et NAV, groupe ET IA), sinon la
+  // courbe montrerait un faux creux et la perf compterait l'apport comme une perte puis un gain.
+  // Les mois d'avant septembre restent tels qu'ils ont été cotisés.
   const changedFrom = PER_MEMBER_SCHEDULE[PER_MEMBER_SCHEDULE.length - 1].from;
-  for (const month of [...months].filter((m) => m >= changedFrom).sort()) {
-    const auto = tagged("auto", month);
-    // Nombre de membres de CE mois-là, lu dans la note (« (10 × 25 €) »), sinon les actifs.
-    const n = Number(/\((\d+)\s*×/.exec(auto[0]?.note ?? "")?.[1] ?? activeMembers) || activeMembers;
-    const expected = n * perMemberFor(month);
-    const recorded = [...auto, ...tagged("fix", month)].reduce((sum, r) => sum + Number(r.amount || 0), 0);
-    const diff = Math.round((expected - recorded) * 100) / 100;
-    if (diff > 0 && tagged("fix", month).length === 0) {
-      const note = `Rattrapage cotisation ${month} (${n} × ${perMemberFor(month)} € attendus, ${recorded} € versés) · fix-${month}`;
+  const fundIds = ((funds ?? []) as Fund[]).filter((f) => f.kind === "group" || f.kind === "ai").map((f) => f.id);
+
+  // Ajoute `amount` aux points NAV des deux fonds datés de [from, to) (to = null : jusqu'à aujourd'hui inclus).
+  async function addToSnapshots(from: string, to: string | null, amount: number): Promise<number> {
+    let q = supabase.from("nav_snapshots").select("*").in("fund_id", fundIds).gte("date", from);
+    if (to) q = q.lt("date", to);
+    const { data: snaps, error } = await q;
+    if (error) throw new Error(error.message);
+    const rows = ((snaps ?? []) as NavSnapshot[]).map((r) => ({
+      fund_id: r.fund_id,
+      date: r.date,
+      cash: Number(r.cash) + amount,
+      positions_value: Number(r.positions_value),
+      nav: Number(r.nav) + amount,
+    }));
+    if (rows.length) {
+      const { error: upErr } = await supabase.from("nav_snapshots").upsert(rows, { onConflict: "fund_id,date" });
+      if (upErr) throw new Error(upErr.message);
+    }
+    return rows.length;
+  }
+
+  const redated: { month: string; amount: number; from: string; snapshots: number }[] = [];
+  const fixes: { month: string; recorded: number; expected: number; added: number; snapshots: number }[] = [];
+  try {
+    const { data: rowsNow } = await supabase.from("contributions").select("id, ts, amount, note");
+    const mine = ((rowsNow ?? []) as { id: string; ts: string; amount: number; note: string | null }[])
+      .map((r) => ({ ...r, month: /(?:auto|fix)-(\d{4}-\d{2})/.exec(r.note ?? "")?.[1] ?? null }))
+      .filter((r): r is typeof r & { month: string } => !!r.month && r.month >= changedFrom);
+
+    // 1. Recalage au 1er.
+    for (const r of mine) {
+      const first = `${r.month}-01`;
+      const day = String(r.ts).slice(0, 10);
+      if (day <= first) continue;
+      const { error } = await supabase.from("contributions").update({ ts: contribTs(r.month) }).eq("id", r.id);
+      if (error) throw new Error(error.message);
+      const n = await addToSnapshots(first, day, Number(r.amount));
+      redated.push({ month: r.month, amount: Number(r.amount), from: day, snapshots: n });
+    }
+
+    // 2. Complément du montant manquant, daté du 1er.
+    for (const month of [...new Set(mine.map((r) => r.month))].sort()) {
+      const auto = mine.filter((r) => (r.note ?? "").includes(`auto-${month}`));
+      const fix = mine.filter((r) => (r.note ?? "").includes(`fix-${month}`));
+      if (!auto.length || fix.length) continue;
+      // Nombre de membres de CE mois-là, lu dans la note (« (10 × 25 €) »), sinon les actifs.
+      const n = Number(/\((\d+)\s*×/.exec(auto[0].note ?? "")?.[1] ?? activeMembers) || activeMembers;
+      const expected = n * perMemberFor(month);
+      const recorded = auto.reduce((sum, r) => sum + Number(r.amount || 0), 0);
+      const diff = Math.round((expected - recorded) * 100) / 100;
+      if (diff <= 0) continue;
+      const note = `Complément cotisation ${month} (${n} × ${perMemberFor(month)} € attendus, ${recorded} € versés) · fix-${month}`;
       const { error } = await supabase
         .from("contributions")
-        .insert({ fund_id: group.id, member_id: null, amount: diff, note, kind: "apport" });
-      if (error) return NextResponse.json({ error: error.message, fixes }, { status: 500 });
-      fixes.push({ month, recorded, expected, added: diff });
+        .insert({ fund_id: group.id, member_id: null, amount: diff, note, kind: "apport", ts: contribTs(month) });
+      if (error) throw new Error(error.message);
+      const s = await addToSnapshots(`${month}-01`, null, diff);
+      fixes.push({ month, recorded, expected, added: diff, snapshots: s });
     }
+  } catch (e) {
+    return NextResponse.json({ ...report, redated, fixes, error: (e as Error).message }, { status: 500 });
   }
+  report.redated = redated;
   report.fixes = fixes;
 
   // On ne touche PAS funds.cash : getAppData ajoute le total des apports au cash ET au

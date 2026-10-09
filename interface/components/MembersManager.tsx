@@ -31,14 +31,14 @@ export function MembersManager({ club }: { club: ClubData }) {
       const res = await fetch("/api/members", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name.trim(), monthly_amount: Number(monthly) || 25 }),
+        body: JSON.stringify({ name: name.trim(), monthly_amount: Number(monthly) || monthlyPerMember }),
       });
       const j = await res.json().catch(() => ({}));
       if (!res.ok) flash("err", j.error ?? "Erreur");
       else {
         setName("");
         setMonthly(String(monthlyPerMember));
-        flash("ok", "Membre ajouté.");
+        flash("ok", j.joined ? `Membre ajouté · sa cotisation du mois (+${j.joined} €) est comptée.` : "Membre ajouté · il cotisera dès le 1er.");
         router.refresh();
       }
     } catch {
