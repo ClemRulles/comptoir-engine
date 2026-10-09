@@ -1,6 +1,6 @@
 {
   "_doc": "LE QUIZ DU JOUR — une question par jour pour faire apprendre la bourse aux membres (accueil de l'app, classement mensuel dans Groupe). Écrit par CHAQUE routine de nuit : elle s'assure que les 2 prochains jours (date de Paris) ont leur question, sans jamais réécrire une date déjà publiée. Règles complètes dans skills/quiz.md. Schéma d'une entrée : { date (YYYY-MM-DD, jour où la question est posée), theme ('bases'|'histoire'|'actualite'|'nos-lignes'|'psychologie'|'crypto'|'fiscalite'), level ('facile'|'moyen'|'difficile'), question (≤ 160 caractères), choices ([4 réponses courtes, ≤ 60 caractères chacune]), answer (index 0-3 de la bonne réponse — varie sa position), explanation (≤ 300 caractères : pourquoi c'est la bonne réponse, ce qu'il faut en retenir), source ({ name, url? } : d'où vient le fait) }. Garder ~60 jours, les plus récents en dernier.",
-  "updated": "2026-10-08",
+  "updated": "2026-10-09",
   "questions": [
     {
       "date": "2026-10-07",
@@ -61,6 +61,21 @@
       "answer": 0,
       "explanation": "Le protocole Bitcoin plafonne l'offre à 21 millions d'unités (atteints vers 2140). Cette rareté programmée est au cœur de l'argument « or numérique » — à l'inverse d'une monnaie classique qu'une banque centrale peut créer sans limite.",
       "source": { "name": "Protocole Bitcoin — whitepaper Nakamoto (2008)" }
+    },
+    {
+      "date": "2026-10-11",
+      "theme": "bases",
+      "level": "moyen",
+      "question": "Qu'est-ce que le « combined ratio » d'un assureur, et quel niveau signifie qu'il est rentable ?",
+      "choices": [
+        "Ratio (sinistres + frais) / primes ; rentable si < 100 %",
+        "Ratio actifs / passifs ; rentable si > 1",
+        "Ratio primes / capitaux propres ; rentable si > 15 %",
+        "Ratio dividendes / bénéfice net ; rentable si < 50 %"
+      ],
+      "answer": 0,
+      "explanation": "Le combined ratio mesure l'efficacité de l'assurance pure. Sous 100 % = l'assureur gagne avant même de placer ses réserves. Chubb affiche 83,8 % en 2026, l'un des meilleurs niveaux mondiaux du secteur.",
+      "source": { "name": "Chubb — rapport annuel 2025 / résultats Q2 2026 ; définition ACPR" }
     }
   ]
 }

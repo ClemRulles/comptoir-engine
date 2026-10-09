@@ -1,9 +1,9 @@
 {
   "_doc": "Cache des signaux QUANTITATIFS calculés par engine/signals.js. 'regime' = score macro FRED agrégé (gate global). 'tickers' = map ticker -> { fscore, momentum_12_1, earnings_quality, gate } horodatés. L'IA LIT ce fichier avant d'ouvrir/fermer une position (method §A/§H) : les signaux sont des garde-fous factuels, pas une boîte noire. 'data_gaps' liste les sources indisponibles (clé manquante / quota) pour rester honnête sur l'incertitude. Régénéré par les routines ; ne pas éditer à la main.",
-  "as_of": "2026-10-03",
+  "as_of": "2026-10-09",
   "seeded": true,
   "start_capital": 10417.28,
-  "cash": 3535.09,
+  "cash": 3535.85,
   "positions": [
     {
       "ticker": "SAF.PA",
@@ -595,6 +595,6 @@
       "rationale": "Entrée vendredi §H — NIM EU expansion. Deep-dive 10/09 → Acheter analytique Moyenne, sizing réduit à Basse par contrainte couloir de cash SURCHAUFFE (Moyenne mettrait cash ~28.8% < plancher 30%). Société Générale : P/TBV 0.94x, ROTE 12.2% Q2 ✓, bénéficiaire direct BCE +25bps + FOMC +25bps 16/09 (NIM expansion). Non-redondant avec CB (USD assurance vs EUR banque commerciale). Reportée depuis W42 (CB priorisé sur gate cov92% > cov39%). BNP.PA div +12.02€ comptabilisé (ex-div 24/09, paiement 28/09). AI.PA hystérésis 2e🟠 : trim 0 (excédent 3.9€ < frais friction). LOTB hystérésis 2e🟠 : trim 0 (déjà <5% NAV). Coût total CORRIGÉ : 1.01 × 66.08€ = 66.74€ + frais 0.92€ = 67.66€. Cash post-trade CORRIGÉ : 3 535.09€ = 35.2% NAV (avant CB div) — [Réconciliation W47 03/10 : prix 303€ erroné → 66.08€, cash récupéré +239.29€]."
     }
   ],
-  "note": "Brief W47 2026-10-03. SURCHAUFFE HARD-CONFIRMÉE (T10Y ~5.21%, FOMC 27-28/10 69% hike). 0 TRADES W47. RÉCONCILIATION GLE.PA : avg_cost 303€→66.08€, entry_price corrigé, cash +239.29€ (3 295.80€→3 535.09€). NAV ≈ €10 035 (inchangé — la correction GLE.PA décale le cash +239.29€ et la valeur position −239.29€, NAV neutre). Signaux W47 03/10 : 12🟢 0🟠 0🔴 — LOTB streak 🟠×4 CASSÉE → 🟢 (momentum normalisé). AI.PA 2e🟢 consécutif (hystérésis levée, renforcement possible mais bloqué par cash et SURCHAUFFE). Cash 3 535.09€ = 35.2% NAV (corridor 30-50% ✓). Calibration mensuelle : n_conviction=1 (CRH), tous buckets n<8, aucun ajustement sizing.",
+  "note": "Doctor W49 2026-10-09. SURCHAUFFE HARD-CONFIRMÉE (override FRED ; T10Y ~5.21%, FOMC 73% hike Goldman 06/10). 0 TRADES W49. GLE.PA ex-div 05/10 crédité : +€0.76 (€0.75 × 1.01 parts), cash 3 535.09€→3 535.85€. Signaux W49 09/10 : 11🟢 1🟠 (SAF.PA — 1er relevé) 0🔴. Bascule de mandat 06/10 : cash cible 10%/plafond 15% en tout régime — cash actuel 34.6% > plafond 15% (under-invested). Vendredi : CRM Acheter Moyenne ~5% + ICE Acheter Moyenne ~3.5% per convictions 08/10. Grok ceg-hormuz-nuclear-w43 HIT (+10.1% CEG). Concentration capex IA ~28% NAV (GVA+CEG+EME+AMZN) — alertée. CB Q3 ~20/10, GVA Q3 ~05/11, FOMC 27-28/10 : catalyseurs actifs.",
   "note_migration_2026_08_30": "MIGRATION §H/§I COMPLÈTE (vendredi 05/09/2026) : (1) `entry_price` = prix réellement payé par l'IA. (2) `avg_cost` hors jugement IA. (3) Toutes les exit_rules CŒUR RÉÉCRITES en critères de thèse + seuil réexamen −25% vs entry_price : stops de prix (stop -8% avg_cost, stop EUR X€, stop USD $Y) SUPPRIMÉS de toutes les exit_rules. P-001 conservé comme RÉFÉRENCE de monitoring USD pour les positions US, jamais comme déclencheur automatique sur CŒUR — franchissement P-001 = saisine mercredi, pas vente jeudi. Hystérésis : gate flip ne déclenche sizing change qu'après 2 relevés consécutifs confirmés."
 }

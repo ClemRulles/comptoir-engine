@@ -1,5 +1,80 @@
 {
-  "_doc": "L'actualité MONDIALE qui compte pour le book, en clair (lundi : refonte complète ; jeudi : mise à jour). Lu par l'interface (page Monde, accueil). 6 à 12 items, les plus importants d'abord. Schéma d'un item : { id (kebab-case), date (YYYY-MM-DD de l'événement), category ('politique-us' | 'geopolitique' | 'banques-centrales' | 'macro' | 'entreprises' | 'energie' | 'crypto' | 'regulation' | 'investisseurs'), title (≤ 12 mots, factuel), summary (1-2 phrases : ce qui s'est passé, chiffres sourcés), why (1 phrase : pourquoi ça compte pour un investisseur), impact ([{ target (ticker ou secteur), kind ('ticker'|'secteur'), direction ('positif'|'negatif'|'incertain'), held (bool : détenu par le book IA ou le groupe) }]), ai_take (1 phrase : ce que l'IA en fait concrètement — 'rien' est une réponse valable), importance (1 = majeur, 2 = notable, 3 = contexte), sources ([{ name, url }], au moins une source datée) }. Règles : AUCUN jargon interne (pas de §, P-00N, gate, saisine, hystérésis) ; aucune rumeur non sourcée ; une déclaration politique (ex. Trump, tarifs) n'est un item que si elle a un effet observable (marché, calendrier, décret).",
-  "updated": null,
-  "items": []
+  "_doc": "L'actualité MONDIALE qui compte pour le book, en clair (lundi : refonte complète ; jeudi : mise à jour). Lu par l'interface (page Monde, accueil). 6 à 12 items, les plus importants d'abord. Schéma d'un item : { id (kebab-case), date (YYYY-MM-DD de l'événement), category ('politique-us' | 'geopolitique' | 'banques-centrales' | 'macro' | 'entreprises' | 'energie' | 'crypto' | 'regulation' | 'investisseurs'), title (≤ 12 mots, factuel), summary (1-2 phrases : ce qui s'est passé, chiffres sourcés), why (1 phrase : pourquoi ça compte pour un investisseur), impact ([{ target (ticker ou secteur), kind ('ticker'|'secteur'), direction ('positif'|'negatif'|'incertain'), held (bool : détenu par le book IA ou le groupe) }]), ai_take (1 phrase : ce que l'IA en fait concrètement — 'rien' est une réponse valable), importance (1 = majeur, 2 = notable, 3 = contexte), sources ([{ name, url? }], au moins une source datée) }. Règles : AUCUN jargon interne (pas de §, P-00N, gate, saisine, hystérésis) ; aucune rumeur non sourcée ; une déclaration politique (ex. Trump, tarifs) n'est un item que si elle a un effet observable (marché, calendrier, décret).",
+  "updated": "2026-10-09",
+  "items": [
+    {
+      "id": "fomc-hike-73pct-goldman-oct2026",
+      "date": "2026-10-06",
+      "category": "banques-centrales",
+      "title": "Goldman relève probabilité hausse Fed à 73 % pour octobre",
+      "summary": "Goldman Sachs a révisé sa probabilité d'une nouvelle hausse de la Fed le 27-28 octobre à 73 %, contre 69 % la semaine précédente. Le T10Y atteint 5,21 %, plus haut depuis 19 ans, avec 12 membres du FOMC dotés d'une vue hawkish.",
+      "why": "Une hausse en octobre renforce le NIM des banques et assureurs (BNP.PA, CB, GLE.PA) mais pèse sur les actifs longue-duration (infrastructure, utilities).",
+      "impact": [
+        { "target": "BNP.PA", "kind": "ticker", "direction": "positif", "held": true },
+        { "target": "CB", "kind": "ticker", "direction": "positif", "held": true },
+        { "target": "GLE.PA", "kind": "ticker", "direction": "positif", "held": true },
+        { "target": "GVA", "kind": "ticker", "direction": "negatif", "held": true },
+        { "target": "CEG", "kind": "ticker", "direction": "negatif", "held": true }
+      ],
+      "ai_take": "Maintenir les positions bancaires/assurancielles ; surveiller CEG et GVA si T10Y dépasse 5,25 %.",
+      "importance": 1,
+      "sources": [{ "name": "Goldman Sachs FOMC note — 06/10/2026 (via market-regime.md)" }]
+    },
+    {
+      "id": "ceg-price-recovery-oct2026",
+      "date": "2026-10-08",
+      "category": "entreprises",
+      "title": "Constellation Energy rebondit de 10 % depuis fin septembre",
+      "summary": "CEG a progressé de $258,92 (25/09) à $285,07 (08/10), soit +10,1 %, porté par la demande en énergie nucléaire des hyperscalers. L'accord Amazon 690 MW sur 20 ans (01/10) a renforcé la thèse des contrats longue durée.",
+      "why": "La progression valide la demande structurelle en énergie nucléaire décarbonée pour les data centers.",
+      "impact": [
+        { "target": "CEG", "kind": "ticker", "direction": "positif", "held": true }
+      ],
+      "ai_take": "Thèse nucléaire / PPA intacte — aucune action, surveiller Q3 résultats en octobre pour confirmation des falsificateurs.",
+      "importance": 2,
+      "sources": [{ "name": "signals.js 09/10/2026 — cours $285.07 ; catalysts.md grok scoring ceg-hormuz-nuclear-w43" }]
+    },
+    {
+      "id": "saf-gate-amber-oct2026",
+      "date": "2026-10-09",
+      "category": "entreprises",
+      "title": "Safran : signal de momentum s'affaiblit en octobre",
+      "summary": "Le signal quantitatif de Safran est passé d'un territoire positif à un signal ambre (RSI 38.4, cours €310.8, momentum +12.2%) pour la première fois depuis fin juillet. La thèse MRO/LEAP reste intacte (guide H1 relevé, LEAP +41%), mais la dynamique de court terme marque le pas.",
+      "why": "Un signal ambre persistant pourrait déclencher une réduction de taille de la position dans les prochaines semaines.",
+      "impact": [
+        { "target": "SAF.PA", "kind": "ticker", "direction": "incertain", "held": true }
+      ],
+      "ai_take": "Aucune vente ce jeudi ; observer si le signal se confirme la semaine prochaine pour une éventuelle réduction partielle.",
+      "importance": 2,
+      "sources": [{ "name": "engine/signals.js 09/10/2026 — SAF.PA gate ambre composite +0.126" }]
+    },
+    {
+      "id": "cb-q3-horizon-test-approaching",
+      "date": "2026-10-09",
+      "category": "entreprises",
+      "title": "Chubb (CB) : résultats Q3 attendus vers le 20-21 octobre",
+      "summary": "Chubb publiera ses résultats trimestriels vers le 20-21 octobre. Le test de thèse porte sur le combined ratio (≤95 %) et la progression du revenu net d'investissement sur le float de $100 milliards, réinvesti à des taux records.",
+      "why": "Un combined ratio supérieur à 95 % ou une révision à la baisse du NII serait un signal de sortie de la position.",
+      "impact": [
+        { "target": "CB", "kind": "ticker", "direction": "incertain", "held": true }
+      ],
+      "ai_take": "Conserver jusqu'aux résultats Q3 ; préparer les critères de sortie (combined ratio >95% ou NII coupée ≥10%).",
+      "importance": 2,
+      "sources": [{ "name": "catalysts.md 2026-10-06 — CB Q3 ~20-21/10/2026" }]
+    },
+    {
+      "id": "gva-q3-upcoming-iija-watch",
+      "date": "2026-10-09",
+      "category": "entreprises",
+      "title": "Granite Construction : Q3 attendu début novembre, IIJA en veille",
+      "summary": "GVA publiera ses résultats Q3 vers le 5 novembre (date corrigée). La guidance FY26 a été relevée à $5,3-5,5B (01/10). L'échéance des autorisations IIJA au 11/12 reste un risque binaire si aucune réautorisation pluriannuelle n'est votée.",
+      "why": "Le Q3 est le test décisif de la thèse : si la marge reste dans la fourchette 12,25-13,25 % avec un backlog ≥$7,4B, la position reste justifiée jusqu'en décembre.",
+      "impact": [
+        { "target": "GVA", "kind": "ticker", "direction": "incertain", "held": true }
+      ],
+      "ai_take": "Conserver jusqu'au Q3 ; surveiller le vote IIJA en octobre-novembre.",
+      "importance": 2,
+      "sources": [{ "name": "catalysts.md 2026-10-06 — GVA Q3 ~05/11/2026 (date corrigée)" }]
+    }
+  ]
 }
