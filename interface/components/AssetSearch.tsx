@@ -27,6 +27,7 @@ export function AssetSearch() {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState<Filter>("all");
+  const [down, setDown] = useState(false); // Yahoo injoignable
   const boxRef = useRef<HTMLDivElement>(null);
 
   // Ferme le menu si on clique ailleurs.
@@ -49,11 +50,14 @@ export function AssetSearch() {
     const id = setTimeout(async () => {
       try {
         const res = await fetch(`/api/ticker-search?q=${encodeURIComponent(q)}`);
-        const { results } = await res.json();
+        const { results, error } = await res.json();
         setResults(results ?? []);
+        setDown(error === "source");
         setOpen(true);
       } catch {
         setResults([]);
+        setDown(true);
+        setOpen(true);
       }
       setLoading(false);
     }, 300);
@@ -135,13 +139,15 @@ export function AssetSearch() {
         ))}
       </div>
 
-      {open && (shown.length > 0 || loading) && (
+      {open && query.trim().length >= 2 && (
         <ul className="absolute z-30 mt-2 max-h-72 w-full overflow-auto rounded-2xl border border-line bg-card shadow-lg">
           {loading && shown.length === 0 && (
             <li className="px-4 py-3 text-sm text-muted">Recherche…</li>
           )}
           {!loading && shown.length === 0 && (
-            <li className="px-4 py-3 text-sm text-muted">Aucun résultat pour ce filtre.</li>
+            <li className="px-4 py-3 text-sm leading-snug text-muted">
+              {down ? "Recherche indisponible pour le moment (source Yahoo). Réessaie dans un instant." : results.length ? "Aucun résultat pour ce filtre." : "Aucun résultat. Essaie le nom de l'émetteur (iShares, Amundi, Vanguard…) ou le ticker (ex. IWDA, EUNL)."}
+            </li>
           )}
           {shown.map((r) => (
             <li key={`${r.symbol}-${r.exchange}`}>

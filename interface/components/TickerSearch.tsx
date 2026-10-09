@@ -20,7 +20,9 @@ export function TickerSearch({
   const [results, setResults] = useState<Result[]>([]);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [down, setDown] = useState(false); // Yahoo injoignable
   const boxRef = useRef<HTMLDivElement>(null);
+  const skipNext = useRef(false); // après un choix, le champ affiche le ticker : pas de nouvelle recherche
 
   useEffect(() => setQuery(value), [value]);
 
@@ -36,6 +38,10 @@ export function TickerSearch({
   // Recherche débattue (300 ms).
   useEffect(() => {
     const q = query.trim();
+    if (skipNext.current) {
+      skipNext.current = false;
+      return;
+    }
     if (q.length < 2) {
       setResults([]);
       return;
@@ -44,11 +50,14 @@ export function TickerSearch({
     const id = setTimeout(async () => {
       try {
         const res = await fetch(`/api/ticker-search?q=${encodeURIComponent(q)}`);
-        const { results } = await res.json();
+        const { results, error } = await res.json();
         setResults(results ?? []);
+        setDown(error === "source");
         setOpen(true);
       } catch {
         setResults([]);
+        setDown(true);
+        setOpen(true);
       }
       setLoading(false);
     }, 300);
@@ -57,6 +66,7 @@ export function TickerSearch({
 
   function pick(r: Result) {
     onSelect(r.symbol, r.name);
+    skipNext.current = true;
     setQuery(r.symbol);
     setOpen(false);
   }
@@ -75,10 +85,17 @@ export function TickerSearch({
         autoComplete="off"
         required
       />
-      {open && (results.length > 0 || loading) && (
+      {open && query.trim().length >= 2 && (
         <ul className="absolute z-30 mt-1 max-h-64 w-full overflow-auto rounded-xl border border-line bg-card shadow-lg">
           {loading && results.length === 0 && (
             <li className="px-3 py-2 text-sm text-muted">Recherche…</li>
+          )}
+          {!loading && results.length === 0 && (
+            <li className="px-3 py-2 text-sm leading-snug text-muted">
+              {down
+                ? "Recherche indisponible pour le moment (source Yahoo). Réessaie dans un instant."
+                : "Aucun résultat. Essaie le nom de l'émetteur (iShares, Amundi, Vanguard…) ou le ticker (ex. IWDA, EUNL)."}
+            </li>
           )}
           {results.map((r) => (
             <li key={`${r.symbol}-${r.exchange}`}>
