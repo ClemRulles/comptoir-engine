@@ -1,9 +1,16 @@
 {
   "_doc": "LES DEUX CARRÉS DE L'ACCUEIL — ce qui doit sauter aux yeux d'un membre qui ouvre l'app 10 secondes. invest = écrit le VENDREDI après la décision principale (valable la semaine suivante) : { date, week (ISO), value (le nom court de ce que l'IA achèterait cette semaine, ex. 'Chubb' ; ou exactement 'RIEN' s'il n'y a rien d'assez solide — le droit au blanc est une réponse), ticker (ou null), line (≤ 90 caractères : pourquoi, en clair), confidence ('Haute'|'Moyenne'|'Basse'|null) }. watch = écrit le LUNDI (actualité) et mis à jour le mercredi ou le jeudi si quelque chose de plus important arrive : { date, kind ('chiffre'|'news'), value (un chiffre frappant ex. '5,2 %' ou un titre ≤ 7 mots), label (≤ 40 caractères : de quoi il s'agit, ex. 'Taux à 10 ans américain'), line (≤ 90 caractères : ce que ça change pour nous) }. Zéro jargon interne. Aucun chiffre sans source vérifiée dans la routine.",
-  "updated": "2026-10-08",
-  "invest": {},
+  "updated": "2026-10-10",
+  "invest": {
+    "date": "2026-10-10",
+    "week": "2026-W50",
+    "value": "Salesforce",
+    "ticker": "CRM",
+    "line": "Leader CRM à valorisation comprimée, pivot IA Agentforce en cours. Acheté ~5 % du portefeuille.",
+    "confidence": "Moyenne"
+  },
   "watch": {
-    "date": "2026-10-08",
+    "date": "2026-10-10",
     "kind": "news",
     "value": "Réunion Fed 27-28 oct.",
     "label": "Décision de taux américaine",

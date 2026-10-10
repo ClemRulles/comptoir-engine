@@ -1,23 +1,51 @@
 {
   "_doc": "LA SEMAINE EN CLAIR — la version lisible du brief, pour les membres du groupe (écrite le vendredi, posture mise à jour lundi et mercredi). Lue par l'accueil de l'interface. Schéma : { updated, week (ISO ex 2026-W41), posture { label (2-4 mots, ex. 'Investi mais sélectif'), tone ('offensif'|'neutre'|'defensif'), line (1 phrase : ce que l'IA fait et pourquoi) }, headline (LA phrase de la semaine), points ([≤ 3 × { title (≤ 6 mots), text (≤ 30 mots), kind ('marche'|'portefeuille'|'risque'|'opportunite') }]), decisions ([{ date, ticker, name, action ('achat'|'vente'|'renforcement'|'allegement'|'conserver'|'surveiller'), sleeve ('coeur'|'socle'|'tactique'|'crypto'), desk, why (≤ 25 mots, en clair), risk (≤ 20 mots : ce qui ferait changer d'avis), confidence ('Haute'|'Moyenne'|'Basse'), amount_eur, weight_pct }]), next ([≤ 4 × { date, label, why (≤ 15 mots) }]), in_one_sentence }. Règles : écrit pour quelqu'un qui n'a lu ni la méthode ni le playbook — zéro jargon interne (§, P-00N, gate, saisine, hystérésis, cov, F7/9), des chiffres simples, pas plus de mots que nécessaire. Le brief complet (morning-brief.md) reste la référence détaillée.",
-  "updated": "2026-10-08",
-  "week": "2026-W41",
+  "updated": "2026-10-10",
+  "week": "2026-W50",
   "posture": {
-    "label": "Prêt à redéployer",
-    "tone": "neutre",
-    "line": "Le portefeuille garde trop de liquidités (~35 % au lieu de 10 % visés) : il va les remettre au travail prudemment, en commençant par deux achats visés vendredi, Salesforce et ICE."
+    "label": "En déploiement actif",
+    "tone": "offensif",
+    "line": "Le portefeuille remet ses liquidités au travail : Salesforce et ICE ont été achetés ce vendredi, réduisant le cash de 35 % à 26 % — la cible est 10 %, le rythme reste de 10 points par semaine maximum."
   },
-  "headline": "Deux nouvelles idées validées, choisies pour diversifier — pas pour ajouter au pari sur les centres de données.",
+  "headline": "Salesforce et ICE achetés, deux paris de qualité éloignés des centres de données.",
   "points": [
-    { "title": "Salesforce et ICE validés", "text": "Deux entreprises de qualité achetées à bon prix : le leader du logiciel d'entreprise (soldé) et le propriétaire du NYSE.", "kind": "opportunite" },
-    { "title": "Trop de liquidités", "text": "Le portefeuille détient ~35 % de cash pour une cible de 10 % : rester sous-investi coûte du rendement. Redéploiement étalé sur plusieurs semaines.", "kind": "portefeuille" },
-    { "title": "Un pari concentré surveillé", "text": "Environ un quart du portefeuille dépend des dépenses des géants du cloud (Granite, Constellation, EMCOR, Amazon). On ne l'augmente pas.", "kind": "risque" }
+    { "title": "Deux achats exécutés", "text": "Salesforce (CRM) ~5 % du portefeuille et ICE (propriétaire du NYSE) ~3 % achetés. Deux compounders à valorisation raisonnable, qualité fondamentale élevée.", "kind": "opportunite" },
+    { "title": "Cash encore élevé", "text": "Après ces achats, le cash est à 26 % au lieu des 10 % visés. ~10 points supplémentaires seront déployés la semaine prochaine.", "kind": "portefeuille" },
+    { "title": "La Fed va sans doute monter les taux", "text": "Goldman Sachs estime à 73 % la probabilité d'une hausse fin octobre. Chubb et BNP seraient les gagnants directs.", "kind": "risque" }
   ],
-  "decisions": [],
+  "decisions": [
+    {
+      "date": "2026-10-10",
+      "ticker": "CRM",
+      "name": "Salesforce",
+      "action": "achat",
+      "sleeve": "coeur",
+      "desk": "desk-tech",
+      "why": "Leader mondial du CRM, pivot IA Agentforce en cours, valorisation comprimée (~26x cash flow) avec F-Score solide 7/9. Prix dans la zone d'achat.",
+      "risk": "Ralentissement ARR IA/Data sous 50 % de croissance ou contraction des licences deux trimestres.",
+      "confidence": "Moyenne",
+      "amount_eur": 514,
+      "weight_pct": 5.0
+    },
+    {
+      "date": "2026-10-10",
+      "ticker": "ICE",
+      "name": "Intercontinental Exchange",
+      "action": "achat",
+      "sleeve": "coeur",
+      "desk": "desk-finance",
+      "why": "Propriétaire du NYSE et des données hypothécaires US, revenus récurrents >47 %, moat réglementaire non-réplicable. Complémentaire à MSCI (données d'indices) sans doublon.",
+      "risk": "Revenus récurrents FI&Data en repli deux trimestres consécutifs.",
+      "confidence": "Moyenne",
+      "amount_eur": 345,
+      "weight_pct": 3.35
+    }
+  ],
   "next": [
-    { "date": "2026-10-10", "label": "Achats visés : Salesforce + ICE", "why": "Fenêtre d'exécution du vendredi" },
-    { "date": "2026-10-20", "label": "Résultats Chubb + RTX", "why": "Tests de thèse" },
-    { "date": "2026-10-27", "label": "Réunion de la Fed", "why": "Hausse de taux probable" }
+    { "date": "2026-10-13", "label": "Score Grok CEG (W45)", "why": "Horizon call survendu CEG, scoring" },
+    { "date": "2026-10-20", "label": "Résultats Chubb (CB)", "why": "Test thèse combined ratio + NII" },
+    { "date": "2026-10-27", "label": "Réunion de la Fed", "why": "73 % probabilité hausse taux" },
+    { "date": "~Nov 2026", "label": "Résultats CRM + ICE", "why": "Premiers horizon-tests des nouvelles positions" }
   ],
-  "in_one_sentence": "Le portefeuille valide Salesforce et ICE pour remettre au travail son excédent de liquidités, tout en gardant l'œil sur sa concentration dans les centres de données."
+  "in_one_sentence": "Salesforce et ICE ont rejoint le portefeuille ce vendredi, réduisant le cash à 26 % sur un chemin vers 10 %, tout en diversifiant loin de la concentration sur les centres de données."
 }

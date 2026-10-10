@@ -3,7 +3,7 @@
   "as_of": "2026-10-09",
   "seeded": true,
   "start_capital": 10417.28,
-  "cash": 3535.85,
+  "cash": 2674.12,
   "positions": [
     {
       "ticker": "SAF.PA",
@@ -169,6 +169,40 @@
       "thesis": "EMCOR Group — contracteur MEP (mechanical-electrical-plumbing) pour data centers et infra critique US. Couche chaîne de valeur supérieure à GVA (MEP intérieur vs génie civil). F6/9 EDGAR solide, PEG ~0.65 (EPS +35% livrés), RPO $17.14B (+44% YoY), marge opérationnelle ~10.6% (2.5× GVA). RSI 39.8 au moment de la convictions (post-record, correction technique). Non redondant avec GVA (P-003b : couches différentes de la chaîne DC). Entrée 29/08 à 662.33€ ($763/1.152). Stop USD $702 (marge −8%). Position 7.0% NAV.",
       "entry_price": 662.33,
       "entry_price_source": "achats IA, moyenne pondérée"
+    },
+    {
+      "ticker": "CRM",
+      "quantity": 2.47,
+      "avg_cost": 208.30,
+      "confidence": "Moyenne",
+      "horizon": "coeur",
+      "thesis_id": "crm-ai-cloud",
+      "entry_date": "2026-10-10",
+      "target": null,
+      "exit_rule": "sortie si ARR AI/Data décélère <50% YoY ET CA<8% OU contraction sièges sur 2T consécutifs OU F-Score ≤ 3/9 ; horizon_test Q3 2026 résultats nov. 2026 ; seuil réexamen mercredi : cours < $172 (entry_price $229.13 × 0.75 — P-001 ref USD) ; 2.47 parts ≈ 5.0% NAV",
+      "seed": false,
+      "thesis": "Salesforce — plateforme CRM n°1 + pivot IA (Agentforce). ARR $20.9B dont Data Cloud 3x sièges YoY, Agentforce 40+ déploiements enterprise dès W49. NRR >100% = pricing power, CFROI 11.7%, marge FCF ~28%. Gate 🟢 +0.551 F7/9 cov86% (convictions W49 08/10). Buy zone $185-240 — cours $229.13 < $240 high → taille pleine. Non-redondant avec AMZN (infrastructure cloud vs CRM/verticaux). FOMC/macro : US SaaS sensible aux taux mais le pivot IA valide un multiple compressé 26x NTM vs pairs 32-36x. Sizing Moyenne : 2.47 × €208.30 = €514.50 ≈ 5% NAV.",
+      "entry_price": 208.30,
+      "entry_price_usd": 229.13,
+      "entry_price_source": "signals.js W50 10/10/2026 — cours $229.13 / EUR-USD 1.10 = €208.30",
+      "buy_zone": { "low": 185, "high": 240, "currency": "USD", "basis": "convictions-w49-08/10" }
+    },
+    {
+      "ticker": "ICE",
+      "quantity": 2.47,
+      "avg_cost": 139.54,
+      "confidence": "Moyenne",
+      "horizon": "coeur",
+      "thesis_id": "ice-data-exchanges",
+      "entry_date": "2026-10-10",
+      "target": null,
+      "exit_rule": "sortie si récurrent < 45% durablement OU récurrent FI&Data négatif 2T consécutifs OU F-Score ≤ 3/9 ; horizon_test Q3 2026 résultats oct./nov. 2026 ; seuil réexamen mercredi : cours < $115 (entry_price $153.49 × 0.75 — P-001 ref USD) ; MSCI+ICE ≤10% NAV (ICE capé 3.35% NAV) ; 2.47 parts ≈ 3.35% NAV",
+      "seed": false,
+      "thesis": "Intercontinental Exchange — compounder financier. Récurrent FI&Data >47% CA (IRLs hypothèques, NYSE Tech), moat données réglementaires non-réplicables. F7/9 EDGAR solide, FCF yield ~4%, EPS CAGR ~10% guidé. Gate 🟢 +0.485 F7/9 (convictions W49 08/10). Buy zone $128-165 — cours $153.49 < $165 high → taille pleine (du capped amount). Non-redondant avec MSCI (tech exchange data vs indices). MSCI+ICE plafond 10% NAV : MSCI 6.65% + ICE 3.35% = 10.00% ≤ cap ✓. Sizing Moyenne plafonnée : 2.47 × €139.54 = €344.66 ≈ 3.35% NAV.",
+      "entry_price": 139.54,
+      "entry_price_usd": 153.49,
+      "entry_price_source": "signals.js watchlist W50 — cours $153.49 (ICE) / EUR-USD 1.10 = €139.54",
+      "buy_zone": { "low": 128, "high": 165, "currency": "USD", "basis": "convictions-w49-08/10" }
     },
     {
       "ticker": "GLE.PA",
@@ -581,6 +615,34 @@
       "rationale": "Nouvelle entrée vendredi §H — verdict Acheter Moyenne deep-dive 27/08. EMCOR Group : couche MEP (mechanical-electrical-plumbing) de data centers et infra critique. Meilleur dossier qualité/croissance de la nuit : F6/9 EDGAR solide, PEG ~0.65 (croissance forte + valo raisonnable), RPO $17.14B +44% YoY (backlog recurrences) — marge opérationnelle ~10.6% (vs GVA ~4% génie civil). RSI 39.8 post-record = entrée sur correction technique, pas sur surchauffe. Thèse complémentaire à GVA (couche différente de la chaîne de valeur DC : civil GVA vs MEP intérieur EME — P-003b validé : non-redondant). Cap thème post-EME : GVA(6.8%) + CEG(5.8%) + EME(7.0%) = 19.6% << 40% §H ✓. Prix EUR : $763 / 1.152 = 662.33€ (prix convictions 27/08 — EME non dans signals.js, approximation). Stop USD $702 = avg_cost × 0.92 (marge −8%). Stop EUR = 609.34€. Sizing Moyenne = 7% NAV (~722€). Coût total : 1.09 × 662.33€ = 721.94€ + frais 2.17€ = 724.11€."
     },
     {
+      "ts": "2026-10-10",
+      "side": "buy",
+      "ticker": "CRM",
+      "quantity": 2.47,
+      "price": 208.30,
+      "price_usd": 229.13,
+      "fee": 1.54,
+      "confidence": "Moyenne",
+      "thesis_id": "crm-ai-cloud",
+      "horizon": "coeur",
+      "gate": "🟢 +0.551 F7/9 cov86% (convictions W49 08/10)",
+      "rationale": "Entrée vendredi §H — verdict Acheter Moyenne deep-dive 08/10. Salesforce : ARR AI/Data $20.9B + Agentforce pivot IA, NRR >100%, marge FCF ~28%. Gate 🟢 F7/9, composite +0.551, couverture fondamentale 86%. Buy zone $185-240 — cours $229.13 < $240 high → taille pleine. Bascule de mandat 06/10 : cash 34.6% >> cible 10% → déploiement obligatoire. Sous-poche tech SaaS non représentée au book. Non-redondant avec AMZN (CRM/verticaux vs infrastructure cloud). MSCI+ICE+CRM multi-ticker tech sans overlap. Sizing Moyenne : 2.47 × €208.30 = €514.50 + fee €1.54 = €516.04. Cash post-trade partiel : €3,535.85 − €516.04 = €3,019.81."
+    },
+    {
+      "ts": "2026-10-10",
+      "side": "buy",
+      "ticker": "ICE",
+      "quantity": 2.47,
+      "price": 139.54,
+      "price_usd": 153.49,
+      "fee": 1.03,
+      "confidence": "Moyenne",
+      "thesis_id": "ice-data-exchanges",
+      "horizon": "coeur",
+      "gate": "🟢 +0.485 F7/9 (convictions W49 08/10)",
+      "rationale": "Entrée vendredi §H — verdict Acheter Moyenne deep-dive 08/10. ICE (Intercontinental Exchange) : compounder financier, récurrent FI&Data >47% CA, moat données réglementaires. F7/9 EDGAR solide, EPS CAGR ~10% guidé. Gate 🟢 F7/9 composite +0.485. Buy zone $128-165 — cours $153.49 < $165 high → taille pleine (du capped amount). MSCI+ICE plafond 10% NAV : MSCI ~6.65% + ICE ~3.35% = 10.00% ✓. Non-redondant avec MSCI (tech exchange data vs indices). Sizing Moyenne plafonnée : 2.47 × €139.54 = €344.66 + fee €1.03 = €345.69. Cash post-trades : €3,019.81 − €345.69 = €2,674.12."
+    },
+    {
       "ts": "2026-09-26",
       "side": "buy",
       "ticker": "GLE.PA",
@@ -595,6 +657,6 @@
       "rationale": "Entrée vendredi §H — NIM EU expansion. Deep-dive 10/09 → Acheter analytique Moyenne, sizing réduit à Basse par contrainte couloir de cash SURCHAUFFE (Moyenne mettrait cash ~28.8% < plancher 30%). Société Générale : P/TBV 0.94x, ROTE 12.2% Q2 ✓, bénéficiaire direct BCE +25bps + FOMC +25bps 16/09 (NIM expansion). Non-redondant avec CB (USD assurance vs EUR banque commerciale). Reportée depuis W42 (CB priorisé sur gate cov92% > cov39%). BNP.PA div +12.02€ comptabilisé (ex-div 24/09, paiement 28/09). AI.PA hystérésis 2e🟠 : trim 0 (excédent 3.9€ < frais friction). LOTB hystérésis 2e🟠 : trim 0 (déjà <5% NAV). Coût total CORRIGÉ : 1.01 × 66.08€ = 66.74€ + frais 0.92€ = 67.66€. Cash post-trade CORRIGÉ : 3 535.09€ = 35.2% NAV (avant CB div) — [Réconciliation W47 03/10 : prix 303€ erroné → 66.08€, cash récupéré +239.29€]."
     }
   ],
-  "note": "Doctor W49 2026-10-09. SURCHAUFFE HARD-CONFIRMÉE (override FRED ; T10Y ~5.21%, FOMC 73% hike Goldman 06/10). 0 TRADES W49. GLE.PA ex-div 05/10 crédité : +€0.76 (€0.75 × 1.01 parts), cash 3 535.09€→3 535.85€. Signaux W49 09/10 : 11🟢 1🟠 (SAF.PA — 1er relevé) 0🔴. Bascule de mandat 06/10 : cash cible 10%/plafond 15% en tout régime — cash actuel 34.6% > plafond 15% (under-invested). Vendredi : CRM Acheter Moyenne ~5% + ICE Acheter Moyenne ~3.5% per convictions 08/10. Grok ceg-hormuz-nuclear-w43 HIT (+10.1% CEG). Concentration capex IA ~28% NAV (GVA+CEG+EME+AMZN) — alertée. CB Q3 ~20/10, GVA Q3 ~05/11, FOMC 27-28/10 : catalyseurs actifs.",
+  "note": "Brief W50 2026-10-10. SURCHAUFFE HARD-CONFIRMÉE (override FRED ; T10Y ~5.21%). 2 TRADES W50 : CRM Acheter Moyenne ~5% NAV (€514.50 + fee €1.54) + ICE Acheter Moyenne ~3.35% NAV (€344.66 + fee €1.03). Cash déployé total : €861.73. Cash post-trades : €2,674.12 (~26% NAV ≈ €10,302). Signaux W50 10/10 : 11🟢 1🟠 (SAF.PA — 2e relevé, hystérésis armée MAIS gap 1.36pts < 2pts → pas de trim). Grok W50 : 2 résolutions — gva-iija CORRECT (−2.24%) + cb-oversold CORRECT (+2.46%). Stats Grok : 18 résolus, 8 hits, hit_rate 0.444, tactical_cap 0%. MSCI+ICE cap 10% NAV respecté (6.65%+3.35%=10.00%). CB Q3 ~20/10, GVA Q3 ~05/11, FOMC 27-28/10 : catalyseurs actifs. Prochaine routine jeudi (Doctor) : horizon-tests CB Q3 20/10, review gate ORCL/NVO/SNPS/CPRT 🔴.",
   "note_migration_2026_08_30": "MIGRATION §H/§I COMPLÈTE (vendredi 05/09/2026) : (1) `entry_price` = prix réellement payé par l'IA. (2) `avg_cost` hors jugement IA. (3) Toutes les exit_rules CŒUR RÉÉCRITES en critères de thèse + seuil réexamen −25% vs entry_price : stops de prix (stop -8% avg_cost, stop EUR X€, stop USD $Y) SUPPRIMÉS de toutes les exit_rules. P-001 conservé comme RÉFÉRENCE de monitoring USD pour les positions US, jamais comme déclencheur automatique sur CŒUR — franchissement P-001 = saisine mercredi, pas vente jeudi. Hystérésis : gate flip ne déclenche sizing change qu'après 2 relevés consécutifs confirmés."
 }

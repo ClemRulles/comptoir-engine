@@ -1,3 +1,16 @@
+# Régime de marché — Brief W50 2026-10-10
+
+- **SURCHAUFFE HARD-CONFIRMÉE — INCHANGÉ** (override T10Y ~5,21 %, FOMC 27-28/10 ~73 % hike). `signals.js` W50 10/10 : **RISK-ON SAIN** (FRED lag — override prime). **11🟢 / 1🟠 (SAF.PA — 2e relevé consécutif, hystérésis armée) / 0🔴.**
+- **✅ 2 TRADES W50 EXÉCUTÉS** : CRM Acheter Moyenne ~5% NAV (€514.50 + fee €1.54) + ICE Acheter Moyenne ~3.35% NAV (€344.66 + fee €1.03). Cash déployé : €861.73. Cash post-trades : **€2 674,12 ≈ 26% NAV** (en baisse de 34,6% → 26% ; cible 10%, plafond 15% — encore au-dessus, redéploiement à poursuivre ≤10pts/sem).
+- **SAF.PA hystérésis W50** : 2e relevé consécutif 🟠 CONFIRMÉ (W49 + W50). Règle hystérésis : 2 signaux consécutifs ✅ MAIS gap vs plafond 5% = 6,36% − 5% = **1,36 pts < 2 pts requis** → **PAS DE TRIM**. Surpoids de 1,36 pts insuffisant pour déclencher le rééquilibrage. Monitoring W51 : si 3e relevé 🟠 ET gap > 2 pts → trim vers 5%.
+- **✅ Grok W50 : 2 résolutions** — `gva-iija-expiry-w44` **CORRECT** (−2,24%, conf. 0,60, brier 0,16) + `cb-oversold-rebound-w44` **CORRECT** (+2,46%, conf. 0,60, brier 0,16). Stats : 18 résolus, 8 hits, hit_rate **0,444**, tactical_cap 0% (< 0,45 seuil). 1 call ouvert : `ceg-oversold-nuclear-w45` (horizon 13/10).
+- **Déploiement W50 vs cible 10%** : CRM + ICE = ~8,35% NAV. Restant : cash ~26% − plafond 15% = 11 pts encore à déployer sur plusieurs semaines (≤10pts/sem → ~2 semaines restantes). Prochains candidats à instruire (mercredi doctor/scout) : GLE.PA renforcement (3% NAV → 3,35% cible Basse ; gap 0,66% NAV), + scout nouveau titre (secteur non représenté : Healthcare/Consumer/Industrials). Pas de capex-IA (P-004 candidat).
+- **Concentration capex IA W50** : GVA+CEG+EME+AMZN = ~28% NAV (non aggravé — CRM et ICE diversifient le facteur ✓).
+- **Catalyseurs à 14 jours** : ceg-oversold-nuclear-w45 scoring 13/10 ; CB Q3 ~20/10 (combined ratio — test thèse) ; FOMC 27-28/10 (73% hike).
+- **Sources** : engine/signals.js W50 10/10 ; grok-calls.json résolutions manuelles ; allocation.json post-trades calculé.
+
+---
+
 # Régime de marché — note Deep-dive 2026-10-08 (W49)
 
 - **⚠️ BASCULE DE MANDAT ACTÉE (correction de cadre, pas un changement de régime).** `engine-method.md` §H (FAIT FOI, depuis 2026-10-06) fixe le cash à **10 % cible / bande 5-15 % dans TOUS les régimes** — « le régime n'achète plus de cash, il change la composition » (crypto/tactique respirent, le cash reste à 10 %). **L'« override plancher 30 % SURCHAUFFE » cité W43→W48 est OBSOLÈTE** : il appartenait à l'ancien mandat. Book ~34,7 % cash (≈€3 535, NAV ≈€10 180) = **+19,7 pts au-dessus du plafond 15 %** → SOUS-investi, redéploiement obligatoire ≤10 pts NAV/sem dès vendredi. Le desk-macro recalera `allocation.json` (node risk.js) lundi/vendredi.

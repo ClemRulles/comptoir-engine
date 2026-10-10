@@ -1,6 +1,6 @@
 {
   "_doc": "LE QUIZ DU JOUR — une question par jour pour faire apprendre la bourse aux membres (accueil de l'app, classement mensuel dans Groupe). Écrit par CHAQUE routine de nuit : elle s'assure que les 2 prochains jours (date de Paris) ont leur question, sans jamais réécrire une date déjà publiée. Règles complètes dans skills/quiz.md. Schéma d'une entrée : { date (YYYY-MM-DD, jour où la question est posée), theme ('bases'|'histoire'|'actualite'|'nos-lignes'|'psychologie'|'crypto'|'fiscalite'), level ('facile'|'moyen'|'difficile'), question (≤ 160 caractères), choices ([4 réponses courtes, ≤ 60 caractères chacune]), answer (index 0-3 de la bonne réponse — varie sa position), explanation (≤ 300 caractères : pourquoi c'est la bonne réponse, ce qu'il faut en retenir), source ({ name, url? } : d'où vient le fait) }. Garder ~60 jours, les plus récents en dernier.",
-  "updated": "2026-10-09",
+  "updated": "2026-10-10",
   "questions": [
     {
       "date": "2026-10-07",
@@ -76,6 +76,36 @@
       "answer": 0,
       "explanation": "Le combined ratio mesure l'efficacité de l'assurance pure. Sous 100 % = l'assureur gagne avant même de placer ses réserves. Chubb affiche 83,8 % en 2026, l'un des meilleurs niveaux mondiaux du secteur.",
       "source": { "name": "Chubb — rapport annuel 2025 / résultats Q2 2026 ; définition ACPR" }
+    },
+    {
+      "date": "2026-10-12",
+      "theme": "nos-lignes",
+      "level": "moyen",
+      "question": "Salesforce (CRM) affiche un ARR (revenu annuel récurrent) de 20,9 Md$ en 2026. Qu'est-ce que l'ARR mesure exactement ?",
+      "choices": [
+        "La valeur annualisée des contrats d'abonnement actifs",
+        "Le chiffre d'affaires total réalisé sur l'année",
+        "Le bénéfice net avant intérêts et impôts",
+        "La capitalisation boursière divisée par le nombre d'abonnés"
+      ],
+      "answer": 0,
+      "explanation": "L'ARR (Annual Recurring Revenue) annualise les abonnements actifs. Pour un éditeur SaaS comme Salesforce, c'est le moteur de visibilité : un ARR qui croît = revenus futurs quasi-certains. Il exclut les ventes uniques non récurrentes.",
+      "source": { "name": "Salesforce — résultats FY27, convictions W49 comptoir-engine 08/10/2026" }
+    },
+    {
+      "date": "2026-10-13",
+      "theme": "bases",
+      "level": "facile",
+      "question": "ICE (Intercontinental Exchange) est propriétaire du NYSE depuis 2013. Que signifie NYSE ?",
+      "choices": [
+        "New York Stock Exchange",
+        "National Yield Securities Exchange",
+        "New York Securities and Equity",
+        "North York Stock Exchange"
+      ],
+      "answer": 0,
+      "explanation": "Le New York Stock Exchange (NYSE), fondé en 1792, est la plus grande bourse du monde par capitalisation (~25 000 Md$ listés). ICE l'a racheté en 2013 et en tire des revenus récurrents via les frais de cotation et de données.",
+      "source": { "name": "ICE — rapport annuel 2025 ; NYSE History" }
     }
   ]
 }
