@@ -1,7 +1,209 @@
 {
-  "_doc": "Attribution des gains et des erreurs — régénéré par node engine/attribution.js (method §I/§L). Jamais calculé : joue attribution.js.",
-  "updated": null,
-  "sells": {},
-  "by_desk": {},
-  "desk_multipliers": {}
+  "_doc": "Attribution des gains et des erreurs du book IA, recalculée par node engine/attribution.js (method §I/§L). 'sells' = regret des ventes (cours actuel vs prix de vente : share_above > 0,5 = la règle vend bas). 'by_desk'/'by_sleeve'/'by_confidence' = alpha réalisé des décisions clôturées (hors sorties héritées) + P&L latent des lignes ouvertes. 'desk_multipliers' = multiplicateur de sizing MÉRITÉ appliqué aux nouvelles idées de chaque desk (1 tant que < 4 décisions clôturées). 'missed' = verdicts Surveiller/Éviter vs IWDA depuis leur date (la prudence a-t-elle coûté ?). Ne pas éditer à la main.",
+  "updated": "2026-10-10",
+  "sells": {
+    "last_12_weeks": {
+      "n": 4,
+      "above": 2,
+      "share_above": 0.5,
+      "avg_regret_pct": -0.0518,
+      "unpriced": 0,
+      "items": [
+        {
+          "ts": "2026-08-14",
+          "ticker": "CRH",
+          "sold_at": 84.81,
+          "now": 72.76,
+          "regret_pct": -0.142
+        },
+        {
+          "ts": "2026-08-14",
+          "ticker": "SAF.PA",
+          "sold_at": 358,
+          "now": 316.2,
+          "regret_pct": -0.1168
+        },
+        {
+          "ts": "2026-08-15",
+          "ticker": "AI",
+          "sold_at": 168.26,
+          "now": 169.68,
+          "regret_pct": 0.0084
+        },
+        {
+          "ts": "2026-08-22",
+          "ticker": "AMZN",
+          "sold_at": 224.5,
+          "now": 234.19,
+          "regret_pct": 0.0431
+        }
+      ]
+    },
+    "all_time": {
+      "n": 18,
+      "above": 6,
+      "share_above": 0.333,
+      "avg_regret_pct": 0.0015
+    }
+  },
+  "by_desk": {
+    "non-attribué": {
+      "n_closed": 1,
+      "avg_alpha_closed": -0.2165,
+      "win_rate_closed": 0,
+      "n_open": 12,
+      "avg_unrealized_open": 0.0142
+    }
+  },
+  "by_sleeve": {
+    "coeur": {
+      "n_closed": 1,
+      "avg_alpha_closed": -0.2165,
+      "win_rate_closed": 0,
+      "n_open": 11,
+      "avg_unrealized_open": 0.0109
+    },
+    "socle": {
+      "n_closed": 0,
+      "avg_alpha_closed": null,
+      "win_rate_closed": null,
+      "n_open": 1,
+      "avg_unrealized_open": 0.0503
+    }
+  },
+  "by_confidence": {
+    "Moyenne": {
+      "n_closed": 1,
+      "avg_alpha_closed": -0.2165,
+      "win_rate_closed": 0,
+      "n_open": 11,
+      "avg_unrealized_open": 0.0197
+    },
+    "Basse": {
+      "n_closed": 0,
+      "avg_alpha_closed": null,
+      "win_rate_closed": null,
+      "n_open": 1,
+      "avg_unrealized_open": -0.046
+    }
+  },
+  "desk_multipliers": {
+    "non-attribué": 1
+  },
+  "open_positions": [
+    {
+      "ticker": "LOTB",
+      "desk": "non-attribué",
+      "sleeve": "coeur",
+      "confidence": "Moyenne",
+      "unrealized_pct": 0.106
+    },
+    {
+      "ticker": "AMZN",
+      "desk": "non-attribué",
+      "sleeve": "coeur",
+      "confidence": "Moyenne",
+      "unrealized_pct": 0.0669
+    },
+    {
+      "ticker": "EME",
+      "desk": "non-attribué",
+      "sleeve": "coeur",
+      "confidence": "Moyenne",
+      "unrealized_pct": 0.0637
+    },
+    {
+      "ticker": "CEG",
+      "desk": "non-attribué",
+      "sleeve": "coeur",
+      "confidence": "Moyenne",
+      "unrealized_pct": 0.0535
+    },
+    {
+      "ticker": "EIMI",
+      "desk": "non-attribué",
+      "sleeve": "socle",
+      "confidence": "Moyenne",
+      "unrealized_pct": 0.0503
+    },
+    {
+      "ticker": "CB",
+      "desk": "non-attribué",
+      "sleeve": "coeur",
+      "confidence": "Moyenne",
+      "unrealized_pct": 0.0406
+    },
+    {
+      "ticker": "SAF.PA",
+      "desk": "non-attribué",
+      "sleeve": "coeur",
+      "confidence": "Moyenne",
+      "unrealized_pct": 0.0119
+    },
+    {
+      "ticker": "AI",
+      "desk": "non-attribué",
+      "sleeve": "coeur",
+      "confidence": "Moyenne",
+      "unrealized_pct": 0.0113
+    },
+    {
+      "ticker": "BNP.PA",
+      "desk": "non-attribué",
+      "sleeve": "coeur",
+      "confidence": "Moyenne",
+      "unrealized_pct": -0.0396
+    },
+    {
+      "ticker": "GLE.PA",
+      "desk": "non-attribué",
+      "sleeve": "coeur",
+      "confidence": "Basse",
+      "unrealized_pct": -0.046
+    },
+    {
+      "ticker": "MSCI",
+      "desk": "non-attribué",
+      "sleeve": "coeur",
+      "confidence": "Moyenne",
+      "unrealized_pct": -0.0581
+    },
+    {
+      "ticker": "GVA",
+      "desk": "non-attribué",
+      "sleeve": "coeur",
+      "confidence": "Moyenne",
+      "unrealized_pct": -0.0901
+    }
+  ],
+  "missed": {
+    "n": 3,
+    "beat_index_by_5pts": 0,
+    "items": [
+      {
+        "ticker": "MCO",
+        "verdict": "Surveiller",
+        "date": "2026-10-01",
+        "return_pct": 0.0253,
+        "excess_vs_iwda": 0.0085
+      },
+      {
+        "ticker": "ABBV",
+        "verdict": "Surveiller",
+        "date": "2026-09-17",
+        "return_pct": 0.0318,
+        "excess_vs_iwda": 0.0037
+      },
+      {
+        "ticker": "ODFL",
+        "verdict": "Surveiller",
+        "date": "2026-09-17",
+        "return_pct": 0.0375,
+        "excess_vs_iwda": 0.0094
+      }
+    ]
+  },
+  "data_gaps": [
+    "CB: entry_price 339.42 vs avg_cost 292.6 (écart > 15 % — devise ?) → avg_cost retenu"
+  ]
 }
