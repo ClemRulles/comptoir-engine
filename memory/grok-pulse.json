@@ -1,7 +1,41 @@
 {
   "_doc": "Pouls hebdomadaire du sentiment X/Grok — contexte narratif des marchés, 0 à 3 calls directionnels CT enregistrés (§F). Source : Grok API ou fallback web search. Ne jamais utiliser comme signal d'achat seul. Alimentation : routines Trend Radar du lundi.",
-  "updated": "2026-10-06",
+  "updated": "2026-10-13",
   "entries": [
+    {
+      "week": "2026-W51",
+      "date": "2026-10-13",
+      "label": "Semaine du 13 octobre 2026",
+      "source": "Grok-4.3 API (xAI) — note : génère depuis training data + prompt context, pas X temps réel. Corroboration web search indépendante.",
+      "headline": "FOMC probability collapse 73%→17% (NFP weak + Williams dovish), T10Y 5.25%, crypto correction accentuée, AI infra narratif intact.",
+      "themes": [
+        {
+          "title": "FOMC Probability Collapse",
+          "detail": "CME FedWatch 12/10 : HOLD à ~83 %, hike Oct à seulement ~17 %. NFP septembre +62K (vs consensus +125K), UNRATE 4.3%. NY Fed Williams 10/10 : 'no urgency to hike'. T10Y 5.25% reste élevé mais la narrative de hike imminent s'effondre. Goldman révise à 17-19 % pour Oct. Override SURCHAUFFE maintenu (T10Y > 5 %).",
+          "tickers": ["BNP.PA", "CB", "GLE.PA", "CEG", "GVA"],
+          "corroborated": true
+        },
+        {
+          "title": "AI Infrastructure Power Demand",
+          "detail": "Narratif AI/data-center power intact. Google signe 890 MW de contrats nucléaires (dont ~50 MW Kairos Power Hermes + contrats Constellation en discussion). GE Vernova commandes turbines record T3. EME backlog data-center électrique soutenu. Capex hyperscalers stables Q3.",
+          "tickers": ["CEG", "EME", "GVA", "AMZN"],
+          "corroborated": true
+        },
+        {
+          "title": "Crypto Correction",
+          "detail": "BTC €73K (-2.2% 24h, -4.8% 7j), ETH €2177 (-3.8% 24h, -9.96% 7j), SOL -12.7% 7j. Total cap -4.9% 24h. F&G 57 (Greed, en baisse vs 73 W48). Correction en cours — anticipée comme contra W48. Aucun catalyseur on-chain positif identifié. Pas d'allocation.",
+          "tickers": [],
+          "corroborated": true
+        }
+      ],
+      "movers": [
+        {"ticker": "CEG", "direction": "up", "reason": "RSI rebond 22.1→67.8 depuis W45, PPAs Google en discussion", "held": true},
+        {"ticker": "BNP.PA", "direction": "neutral", "reason": "FOMC probability crash neutralise le tailwind NIM hawkish CT", "held": true},
+        {"ticker": "GVA", "direction": "neutral", "reason": "IIJA cliff déc. + FOMC HOLD = pas de catalyseur CT", "held": true}
+      ],
+      "crypto_note": "BTC dominance 59.3%, F&G 57 (Greed en baisse de 73→57 = correction confirmée W45 CT). Crypto poche à 0% — pas d'allocation. Droit au blanc.",
+      "note": "0 calls créés. Tactical_cap = 0% (hit_rate 0.474 < seuil 0.55). Grok-4.3 API — corroboration thèmes par web search 12/10. Crypto correction = anti-thème W48 confirmé (F&G 73→57). FOMC collapse = événement semaine, actualise catalysts.md et digest.json."
+    },
     {
       "week": "2026-W48",
       "date": "2026-10-06",

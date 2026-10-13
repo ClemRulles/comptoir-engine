@@ -1,3 +1,18 @@
+# Régime de marché — Trend Radar W51 2026-10-13
+
+- **SURCHAUFFE HARD-CONFIRMÉE — INCHANGÉ** (override T10Y ~5,25 %, FOMC 27-28/10 désormais **~17 % hike** → HOLD probable). `signals.js` W51 13/10 : **RISK-ON SAIN** (FRED lag — override prime). **13🟢 / 1🟠 (SAF.PA — 3e relevé consécutif, hystérésis confirmée) / 0🔴.**
+- **FOMC PROBABILITY COLLAPSE** : Goldman 06/10 = 73 % hike → CME FedWatch 12/10 = ~17 % hike (~83 % HOLD). Cause : NFP septembre +62K (vs +125K consensus), UNRATE 4.3%, NY Fed Williams 10/10 « no urgency ». T10Y 5.25% reste élevé = override SURCHAUFFE toujours actif, mais l'horizon d'un hike oct. s'éloigne. Prochaine fenêtre probable : FOMC déc. 2026 (~75 %+ si CPI chaud).
+- **CPI septembre 14/10 DEMAIN (binaire fort)** : consensus +0.2% MoM. Si >+0.3% → T10Y spike, narratif hike-déc. se renforce, bénéficiaires CB/BNP.PA. Si <+0.2% → détente, narratif HOLD conforté.
+- **✅ Grok W51 : ceg-oversold-nuclear-w45 CORRECT** (CEG ~€213 → €263.30, +23.6%, conf. 0.58, brier 0.1764). Stats : 19 résolus, 9 hits, hit_rate **0.474**, tactical_cap 0% (< 0.55 seuil). 0 calls créés.
+- **SAF.PA hystérésis W51** : 3e relevé consécutif 🟠 CONFIRMÉ. Poids 6.46% NAV (allocation.json), cap 5% NAV, gap = **1.46 pts < 2 pts requis** → **PAS DE TRIM**. W50 gap était 1.36 pts, W51 1.46 pts — légère aggravation. Monitoring W52 : si gap > 2 pts ET 4e relevé 🟠 → trim.
+- **Déploiement W51** : 0 trade cette semaine. Cash 26% NAV (€2 674) — encore ~11 pts au-dessus du plafond 15%. Prochaines cibles (lundi scout/doctor) : GLE.PA renforcement (1.01 parts → cible Basse 3% NAV) + candidat nouveau secteur (non capex-IA). ≤10 pts NAV/sem.
+- **Concentration capex IA W51** : GVA+CEG+EME+AMZN = ~28% NAV — inchangé. Cap 35% thème non atteint.
+- **Tendance W51** : AUCUNE (4e semaine consécutive). Candidats rejetés : Grid Infrastructure Equipment (P-003 + P-004 concentration capex-IA), FOMC Pivot/Bond Proxies (trop fragile avant CPI 14/10).
+- **Crypto W51** : BTC €73K (-4.8% 7j), ETH €2177 (-9.96% 7j), F&G 57 (Greed en baisse vs 73 W48). Correction anticipée confirmée. Poche crypto 0% — pas d'allocation.
+- **Sources** : engine/signals.js W51 13/10 ; CME FedWatch 12/10 ; web search NFP sept. + Williams 10/10 ; allocation.json 13/10 ; grok-calls.json résolution manuelle.
+
+---
+
 # Régime de marché — Brief W50 2026-10-10
 
 - **SURCHAUFFE HARD-CONFIRMÉE — INCHANGÉ** (override T10Y ~5,21 %, FOMC 27-28/10 ~73 % hike). `signals.js` W50 10/10 : **RISK-ON SAIN** (FRED lag — override prime). **11🟢 / 1🟠 (SAF.PA — 2e relevé consécutif, hystérésis armée) / 0🔴.**

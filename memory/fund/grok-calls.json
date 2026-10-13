@@ -1,6 +1,6 @@
 {
   "_doc": "Sentiment X (Grok) transformé en PRÉDICTIONS SCORÉES (method §F) — le sentiment ne décide jamais sur la foi : il se MÉRITE une voix en prouvant qu'il prédit. Le lundi (pouls Grok) enregistre 0-3 'calls' directionnels court terme ; engine/grok.js les score contre le prix réel à l'horizon. Schéma d'un call : { id (kebab-case), opened (YYYY-MM-DD), ticker, direction ('hausse'|'baisse' attendue à court terme), confidence (0.5-0.9, force du signal de sentiment), thesis (1 ligne : ce que Grok 'sent'), horizon (YYYY-MM-DD, ~2 semaines), source (semaine du pouls), played (bool : le book a-t-il pris une position tactique ?), status ('ouvert' | 'joué' | 'résolu' | 'expiré'), resolution ({ date, move_pct (variation réelle sur l'horizon), correct (bool : le mouvement a-t-il suivi la direction au-delà de ±2 %), brier ((confidence − correct)²), trade_alpha_pct (si joué : alpha — mesure SÉPARÉE) }) }. 'stats' (recalculé par engine/grok.js) : resolved, hits, hit_rate, brier, tactical_cap = budget MAX du NAV pour les paris Grok, MÉRITÉ : 0 % tant que < 6 calls résolus, puis 3/6/8 % selon hit_rate (≥0.55/0.65/0.70), 0 % si < 0.45. Garde-fous §F : jamais sur gate 🔴, jamais contre la checklist bulle §B, demi-taille tactique, stop serré, sortie datée. L'euphorie reste un signal contrarien de top. Ne jamais réécrire un call résolu.",
-  "updated": "2026-10-10",
+  "updated": "2026-10-13",
   "_scoring_w47": "cb-nim-float-post-fomc-w42 résolu 03/10 — hausse prédite, CB -2.29% → incorrect.",
   "calls": [
     {
@@ -13,8 +13,17 @@
       "horizon": "2026-10-13",
       "source": "2026-W45 (signals.js 29/09 RSI 22.1 + Brent $107 Hormuz narrative)",
       "played": false,
-      "status": "ouvert",
-      "guard_note": "NON JOUÉ — tactical_cap = 0% (hit_rate 35.7% < seuil 45%). Score uniquement. Position DÉTENUE au book cœur (§G gouverne). Template validé : RSI < 30 + gate 🟢 F6/9+ + thèse intacte = call robuste (lessons.md 01/09)."
+      "status": "résolu",
+      "guard_note": "NON JOUÉ — tactical_cap = 0% (hit_rate 35.7% < seuil 45%). Score uniquement. Position DÉTENUE au book cœur (§G gouverne). Template validé : RSI < 30 + gate 🟢 F6/9+ + thèse intacte = call robuste (lessons.md 01/09).",
+      "resolution": {
+        "date": "2026-10-13",
+        "price_open_eur": 213,
+        "price_close_eur": 263.30,
+        "move_pct": 0.236,
+        "correct": true,
+        "brier": 0.1764,
+        "note": "CEG estimé ~€213 (29/09, RSI 22.1 survendu extrême) → €263.30 (13/10, allocation.json). RSI rebondi de 22.1 à 67.8. Move +23.6% → CORRECT direction 'hausse'. Thèse book cœur intacte (PPA Amazon 690MW 20 ans, 3 hyperscalers signés). Call confiance 0.58, brier = (0.58−1)² = 0.1764."
+      }
     },
     {
       "id": "gva-iija-expiry-w44",
@@ -31,7 +40,7 @@
       "resolution": {
         "date": "2026-10-10",
         "price_open_usd": 115.08,
-        "price_close_usd": 112.50,
+        "price_close_usd": 112.5,
         "move_pct": -0.0224,
         "correct": true,
         "brier": 0.16,
@@ -52,8 +61,8 @@
       "guard_note": "NON JOUÉ — tactical_cap = 0% (hit_rate 35.7% < seuil 45%). Score uniquement. Position DÉTENUE au book cœur (§G gouverne).",
       "resolution": {
         "date": "2026-10-10",
-        "price_open_usd": 333.0,
-        "price_close_usd": 341.20,
+        "price_open_usd": 333,
+        "price_close_usd": 341.2,
         "move_pct": 0.0246,
         "correct": true,
         "brier": 0.16,
@@ -392,12 +401,11 @@
     }
   ],
   "stats": {
-    "resolved": 18,
-    "hits": 8,
-    "hit_rate": 0.444,
-    "brier": 0.270,
-    "tactical_cap": 0,
-    "_note": "hit_rate 0.444 < seuil 0.45 → tactical_cap reste 0%. 2 résolutions W50 : gva-iija (CORRECT, -2.24%) + cb-oversold (CORRECT, +2.46%). Brier moyen recalculé : (16×0.284 + 2×0.16)/18 = 0.270."
+    "resolved": 19,
+    "hits": 9,
+    "hit_rate": 0.474,
+    "brier": 0.266,
+    "tactical_cap": 0
   },
   "data_gaps": []
 }

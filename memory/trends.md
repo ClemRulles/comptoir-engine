@@ -1,3 +1,30 @@
+## Tendance de la semaine — 13 octobre 2026 (W51)
+
+- **Statut** : AUCUNE (4e semaine consécutive — W45/W46/W48/W51)
+- **Tendance** : —
+- **Pourquoi AUCUNE** : CPI septembre le 14/10 rend toute thèse macro fragile avant publication. Concentration capex-IA déjà ~28% NAV (P-004 actif). Droit au blanc appliqué.
+
+### Candidats analysés (trend-gate.md)
+
+**Candidat 1 : Grid Infrastructure Equipment (GEV, ETN, VRT)**
+- **Preuves dures** : GE Vernova commandes turbines T3 record (communiqué 08/10). ETN backlog énergie +12% YoY. Demande data-center power = structurelle.
+- **Porte 3 (P-004 concentration)** : GEV+ETN+VRT sont des bénéficiaires directs du capex hyperscaler — même facteur que GVA+CEG+EME+AMZN. Ajouter une ligne = 5e pari capex-IA, cluster à ~32-33% NAV.
+- **Porte 5 (valorisation)** : GEV ~47x PE (TTM). ETN ~32x. Aucune marge de sécurité en SURCHAUFFE.
+- **Verdict REJETÉ** : Concentration facteur P-004 + valorisation sans marge. Droit au blanc.
+
+**Candidat 2 : FOMC Pivot / Bond Proxies (T-REITs, Utilities non-nucléaires)**
+- **Preuves dures** : CME FedWatch ~83% HOLD Oct. Williams dovish 10/10. NFP +62K faible.
+- **Fragilité** : CPI sept. 14/10 demain. Si +0.3%+, thèse pivot s'inverse en quelques heures. Risque binaire fort avant publication = pas investissable cette semaine.
+- **Porte 6 (falsifiabilité)** : un CPI chaud = falsificateur immédiat. Thèse non stable sur horizon 2 semaines.
+- **Verdict REJETÉ** : Trop fragile avant CPI 14/10.
+
+### Thème à surveiller (pas actionnable cette semaine)
+1. **FOMC Pivot post-CPI** : si CPI sept. <+0.2% MoM + FOMC HOLD confirmé → Bond Proxies (REITs, Utilities non-nucléaires) redeviennent candidats W52. Surveiller 14/10.
+
+- **Sources** : engine/signals.js W51 13/10 ; CME FedWatch 12/10 ; web search GE Vernova T3 + Williams 10/10.
+
+---
+
 ## Tendance de la semaine — 6 octobre 2026 (W48)
 
 - **Statut** : AUCUNE cette semaine

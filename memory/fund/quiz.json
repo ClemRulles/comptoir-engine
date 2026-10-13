@@ -106,6 +106,36 @@
       "answer": 0,
       "explanation": "Le New York Stock Exchange (NYSE), fondé en 1792, est la plus grande bourse du monde par capitalisation (~25 000 Md$ listés). ICE l'a racheté en 2013 et en tire des revenus récurrents via les frais de cotation et de données.",
       "source": { "name": "ICE — rapport annuel 2025 ; NYSE History" }
+    },
+    {
+      "date": "2026-10-14",
+      "theme": "actualite",
+      "level": "moyen",
+      "question": "Le CPI « core » (sous-jacent) exclut deux catégories volatiles. Lesquelles ?",
+      "choices": [
+        "Alimentation et énergie",
+        "Logement et transport",
+        "Santé et loisirs",
+        "Importations et exportations"
+      ],
+      "answer": 0,
+      "explanation": "Le CPI core exclut l'alimentation et l'énergie, car leurs prix fluctuent fortement à court terme (météo, géopolitique). Il donne une lecture plus stable de la tendance inflationniste de fond — c'est lui que la Fed surveille en priorité pour sa politique monétaire.",
+      "source": { "name": "BLS — 'Understanding the CPI' (bls.gov) ; FOMC guidelines on core PCE/CPI" }
+    },
+    {
+      "date": "2026-10-15",
+      "theme": "bases",
+      "level": "moyen",
+      "question": "Pourquoi des taux d'intérêt élevés profitent-ils généralement aux banques et assureurs ?",
+      "choices": [
+        "Ils réinvestissent leurs réserves à des rendements plus élevés, augmentant leur revenu d'intérêts",
+        "Ils empruntent moins cher que leurs clients, élargissant leur marge",
+        "Leurs frais de gestion diminuent quand les taux montent",
+        "La réglementation les autorise à facturer des frais plus élevés en période de hausse"
+      ],
+      "answer": 0,
+      "explanation": "Les banques et assureurs détiennent d'importants portefeuilles obligataires ou de liquidités. Quand les taux montent, ces réserves se réinvestissent à des rendements supérieurs (NII = Net Interest Income pour les banques, investment income pour les assureurs), gonflant directement les bénéfices.",
+      "source": { "name": "Chubb — rapport Q2 2026 (float $100B réinvesti) ; BNP.PA rapport S1 2026 (NII expansion)" }
     }
   ]
 }
