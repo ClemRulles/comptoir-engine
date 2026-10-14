@@ -1,3 +1,16 @@
+# Régime de marché — Scout W52 2026-10-14
+
+- **SURCHAUFFE HARD-CONFIRMÉE — INCHANGÉ** (T10Y ~5,21-5,25 %, FOMC 27-28/10 ~17 % hike → HOLD quasi-certain). `signals.js` W51 13/10 : RISK-ON SAIN (FRED lag — override prime). 13🟢 / 1🟠 (SAF.PA — hystérésis active, gap 1,46 pts < 2 pts requis → pas de trim).
+- **CPI septembre 14/10 (AUJOURD'HUI) — résultat non disponible au moment de la routine** : Consensus Cleveland Fed nowcast +3,60 % YoY / core ~2,39 %. Consensus MoM estimé ~+0,3 % (énergie / essence = driver principal). Si >+0,3 % MoM → T10Y spike, hike-déc. se renforce (~75 %+), bénéficiaires CB/BNP.PA/GLE.PA. Si <+0,2 % MoM → détente, HOLD FOMC conforté. **Binaire actif sur toutes les positions taux-sensibles. Sources : Cleveland Fed nowcast 07/10 ; AdmiralMarkets CPI preview ; FedRateCalc.**
+- **ASML Q3 2026 résultats aujourd'hui (14/10)** : Guidé €11-12B CA Q3 + marge brute 55-57 %. Résultat = read-through sur l'état de la demande en équipements semi. Beat = signal positif pour le cluster capex-IA. Source : ASML calendar, sec.gov 6-K.
+- **OpenAI revenue compression (oct. W52)** : Annualized revenue ~$50B (vs $70B pré-publicisé) → Nasdaq -2 % depuis ATH les premiers jours d'oct. Lecture : sentiment IA refroidi, NON une dégradation des revenues des acteurs listés (AWS, CRM, ICE, MSCI opèrent indépendamment d'OpenAI). Pas de changement thèse.
+- **Tendance W52 : AUCUNE (5e semaine consécutive)**. Mode qualité pur actif. 1 idée nouvelle (CHKP — cybersec) identifiée ; droit au blanc pour idée 2.
+- **AZZ Q2 FY27 résultats 13/10 (desk industrie-énergie)** : ventes $486,9M +16,7 % YoY, OP $83,8M +22,4 % (levier opérationnel confirmé). EPS adj $1,55 vs cons. $1,57 (léger miss). Guidance FY27 relevée. Gate F7/9, RSI 32,3 — condition watchlist « marge confirmée » partiellement levée. ★ ACHETER Moyenne conditionnel, vérification dans call 14/10 11h ET (marges segment + nouveau range EPS FY27). Non capex-IA — DIVERSIFIANT.
+- **Catalyseurs à 14 jours** : CPI sept. 14/10 (AUJOURD'HUI, binaire fort) ; ASML Q3 14/10 ; TSMC Q3 ~15/10 ; AZZ call 14/10 11h ET ; RTX Q3 20/10 ; LMT Q3 22/10 ; SAF.PA Q3 revenue 23/10 ; ICE Q3 ~22-24/10 ; GVA Q3 ~05/11 ; FOMC 27-28/10.
+- **Sources** : Cleveland Fed nowcast 07/10 (octagonai.co) ; admiralmarkets.com CPI preview ; SEC EDGAR ASML 6-K ; Salesforce IR Q2 FY27 ; Nasdaq market move InvestTrade 09/10.
+
+---
+
 # Régime de marché — Trend Radar W51 2026-10-13
 
 - **SURCHAUFFE HARD-CONFIRMÉE — INCHANGÉ** (override T10Y ~5,25 %, FOMC 27-28/10 désormais **~17 % hike** → HOLD probable). `signals.js` W51 13/10 : **RISK-ON SAIN** (FRED lag — override prime). **13🟢 / 1🟠 (SAF.PA — 3e relevé consécutif, hystérésis confirmée) / 0🔴.**
