@@ -52,6 +52,33 @@ Règle de sortie touchée : la prime sur NAV bitcoin s'est effondrée. F-Score P
 
 ---
 
+## Alertes book IA — 2026-10-14 (Scout W52 — desk finance)
+
+Régime **SURCHAUFFE HARD-CONFIRMÉE** (override prime T10Y ~5,21 % ; FOMC oct. ~17 % hike → HOLD quasi-certain ; CPI sept. provisoire core +0,2 % MoM in-line → HOLD confirmé) · **14 positions actives · NAV €10 320 · cash €2 674 (25,9 % NAV — > plafond 15 % : déployer GLE.PA renforcement vendredi 17/10)** · gates W52 (14/10) : 🟢13 🟠1 (SAF.PA — 3e relevé, gap 1,46 pts < 2 pts requis → pas de trim) 🔴0.
+
+### Action prioritaire — vendredi 17/10
+
+**GLE.PA RENFORCER** : acheter ~3,77 parts à ~€64,84 → porter à 4,78 parts total ≈ 3,0 % NAV cible Basse. Coût ~€244. Cash post-trade ~€2 430 ≈ 23,5 % NAV (encore >15 % ; poursuite déploiement semaine suivante via IWDA.AS ou candidat new scout). Règle : BLS CPI result confirmé avant exécution vendredi (si core >+0,3 % MoM → vent favorable NIM mais T10Y spike possible → réduire sizing à 2 % NAV).
+
+### Horizon-tests critiques — prochaines semaines
+
+- **CB Q3 20/10** (lundi) — combined ratio ≤95 % + NII guidance maintenu. Falsificateurs → sortie immédiate si déclenchés.
+- **MCO Q3 21/10** — SURVEILLER P-003. Si EPS déçoit + RSI<30 + P/E <24x → recalculer P-003.
+- **ICE Q3 23/10** (confirmé RTTNews) — revenu récurrent ≥45 %, FI data croissant.
+- **GLE.PA Q3 29/10** — ROTE ≥8 % + CDS EU banks <200 bps = confirmation. En-deçà → saisine sortie.
+- **FOMC 27-28/10** (~17 % hike) — HOLD attendu. Si surprise hike → T10Y spike → banques EU bénéficiaires courts terme, CEG/GVA vent de face.
+
+### À SURVEILLER — finance W52
+
+| Ticker | Gate | Alerte | Détail |
+|--------|------|--------|--------|
+| GLE.PA | 🟢 +0,256 | **RENFORCER vendredi 17/10** — 2e🟢 consécutif armé | Cours €64,84. RSI 29,4 survendu. Gate 🟢 W51+W52 ✓. Cash 25,9 % > 15 % ✓. P/TBV ~0,92x (<1,0 ✓). BCE NIM actif. Achat ~€244 → 3,0 % NAV. Q3 29/10 = falsificateur. |
+| CB | 🟢 +0,450 | Q3 20/10 IMMINENT — horizon-test | Cours $346,16. RSI 62,1 sain. F6/9. Combined ratio Q2 83,8 %, NII float $100B. Insider 2 ventes nettes (surveiller). CPI provisoire HOLD → T10Y stable → NII intact. Aucun trade ce jour. |
+| BNP.PA | 🟢 +0,385 | RSI 24,3 très survendu | Cours €90,23. CPI provisoire core +0,2 % → HOLD → BCE 2,50 % = NIM structurel intacte. Thèse non cassée. Aucune action. |
+| ICE | 🟢 +0,497 | Q3 23/10 CONFIRMÉ | Cours $156,42 (in buy zone $128-165). F7/9. Insider 6 ventes (surveiller — signal non déclenchant §H mais à noter). Q3 23/10 = test revenu récurrent + FI data. Aucun trade ce jour. |
+
+---
+
 ## Alertes book IA — 2026-10-09
 
 Régime **SURCHAUFFE HARD-CONFIRMÉE** (override prime sur RISK-ON SAIN FRED — T10Y ~5,21 % ; FOMC 73 % hike Goldman 06/10 ; bascule de mandat 06/10 : cash cible 10 % / plafond 15 % en tout régime) · **12 positions actives · NAV ≈ €10 234 · cash €3 535,85 (34,6 % NAV — > plafond 15 % : déployer vendredi CRM + ICE per convictions 08/10)** · gates W49 (09/10) : 🟢11 🟠1 (SAF.PA) 🔴0.

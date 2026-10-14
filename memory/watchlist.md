@@ -4,7 +4,8 @@
 > **✅ SCOUT W52 (14/10) — desk conso :** 1 nouvelle idée SURVEILLER : MKC (McCormick, épices #1 mondial, fwd P/E ~14-15x, Q3 FY2026 EPS beat +13.8%, gross margin +180bps). Blanc idée #2 (SURCHAUFFE, données insuffisantes). Mises à jour : CHD SURVEILLER inchangé (Q3 ~30-31/10, conditions non réunies) ; NOVOB gate 🟠 MAINTENU (CagriSema REDEFINE-4 échec) ; ODFL Q3 28/10 déclencheur confirmé.
 > **✅ SCOUT W52 (14/10) — desk santé :** **UNH Q3 MCR 88,4 % (>85 %) → CONDITION NON REMPLIE, SURVEILLER CONDITIONNEL MAINTENU.** 2 nouvelles idées SURVEILLER : BMY (Bristol Myers Squibb, pharma la moins chère du S&P500 à ~10x PE/FCF, guidance FY26 relevée Q2 EPS $6,75-7,00) + CI (Cigna Group, ~9x fwd PE alors que secteur à 17x, Evernorth PBM 70 % revenu = zéro MLR exposure, FCF ~$9B). Droit au blanc ACHETER (RSI et F-Score non confirmés, gates à vérifier avant deep-dive). ABBV : ~92 % 52-sem (from ~98 %), Q3 Oct 30 prochain déclencheur.
 > **✅ SCOUT W52 (14/10) — desk tech :** **1 nouvelle idée SURVEILLER/candidat → CHKP (Check Point Software, cybersec)** : P/FCF ~12,8x décennie-low, FCF margin ~40 %, net cash $4,2B, subscription +12 % Q2 2026, RSI ~38-42 (normalisé après -28 % YTD). DCF inversé price ~5-7 % croissance → marge réelle en SURCHAUFFE (P-003 passe). Pas de bulle, bilan quasi-indestructible, repli non structurel (transition hardware→cloud). **Droit au blanc idée #2** (VRSK ~24x PE/P-003 insuffisant ; SSNC $7,7B dette/SURCHAUFFE ; QCOM/WDAY données insuffisantes). CRM thèse RENFORCÉE (Agentforce ARR $1,5B +240 %, Q3 guidé +11-12 %, FY relevée). Gates tech book : AMZN/CRM/ICE/MSCI = tous GARDER.
-> **⚠️ CPI septembre publié aujourd'hui 14/10** (Cleveland Fed nowcast 3,60 % headline YoY / 2,39 % core). Override SURCHAUFFE maintenu quel que soit le print (T10Y 5,25 % ≥ seuil). Si headline > +0,3 % MoM → FOMC déc. se renforce, bénéficiaires CB/BNP.PA/GLE.PA/ICE.
+> **✅ SCOUT W52 (14/10) — desk finance :** CPI sept. provisoire : **core ~+0,2 % MoM in-line** (Morningstar "Keeping the Fed on Hold", StockTitan "3.4% Inflation Rate") ; headline gaz-driven +0,5-0,6 % MoM. HOLD FOMC oct. confirmé (~83 %). Pas de spike T10Y. **GLE.PA renforcement ACTIONNABLE vendredi 17/10** : gate 🟢 W51+W52 (2 consécutifs ✓) + cash 25,9 % > plafond 15 % ✓ → achat ~3,77 parts @€64,84 = ~€244 → 4,78 parts tot. ≈ 3,0 % NAV cible Basse. P/TBV ~0,92x (<1,0 ✓). BCE NIM (2,50 %) actif sans hike FOMC. **MCO Q3 21/10 confirmé** (BusinessWire) — RSI 34,7 non <30, P/E fwd ~26,6x non <24x + P-003 actif → SURVEILLER. **ICE Q3 23/10 confirmé** (RTTNews). **CB Q3 20/10** (prochain lundi — imminent). **BLANC nouvelles idées finance** (P-003 : 4 financiers détenus ; aucun watchlist au buy zone). Sources : signals.js W52 14/10 ; BusinessWire MCO 30/09 ; RTTNews ICE Q3.
+> **CPI septembre 14/10 PROVISOIRE** : core ~+0,2 % MoM in-line (non hawkish). Override SURCHAUFFE maintenu (T10Y ~5,21 % ≥ seuil, indépendamment du print). BCE NIM actif.
 > **FOMC 27-28/10 : probability effondrement** — Goldman 73 % hike (06/10) → CME FedWatch ~17 % hike (12/10) sur NFP septembre +62K + Williams dovish. Override SURCHAUFFE reste actif (T10Y 5,25 %).
 > **Cash book IA ~26 % NAV** (€2 674 post-trades CRM+ICE W50). Encore ~11 pts au-dessus du plafond 15 %. Redéploiement ≤10 pts/sem : GLE.PA renforcement (3 % NAV cible) prioritaire.
 > **Concentration capex IA** : GVA+CEG+EME+AMZN ≈ 28 % NAV — inchangé. MKC DIVERSIFIANT (conso de base, zéro capex-IA).
@@ -48,15 +49,15 @@
 | SAF.PA   | 🟠 3e relevé| GARDER — surveillance trim W52             | 3e relevé 🟠 consécutif. Gap poids 1,46 pts vs plafond 5 % NAV (< 2 pts requis) → pas de trim. Monitoring W53 : si 4e relevé 🟠 ET gap >2 pts → trim. |
 | AMZN     | 🟢 +0,264   | GARDER                                     | Q3 ~oct. AWS/FCF = horizon-test. Capex cluster IA surveillé.                                          |
 | AI.PA    | 🟢 +0,385   | GARDER (renforcement bloqué SURCHAUFFE)     | Gate 🟢 confirmé. Renforcement analytique éligible, bloqué cash/SURCHAUFFE.                            |
-| BNP.PA   | 🟢 +0,462   | GARDER                                     | CPI 14/10 binaire fort → bénéficiaire si chaud (NIM). FOMC probabilité réduite (~17 %) mais T10Y 5,25 % = NIM structurel. |
-| MSCI     | 🟢 +0,550   | GARDER                                     | Q3 résultats oct. Stop $540,54 intact.                                                                 |
+| BNP.PA   | 🟢 +0,385   | GARDER                                     | RSI 24,3 très survendu (€90,23). CPI provisoire core +0,2 % MoM → HOLD conforté. BCE NIM 2,50 % actif sans hike FOMC. Thèse intacte. Aucune action. |
+| MSCI     | 🟢 +0,550   | GARDER                                     | Q3 résultats ~oct. Stop $540,54 intact.                                                                |
 | CEG      | 🟢 +0,333   | GARDER (§G gouverne)                       | Q3 ~nov. Amazon PPA 690MW ✓. Capex cluster IA surveillé.                                              |
 | GVA      | 🟢 +0,637   | GARDER                                     | Q3 ~22/10 = déclencheur (marge ≥12,25% + backlog ≥$6,5B). IIJA 11/12.                                |
-| CB       | 🟢 +0,424   | GARDER                                     | Q3 ~20/10 = test clé (combined ratio + NII T10Y 5,25 %). CPI chaud = bénéficiaire.                    |
-| EME      | 🟢 +0,547   | GARDER (surveiller RSI)                    | RSI post-W51 inconnu — surveiller hystérésis si RSI >70. Q3 ~oct.                                     |
-| GLE.PA   | 🟢 +0,462   | GARDER (sous-taille 1,01% NAV)             | Renforcement prioritaire prochaine fenêtre (cible 3 % NAV). Q3 29/10 horizon-test (ROTE≥8 %).         |
+| CB       | 🟢 +0,450   | GARDER — Q3 20/10 IMMINENT                 | RSI 62,1 mom +18,8 % F6/9, cours $346,16. Q3 lundi 20/10 = horizon-test (combined ratio ≤95 % + NII guidance). CPI provisoire HOLD → T10Y stable → NII float $100B intact. Insider : 2 ventes (neutre). Aucun trade ce jour. |
+| EME      | 🟢 +0,547   | GARDER (surveiller RSI)                    | Q3 ~oct. Surveiller RSI hystérésis si >70.                                                             |
+| GLE.PA   | 🟢 +0,256   | **RENFORCER vendredi 17/10** (cible 3% NAV)| RSI 29,4 survendu, cours €64,84. Gate 🟢 W51+W52 (2 consécutifs ✓). P/TBV ~0,92x (<1,0 ✓). Cash 25,9 % > plafond 15 % ✓. Achat ~3,77 parts @€64,84 ≈ €244 → 4,78 parts tot. ≈ 3,0 % NAV. Q3 GLE.PA 29/10 = falsificateur (ROTE ≥8 %). |
 | CRM      | 🟢 +0,551   | GARDER                                     | Entré W50 (~5 % NAV). Agentforce ARR = horizon-test. Pas d'action.                                    |
-| ICE      | 🟢 +0,485   | GARDER                                     | Entré W50 (~3,35 % NAV). Q3 ~22-24/10 = horizon-test (ICE Data Services, volumes FI).                 |
+| ICE      | 🟢 +0,497   | GARDER — Q3 23/10 CONFIRMÉ                 | RSI 61,3 F7/9, cours $156,42 (dans buy zone $128-165). Q3 23/10 (RTTNews, avant ouverture). Horizon-test : revenu récurrent ICE Data Services + volumes FI. Insider : 6 ventes (surveiller). Aucun trade ce jour. |
 
 ## Calendrier — jalons critiques W48-W52
 
@@ -69,12 +70,13 @@
 | **20/10/2026** | **RTX Q3** avant ouverture (backlog ≥$285B, EPS ~$1,75, marge Raytheon) | ★ ACHETER Moyenne si ✓ → exécution vendredi 24/10 |
 | **22/10/2026** | **LMT Q3** avant ouverture (F-35 delivery, missiles, marge) | Potentiel gate flip 🟠→🟢 → deep-dive jeudi |
 | **22/10/2026** | **GVA Q3** (backlog ≥ $6,5B + marge ≥ 4,5%) | Décision finale GVA (renforcer/garder/sortir) |
-| **~22-24/10** | **ICE Q3** (volumes fixed-income + ICE Data Services) | Horizon-test ★ ICE (deep-dive mercredi) |
+| **23/10/2026** | **ICE Q3** avant ouverture (volumes fixed-income + ICE Data Services, EPS cons. ~$1,42) | Horizon-test ICE — revenu récurrent ≥45 % + FI data croissant |
 | **23/10/2026** | **SAF.PA Q3 revenue** (aftermarket +% YoY, livraisons LEAP, guidance) | Horizon-test direct — 3e🟠 ; si gate ne se redresse pas = 4e🟠 W53 |
 | **~23/10/2026** | **LLY Q3** + **ABBV 30/10** (before open) | LLY : déclencheur si RSI < 45 + ~$1000. ABBV : déclencheur si RSI < 50 + beat + cours ~$230-240 |
 | **29/10/2026** | **CI Q3** (Cigna, before open) | Horizon-test CI : EPS beat + FCF maintenu + Evernorth marge stable → condition d'entrée |
 | **~fin oct 2026** | **BMY Q3** (date non confirmée) | Horizon-test BMY : guidance FY26 maintenue $6,75-7,00 + portfolio croissance > Revlimid déclin |
-| **~23/10/2026** | **CB Q3** (combined ratio + NII réinvesti T10Y) | Test thèse CB |
+| **20/10/2026** | **CB Q3** avant ouverture (combined ratio ≤95% + NII guidance T10Y 5,21%) | Test thèse CB — falsificateurs : CR >95% durablement OU NII coupé ≥10% |
+| **21/10/2026** | **MCO Q3** avant ouverture (BusinessWire confirmé) — EPS consensus ~$4,25-4,29 | SURVEILLER : si beat + RSI<30 + P/E approche 22-24x → réévaluer P-003 |
 | **27-28/10/2026** | **FOMC** (~17% hike, ~83% HOLD — CME FedWatch 12/10) | Bénéficiaires HOLD : GVA/EME. Bénéficiaires hike déc. : CB/GLE.PA/BNP.PA/ICE. |
 | **28/10/2026** | **ODFL Q3** | Déclencheur d'entrée watchlist si tonnages ≥ 0 |
 | **~oct. 2026** | **MSCI Q3** | Horizon-test MSCI (quasi-monopole indices) |
