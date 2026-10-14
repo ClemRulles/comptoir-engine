@@ -1,6 +1,6 @@
 {
   "_doc": "Taux de base historiques par titre (node engine/history.js, method §I) : CAGR, volatilité, pire drawdown, drawdown actuel, % de fenêtres 12 mois positives, et 'analog' = rendements à 12 mois observés quand le titre était déjà aussi loin de son plus haut qu'aujourd'hui. Un taux de base pour le débat et le sizing — jamais une prédiction de cours.",
-  "updated": "2026-10-07",
+  "updated": "2026-10-14",
   "tickers": {
     "RTX": {
       "asof": "2026-10-07",
@@ -275,6 +275,75 @@
         "p25_fwd_12m": -0.0352,
         "p75_fwd_12m": 0.3593,
         "pct_positive": 0.667
+      },
+      "ok": true
+    },
+    "AZZ": {
+      "asof": "2026-10-14",
+      "from": "2016-10-13",
+      "to": "2026-10-12",
+      "years": 10,
+      "cagr": 0.0965,
+      "vol_annual": 0.3554,
+      "max_drawdown": -0.6948,
+      "current_drawdown": -0.1399,
+      "pct_positive_12m": 0.572,
+      "median_12m": 0.0766,
+      "worst_12m": -0.4566,
+      "best_12m": 1.3461,
+      "analog": {
+        "condition": "drawdown vs plus haut à ±5 pts de -14 %",
+        "n": 28,
+        "median_fwd_12m": 0.1865,
+        "p25_fwd_12m": -0.2099,
+        "p75_fwd_12m": 0.4458,
+        "pct_positive": 0.536
+      },
+      "ok": true
+    },
+    "BMY": {
+      "asof": "2026-10-14",
+      "from": "2016-10-13",
+      "to": "2026-10-12",
+      "years": 10,
+      "cagr": 0.0137,
+      "vol_annual": 0.2485,
+      "max_drawdown": -0.5112,
+      "current_drawdown": -0.2903,
+      "pct_positive_12m": 0.558,
+      "median_12m": 0.0443,
+      "worst_12m": -0.3873,
+      "best_12m": 0.508,
+      "analog": {
+        "condition": "drawdown vs plus haut à ±5 pts de -29 %",
+        "n": 26,
+        "median_fwd_12m": 0.0995,
+        "p25_fwd_12m": -0.0878,
+        "p75_fwd_12m": 0.2395,
+        "pct_positive": 0.615
+      },
+      "ok": true
+    },
+    "MKC": {
+      "asof": "2026-10-14",
+      "from": "2016-10-13",
+      "to": "2026-10-12",
+      "years": 10,
+      "cagr": -0.0037,
+      "vol_annual": 0.2464,
+      "max_drawdown": -0.5792,
+      "current_drawdown": -0.5654,
+      "pct_positive_12m": 0.572,
+      "median_12m": 0.0368,
+      "worst_12m": -0.3878,
+      "best_12m": 0.5694,
+      "analog": {
+        "condition": "drawdown vs plus haut à ±5 pts de -57 %",
+        "n": 0,
+        "median_fwd_12m": null,
+        "p25_fwd_12m": null,
+        "p75_fwd_12m": null,
+        "pct_positive": null
       },
       "ok": true
     }

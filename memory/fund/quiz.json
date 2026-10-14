@@ -136,6 +136,21 @@
       "answer": 0,
       "explanation": "Les banques et assureurs détiennent d'importants portefeuilles obligataires ou de liquidités. Quand les taux montent, ces réserves se réinvestissent à des rendements supérieurs (NII = Net Interest Income pour les banques, investment income pour les assureurs), gonflant directement les bénéfices.",
       "source": { "name": "Chubb — rapport Q2 2026 (float $100B réinvesti) ; BNP.PA rapport S1 2026 (NII expansion)" }
+    },
+    {
+      "date": "2026-10-16",
+      "theme": "bases",
+      "level": "moyen",
+      "question": "Le F-Score de Piotroski note une action de 0 à 9. Que mesure-t-il principalement ?",
+      "choices": [
+        "La croissance du chiffre d'affaires sur 5 ans",
+        "La solidité des fondamentaux (rentabilité, levier, efficacité)",
+        "Le niveau de valorisation par rapport aux pairs",
+        "La volatilité historique du cours de bourse"
+      ],
+      "answer": 1,
+      "explanation": "Le F-Score de Piotroski additionne 9 critères binaires : rentabilité (FCF, ROA, accruals), solidité du bilan (effet de levier, liquidité, dilution) et efficacité opérationnelle. Un score ≥7/9 signale de solides fondamentaux. C'est l'ancre du Comptoir Engine.",
+      "source": { "name": "Piotroski (2000) — 'Value Investing: The Use of Historical Financial Statement Information to Separate Winners from Losers', Journal of Accounting Research" }
     }
   ]
 }
