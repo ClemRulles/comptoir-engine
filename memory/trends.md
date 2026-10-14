@@ -1,3 +1,15 @@
+## Tendance de la semaine — 14 octobre 2026 (W52)
+
+- **Statut** : AUCUNE (5e semaine consécutive — W45/W46/W48/W51/W52)
+- **Tendance** : —
+- **Pourquoi AUCUNE** : Mode qualité pur. CPI sept. 14/10 (résultat inconnu = binaire actif). Concentration capex-IA déjà ~28% NAV (P-004 actif). Aucune tendance sectorielle avec marge de sécurité réelle en SURCHAUFFE. 1 idée candidat trouvée (CHKP, voir watchlist) — trop isolée pour constituer une tendance.
+
+### Candidats analysés (trend-gate.md)
+
+Pas de candidat tendance analysé (hors book). Scout concentré sur qualité FCF/bilan. Voir idée CHKP dans watchlist.md.
+
+---
+
 ## Tendance de la semaine — 13 octobre 2026 (W51)
 
 - **Statut** : AUCUNE (4e semaine consécutive — W45/W46/W48/W51)
