@@ -151,6 +151,21 @@
       "answer": 1,
       "explanation": "Le F-Score de Piotroski additionne 9 critères binaires : rentabilité (FCF, ROA, accruals), solidité du bilan (effet de levier, liquidité, dilution) et efficacité opérationnelle. Un score ≥7/9 signale de solides fondamentaux. C'est l'ancre du Comptoir Engine.",
       "source": { "name": "Piotroski (2000) — 'Value Investing: The Use of Historical Financial Statement Information to Separate Winners from Losers', Journal of Accounting Research" }
+    },
+    {
+      "date": "2026-10-17",
+      "theme": "psychologie",
+      "level": "moyen",
+      "question": "En bourse, le « biais d'ancrage » décrit la tendance à…",
+      "choices": [
+        "Se fixer sur un prix de référence (ex. le prix d'achat) pour juger si une action est chère",
+        "Toujours suivre l'avis de la majorité des investisseurs",
+        "Vendre une action dès qu'elle baisse de 10 %",
+        "Investir uniquement dans les entreprises de son pays"
+      ],
+      "answer": 0,
+      "explanation": "L'ancrage pousse à juger une action par rapport à un chiffre arbitraire (son prix d'achat, un plus-haut passé) plutôt que par sa valeur réelle aujourd'hui. « J'attends qu'elle revienne à mon prix d'achat » est de l'ancrage : le marché, lui, se moque de votre prix d'entrée.",
+      "source": { "name": "Tversky & Kahneman (1974) — 'Judgment under Uncertainty: Heuristics and Biases', Science" }
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "_doc": "LES DEUX CARRÉS DE L'ACCUEIL — ce qui doit sauter aux yeux d'un membre qui ouvre l'app 10 secondes. invest = écrit le VENDREDI après la décision principale (valable la semaine suivante) : { date, week (ISO), value (le nom court de ce que l'IA achèterait cette semaine, ex. 'Chubb' ; ou exactement 'RIEN' s'il n'y a rien d'assez solide — le droit au blanc est une réponse), ticker (ou null), line (≤ 90 caractères : pourquoi, en clair), confidence ('Haute'|'Moyenne'|'Basse'|null) }. watch = écrit le LUNDI (actualité) et mis à jour le mercredi ou le jeudi si quelque chose de plus important arrive : { date, kind ('chiffre'|'news'), value (un chiffre frappant ex. '5,2 %' ou un titre ≤ 7 mots), label (≤ 40 caractères : de quoi il s'agit, ex. 'Taux à 10 ans américain'), line (≤ 90 caractères : ce que ça change pour nous) }. Zéro jargon interne. Aucun chiffre sans source vérifiée dans la routine.",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "invest": {
     "date": "2026-10-10",
     "week": "2026-W50",
@@ -10,10 +10,10 @@
     "confidence": "Moyenne"
   },
   "watch": {
-    "date": "2026-10-13",
-    "kind": "chiffre",
-    "value": "CPI septembre — demain 14/10",
-    "label": "Inflation US — publication BLS 14h30 Paris",
-    "line": ">+0,3 % MoM = narratif hike-déc. relancé. <+0,2 % = HOLD conforté. Binaire fort pour tout le book."
+    "date": "2026-10-15",
+    "kind": "news",
+    "value": "Résultats Q3 : CB et RTX lundi 20/10",
+    "label": "Ouverture de la saison des résultats",
+    "line": "Chubb et Raytheon lundi, puis plusieurs de nos lignes jusqu'au 5 novembre : chaque publication teste une thèse."
   }
 }

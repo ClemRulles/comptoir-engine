@@ -1,3 +1,14 @@
+# Régime de marché — Deep-dive W52 2026-10-15
+
+- **SURCHAUFFE override INCHANGÉE** (T10Y ~5,21-5,25 %, FOMC 27-28/10 ~17 % hike → HOLD quasi-certain). `signals.js` 15/10 (ÉTAPE 0) : RISK-ON SAIN (FRED lag — override prime), **13🟢 / 1🟠 (SAF.PA) / 0🔴**, régime cash cible 10 % bande 5-15 %.
+- **Deep-dive (Opus, débat §D à 3 voix) : 3 ★ traités.** **AZZ → ACHETER Moyenne ~4,5 %** (exéc. vendredi 17/10) — Q2 FY27 BEAT confirmé SEC 8-K (adj EPS $2,00 +29 %, EBITDA 22,8 %, marges segment in-guide 30,7 %/21,2 %, guidance relevée $7,00-7,30) ; le « miss $1,55 » du Scout 14/10 était un chiffre Q2 FY26 PÉRIMÉ. **BMY → ACHETER Moyenne ~3 % demi-taille**, exécution conditionnelle post-Q3 29/10 (§J, pivot binaire Eliquis/Milvexian ; gate 🟢 +0,615, P/FCF ~9,3x, div 4,2 %). **MKC → ÉVITER** : fusion Unilever Foods (RMT 31/03/2026, $15,7B cash, ~35 % ownership résiduel, levier ~4,0×) falsifie la thèse standalone + volumes B2C -2,5 % → value trap P-003. **4e ★ RTX non traité** (DD complet 01/10), à armer post-Q3 20/10.
+- **Revue book : EME + CEG → 2 GARDER** (2 plus gros contributeurs au risque, justification écrite §H ; thèses renforcées — EME RPO +44 %, CEG guidance relevée + PPA Amazon 690 MW ; ne pas renforcer). Falsificateurs §G non armés. Le mom 12-1 CEG −35 % = bruit de prix, pas thèse.
+- **A bis : 0 scénario candidat. Fenêtre tactique : BLANC** (Grok cap 0 %, 0 §K, catalyseurs binaires §J).
+- **⚠️ Audit risk-manager — risque n°1 du book : SOUS-INVESTISSEMENT.** Cash 25,9 % (> plafond 15 %) + vol book **9,82 % < plancher 13 %** = le book n'utilise pas son budget de risque. Remède vendredi : **déployer ~7 pts de cash vers le SOCLE (IWDA/EIMI)** → ramène cash ~19 %, lève le bêta, traite les 2 alertes sans forcer un single-stock cher en SURCHAUFFE (soupape §H). Risque n°2 : cluster capex-IA (GVA+CEG+EME+AMZN) = ~27 % NAV mais **~60 % du risque du book** → formaliser P-004 vendredi, gel à 4 noms. **Process : toutes les lignes `desk:null`/`sector:null` → renseigner vendredi (sinon §L/§I n'apprennent pas).**
+- **Sources** : signals.js + history.js --dry 15/10 ; SEC EDGAR 8-K AZZ Q2 FY27 (adj EPS $2,00) ; SEC 10-Q/8-K MKC (fusion Unilever Foods) + Fortune/QZ 31/03 ; EDGAR BMY CIK 14272 ; allocation.json 13/10 ; dossiers desks + risk-manager 15/10.
+
+---
+
 # Régime de marché — Scout W52 2026-10-14
 
 - **SURCHAUFFE HARD-CONFIRMÉE — INCHANGÉ** (T10Y ~5,21-5,25 %, FOMC 27-28/10 ~17 % hike → HOLD quasi-certain). `signals.js` W51 13/10 : RISK-ON SAIN (FRED lag — override prime). 13🟢 / 1🟠 (SAF.PA — hystérésis active, gap 1,46 pts < 2 pts requis → pas de trim).
