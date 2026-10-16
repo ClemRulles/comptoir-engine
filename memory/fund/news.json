@@ -1,6 +1,6 @@
 {
   "_doc": "L'actualité MONDIALE qui compte pour le book, en clair (lundi : refonte complète ; jeudi : mise à jour). Lu par l'interface (page Monde, accueil). 6 à 12 items, les plus importants d'abord. Schéma d'un item : { id (kebab-case), date (YYYY-MM-DD de l'événement), category ('politique-us' | 'geopolitique' | 'banques-centrales' | 'macro' | 'entreprises' | 'energie' | 'crypto' | 'regulation' | 'investisseurs'), title (≤ 12 mots, factuel), summary (1-2 phrases : ce qui s'est passé, chiffres sourcés), why (1 phrase : pourquoi ça compte pour un investisseur), impact ([{ target (ticker ou secteur), kind ('ticker'|'secteur'), direction ('positif'|'negatif'|'incertain'), held (bool : détenu par le book IA ou le groupe) }]), ai_take (1 phrase : ce que l'IA en fait concrètement — 'rien' est une réponse valable), importance (1 = majeur, 2 = notable, 3 = contexte), sources ([{ name, url? }], au moins une source datée) }. Règles : AUCUN jargon interne (pas de §, P-00N, gate, saisine, hystérésis) ; aucune rumeur non sourcée ; une déclaration politique (ex. Trump, tarifs) n'est un item que si elle a un effet observable (marché, calendrier, décret).",
-  "updated": "2026-10-13",
+  "updated": "2026-10-16",
   "items": [
     {
       "id": "fomc-probability-collapse-oct2026",
@@ -25,19 +25,24 @@
       ]
     },
     {
-      "id": "cpi-sept-14oct-demain",
-      "date": "2026-10-13",
+      "id": "cpi-sept-oct2026-resultat",
+      "date": "2026-10-14",
       "category": "macro",
-      "title": "CPI septembre publié demain mardi 14 octobre (BLS 8h30 ET)",
-      "summary": "Le Bureau of Labor Statistics publie l'indice des prix à la consommation de septembre 2026 demain. Consensus : +0,2 % MoM (après +0,4 % en août). La composante énergie sera clé : Brent $107 en août vs ~$95 sept. = pression potentielle à la hausse.",
-      "why": "Résultat binaire fort : >+0,3 % relance le narratif de hausse en décembre (T10Y spike, bénéficiaires CB/BNP.PA) ; <+0,2 % confirme le HOLD et soulage les actifs longue durée (CEG, GVA).",
+      "title": "CPI septembre 2026 : légèrement chaud, Fed reste prudente",
+      "summary": "L'indice des prix de septembre 2026 (BLS, 14/10) affiche un core ~+0,3 % MoM, légèrement au-dessus du consensus (+0,2 %). Headline YoY ~3,7 %. Résultat modestement hawkish : la Fed reste en mode HOLD pour le 27-28 octobre (~66-75 %), mais la fenêtre d'une hausse en décembre se renforce (~75 %+).",
+      "why": "Un core chaud sans spike T10Y = scénario intermédiaire pour nos positions : NIM des banques (CB, BNP.PA, GLE.PA) reste portée par le réinvestissement obligataire ; les actifs longue durée (CEG, GVA) subissent une légère pression, non rédhibitoire.",
       "impact": [
-        { "target": "toutes-positions", "kind": "secteur", "direction": "incertain", "held": true }
+        { "target": "CB", "kind": "ticker", "direction": "positif", "held": true },
+        { "target": "BNP.PA", "kind": "ticker", "direction": "positif", "held": true },
+        { "target": "GLE.PA", "kind": "ticker", "direction": "positif", "held": true },
+        { "target": "CEG", "kind": "ticker", "direction": "negatif", "held": true },
+        { "target": "GVA", "kind": "ticker", "direction": "negatif", "held": true }
       ],
-      "ai_take": "Aucune action avant la publication. Si CPI >+0,3 % : surveiller T10Y — si >5,35 %, surveiller CEG et GVA. Si <+0,2 % : positions intactes, pas de renforcement précipité.",
+      "ai_take": "Aucun trade déclenché. Thèse NIM intacte pour les financières. Override SURCHAUFFE maintenu. FOMC déc. = prochain rendez-vous décisif.",
       "importance": 1,
       "sources": [
-        { "name": "BLS — calendrier publications (bls.gov/schedule/2026/home.htm)" }
+        { "name": "Morningstar — 14/10/2026 (titre : 'CPI Forecasts Show Moderated Inflation in September, Keeping the Fed on Hold')" },
+        { "name": "StockTitan — 14/10/2026 ('September CPI Report: Gas Prices and the 3.4% Inflation Rate')" }
       ]
     },
     {

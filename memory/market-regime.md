@@ -1,3 +1,15 @@
+# Régime de marché — Doctor W52 2026-10-16
+
+- **SURCHAUFFE override INCHANGÉE** (T10Y ~5,21-5,25 %, FOMC 27-28/10 ~25-34 % hike — remonté depuis ~17 % post-CPI sept. légèrement chaud). `signals.js` 16/10 : RISK-ON SAIN (FRED lag — override prime), **13🟢 / 1🟠 (SAF.PA — 4e relevé consécutif) / 0🔴**, régime cash cible 10 % bande 5-15 %.
+- **CPI septembre 14/10 — CONFIRMÉ** (sources web post-release convergentes) : core ~+0,3 % MoM (légèrement au-dessus consensus +0,2 %) ; headline YoY ~3,7 %. Résultat modestement hawkish. FOMC oct. HOLD toujours attendu (~66-75 %) ; hike-déc. narrative renforcée (~75 %+). T10Y pression légère ~5,25 % (pas de spike). Impact book : NIM CB/BNP.PA/GLE.PA thèse LT renforcée, CEG/GVA légère pression duration neutre. Sources : Morningstar 14/10 (« Keeping the Fed on Hold ») ; StockTitan 14/10 (« Gas Prices and the 3.4% Inflation Rate »).
+- **Double horizon-test lundi 20/10** : CB Q3 (combined ratio + NII) ET MSCI Q3 (rétention ≥93 %) publient le même jour. Deux falsificateurs actifs simultanément. Pas d'action ce soir. Brief vendredi 17/10 : confirmer les horaires de publication et préparer les scénarios de sortie.
+- **SAF.PA hystérésis W52** : 4e relevé consécutif 🟠 CONFIRMÉ. Poids ~6,64 % NAV, cap 5 %, gap = **1,64 pts < 2 pts requis** → **PAS DE TRIM**. Saisine mercredi W53 déclenchée automatiquement. Q3 revenue 23/10 = prochain test thèse (LEAP volumes + guide FY).
+- **0 sortie exécutée** : aucun des 4 déclencheurs §H armé (0 🔴 fondamental, 0 stop TACTIQUE, drawdown −0,81 % non déclenché, 0 verdict Opus SORTIR en attente). Jeudi vend des thèses cassées — aucune thèse cassée ce soir.
+- **ICE Q3 date corrigée** : date en mémoire était « ~23/10 » (source RTTNews W52 indirecte). Calendrier IR ICE Inc. confirme **29 octobre avant ouverture**, EPS consensus ~$1,42. Catalysts.md mis à jour.
+- **Sources** : engine/signals.js + risk.js 14/10 (dernière exécution) ; web search CPI sept. 14/10 post-release ; catalysts.md ; ai-fund.json.
+
+---
+
 # Régime de marché — Deep-dive W52 2026-10-15
 
 - **SURCHAUFFE override INCHANGÉE** (T10Y ~5,21-5,25 %, FOMC 27-28/10 ~17 % hike → HOLD quasi-certain). `signals.js` 15/10 (ÉTAPE 0) : RISK-ON SAIN (FRED lag — override prime), **13🟢 / 1🟠 (SAF.PA) / 0🔴**, régime cash cible 10 % bande 5-15 %.

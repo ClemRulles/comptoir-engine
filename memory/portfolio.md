@@ -6,7 +6,7 @@ Positions réelles encodées depuis Trade Republic. **NAV des positions ≈ 6 30
 
 | Ticker | Nom | Valeur € | Poids % | Depuis achat | Coût base € | Horizon | Statut | Règle de sortie | Vérifié le |
 |--------|-----|---------:|-------:|------------:|------------:|---------|--------|-----------------|-----------|
-| SAF.PA  | Safran                | 732,81 | 11,6 | −8,99 %  | 805,20 | cœur | À SURVEILLER | sortie si thèse MRO/aéro cassée (guide FY coupé, carnets CFM déclinants) ; **gate 🟠 W49 — 1er relevé ambre (RSI 38.4, cours €310.8, mom +12.2%, comp +0.126)** — H1 guide RELEVÉ (ROI €6.4-6.5B, LEAP +41%, spare parts +28%, marge 18.4%) ; thèse MRO intacte ; GEL renforcement — 2e relevé W50 → trim 5% NAV | 2026-10-09 |
+| SAF.PA  | Safran                | 732,81 | 11,6 | −8,99 %  | 805,20 | cœur | À SURVEILLER | sortie si thèse MRO/aéro cassée (guide FY coupé, carnets CFM déclinants) ; **gate 🟠 W52 — 4e relevé ambre consécutif (W49→W52)** — H1 guide RELEVÉ (ROI €6.4-6.5B, LEAP +41%, spare parts +28%, marge 18.4%) ; thèse MRO intacte ; GEL renforcement ; gap 1,64 pts NAV < 2 pts → pas de trim book IA ; saisine mercredi W53 déclenchée ; Q3 revenue 23/10 | 2026-10-16 |
 | HO.PA   | Thales                | 723,41 | 11,5 | −10,14 % | 805,04 | cœur | À SURVEILLER | sortie si thèse défense EU se retourne (commandes/carnet guidé en baisse) ; **gate non actualisé (non-US, F-Score null)** ; thèse budgets NATO +5% La Haye intacte ; book IA sorti le 26/06 | 2026-08-21 |
 | AMZN    | Amazon                | 703,31 | 11,1 | +16,83 % | 602,00 | cœur | INTACT | sortie si croissance AWS cassée (<25% YoY) OU capex coupé >15% — **FALSIFICATEUR NON DÉCLENCHÉ ✓ (AWS +37% Q2, Amazon PPA 690MW CEG)** ; **gate 🟢 W49 (F5/9, RSI 62.1, cours $254.06, comp +0.275)** ; thèse AWS intacte | 2026-10-09 |
 | NFLX    | Netflix               | 632,58 | 10,0 | −14,75 % | 742,03 | cœur | À SURVEILLER | sortie si décélération abonnés confirmée OU rupture stratégique post-Hastings ; gate non actualisé ; book IA sorti sur stop -8% (13/06) | 2026-06-19 |
@@ -49,6 +49,46 @@ Règle de sortie touchée : la prime sur NAV bitcoin s'est effondrée. F-Score P
 **NOVOB (Novo-Nordisk)** — Q2 : Wegovy US −22% CER (transition formulaire), international +37%, EMA approuve pill 7.2mg. FY guidance relevée (−6% à 0%). Données adoption Medicare Q3 non encore publiées. Thèse GLP-1 solide LT. Surveiller chiffres CMS T3'26. Vérifié 2026-08-21.
 
 > AMZN, EIMI : INTACT (gate 🟢 W46 confirmé, thèses intactes, cf. tableau).
+
+---
+
+## Alertes book IA — 2026-10-16 (Doctor W52)
+
+Régime **SURCHAUFFE HARD-CONFIRMÉE** (T10Y ~5,21-5,25 %, FOMC 27-28/10 ~25-34 % hike → HOLD probable ; CPI sept. core ~+0,3 % MoM légèrement hawkish, hike-déc. renforcé) · **14 positions actives · NAV ~€10 237 · cash €2 674 (26,1 % NAV — > plafond 15 % : déploiement vendredi 17/10 : GLE.PA renforcement + SOCLE IWDA/EIMI per convictions 15/10)** · gates W52 (16/10) : 🟢13 🟠1 (SAF.PA — 4e relevé consécutif 🟠, gap 1,64 pts < 2 pts requis → pas de trim) 🔴0.
+
+### Sorties exécutées — 2026-10-16
+
+Aucune — 0 déclencheur §H armé :
+- Gate 🔴 fondamental : 0 position (13/14 🟢, 1/14 🟠 SAF.PA — 🟠 seul ≠ déclencheur §H).
+- F-Score ≤3 ou earnings quality rouge : 0 (F-Scores : GVA 7/9, MSCI 7/9, CB 6/9, EME 6/9, CEG 6/9, AMZN 5/9 — seuils sains).
+- Stop prix franchi sur TACTIQUE : 0 (toutes CŒUR — §H migration 30/08 : seuil réexamen = −25 % entry_price, loin pour toutes).
+- Garde-fou drawdown : drawdown −0,81 % (non déclenché — seuil guard : −10 %).
+- Verdict Opus SORTIR non exécuté : 0 (convictions 15/10 : EME GARDER, CEG GARDER).
+
+### À SURVEILLER — Doctor W52
+
+| Ticker | Gate | Alerte | Détail |
+|--------|------|--------|--------|
+| SAF.PA | 🟠 +0.126 | ⚠️ **4e relevé 🟠 consécutif (W49→W52) — SAISINE MERCREDI W53** | Position 2.0929 × ~€325 ≈ €680 = **6,64 % NAV**. Gap 6,64 % − 5 % = **1,64 pts < 2 pts requis** → **pas de trim ce soir**. Thèse MRO/LEAP intacte (H1 marge record, guide FY relevé). Seuil réexamen book IA €234 = très loin. 4e relevé 🟠 = saisine mercredi W53 obligatoire. GEL renforcement maintenu. Q3 revenue 23/10 = prochain test (LEAP volumes + guide FY). |
+| CB | 🟢 +0.450 | ⚠️ **Q3 LUNDI 20/10 IMMINENT — risque binaire** | Cours ~$346. RSI 62. F6/9. Combined ratio Q2 83,8 %, NII float $100B. CPI sept. hot → T10Y ~5,25 % = fond NIM LT favorable. **Falsificateurs actifs : combined ratio >95 % OU NII guidance coupée ≥10 %** → sortie immédiate si déclenchés lundi. Pas de trade ce soir. |
+| MSCI | 🟢 +0.587 | ⚠️ **Q3 LUNDI 20/10 IMMINENT — risque binaire (même jour que CB)** | Cours ~$562. F7/9. Q2 rétention 95,3 % ✓. **Falsificateur : rétention <93 % OU ARR <+9 %** → sortie immédiate. Double horizon-test lundi 20/10 avec CB = deux falsificateurs actifs simultanément. Pas de trade ce soir. |
+| GVA | 🟢 +0.598 | Q3 ~05/11 — horizon-test décisif | Gate F7/9 fort. Cours ~$115. Backlog $7,4B sous contrats fermes. IIJA CR → 11/12. Falsificateurs : marge <10 % OU write-down >$50M OU backlog <$6,5B → sortie immédiate. |
+| GLE.PA | 🟢 +0.256 | Position sous-taille (0,66 % NAV vs cible 3 %) — renforcement vendredi 17/10 | Cours ~€64,84. RSI survendu. Gate 🟢 W51+W52 ✓. Achat ~€244 → ~3,0 % NAV = action prioritaire vendredi. |
+
+### Catalyseurs imminents (impact book IA)
+
+- **20/10/2026 (lundi) CB Q3** — Combined ratio + NII. Falsificateurs → sortie immédiate.
+- **20/10/2026 (lundi) MSCI Q3** — Rétention ≥93 %. Falsificateur → sortie immédiate. Double test avec CB.
+- **23/10/2026 SAF.PA Q3 revenue** — Volumes LEAP + guide FY = test thèse MRO.
+- **27-28/10/2026 FOMC** — ~25-34 % hike (up from 17 % post-CPI sept. ~+0,3 %). HOLD probable. NIM CB/BNP.PA/GLE.PA actif.
+- **29/10/2026 ICE Q3** — *(date corrigée : non 23/10)* Revenu récurrent ≥47 % CA, EPS ~$1,42.
+- **29/10/2026 GLE.PA Q3** — ROTE ≥8 %. Falsificateurs → sortie.
+- **29/10/2026 BMY Q3** — Pivot binaire Eliquis/Milvexian ; exécution BMY conditionnelle post-Q3.
+- **~05/11/2026 GVA Q3** — Horizon-test décisif (marge ≥12,25 %, backlog $7,4B+, rev +25 %+).
+
+### Cash et déploiement (vendredi 17/10)
+
+Cash 26,1 % NAV > plafond 15 % → **exécuter GLE.PA renforcement (~€244 → ~3 % NAV) + SOCLE IWDA/EIMI (~7 pts NAV) per convictions 15/10**. ≤10 pts NAV/sem. **Ce jeudi ne fait AUCUN achat.**
 
 ---
 

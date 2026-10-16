@@ -1,6 +1,6 @@
 {
   "_doc": "LE QUIZ DU JOUR — une question par jour pour faire apprendre la bourse aux membres (accueil de l'app, classement mensuel dans Groupe). Écrit par CHAQUE routine de nuit : elle s'assure que les 2 prochains jours (date de Paris) ont leur question, sans jamais réécrire une date déjà publiée. Règles complètes dans skills/quiz.md. Schéma d'une entrée : { date (YYYY-MM-DD, jour où la question est posée), theme ('bases'|'histoire'|'actualite'|'nos-lignes'|'psychologie'|'crypto'|'fiscalite'), level ('facile'|'moyen'|'difficile'), question (≤ 160 caractères), choices ([4 réponses courtes, ≤ 60 caractères chacune]), answer (index 0-3 de la bonne réponse — varie sa position), explanation (≤ 300 caractères : pourquoi c'est la bonne réponse, ce qu'il faut en retenir), source ({ name, url? } : d'où vient le fait) }. Garder ~60 jours, les plus récents en dernier.",
-  "updated": "2026-10-10",
+  "updated": "2026-10-16",
   "questions": [
     {
       "date": "2026-10-07",
@@ -166,6 +166,21 @@
       "answer": 0,
       "explanation": "L'ancrage pousse à juger une action par rapport à un chiffre arbitraire (son prix d'achat, un plus-haut passé) plutôt que par sa valeur réelle aujourd'hui. « J'attends qu'elle revienne à mon prix d'achat » est de l'ancrage : le marché, lui, se moque de votre prix d'entrée.",
       "source": { "name": "Tversky & Kahneman (1974) — 'Judgment under Uncertainty: Heuristics and Biases', Science" }
+    },
+    {
+      "date": "2026-10-18",
+      "theme": "nos-lignes",
+      "level": "moyen",
+      "question": "Notre position MSCI Inc. publie ses résultats T3 lundi 20 octobre. Quel indicateur surveille-t-on en priorité ?",
+      "choices": [
+        "Le taux de rétention des abonnements (seuil : ≥ 93 %)",
+        "La progression du cours de bourse sur l'année",
+        "Le chiffre d'affaires total par rapport au S&P 500",
+        "Le nombre d'indices MSCI utilisés dans le monde"
+      ],
+      "answer": 0,
+      "explanation": "MSCI vend des abonnements à ses indices et données. Un taux de rétention élevé (95,3 % au T2 2026) signifie que les clients renouvellent. Si la rétention descend sous 93 %, la base de revenus s'érode — c'est notre critère de sortie.",
+      "source": { "name": "MSCI — rapport Q2 2026 (retention rate 95,3 %) ; convictions comptoir-engine oct. 2026" }
     }
   ]
 }
