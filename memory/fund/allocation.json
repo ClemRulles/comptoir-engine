@@ -1,23 +1,23 @@
 {
   "_doc": "Allocation & budget de risque du book IA, recalculés par node engine/risk.js (method §H/§L/§M). 'sleeves' = poids réel vs cible du mandat (cible infléchie par le régime ; le cash vise 10 % dans tous les régimes). 'lines' = valeur €, poids, poche, vol 1 an, contribution au risque. 'risk' = volatilité/drawdown du book à poids constants sur 1 an. 'alerts' = ce que le vendredi doit traiter. 'nav_history' alimente le garde-fou drawdown. Ne pas éditer à la main.",
-  "updated": "2026-10-13",
+  "updated": "2026-10-16",
   "regime": "RISK-ON SAIN",
-  "nav_eur": 10320.13,
+  "nav_eur": 10236.94,
   "cash_eur": 2674.12,
   "sleeves": {
     "coeur": {
-      "weight": 0.6948,
+      "weight": 0.6943,
       "target": 0.6,
       "min": 0.45,
       "max": 0.75,
-      "drift": 0.0948
+      "drift": 0.0943
     },
     "socle": {
-      "weight": 0.0462,
+      "weight": 0.0447,
       "target": 0.12,
       "min": 0,
       "max": 0.2,
-      "drift": -0.0738
+      "drift": -0.0753
     },
     "tactique": {
       "weight": 0,
@@ -34,11 +34,11 @@
       "drift": -0.08
     },
     "cash": {
-      "weight": 0.2591,
+      "weight": 0.2612,
       "target": 0.1,
       "min": 0.05,
       "max": 0.15,
-      "drift": 0.1591
+      "drift": 0.1612
     }
   },
   "targets": {
@@ -60,39 +60,25 @@
     "theme": 0.35
   },
   "risk": {
-    "vol_annual": 0.0982,
+    "vol_annual": 0.0959,
     "vol_target": {
       "low": 0.13,
       "high": 0.2
     },
-    "max_drawdown_1y": -0.0649,
-    "return_1y_constant_weights": 0.1252,
-    "covered_weight": 0.741,
+    "max_drawdown_1y": -0.0644,
+    "return_1y_constant_weights": 0.1036,
+    "covered_weight": 0.739,
     "missing": []
   },
   "drawdown": {
-    "current": 0,
+    "current": -0.0081,
     "peak_nav": 10320.13,
     "guard_triggered": false,
-    "max_history": 0
+    "max_history": -0.0081
   },
   "sectors": {},
   "themes": {},
   "lines": [
-    {
-      "ticker": "EME",
-      "sleeve": "coeur",
-      "desk": null,
-      "sector": null,
-      "theme": null,
-      "confidence": "Moyenne",
-      "value_eur": 760.87,
-      "price_eur": 698.0469,
-      "priced": true,
-      "weight": 0.0737,
-      "vol_1y": 0.4447,
-      "risk_contribution": 0.1919
-    },
     {
       "ticker": "CB",
       "sleeve": "coeur",
@@ -100,12 +86,26 @@
       "sector": null,
       "theme": null,
       "confidence": "Moyenne",
-      "value_eur": 741.93,
-      "price_eur": 309.1381,
+      "value_eur": 755.1,
+      "price_eur": 314.6259,
       "priced": true,
-      "weight": 0.0719,
-      "vol_1y": 0.1935,
-      "risk_contribution": -0.008
+      "weight": 0.0738,
+      "vol_1y": 0.1927,
+      "risk_contribution": -0.0082
+    },
+    {
+      "ticker": "EME",
+      "sleeve": "coeur",
+      "desk": null,
+      "sector": null,
+      "theme": null,
+      "confidence": "Moyenne",
+      "value_eur": 712.08,
+      "price_eur": 653.2864,
+      "priced": true,
+      "weight": 0.0696,
+      "vol_1y": 0.4452,
+      "risk_contribution": 0.1799
     },
     {
       "ticker": "AMZN",
@@ -114,12 +114,12 @@
       "sector": null,
       "theme": null,
       "confidence": "Moyenne",
-      "value_eur": 724,
-      "price_eur": 232.5121,
+      "value_eur": 707.46,
+      "price_eur": 227.2006,
       "priced": true,
-      "weight": 0.0702,
-      "vol_1y": 0.3376,
-      "risk_contribution": 0.1295
+      "weight": 0.0691,
+      "vol_1y": 0.3357,
+      "risk_contribution": 0.1316
     },
     {
       "ticker": "MSCI",
@@ -128,12 +128,12 @@
       "sector": null,
       "theme": null,
       "confidence": "Moyenne",
-      "value_eur": 692.07,
-      "price_eur": 508.8783,
+      "value_eur": 697.51,
+      "price_eur": 512.8779,
       "priced": true,
-      "weight": 0.0671,
-      "vol_1y": 0.2973,
-      "risk_contribution": 0.055
+      "weight": 0.0681,
+      "vol_1y": 0.2941,
+      "risk_contribution": 0.0589
     },
     {
       "ticker": "SAF.PA",
@@ -142,12 +142,12 @@
       "sector": null,
       "theme": null,
       "confidence": "Moyenne",
-      "value_eur": 666.38,
-      "price_eur": 318.4,
+      "value_eur": 663.45,
+      "price_eur": 317,
       "priced": true,
-      "weight": 0.0646,
-      "vol_1y": 0.3244,
-      "risk_contribution": 0.1208
+      "weight": 0.0648,
+      "vol_1y": 0.3239,
+      "risk_contribution": 0.1228
     },
     {
       "ticker": "GVA",
@@ -156,12 +156,12 @@
       "sector": null,
       "theme": null,
       "confidence": "Moyenne",
-      "value_eur": 662,
-      "price_eur": 100.7615,
+      "value_eur": 637.37,
+      "price_eur": 97.0124,
       "priced": true,
-      "weight": 0.0641,
-      "vol_1y": 0.3148,
-      "risk_contribution": 0.1069
+      "weight": 0.0623,
+      "vol_1y": 0.3171,
+      "risk_contribution": 0.1068
     },
     {
       "ticker": "CEG",
@@ -170,26 +170,12 @@
       "sector": null,
       "theme": null,
       "confidence": "Moyenne",
-      "value_eur": 649.02,
-      "price_eur": 263.2951,
+      "value_eur": 604.54,
+      "price_eur": 245.251,
       "priced": true,
-      "weight": 0.0629,
-      "vol_1y": 0.4856,
-      "risk_contribution": 0.1751
-    },
-    {
-      "ticker": "AI",
-      "sleeve": "coeur",
-      "desk": null,
-      "sector": null,
-      "theme": null,
-      "confidence": "Moyenne",
-      "value_eur": 519.49,
-      "price_eur": 168.7,
-      "priced": true,
-      "weight": 0.0503,
-      "vol_1y": 0.1771,
-      "risk_contribution": 0.0193
+      "weight": 0.0591,
+      "vol_1y": 0.4836,
+      "risk_contribution": 0.1659
     },
     {
       "ticker": "CRM",
@@ -198,12 +184,26 @@
       "sector": null,
       "theme": null,
       "confidence": "Moyenne",
-      "value_eur": 517.63,
-      "price_eur": 209.5682,
+      "value_eur": 543.52,
+      "price_eur": 220.0482,
       "priced": true,
-      "weight": 0.0502,
-      "vol_1y": 0.4632,
-      "risk_contribution": 0.0411
+      "weight": 0.0531,
+      "vol_1y": 0.4612,
+      "risk_contribution": 0.0504
+    },
+    {
+      "ticker": "AI",
+      "sleeve": "coeur",
+      "desk": null,
+      "sector": null,
+      "theme": null,
+      "confidence": "Moyenne",
+      "value_eur": 532.85,
+      "price_eur": 173.04,
+      "priced": true,
+      "weight": 0.0521,
+      "vol_1y": 0.1758,
+      "risk_contribution": 0.0201
     },
     {
       "ticker": "LOTB",
@@ -212,12 +212,12 @@
       "sector": null,
       "theme": null,
       "confidence": "Moyenne",
-      "value_eur": 487.55,
-      "price_eur": 12380,
+      "value_eur": 506.45,
+      "price_eur": 12860,
       "priced": true,
-      "weight": 0.0472,
-      "vol_1y": 0.2455,
-      "risk_contribution": 0.032
+      "weight": 0.0495,
+      "vol_1y": 0.2454,
+      "risk_contribution": 0.0347
     },
     {
       "ticker": "EIMI",
@@ -226,12 +226,12 @@
       "sector": null,
       "theme": null,
       "confidence": "Moyenne",
-      "value_eur": 476.58,
-      "price_eur": 48.7547,
+      "value_eur": 457.24,
+      "price_eur": 46.7761,
       "priced": true,
-      "weight": 0.0462,
-      "vol_1y": 0.2255,
-      "risk_contribution": 0.0613
+      "weight": 0.0447,
+      "vol_1y": 0.2254,
+      "risk_contribution": 0.06
     },
     {
       "ticker": "ICE",
@@ -240,12 +240,12 @@
       "sector": null,
       "theme": null,
       "confidence": "Moyenne",
-      "value_eur": 348.35,
-      "price_eur": 141.0321,
+      "value_eur": 348.95,
+      "price_eur": 141.2735,
       "priced": true,
-      "weight": 0.0338,
-      "vol_1y": 0.2461,
-      "risk_contribution": 0.0204
+      "weight": 0.0341,
+      "vol_1y": 0.2447,
+      "risk_contribution": 0.0219
     },
     {
       "ticker": "BNP.PA",
@@ -254,12 +254,12 @@
       "sector": null,
       "theme": null,
       "confidence": "Moyenne",
-      "value_eur": 335.33,
-      "price_eur": 90.09,
+      "value_eur": 331.05,
+      "price_eur": 88.94,
       "priced": true,
-      "weight": 0.0325,
-      "vol_1y": 0.281,
-      "risk_contribution": 0.0431
+      "weight": 0.0323,
+      "vol_1y": 0.2797,
+      "risk_contribution": 0.0434
     },
     {
       "ticker": "GLE.PA",
@@ -268,19 +268,19 @@
       "sector": null,
       "theme": null,
       "confidence": "Basse",
-      "value_eur": 64.81,
-      "price_eur": 64.17,
+      "value_eur": 65.25,
+      "price_eur": 64.6,
       "priced": true,
-      "weight": 0.0063,
-      "vol_1y": 0.3506,
-      "risk_contribution": 0.0115
+      "weight": 0.0064,
+      "vol_1y": 0.3479,
+      "risk_contribution": 0.0118
     }
   ],
   "alerts": [
     "CASH 26 % > plafond 15 % : déployer vers les poches sous-pondérées (cadence §H).",
     "RISQUE 10 %/an < cible 13 % : le book n'utilise pas son budget de risque (sous-investi ou trop défensif).",
-    "CONCENTRATION DE RISQUE CEG : 6 % du NAV mais 18 % du risque.",
-    "CONCENTRATION DE RISQUE EME : 7 % du NAV mais 19 % du risque."
+    "CONCENTRATION DE RISQUE CEG : 6 % du NAV mais 17 % du risque.",
+    "CONCENTRATION DE RISQUE EME : 7 % du NAV mais 18 % du risque."
   ],
   "data_gaps": [
     "secteur/desk non renseigné : SAF.PA, AMZN, AI, LOTB, BNP.PA, MSCI, CEG, GVA, CB, EME, CRM, ICE, GLE.PA (à compléter vendredi)"
@@ -297,6 +297,10 @@
     {
       "date": "2026-10-13",
       "nav": 10320.13
+    },
+    {
+      "date": "2026-10-16",
+      "nav": 10236.94
     }
   ]
 }
