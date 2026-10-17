@@ -78,6 +78,12 @@ Falsificateur : ≥ 3 candidats refusés sur cette règle qui délivrent ensuite
 leur horizon pendant que le book sous-performe — la prudence serait devenue du coût d'opportunité.
 Effet mesuré (revue sept. 2026) : 3 cas concordants post-création : MYRG vs GVA 20/08 (gate +0.732 refusé vs GVA 17x → correct, GVA tenu et gate fort), AZZ vs EME 27/08 (gate +0.732 momentum-porté refusé, EME gate +0.495 acheté avec marge réelle), ABBV vs CB 03/09 (gate le plus fort de la nuit Surveiller, CB plus faible Acheter conditionnel). Aucun des refusés n'a livré d'alpha observé supérieur à la décision retenue sur l'horizon disponible. CONFIRMÉ.
 
+### P-004 · Gel cluster capex-IA à 4 noms · à l'essai · 2026-10-17
+Règle : ne jamais ajouter une **5e ligne bénéficiaire directe du capex hyperscaler IA** (cluster = GVA + CEG + EME + AMZN = 4 noms, HARD CAP). Falsificateur **commun** : une coupe du capex des hyperscalers > 15 % (Amazon/MSFT/Meta/Google sur un seul trimestre) déclenche la **réexamen simultané des 4 noms ENSEMBLE** — non nom par nom. Au redéploiement du cash, exclure les bénéficiaires capex-IA sauf exit d'un des 4. L'excès de risque du cluster (~55-60 % du risque book pour ~26 % du NAV) se dilue par le dénominateur (chaque entrée non-corrélée — AZZ, BMY, socle — réduit la part du facteur).
+Preuves : leçon 2026-10-08 (audit risk-manager W50 : cluster 27 % NAV / ~60 % risque) ; leçon 2026-10-10 (CRM+ICE non capex-IA = diversifient le facteur) ; leçon 2026-10-15 (audit risk-manager W51 : cap de POIDS OK mais cap de RISQUE explosé → gel sizing + formalisation P-004).
+Falsificateur : une coupe capex hyperscaler >15 % sur 1 trimestre (Amazon/MSFT/Meta/Google) → les 4 noms réexaminés ENSEMBLE ; si 2+ d'entre eux confirment thèse intacte malgré la coupe → règle trop conservatrice (à réviser) ; si 2+ voient thèse fragilisée → règle utile.
+Effet mesuré : pas encore évalué.
+
 ---
 
 ## Archives (amendements retirés)

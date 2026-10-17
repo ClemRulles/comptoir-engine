@@ -1,9 +1,9 @@
 {
   "_doc": "Cache des signaux QUANTITATIFS calculés par engine/signals.js. 'regime' = score macro FRED agrégé (gate global). 'tickers' = map ticker -> { fscore, momentum_12_1, earnings_quality, gate } horodatés. L'IA LIT ce fichier avant d'ouvrir/fermer une position (method §A/§H) : les signaux sont des garde-fous factuels, pas une boîte noire. 'data_gaps' liste les sources indisponibles (clé manquante / quota) pour rester honnête sur l'incertitude. Régénéré par les routines ; ne pas éditer à la main.",
-  "as_of": "2026-10-09",
+  "as_of": "2026-10-17",
   "seeded": true,
   "start_capital": 10417.28,
-  "cash": 2674.12,
+  "cash": 1647.86,
   "positions": [
     {
       "ticker": "SAF.PA",
@@ -18,7 +18,10 @@
       "seed": false,
       "thesis": "Aéronautique + MRO LEAP : S1 marge record confirmé (28/07/2026), aftermarket +29.3%, services +43%, LEAP 520. Guidance FY relevée. Gate 🟢 +0.345 confirmé 22/08 (RSI 54.2 sain — loin du suracheté). Renforcement EXÉCUTÉ 22/08 : +0.642 parts à 343.6€ (post-Jackson Hole Powell dovish). Avg_cost 316.14€ → 324.60€. Stop -8% = 298.63€ (marge +15.1% vs cours 343.6€). Position 2.0929 parts ≈ 7.0% NAV. Sizing Moyenne levé.",
       "entry_price": 312.4841,
-      "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée"
+      "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée",
+      "desk": "desk-industrie-energie",
+      "sector": "Industrials - Aerospace & Defense",
+      "theme": null
     },
     {
       "ticker": "AMZN",
@@ -33,14 +36,17 @@
       "seed": false,
       "thesis": "AWS + levier marge retail/pub. Q2 AWS +37% ✓ (>> seuil 25%), capex relevé ✓ — FALSIFICATEUR NON DÉCLENCHÉ. F5/9, earnings quality vert. Gate FLIP 🟠→🟢 (29/08 : RSI 29.8→38.7, composite 0.086→0.249). RENFORCEMENT EXÉCUTÉ 29/08 : +0.84 parts à 231.28€ ($266.43/1.152). Avg_cost 200.47€ → 208.80€. Stop USD $221.30 (P-001, marge +20.4%). Position 3.1138 parts ≈ 7.0% NAV (cap levé, sizing Moyenne plein).",
       "entry_price": 219.5033,
-      "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée"
+      "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée",
+      "desk": "desk-tech",
+      "sector": "Technology - Cloud/E-commerce",
+      "theme": "capex-IA"
     },
     {
       "ticker": "EIMI",
-      "quantity": 9.77512166,
-      "avg_cost": 41.022507,
+      "quantity": 16.64512,
+      "avg_cost": 43.39721,
       "confidence": "Moyenne",
-      "horizon": "coeur",
+      "horizon": "socle",
       "thesis_id": "em-etf",
       "entry_date": "2026-06-04",
       "target": null,
@@ -48,7 +54,10 @@
       "seed": false,
       "thesis": "Diversification marchés émergents (ETF). Gate 🟢 vert (composite +0.615, RSI 62 sain). Cours ~$54.60 (=47.40€). Section 301 10-12.5% — impact neutre/mixte EM. RISK-ON SAIN favorable. Position 4.47% NAV.",
       "entry_price": 46.52,
-      "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée"
+      "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée",
+      "desk": "desk-macro",
+      "sector": "ETF - Emerging Markets",
+      "theme": null
     },
     {
       "ticker": "AI",
@@ -63,7 +72,10 @@
       "seed": false,
       "thesis": "Air Liquide — compounder gaz industriels, défensif. ROIC H1 +10.2% confirmé. Gate 🟠 W44 2e relevé consécutif (composite +0.144, cov39%, RSI167.5€ — hystérésis armée §H). Excédent vs cap 5% NAV : 3.9€ = 0.023 parts — inférieur aux frais de friction → trim 0 exécuté W44. Thèse compounder intacte. Monitoring W45 : si 3e relevé consécutif 🟠, réévaluer.",
       "entry_price": 167.7897,
-      "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée"
+      "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée",
+      "desk": "desk-industrie-energie",
+      "sector": "Industrials - Industrial Gases",
+      "theme": null
     },
     {
       "ticker": "LOTB",
@@ -78,7 +90,10 @@
       "seed": false,
       "thesis": "Lotus Bakeries (Biscoff) — compounder premium. Gate 🟢 vert (composite +0.385, RSI 87.9 EXTRÊME suracheté). Cours ~12 320€. PER ~44x : vigilance valo, position petite (4.68% NAV). RSI 87.9 = suracheté extrême — surveiller sans vendre (gate 🟢, position petite).",
       "entry_price": 10940.0,
-      "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée"
+      "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée",
+      "desk": "desk-conso",
+      "sector": "Consumer Staples - Premium Snacks",
+      "theme": null
     },
     {
       "ticker": "BNP.PA",
@@ -93,7 +108,10 @@
       "seed": false,
       "thesis": "Banque diversifiée, +66% depuis avg_cost. Gate 🟢 vert (composite +0.385, RSI 28.8 post-exdiv survendu). Q2 +33% net income = thèse bancaire CONFIRMÉE. ECB favorable, NIM solide. Ex-div 24/09 : +12.02€ (paiement 28/09, comptabilisé 26/09). Cours post-exdiv ~99.3€ (correction normale exdiv). Position 3.6% NAV.",
       "entry_price": 93.66,
-      "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée"
+      "entry_price_source": "clone 2026-06-08 (valeur t0 / parts) + achats IA, moyenne pondérée",
+      "desk": "desk-finance",
+      "sector": "Financials - Banking EU",
+      "theme": null
     },
     {
       "ticker": "MSCI",
@@ -108,7 +126,10 @@
       "seed": false,
       "thesis": "Quasi-monopole indices MSCI, PE dé-raté vs historique 35-45x. Q2 rétention 95.3% ✓ CONFIRMÉ. Stop EUR 492.57€ DÉGAGÉ (cours 494.0€ le 15/08). Stop USD $540.54 intact (cours $569.13). Gate 🟢 +0.602, F7/9, RSI 48.4 sain — meilleur gate du book. GARDER. Position 6.49% NAV.",
       "entry_price": 535.4,
-      "entry_price_source": "achats IA, moyenne pondérée"
+      "entry_price_source": "achats IA, moyenne pondérée",
+      "desk": "desk-finance",
+      "sector": "Financials - Index/Data",
+      "theme": null
     },
     {
       "ticker": "CEG",
@@ -123,7 +144,10 @@
       "seed": false,
       "thesis": "Nucléaire US + PPA hyperscaler 20 ans (Microsoft TMI 835MW, Meta Clinton 1100MW, Walmart 176MW). FALSIFICATEURS Q2 HYPERSCALERS NON DÉCLENCHÉS ✓. Gate 🟢 +0.327 (flip 🟠→🟢 le 14/08), F6/9, initiés achats nets. Cours $282.50 = 245.2€ > stop EUR 232.29€ (marge +5.5%). §G gouverne. 13x BPA 2029E = marge de sécurité. GARDER. Position 5.83% NAV.",
       "entry_price": 252.49,
-      "entry_price_source": "achats IA, moyenne pondérée"
+      "entry_price_source": "achats IA, moyenne pondérée",
+      "desk": "desk-industrie-energie",
+      "sector": "Utilities - Nuclear Power",
+      "theme": "capex-IA"
     },
     {
       "ticker": "GVA",
@@ -138,7 +162,10 @@
       "seed": false,
       "thesis": "Granite Construction — infrastructures US + data centers. Pivot marge Q2 LIVRÉ (adj EBITDA 12.8% dans guide 12.25-13.25%). Rev +29% ($1.46B), backlog record $7.4B (+$250M séquentiel), data centers cités. Gate 🟢 F7/9 vert (+0.583, cov86%). RSI 29.9 survendu (W44). P-001 TOUJOURS FRANCHI (cours $115.08 < ref $116.93) — saisine mercredi 30/09 OBLIGATOIRE (coïncide avec IIJA Division J expiration). Thèse INTACTE : backlog $7.4B sous contrats fermes (CEO Larkin Q2), marge dans guide. Position 6.6% NAV.",
       "entry_price": 110.33,
-      "entry_price_source": "achats IA, moyenne pondérée"
+      "entry_price_source": "achats IA, moyenne pondérée",
+      "desk": "desk-industrie-energie",
+      "sector": "Industrials - Infrastructure/Construction",
+      "theme": "capex-IA"
     },
     {
       "ticker": "CB",
@@ -153,7 +180,10 @@
       "seed": false,
       "thesis": "Chubb — assureur P&C premium, bénéficiaire direct du cycle de hausse de taux (NII $1.88B sur float $100B, réinvesti à T10Y ~5.21%). FOMC hike +25bps 16/09 + BCE +25bps 10/09 = condition d'entrée satisfaite. Combined ratio record 83.8% (underwriting excellence). Gate 🟢 W46 +0.366 F6/9 cov96%. Ex-div ~30/09 : $1.02/part × 2.4 = $2.448 = €2.12 cash crédité 02/10. RSI 20.6 = suppression mécanique post-ex-div (identique BNP.PA pattern). Horizon-test Q3 ~20-21/10. Cours $331.30, seuil réexamen $312 (P-001). Position 2.4 × €292.60 = €702.25 ≈ 7.0% NAV.",
       "entry_price": 339.42,
-      "entry_price_source": "convictions 2026-09-17 — prix estimé (CB non dans signals.js pre-entrée)"
+      "entry_price_source": "convictions 2026-09-17 — prix estimé (CB non dans signals.js pre-entrée)",
+      "desk": "desk-finance",
+      "sector": "Financials - Insurance P&C",
+      "theme": null
     },
     {
       "ticker": "EME",
@@ -168,12 +198,15 @@
       "seed": false,
       "thesis": "EMCOR Group — contracteur MEP (mechanical-electrical-plumbing) pour data centers et infra critique US. Couche chaîne de valeur supérieure à GVA (MEP intérieur vs génie civil). F6/9 EDGAR solide, PEG ~0.65 (EPS +35% livrés), RPO $17.14B (+44% YoY), marge opérationnelle ~10.6% (2.5× GVA). RSI 39.8 au moment de la convictions (post-record, correction technique). Non redondant avec GVA (P-003b : couches différentes de la chaîne DC). Entrée 29/08 à 662.33€ ($763/1.152). Stop USD $702 (marge −8%). Position 7.0% NAV.",
       "entry_price": 662.33,
-      "entry_price_source": "achats IA, moyenne pondérée"
+      "entry_price_source": "achats IA, moyenne pondérée",
+      "desk": "desk-industrie-energie",
+      "sector": "Industrials - MEP Construction",
+      "theme": "capex-IA"
     },
     {
       "ticker": "CRM",
       "quantity": 2.47,
-      "avg_cost": 208.30,
+      "avg_cost": 208.3,
       "confidence": "Moyenne",
       "horizon": "coeur",
       "thesis_id": "crm-ai-cloud",
@@ -182,10 +215,18 @@
       "exit_rule": "sortie si ARR AI/Data décélère <50% YoY ET CA<8% OU contraction sièges sur 2T consécutifs OU F-Score ≤ 3/9 ; horizon_test Q3 2026 résultats nov. 2026 ; seuil réexamen mercredi : cours < $172 (entry_price $229.13 × 0.75 — P-001 ref USD) ; 2.47 parts ≈ 5.0% NAV",
       "seed": false,
       "thesis": "Salesforce — plateforme CRM n°1 + pivot IA (Agentforce). ARR $20.9B dont Data Cloud 3x sièges YoY, Agentforce 40+ déploiements enterprise dès W49. NRR >100% = pricing power, CFROI 11.7%, marge FCF ~28%. Gate 🟢 +0.551 F7/9 cov86% (convictions W49 08/10). Buy zone $185-240 — cours $229.13 < $240 high → taille pleine. Non-redondant avec AMZN (infrastructure cloud vs CRM/verticaux). FOMC/macro : US SaaS sensible aux taux mais le pivot IA valide un multiple compressé 26x NTM vs pairs 32-36x. Sizing Moyenne : 2.47 × €208.30 = €514.50 ≈ 5% NAV.",
-      "entry_price": 208.30,
+      "entry_price": 208.3,
       "entry_price_usd": 229.13,
       "entry_price_source": "signals.js W50 10/10/2026 — cours $229.13 / EUR-USD 1.10 = €208.30",
-      "buy_zone": { "low": 185, "high": 240, "currency": "USD", "basis": "convictions-w49-08/10" }
+      "buy_zone": {
+        "low": 185,
+        "high": 240,
+        "currency": "USD",
+        "basis": "convictions-w49-08/10"
+      },
+      "desk": "desk-tech",
+      "sector": "Technology - SaaS/CRM",
+      "theme": null
     },
     {
       "ticker": "ICE",
@@ -202,12 +243,20 @@
       "entry_price": 139.54,
       "entry_price_usd": 153.49,
       "entry_price_source": "signals.js watchlist W50 — cours $153.49 (ICE) / EUR-USD 1.10 = €139.54",
-      "buy_zone": { "low": 128, "high": 165, "currency": "USD", "basis": "convictions-w49-08/10" }
+      "buy_zone": {
+        "low": 128,
+        "high": 165,
+        "currency": "USD",
+        "basis": "convictions-w49-08/10"
+      },
+      "desk": "desk-finance",
+      "sector": "Financials - Market Infrastructure/Data",
+      "theme": null
     },
     {
       "ticker": "GLE.PA",
-      "quantity": 1.01,
-      "avg_cost": 66.08,
+      "quantity": 4.75,
+      "avg_cost": 64.91,
       "confidence": "Basse",
       "horizon": "coeur",
       "thesis_id": "gle-nim-banque",
@@ -217,7 +266,35 @@
       "seed": false,
       "thesis": "Société Générale — banque universelle EU. P/TBV 0.94x (sous valeur de reconstitution), ROTE 12.2% Q2 confirmé, bénéficiaire NIM expansion BCE/FOMC. Deep-dive 10/09 : Acheter analytique Moyenne ; sizing contraint à Basse par couloir de cash SURCHAUFFE (Moyenne mettrait cash ~28.8% < plancher 30%). Gate 🟢 +0.462 mom+46% RSI41.7 cov39% (watchlist 24/09 — data gap signals.js EU). Entrée 26/09 @ ~66.08€ (réconciliation W47 : entrée initialement enregistrée @ 303€ par erreur watchlist EU, corrigée 03/10). Position 1.01 × 66.08€ = 66.74€ ≈ 0.66% NAV — SOUS-TAILLE vs cible Basse ~3% NAV (erreur de sizing liée au prix erroné ; renforcement possible si gate 🟢 confirmé 2 semaines consécutives et cash > 32% NAV). Non-redondant avec CB (USD assurance vs EUR banque commerciale). Falsificateurs : ROTE<8%, CDS>200bps, BCE coupe agressivement. Ex-div 05/10 €0.75.",
       "entry_price": 66.08,
-      "entry_price_source": "cours réel Yahoo Finance GLE.PA ~€66 (01/10/2026) — réconciliation W47 ; entrée 26/09 initialement enregistrée à €303 par erreur watchlist non vérifiée (leçon 02/10, règle : NE JAMAIS estimer prix EU depuis watchlist non vérifiée)"
+      "entry_price_source": "cours réel Yahoo Finance GLE.PA ~€66 (01/10/2026) — réconciliation W47 ; entrée 26/09 initialement enregistrée à €303 par erreur watchlist non vérifiée (leçon 02/10, règle : NE JAMAIS estimer prix EU depuis watchlist non vérifiée)",
+      "desk": "desk-finance",
+      "sector": "Financials - Banking EU",
+      "theme": null
+    },
+    {
+      "ticker": "AZZ",
+      "quantity": 3.68,
+      "avg_cost": 125.15,
+      "confidence": "Moyenne",
+      "horizon": "coeur",
+      "thesis_id": "azz-galvanizing-grid",
+      "entry_date": "2026-10-17",
+      "target": null,
+      "exit_rule": "sortie si marge adj EBITDA Metal Coatings < 25 % durablement (2T) OU volumes infra/Precoat en déclin OU guidance FY coupée OU F-Score ≤ 3/9 ; pas de stop de prix (cœur) ; horizon_test Q3 FY27 (~janv. 2027) ; seuil réexamen mercredi : cours < 93,86€ (entry_price 125,15€ × 0,75) ; 3,68 parts ≈ 4,5 % NAV",
+      "seed": false,
+      "thesis": "Compounder galvanisation acier (protection anticorrosion réseaux T&D, ponts, solaire/éolien) + Precoat Metals, NON capex-IA = diversifiant. Q2 FY27 (SEC 8-K 13/10) EPS $2,00 (+29 % BEAT) ; marge Metal Coatings 30,7 % (in-guide 27-32 %) ; Precoat 21,2 % (in-guide 17-22 %) ; Guidance FY27 RELEVÉE adj EPS $7,00-7,30. Gate 🟢 +0,623 F7/9 momentum +33 % RSI 47,2. Diversifiant vs cluster capex-IA. Zone achat $115-143 USD. Sizing Moyenne 6 % × calib 1 × desk 1 × vol-adj 0,83 = 5,0 % ramenée à ~4,5 % (marge mince SURCHAUFFE + base rate fat-tail). 3,68 parts @ 125,15€ = 460,55€ ≈ 4,5 % NAV.",
+      "entry_price": 125.15,
+      "entry_price_usd": 137.66,
+      "entry_price_source": "convictions.md 2026-10-15 cours $137,66 / EUR-USD 1,10 = €125,15",
+      "buy_zone": {
+        "low": 105,
+        "high": 130,
+        "currency": "EUR",
+        "basis": "USD $115-143 / EUR-USD 1,10 → €104,5-130,0"
+      },
+      "desk": "desk-industrie-energie",
+      "sector": "Industrials - Galvanizing/Power Grid",
+      "theme": null
     }
   ],
   "trades": [
@@ -619,7 +696,7 @@
       "side": "buy",
       "ticker": "CRM",
       "quantity": 2.47,
-      "price": 208.30,
+      "price": 208.3,
       "price_usd": 229.13,
       "fee": 1.54,
       "confidence": "Moyenne",
@@ -655,8 +732,51 @@
       "horizon": "coeur",
       "gate": "🟢 +0.462 mom+46% RSI41.7 cov39% (watchlist 24/09)",
       "rationale": "Entrée vendredi §H — NIM EU expansion. Deep-dive 10/09 → Acheter analytique Moyenne, sizing réduit à Basse par contrainte couloir de cash SURCHAUFFE (Moyenne mettrait cash ~28.8% < plancher 30%). Société Générale : P/TBV 0.94x, ROTE 12.2% Q2 ✓, bénéficiaire direct BCE +25bps + FOMC +25bps 16/09 (NIM expansion). Non-redondant avec CB (USD assurance vs EUR banque commerciale). Reportée depuis W42 (CB priorisé sur gate cov92% > cov39%). BNP.PA div +12.02€ comptabilisé (ex-div 24/09, paiement 28/09). AI.PA hystérésis 2e🟠 : trim 0 (excédent 3.9€ < frais friction). LOTB hystérésis 2e🟠 : trim 0 (déjà <5% NAV). Coût total CORRIGÉ : 1.01 × 66.08€ = 66.74€ + frais 0.92€ = 67.66€. Cash post-trade CORRIGÉ : 3 535.09€ = 35.2% NAV (avant CB div) — [Réconciliation W47 03/10 : prix 303€ erroné → 66.08€, cash récupéré +239.29€]."
+    },
+    {
+      "ts": "2026-10-17",
+      "side": "buy",
+      "ticker": "GLE.PA",
+      "quantity": 3.74,
+      "price": 64.6,
+      "fee": 0.75,
+      "confidence": "Basse",
+      "thesis_id": "gle-nim-banque",
+      "horizon": "coeur",
+      "gate": "🟢 RSI25.6 mom+39% (signals.js 17/10/2026 — cov39%)",
+      "desk": "desk-finance",
+      "rationale": "RENFORCEMENT vendredi §H — 2 signaux 🟢 consécutifs GLE.PA armés (W50 14/10 + W51 17/10 : RSI 25,6 survendu, momentum +39 %), cash 26 % >> plafond 15 %, P/TBV < 1,0x, ROTE 12,2 % Q2 intact. Sizing sous-taille corrigée : 1,01 parts → 4,75 parts (SOUS-TAILLE 0,66 % → cible Basse ~3 % NAV). Cadence §H : déploiement semaine 10 pts NAV (palette GLE+AZZ+EIMI = 10 pts). Avg_cost 66,08 → 64,91€. Q3 29/10 (GLE.PA) = horizon-test. +3.74 parts @ 64.6€. Coût : 242.35€."
+    },
+    {
+      "ts": "2026-10-17",
+      "side": "buy",
+      "ticker": "AZZ",
+      "quantity": 3.68,
+      "price": 125.15,
+      "price_usd": 137.66,
+      "fee": 1.5,
+      "confidence": "Moyenne",
+      "thesis_id": "azz-galvanizing-grid",
+      "horizon": "coeur",
+      "gate": "🟢 vert +0,623 F7/9 coverage 96 % (convictions 2026-10-15)",
+      "desk": "desk-industrie-energie",
+      "rationale": "Nouvelle entrée vendredi §H — verdict Acheter Moyenne deep-dive 15/10. AZZ : compounder galvanisation acier NON capex-IA = diversifiant du facteur (P-004). Q2 FY27 EPS $2,00 (+29 % BEAT SEC 8-K 13/10) ; Metal Coatings 30,7 % (in-guide 27-32 %) ; guidance FY27 relevée $7,00-7,30. Gate 🟢 +0,623 F7/9 RSI 47,2 sain. Buy zone $115-143 USD — cours $137,66 < $143 → taille pleine (de la taille réduite). Sizing Moyenne 6 % × calib 1 × desk 1 × vol-adj 0,83 = 5,0 % ramenée à ~4,5 % (marge mince SURCHAUFFE + base rate fat-tail DD -69 %). Concentr. industriels 20,2 % → ~24 % (en dessous du plafond sectoriel 30 %). Coût : 462.05€ (incl. frais)."
+    },
+    {
+      "ts": "2026-10-17",
+      "side": "buy",
+      "ticker": "EIMI",
+      "quantity": 6.87,
+      "price": 46.7761,
+      "fee": 0.5,
+      "confidence": "Moyenne",
+      "thesis_id": "em-etf",
+      "horizon": "socle",
+      "gate": "🟢 RSI31.4 mom+23% (signals.js 17/10/2026 — cov39%)",
+      "desk": "desk-macro",
+      "rationale": "Déploiement cash §H vers poche SOCLE sous-pondérée (4,5 % vs cible 12 %) — priorité audit risk-manager 15/10 : sous-investissement (cash 26 % >> 15 %). Troisième palier de déploiement cette semaine (budget 10 pts NAV) après GLE.PA + AZZ. ETF iShares Core EM IMI UCITS existant au book, ajout sur position existante. Budget résiduel semaine : 321.54€ → 6.87 parts @ 46.7761€. Socle : 16.64512 parts après, poids SOCLE ~7,5 % NAV (vs cible 12 % — à continuer les prochaines semaines). Total déployé W51 : 1026.26€ ≈ 10 pts NAV (plafond hebdo respecté §H)."
     }
   ],
-  "note": "Brief W50 2026-10-10. SURCHAUFFE HARD-CONFIRMÉE (override FRED ; T10Y ~5.21%). 2 TRADES W50 : CRM Acheter Moyenne ~5% NAV (€514.50 + fee €1.54) + ICE Acheter Moyenne ~3.35% NAV (€344.66 + fee €1.03). Cash déployé total : €861.73. Cash post-trades : €2,674.12 (~26% NAV ≈ €10,302). Signaux W50 10/10 : 11🟢 1🟠 (SAF.PA — 2e relevé, hystérésis armée MAIS gap 1.36pts < 2pts → pas de trim). Grok W50 : 2 résolutions — gva-iija CORRECT (−2.24%) + cb-oversold CORRECT (+2.46%). Stats Grok : 18 résolus, 8 hits, hit_rate 0.444, tactical_cap 0%. MSCI+ICE cap 10% NAV respecté (6.65%+3.35%=10.00%). CB Q3 ~20/10, GVA Q3 ~05/11, FOMC 27-28/10 : catalyseurs actifs. Prochaine routine jeudi (Doctor) : horizon-tests CB Q3 20/10, review gate ORCL/NVO/SNPS/CPRT 🔴.",
+  "note": "Brief W51 2026-10-17. SURCHAUFFE INCHANGÉE (override ; T10Y ~5,21-5,25 %). 3 TRADES W51 : GLE.PA RENFORCEMENT +3,74 parts Basse → cible Basse ~3 % NAV (€242.35) ; AZZ ENTRÉE Moyenne ~4,5 % NAV (€462.05) ; EIMI SOCLE +6.87 parts socle (€321.85). Cash déployé total : €1026.26 (~10 pts NAV, plafond §H). Cash post-trades : €1647.86 (~16.1% NAV). P-004 formalisé : gel cluster capex-IA à 4 noms (GVA+CEG+EME+AMZN). Desk/sector renseignés pour TOUTES les lignes. CATALYSEURS IMMINENTS : CB Q3 + MSCI Q3 lundi 20/10 (horizon-tests), RTX Q3 20/10 (armer si thèse tient), FOMC 27-28/10 HOLD quasi-certain (~66-75 %), ICE Q3 29/10, GLE.PA Q3 29/10, BMY Q3 29/10 (trigger conditionnel). SAF.PA hystérésis : 4e 🟠 consécutif — saisine mercredi W52 23/10 OBLIGATOIRE si 5e🟠. Signaux W51 17/10 : 13🟢 1🟠 (SAF.PA) 0🔴.",
   "note_migration_2026_08_30": "MIGRATION §H/§I COMPLÈTE (vendredi 05/09/2026) : (1) `entry_price` = prix réellement payé par l'IA. (2) `avg_cost` hors jugement IA. (3) Toutes les exit_rules CŒUR RÉÉCRITES en critères de thèse + seuil réexamen −25% vs entry_price : stops de prix (stop -8% avg_cost, stop EUR X€, stop USD $Y) SUPPRIMÉS de toutes les exit_rules. P-001 conservé comme RÉFÉRENCE de monitoring USD pour les positions US, jamais comme déclencheur automatique sur CŒUR — franchissement P-001 = saisine mercredi, pas vente jeudi. Hystérésis : gate flip ne déclenche sizing change qu'après 2 relevés consécutifs confirmés."
 }

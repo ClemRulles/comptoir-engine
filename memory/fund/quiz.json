@@ -1,6 +1,6 @@
 {
   "_doc": "LE QUIZ DU JOUR — une question par jour pour faire apprendre la bourse aux membres (accueil de l'app, classement mensuel dans Groupe). Écrit par CHAQUE routine de nuit : elle s'assure que les 2 prochains jours (date de Paris) ont leur question, sans jamais réécrire une date déjà publiée. Règles complètes dans skills/quiz.md. Schéma d'une entrée : { date (YYYY-MM-DD, jour où la question est posée), theme ('bases'|'histoire'|'actualite'|'nos-lignes'|'psychologie'|'crypto'|'fiscalite'), level ('facile'|'moyen'|'difficile'), question (≤ 160 caractères), choices ([4 réponses courtes, ≤ 60 caractères chacune]), answer (index 0-3 de la bonne réponse — varie sa position), explanation (≤ 300 caractères : pourquoi c'est la bonne réponse, ce qu'il faut en retenir), source ({ name, url? } : d'où vient le fait) }. Garder ~60 jours, les plus récents en dernier.",
-  "updated": "2026-10-16",
+  "updated": "2026-10-17",
   "questions": [
     {
       "date": "2026-10-07",
@@ -15,7 +15,9 @@
       ],
       "answer": 0,
       "explanation": "Combined ratio = (sinistres + frais de gestion) / primes. Sous 100 % = profit d'assurance pure. À 83,8 %, Chubb gagne avant même de placer ses réserves. C'est l'un des meilleurs ratios du secteur mondial.",
-      "source": { "name": "Chubb — rapport trimestriel Q2 2026, résultats underwriting" }
+      "source": {
+        "name": "Chubb — rapport trimestriel Q2 2026, résultats underwriting"
+      }
     },
     {
       "date": "2026-10-08",
@@ -30,7 +32,9 @@
       ],
       "answer": 0,
       "explanation": "Le T10Y à ~5 % renvoie aux niveaux d'avant la crise des subprimes (2007). Des taux élevés profitent aux assureurs et banques qui réinvestissent leurs réserves à des rendements records, mais pèsent sur la valorisation des actions de croissance.",
-      "source": { "name": "market-regime.md 2026-10-06 — T10Y 5,21 % (source : engine/signals.js + web search)" }
+      "source": {
+        "name": "market-regime.md 2026-10-06 — T10Y 5,21 % (source : engine/signals.js + web search)"
+      }
     },
     {
       "date": "2026-10-09",
@@ -45,7 +49,9 @@
       ],
       "answer": 0,
       "explanation": "Mis en évidence par Kahneman et Tversky : une perte pèse environ deux fois plus qu'un gain équivalent. Ce biais pousse à garder trop longtemps ses perdants pour ne pas « acter » la perte, et à vendre trop tôt ses gagnants.",
-      "source": { "name": "Kahneman & Tversky — théorie des perspectives (1979)" }
+      "source": {
+        "name": "Kahneman & Tversky — théorie des perspectives (1979)"
+      }
     },
     {
       "date": "2026-10-10",
@@ -60,7 +66,9 @@
       ],
       "answer": 0,
       "explanation": "Le protocole Bitcoin plafonne l'offre à 21 millions d'unités (atteints vers 2140). Cette rareté programmée est au cœur de l'argument « or numérique » — à l'inverse d'une monnaie classique qu'une banque centrale peut créer sans limite.",
-      "source": { "name": "Protocole Bitcoin — whitepaper Nakamoto (2008)" }
+      "source": {
+        "name": "Protocole Bitcoin — whitepaper Nakamoto (2008)"
+      }
     },
     {
       "date": "2026-10-11",
@@ -75,7 +83,9 @@
       ],
       "answer": 0,
       "explanation": "Le combined ratio mesure l'efficacité de l'assurance pure. Sous 100 % = l'assureur gagne avant même de placer ses réserves. Chubb affiche 83,8 % en 2026, l'un des meilleurs niveaux mondiaux du secteur.",
-      "source": { "name": "Chubb — rapport annuel 2025 / résultats Q2 2026 ; définition ACPR" }
+      "source": {
+        "name": "Chubb — rapport annuel 2025 / résultats Q2 2026 ; définition ACPR"
+      }
     },
     {
       "date": "2026-10-12",
@@ -90,7 +100,9 @@
       ],
       "answer": 0,
       "explanation": "L'ARR (Annual Recurring Revenue) annualise les abonnements actifs. Pour un éditeur SaaS comme Salesforce, c'est le moteur de visibilité : un ARR qui croît = revenus futurs quasi-certains. Il exclut les ventes uniques non récurrentes.",
-      "source": { "name": "Salesforce — résultats FY27, convictions W49 comptoir-engine 08/10/2026" }
+      "source": {
+        "name": "Salesforce — résultats FY27, convictions W49 comptoir-engine 08/10/2026"
+      }
     },
     {
       "date": "2026-10-13",
@@ -105,7 +117,9 @@
       ],
       "answer": 0,
       "explanation": "Le New York Stock Exchange (NYSE), fondé en 1792, est la plus grande bourse du monde par capitalisation (~25 000 Md$ listés). ICE l'a racheté en 2013 et en tire des revenus récurrents via les frais de cotation et de données.",
-      "source": { "name": "ICE — rapport annuel 2025 ; NYSE History" }
+      "source": {
+        "name": "ICE — rapport annuel 2025 ; NYSE History"
+      }
     },
     {
       "date": "2026-10-14",
@@ -120,7 +134,9 @@
       ],
       "answer": 0,
       "explanation": "Le CPI core exclut l'alimentation et l'énergie, car leurs prix fluctuent fortement à court terme (météo, géopolitique). Il donne une lecture plus stable de la tendance inflationniste de fond — c'est lui que la Fed surveille en priorité pour sa politique monétaire.",
-      "source": { "name": "BLS — 'Understanding the CPI' (bls.gov) ; FOMC guidelines on core PCE/CPI" }
+      "source": {
+        "name": "BLS — 'Understanding the CPI' (bls.gov) ; FOMC guidelines on core PCE/CPI"
+      }
     },
     {
       "date": "2026-10-15",
@@ -135,7 +151,9 @@
       ],
       "answer": 0,
       "explanation": "Les banques et assureurs détiennent d'importants portefeuilles obligataires ou de liquidités. Quand les taux montent, ces réserves se réinvestissent à des rendements supérieurs (NII = Net Interest Income pour les banques, investment income pour les assureurs), gonflant directement les bénéfices.",
-      "source": { "name": "Chubb — rapport Q2 2026 (float $100B réinvesti) ; BNP.PA rapport S1 2026 (NII expansion)" }
+      "source": {
+        "name": "Chubb — rapport Q2 2026 (float $100B réinvesti) ; BNP.PA rapport S1 2026 (NII expansion)"
+      }
     },
     {
       "date": "2026-10-16",
@@ -150,7 +168,9 @@
       ],
       "answer": 1,
       "explanation": "Le F-Score de Piotroski additionne 9 critères binaires : rentabilité (FCF, ROA, accruals), solidité du bilan (effet de levier, liquidité, dilution) et efficacité opérationnelle. Un score ≥7/9 signale de solides fondamentaux. C'est l'ancre du Comptoir Engine.",
-      "source": { "name": "Piotroski (2000) — 'Value Investing: The Use of Historical Financial Statement Information to Separate Winners from Losers', Journal of Accounting Research" }
+      "source": {
+        "name": "Piotroski (2000) — 'Value Investing: The Use of Historical Financial Statement Information to Separate Winners from Losers', Journal of Accounting Research"
+      }
     },
     {
       "date": "2026-10-17",
@@ -165,7 +185,9 @@
       ],
       "answer": 0,
       "explanation": "L'ancrage pousse à juger une action par rapport à un chiffre arbitraire (son prix d'achat, un plus-haut passé) plutôt que par sa valeur réelle aujourd'hui. « J'attends qu'elle revienne à mon prix d'achat » est de l'ancrage : le marché, lui, se moque de votre prix d'entrée.",
-      "source": { "name": "Tversky & Kahneman (1974) — 'Judgment under Uncertainty: Heuristics and Biases', Science" }
+      "source": {
+        "name": "Tversky & Kahneman (1974) — 'Judgment under Uncertainty: Heuristics and Biases', Science"
+      }
     },
     {
       "date": "2026-10-18",
@@ -180,7 +202,9 @@
       ],
       "answer": 0,
       "explanation": "MSCI vend des abonnements à ses indices et données. Un taux de rétention élevé (95,3 % au T2 2026) signifie que les clients renouvellent. Si la rétention descend sous 93 %, la base de revenus s'érode — c'est notre critère de sortie.",
-      "source": { "name": "MSCI — rapport Q2 2026 (retention rate 95,3 %) ; convictions comptoir-engine oct. 2026" }
+      "source": {
+        "name": "MSCI — rapport Q2 2026 (retention rate 95,3 %) ; convictions comptoir-engine oct. 2026"
+      }
     }
   ]
 }

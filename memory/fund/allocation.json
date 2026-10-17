@@ -1,23 +1,23 @@
 {
   "_doc": "Allocation & budget de risque du book IA, recalculés par node engine/risk.js (method §H/§L/§M). 'sleeves' = poids réel vs cible du mandat (cible infléchie par le régime ; le cash vise 10 % dans tous les régimes). 'lines' = valeur €, poids, poche, vol 1 an, contribution au risque. 'risk' = volatilité/drawdown du book à poids constants sur 1 an. 'alerts' = ce que le vendredi doit traiter. 'nav_history' alimente le garde-fou drawdown. Ne pas éditer à la main.",
-  "updated": "2026-10-16",
+  "updated": "2026-10-17",
   "regime": "RISK-ON SAIN",
-  "nav_eur": 10236.94,
-  "cash_eur": 2674.12,
+  "nav_eur": 10179.2,
+  "cash_eur": 1647.86,
   "sleeves": {
     "coeur": {
-      "weight": 0.6943,
+      "weight": 0.7621,
       "target": 0.6,
       "min": 0.45,
       "max": 0.75,
-      "drift": 0.0943
+      "drift": 0.1621
     },
     "socle": {
-      "weight": 0.0447,
+      "weight": 0.0758,
       "target": 0.12,
       "min": 0,
       "max": 0.2,
-      "drift": -0.0753
+      "drift": -0.0442
     },
     "tactique": {
       "weight": 0,
@@ -34,11 +34,11 @@
       "drift": -0.08
     },
     "cash": {
-      "weight": 0.2612,
+      "weight": 0.1619,
       "target": 0.1,
       "min": 0.05,
       "max": 0.15,
-      "drift": 0.1612
+      "drift": 0.0619
     }
   },
   "targets": {
@@ -60,231 +60,259 @@
     "theme": 0.35
   },
   "risk": {
-    "vol_annual": 0.0959,
+    "vol_annual": 0.1108,
     "vol_target": {
       "low": 0.13,
       "high": 0.2
     },
-    "max_drawdown_1y": -0.0644,
-    "return_1y_constant_weights": 0.1036,
-    "covered_weight": 0.739,
+    "max_drawdown_1y": -0.0763,
+    "return_1y_constant_weights": 0.1334,
+    "covered_weight": 0.8379,
     "missing": []
   },
   "drawdown": {
-    "current": -0.0081,
+    "current": -0.0137,
     "peak_nav": 10320.13,
     "guard_triggered": false,
-    "max_history": -0.0081
+    "max_history": -0.0137
   },
-  "sectors": {},
-  "themes": {},
+  "sectors": {
+    "Industrials - Aerospace & Defense": 0.0652,
+    "Technology - Cloud/E-commerce": 0.068,
+    "ETF - Emerging Markets": 0.0758,
+    "Industrials - Industrial Gases": 0.0524,
+    "Consumer Staples - Premium Snacks": 0.0498,
+    "Financials - Banking EU": 0.0628,
+    "Financials - Index/Data": 0.0676,
+    "Utilities - Nuclear Power": 0.0584,
+    "Industrials - Infrastructure/Construction": 0.063,
+    "Financials - Insurance P&C": 0.0754,
+    "Industrials - MEP Construction": 0.0687,
+    "Technology - SaaS/CRM": 0.0519,
+    "Financials - Market Infrastructure/Data": 0.0349,
+    "Industrials - Galvanizing/Power Grid": 0.044
+  },
+  "themes": {
+    "capex-IA": 0.2581
+  },
   "lines": [
+    {
+      "ticker": "EIMI",
+      "sleeve": "socle",
+      "desk": "desk-macro",
+      "sector": "ETF - Emerging Markets",
+      "theme": null,
+      "confidence": "Moyenne",
+      "value_eur": 772.01,
+      "price_eur": 46.3803,
+      "priced": true,
+      "weight": 0.0758,
+      "vol_1y": 0.2258,
+      "risk_contribution": 0.0985
+    },
     {
       "ticker": "CB",
       "sleeve": "coeur",
-      "desk": null,
-      "sector": null,
+      "desk": "desk-finance",
+      "sector": "Financials - Insurance P&C",
       "theme": null,
       "confidence": "Moyenne",
-      "value_eur": 755.1,
-      "price_eur": 314.6259,
+      "value_eur": 767.96,
+      "price_eur": 319.984,
       "priced": true,
-      "weight": 0.0738,
-      "vol_1y": 0.1927,
-      "risk_contribution": -0.0082
+      "weight": 0.0754,
+      "vol_1y": 0.1921,
+      "risk_contribution": -0.0101
     },
     {
       "ticker": "EME",
       "sleeve": "coeur",
-      "desk": null,
-      "sector": null,
-      "theme": null,
+      "desk": "desk-industrie-energie",
+      "sector": "Industrials - MEP Construction",
+      "theme": "capex-IA",
       "confidence": "Moyenne",
-      "value_eur": 712.08,
-      "price_eur": 653.2864,
+      "value_eur": 699.58,
+      "price_eur": 641.8179,
       "priced": true,
-      "weight": 0.0696,
+      "weight": 0.0687,
       "vol_1y": 0.4452,
-      "risk_contribution": 0.1799
+      "risk_contribution": 0.1596
     },
     {
       "ticker": "AMZN",
       "sleeve": "coeur",
-      "desk": null,
-      "sector": null,
-      "theme": null,
+      "desk": "desk-tech",
+      "sector": "Technology - Cloud/E-commerce",
+      "theme": "capex-IA",
       "confidence": "Moyenne",
-      "value_eur": 707.46,
-      "price_eur": 227.2006,
+      "value_eur": 692.32,
+      "price_eur": 222.3408,
       "priced": true,
-      "weight": 0.0691,
-      "vol_1y": 0.3357,
-      "risk_contribution": 0.1316
+      "weight": 0.068,
+      "vol_1y": 0.3356,
+      "risk_contribution": 0.1069
     },
     {
       "ticker": "MSCI",
       "sleeve": "coeur",
-      "desk": null,
-      "sector": null,
+      "desk": "desk-finance",
+      "sector": "Financials - Index/Data",
       "theme": null,
       "confidence": "Moyenne",
-      "value_eur": 697.51,
-      "price_eur": 512.8779,
+      "value_eur": 688.32,
+      "price_eur": 506.1188,
       "priced": true,
-      "weight": 0.0681,
-      "vol_1y": 0.2941,
-      "risk_contribution": 0.0589
+      "weight": 0.0676,
+      "vol_1y": 0.2951,
+      "risk_contribution": 0.041
     },
     {
       "ticker": "SAF.PA",
       "sleeve": "coeur",
-      "desk": null,
-      "sector": null,
+      "desk": "desk-industrie-energie",
+      "sector": "Industrials - Aerospace & Defense",
       "theme": null,
       "confidence": "Moyenne",
       "value_eur": 663.45,
       "price_eur": 317,
       "priced": true,
-      "weight": 0.0648,
+      "weight": 0.0652,
       "vol_1y": 0.3239,
-      "risk_contribution": 0.1228
+      "risk_contribution": 0.1143
     },
     {
       "ticker": "GVA",
       "sleeve": "coeur",
-      "desk": null,
-      "sector": null,
-      "theme": null,
+      "desk": "desk-industrie-energie",
+      "sector": "Industrials - Infrastructure/Construction",
+      "theme": "capex-IA",
       "confidence": "Moyenne",
-      "value_eur": 637.37,
-      "price_eur": 97.0124,
+      "value_eur": 641.69,
+      "price_eur": 97.6699,
       "priced": true,
-      "weight": 0.0623,
-      "vol_1y": 0.3171,
-      "risk_contribution": 0.1068
+      "weight": 0.063,
+      "vol_1y": 0.3167,
+      "risk_contribution": 0.0962
     },
     {
       "ticker": "CEG",
       "sleeve": "coeur",
-      "desk": null,
-      "sector": null,
-      "theme": null,
+      "desk": "desk-industrie-energie",
+      "sector": "Utilities - Nuclear Power",
+      "theme": "capex-IA",
       "confidence": "Moyenne",
-      "value_eur": 604.54,
-      "price_eur": 245.251,
+      "value_eur": 594.92,
+      "price_eur": 241.3465,
       "priced": true,
-      "weight": 0.0591,
+      "weight": 0.0584,
       "vol_1y": 0.4836,
-      "risk_contribution": 0.1659
-    },
-    {
-      "ticker": "CRM",
-      "sleeve": "coeur",
-      "desk": null,
-      "sector": null,
-      "theme": null,
-      "confidence": "Moyenne",
-      "value_eur": 543.52,
-      "price_eur": 220.0482,
-      "priced": true,
-      "weight": 0.0531,
-      "vol_1y": 0.4612,
-      "risk_contribution": 0.0504
+      "risk_contribution": 0.1392
     },
     {
       "ticker": "AI",
       "sleeve": "coeur",
-      "desk": null,
-      "sector": null,
+      "desk": "desk-industrie-energie",
+      "sector": "Industrials - Industrial Gases",
       "theme": null,
       "confidence": "Moyenne",
-      "value_eur": 532.85,
-      "price_eur": 173.04,
+      "value_eur": 533.22,
+      "price_eur": 173.16,
       "priced": true,
-      "weight": 0.0521,
-      "vol_1y": 0.1758,
-      "risk_contribution": 0.0201
+      "weight": 0.0524,
+      "vol_1y": 0.1764,
+      "risk_contribution": 0.0186
+    },
+    {
+      "ticker": "CRM",
+      "sleeve": "coeur",
+      "desk": "desk-tech",
+      "sector": "Technology - SaaS/CRM",
+      "theme": null,
+      "confidence": "Moyenne",
+      "value_eur": 528.75,
+      "price_eur": 214.0697,
+      "priced": true,
+      "weight": 0.0519,
+      "vol_1y": 0.4631,
+      "risk_contribution": 0.0252
     },
     {
       "ticker": "LOTB",
       "sleeve": "coeur",
-      "desk": null,
-      "sector": null,
+      "desk": "desk-conso",
+      "sector": "Consumer Staples - Premium Snacks",
       "theme": null,
       "confidence": "Moyenne",
-      "value_eur": 506.45,
-      "price_eur": 12860,
+      "value_eur": 507.24,
+      "price_eur": 12880,
       "priced": true,
-      "weight": 0.0495,
+      "weight": 0.0498,
       "vol_1y": 0.2454,
-      "risk_contribution": 0.0347
+      "risk_contribution": 0.0308
     },
     {
-      "ticker": "EIMI",
-      "sleeve": "socle",
-      "desk": null,
-      "sector": null,
+      "ticker": "AZZ",
+      "sleeve": "coeur",
+      "desk": "desk-industrie-energie",
+      "sector": "Industrials - Galvanizing/Power Grid",
       "theme": null,
       "confidence": "Moyenne",
-      "value_eur": 457.24,
-      "price_eur": 46.7761,
+      "value_eur": 447.43,
+      "price_eur": 121.5848,
       "priced": true,
-      "weight": 0.0447,
-      "vol_1y": 0.2254,
-      "risk_contribution": 0.06
+      "weight": 0.044,
+      "vol_1y": 0.3136,
+      "risk_contribution": 0.0657
     },
     {
       "ticker": "ICE",
       "sleeve": "coeur",
-      "desk": null,
-      "sector": null,
+      "desk": "desk-finance",
+      "sector": "Financials - Market Infrastructure/Data",
       "theme": null,
       "confidence": "Moyenne",
-      "value_eur": 348.95,
-      "price_eur": 141.2735,
+      "value_eur": 354.9,
+      "price_eur": 143.6855,
       "priced": true,
-      "weight": 0.0341,
-      "vol_1y": 0.2447,
-      "risk_contribution": 0.0219
+      "weight": 0.0349,
+      "vol_1y": 0.2453,
+      "risk_contribution": 0.0157
     },
     {
       "ticker": "BNP.PA",
       "sleeve": "coeur",
-      "desk": null,
-      "sector": null,
+      "desk": "desk-finance",
+      "sector": "Financials - Banking EU",
       "theme": null,
       "confidence": "Moyenne",
-      "value_eur": 331.05,
-      "price_eur": 88.94,
+      "value_eur": 333.32,
+      "price_eur": 89.55,
       "priced": true,
-      "weight": 0.0323,
-      "vol_1y": 0.2797,
+      "weight": 0.0327,
+      "vol_1y": 0.2798,
       "risk_contribution": 0.0434
     },
     {
       "ticker": "GLE.PA",
       "sleeve": "coeur",
-      "desk": null,
-      "sector": null,
+      "desk": "desk-finance",
+      "sector": "Financials - Banking EU",
       "theme": null,
       "confidence": "Basse",
-      "value_eur": 65.25,
-      "price_eur": 64.6,
+      "value_eur": 306.23,
+      "price_eur": 64.47,
       "priced": true,
-      "weight": 0.0064,
+      "weight": 0.0301,
       "vol_1y": 0.3479,
-      "risk_contribution": 0.0118
+      "risk_contribution": 0.0548
     }
   ],
   "alerts": [
-    "CASH 26 % > plafond 15 % : déployer vers les poches sous-pondérées (cadence §H).",
-    "RISQUE 10 %/an < cible 13 % : le book n'utilise pas son budget de risque (sous-investi ou trop défensif).",
-    "CONCENTRATION DE RISQUE CEG : 6 % du NAV mais 17 % du risque.",
-    "CONCENTRATION DE RISQUE EME : 7 % du NAV mais 18 % du risque."
+    "CASH 16 % > plafond 15 % : déployer vers les poches sous-pondérées (cadence §H).",
+    "POCHE coeur 76 % > max 75 % : rééquilibrer.",
+    "RISQUE 11 %/an < cible 13 % : le book n'utilise pas son budget de risque (sous-investi ou trop défensif)."
   ],
-  "data_gaps": [
-    "secteur/desk non renseigné : SAF.PA, AMZN, AI, LOTB, BNP.PA, MSCI, CEG, GVA, CB, EME, CRM, ICE, GLE.PA (à compléter vendredi)"
-  ],
+  "data_gaps": [],
   "nav_history": [
     {
       "date": "2026-10-09",
@@ -301,6 +329,10 @@
     {
       "date": "2026-10-16",
       "nav": 10236.94
+    },
+    {
+      "date": "2026-10-17",
+      "nav": 10179.2
     }
   ]
 }

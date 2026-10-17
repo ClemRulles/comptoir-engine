@@ -1,24 +1,61 @@
 {
   "_doc": "LA SEMAINE EN CLAIR — la version lisible du brief, pour les membres du groupe (écrite le vendredi, posture mise à jour lundi et mercredi). Lue par l'accueil de l'interface. Schéma : { updated, week (ISO ex 2026-W41), posture { label (2-4 mots, ex. 'Investi mais sélectif'), tone ('offensif'|'neutre'|'defensif'), line (1 phrase : ce que l'IA fait et pourquoi) }, headline (LA phrase de la semaine), points ([≤ 3 × { title (≤ 6 mots), text (≤ 30 mots), kind ('marche'|'portefeuille'|'risque'|'opportunite') }]), decisions ([{ date, ticker, name, action ('achat'|'vente'|'renforcement'|'allegement'|'conserver'|'surveiller'), sleeve ('coeur'|'socle'|'tactique'|'crypto'), desk, why (≤ 25 mots, en clair), risk (≤ 20 mots : ce qui ferait changer d'avis), confidence ('Haute'|'Moyenne'|'Basse'), amount_eur, weight_pct }]), next ([≤ 4 × { date, label, why (≤ 15 mots) }]), in_one_sentence }. Règles : écrit pour quelqu'un qui n'a lu ni la méthode ni le playbook — zéro jargon interne (§, P-00N, gate, saisine, hystérésis, cov, F7/9), des chiffres simples, pas plus de mots que nécessaire. Le brief complet (morning-brief.md) reste la référence détaillée.",
-  "updated": "2026-10-13",
-  "week": "2026-W51",
-  "posture": {
-    "label": "En déploiement actif",
-    "tone": "offensif",
-    "line": "Le cash est toujours à 26 %, bien au-dessus de la cible de 10 %. Aucune décision cette semaine — le CPI de demain (14/10) est un binaire fort : selon le résultat, la prochaine fenêtre de déploiement se précisera."
-  },
-  "headline": "La Fed ne va probablement pas monter les taux en octobre, le CPI de demain tranche.",
+  "updated": "2026-10-17",
+  "week": "W51",
+  "posture": "SURCHAUFFE override · RISK-ON SAIN (signals.js) · Cash 16 % (↓ de 26 % → encore 1 pt > plafond)",
+  "headline": "3 trades W51 : GLE.PA renforcement, AZZ nouvelle entrée (diversifiant NON capex-IA), EIMI socle top-up. P-004 formalisé. Desk/sector 15/15 renseignés.",
   "points": [
-    { "title": "Retournement sur la Fed", "text": "La probabilité d'une hausse fin octobre est tombée de 73 % à 17 % en une semaine, après un NFP septembre décevant (+62K). La vraie décision se jouera en décembre.", "kind": "risque" },
-    { "title": "CPI demain : binaire fort", "text": "Le CPI de septembre publié mardi 14/10 à 14h30 (Paris). Au-dessus de +0,3 % = résurgence hawkish. En-dessous de +0,2 % = calme confirmé. Le portefeuille est positionné pour les deux scénarios.", "kind": "marche" },
-    { "title": "Cash encore à déployer", "text": "26 % de cash au lieu des 10 % visés. La prochaine cible sera identifiée cette semaine selon le résultat CPI et le scout en cours.", "kind": "portefeuille" }
+    "GLE.PA sous-taille corrigée : 0,66 % → ~3,0 % NAV (2 signaux 🟢 consécutifs, hystérésis respectée)",
+    "AZZ (galvanisation/infra) : nouvelle conviction Moyenne ~4,5 % NAV — beat Q2 FY27 EPS $2,00 (+29 %), Metal Coatings 30,7 %. NON capex-IA = diversifie le cluster.",
+    "EIMI socle top-up : poche socle 4,5 % → 7,6 % (cible 12 % — déploiement multi-semaines). Coeur 76 % → à rééquilibrer W52+.",
+    "P-004 formalisé : gel cluster capex-IA (GVA+CEG+EME+AMZN) HARD CAP 4 noms.",
+    "Desk/sector renseignés pour toutes les 15 lignes — attribution.js opérationnel.",
+    "IMMINENT : CB Q3 + MSCI Q3 lundi 20/10 (horizon-tests), RTX Q3 20/10 (armer si thèse OK). SAF.PA saisine W52 23/10."
   ],
-  "decisions": [],
+  "decisions": [
+    {
+      "ticker": "GLE.PA",
+      "action": "RENFORCEMENT",
+      "confidence": "Basse",
+      "rationale": "Sous-taille depuis entrée 26/09. 2 signaux 🟢 + cash déploiement §H."
+    },
+    {
+      "ticker": "AZZ",
+      "action": "ENTRÉE Moyenne ~4,5 % NAV",
+      "confidence": "Moyenne",
+      "rationale": "Beat Q2 FY27, Metal Coatings 30,7 % in-guide, diversifiant cluster capex-IA."
+    },
+    {
+      "ticker": "EIMI",
+      "action": "SOCLE +6,87 parts",
+      "confidence": "Moyenne",
+      "rationale": "Sous-pondération socle, déploiement obligatoire cash > 15 %."
+    },
+    {
+      "ticker": "CB/MSCI",
+      "action": "HORIZON-TEST LUNDI",
+      "confidence": null,
+      "rationale": "Pré-décisions enregistrées. Q3 lundi 20/10."
+    },
+    {
+      "ticker": "BMY",
+      "action": "CONDITIONNELLE post-Q3 29/10",
+      "confidence": "Moyenne",
+      "rationale": "Demi-taille ~3 % si Growth Portfolio ≥+15 %, Milvexian sans glissement."
+    },
+    {
+      "ticker": "SAF.PA",
+      "action": "SAISINE mercredi W52",
+      "confidence": null,
+      "rationale": "4e 🟠 consécutif — gap 1,64 pts < 2 pts donc pas de trim ce soir."
+    }
+  ],
   "next": [
-    { "date": "2026-10-14", "label": "CPI septembre 2026", "why": "Binaire fort — détermine le narratif FOMC déc." },
-    { "date": "2026-10-20", "label": "Résultats Chubb (CB)", "why": "Test thèse combined ratio + NII" },
-    { "date": "2026-10-27", "label": "Réunion de la Fed", "why": "HOLD probable (~83 %) mais CPI peut relancer" },
-    { "date": "~Nov 2026", "label": "Résultats CRM + ICE", "why": "Premiers horizon-tests des nouvelles positions" }
+    "Lun 20/10 : CB Q3 + MSCI Q3 (horizons-tests) + RTX Q3 (armer ?)",
+    "Mer 22/10 : docteur — saisine SAF.PA (5e🟠 ?)",
+    "Jeu 29/10 : ICE Q3 + GLE.PA Q3 + BMY Q3 (conditionnel)",
+    "FOMC 27-28/10 : HOLD quasi-certain, pas de repositionnement",
+    "W52+ : continuer déploiement socle/cash (≤10 pts/semaine) + ouvrir crypto si Fear<20"
   ],
-  "in_one_sentence": "Le retournement sur la Fed (73 %→17 % de hausse en octobre) et le CPI de demain placent le portefeuille dans une semaine de veille avant la prochaine décision de déploiement."
+  "in_one_sentence": "W51 : 3 achats correctifs (sous-taille GLE.PA + AZZ diversifiant + EIMI socle = 10 pts cash) ; P-004 cluster capex-IA gelé à 4 noms ; CB/MSCI Q3 lundi font ou défont 14 % du book."
 }

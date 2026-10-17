@@ -1,3 +1,16 @@
+# Régime de marché — Brief W51 2026-10-17
+
+- **SURCHAUFFE override INCHANGÉE** (T10Y ~5,21-5,25 %, FOMC 27-28/10 ~25-34 % hike, HOLD quasi-certain). `signals.js` 17/10 : RISK-ON SAIN (FRED lag — override prime), **13🟢 / 1🟠 (SAF.PA — 4e relevé consécutif) / 0🔴**, cash cible 10 %, bande 5-15 %.
+- **3 TRADES EXÉCUTÉS** : GLE.PA +3,74 parts renforcement (Basse→3 % NAV), AZZ +3,68 parts nouvelle entrée Moyenne ~4,5 % NAV (galvanisation, NON capex-IA), EIMI +6,87 parts socle top-up. Total déployé : 1 026 € (~10 pts NAV — plafond §H). Cash : 1 648 € (16,1 % — à poursuivre W52).
+- **P-004 FORMALISÉ** : gel cluster capex-IA (GVA+CEG+EME+AMZN) HARD CAP 4 noms. Desk/sector renseignés 15/15 lignes.
+- **HORIZONS-TESTS LUNDI 20/10** : CB Q3 (combined ratio + NII) ET MSCI Q3 (rétention ≥93 %). Deux falsificateurs actifs simultanément. Pré-décisions enregistrées dans morning-brief.md.
+- **SAF.PA hystérésis** : 4e🟠 consécutif, gap 1,64 pts < 2 pts requis → PAS de trim ce soir. Saisine mercredi W52 23/10 OBLIGATOIRE.
+- **RTX Q3 20/10** : armer post-résultats si book-to-bill ≥ 1,0 et backlog solide (entrée possible mercredi 22/10).
+- **Coeur 76 % > max 75 %** (AZZ = nouveau poids cœur). Rééquilibrer W52+ par déploiement socle/crypto.
+- **Sources** : signals.js + risk.js + guard.js 17/10 ; allocation.json post-trades ; morning-brief.md.
+
+---
+
 # Régime de marché — Doctor W52 2026-10-16
 
 - **SURCHAUFFE override INCHANGÉE** (T10Y ~5,21-5,25 %, FOMC 27-28/10 ~25-34 % hike — remonté depuis ~17 % post-CPI sept. légèrement chaud). `signals.js` 16/10 : RISK-ON SAIN (FRED lag — override prime), **13🟢 / 1🟠 (SAF.PA — 4e relevé consécutif) / 0🔴**, régime cash cible 10 % bande 5-15 %.

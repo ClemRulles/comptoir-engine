@@ -1,19 +1,24 @@
 {
   "_doc": "LES DEUX CARRÉS DE L'ACCUEIL — ce qui doit sauter aux yeux d'un membre qui ouvre l'app 10 secondes. invest = écrit le VENDREDI après la décision principale (valable la semaine suivante) : { date, week (ISO), value (le nom court de ce que l'IA achèterait cette semaine, ex. 'Chubb' ; ou exactement 'RIEN' s'il n'y a rien d'assez solide — le droit au blanc est une réponse), ticker (ou null), line (≤ 90 caractères : pourquoi, en clair), confidence ('Haute'|'Moyenne'|'Basse'|null) }. watch = écrit le LUNDI (actualité) et mis à jour le mercredi ou le jeudi si quelque chose de plus important arrive : { date, kind ('chiffre'|'news'), value (un chiffre frappant ex. '5,2 %' ou un titre ≤ 7 mots), label (≤ 40 caractères : de quoi il s'agit, ex. 'Taux à 10 ans américain'), line (≤ 90 caractères : ce que ça change pour nous) }. Zéro jargon interne. Aucun chiffre sans source vérifiée dans la routine.",
-  "updated": "2026-10-15",
+  "updated": "2026-10-17",
   "invest": {
-    "date": "2026-10-10",
-    "week": "2026-W50",
-    "value": "Salesforce",
-    "ticker": "CRM",
-    "line": "Leader CRM à valorisation comprimée, pivot IA Agentforce en cours. Acheté ~5 % du portefeuille.",
-    "confidence": "Moyenne"
+    "ticker": "AZZ",
+    "name": "AZZ Inc.",
+    "thesis_short": "Compounder galvanisation acier (protection anticorrosion pour T&D, infra, solaire). Q2 FY27 : EPS $2,00 (+29 % BEAT), Metal Coatings adj EBITDA 30,7 %, guidance FY27 relevée $7,00-7,30. Décote relative (~19x fwd) vs marges en expansion. NON capex-IA = diversifiant du book.",
+    "gate": "🟢 +0,623 F7/9 RSI47,2",
+    "entry_date": "2026-10-17",
+    "entry_price": "125,15 € (~$137,66)",
+    "size": "4,5 % NAV (Moyenne réduite — marge mince SURCHAUFFE + base rate fat-tail)",
+    "exit_rule": "Metal Coatings adj EBITDA < 25 % durablement OU volumes infra/Precoat déclin OU F≤3/9",
+    "horizon_test": "Q3 FY27 ~janv. 2027",
+    "why_now": "Beat Q2 FY27 confirmé SEC 8-K 13/10. Zone achat $115-143 USD respectée. Déploiement cash §H + diversification facteur capex-IA (P-004)."
   },
   "watch": {
-    "date": "2026-10-16",
-    "kind": "news",
-    "value": "CB et MSCI : double résultats lundi 20/10",
-    "label": "Double horizon-test lundi matin",
-    "line": "Chubb (combined ratio + NII) et MSCI (rétention) publient tous deux lundi — deux thèses testées le même jour."
+    "ticker": "BMY",
+    "name": "Bristol-Myers Squibb",
+    "thesis_short": "Pharma soldée ~9x P/FCF, Growth Portfolio +15 % YoY compense la falaise Eliquis 2028. Q3 29/10 = pivot binaire.",
+    "gate": "🟢 +0,615 F7/9 RSI30,9",
+    "condition": "ACHETER demi-taille ~3 % NAV APRÈS Q3 29/10 SI Growth Portfolio ≥+15 % ET Milvexian sans glissement",
+    "why_wait": "§J interdit de miser avant un print binaire. IRA 2026 + re-rate +47 % déjà fait = risque de surprise négative."
   }
 }
