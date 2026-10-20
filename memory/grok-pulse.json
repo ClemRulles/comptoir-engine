@@ -1,107 +1,60 @@
 {
-  "_doc": "Pouls hebdomadaire du sentiment X/Grok — contexte narratif des marchés, 0 à 3 calls directionnels CT enregistrés (§F). Source : Grok API ou fallback web search. Ne jamais utiliser comme signal d'achat seul. Alimentation : routines Trend Radar du lundi.",
-  "updated": "2026-10-13",
-  "entries": [
+  "_doc": "Pouls hebdo du marché (Grok, accès X) — radar à corroborer, jamais un signal d'achat.",
+  "updated": "2026-10-20",
+  "weeks": [
     {
-      "week": "2026-W51",
-      "date": "2026-10-13",
-      "label": "Semaine du 13 octobre 2026",
-      "source": "Grok-4.3 API (xAI) — note : génère depuis training data + prompt context, pas X temps réel. Corroboration web search indépendante.",
-      "headline": "FOMC probability collapse 73%→17% (NFP weak + Williams dovish), T10Y 5.25%, crypto correction accentuée, AI infra narratif intact.",
+      "week": "2026-W53",
+      "date": "2026-10-20",
+      "label": "Semaine du 20 octobre 2026",
+      "headline": "Earnings from RTX, CB and MSCI coincide with pre-FOMC positioning as CPI holds at 3.7% and crypto sentiment stays neutral.",
       "themes": [
         {
-          "title": "FOMC Probability Collapse",
-          "detail": "CME FedWatch 12/10 : HOLD à ~83 %, hike Oct à seulement ~17 %. NFP septembre +62K (vs consensus +125K), UNRATE 4.3%. NY Fed Williams 10/10 : 'no urgency to hike'. T10Y 5.25% reste élevé mais la narrative de hike imminent s'effondre. Goldman révise à 17-19 % pour Oct. Override SURCHAUFFE maintenu (T10Y > 5 %).",
-          "tickers": ["BNP.PA", "CB", "GLE.PA", "CEG", "GVA"],
-          "corroborated": true
+          "title": "Q3 Earnings Season",
+          "detail": "Reports from RTX, CB and MSCI expected to drive moves in industrials and financials. CB and MSCI report after close today (20/10), RTX later this week. Results not yet published — anticipation only.",
+          "tickers": ["RTX", "CB", "MSCI"],
+          "corroborated": false
         },
         {
-          "title": "AI Infrastructure Power Demand",
-          "detail": "Narratif AI/data-center power intact. Google signe 890 MW de contrats nucléaires (dont ~50 MW Kairos Power Hermes + contrats Constellation en discussion). GE Vernova commandes turbines record T3. EME backlog data-center électrique soutenu. Capex hyperscalers stables Q3.",
-          "tickers": ["CEG", "EME", "GVA", "AMZN"],
-          "corroborated": true
-        },
-        {
-          "title": "Crypto Correction",
-          "detail": "BTC €73K (-2.2% 24h, -4.8% 7j), ETH €2177 (-3.8% 24h, -9.96% 7j), SOL -12.7% 7j. Total cap -4.9% 24h. F&G 57 (Greed, en baisse vs 73 W48). Correction en cours — anticipée comme contra W48. Aucun catalyseur on-chain positif identifié. Pas d'allocation.",
+          "title": "Rates and Fed Dynamics",
+          "detail": "September CPI at 3.7% YoY keeps markets focused on the upcoming FOMC meeting 27-28/10. ~83% HOLD expected (Trading Economics 19/10). T10Y eased to ~5.08-5.15% vs 5.35% peak (Warsh dovish signal).",
           "tickers": [],
           "corroborated": true
-        }
-      ],
-      "movers": [
-        {"ticker": "CEG", "direction": "up", "reason": "RSI rebond 22.1→67.8 depuis W45, PPAs Google en discussion", "held": true},
-        {"ticker": "BNP.PA", "direction": "neutral", "reason": "FOMC probability crash neutralise le tailwind NIM hawkish CT", "held": true},
-        {"ticker": "GVA", "direction": "neutral", "reason": "IIJA cliff déc. + FOMC HOLD = pas de catalyseur CT", "held": true}
-      ],
-      "crypto_note": "BTC dominance 59.3%, F&G 57 (Greed en baisse de 73→57 = correction confirmée W45 CT). Crypto poche à 0% — pas d'allocation. Droit au blanc.",
-      "note": "0 calls créés. Tactical_cap = 0% (hit_rate 0.474 < seuil 0.55). Grok-4.3 API — corroboration thèmes par web search 12/10. Crypto correction = anti-thème W48 confirmé (F&G 73→57). FOMC collapse = événement semaine, actualise catalysts.md et digest.json."
-    },
-    {
-      "week": "2026-W48",
-      "date": "2026-10-06",
-      "label": "Semaine du 6 octobre 2026",
-      "source": "Grok-3 API (xAI) — NOTE: grok-beta OBSOLÈTE depuis 15/09/2025, migré grok-3",
-      "headline": "FOMC 73% hike Oct, courbe steepen T10Y 5.21%, rotation Energy/Tech dominante, narratif nucléaire solide, crypto greed prudent.",
-      "themes": [
-        {
-          "title": "US Macro / Courbe hawkish",
-          "detail": "FOMC Oct 27-28 à 73% hike (Goldman Sachs, 16/18 membres dot hawkish). T10Y 5.21% stable — pression sur duration. Courbe steepen T10Y-2Y +0.47. Contexte inflationniste persistant (CPI 3.4%, UNRATE 4.2%).",
-          "tickers": ["MSCI", "BNP.PA", "GLE.PA"],
-          "corroborated": true
         },
         {
-          "title": "Nuclear / AI Power PPAs",
-          "detail": "4 hyperscalers ont signé des PPAs nucléaires 20 ans (Meta >2600MW Vistra, Microsoft 835MW CEG, Amazon 690MW CEG, Google 50MW Kairos). Narratif dominant sur X cette semaine selon Grok-3. CEG mom −20% mais thesis renforcée.",
-          "tickers": ["CEG", "VST"],
-          "corroborated": true
-        },
-        {
-          "title": "Tech / IA résurgence",
-          "detail": "Tech T6M +45.6% (FMP). AMZN/AI portés par narratif IA. Emerging markets (EIMI) bénéficient des flux tech.",
-          "tickers": ["AMZN", "AI", "EIMI"],
-          "corroborated": true
-        },
-        {
-          "title": "European Financials / steepening curve",
-          "detail": "BNP.PA RSI 22.6 (survendu extrême) — pression courbe + narratif hawkish. GLE.PA RSI 30.1. Banques EU en consolidation. NIM expansion structurelle avec hike imminent.",
-          "tickers": ["BNP.PA", "GLE.PA", "LOTB"],
+          "title": "Crypto Narratives",
+          "detail": "Bitcoin dominance at 59.6% and Fear & Greed index at 55 (Greed) signal balanced risk appetite. No new ETF catalyst or institutional flow change detected. Poche crypto book IA reste à 0% (F&G ≠ signal d'entrée — seuil contrarien <40).",
+          "tickers": ["BTC", "ETH"],
           "corroborated": true
         }
       ],
       "movers": [
-        {"ticker": "CEG", "direction": "up", "reason": "narrative nucléaire / PPA Amazon", "held": true},
-        {"ticker": "AMZN", "direction": "up", "reason": "AI momentum / AWS capex", "held": true},
-        {"ticker": "BNP.PA", "direction": "down", "reason": "yield curve pressure sur banques EU", "held": true}
+        {
+          "ticker": "MSCI",
+          "direction": "up",
+          "reason": "Q3 earnings beat expectations anticipated (results after close 20/10 — speculative)",
+          "held": true
+        },
+        {
+          "ticker": "CB",
+          "direction": "up",
+          "reason": "Q3 results and insurance sector rotation; NIM LT favorable with T10Y ~5.1%",
+          "held": true
+        },
+        {
+          "ticker": "RTX",
+          "direction": "down",
+          "reason": "Defense spending concerns ahead of earnings (results expected this week — speculative)",
+          "held": false
+        },
+        {
+          "ticker": "AMZN",
+          "direction": "up",
+          "reason": "Tech sector rotation into growth names; AWS capex IA thèse intacte",
+          "held": true
+        }
       ],
-      "crypto_note": "BTC 58.7% dominance, F&G 73 (Greed) — contrarienne: niveau d'euphorie propice à correction CT. Aucun catalyseur on-chain identifié cette semaine. Pas d'allocation.",
-      "note": "Grok-3 API — réponse basée sur prompt context (pas X temps réel : modèle génère depuis training data + prompt). Corroboration via web search indépendant. 0 calls créés (tactical_cap 0%, hit_rate 33.3%)."
-    },
-    {
-      "week": "2026-W45",
-      "date": "2026-09-29",
-      "source": "fallback web search (Grok API indisponible)",
-      "topics": [
-        "Brent $106.89 rebond (+2.46% sem.) après rejet des pourparlers de paix Trump — narratif 'Hormuz durable' persiste sur réseaux",
-        "T10Y 5.21% = nouveau pic cycle 19 ans — narratif 'higher for longer' dominant sur X",
-        "FOMC octobre 27-28 : 69% hike Kalshi — sentiment hawkish consolidé, pas de surprise attendue",
-        "S&P 500 -1.7% depuis ATH — narratif 'rotation valeur/défensif' vs 'tech correction' en opposition",
-        "Healthcare XLV +7.97% QTD = meilleur secteur Q3 — rotation GLP-1 + défensive mentionnée sur X mais pas d'unanimité",
-        "Crypto BTC -3.36% 7j malgré F&G 73 (Greed) — tension entre euphorie CT et correction sous-jacente"
-      ],
-      "sentiment_read": "HAWKISH CONSOLIDÉ — rotation défensive en cours mais pas d'événement déclencheur notable. Brent Hormuz = bruit de fond, narratif de vigilance plus que d'urgence sur X cette semaine.",
-      "note": "Grok API fallback — données reconstituées depuis web search 28-29/09. Aucun appel Grok API exécuté."
-    },
-    {
-      "week": "2026-W44",
-      "date": "2026-09-26",
-      "source": "fallback web search",
-      "topics": [
-        "IIJA Division J cliff 30/09 — discussions sur l'impact infra US",
-        "GVA P-001 franchi — sentiment baissier CT sur l'infra contractuelle",
-        "T10Y 5.12% — hawkish consolidé post-FOMC"
-      ],
-      "sentiment_read": "Vigilance IIJA — sentiment mitigé infra US. Hawkish dominant.",
-      "note": "Routine W44 — entrée archivée lors de la mise à jour W45."
+      "notes": "Movers CB/MSCI/RTX sont spéculatifs (résultats non publiés). Thème Q3 Earnings non corroboré — résultats ce soir. Calls Grok : 0 (tactical_cap 3% NAV, mais aucun signal direction nette prouvé avant publication résultats). Réexamen Doctor jeudi 22/10 post-CB/MSCI.",
+      "sources": ["Grok/X (grok-4.3)", "recoupé: FRED CPI 3.7% (BLS 14/10)", "recoupé: memory/fund/crypto.json (F&G 55, BTC dom 59.6%)", "recoupé: Trading Economics FOMC proba 19/10"]
     }
   ]
 }

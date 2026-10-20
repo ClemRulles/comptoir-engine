@@ -1,6 +1,6 @@
 {
   "_doc": "Ce que font les investisseurs pros, d'après leurs déclarations officielles 13F-HR (SEC EDGAR), recalculé par node engine/pros.js. Pour chaque gérant : période, date de dépôt, top 10 des lignes et mouvements du trimestre (nouvelle | renforce | allege | sortie, seuil ±20 % de titres). Photo publiée ~45 jours après le trimestre, actions US longues seulement : une IDÉE à instruire, jamais un signal d'achat. Ne pas éditer à la main.",
-  "updated": "2026-10-13",
+  "updated": "2026-10-20",
   "investors": [
     {
       "cik": "0001067983",

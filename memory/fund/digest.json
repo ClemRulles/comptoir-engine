@@ -1,16 +1,14 @@
 {
   "_doc": "LA SEMAINE EN CLAIR — la version lisible du brief, pour les membres du groupe (écrite le vendredi, posture mise à jour lundi et mercredi). Lue par l'accueil de l'interface. Schéma : { updated, week (ISO ex 2026-W41), posture { label (2-4 mots, ex. 'Investi mais sélectif'), tone ('offensif'|'neutre'|'defensif'), line (1 phrase : ce que l'IA fait et pourquoi) }, headline (LA phrase de la semaine), points ([≤ 3 × { title (≤ 6 mots), text (≤ 30 mots), kind ('marche'|'portefeuille'|'risque'|'opportunite') }]), decisions ([{ date, ticker, name, action ('achat'|'vente'|'renforcement'|'allegement'|'conserver'|'surveiller'), sleeve ('coeur'|'socle'|'tactique'|'crypto'), desk, why (≤ 25 mots, en clair), risk (≤ 20 mots : ce qui ferait changer d'avis), confidence ('Haute'|'Moyenne'|'Basse'), amount_eur, weight_pct }]), next ([≤ 4 × { date, label, why (≤ 15 mots) }]), in_one_sentence }. Règles : écrit pour quelqu'un qui n'a lu ni la méthode ni le playbook — zéro jargon interne (§, P-00N, gate, saisine, hystérésis, cov, F7/9), des chiffres simples, pas plus de mots que nécessaire. Le brief complet (morning-brief.md) reste la référence détaillée.",
-  "updated": "2026-10-17",
-  "week": "W51",
-  "posture": "SURCHAUFFE override · RISK-ON SAIN (signals.js) · Cash 16 % (↓ de 26 % → encore 1 pt > plafond)",
-  "headline": "3 trades W51 : GLE.PA renforcement, AZZ nouvelle entrée (diversifiant NON capex-IA), EIMI socle top-up. P-004 formalisé. Desk/sector 15/15 renseignés.",
+  "updated": "2026-10-20",
+  "week": "W53",
+  "posture": "SURCHAUFFE override · RISK-ON SAIN (signals.js) · Cash 16 % · CB/MSCI Q3 ce soir",
+  "headline": "W53 : tendance RÉARMEMENT DÉFENSE MONDIAL validée. CB + MSCI publient ce soir. RTX + LMT cette semaine. FOMC 27-28/10 à 83 % HOLD.",
   "points": [
-    "GLE.PA sous-taille corrigée : 0,66 % → ~3,0 % NAV (2 signaux 🟢 consécutifs, hystérésis respectée)",
-    "AZZ (galvanisation/infra) : nouvelle conviction Moyenne ~4,5 % NAV — beat Q2 FY27 EPS $2,00 (+29 %), Metal Coatings 30,7 %. NON capex-IA = diversifie le cluster.",
-    "EIMI socle top-up : poche socle 4,5 % → 7,6 % (cible 12 % — déploiement multi-semaines). Coeur 76 % → à rééquilibrer W52+.",
-    "P-004 formalisé : gel cluster capex-IA (GVA+CEG+EME+AMZN) HARD CAP 4 noms.",
-    "Desk/sector renseignés pour toutes les 15 lignes — attribution.js opérationnel.",
-    "IMMINENT : CB Q3 + MSCI Q3 lundi 20/10 (horizon-tests), RTX Q3 20/10 (armer si thèse OK). SAF.PA saisine W52 23/10."
+    "Tendance de la semaine : Réarmement défense mondial (OTAN 23/32 membres ≥ 2 % PIB, cycle pluriannuel). RTX ACHETER conditionnel post-Q3 si guide intact.",
+    "Double horizon-test ce soir : CB Q3 (combined ratio ≤95 %, NII OK ?) et MSCI Q3 (rétention ≥93 %, ARR ≥+9 %). Résultats après fermeture US.",
+    "SAF.PA : 5e signal de vigilance consécutif — réexamen mercredi 22/10 avant la publication du CA Q3 (23/10).",
+    "T10Y légèrement en recul (~5,1 %) vs pic 5,35 % du 10/10. FOMC 27-28/10 HOLD à 83 % — cash 16 % déployable progressivement."
   ],
   "decisions": [
     {
@@ -51,11 +49,11 @@
     }
   ],
   "next": [
-    "Lun 20/10 : CB Q3 + MSCI Q3 (horizons-tests) + RTX Q3 (armer ?)",
-    "Mer 22/10 : docteur — saisine SAF.PA (5e🟠 ?)",
-    "Jeu 29/10 : ICE Q3 + GLE.PA Q3 + BMY Q3 (conditionnel)",
-    "FOMC 27-28/10 : HOLD quasi-certain, pas de repositionnement",
-    "W52+ : continuer déploiement socle/cash (≤10 pts/semaine) + ouvrir crypto si Fear<20"
+    "Ce soir (20/10) : CB Q3 + MSCI Q3 après fermeture US — double horizon-test",
+    "Mer 22/10 : LMT Q3 + saisine SAF.PA (5e🟠, CA Q3 jeudi 23/10)",
+    "Jeu 23/10 : SAF.PA CA Q3 + Doctor scorera CB/MSCI",
+    "27-28/10 : FOMC HOLD attendu à 83 % — pas de repositionnement",
+    "29/10 : ICE Q3 + GLE.PA Q3 + BMY Q3 (conditionnel ~3 % NAV si Growth Portfolio ≥+15 %)"
   ],
-  "in_one_sentence": "W51 : 3 achats correctifs (sous-taille GLE.PA + AZZ diversifiant + EIMI socle = 10 pts cash) ; P-004 cluster capex-IA gelé à 4 noms ; CB/MSCI Q3 lundi font ou défont 14 % du book."
+  "in_one_sentence": "W53 : tendance défense validée (RTX ACHETER conditionnel post-Q3), CB + MSCI font ou défont 14 % du book ce soir, SAF.PA à réexaminer mercredi avant son CA du 23/10."
 }

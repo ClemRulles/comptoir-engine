@@ -1,150 +1,150 @@
 {
   "_doc": "L'actualité MONDIALE qui compte pour le book, en clair (lundi : refonte complète ; jeudi : mise à jour). Lu par l'interface (page Monde, accueil). 6 à 12 items, les plus importants d'abord. Schéma d'un item : { id (kebab-case), date (YYYY-MM-DD de l'événement), category ('politique-us' | 'geopolitique' | 'banques-centrales' | 'macro' | 'entreprises' | 'energie' | 'crypto' | 'regulation' | 'investisseurs'), title (≤ 12 mots, factuel), summary (1-2 phrases : ce qui s'est passé, chiffres sourcés), why (1 phrase : pourquoi ça compte pour un investisseur), impact ([{ target (ticker ou secteur), kind ('ticker'|'secteur'), direction ('positif'|'negatif'|'incertain'), held (bool : détenu par le book IA ou le groupe) }]), ai_take (1 phrase : ce que l'IA en fait concrètement — 'rien' est une réponse valable), importance (1 = majeur, 2 = notable, 3 = contexte), sources ([{ name, url? }], au moins une source datée) }. Règles : AUCUN jargon interne (pas de §, P-00N, gate, saisine, hystérésis) ; aucune rumeur non sourcée ; une déclaration politique (ex. Trump, tarifs) n'est un item que si elle a un effet observable (marché, calendrier, décret).",
-  "updated": "2026-10-16",
+  "updated": "2026-10-20",
   "items": [
     {
-      "id": "fomc-probability-collapse-oct2026",
-      "date": "2026-10-12",
+      "id": "fomc-oct2026-hold-83pct",
+      "date": "2026-10-19",
       "category": "banques-centrales",
-      "title": "La probabilité de hausse Fed en octobre s'effondre à 17 %",
-      "summary": "CME FedWatch au 12/10 donne ~83 % de probabilité au statu quo (HOLD) pour le FOMC du 27-28 octobre, contre 73 % de hausse estimé par Goldman Sachs le 6/10. Le retournement est dû à un NFP septembre décevant (+62K, vs +125K attendus) et à des déclarations dovishes du président de la Fed de New York Williams le 10/10.",
-      "why": "Un HOLD en octobre déplace le risque vers décembre — les banques et assureurs perdent un catalyseur de court terme mais la thèse de réinvestissement obligataire à long terme reste intacte.",
-      "impact": [
-        { "target": "BNP.PA", "kind": "ticker", "direction": "incertain", "held": true },
-        { "target": "CB", "kind": "ticker", "direction": "incertain", "held": true },
-        { "target": "GLE.PA", "kind": "ticker", "direction": "incertain", "held": true },
-        { "target": "CEG", "kind": "ticker", "direction": "positif", "held": true },
-        { "target": "GVA", "kind": "ticker", "direction": "positif", "held": true }
-      ],
-      "ai_take": "Maintenir toutes les positions. CPI 14/10 demain = prochain calibrateur : résultat chaud relance le hike-déc., résultat froid confirme le HOLD.",
-      "importance": 1,
-      "sources": [
-        { "name": "CME FedWatch — 12/10/2026 (probabilities FOMC Oct)" },
-        { "name": "BLS — NFP septembre 2026 (published 10/10)" },
-        { "name": "NY Fed Williams — 10/10/2026 (discours 'no urgency')" }
-      ]
-    },
-    {
-      "id": "cpi-sept-oct2026-resultat",
-      "date": "2026-10-14",
-      "category": "macro",
-      "title": "CPI septembre 2026 : légèrement chaud, Fed reste prudente",
-      "summary": "L'indice des prix de septembre 2026 (BLS, 14/10) affiche un core ~+0,3 % MoM, légèrement au-dessus du consensus (+0,2 %). Headline YoY ~3,7 %. Résultat modestement hawkish : la Fed reste en mode HOLD pour le 27-28 octobre (~66-75 %), mais la fenêtre d'une hausse en décembre se renforce (~75 %+).",
-      "why": "Un core chaud sans spike T10Y = scénario intermédiaire pour nos positions : NIM des banques (CB, BNP.PA, GLE.PA) reste portée par le réinvestissement obligataire ; les actifs longue durée (CEG, GVA) subissent une légère pression, non rédhibitoire.",
+      "title": "FOMC 27-28 oct. : probabilité HOLD remonte à 83 %",
+      "summary": "La probabilité de statu quo monétaire au FOMC du 27-28 octobre a remonté à ~83 % selon Trading Economics (19/10), après le NFP septembre décevant (+62K) et un CPI septembre modestement chaud (headline 3,7 % YoY, core +0,3 % MoM). La prochaine fenêtre de hausse se déplace vers décembre 2026 (~75 %+). Le gouverneur Warsh a émis des signaux plus dovish la semaine du 13/10.",
+      "why": "Un HOLD en octobre soulage les actifs risqués à court terme mais maintient la pression sur la duration ; la thèse de réinvestissement obligataire à hauts taux pour CB, BNP.PA et GLE.PA reste intacte.",
       "impact": [
         { "target": "CB", "kind": "ticker", "direction": "positif", "held": true },
         { "target": "BNP.PA", "kind": "ticker", "direction": "positif", "held": true },
         { "target": "GLE.PA", "kind": "ticker", "direction": "positif", "held": true },
-        { "target": "CEG", "kind": "ticker", "direction": "negatif", "held": true },
-        { "target": "GVA", "kind": "ticker", "direction": "negatif", "held": true }
+        { "target": "CEG", "kind": "ticker", "direction": "positif", "held": true },
+        { "target": "GVA", "kind": "ticker", "direction": "positif", "held": true }
       ],
-      "ai_take": "Aucun trade déclenché. Thèse NIM intacte pour les financières. Override SURCHAUFFE maintenu. FOMC déc. = prochain rendez-vous décisif.",
+      "ai_take": "Aucun trade déclenché. La fenêtre décembre reste le prochain test décisif ; maintenir toutes les positions.",
       "importance": 1,
       "sources": [
-        { "name": "Morningstar — 14/10/2026 (titre : 'CPI Forecasts Show Moderated Inflation in September, Keeping the Fed on Hold')" },
-        { "name": "StockTitan — 14/10/2026 ('September CPI Report: Gas Prices and the 3.4% Inflation Rate')" }
+        { "name": "Trading Economics — FOMC October probabilities, 19/10/2026" },
+        { "name": "BLS — NFP septembre 2026, publié 10/10 (+62K vs +125K attendus)" },
+        { "name": "BLS — CPI septembre 2026, 14/10 (3,7 % YoY)" }
       ]
     },
     {
-      "id": "t10y-record-525-oct2026",
-      "date": "2026-10-10",
+      "id": "cb-msci-q3-tonight-20oct2026",
+      "date": "2026-10-20",
+      "category": "entreprises",
+      "title": "CB et MSCI publient leurs résultats Q3 ce soir après fermeture",
+      "summary": "Chubb (CB) et MSCI Inc. publient leurs résultats du troisième trimestre 2026 ce lundi 20 octobre après la fermeture du marché américain. Pour CB : test combined ratio ≤95 %, NII guidance ; pour MSCI : test rétention ≥93 %, ARR ≥+9 %. JPMorgan et Wells Fargo ont battu les attentes NII la semaine du 11/10, signal positif pour les financières.",
+      "why": "Ces deux positions représentent ensemble une part significative du portefeuille — les résultats Q3 valident ou infirment les thèses d'investissement en cours.",
+      "impact": [
+        { "target": "CB", "kind": "ticker", "direction": "incertain", "held": true },
+        { "target": "MSCI", "kind": "ticker", "direction": "incertain", "held": true }
+      ],
+      "ai_take": "Résultats non encore publiés ce matin. Analyse complète jeudi après l'examen du Doctor.",
+      "importance": 1,
+      "sources": [
+        { "name": "Chubb Ltd — calendrier résultats Q3 2026 (IR site)" },
+        { "name": "MSCI Inc. — calendrier résultats Q3 2026 (IR site)" },
+        { "name": "JPMorgan Chase/Wells Fargo — résultats Q3, 11/10 (beats NII)" }
+      ]
+    },
+    {
+      "id": "t10y-eases-5p1-oct2026",
+      "date": "2026-10-19",
       "category": "macro",
-      "title": "T10Y américain touche 5,35 % : plus haut depuis 2007",
-      "summary": "Le rendement des obligations d'État américaines à 10 ans a atteint 5,35 % en intraday le 10 octobre, son niveau le plus élevé depuis la crise des subprimes. Le phénomène reflète une inflation persistante (3,4 % YoY CPI août) et l'incertitude sur la politique monétaire.",
-      "why": "Des taux élevés compriment les multiples de valorisation des actifs longue durée et de croissance, mais favorisent les assureurs et banques qui réinvestissent leurs portefeuilles obligataires.",
+      "title": "Les taux américains reculent légèrement : T10Y ~5,1 %",
+      "summary": "Le rendement des bons du Trésor américains à 10 ans a reculé de son pic de 5,35 % (10/10) à ~5,08-5,15 % au 19 octobre, reflétant un NFP décevant et des propos plus mesurés du gouverneur Warsh. Les taux restent cependant à des niveaux historiquement élevés, bien au-dessus du plancher de 4,7 % qui ancre le régime de marché actuel.",
+      "why": "La légère détente réduit la pression sur les actifs longue durée (CEG, GVA) sans changer fondamentalement l'environnement de taux hauts qui soutient les financières.",
       "impact": [
-        { "target": "CB", "kind": "ticker", "direction": "positif", "held": true },
-        { "target": "BNP.PA", "kind": "ticker", "direction": "positif", "held": true },
-        { "target": "CEG", "kind": "ticker", "direction": "negatif", "held": true },
-        { "target": "GVA", "kind": "ticker", "direction": "negatif", "held": true }
+        { "target": "CEG", "kind": "ticker", "direction": "positif", "held": true },
+        { "target": "GVA", "kind": "ticker", "direction": "positif", "held": true },
+        { "target": "CB", "kind": "ticker", "direction": "incertain", "held": true }
       ],
-      "ai_take": "Override SURCHAUFFE maintenu. Surveiller CEG : si T10Y dépasse 5,5 % durablement, réexaminer la valorisation long-duration.",
+      "ai_take": "Légère amélioration pour la duration — pas d'action. FOMC 27-28/10 = prochain point d'ancrage.",
       "importance": 2,
       "sources": [
-        { "name": "engine/signals.js W51 — T10Y 5.25 % (13/10) ; web search T10Y 5.35 % intraday 10/10" }
+        { "name": "engine/signals.js — T10Y2Y spread 0,38 (run 20/10/2026)" },
+        { "name": "web search — T10Y 5,35 % peak 10/10 ; détente 19/10" }
       ]
     },
     {
-      "id": "earnings-saison-q3-2026-kickoff",
-      "date": "2026-10-13",
+      "id": "rtx-lmt-q3-defense-week",
+      "date": "2026-10-20",
       "category": "entreprises",
-      "title": "Saison des résultats Q3 2026 : grands noms cette semaine",
-      "summary": "JPMorgan, Wells Fargo et BlackRock ont ouvert la saison le 11 octobre avec des beats sur le NII (Net Interest Income). JPM NII +12 % YoY. La saison Q3 sera le premier test de masse des guidances dans un environnement de taux à 5 %+.",
-      "why": "Les résultats bancaires solides valident la thèse d'expansion du NIM (CB, BNP.PA, GLE.PA). Nos propres échéances : CB ~20/10, CRM et ICE en oct./nov.",
+      "title": "Raytheon et Lockheed Martin publient leurs Q3 cette semaine",
+      "summary": "RTX (Raytheon Technologies) est attendu vers le 20-21 octobre, Lockheed Martin le 22 octobre pour leurs résultats Q3 2026. Le backlog de RTX atteignait 289 milliards de dollars fin Q2 (+22 % YoY), soutenu par les commandes OTAN. Ces publications marquent le début de la saison Q3 pour le secteur défense mondial.",
+      "why": "Les résultats de RTX et LMT vont tester si les carnets de commandes records se traduisent bien en revenus — c'est le premier signal dur sur la tendance réarmement mondial.",
       "impact": [
-        { "target": "CB", "kind": "ticker", "direction": "positif", "held": true },
-        { "target": "BNP.PA", "kind": "ticker", "direction": "positif", "held": true },
-        { "target": "GLE.PA", "kind": "ticker", "direction": "positif", "held": true }
+        { "target": "RTX", "kind": "ticker", "direction": "incertain", "held": false },
+        { "target": "defense", "kind": "secteur", "direction": "incertain", "held": false }
       ],
-      "ai_take": "Résultats JPM/WFC = signal précoce positif pour CB. Pas d'action avant le 20/10 — attendre CB Q3.",
+      "ai_take": "Résultats RTX à suivre de près ce soir ou demain : un guide maintenu confirme la tendance défense et peut justifier une entrée sur RTX (~4 % portefeuille).",
       "importance": 2,
       "sources": [
-        { "name": "JPMorgan Chase — résultats Q3 2026, 11/10 (communiqué investisseurs)" },
-        { "name": "Wells Fargo — résultats Q3 2026, 11/10" }
+        { "name": "RTX — calendrier résultats Q3 2026 (annonce IR)" },
+        { "name": "Lockheed Martin — calendrier résultats Q3 2026, 22/10" },
+        { "name": "RTX Q2 2026 — backlog $289B (+22 % YoY) communiqué" }
       ]
     },
     {
-      "id": "ceg-google-ppa-890mw-oct2026",
-      "date": "2026-10-09",
-      "category": "energie",
-      "title": "Google signe de nouveaux contrats d'énergie nucléaire pour 890 MW",
-      "summary": "Google a annoncé des accords d'approvisionnement en énergie nucléaire incluant ~50 MW avec Kairos Power (réacteur Hermes 2) et plusieurs centaines de MW supplémentaires en discussion avec Constellation Energy. Total annoncé : ~890 MW sur la semaine du 7-11 octobre.",
-      "why": "Le 4e grand hyperscaler après Microsoft, Amazon et Meta s'engage sur le nucléaire décarbonné — renforce la demande structurelle de CEG sur 20+ ans.",
+      "id": "nato-defense-spending-2pct-gdp-2026",
+      "date": "2026-10-15",
+      "category": "geopolitique",
+      "title": "OTAN : 23 membres atteignent 2 % PIB, record absolu",
+      "summary": "Selon les dernières données OTAN publiées en octobre 2026, 23 des 32 membres de l'Alliance dépensent désormais 2 % ou plus de leur PIB en défense, contre 11 en 2023. La hausse est structurelle : Ukraine, Moyen-Orient, risques cyber et renforcement des flancs est (Pologne, pays baltes en tête à 4 %+).",
+      "why": "Une demande militaire soutenue sur 5-10 ans est la base de la thèse réarmement défense — elle se traduit directement en carnets de commandes pour les industriels de défense.",
       "impact": [
-        { "target": "CEG", "kind": "ticker", "direction": "positif", "held": true }
+        { "target": "defense", "kind": "secteur", "direction": "positif", "held": false },
+        { "target": "RTX", "kind": "ticker", "direction": "positif", "held": false }
       ],
-      "ai_take": "Thèse nucléaire long terme renforcée. Aucune action — CEG déjà en portefeuille, thèse intacte.",
+      "ai_take": "Confirme la durabilité de la tendance réarmement (porte 2 validée). Surveiller résultats RTX + LMT cette semaine.",
       "importance": 2,
       "sources": [
-        { "name": "web search — Google nuclear PPA announcement 09/10/2026" }
+        { "name": "OTAN — Defence Expenditure 2026, publié oct. 2026" }
       ]
     },
     {
-      "id": "ge-vernova-orders-record-q3",
-      "date": "2026-10-10",
+      "id": "saf-pa-orange-signal-oct2026",
+      "date": "2026-10-20",
       "category": "entreprises",
-      "title": "GE Vernova : commandes turbines record au T3 2026",
-      "summary": "GE Vernova a communiqué des commandes de turbines à gaz et à vent record au troisième trimestre 2026, portées par la demande d'électricité des data centers. Le carnet d'ordres progresse de +18 % YoY selon les estimations pré-résultats.",
-      "why": "Signal positif pour la thèse infrastructure énergie — mais GEV n'est pas détenu (concentration capex-IA déjà ~28 % du portefeuille). Contextuel.",
+      "title": "Safran : 5e signal de vigilance consécutif, CA Q3 le 23 octobre",
+      "summary": "Safran (SAF.PA) enregistre son cinquième signal orange consécutif dans les données quantitatives du 20 octobre, une série qui déclenche automatiquement un réexamen du titre en milieu de semaine. Le groupe publie son chiffre d'affaires Q3 le 23 octobre — horizon-test direct : CA organique ≥+12 % et confirmation de guidance.",
+      "why": "Un signal de vigilance répété signifie que les indicateurs techniques et fondamentaux peinent à se synchroniser — les résultats Q3 diront si c'est transitoire ou le signe d'un retournement.",
       "impact": [
-        { "target": "energie", "kind": "secteur", "direction": "positif", "held": false }
+        { "target": "SAF.PA", "kind": "ticker", "direction": "incertain", "held": true }
       ],
-      "ai_take": "Information contextuelle. GEV non détenu — concentration facteur capex-IA empêche l'ajout. Surveiller si valorisation se normalise.",
-      "importance": 3,
+      "ai_take": "Réexamen du dossier mercredi 22/10 avant la publication du CA. Pas de renforcement ni de réduction avant les chiffres.",
+      "importance": 2,
       "sources": [
-        { "name": "web search — GE Vernova Q3 2026 orders, 10/10/2026" }
+        { "name": "engine/signals.js — SAF.PA gate 🟠 (run 20/10/2026)" },
+        { "name": "Safran — calendrier publications IR (CA Q3 23/10)" }
       ]
     },
     {
-      "id": "crypto-correction-oct2026",
-      "date": "2026-10-13",
+      "id": "bitcoin-fg-55-neutral-oct2026",
+      "date": "2026-10-19",
       "category": "crypto",
-      "title": "Bitcoin −4,8 % sur 7 jours, Fear & Greed retombe à 57",
-      "summary": "BTC est passé de ~$82K à ~€73K (−4,8 % 7j), ETH de €2 400 à €2 177 (−10 % 7j), SOL −12,7 % 7j. L'indice Fear & Greed est retombé à 57 (Greed modéré) contre 73 (Greed élevé) la semaine du 6/10. La capitalisation totale a chuté de 4,9 % en 24h le 13/10.",
-      "why": "La correction confirme le signal contrarien identifié lors du F&G à 73. Aucun impact sur le portefeuille (0 % crypto), mais valide la prudence sur cette classe d'actifs.",
+      "title": "Bitcoin stable : Fear & Greed à 55 (Greed modéré), dominance 59,6 %",
+      "summary": "Bitcoin affiche un Fear & Greed Index à 55 (Greed modéré) au 19 octobre, la dominance BTC est à 59,6 % et ETH à 10,6 %. Le marché crypto est stable après la correction de −4,8 % de la semaine du 13/10. Aucun flux ETF notable ni catalyseur institutionnel identifié cette semaine.",
+      "why": "Un F&G à 55 n'est pas un signal d'entrée contrarien — le livre d'investissement préfère acheter la peur (F&G <40) plutôt que la neutralité.",
       "impact": [],
-      "ai_take": "Rien à faire. Poche crypto à 0 % — la correction ne crée pas de signal d'entrée tant que le régime SURCHAUFFE est actif.",
+      "ai_take": "Rien à faire. Poche crypto maintenue à 0 % — pas de signal d'entrée.",
       "importance": 3,
       "sources": [
-        { "name": "CoinGecko — cours BTC/ETH/SOL 13/10/2026" },
-        { "name": "alternative.me — Fear & Greed Index 13/10/2026, valeur 57" }
+        { "name": "alternative.me — Fear & Greed Index, 19/10/2026" },
+        { "name": "CoinGecko — BTC dominance 59,6 %, ETH 10,6 %, 19/10" }
       ]
     },
     {
-      "id": "berkshire-alphabet-stake-oct2026",
+      "id": "berkshire-alphabet-stake-q3",
       "date": "2026-10-10",
       "category": "investisseurs",
-      "title": "Berkshire Hathaway révèle une participation dans Alphabet (GOOG)",
-      "summary": "Selon les déclarations SEC (13F-HR), Berkshire Hathaway a révélé une position dans Alphabet Inc. (GOOG) estimée à ~$2,5 milliards acquise au Q3 2026. C'est la première position tech significative de Berkshire depuis son entrée dans Apple en 2016.",
-      "why": "Le geste de Buffett sur un bénéficiaire de l'IA (YouTube + Cloud GCP + AI search) peut attirer des flux institutionnels vers les grandes capitalisations tech non détenues par le book.",
+      "title": "Berkshire Hathaway révèle une participation de 2,5 Mds $ dans Alphabet",
+      "summary": "Berkshire Hathaway a révélé via un 13F-HR (SEC) une position dans Alphabet (GOOG) estimée à ~2,5 milliards de dollars, acquise au Q3 2026. C'est la première position tech significative de Berkshire depuis Apple en 2016.",
+      "why": "Un investissement de Buffett dans un bénéficiaire de l'IA (YouTube Ads + Google Cloud + AI Search) peut soutenir les flux institutionnels vers les grandes capitalisations tech.",
       "impact": [
         { "target": "tech", "kind": "secteur", "direction": "positif", "held": false },
         { "target": "AMZN", "kind": "ticker", "direction": "positif", "held": true }
       ],
-      "ai_take": "Signal de qualité sur le secteur tech IA. Pas d'action — AMZN et AI.PA déjà détenus. Surveiller si le flux institutionnel soutient les multiples tech en Q4.",
-      "importance": 2,
+      "ai_take": "Signal de qualité sur le secteur. Pas d'action — AMZN déjà en portefeuille, thèse intacte.",
+      "importance": 3,
       "sources": [
-        { "name": "SEC — Berkshire Hathaway 13F-HR Q3 2026, publié ~10/10/2026" }
+        { "name": "SEC — Berkshire Hathaway 13F-HR Q3 2026, ~10/10/2026" }
       ]
     }
   ]

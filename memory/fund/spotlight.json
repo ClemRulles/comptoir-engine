@@ -14,11 +14,10 @@
     "why_now": "Beat Q2 FY27 confirmé SEC 8-K 13/10. Zone achat $115-143 USD respectée. Déploiement cash §H + diversification facteur capex-IA (P-004)."
   },
   "watch": {
-    "ticker": "BMY",
-    "name": "Bristol-Myers Squibb",
-    "thesis_short": "Pharma soldée ~9x P/FCF, Growth Portfolio +15 % YoY compense la falaise Eliquis 2028. Q3 29/10 = pivot binaire.",
-    "gate": "🟢 +0,615 F7/9 RSI30,9",
-    "condition": "ACHETER demi-taille ~3 % NAV APRÈS Q3 29/10 SI Growth Portfolio ≥+15 % ET Milvexian sans glissement",
-    "why_wait": "§J interdit de miser avant un print binaire. IRA 2026 + re-rate +47 % déjà fait = risque de surprise négative."
+    "date": "2026-10-20",
+    "kind": "news",
+    "value": "CB + MSCI Q3 ce soir",
+    "label": "Double résultats après fermeture US",
+    "line": "Ces deux positions font 14 % du portefeuille. Résultats après fermeture — analysés jeudi."
   }
 }

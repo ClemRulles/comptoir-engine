@@ -1,3 +1,19 @@
+# Régime de marché — Trend Radar W53 2026-10-20
+
+- **SURCHAUFFE override CONFIRMÉE** (T10Y ~5,08-5,15 %, baissé des sommets 5,35 % du 10/10 mais encore >4,7 % seuil). `signals.js` 20/10 : RISK-ON SAIN (FRED lag — override prime), **14🟢 / 1🟠 (SAF.PA — 5e relevé consécutif ⚠️)**.
+- **Macro W53** : T10Y Oct 9=5,24 % → Oct 15=5,10 % → Oct 19≈5,08-5,15 % (détente légère, signaux dovish Warsh). Fed funds 3,75-4,00 % (HIKE +25bps septembre 2026 — premier depuis 2023). Sep CPI headline 3,7 % YoY (légèrement chaud), core ~2,4 % MoM cumulé. Core PCE projeté 3,3 % FY26. NFP Sept +62K (faible). FOMC 27-28/10 : marché pence ~83 % HOLD, hike déc. ~75 % si CPI reste chaud.
+- **Cadran** : SURCHAUFFE (T10Y >4,7 % ✓ / CPI 3,7 % >3 % ✓ / Fed a hiké en sept. ✓). Détente des taux légère mais PAS d'inflexion macro.
+- **SAF.PA hystérésis W53** : 5e🟠 consécutif confirmé par signals.js 20/10. Gap < 2 pts → pas de trim automatique. **Saisine mercredi 22/10 OBLIGATOIRE** (déjà déclenchée W52).
+- **Double horizon-test 20/10** : CB Q3 et MSCI Q3 publient leurs résultats **ce soir après fermeture**. Pas d'action avant lecture des chiffres. Falsificateurs actifs.
+- **RTX Q3** : résultats attendus cette semaine (~20/10). Backlog Q2 $289B (+22 % YoY). ACHETER conditionnel post-résultats si backlog ≥$285B + EPS beat + marge Raytheon stable.
+- **desk-macro W53** : SURCHAUFFE override inchangée. Déployer le cash excédentaire (16 %) vers **SOCLE** (IWDA.AS prioritaire, SGLD si CPI reste >3,5 % post-FOMC). **NE PAS** renforcer le cœur avant FOMC 27-28/10. Cœur 76 % (cible SURCH. 65 %) = +11 pts au-dessus cible → ne pas renforcer.
+- **desk-crypto W53** : F&G 55 (Greed modéré) + BTC dominance 59,6 % = consolidation. Signal d'entrée = F&G <40 ou post-FOMC correction. Poche crypto **reste à 0 %** cette semaine. Cible régime SURCHAUFFE = 5 % ; entrée reportée.
+- **Allocation W53** : cœur 76 % vs cible 65 % (+11 pts) · socle 8 % vs cible 15 % (−7 pts) · tactique 0 % vs 5 % · crypto 0 % vs 5 % · cash 16 % vs 10 % (+6 pts). FOMC 27-28/10 prime sur tout déploiement growth.
+- **Tendance W53 : RÉARMEMENT DÉFENSE MONDIAL (cycle milieu)** — RTX + LMT. Voir trends.md.
+- **Sources** : engine/signals.js 20/10 ; signals.regime RISK-ON SAIN ; web search T10Y Oct 9-19 2026 ; FOMC/Warsh/CPI web (Trading Economics, CNBC 14-16/10) ; desk-macro + desk-crypto agentiques W53 ; allocation.json + crypto.json 20/10.
+
+---
+
 # Régime de marché — Brief W51 2026-10-17
 
 - **SURCHAUFFE override INCHANGÉE** (T10Y ~5,21-5,25 %, FOMC 27-28/10 ~25-34 % hike, HOLD quasi-certain). `signals.js` 17/10 : RISK-ON SAIN (FRED lag — override prime), **13🟢 / 1🟠 (SAF.PA — 4e relevé consécutif) / 0🔴**, cash cible 10 %, bande 5-15 %.

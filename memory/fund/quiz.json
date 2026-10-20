@@ -1,6 +1,6 @@
 {
   "_doc": "LE QUIZ DU JOUR — une question par jour pour faire apprendre la bourse aux membres (accueil de l'app, classement mensuel dans Groupe). Écrit par CHAQUE routine de nuit : elle s'assure que les 2 prochains jours (date de Paris) ont leur question, sans jamais réécrire une date déjà publiée. Règles complètes dans skills/quiz.md. Schéma d'une entrée : { date (YYYY-MM-DD, jour où la question est posée), theme ('bases'|'histoire'|'actualite'|'nos-lignes'|'psychologie'|'crypto'|'fiscalite'), level ('facile'|'moyen'|'difficile'), question (≤ 160 caractères), choices ([4 réponses courtes, ≤ 60 caractères chacune]), answer (index 0-3 de la bonne réponse — varie sa position), explanation (≤ 300 caractères : pourquoi c'est la bonne réponse, ce qu'il faut en retenir), source ({ name, url? } : d'où vient le fait) }. Garder ~60 jours, les plus récents en dernier.",
-  "updated": "2026-10-17",
+  "updated": "2026-10-20",
   "questions": [
     {
       "date": "2026-10-07",
@@ -204,6 +204,40 @@
       "explanation": "MSCI vend des abonnements à ses indices et données. Un taux de rétention élevé (95,3 % au T2 2026) signifie que les clients renouvellent. Si la rétention descend sous 93 %, la base de revenus s'érode — c'est notre critère de sortie.",
       "source": {
         "name": "MSCI — rapport Q2 2026 (retention rate 95,3 %) ; convictions comptoir-engine oct. 2026"
+      }
+    },
+    {
+      "date": "2026-10-20",
+      "theme": "actualite",
+      "level": "moyen",
+      "question": "Le carnet de commandes de Raytheon (RTX) dépasse 289 Mds $ en 2026. Pourquoi ce chiffre intéresse-t-il les investisseurs ?",
+      "choices": [
+        "Il garantit des revenus futurs même si les nouvelles commandes ralentissent",
+        "Il représente les bénéfices déjà versés aux actionnaires",
+        "Il correspond à la capitalisation boursière divisée par le nombre de contrats",
+        "Il est directement comparable au CA d'une seule année"
+      ],
+      "answer": 0,
+      "explanation": "Le backlog représente les contrats signés non encore facturés. Pour un industriel de défense, il donne une visibilité pluriannuelle sur les revenus futurs — un RTX avec 289 Mds $ de backlog (+22 % YoY) a théoriquement plusieurs années de CA déjà garanties.",
+      "source": {
+        "name": "RTX — résultats Q2 2026 (backlog $289B, +22 % YoY) ; communiqué IR"
+      }
+    },
+    {
+      "date": "2026-10-21",
+      "theme": "actualite",
+      "level": "facile",
+      "question": "En 2026, combien de membres de l'OTAN sur 32 respectent l'objectif de 2 % du PIB pour la défense ?",
+      "choices": [
+        "23 membres",
+        "8 membres",
+        "Tous les 32 membres",
+        "Aucun — l'objectif reste théorique"
+      ],
+      "answer": 0,
+      "explanation": "En 2026, 23 membres sur 32 atteignent les 2 % du PIB — contre seulement 11 en 2023. L'Ukraine, le Moyen-Orient et la menace russe ont accéléré ce réarmement. La Pologne et les Baltes dépensent même 4 %+, au-dessus de l'objectif minimal.",
+      "source": {
+        "name": "OTAN — Defence Expenditure data 2026 (publié oct. 2026)"
       }
     }
   ]

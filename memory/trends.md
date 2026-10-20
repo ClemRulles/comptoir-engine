@@ -1,3 +1,48 @@
+## Tendance de la semaine — 20 octobre 2026 (W53)
+
+- **Statut** : VALIDÉE — RÉARMEMENT DÉFENSE MONDIAL · cycle milieu · catalyseurs Q3 cette semaine
+- **Tendance** : Réarmement défense mondial (6e semaine de radar, 1ère validation pleine)
+
+### Analyse trend-gate
+
+**Porte 0 (rejet buzz/hype/parabolique)** : Defense ETF +14 % YTD (vs XLE +22 % = parabolique). Non parabolique. ✅ PASS
+
+**Porte 1 — Preuves dures (≥2 sources factuelles)**
+1. **RTX Q2 2026** (aggregator Sept 16 2026 + Q2 IR) : backlog $289B (+22 % YoY), dont $119B défense, $5B commandes Patriot GEM-T + $4B classifiés. EPS adj $1,89 vs consensus $1,66 (+14 % beat). Ventes $24,7B +14 % YoY.
+2. **Applied Aerospace & Defense EDGAR 8-K Q2 2026** : backlog $1,13B (+$178,5M d'acquisition, driven by Patriot munitions rearmement + missile layered defense).
+3. **AeroVironment fiscal Q3 (to Jan 31 2026)** : funded backlog record $1,1B, book-to-bill 1,6x (9 mois). ✅ PASS (3 preuves)
+
+**Porte 2 — Durabilité structurelle** : Cycle réarmement pluriannuel — NATO 2 % PIB (engagements fermes), budget défense US maintenu, conflits Ukraine + Moyen-Orient sans résolution en vue. Pas un thème de conjoncture. ✅ PASS
+
+**Porte 3 — ≥2 tickers cotés investissables** : RTX (non détenu — watchlist ★ ACHETER conditionnel) + LMT (non détenu — Surveiller depuis W43). NOC, LDOS disponibles si besoin. ✅ PASS
+
+**Porte 4 — Stade (non-fin)** : MILIEU — cycle de réarmement lancé 2022, accélère en 2026, horizon livraison 2027-2030+. Pas de catalyseur de fin visible. ✅ PASS
+
+**Porte 5 — Pas de bulle** : LMT ~16x fwd PE (valeur, non parabolique). RTX ~20-22x fwd (justifié par backlog record). Defense ETF +14 % YTD ≠ excès. Pas de drapeau rouge. ✅ PASS
+
+**Porte 6 — Falsificateur clair** : Accord de paix Ukraine + résolution Moyen-Orient simultanés OU réduction budget défense US ≥10 % en loi de finances OR OTAN réduit ses objectifs 2 % → révisions à la baisse des backlogs. Testable. ✅ PASS
+
+**Verdict trend-gate : TOUTES 6 PORTES PASSÉES → TENDANCE VALIDÉE**
+
+### Manières de la jouer
+
+| Ticker | Statut | Condition d'entrée | Taille cible |
+|--------|--------|-------------------|--------------|
+| **RTX** | Watchlist ★ ACHETER conditionnel | Post-Q3 résultats (~20/10) : backlog ≥$285B + EPS beat + marge Raytheon stable → entrée mercredi 22/10 | Moyenne ~4-5 % NAV (desk industrie-défense) |
+| **LMT** | Surveiller | Post-LMT Q3 22/10 : EPS beat + backlog stable + gate 🟢 recalculé → deep-dive mercredi 22/10 ou W54 | Basse ~3 % NAV |
+
+*P-004 ne s'applique pas : RTX et LMT ne sont pas des bénéficiaires directs du capex hyperscaler IA.*
+
+### Ce qui tuerait la thèse (falsificateurs §G)
+- Accord de paix Ukraine + retrait Moyen-Orient → demande munitions s'effondre
+- Réduction unilatérale US defense budget ≥10 % (congressional sequester)
+- RTX guidance coupée >10 % lors des Q3 résultats CE SOIR
+
+### Sources
+Engine/signals.js 20/10 ; RTX Q2 2026 communiqué + aggregator Sept 16 2026 ; Applied Aerospace & Defense EDGAR 8-K 30/06/2026 ; AeroVironment Press Release fiscal Q3 2026 (10/03/2026) ; web search defense sector +14 % YTD Oct 2026 ; NATO 2 % commitment data.
+
+---
+
 ## Tendance de la semaine — 14 octobre 2026 (W52)
 
 - **Statut** : AUCUNE (5e semaine consécutive — W45/W46/W48/W51/W52)
