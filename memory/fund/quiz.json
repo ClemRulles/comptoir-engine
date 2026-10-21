@@ -1,6 +1,6 @@
 {
   "_doc": "LE QUIZ DU JOUR — une question par jour pour faire apprendre la bourse aux membres (accueil de l'app, classement mensuel dans Groupe). Écrit par CHAQUE routine de nuit : elle s'assure que les 2 prochains jours (date de Paris) ont leur question, sans jamais réécrire une date déjà publiée. Règles complètes dans skills/quiz.md. Schéma d'une entrée : { date (YYYY-MM-DD, jour où la question est posée), theme ('bases'|'histoire'|'actualite'|'nos-lignes'|'psychologie'|'crypto'|'fiscalite'), level ('facile'|'moyen'|'difficile'), question (≤ 160 caractères), choices ([4 réponses courtes, ≤ 60 caractères chacune]), answer (index 0-3 de la bonne réponse — varie sa position), explanation (≤ 300 caractères : pourquoi c'est la bonne réponse, ce qu'il faut en retenir), source ({ name, url? } : d'où vient le fait) }. Garder ~60 jours, les plus récents en dernier.",
-  "updated": "2026-10-20",
+  "updated": "2026-10-21",
   "questions": [
     {
       "date": "2026-10-07",
@@ -238,6 +238,40 @@
       "explanation": "En 2026, 23 membres sur 32 atteignent les 2 % du PIB — contre seulement 11 en 2023. L'Ukraine, le Moyen-Orient et la menace russe ont accéléré ce réarmement. La Pologne et les Baltes dépensent même 4 %+, au-dessus de l'objectif minimal.",
       "source": {
         "name": "OTAN — Defence Expenditure data 2026 (publié oct. 2026)"
+      }
+    },
+    {
+      "date": "2026-10-22",
+      "theme": "nos-lignes",
+      "level": "moyen",
+      "question": "RTX (Raytheon) annonce un carnet de commandes de 340 Mds $ au T3 2026. En combien d'années de CA cela correspond-il ?",
+      "choices": [
+        "~3,5 ans de CA (~95 Mds$/an)",
+        "~1 an de CA",
+        "~10 ans de CA",
+        "~6 mois de CA"
+      ],
+      "answer": 0,
+      "explanation": "RTX génère ~95 Mds$ de CA annuel. 340/95 ≈ 3,5 ans de revenus déjà contractualisés — visibilité pluriannuelle rare pour un industriel. Condition d'entrée (backlog ≥285 Mds$) remplie : ACHETER vendredi 24/10.",
+      "source": {
+        "name": "RTX — résultats Q3 2026, backlog $340B (+18 % YoY) ; communiqué IR oct. 2026"
+      }
+    },
+    {
+      "date": "2026-10-23",
+      "theme": "bases",
+      "level": "difficile",
+      "question": "Le DCF « inversé » (§C Comptoir Engine) consiste à…",
+      "choices": [
+        "Partir du cours pour calculer la croissance déjà pricée",
+        "Calculer la VAN de tous les flux futurs projetés",
+        "Diviser le bénéfice net par le taux sans risque",
+        "Estimer le prix cible par les multiples sectoriels"
+      ],
+      "answer": 0,
+      "explanation": "On part du cours, non d'une projection. Ex : RTX à $X implique Y % de croissance commandes. Si la croissance probable dépasse Y %, la marge de sécurité est réelle. Méthode anti-hype du moteur.",
+      "source": {
+        "name": "engine-method.md §C — DCF inversé (Comptoir Engine, oct. 2026)"
       }
     }
   ]

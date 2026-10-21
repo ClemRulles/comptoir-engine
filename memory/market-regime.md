@@ -1,3 +1,17 @@
+# Régime de marché — Scout W53 2026-10-21
+
+- **SURCHAUFFE override CONFIRMÉE** (T10Y ~5,08-5,15 %, >4,7 % seuil). 21/10 Scout : **15🟢 / 1🟠 (SAF.PA — 6e relevé consécutif ⚠️)**.
+- **RTX Q3 CONFIRMÉ → ACHETER vendredi 24/10 ~4 % NAV** : backlog $340B ≥ $285B ✅, EPS $2,26 beat ✅, guidance relevée ✅. Toutes conditions d'entrée remplies. Post-achat cash ~12 % NAV.
+- **3 ★ Scout W53 → Deep-dive** : LMT ★ (jeudi 23/10, conditionnel Q3 22/10 demain) · RMD ★ (mercredi 22/10) · ODFL ★ (mercredi 22/10). CHKP 🔴 → éviter. desk-finance BLANC.
+- **CB Q3 20/10 THÈSE INTACTE** : combined ratio ~84,1 % (≤85 % ✓), NII en hausse (T10Y float ✓). GARDER.
+- **MSCI Q3 20/10 TRIMESTRE DE GRÂCE** : ARR +8,7 % (améliore 8,1 % Q2, pas 2 consécutifs <9 %). Exit_rule mis à jour : 2T consécutifs ARR <9 % → sortir.
+- **SAF.PA hystérésis W53** : 6e🟠 consécutif. Gap = 1,48 pts < 2 pts requis → pas de trim automatique. **Saisine OBLIGATOIRE 22/10** (Q3 revenue 23/10 = prochain test thèse). Entrée LMT conditionnelle au verdict SAF.PA ou arbitrage Doctor vendredi 24/10.
+- **Corrections calendrier** : ABBV Q3 = **23/10** (était 30/10 — erreur corrigée) ; CI Q3 = **28/10** (était 29/10 — erreur corrigée).
+- **LMT budget SURCHAUFFE** : après RTX 4 % cœur ~80 % ; après LMT ~3 % cœur ~83 % >> max 75 %. Entrée LMT subordonnée à trim SAF.PA ou décision Doctor 24/10.
+- **Sources** : signals.js + history.js 21/10 (write mode) ; 5 desks agentiques W53 ; tendances RTX IR Q3 2026 ; watchlist.md 21/10 ; CB Q3/MSCI Q3 résultats 20/10.
+
+---
+
 # Régime de marché — Trend Radar W53 2026-10-20
 
 - **SURCHAUFFE override CONFIRMÉE** (T10Y ~5,08-5,15 %, baissé des sommets 5,35 % du 10/10 mais encore >4,7 % seuil). `signals.js` 20/10 : RISK-ON SAIN (FRED lag — override prime), **14🟢 / 1🟠 (SAF.PA — 5e relevé consécutif ⚠️)**.
