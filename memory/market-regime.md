@@ -1,3 +1,15 @@
+# Régime de marché — Deep-dive W53 2026-10-22
+
+- **SURCHAUFFE override CONFIRMÉE** (T10Y ~5,08-5,15 %, >4,7 % seuil ; FOMC 27-28/10 ~83 % HOLD). ⚠️ `signals.js` 22/10 : **régime FRED = « inconnu »** (FRED lag/indispo ce soir) → override mémoire prime, comme d'habitude. signals.js candidats : **RMD 🟢 RSI 80,7 · ODFL 🟢 RSI 75,5 F5/9 · LMT 🟠 RSI 71,4 · SAF.PA 🟠 RSI 29** — les 3 candidats surachetés dans un régime qui exige une marge RÉELLE (P-003).
+- **Résultat deep-dive (Opus, débat §D à 3 voix) — 2 ★ traités + saisine + LMT recalé** : **RMD → SURVEILLER** (hors zone $195-225, cours $246, RSI 80,7) · **ODFL → SURVEILLER** (hors zone $135-165, ~30x cyclique au pic d'OR, RSI 75,5) · **LMT → NE QUALIFIE PAS** (gate flippé 🟠, Q3 non confirmable, marge Aeronautics <11 %, cœur >75 %) reste ★-conditionnel. **0 Acheter neuf — droit au blanc discipliné assumé** : les 3 candidats sont des achats *après la hausse*, exactement l'erreur que P-003/§N interdisent.
+- **SAISINE SAF.PA (6e 🟠) → GARDER** : thèse intacte, aftermarket LEAP +28 % >> seuil +20 %, cours ≈ entrée. 6 ambre + RSI 29 = signal de PRIX, pas de cassure (§B). Vrai test = **CA Q3 demain 23/10**.
+- **Revue book : EME + CEG → 2 GARDER** (thèses intactes, 2 plus gros contributeurs au risque). **Tactique : BLANC** (Grok cap 0 %, 0 §K, catalyseurs binaires avant FOMC). **A bis : 0 scénario candidat.**
+- **⚠️ AUDIT RISK-MANAGER — risque n°1 = concentration de FACTEUR capex-IA : 26,1 % du NAV mais ~50,6 % du RISQUE du book** (GVA+CEG+EME+AMZN). À re-pricer sur une grappe de résultats comprimée fin oct.-début nov. (lecture capex **AMZN ~30/10 = le tell**). CB a une contribution au risque NÉGATIVE (−1,0 %) = vrai diversifiant. Dérive : cœur 76,2 % (+1,2 au-dessus du max 75 %), cash 16,2 % (+1,2 au-dessus du max 15 %), socle 7,6 % (−4,4), **vol book 11,1 % < plancher 13 %**. Drawdown −1,4 % = loin du garde-fou −20 %.
+- **Chemin vendredi 24/10 arbitré (CIO)** : **(1) SOCLE d'abord** — déployer ~€450 cash → IWDA/EIMI : règle cash>15 % + vol<13 % + socle sous-pondéré EN UN GESTE, sans toucher le cœur sur-plein (soupape §H). **(2) RTX différé post-read capex 30/10** : entrée sèche → cœur ~80 % ✗ ; à financer par un trim du cluster (CEG/EME) si le read capex le commande, **JAMAIS par SAF.PA** (rotation intra-aéro, ne coupe pas le risque n°1, trimmer un gagnant cœur à thèse intacte viole §H). RTX reste un Acheter validé (vrai diversifiant hors capex-IA). **CB horizon_test échu 20/10 → re-vérifier jeudi 23/10 en priorité.**
+- **Sources** : engine/signals.js + history.js 22/10 (candidats RMD/ODFL/LMT/SAF.PA) ; 4 desks agentiques + risk-manager W53 ; allocation.json 20/10 ; Safran H1 2026 (Leeham 28/07) ; LMT Q2 8-K / consensus Q3 (Hudson Labs) ; CEG-Amazon PPA (Constellation 30/09) ; EME Q3 date (Finviz/EMCOR 29/10).
+
+---
+
 # Régime de marché — Scout W53 2026-10-21
 
 - **SURCHAUFFE override CONFIRMÉE** (T10Y ~5,08-5,15 %, >4,7 % seuil). 21/10 Scout : **15🟢 / 1🟠 (SAF.PA — 6e relevé consécutif ⚠️)**.

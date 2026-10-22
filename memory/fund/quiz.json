@@ -1,6 +1,6 @@
 {
   "_doc": "LE QUIZ DU JOUR — une question par jour pour faire apprendre la bourse aux membres (accueil de l'app, classement mensuel dans Groupe). Écrit par CHAQUE routine de nuit : elle s'assure que les 2 prochains jours (date de Paris) ont leur question, sans jamais réécrire une date déjà publiée. Règles complètes dans skills/quiz.md. Schéma d'une entrée : { date (YYYY-MM-DD, jour où la question est posée), theme ('bases'|'histoire'|'actualite'|'nos-lignes'|'psychologie'|'crypto'|'fiscalite'), level ('facile'|'moyen'|'difficile'), question (≤ 160 caractères), choices ([4 réponses courtes, ≤ 60 caractères chacune]), answer (index 0-3 de la bonne réponse — varie sa position), explanation (≤ 300 caractères : pourquoi c'est la bonne réponse, ce qu'il faut en retenir), source ({ name, url? } : d'où vient le fait) }. Garder ~60 jours, les plus récents en dernier.",
-  "updated": "2026-10-21",
+  "updated": "2026-10-22",
   "questions": [
     {
       "date": "2026-10-07",
@@ -272,6 +272,23 @@
       "explanation": "On part du cours, non d'une projection. Ex : RTX à $X implique Y % de croissance commandes. Si la croissance probable dépasse Y %, la marge de sécurité est réelle. Méthode anti-hype du moteur.",
       "source": {
         "name": "engine-method.md §C — DCF inversé (Comptoir Engine, oct. 2026)"
+      }
+    },
+    {
+      "date": "2026-10-24",
+      "theme": "psychologie",
+      "level": "moyen",
+      "question": "En bourse, l’« effet de disposition » décrit la tendance à…",
+      "choices": [
+        "Acheter uniquement les actions à la mode du moment",
+        "Investir tout son argent d’un seul coup",
+        "Vendre trop vite ses gagnants et garder trop longtemps ses perdants",
+        "Suivre aveuglément l’avis des analystes"
+      ],
+      "answer": 2,
+      "explanation": "On encaisse vite un petit gain (pour le plaisir d’avoir raison) et on conserve une perte en espérant un retour (pour ne pas acter l’erreur). Résultat : on coupe les gagnants et on laisse courir les perdants — l’inverse de ce qu’il faudrait.",
+      "source": {
+        "name": "Shefrin & Statman (1985), « The Disposition Effect » — finance comportementale"
       }
     }
   ]

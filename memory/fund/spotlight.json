@@ -1,6 +1,6 @@
 {
   "_doc": "LES DEUX CARRÉS DE L'ACCUEIL — ce qui doit sauter aux yeux d'un membre qui ouvre l'app 10 secondes. invest = écrit le VENDREDI après la décision principale (valable la semaine suivante) : { date, week (ISO), value (le nom court de ce que l'IA achèterait cette semaine, ex. 'Chubb' ; ou exactement 'RIEN' s'il n'y a rien d'assez solide — le droit au blanc est une réponse), ticker (ou null), line (≤ 90 caractères : pourquoi, en clair), confidence ('Haute'|'Moyenne'|'Basse'|null) }. watch = écrit le LUNDI (actualité) et mis à jour le mercredi ou le jeudi si quelque chose de plus important arrive : { date, kind ('chiffre'|'news'), value (un chiffre frappant ex. '5,2 %' ou un titre ≤ 7 mots), label (≤ 40 caractères : de quoi il s'agit, ex. 'Taux à 10 ans américain'), line (≤ 90 caractères : ce que ça change pour nous) }. Zéro jargon interne. Aucun chiffre sans source vérifiée dans la routine.",
-  "updated": "2026-10-17",
+  "updated": "2026-10-22",
   "invest": {
     "ticker": "AZZ",
     "name": "AZZ Inc.",
@@ -14,10 +14,10 @@
     "why_now": "Beat Q2 FY27 confirmé SEC 8-K 13/10. Zone achat $115-143 USD respectée. Déploiement cash §H + diversification facteur capex-IA (P-004)."
   },
   "watch": {
-    "date": "2026-10-20",
-    "kind": "news",
-    "value": "CB + MSCI Q3 ce soir",
-    "label": "Double résultats après fermeture US",
-    "line": "Ces deux positions font 14 % du portefeuille. Résultats après fermeture — analysés jeudi."
+    "date": "2026-10-22",
+    "kind": "chiffre",
+    "value": "340 Mds $",
+    "label": "Carnet de commandes Raytheon (RTX), T3",
+    "line": "Plus haut historique (+18 % sur un an) : la demande mondiale de défense reste très forte."
   }
 }
