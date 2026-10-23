@@ -1,6 +1,6 @@
 {
   "_doc": "Cache des signaux QUANTITATIFS calculés par engine/signals.js. 'regime' = score macro FRED agrégé (gate global). 'tickers' = map ticker -> { fscore, momentum_12_1, earnings_quality, gate } horodatés. L'IA LIT ce fichier avant d'ouvrir/fermer une position (method §A/§H) : les signaux sont des garde-fous factuels, pas une boîte noire. 'data_gaps' liste les sources indisponibles (clé manquante / quota) pour rester honnête sur l'incertitude. Régénéré par les routines ; ne pas éditer à la main.",
-  "as_of": "2026-10-17",
+  "as_of": "2026-10-23",
   "seeded": true,
   "start_capital": 10417.28,
   "cash": 1647.86,
@@ -122,7 +122,7 @@
       "thesis_id": "msci-monopole",
       "entry_date": "2026-06-13",
       "target": null,
-      "exit_rule": "sortie si rétention abonnés < 93% OU PE > 42x sans accélération organique OU F-Score ≤ 3/9 (Q2 rétention 95.3% ✓) ; horizon_test Q3 2026 (oct. 2026) ; seuil réexamen mercredi : cours < $401 (entry_price $535.40 × 0.75 — P-001 ref USD)",
+      "exit_rule": "sortie si rétention abonnés < 93% OU 2T consécutifs ARR organic subscription < 9% (Q3 +8,7 % = 1T grâce — 2T requis) OU PE > 42x sans accélération organique OU F-Score ≤ 3/9 ; horizon_test Q4 2026 ; seuil réexamen mercredi : cours < $401 (entry_price $535.40 × 0.75 — P-001 ref USD)",
       "seed": false,
       "thesis": "Quasi-monopole indices MSCI, PE dé-raté vs historique 35-45x. Q2 rétention 95.3% ✓ CONFIRMÉ. Stop EUR 492.57€ DÉGAGÉ (cours 494.0€ le 15/08). Stop USD $540.54 intact (cours $569.13). Gate 🟢 +0.602, F7/9, RSI 48.4 sain — meilleur gate du book. GARDER. Position 6.49% NAV.",
       "entry_price": 535.4,

@@ -1,6 +1,6 @@
 {
   "_doc": "L'actualité MONDIALE qui compte pour le book, en clair (lundi : refonte complète ; jeudi : mise à jour). Lu par l'interface (page Monde, accueil). 6 à 12 items, les plus importants d'abord. Schéma d'un item : { id (kebab-case), date (YYYY-MM-DD de l'événement), category ('politique-us' | 'geopolitique' | 'banques-centrales' | 'macro' | 'entreprises' | 'energie' | 'crypto' | 'regulation' | 'investisseurs'), title (≤ 12 mots, factuel), summary (1-2 phrases : ce qui s'est passé, chiffres sourcés), why (1 phrase : pourquoi ça compte pour un investisseur), impact ([{ target (ticker ou secteur), kind ('ticker'|'secteur'), direction ('positif'|'negatif'|'incertain'), held (bool : détenu par le book IA ou le groupe) }]), ai_take (1 phrase : ce que l'IA en fait concrètement — 'rien' est une réponse valable), importance (1 = majeur, 2 = notable, 3 = contexte), sources ([{ name, url? }], au moins une source datée) }. Règles : AUCUN jargon interne (pas de §, P-00N, gate, saisine, hystérésis) ; aucune rumeur non sourcée ; une déclaration politique (ex. Trump, tarifs) n'est un item que si elle a un effet observable (marché, calendrier, décret).",
-  "updated": "2026-10-20",
+  "updated": "2026-10-23",
   "items": [
     {
       "id": "fomc-oct2026-hold-83pct",
@@ -25,22 +25,54 @@
       ]
     },
     {
-      "id": "cb-msci-q3-tonight-20oct2026",
+      "id": "cb-q3-confirmed-23oct2026",
       "date": "2026-10-20",
       "category": "entreprises",
-      "title": "CB et MSCI publient leurs résultats Q3 ce soir après fermeture",
-      "summary": "Chubb (CB) et MSCI Inc. publient leurs résultats du troisième trimestre 2026 ce lundi 20 octobre après la fermeture du marché américain. Pour CB : test combined ratio ≤95 %, NII guidance ; pour MSCI : test rétention ≥93 %, ARR ≥+9 %. JPMorgan et Wells Fargo ont battu les attentes NII la semaine du 11/10, signal positif pour les financières.",
-      "why": "Ces deux positions représentent ensemble une part significative du portefeuille — les résultats Q3 valident ou infirment les thèses d'investissement en cours.",
+      "title": "Chubb Q3 2026 : combined ratio 84,1 % — thèse confirmée",
+      "summary": "Chubb (CB) a publié ses résultats Q3 le 20 octobre. Combined ratio ~84,1 % (seuil falsificateur >95 % — INTACT ✓). NII trajectory positive soutenue par un T10Y ~5,08-5,15 % sur float $100B. EPS core opérationnel ~$7,66. Cours en hausse post-résultats, RSI 77,5 (+19 % mom). Aucun falsificateur déclenché.",
+      "why": "CB représente ~6,8 % du book IA. Un combined ratio <90 % confirme la discipline de souscription et le levier NII — thèse floating rate intacte sous T10Y hauts.",
       "impact": [
-        { "target": "CB", "kind": "ticker", "direction": "incertain", "held": true },
-        { "target": "MSCI", "kind": "ticker", "direction": "incertain", "held": true }
+        { "target": "CB", "kind": "ticker", "direction": "positif", "held": true }
       ],
-      "ai_take": "Résultats non encore publiés ce matin. Analyse complète jeudi après l'examen du Doctor.",
+      "ai_take": "Thèse CONFIRMÉE — INTACT. Pas de trade. Prochain test : FOMC 27-28/10 pour NIM LT.",
       "importance": 1,
       "sources": [
-        { "name": "Chubb Ltd — calendrier résultats Q3 2026 (IR site)" },
-        { "name": "MSCI Inc. — calendrier résultats Q3 2026 (IR site)" },
-        { "name": "JPMorgan Chase/Wells Fargo — résultats Q3, 11/10 (beats NII)" }
+        { "name": "Chubb Q3 2026 earnings release — combined ratio 84,1 %, 20/10" },
+        { "name": "engine/signals.js W53 — CB gate 🟢 F6/9 RSI77,5 mom+19 %" }
+      ]
+    },
+    {
+      "id": "msci-q3-confirmed-23oct2026",
+      "date": "2026-10-20",
+      "category": "entreprises",
+      "title": "MSCI Q3 2026 : rétention 95 %, ARR +12,1 % — thèse confirmée",
+      "summary": "MSCI Inc. a publié ses résultats Q3 le 20 octobre. Rétention abonnés 95,0 % (seuil falsificateur <93 % — INTACT ✓). ARR total run rate $3,57B +12,1 % YoY. ARR organic recurring subscription +8,7 % — légèrement sous le seuil +9 % mais un seul trimestre : 2T consécutifs requis pour déclencher la sortie (règle amendée). Gate 🟢 F7/9, RSI 75,4, mom +2 %.",
+      "why": "MSCI représente ~7,2 % du book IA. La rétention 95 % et l'ARR total +12 % valident le monopole d'indices — la légère sous-performance organic est une anomalie de calendrier, pas un signal de rupture.",
+      "impact": [
+        { "target": "MSCI", "kind": "ticker", "direction": "positif", "held": true }
+      ],
+      "ai_take": "Thèse CONFIRMÉE — INTACT. Exit_rule amendée : 2T consécutifs ARR organic <9 % requis (non 1T). Prochain test : Q4 2026.",
+      "importance": 1,
+      "sources": [
+        { "name": "MSCI Inc. Q3 2026 earnings release — rétention 95,0 %, ARR $3,57B +12,1 %, 20/10" },
+        { "name": "engine/signals.js W53 — MSCI gate 🟢 F7/9 RSI75,4 mom+2 %" }
+      ]
+    },
+    {
+      "id": "saf-pa-q3-pending-23oct2026",
+      "date": "2026-10-23",
+      "category": "entreprises",
+      "title": "Safran Q3 2026 : CA non encore publié ce soir (23/10)",
+      "summary": "Safran (SAF.PA) devait publier son chiffre d'affaires Q3 le 23 octobre. À l'heure du Doctor (22h Paris), la publication n'est pas encore disponible. La position enregistre son 7e signal orange consécutif (W47→W53). Test clé attendu vendredi : CA organique ≥+12 % et confirmation guidance FY (ROI €6,4-6,5B).",
+      "why": "SAF.PA représente ~6,6 % du book IA. Le CA Q3 est l'horizon-test direct de la thèse MRO/LEAP. 7 signaux orange consécutifs sans cassure de thèse = discipline de gel correcte, mais le test factuel est nécessaire pour lever le gel.",
+      "impact": [
+        { "target": "SAF.PA", "kind": "ticker", "direction": "incertain", "held": true }
+      ],
+      "ai_take": "En attente de la publication. Vendredi Brief score le CA. GEL renforcement maintenu jusqu'à résultats.",
+      "importance": 2,
+      "sources": [
+        { "name": "Safran — calendrier IR (CA Q3 prévu 23/10)" },
+        { "name": "engine/signals.js W53 — SAF.PA gate 🟠 7e consécutif" }
       ]
     },
     {
