@@ -1,59 +1,83 @@
 {
   "_doc": "LA SEMAINE EN CLAIR — la version lisible du brief, pour les membres du groupe (écrite le vendredi, posture mise à jour lundi et mercredi). Lue par l'accueil de l'interface. Schéma : { updated, week (ISO ex 2026-W41), posture { label (2-4 mots, ex. 'Investi mais sélectif'), tone ('offensif'|'neutre'|'defensif'), line (1 phrase : ce que l'IA fait et pourquoi) }, headline (LA phrase de la semaine), points ([≤ 3 × { title (≤ 6 mots), text (≤ 30 mots), kind ('marche'|'portefeuille'|'risque'|'opportunite') }]), decisions ([{ date, ticker, name, action ('achat'|'vente'|'renforcement'|'allegement'|'conserver'|'surveiller'), sleeve ('coeur'|'socle'|'tactique'|'crypto'), desk, why (≤ 25 mots, en clair), risk (≤ 20 mots : ce qui ferait changer d'avis), confidence ('Haute'|'Moyenne'|'Basse'), amount_eur, weight_pct }]), next ([≤ 4 × { date, label, why (≤ 15 mots) }]), in_one_sentence }. Règles : écrit pour quelqu'un qui n'a lu ni la méthode ni le playbook — zéro jargon interne (§, P-00N, gate, saisine, hystérésis, cov, F7/9), des chiffres simples, pas plus de mots que nécessaire. Le brief complet (morning-brief.md) reste la référence détaillée.",
-  "updated": "2026-10-20",
-  "week": "W53",
-  "posture": "SURCHAUFFE override · RISK-ON SAIN (signals.js) · Cash 16 % · CB/MSCI Q3 ce soir",
-  "headline": "W53 : tendance RÉARMEMENT DÉFENSE MONDIAL validée. CB + MSCI publient ce soir. RTX + LMT cette semaine. FOMC 27-28/10 à 83 % HOLD.",
+  "updated": "2026-10-24",
+  "week": "W54",
+  "posture": {
+    "label": "Investi mais prudent",
+    "tone": "neutre",
+    "line": "Surchauffe des taux maintenue — l'IA déploie l'excès de cash en marchés émergents (ETF) et garde ses convictions cœur sans forcer de nouvelles entrées avant les publications de la semaine prochaine."
+  },
+  "headline": "W54 : SAF.PA publie un T3 solide (+14,7 %) malgré un ralentissement de la rechange civile. Cash ramené à 12 % (dans les clous). Semaine décisive à venir : FOMC + ICE + Société Générale + potentiellement Bristol-Myers Squibb.",
   "points": [
-    "Tendance de la semaine : Réarmement défense mondial (OTAN 23/32 membres ≥ 2 % PIB, cycle pluriannuel). RTX ACHETER conditionnel post-Q3 si guide intact.",
-    "Double horizon-test ce soir : CB Q3 (combined ratio ≤95 %, NII OK ?) et MSCI Q3 (rétention ≥93 %, ARR ≥+9 %). Résultats après fermeture US.",
-    "SAF.PA : 5e signal de vigilance consécutif — réexamen mercredi 22/10 avant la publication du CA Q3 (23/10).",
-    "T10Y légèrement en recul (~5,1 %) vs pic 5,35 % du 10/10. FOMC 27-28/10 HOLD à 83 % — cash 16 % déployable progressivement."
+    {
+      "title": "Safran T3 : bon mais la rechange ralentit",
+      "text": "Chiffre d'affaires T3 +14,7 %, légèrement au-dessus des attentes. Mais les pièces de rechange moteur progressent de 17 % (vs +20 % attendus par notre règle de suivi). Résultat tenu, pas euphorique.",
+      "kind": "portefeuille"
+    },
+    {
+      "title": "Cash ramené dans les règles",
+      "text": "L'IA a racheté 9,78 parts d'un ETF marchés émergents (EIMI) pour ramener le cash de 16,5 % à 12 % — dans la bande cible de 5-15 %.",
+      "kind": "portefeuille"
+    },
+    {
+      "title": "Semaine chargée : FOMC + 3 publications",
+      "text": "FOMC lundi-mardi (statu quo attendu à 83 %). ICE, Société Générale et Bristol-Myers Squibb publient mercredi 29/10. Raytheon conditionnel post-lectures capex ~30/10.",
+      "kind": "opportunite"
+    }
   ],
   "decisions": [
     {
-      "ticker": "GLE.PA",
-      "action": "RENFORCEMENT",
-      "confidence": "Basse",
-      "rationale": "Sous-taille depuis entrée 26/09. 2 signaux 🟢 + cash déploiement §H."
-    },
-    {
-      "ticker": "AZZ",
-      "action": "ENTRÉE Moyenne ~4,5 % NAV",
-      "confidence": "Moyenne",
-      "rationale": "Beat Q2 FY27, Metal Coatings 30,7 % in-guide, diversifiant cluster capex-IA."
-    },
-    {
+      "date": "2026-10-24",
       "ticker": "EIMI",
-      "action": "SOCLE +6,87 parts",
+      "name": "iShares Core EM IMI (ETF marchés émergents)",
+      "action": "renforcement",
+      "sleeve": "socle",
+      "desk": "desk-macro",
+      "why": "Excès de cash (16,5 % > plafond 15 %). ETF diversifié pour rééquilibrer sans prise de risque supplémentaire sur un seul titre.",
+      "risk": "Tensions géopolitiques EM ou retour du dollar fort.",
       "confidence": "Moyenne",
-      "rationale": "Sous-pondération socle, déploiement obligatoire cash > 15 %."
+      "amount_eur": 450,
+      "weight_pct": 12.5
     },
     {
-      "ticker": "CB/MSCI",
-      "action": "HORIZON-TEST LUNDI",
-      "confidence": null,
-      "rationale": "Pré-décisions enregistrées. Q3 lundi 20/10."
-    },
-    {
-      "ticker": "BMY",
-      "action": "CONDITIONNELLE post-Q3 29/10",
-      "confidence": "Moyenne",
-      "rationale": "Demi-taille ~3 % si Growth Portfolio ≥+15 %, Milvexian sans glissement."
-    },
-    {
+      "date": "2026-10-24",
       "ticker": "SAF.PA",
-      "action": "SAISINE mercredi W52",
-      "confidence": null,
-      "rationale": "4e 🟠 consécutif — gap 1,64 pts < 2 pts donc pas de trim ce soir."
+      "name": "Safran",
+      "action": "conserver",
+      "sleeve": "coeur",
+      "desk": "desk-industrie-energie",
+      "why": "T3 solide : chiffre d'affaires +14,7 %, guidance annuelle maintenue. Rechange civile +17 % = légèrement sous notre seuil de suivi mais guidance annuelle mid-20s réaffirmée.",
+      "risk": "Si la rechange reste sous +20 % pendant deux trimestres consécutifs, révision à la baisse de la conviction.",
+      "confidence": "Moyenne"
+    },
+    {
+      "date": "2026-10-24",
+      "ticker": "RTX",
+      "name": "Raytheon Technologies",
+      "action": "surveiller",
+      "sleeve": "coeur",
+      "desk": "desk-industrie-energie",
+      "why": "T3 backlog $340B record. Décision d'entrée (~4 % du portefeuille) différée après lecture des dépenses d'investissement Amazon/Microsoft (~30/10).",
+      "risk": "Si les hyperscalers coupent leur investissement data centers > 15 %, thèse réarmement affaiblie.",
+      "confidence": "Moyenne"
+    },
+    {
+      "date": "2026-10-24",
+      "ticker": "BMY",
+      "name": "Bristol-Myers Squibb",
+      "action": "surveiller",
+      "sleeve": "coeur",
+      "desk": "desk-conso",
+      "why": "Résultats T3 le 29/10. Entrée conditionnelle à ~3 % du portefeuille si la gamme croissance dépasse +15 % YoY et Milvexian reste dans les délais.",
+      "risk": "Résultats décevants ou glissement timeline Milvexian → pas d'entrée.",
+      "confidence": "Basse"
     }
   ],
   "next": [
-    "Ce soir (20/10) : CB Q3 + MSCI Q3 après fermeture US — double horizon-test",
-    "Mer 22/10 : LMT Q3 + saisine SAF.PA (5e🟠, CA Q3 jeudi 23/10)",
-    "Jeu 23/10 : SAF.PA CA Q3 + Doctor scorera CB/MSCI",
-    "27-28/10 : FOMC HOLD attendu à 83 % — pas de repositionnement",
-    "29/10 : ICE Q3 + GLE.PA Q3 + BMY Q3 (conditionnel ~3 % NAV si Growth Portfolio ≥+15 %)"
+    { "date": "27-28/10", "label": "FOMC (statu quo attendu)", "why": "Stabilité taux — confirmation du scénario central pour CB, BNP.PA, GLE.PA" },
+    { "date": "29/10", "label": "ICE + GLE.PA + BMY résultats", "why": "3 horizon-tests en un jour ; BMY = entrée conditionnelle possible" },
+    { "date": "~30/10", "label": "AMZN/MSFT capex guidance", "why": "Déterminant pour la décision Raytheon et la santé du cluster data centers" },
+    { "date": "~05/11", "label": "Granite Construction Q3", "why": "Test final thèse infrastructures américaines (marges + carnet de commandes)" }
   ],
-  "in_one_sentence": "W53 : tendance défense validée (RTX ACHETER conditionnel post-Q3), CB + MSCI font ou défont 14 % du book ce soir, SAF.PA à réexaminer mercredi avant son CA du 23/10."
+  "in_one_sentence": "W54 : SAF.PA T3 tenu (mais rechange civile à surveiller), cash remis dans les clous via ETF EM, semaine à venir décisive avec FOMC + ICE + SG + potentiel entrée Bristol-Myers."
 }

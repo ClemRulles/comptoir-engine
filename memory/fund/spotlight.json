@@ -1,23 +1,23 @@
 {
   "_doc": "LES DEUX CARRÉS DE L'ACCUEIL — ce qui doit sauter aux yeux d'un membre qui ouvre l'app 10 secondes. invest = écrit le VENDREDI après la décision principale (valable la semaine suivante) : { date, week (ISO), value (le nom court de ce que l'IA achèterait cette semaine, ex. 'Chubb' ; ou exactement 'RIEN' s'il n'y a rien d'assez solide — le droit au blanc est une réponse), ticker (ou null), line (≤ 90 caractères : pourquoi, en clair), confidence ('Haute'|'Moyenne'|'Basse'|null) }. watch = écrit le LUNDI (actualité) et mis à jour le mercredi ou le jeudi si quelque chose de plus important arrive : { date, kind ('chiffre'|'news'), value (un chiffre frappant ex. '5,2 %' ou un titre ≤ 7 mots), label (≤ 40 caractères : de quoi il s'agit, ex. 'Taux à 10 ans américain'), line (≤ 90 caractères : ce que ça change pour nous) }. Zéro jargon interne. Aucun chiffre sans source vérifiée dans la routine.",
-  "updated": "2026-10-22",
+  "updated": "2026-10-24",
   "invest": {
-    "ticker": "AZZ",
-    "name": "AZZ Inc.",
-    "thesis_short": "Compounder galvanisation acier (protection anticorrosion pour T&D, infra, solaire). Q2 FY27 : EPS $2,00 (+29 % BEAT), Metal Coatings adj EBITDA 30,7 %, guidance FY27 relevée $7,00-7,30. Décote relative (~19x fwd) vs marges en expansion. NON capex-IA = diversifiant du book.",
-    "gate": "🟢 +0,623 F7/9 RSI47,2",
-    "entry_date": "2026-10-17",
-    "entry_price": "125,15 € (~$137,66)",
-    "size": "4,5 % NAV (Moyenne réduite — marge mince SURCHAUFFE + base rate fat-tail)",
-    "exit_rule": "Metal Coatings adj EBITDA < 25 % durablement OU volumes infra/Precoat déclin OU F≤3/9",
-    "horizon_test": "Q3 FY27 ~janv. 2027",
-    "why_now": "Beat Q2 FY27 confirmé SEC 8-K 13/10. Zone achat $115-143 USD respectée. Déploiement cash §H + diversification facteur capex-IA (P-004)."
+    "ticker": "RTX",
+    "name": "Raytheon Technologies",
+    "thesis_short": "Industriel de défense américain (missiles, moteurs d'avion, capteurs). T3 2026 : carnet de commandes $340 Mds (+18 % sur 1 an, nouveau record), EPS $2,26 BEAT, guidance relevée. Cycle de réarmement mondial (23/32 membres OTAN ≥2 % PIB). Non corrélé aux data centers — diversifiant dans le portefeuille.",
+    "gate": "🟢 backlog record, thèse intacte",
+    "entry_date": "en attente (~31/10 après lecture capex cloud Amazon/Microsoft)",
+    "entry_price": "à définir post-30/10 (zone cible ~$135-155)",
+    "size": "~4 % du portefeuille (décision différée)",
+    "exit_rule": "Sortie si backlog guidance coupée OU marge Aeronautics < 11 % durablement",
+    "horizon_test": "Q4 2026 / H1 2027",
+    "why_now": "Backlog $340Mds confirme la thèse. Entrée différée au 31/10 : lecture des dépenses d'investissement hyperscalers (~30/10) pour valider la non-corrélation data centers."
   },
   "watch": {
-    "date": "2026-10-22",
-    "kind": "chiffre",
-    "value": "340 Mds $",
-    "label": "Carnet de commandes Raytheon (RTX), T3",
-    "line": "Plus haut historique (+18 % sur un an) : la demande mondiale de défense reste très forte."
+    "date": "2026-10-24",
+    "kind": "news",
+    "value": "Safran rechange −6 %",
+    "label": "Safran T3 2026 : rechange civile décélère",
+    "line": "CA T3 +14,7 % mais pièces de rechange moteur +17 % seulement (vs +29 % au S1). La bourse punit le ralentissement."
   }
 }

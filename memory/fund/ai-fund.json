@@ -3,7 +3,7 @@
   "as_of": "2026-10-23",
   "seeded": true,
   "start_capital": 10417.28,
-  "cash": 1647.86,
+  "cash": 1197.48,
   "positions": [
     {
       "ticker": "SAF.PA",
@@ -43,8 +43,8 @@
     },
     {
       "ticker": "EIMI",
-      "quantity": 16.64512,
-      "avg_cost": 43.39721,
+      "quantity": 26.42512,
+      "avg_cost": 44.36,
       "confidence": "Moyenne",
       "horizon": "socle",
       "thesis_id": "em-etf",
@@ -775,8 +775,22 @@
       "gate": "🟢 RSI31.4 mom+23% (signals.js 17/10/2026 — cov39%)",
       "desk": "desk-macro",
       "rationale": "Déploiement cash §H vers poche SOCLE sous-pondérée (4,5 % vs cible 12 %) — priorité audit risk-manager 15/10 : sous-investissement (cash 26 % >> 15 %). Troisième palier de déploiement cette semaine (budget 10 pts NAV) après GLE.PA + AZZ. ETF iShares Core EM IMI UCITS existant au book, ajout sur position existante. Budget résiduel semaine : 321.54€ → 6.87 parts @ 46.7761€. Socle : 16.64512 parts après, poids SOCLE ~7,5 % NAV (vs cible 12 % — à continuer les prochaines semaines). Total déployé W51 : 1026.26€ ≈ 10 pts NAV (plafond hebdo respecté §H)."
+    },
+    {
+      "ts": "2026-10-24",
+      "side": "buy",
+      "ticker": "EIMI",
+      "quantity": 9.78,
+      "price": 46.0,
+      "fee": 0.5,
+      "confidence": "Moyenne",
+      "thesis_id": "em-etf",
+      "horizon": "socle",
+      "gate": "🟢 RSI21.5 survendu mom+25% (signals.js 24/10/2026 — cov39%)",
+      "desk": "desk-macro",
+      "rationale": "Déploiement SOCLE obligatoire W54 : cash 16,5 % > plafond 15 % + socle 8 % << cible 12 % + vol 11 % < plancher 13 %. Règle les 3 alertes risk.js en un geste (soupape §H correcte per leçon 22/10). RSI 21,5 = survendu extrême = entrée favorable. +9,78 parts @ €46,00. Nouvelle quantité : 26,42512 parts. Nouvel avg_cost : €44,36. Post-trade : socle ~12,5 % NAV (cible ✓), cash €1197,48 (~12 % NAV, corridor ✓). SAF.PA non touché (leçon 22/10 : financement diversifiant ≠ trim intra-secteur)."
     }
   ],
-  "note": "Brief W51 2026-10-17. SURCHAUFFE INCHANGÉE (override ; T10Y ~5,21-5,25 %). 3 TRADES W51 : GLE.PA RENFORCEMENT +3,74 parts Basse → cible Basse ~3 % NAV (€242.35) ; AZZ ENTRÉE Moyenne ~4,5 % NAV (€462.05) ; EIMI SOCLE +6.87 parts socle (€321.85). Cash déployé total : €1026.26 (~10 pts NAV, plafond §H). Cash post-trades : €1647.86 (~16.1% NAV). P-004 formalisé : gel cluster capex-IA à 4 noms (GVA+CEG+EME+AMZN). Desk/sector renseignés pour TOUTES les lignes. CATALYSEURS IMMINENTS : CB Q3 + MSCI Q3 lundi 20/10 (horizon-tests), RTX Q3 20/10 (armer si thèse tient), FOMC 27-28/10 HOLD quasi-certain (~66-75 %), ICE Q3 29/10, GLE.PA Q3 29/10, BMY Q3 29/10 (trigger conditionnel). SAF.PA hystérésis : 4e 🟠 consécutif — saisine mercredi W52 23/10 OBLIGATOIRE si 5e🟠. Signaux W51 17/10 : 13🟢 1🟠 (SAF.PA) 0🔴.",
+  "note": "Brief W54 2026-10-24. SURCHAUFFE inchangée (T10Y ~5,08-5,15 %). 1 TRADE W54 : EIMI SOCLE +9,78 parts @ €46,00 (€450,38 incl. frais) → cash €1647,86→€1197,48 (~12 % NAV, corridor ✓). SAF.PA Q3 23/10 : CA +14,7 %/+13,4 % org BEAT, aftermarket +17 % (<+20 % seuil exit, 1T isolé, guidance FY mid-20s maintenue, LEAP-1B timing shift) → GARDER. 8e 🟠, gap <2pts, hystérésis trim non déclenché. CEG 🟢 (gate revenu vert). GLE.PA 🟠 1er flip. RTX différé post-capex-read ~30/10. FOMC 27-28/10 HOLD 83 %. Signaux W54 24/10 : 13🟢 2🟠 (SAF.PA 8e, GLE.PA 1er) 0🔴.",
   "note_migration_2026_08_30": "MIGRATION §H/§I COMPLÈTE (vendredi 05/09/2026) : (1) `entry_price` = prix réellement payé par l'IA. (2) `avg_cost` hors jugement IA. (3) Toutes les exit_rules CŒUR RÉÉCRITES en critères de thèse + seuil réexamen −25% vs entry_price : stops de prix (stop -8% avg_cost, stop EUR X€, stop USD $Y) SUPPRIMÉS de toutes les exit_rules. P-001 conservé comme RÉFÉRENCE de monitoring USD pour les positions US, jamais comme déclencheur automatique sur CŒUR — franchissement P-001 = saisine mercredi, pas vente jeudi. Hystérésis : gate flip ne déclenche sizing change qu'après 2 relevés consécutifs confirmés."
 }

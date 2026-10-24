@@ -290,6 +290,40 @@
       "source": {
         "name": "Shefrin & Statman (1985), « The Disposition Effect » — finance comportementale"
       }
+    },
+    {
+      "date": "2026-10-25",
+      "theme": "nos-lignes",
+      "level": "moyen",
+      "question": "Safran (SAF.PA) publie un CA T3 2026 +14,7 %. Quelle métrique surveille-t-on en priorité pour la thèse MRO/LEAP ?",
+      "choices": [
+        "La croissance de la rechange moteur civil (seuil de suivi : ≥ +20 % YoY)",
+        "Le nombre de livraisons d'avions neufs chez Airbus",
+        "La marge opérationnelle du segment défense (équipements)",
+        "Le cours du pétrole, qui influence les commandes aériennes"
+      ],
+      "answer": 0,
+      "explanation": "L'après-vente LEAP (entretien des moteurs en service, facturation à l'heure de vol) est le moteur de marge de Safran. Quand le parc grossit, la rechange grossit encore plus vite — c'est l'effet 'installé base'. En T3 2026, +17 % = léger ralentissement ; guidance annuelle mid-20 % maintenue.",
+      "source": {
+        "name": "SAF.PA — résultats T3 2026 publiés le 23/10/2026 (Boursorama, France-Épargne)"
+      }
+    },
+    {
+      "date": "2026-10-26",
+      "theme": "bases",
+      "level": "facile",
+      "question": "Le RSI (Relative Strength Index) d'une action est à 22. Qu'est-ce que cela indique ?",
+      "choices": [
+        "L'action est techniquement survendue (possible rebond)",
+        "L'action a perdu 22 % sur l'année",
+        "L'action est surévaluée par rapport à ses pairs",
+        "La société a publié 22 brevets cette année"
+      ],
+      "answer": 0,
+      "explanation": "Le RSI compare la force des hausses aux baisses récentes (sur 14 jours). Sous 30 = survendu : la pression vendeuse est peut-être exagérée, un rebond technique est possible. Au-dessus de 70 = suracheté. Ce n'est pas un indicateur de valorisation, mais de momentum court terme.",
+      "source": {
+        "name": "Wilder (1978) — New Concepts in Technical Trading Systems ; Investopedia RSI"
+      }
     }
   ]
 }
