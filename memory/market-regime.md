@@ -1,3 +1,21 @@
+# Régime de marché — Trend Radar W54 2026-10-27
+
+- **SURCHAUFFE override MAINTENUE** (T10Y ~5,0-5,1 %, >4,7 % seuil ; CPI 3,7 % YoY, Fed funds 3,75-4,00 % depuis hike septembre 2026). `signals.js` 27/10 : régime FRED = RISK-ON SAIN (lag FRED habituel — override mémoire prime). Gates W54 : **12🟢 / 3🟠 (SAF.PA RSI 15,3 · EIMI RSI 13,5 cov 39% · CEG 1er🟠 mom -33%)**.
+- **FOMC 27-28/10 EN COURS** (résultat 28/10 ~20h ET) — HOLD attendu à ~83 %. Courbe T10Y-2Y : +0,32 pt (normalisée vs inversion W38, premier signe de fin de cycle restrictif — PAS un pivot). VIX 19,45 (modéré). HY spread 3,38 % (pas de stress). Seule une guidance hawkish surprise (hike déc. signalé comme probable par Powell) ferait bouger l'override.
+- **Alerts book W54** : cœur 76,1 % (> max 75 %), vol 11,6 %/an (< plancher 13 %). Cluster capex-IA (AMZN+CEG+EME+GVA) = 25,3 % NAV (~50 % du risque, P-004 hard cap). NAV €10 033, cash €1 197 (11,94 %) = dans la bande 5-15 % ✓.
+- **CEG 🟠 (1er relevé)** : momentum -33 %, RSI 44,7. Hystérésis non armée (2 relevés requis + gap >2 pts NAV). Pas d'action. Revérifier au Deep-dive W54 mercredi.
+- **EIMI 🟠 (cov 39%)** : RSI 13,5 (très survendu), signaux prix uniquement. Traité comme ⚪ en pratique. Thèse socle intacte.
+- **SAF.PA 🟠 (CA Q3 confirmé 23/10)** : +14,7 %/+13,4 % org — léger beat, thèse GARDER. Aftermarket civil +17 % USD (< seuil exit +20 % — 1T isolé, jurisprudence 2T).
+- **Desk-macro W54** : CADRAN SURCHAUFFE · restrictif stabilisé. Risque n°1 : guidance FOMC hawkish 28/10 → T10Y>5,2 % → compression cluster capex-IA. Risque n°2 : AMZN Q3 capex ~30/10 (gate RTX). Risque n°3 : ICE Q3 29/10 (horizon-test thèse récurrence).
+- **Desk-crypto W54** : F&G 48 (Neutral), BTC €71 750 -5 % 30j, ETH -13,7 % 30j. Consolidation post-ATH. Poche crypto 0 % → cible régime SURCHAUFFE = 5 %. Fenêtre entrée : **dimanche 01/11 si FOMC HOLD confirmé**. Palier 1 ~€251 (BTC €151 + ETH €25). Aucune alt.
+- **Allocation W54** : Tactique BLANC (Grok cap 3 % mais catalyseurs binaires semaine — aucun signal entrant actionnable). RTX différé post-AMZN capex (~30/10). Cœur : ne pas trim (résorption mécanique via poches). Socle : OK (micro top-up EIMI €50-100 possible vendredi si cash >11 % après entrées). Crypto : dimanche 01/11.
+- **Tendance W54 : RÉARMEMENT DÉFENSE MONDIAL (continuation W53, nouvelles confirmations)** — voir trends.md.
+- **C bis : 0 scénario §K candidat** — FOMC binaire (trop court terme), AMZN capex déjà en catalyseurs.md. Droit au blanc sur les scénarios de second ordre.
+- **Pouls Grok W54 : DATA GAP** (API xAI knowledge cutoff antérieur à Oct 2026). 0 call Grok cette semaine. Tactical_cap 3 % NAV (hit_rate 47 %, 19 résolus).
+- **Sources** : engine/signals.js + crypto.js + risk.js 27/10 ; market-regime.md W53 ; desk-macro + desk-crypto agentiques W54 ; allocation.json 27/10 ; signals.json 27/10.
+
+---
+
 # Régime de marché — Deep-dive W53 2026-10-22
 
 - **SURCHAUFFE override CONFIRMÉE** (T10Y ~5,08-5,15 %, >4,7 % seuil ; FOMC 27-28/10 ~83 % HOLD). ⚠️ `signals.js` 22/10 : **régime FRED = « inconnu »** (FRED lag/indispo ce soir) → override mémoire prime, comme d'habitude. signals.js candidats : **RMD 🟢 RSI 80,7 · ODFL 🟢 RSI 75,5 F5/9 · LMT 🟠 RSI 71,4 · SAF.PA 🟠 RSI 29** — les 3 candidats surachetés dans un régime qui exige une marge RÉELLE (P-003).

@@ -1,6 +1,6 @@
 {
   "_doc": "LES DEUX CARRÉS DE L'ACCUEIL — ce qui doit sauter aux yeux d'un membre qui ouvre l'app 10 secondes. invest = écrit le VENDREDI après la décision principale (valable la semaine suivante) : { date, week (ISO), value (le nom court de ce que l'IA achèterait cette semaine, ex. 'Chubb' ; ou exactement 'RIEN' s'il n'y a rien d'assez solide — le droit au blanc est une réponse), ticker (ou null), line (≤ 90 caractères : pourquoi, en clair), confidence ('Haute'|'Moyenne'|'Basse'|null) }. watch = écrit le LUNDI (actualité) et mis à jour le mercredi ou le jeudi si quelque chose de plus important arrive : { date, kind ('chiffre'|'news'), value (un chiffre frappant ex. '5,2 %' ou un titre ≤ 7 mots), label (≤ 40 caractères : de quoi il s'agit, ex. 'Taux à 10 ans américain'), line (≤ 90 caractères : ce que ça change pour nous) }. Zéro jargon interne. Aucun chiffre sans source vérifiée dans la routine.",
-  "updated": "2026-10-24",
+  "updated": "2026-10-27",
   "invest": {
     "ticker": "RTX",
     "name": "Raytheon Technologies",
@@ -14,10 +14,10 @@
     "why_now": "Backlog $340Mds confirme la thèse. Entrée différée au 31/10 : lecture des dépenses d'investissement hyperscalers (~30/10) pour valider la non-corrélation data centers."
   },
   "watch": {
-    "date": "2026-10-24",
+    "date": "2026-10-27",
     "kind": "news",
-    "value": "Safran rechange −6 %",
-    "label": "Safran T3 2026 : rechange civile décélère",
-    "line": "CA T3 +14,7 % mais pièces de rechange moteur +17 % seulement (vs +29 % au S1). La bourse punit le ralentissement."
+    "value": "FOMC 28 oct. → résultat soir",
+    "label": "Réunion Fed — décision demain 20h ET",
+    "line": "HOLD attendu à 83%. Ton hawkish = pression sur les actifs à duration. Détermine nos prochaines entrées."
   }
 }

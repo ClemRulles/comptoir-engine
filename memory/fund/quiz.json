@@ -1,6 +1,6 @@
 {
   "_doc": "LE QUIZ DU JOUR — une question par jour pour faire apprendre la bourse aux membres (accueil de l'app, classement mensuel dans Groupe). Écrit par CHAQUE routine de nuit : elle s'assure que les 2 prochains jours (date de Paris) ont leur question, sans jamais réécrire une date déjà publiée. Règles complètes dans skills/quiz.md. Schéma d'une entrée : { date (YYYY-MM-DD, jour où la question est posée), theme ('bases'|'histoire'|'actualite'|'nos-lignes'|'psychologie'|'crypto'|'fiscalite'), level ('facile'|'moyen'|'difficile'), question (≤ 160 caractères), choices ([4 réponses courtes, ≤ 60 caractères chacune]), answer (index 0-3 de la bonne réponse — varie sa position), explanation (≤ 300 caractères : pourquoi c'est la bonne réponse, ce qu'il faut en retenir), source ({ name, url? } : d'où vient le fait) }. Garder ~60 jours, les plus récents en dernier.",
-  "updated": "2026-10-22",
+  "updated": "2026-10-27",
   "questions": [
     {
       "date": "2026-10-07",
@@ -323,6 +323,40 @@
       "explanation": "Le RSI compare la force des hausses aux baisses récentes (sur 14 jours). Sous 30 = survendu : la pression vendeuse est peut-être exagérée, un rebond technique est possible. Au-dessus de 70 = suracheté. Ce n'est pas un indicateur de valorisation, mais de momentum court terme.",
       "source": {
         "name": "Wilder (1978) — New Concepts in Technical Trading Systems ; Investopedia RSI"
+      }
+    },
+    {
+      "date": "2026-10-27",
+      "theme": "bases",
+      "level": "moyen",
+      "question": "En finance, la 'prime de risque actions' (ou equity risk premium) représente :",
+      "choices": [
+        "Le supplément de rendement attendu des actions par rapport à un placement sans risque",
+        "Les frais de courtage sur l'achat d'actions",
+        "Le montant maximum qu'on peut perdre sur une action",
+        "La différence entre le dividende et le coupon obligataire"
+      ],
+      "answer": 0,
+      "explanation": "La prime de risque = rendement espéré des actions − taux sans risque (ex. T10Y). Elle rémunère la volatilité et l'incertitude. Historiquement ~4-6% pour les marchés développés. Si le T10Y monte, la prime demandée monte aussi, ce qui pèse sur les valorisations.",
+      "source": {
+        "name": "Damodaran — Equity Risk Premium (mise à jour annuelle)"
+      }
+    },
+    {
+      "date": "2026-10-28",
+      "theme": "nos-lignes",
+      "level": "moyen",
+      "question": "Raytheon (RTX) vient de publier un carnet de commandes de $340 Mds. Pourquoi ce chiffre est-il un bon indicateur pour un investisseur ?",
+      "choices": [
+        "Il représente les revenus futurs quasi-certains sur plusieurs années",
+        "C'est le montant des dividendes à verser",
+        "Cela indique que l'action va forcément monter",
+        "C'est la valeur comptable des actifs de l'entreprise"
+      ],
+      "answer": 0,
+      "explanation": "Un carnet de commandes (backlog) = commandes reçues et signées mais pas encore livrées. Pour RTX à ~$80Mds de CA annuel, $340Mds = ~4 ans de visibilité. C'est une preuve de demande réelle, pas une prévision. Plus le backlog est long, plus la visibilité des revenus est grande.",
+      "source": {
+        "name": "RTX Q3 2026 — communiqué IR, 24 octobre 2026"
       }
     }
   ]

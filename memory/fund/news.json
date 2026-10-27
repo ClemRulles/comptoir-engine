@@ -1,27 +1,110 @@
 {
   "_doc": "L'actualité MONDIALE qui compte pour le book, en clair (lundi : refonte complète ; jeudi : mise à jour). Lu par l'interface (page Monde, accueil). 6 à 12 items, les plus importants d'abord. Schéma d'un item : { id (kebab-case), date (YYYY-MM-DD de l'événement), category ('politique-us' | 'geopolitique' | 'banques-centrales' | 'macro' | 'entreprises' | 'energie' | 'crypto' | 'regulation' | 'investisseurs'), title (≤ 12 mots, factuel), summary (1-2 phrases : ce qui s'est passé, chiffres sourcés), why (1 phrase : pourquoi ça compte pour un investisseur), impact ([{ target (ticker ou secteur), kind ('ticker'|'secteur'), direction ('positif'|'negatif'|'incertain'), held (bool : détenu par le book IA ou le groupe) }]), ai_take (1 phrase : ce que l'IA en fait concrètement — 'rien' est une réponse valable), importance (1 = majeur, 2 = notable, 3 = contexte), sources ([{ name, url? }], au moins une source datée) }. Règles : AUCUN jargon interne (pas de §, P-00N, gate, saisine, hystérésis) ; aucune rumeur non sourcée ; une déclaration politique (ex. Trump, tarifs) n'est un item que si elle a un effet observable (marché, calendrier, décret).",
-  "updated": "2026-10-23",
+  "updated": "2026-10-27",
   "items": [
     {
-      "id": "fomc-oct2026-hold-83pct",
-      "date": "2026-10-19",
+      "id": "fomc-oct2026-en-cours",
+      "date": "2026-10-27",
       "category": "banques-centrales",
-      "title": "FOMC 27-28 oct. : probabilité HOLD remonte à 83 %",
-      "summary": "La probabilité de statu quo monétaire au FOMC du 27-28 octobre a remonté à ~83 % selon Trading Economics (19/10), après le NFP septembre décevant (+62K) et un CPI septembre modestement chaud (headline 3,7 % YoY, core +0,3 % MoM). La prochaine fenêtre de hausse se déplace vers décembre 2026 (~75 %+). Le gouverneur Warsh a émis des signaux plus dovish la semaine du 13/10.",
-      "why": "Un HOLD en octobre soulage les actifs risqués à court terme mais maintient la pression sur la duration ; la thèse de réinvestissement obligataire à hauts taux pour CB, BNP.PA et GLE.PA reste intacte.",
+      "title": "FOMC 27-28 oct. : réunion en cours, décision demain 20h ET",
+      "summary": "La Fed se réunit ce mardi et mercredi. Le marché anticipe un maintien des taux (probabilité ~83 %) à 3,75-4,00 %, malgré un CPI septembre à 3,7 % légèrement au-dessus des attentes. La vraie inconnue est le message de Powell sur la suite : un signal hawkish (hike décembre probable) pèserait sur les actifs risqués et la dette longue.",
+      "why": "Un maintien des taux soulage les marchés à court terme et renforce la thèse NIM des banques (CB, BNP.PA, GLE.PA). Un ton hawkish rouvrirait la pression sur les valeurs de duration et les actifs risqués.",
       "impact": [
-        { "target": "CB", "kind": "ticker", "direction": "positif", "held": true },
-        { "target": "BNP.PA", "kind": "ticker", "direction": "positif", "held": true },
-        { "target": "GLE.PA", "kind": "ticker", "direction": "positif", "held": true },
-        { "target": "CEG", "kind": "ticker", "direction": "positif", "held": true },
-        { "target": "GVA", "kind": "ticker", "direction": "positif", "held": true }
+        {
+          "target": "CB",
+          "kind": "ticker",
+          "direction": "positif",
+          "held": true
+        },
+        {
+          "target": "BNP.PA",
+          "kind": "ticker",
+          "direction": "positif",
+          "held": true
+        },
+        {
+          "target": "GLE.PA",
+          "kind": "ticker",
+          "direction": "positif",
+          "held": true
+        },
+        {
+          "target": "CEG",
+          "kind": "ticker",
+          "direction": "incertain",
+          "held": true
+        },
+        {
+          "target": "GVA",
+          "kind": "ticker",
+          "direction": "incertain",
+          "held": true
+        }
       ],
-      "ai_take": "Aucun trade déclenché. La fenêtre décembre reste le prochain test décisif ; maintenir toutes les positions.",
+      "ai_take": "Maintenir les positions. Décision de crypto (dimanche 01/11) et de RTX (~31/10) conditionnées au verdict.",
       "importance": 1,
       "sources": [
-        { "name": "Trading Economics — FOMC October probabilities, 19/10/2026" },
-        { "name": "BLS — NFP septembre 2026, publié 10/10 (+62K vs +125K attendus)" },
-        { "name": "BLS — CPI septembre 2026, 14/10 (3,7 % YoY)" }
+        {
+          "name": "Trading Economics — probabilités FOMC oct. 2026"
+        }
+      ]
+    },
+    {
+      "id": "rtx-q3-backlog-record",
+      "date": "2026-10-24",
+      "category": "entreprises",
+      "title": "Raytheon : carnet de commandes record 340 milliards",
+      "summary": "Raytheon Technologies (RTX) a publié ses résultats T3 le 24 octobre : carnet de commandes $340 milliards (+18 % sur un an, record absolu), EPS ajusté $2,26 au-dessus du consensus de $2,11. La guidance annuelle a été relevée. Les segments Pratt & Whitney (moteurs) et Raytheon (missiles) progressent tous les deux.",
+      "why": "Confirme que le réarmement mondial se traduit en commandes fermes pluriannuelles. Valide notre analyse de tendance défense pour la deuxième semaine consécutive.",
+      "impact": [
+        {
+          "target": "RTX",
+          "kind": "ticker",
+          "direction": "positif",
+          "held": false
+        },
+        {
+          "target": "Industrials - Aerospace & Defense",
+          "kind": "secteur",
+          "direction": "positif",
+          "held": false
+        }
+      ],
+      "ai_take": "Entrée RTX ~4 % du portefeuille conditionnelle à la lecture du plan d'investissement Amazon (~30/10), pour confirmer la non-corrélation avec les data centers.",
+      "importance": 1,
+      "sources": [
+        {
+          "name": "RTX Q3 2026 — communiqué IR, 24 octobre 2026"
+        }
+      ]
+    },
+    {
+      "id": "semaine-resultats-29-oct",
+      "date": "2026-10-27",
+      "category": "entreprises",
+      "title": "Semaine de résultats chargée : ICE, SG, BMY, RMD mercredi",
+      "summary": "Mercredi 29 octobre publient : ICE (infrastructure marchés financiers), Société Générale (banque française), Bristol-Myers Squibb (pharma) et ResMed (dispositifs médicaux). Pour le portefeuille IA, ICE et SG sont des positions détenues dont les résultats valident ou invalident la thèse.",
+      "why": "ICE (récurrence revenus ≥47 % CA) et Société Générale (ROTE ≥8 %) sont deux tests de thèse programmés. Un manquement grave pourrait déclencher une révision de position.",
+      "impact": [
+        {
+          "target": "ICE",
+          "kind": "ticker",
+          "direction": "incertain",
+          "held": true
+        },
+        {
+          "target": "GLE.PA",
+          "kind": "ticker",
+          "direction": "incertain",
+          "held": true
+        }
+      ],
+      "ai_take": "Surveiller ICE (EPS consensus $1,42) et GLE.PA (ROTE ≥8 %). BMY optionnel si Growth Portfolio +15 % : entrée conditionnelle ~3 % du portefeuille.",
+      "importance": 1,
+      "sources": [
+        {
+          "name": "Calendriers IR ICE / SG / BMY / RMD — octobre 2026"
+        }
       ]
     },
     {
@@ -32,13 +115,22 @@
       "summary": "Chubb (CB) a publié ses résultats Q3 le 20 octobre. Combined ratio ~84,1 % (seuil falsificateur >95 % — INTACT ✓). NII trajectory positive soutenue par un T10Y ~5,08-5,15 % sur float $100B. EPS core opérationnel ~$7,66. Cours en hausse post-résultats, RSI 77,5 (+19 % mom). Aucun falsificateur déclenché.",
       "why": "CB représente ~6,8 % du book IA. Un combined ratio <90 % confirme la discipline de souscription et le levier NII — thèse floating rate intacte sous T10Y hauts.",
       "impact": [
-        { "target": "CB", "kind": "ticker", "direction": "positif", "held": true }
+        {
+          "target": "CB",
+          "kind": "ticker",
+          "direction": "positif",
+          "held": true
+        }
       ],
       "ai_take": "Thèse CONFIRMÉE — INTACT. Pas de trade. Prochain test : FOMC 27-28/10 pour NIM LT.",
       "importance": 1,
       "sources": [
-        { "name": "Chubb Q3 2026 earnings release — combined ratio 84,1 %, 20/10" },
-        { "name": "engine/signals.js W53 — CB gate 🟢 F6/9 RSI77,5 mom+19 %" }
+        {
+          "name": "Chubb Q3 2026 earnings release — combined ratio 84,1 %, 20/10"
+        },
+        {
+          "name": "engine/signals.js W53 — CB gate 🟢 F6/9 RSI77,5 mom+19 %"
+        }
       ]
     },
     {
@@ -49,13 +141,22 @@
       "summary": "MSCI Inc. a publié ses résultats Q3 le 20 octobre. Rétention abonnés 95,0 % (seuil falsificateur <93 % — INTACT ✓). ARR total run rate $3,57B +12,1 % YoY. ARR organic recurring subscription +8,7 % — légèrement sous le seuil +9 % mais un seul trimestre : 2T consécutifs requis pour déclencher la sortie (règle amendée). Gate 🟢 F7/9, RSI 75,4, mom +2 %.",
       "why": "MSCI représente ~7,2 % du book IA. La rétention 95 % et l'ARR total +12 % valident le monopole d'indices — la légère sous-performance organic est une anomalie de calendrier, pas un signal de rupture.",
       "impact": [
-        { "target": "MSCI", "kind": "ticker", "direction": "positif", "held": true }
+        {
+          "target": "MSCI",
+          "kind": "ticker",
+          "direction": "positif",
+          "held": true
+        }
       ],
       "ai_take": "Thèse CONFIRMÉE — INTACT. Exit_rule amendée : 2T consécutifs ARR organic <9 % requis (non 1T). Prochain test : Q4 2026.",
       "importance": 1,
       "sources": [
-        { "name": "MSCI Inc. Q3 2026 earnings release — rétention 95,0 %, ARR $3,57B +12,1 %, 20/10" },
-        { "name": "engine/signals.js W53 — MSCI gate 🟢 F7/9 RSI75,4 mom+2 %" }
+        {
+          "name": "MSCI Inc. Q3 2026 earnings release — rétention 95,0 %, ARR $3,57B +12,1 %, 20/10"
+        },
+        {
+          "name": "engine/signals.js W53 — MSCI gate 🟢 F7/9 RSI75,4 mom+2 %"
+        }
       ]
     },
     {
@@ -66,13 +167,22 @@
       "summary": "Safran (SAF.PA) devait publier son chiffre d'affaires Q3 le 23 octobre. À l'heure du Doctor (22h Paris), la publication n'est pas encore disponible. La position enregistre son 7e signal orange consécutif (W47→W53). Test clé attendu vendredi : CA organique ≥+12 % et confirmation guidance FY (ROI €6,4-6,5B).",
       "why": "SAF.PA représente ~6,6 % du book IA. Le CA Q3 est l'horizon-test direct de la thèse MRO/LEAP. 7 signaux orange consécutifs sans cassure de thèse = discipline de gel correcte, mais le test factuel est nécessaire pour lever le gel.",
       "impact": [
-        { "target": "SAF.PA", "kind": "ticker", "direction": "incertain", "held": true }
+        {
+          "target": "SAF.PA",
+          "kind": "ticker",
+          "direction": "incertain",
+          "held": true
+        }
       ],
       "ai_take": "En attente de la publication. Vendredi Brief score le CA. GEL renforcement maintenu jusqu'à résultats.",
       "importance": 2,
       "sources": [
-        { "name": "Safran — calendrier IR (CA Q3 prévu 23/10)" },
-        { "name": "engine/signals.js W53 — SAF.PA gate 🟠 7e consécutif" }
+        {
+          "name": "Safran — calendrier IR (CA Q3 prévu 23/10)"
+        },
+        {
+          "name": "engine/signals.js W53 — SAF.PA gate 🟠 7e consécutif"
+        }
       ]
     },
     {
@@ -83,15 +193,34 @@
       "summary": "Le rendement des bons du Trésor américains à 10 ans a reculé de son pic de 5,35 % (10/10) à ~5,08-5,15 % au 19 octobre, reflétant un NFP décevant et des propos plus mesurés du gouverneur Warsh. Les taux restent cependant à des niveaux historiquement élevés, bien au-dessus du plancher de 4,7 % qui ancre le régime de marché actuel.",
       "why": "La légère détente réduit la pression sur les actifs longue durée (CEG, GVA) sans changer fondamentalement l'environnement de taux hauts qui soutient les financières.",
       "impact": [
-        { "target": "CEG", "kind": "ticker", "direction": "positif", "held": true },
-        { "target": "GVA", "kind": "ticker", "direction": "positif", "held": true },
-        { "target": "CB", "kind": "ticker", "direction": "incertain", "held": true }
+        {
+          "target": "CEG",
+          "kind": "ticker",
+          "direction": "positif",
+          "held": true
+        },
+        {
+          "target": "GVA",
+          "kind": "ticker",
+          "direction": "positif",
+          "held": true
+        },
+        {
+          "target": "CB",
+          "kind": "ticker",
+          "direction": "incertain",
+          "held": true
+        }
       ],
       "ai_take": "Légère amélioration pour la duration — pas d'action. FOMC 27-28/10 = prochain point d'ancrage.",
       "importance": 2,
       "sources": [
-        { "name": "engine/signals.js — T10Y2Y spread 0,38 (run 20/10/2026)" },
-        { "name": "web search — T10Y 5,35 % peak 10/10 ; détente 19/10" }
+        {
+          "name": "engine/signals.js — T10Y2Y spread 0,38 (run 20/10/2026)"
+        },
+        {
+          "name": "web search — T10Y 5,35 % peak 10/10 ; détente 19/10"
+        }
       ]
     },
     {
@@ -102,15 +231,31 @@
       "summary": "RTX (Raytheon Technologies) est attendu vers le 20-21 octobre, Lockheed Martin le 22 octobre pour leurs résultats Q3 2026. Le backlog de RTX atteignait 289 milliards de dollars fin Q2 (+22 % YoY), soutenu par les commandes OTAN. Ces publications marquent le début de la saison Q3 pour le secteur défense mondial.",
       "why": "Les résultats de RTX et LMT vont tester si les carnets de commandes records se traduisent bien en revenus — c'est le premier signal dur sur la tendance réarmement mondial.",
       "impact": [
-        { "target": "RTX", "kind": "ticker", "direction": "incertain", "held": false },
-        { "target": "defense", "kind": "secteur", "direction": "incertain", "held": false }
+        {
+          "target": "RTX",
+          "kind": "ticker",
+          "direction": "incertain",
+          "held": false
+        },
+        {
+          "target": "defense",
+          "kind": "secteur",
+          "direction": "incertain",
+          "held": false
+        }
       ],
       "ai_take": "Résultats RTX à suivre de près ce soir ou demain : un guide maintenu confirme la tendance défense et peut justifier une entrée sur RTX (~4 % portefeuille).",
       "importance": 2,
       "sources": [
-        { "name": "RTX — calendrier résultats Q3 2026 (annonce IR)" },
-        { "name": "Lockheed Martin — calendrier résultats Q3 2026, 22/10" },
-        { "name": "RTX Q2 2026 — backlog $289B (+22 % YoY) communiqué" }
+        {
+          "name": "RTX — calendrier résultats Q3 2026 (annonce IR)"
+        },
+        {
+          "name": "Lockheed Martin — calendrier résultats Q3 2026, 22/10"
+        },
+        {
+          "name": "RTX Q2 2026 — backlog $289B (+22 % YoY) communiqué"
+        }
       ]
     },
     {
@@ -121,13 +266,25 @@
       "summary": "Selon les dernières données OTAN publiées en octobre 2026, 23 des 32 membres de l'Alliance dépensent désormais 2 % ou plus de leur PIB en défense, contre 11 en 2023. La hausse est structurelle : Ukraine, Moyen-Orient, risques cyber et renforcement des flancs est (Pologne, pays baltes en tête à 4 %+).",
       "why": "Une demande militaire soutenue sur 5-10 ans est la base de la thèse réarmement défense — elle se traduit directement en carnets de commandes pour les industriels de défense.",
       "impact": [
-        { "target": "defense", "kind": "secteur", "direction": "positif", "held": false },
-        { "target": "RTX", "kind": "ticker", "direction": "positif", "held": false }
+        {
+          "target": "defense",
+          "kind": "secteur",
+          "direction": "positif",
+          "held": false
+        },
+        {
+          "target": "RTX",
+          "kind": "ticker",
+          "direction": "positif",
+          "held": false
+        }
       ],
       "ai_take": "Confirme la durabilité de la tendance réarmement (porte 2 validée). Surveiller résultats RTX + LMT cette semaine.",
       "importance": 2,
       "sources": [
-        { "name": "OTAN — Defence Expenditure 2026, publié oct. 2026" }
+        {
+          "name": "OTAN — Defence Expenditure 2026, publié oct. 2026"
+        }
       ]
     },
     {
@@ -138,13 +295,22 @@
       "summary": "Safran (SAF.PA) enregistre son cinquième signal orange consécutif dans les données quantitatives du 20 octobre, une série qui déclenche automatiquement un réexamen du titre en milieu de semaine. Le groupe publie son chiffre d'affaires Q3 le 23 octobre — horizon-test direct : CA organique ≥+12 % et confirmation de guidance.",
       "why": "Un signal de vigilance répété signifie que les indicateurs techniques et fondamentaux peinent à se synchroniser — les résultats Q3 diront si c'est transitoire ou le signe d'un retournement.",
       "impact": [
-        { "target": "SAF.PA", "kind": "ticker", "direction": "incertain", "held": true }
+        {
+          "target": "SAF.PA",
+          "kind": "ticker",
+          "direction": "incertain",
+          "held": true
+        }
       ],
       "ai_take": "Réexamen du dossier mercredi 22/10 avant la publication du CA. Pas de renforcement ni de réduction avant les chiffres.",
       "importance": 2,
       "sources": [
-        { "name": "engine/signals.js — SAF.PA gate 🟠 (run 20/10/2026)" },
-        { "name": "Safran — calendrier publications IR (CA Q3 23/10)" }
+        {
+          "name": "engine/signals.js — SAF.PA gate 🟠 (run 20/10/2026)"
+        },
+        {
+          "name": "Safran — calendrier publications IR (CA Q3 23/10)"
+        }
       ]
     },
     {
@@ -158,8 +324,12 @@
       "ai_take": "Rien à faire. Poche crypto maintenue à 0 % — pas de signal d'entrée.",
       "importance": 3,
       "sources": [
-        { "name": "alternative.me — Fear & Greed Index, 19/10/2026" },
-        { "name": "CoinGecko — BTC dominance 59,6 %, ETH 10,6 %, 19/10" }
+        {
+          "name": "alternative.me — Fear & Greed Index, 19/10/2026"
+        },
+        {
+          "name": "CoinGecko — BTC dominance 59,6 %, ETH 10,6 %, 19/10"
+        }
       ]
     },
     {
@@ -170,13 +340,25 @@
       "summary": "Berkshire Hathaway a révélé via un 13F-HR (SEC) une position dans Alphabet (GOOG) estimée à ~2,5 milliards de dollars, acquise au Q3 2026. C'est la première position tech significative de Berkshire depuis Apple en 2016.",
       "why": "Un investissement de Buffett dans un bénéficiaire de l'IA (YouTube Ads + Google Cloud + AI Search) peut soutenir les flux institutionnels vers les grandes capitalisations tech.",
       "impact": [
-        { "target": "tech", "kind": "secteur", "direction": "positif", "held": false },
-        { "target": "AMZN", "kind": "ticker", "direction": "positif", "held": true }
+        {
+          "target": "tech",
+          "kind": "secteur",
+          "direction": "positif",
+          "held": false
+        },
+        {
+          "target": "AMZN",
+          "kind": "ticker",
+          "direction": "positif",
+          "held": true
+        }
       ],
       "ai_take": "Signal de qualité sur le secteur. Pas d'action — AMZN déjà en portefeuille, thèse intacte.",
       "importance": 3,
       "sources": [
-        { "name": "SEC — Berkshire Hathaway 13F-HR Q3 2026, ~10/10/2026" }
+        {
+          "name": "SEC — Berkshire Hathaway 13F-HR Q3 2026, ~10/10/2026"
+        }
       ]
     }
   ]

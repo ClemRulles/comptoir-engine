@@ -1,28 +1,28 @@
 {
   "_doc": "LA SEMAINE EN CLAIR — la version lisible du brief, pour les membres du groupe (écrite le vendredi, posture mise à jour lundi et mercredi). Lue par l'accueil de l'interface. Schéma : { updated, week (ISO ex 2026-W41), posture { label (2-4 mots, ex. 'Investi mais sélectif'), tone ('offensif'|'neutre'|'defensif'), line (1 phrase : ce que l'IA fait et pourquoi) }, headline (LA phrase de la semaine), points ([≤ 3 × { title (≤ 6 mots), text (≤ 30 mots), kind ('marche'|'portefeuille'|'risque'|'opportunite') }]), decisions ([{ date, ticker, name, action ('achat'|'vente'|'renforcement'|'allegement'|'conserver'|'surveiller'), sleeve ('coeur'|'socle'|'tactique'|'crypto'), desk, why (≤ 25 mots, en clair), risk (≤ 20 mots : ce qui ferait changer d'avis), confidence ('Haute'|'Moyenne'|'Basse'), amount_eur, weight_pct }]), next ([≤ 4 × { date, label, why (≤ 15 mots) }]), in_one_sentence }. Règles : écrit pour quelqu'un qui n'a lu ni la méthode ni le playbook — zéro jargon interne (§, P-00N, gate, saisine, hystérésis, cov, F7/9), des chiffres simples, pas plus de mots que nécessaire. Le brief complet (morning-brief.md) reste la référence détaillée.",
-  "updated": "2026-10-24",
+  "updated": "2026-10-27",
   "week": "W54",
   "posture": {
-    "label": "Investi mais prudent",
+    "label": "Investi mais vigilant",
     "tone": "neutre",
-    "line": "Surchauffe des taux maintenue — l'IA déploie l'excès de cash en marchés émergents (ETF) et garde ses convictions cœur sans forcer de nouvelles entrées avant les publications de la semaine prochaine."
+    "line": "Semaine binaire : FOMC EN COURS + 4 publications mercredi. Le portefeuille attend les verdicts avant toute nouvelle décision."
   },
-  "headline": "W54 : SAF.PA publie un T3 solide (+14,7 %) malgré un ralentissement de la rechange civile. Cash ramené à 12 % (dans les clous). Semaine décisive à venir : FOMC + ICE + Société Générale + potentiellement Bristol-Myers Squibb.",
+  "headline": "W54 : RTX Q3 record ($340B backlog) confirme la tendance défense. FOMC 27-28/10 décide demain soir — résultat guide crypto (dimanche) et RTX (vendredi).",
   "points": [
     {
-      "title": "Safran T3 : bon mais la rechange ralentit",
-      "text": "Chiffre d'affaires T3 +14,7 %, légèrement au-dessus des attentes. Mais les pièces de rechange moteur progressent de 17 % (vs +20 % attendus par notre règle de suivi). Résultat tenu, pas euphorique.",
-      "kind": "portefeuille"
-    },
-    {
-      "title": "Cash ramené dans les règles",
-      "text": "L'IA a racheté 9,78 parts d'un ETF marchés émergents (EIMI) pour ramener le cash de 16,5 % à 12 % — dans la bande cible de 5-15 %.",
-      "kind": "portefeuille"
-    },
-    {
-      "title": "Semaine chargée : FOMC + 3 publications",
-      "text": "FOMC lundi-mardi (statu quo attendu à 83 %). ICE, Société Générale et Bristol-Myers Squibb publient mercredi 29/10. Raytheon conditionnel post-lectures capex ~30/10.",
+      "title": "RTX Q3 : backlog record confirmé",
+      "text": "Raytheon T3 : carnet $340Mds (+18%), EPS $2,26 beat. Entrée RTX différée à vendredi ~31/10 après lecture Amazon.",
       "kind": "opportunite"
+    },
+    {
+      "title": "FOMC : résultat demain 20h ET",
+      "text": "Maintien des taux attendu à 83%. Le message de Powell sur décembre est le vrai enjeu pour les actifs.",
+      "kind": "risque"
+    },
+    {
+      "title": "Mercredi : ICE + SG + BMY + RMD",
+      "text": "4 résultats d'entreprise mercredi. ICE et Société Générale sont des tests de thèse détenus.",
+      "kind": "portefeuille"
     }
   ],
   "decisions": [
@@ -74,10 +74,26 @@
     }
   ],
   "next": [
-    { "date": "27-28/10", "label": "FOMC (statu quo attendu)", "why": "Stabilité taux — confirmation du scénario central pour CB, BNP.PA, GLE.PA" },
-    { "date": "29/10", "label": "ICE + GLE.PA + BMY résultats", "why": "3 horizon-tests en un jour ; BMY = entrée conditionnelle possible" },
-    { "date": "~30/10", "label": "AMZN/MSFT capex guidance", "why": "Déterminant pour la décision Raytheon et la santé du cluster data centers" },
-    { "date": "~05/11", "label": "Granite Construction Q3", "why": "Test final thèse infrastructures américaines (marges + carnet de commandes)" }
+    {
+      "date": "2026-10-28",
+      "label": "FOMC décision + ODFL Q3",
+      "why": "Résultat détermine fenêtre crypto dimanche"
+    },
+    {
+      "date": "2026-10-29",
+      "label": "ICE + GLE.PA + BMY + RMD Q3",
+      "why": "4 tests de thèse en une journée"
+    },
+    {
+      "date": "2026-10-30",
+      "label": "AMZN Q3 + capex read",
+      "why": "Gate d'entrée RTX vendredi 31/10"
+    },
+    {
+      "date": "2026-11-01",
+      "label": "Crypto dimanche",
+      "why": "Palier 1 BTC/ETH si FOMC HOLD confirmé"
+    }
   ],
-  "in_one_sentence": "W54 : SAF.PA T3 tenu (mais rechange civile à surveiller), cash remis dans les clous via ETF EM, semaine à venir décisive avec FOMC + ICE + SG + potentiel entrée Bristol-Myers."
+  "in_one_sentence": "Semaine binaire autour du FOMC et d'Amazon : les deux prochaines décisions d'investissement (RTX + crypto) attendent leur feu vert."
 }

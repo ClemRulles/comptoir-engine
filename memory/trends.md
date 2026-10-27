@@ -1,3 +1,49 @@
+## Tendance de la semaine — 27 octobre 2026 (W54)
+
+- **Statut** : CONFIRMÉE (2e semaine) — RÉARMEMENT DÉFENSE MONDIAL · cycle milieu · nouvelles confirmations Q3
+- **Tendance** : Réarmement défense mondial — continuation W53, enrichie par les résultats Q3 (RTX + SAF.PA)
+
+### Nouvelles preuves depuis W53
+
+| Source | Date | Fait |
+|--------|------|------|
+| RTX Q3 2026 (communiqué IR) | 24/10/2026 | Backlog **$340B** (+18 % YoY, nouveau record). EPS adj $2,26 vs consensus $2,11 (+7 % beat). Guidance FY relevée. |
+| SAF.PA CA Q3 2026 | 23/10/2026 | CA €9 003M **+14,7 %** /+13,4 % org. Equipment&Defense +15,7 %. Propulsion +13,2 %. Guidance FY mid-20s maintenue. |
+| OTAN (dernier rapport annuel) | 2026 | **23/32 pays membres ≥ 2 % PIB** (vs 8/26 en 2021, 11/26 en 2023). Cycle de dépenses pluriannuel verrouillé. |
+
+### Récapitulatif trend-gate (6/6 portes validées — inchangé vs W53)
+
+- **Porte 0 (anti-buzz)** : Defense ETF +14 % YTD ≠ parabolique. RSI RTX 54, SAF.PA 15 (survendu). ✅ PASS
+- **Porte 1 (preuves dures ≥2)** : RTX Q3 backlog $340B + SAF.PA CA Q3 +14,7 % + OTAN data (3 sources). ✅ PASS
+- **Porte 2 (durabilité)** : Cycle réarmement lancé 2022, livraisons 2027-2030+. Conflits Ukraine + Moyen-Orient = durée indéterminée. ✅ PASS
+- **Porte 3 (≥2 tickers)** : RTX (watchlist ★), LMT (surveiller), SAAB.ST, RHM.DE disponibles. ✅ PASS
+- **Porte 4 (stade non-fin)** : MILIEU — cycle budgétaire pluriannuel, backlog au plus haut historique. ✅ PASS
+- **Porte 5 (pas de bulle)** : RTX ~19x fwd FY26 (justifié backlog), SAF.PA ~22x (légèrement tendu, RSI 15 = survendu). ✅ PASS
+- **Porte 6 (falsificateur clair)** : Armistice Ukraine + désescalade Moyen-Orient simultanés OU réduction budget défense US ≥10 % OU OTAN repasse <2 % GDP médian. ✅ PASS
+
+**Verdict : TENDANCE CONFIRMÉE W54**
+
+### Comment jouer cette semaine
+
+| Ticker | Statut | Condition | Taille cible |
+|--------|--------|-----------|--------------|
+| **RTX** | Watchlist ★ — **DÉCISION DIFFÉRÉE** | Post-AMZN Q3 capex read (~30/10) : si capex AWS maintenu/relevé → RTX non-corrélé confirmé → entrée vendredi **31/10** ~4 % NAV | Moyenne ~4 % NAV |
+| **LMT** | NE QUALIFIE PAS (W54) | Gate 🟠 maintenu post-Q3 22/10. Marge Aeronautics <11 %, cœur >75 %. | — |
+
+*P-004 non applicable : RTX et LMT ≠ bénéficiaires directs capex hyperscalers.*
+
+### Ce qui tuerait la thèse
+
+- Armistice Ukraine + désengagement Moyen-Orient → demande munitions/missiles s'effondre
+- AMZN Q3 capex soft → risk-off cluster → RTX corrélé au sentiment capex-IA (risque à surveiller 30/10)
+- RTX guidance guidance coupée lors du read ~30/10 (improbable après Q3 beat)
+
+### Sources
+
+signals.js 27/10 ; RTX Q3 2026 IR communiqué 24/10 ; SAF.PA CA Q3 23/10 (source officielle) ; OTAN rapport 2026 ; market-regime.md W54 ; trends.md W53.
+
+---
+
 ## Tendance de la semaine — 20 octobre 2026 (W53)
 
 - **Statut** : VALIDÉE — RÉARMEMENT DÉFENSE MONDIAL · cycle milieu · catalyseurs Q3 cette semaine

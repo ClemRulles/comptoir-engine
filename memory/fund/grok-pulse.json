@@ -1,0 +1,26 @@
+{
+  "_doc": "Pouls hebdomadaire Grok (xAI) — contexte marché de la semaine passée, thèmes, movers. Source: POST https://api.x.ai/v1/chat/completions. JAMAIS un signal d'achat seul (CLAUDE.md §F). Chaque theme corroboré par une preuve dure avant toute décision. Garder ~12 entrées.",
+  "updated": "2026-10-27",
+  "entries": [
+    {
+      "week": "2026-W44",
+      "date": "2026-10-27",
+      "source": "Grok API (xAI)",
+      "headline": "[DATA GAP] Grok knowledge cutoff antérieur au 27/10/2026 — réponse API : 'Période future non disponible'. Pouls remplacé par signaux internes.",
+      "themes": [],
+      "movers": [],
+      "macro_read": null,
+      "sentiment_bias": null,
+      "corroboration": null,
+      "data_gap": "API xAI grok-3-latest : base d'entraînement antérieure à octobre 2026 — retourne 'Période future non disponible' pour la semaine du 20-27/10/2026.",
+      "internal_pulse": {
+        "from_signals": "W54 : 12🟢 / 3🟠 (SAF.PA RSI15.3, EIMI RSI13.5 cov39%, CEG 1er🟠 mom-33%) — ambiance neutre à légèrement défensive",
+        "from_crypto": "F&G 48 (Neutral), BTC €71750 -5% 30j, ETH -13.7% 30j — consolidation post-ATH, pas de signal fort",
+        "regime": "SURCHAUFFE override maintenu (T10Y ~5.1%, CPI 3.7%, FOMC HOLD attendu 83%)",
+        "fomc_live": "FOMC 27-28/10 EN COURS — résultat EN ATTENTE (décision 28/10 ~20h ET)"
+      },
+      "new_calls_this_week": 0,
+      "new_calls_reason": "tactical_cap 3% mais FOMC EN COURS = catalyseurs binaires actifs. 0 signal Grok vérifiable cette semaine. Droit au blanc."
+    }
+  ]
+}
