@@ -358,6 +358,40 @@
       "source": {
         "name": "RTX Q3 2026 — communiqué IR, 24 octobre 2026"
       }
+    },
+    {
+      "date": "2026-10-29",
+      "theme": "nos-lignes",
+      "level": "moyen",
+      "question": "Bristol-Myers Squibb (BMY) est exposé au « patent cliff » d'Eliquis vers 2028. Que signifie cette expression ?",
+      "choices": [
+        "La perte du brevet qui ouvre la voie aux médicaments génériques moins chers",
+        "Une baisse soudaine du cours de bourse liée à des résultats décevants",
+        "L'expiration des licences accordées à des partenaires pharmaceutiques",
+        "La réduction des remboursements Sécurité sociale sur les médicaments"
+      ],
+      "answer": 0,
+      "explanation": "Quand un brevet tombe, des fabricants de génériques entrent sur le marché et effondrent les prix. Pour BMY, Eliquis représente ~35 % du CA — l'enjeu est de le remplacer via son 'Growth Portfolio' (+14 % en 2026) avant 2028.",
+      "source": {
+        "name": "BMY — rapport annuel 2025 / convictions comptoir-engine 28/10/2026 ; FDA patent database"
+      }
+    },
+    {
+      "date": "2026-10-30",
+      "theme": "bases",
+      "level": "moyen",
+      "question": "Qu'est-ce que le CAGR (Compound Annual Growth Rate) ?",
+      "choices": [
+        "Le taux de croissance annuel moyen composé sur une période donnée",
+        "Le rendement maximum observé sur une action en un an",
+        "Le dividende annuel divisé par le prix d'achat de l'action",
+        "La variation entre le plus haut et le plus bas de l'année"
+      ],
+      "answer": 0,
+      "explanation": "Le CAGR mesure la croissance comme si elle était constante chaque année. Ex : 100 € → 200 € en 5 ans = CAGR ~14,9 %/an. Indispensable pour comparer des performances sur des horizons différents sans être trompé par la volatilité.",
+      "source": {
+        "name": "Damodaran — 'Investment Valuation' (3e éd.) ; Investopedia CAGR"
+      }
     }
   ]
 }
