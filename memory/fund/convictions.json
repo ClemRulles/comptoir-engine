@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-22",
+  "updated": "2026-10-29",
   "items": [
     {
       "ticker": "RTX",
@@ -12,11 +12,28 @@
       "headline": "Défense : carnet record $340B au T3, demande de réarmement structurelle",
       "thesis": "Aéro-défense au pic de visibilité : Q3 20/10 backlog $340B (+18% YoY), EPS adj $2,26 beat, guidance FY relevée. Vrai diversifiant HORS cluster capex-IA.",
       "risk": "Guidance coupée >10% OU marge Raytheon <11% durablement OU désescalade géopolitique majeure (défense global de-rate).",
-      "price": 193.34,
+      "price": 195.84,
       "currency": "USD",
       "buy_zone": { "low": 160.0, "high": 200.0, "currency": "USD", "basis": "16-18x EPS FY26 attendu, recoupé analogues history.js (DD -19%, médiane 12m +13%)" },
-      "note_execution": "Entrée différée après le read capex AMZN ~30/10 (cœur 76% > max 75% : entrée sèche → ~80% ✗). À financer par trim du cluster capex-IA si la lecture capex le commande, JAMAIS par SAF.PA (rotation intra-aéro). Priorité vendredi 24/10 = socle d'abord.",
+      "note_execution": "Entrée différée après le read capex AMZN ~30/10. Cœur 76% > max 75% : entrée sèche ✗ → à financer par trim du cluster capex-IA (CEG en premier), JAMAIS par SAF.PA. Substituable avec HII sur le facteur réarmement US : une seule ligne défense US pleine taille, ou HII+RTX plafonnés ensemble ~8% NAV.",
       "date": "2026-10-22"
+    },
+    {
+      "ticker": "HII",
+      "name": "Huntington Ingalls Industries",
+      "verdict": "Acheter",
+      "confidence": "Moyenne",
+      "horizon": "coeur",
+      "sleeve": "coeur",
+      "desk": "desk-industrie-energie",
+      "headline": "Seul constructeur naval nucléaire US, ~16x BPA, marge en sortie de creux",
+      "thesis": "Monopole porte-avions + sous-marins nucléaires US, carnet $57,3Md financé par l'État, marge construction navale en redressement (5,0%→5,7%→6,0-6,5% guidé) pour ~16,6x les bénéfices.",
+      "risk": "Marge construction navale ≤5% 2T consécutifs OU charge d'exécution Block VI ≥$100M OU FCF FY26 <$400M OU part HII dans Block VI réduite / retard Newport News ≥12 mois.",
+      "price": 279.26,
+      "currency": "USD",
+      "buy_zone": { "low": 250.0, "high": 295.0, "currency": "USD", "basis": "high ~16x EPS 2026E (~$18,5) = FCF yield ≥4,7% sur guidance ; low ~13,5x = ré-instruire §D ; analogues history.js DD -38% médiane +22%" },
+      "note_execution": "ACHETER CONDITIONNEL au print Q3 29/10 — exécution POST-print (vendredi 31/10) seulement si marge construction navale ≥6,0% ET FCF FY26 maintenu $500-600M ET backlog Block VI matérialisé. Taille 3% demi → plafond 4,5% (réduit : redondance RTX, CAGR +6%, DD -51%, calibration non prouvée). Ligne cœur → financer par trim du cluster (cœur 76% > max). RSI 70,9 suracheté = ne pas acheter pré-print.",
+      "date": "2026-10-29"
     },
     {
       "ticker": "BMY",
@@ -26,14 +43,31 @@
       "horizon": "coeur",
       "sleeve": "coeur",
       "desk": "desk-sante",
-      "headline": "Pharma la moins chère du S&P500 (~9x FCF), growth portfolio compense la falaise Eliquis",
-      "thesis": "~8,6x fwd / ~9,3x P/FCF / div 4,2% payée comme un déclin terminal, alors que le Growth Portfolio (~60% CA, +15%) compense déjà la falaise des legacy.",
-      "risk": "Growth Portfolio < +8% YoY 2T consécutifs OU guidance FY EPS < $6,50 OU dividende coupé OU Milvexian à nouveau repoussé.",
-      "price": 59.28,
+      "headline": "Pharma la moins chère (~8,6x fwd), seul vrai diversifiant du book",
+      "thesis": "~8,6x fwd / div ~4,2% cotée comme un déclin terminal, alors que le Growth Portfolio (+15% Q2, >½ du CA) compense déjà la falaise Eliquis/Revlimid. Zéro corrélation au book (0 santé, 0 capex-IA, 0 financière).",
+      "risk": "Growth Portfolio <+8% YoY 2T consécutifs OU guidance FY EPS <$6,50 OU dividende coupé OU Milvexian repoussé/échec OU accélération du cliff Eliquis via négociation Medicare/IRA.",
+      "price": 60.57,
       "currency": "USD",
-      "buy_zone": { "low": 50.0, "high": 72.0, "currency": "USD", "basis": "high 72 ~10,5x fwd (au-delà la décote ne paie plus le risque falaise 2028) ; low 50 ~7,3x = ré-instruire §D" },
-      "note_execution": "Exécution CONDITIONNELLE post-Q3 29/10 (§J pivot binaire) : demi-taille ~3% si en zone, complétée ~6% SEULEMENT si Growth >=+15% ET Milvexian on-track.",
-      "date": "2026-10-15"
+      "buy_zone": { "low": 52.0, "high": 70.0, "currency": "USD", "basis": "high ~10x EPS guide ~$7,0 (au-delà la décote ne paie plus le risque cliff 2028) ; low ~7,4x = ré-instruire §D (le marché price une rupture)" },
+      "note_execution": "ACHETER CONDITIONNEL au print Q3 29/10 — POST-print seulement si Growth ≥+15% ET guidance FY EPS ≥$6,50 ET Milvexian on-track ET dividende intact ET calendrier cliff 2028 inchangé. Demi 3% → plafond 4% (réduit : signature piège de valeur médiane 0% analogues, CAGR +2%, vent de face Medicare/IRA sur Eliquis, momentum +50% re-rating déjà fait). Ligne cœur → financer par trim du cluster ; mais BMY est le seul des 3 qui diversifie le facteur dominant.",
+      "date": "2026-10-29"
+    },
+    {
+      "ticker": "MCO",
+      "name": "Moody's Corp",
+      "verdict": "Surveiller",
+      "confidence": "Basse",
+      "horizon": "coeur",
+      "sleeve": "coeur",
+      "desk": "desk-finance",
+      "headline": "Duopole de notation de qualité, mais à plein prix (~28x) et pivot cyclique en train de se matérialiser",
+      "thesis": "Duopole notation (Moody's+S&P) à ~52% de marge op, mais le Q3 21/10 a vu le moteur transactionnel se tarir (HY -40%, leveraged loans -27%) — exactement le pivot baissier higher-for-longer. Franchise réelle, zéro marge au cours actuel.",
+      "risk": "N/A — Surveiller. Ré-instruire §D express seulement si cours ≤$435 ET rebond de l'émission IG/HY sur 1-2 trimestres.",
+      "price": 477.27,
+      "currency": "USD",
+      "buy_zone": { "low": 369.0, "high": 435.0, "currency": "USD", "basis": "22-26x BPA ajusté FY26 $16,75 (milieu de guidance) ; high 26x=$435, low 22x=$369 = ré-instruire. Zone watchlist $440-480 ramenée car la guidance ne relève pas et un Q4 d'accélération MIS n'est pas acquis" },
+      "note_execution": "Cours $477 > high×1,05 ($457) → §N interdit l'achat, « en attente de zone ». Redondance MSCI+ICE (Financials ~24,7% NAV, cap secteur 30%). Daté pour attribution.js (coût de la prudence §I).",
+      "date": "2026-10-29"
     },
     {
       "ticker": "RMD",
@@ -53,23 +87,6 @@
       "date": "2026-10-22"
     },
     {
-      "ticker": "ODFL",
-      "name": "Old Dominion Freight Line",
-      "verdict": "Surveiller",
-      "confidence": "Basse",
-      "horizon": "coeur",
-      "sleeve": "coeur",
-      "desk": "desk-conso",
-      "headline": "Meilleur LTL US, mais ~30x un cyclique au pic de marge : hors zone, RSI 75,5",
-      "thesis": "Meilleur opérateur LTL (OR record 70,1%, net cash) à l'inflexion du cycle fret — mais le cours price déjà la reprise complète au pic de marge.",
-      "risk": "2T tonnage/shipments YoY négatifs AVEC OR >73% (cycle cassé) OU F-Score <=3 OU rupture du pricing (yield ex-fuel négatif).",
-      "price": 188.9,
-      "currency": "USD",
-      "buy_zone": { "low": 135.0, "high": 165.0, "currency": "USD", "basis": "high 165 ~25,5x NTM (marge pour normalisation OR mi-cycle) ; low 135 ~23x FY26 = zone basse analogues history.js" },
-      "note_execution": "Cours $188,90 > high x1,05 ($173) = en attente de zone. Ré-instruire post-Q3 28/10 si volumes flat/+ ET OR <=71,5%. Taille cible Basse ~2,7% NAV.",
-      "date": "2026-10-22"
-    },
-    {
       "ticker": "LMT",
       "name": "Lockheed Martin",
       "verdict": "Surveiller",
@@ -78,29 +95,13 @@
       "sleeve": "coeur",
       "desk": "desk-industrie-energie",
       "headline": "Défense, mais gate flippé ambre, suracheté et cœur déjà plein : ne qualifie pas",
-      "thesis": "Deuxième signal défense après RTX, backlog record ~$230B (Q2). Mais gate 🟠 ce soir, RSI 71,4, marge Aeronautics historiquement <11%, Q3 22/10 non confirmable.",
+      "thesis": "Deuxième signal défense après RTX, backlog record ~$230B (Q2). Mais gate 🟠, RSI élevé, marge Aeronautics historiquement <11%, cœur >75%.",
       "risk": "Marge Aeronautics reste <11% (pression F-35) OU backlog <$155B OU réductions Pentagon >10%.",
       "price": 551.51,
       "currency": "USD",
       "buy_zone": { "low": 485.0, "high": 545.0, "currency": "USD", "basis": "16-18x EPS FY26 guidé (~$30,3 mid), recoupé analogues history.js" },
-      "note_execution": "Cours $551,51 > high = pas d'achat. Ré-armement : gate 🟢 sur 2 relevés + Q3 confirmé (backlog >=$155B ET marge Aeronautics >=11%) + financement par trim d'une ligne cœur (cœur >75%).",
+      "note_execution": "Cours $551,51 > high = pas d'achat. Ré-armement : gate 🟢 sur 2 relevés + Q3 confirmé (backlog >=$155B ET marge Aeronautics >=11%) + financement par trim d'une ligne cœur. Substituable avec HII/RTX sur réarmement US (préférer HII).",
       "date": "2026-10-22"
-    },
-    {
-      "ticker": "MKC",
-      "name": "McCormick & Company",
-      "verdict": "Éviter",
-      "confidence": "Basse",
-      "horizon": "coeur",
-      "sleeve": "coeur",
-      "desk": "desk-conso",
-      "headline": "Thèse compounder épices falsifiée par la fusion Unilever Foods (dilution + levier ~4x)",
-      "thesis": "Le rabais ne price pas une franchise intacte mais une transformation dilutive et surlevée : fusion Unilever Foods (RMT), ~35% ownership résiduel, levier ~4,0x, volumes B2C -2,5%.",
-      "risk": "N/A — verdict Éviter. Ré-instruction §D uniquement si le deal échoue OU post-close volumes B2C Americas positifs 2T ET levier < 3,5x.",
-      "price": 44.64,
-      "currency": "USD",
-      "buy_zone": null,
-      "date": "2026-10-15"
     }
   ]
 }

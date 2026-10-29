@@ -392,6 +392,23 @@
       "source": {
         "name": "Damodaran — 'Investment Valuation' (3e éd.) ; Investopedia CAGR"
       }
+    },
+    {
+      "date": "2026-10-31",
+      "theme": "secteur",
+      "level": "moyen",
+      "question": "Chez un industriel de défense, que mesure le ratio « book-to-bill » (carnet sur facturé) ?",
+      "choices": [
+        "Le rapport entre les commandes reçues et le chiffre d'affaires facturé sur une période",
+        "Le ratio entre la dette nette et les capitaux propres",
+        "La part du carnet de commandes couverte par des contrats publics",
+        "Le délai moyen de paiement des clients de l'entreprise"
+      ],
+      "answer": 0,
+      "explanation": "Book-to-bill = nouvelles commandes ÷ chiffre d'affaires facturé. Au-dessus de 1, l'entreprise engrange plus de commandes qu'elle n'en livre : son carnet grossit, signe de visibilité future (typique du cycle de réarmement actuel chez les HII, RTX ou Safran). En dessous de 1, le carnet se vide. C'est un indicateur avancé, pas une mesure de rentabilité.",
+      "source": {
+        "name": "Investopedia — Book-to-Bill Ratio ; glossaire aéronautique-défense"
+      }
     }
   ]
 }
