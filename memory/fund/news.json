@@ -1,14 +1,14 @@
 {
   "_doc": "L'actualité MONDIALE qui compte pour le book, en clair (lundi : refonte complète ; jeudi : mise à jour). Lu par l'interface (page Monde, accueil). 6 à 12 items, les plus importants d'abord. Schéma d'un item : { id (kebab-case), date (YYYY-MM-DD de l'événement), category ('politique-us' | 'geopolitique' | 'banques-centrales' | 'macro' | 'entreprises' | 'energie' | 'crypto' | 'regulation' | 'investisseurs'), title (≤ 12 mots, factuel), summary (1-2 phrases : ce qui s'est passé, chiffres sourcés), why (1 phrase : pourquoi ça compte pour un investisseur), impact ([{ target (ticker ou secteur), kind ('ticker'|'secteur'), direction ('positif'|'negatif'|'incertain'), held (bool : détenu par le book IA ou le groupe) }]), ai_take (1 phrase : ce que l'IA en fait concrètement — 'rien' est une réponse valable), importance (1 = majeur, 2 = notable, 3 = contexte), sources ([{ name, url? }], au moins une source datée) }. Règles : AUCUN jargon interne (pas de §, P-00N, gate, saisine, hystérésis) ; aucune rumeur non sourcée ; une déclaration politique (ex. Trump, tarifs) n'est un item que si elle a un effet observable (marché, calendrier, décret).",
-  "updated": "2026-10-27",
+  "updated": "2026-10-30",
   "items": [
     {
-      "id": "fomc-oct2026-en-cours",
-      "date": "2026-10-27",
+      "id": "fomc-oct2026-hold",
+      "date": "2026-10-28",
       "category": "banques-centrales",
-      "title": "FOMC 27-28 oct. : réunion en cours, décision demain 20h ET",
-      "summary": "La Fed se réunit ce mardi et mercredi. Le marché anticipe un maintien des taux (probabilité ~83 %) à 3,75-4,00 %, malgré un CPI septembre à 3,7 % légèrement au-dessus des attentes. La vraie inconnue est le message de Powell sur la suite : un signal hawkish (hike décembre probable) pèserait sur les actifs risqués et la dette longue.",
-      "why": "Un maintien des taux soulage les marchés à court terme et renforce la thèse NIM des banques (CB, BNP.PA, GLE.PA). Un ton hawkish rouvrirait la pression sur les valeurs de duration et les actifs risqués.",
+      "title": "Fed maintient les taux à 3,75-4 % — vote 10-2",
+      "summary": "La Fed a décidé de maintenir son taux directeur à 3,75-4,00 % le 28 octobre (vote 10-2 : Lisa Cook et Beth Hammack voulaient une hausse de 25 bps). Le communiqué décrit l'inflation comme « toujours élevée » et l'activité « solide ». Les marchés anticipent encore une hausse probable en décembre.",
+      "why": "Un HOLD confirme la stabilité du régime de taux hauts : les banques (CB, BNP.PA, GLE.PA) conservent leur avantage NIM, tandis que les actifs de duration restent sous pression légère. Un hike décembre reste probable.",
       "impact": [
         {
           "target": "CB",
@@ -41,7 +41,7 @@
           "held": true
         }
       ],
-      "ai_take": "Maintenir les positions. Décision de crypto (dimanche 01/11) et de RTX (~31/10) conditionnées au verdict.",
+      "ai_take": "HOLD confirmé : NIM CB/BNP.PA/GLE.PA renforcée LT. Crypto dimanche 01/11 (F&G 30 Fear = opportunité). RTX entrée vendredi 31/10 (capex AMZN confirmé).",
       "importance": 1,
       "sources": [
         {
@@ -79,31 +79,136 @@
       ]
     },
     {
-      "id": "semaine-resultats-29-oct",
-      "date": "2026-10-27",
+      "id": "eme-q3-2026-record",
+      "date": "2026-10-29",
       "category": "entreprises",
-      "title": "Semaine de résultats chargée : ICE, SG, BMY, RMD mercredi",
-      "summary": "Mercredi 29 octobre publient : ICE (infrastructure marchés financiers), Société Générale (banque française), Bristol-Myers Squibb (pharma) et ResMed (dispositifs médicaux). Pour le portefeuille IA, ICE et SG sont des positions détenues dont les résultats valident ou invalident la thèse.",
-      "why": "ICE (récurrence revenus ≥47 % CA) et Société Générale (ROTE ≥8 %) sont deux tests de thèse programmés. Un manquement grave pourrait déclencher une révision de position.",
+      "title": "EMCOR Q3 : revenus record $5,5Md, carnet $18,6Md (+47 %)",
+      "summary": "EMCOR (EME) a publié ses résultats T3 le 29 octobre : revenus $5,54Md +28,8% (bat le consensus de 6,5%), EPS ajusté $9,60 vs $8,33 (+15%), carnet de commandes record $18,57Md +47% dont $8,74Md de data centers. Guidance FY26 relevée à $20,6-21Md. L'action a chuté −10% sur la journée malgré le beat, ce qui reflète des attentes très élevées et des prises de bénéfices.",
+      "why": "EMCOR est exposé directement à la vague d'investissement dans les data centers (electricité, plomberie, climatisation). Un RPO +47% signifie 18 mois de visibilité contractuelle.",
+      "impact": [
+        {
+          "target": "EME",
+          "kind": "ticker",
+          "direction": "positif",
+          "held": true
+        },
+        {
+          "target": "Industrials - MEP Construction",
+          "kind": "secteur",
+          "direction": "positif",
+          "held": false
+        }
+      ],
+      "ai_take": "Thèse CONFIRMÉE — INTACT. Le recul −10% est une réaction de marché, pas un signal fondamental. GEL renforcement (RSI survendu premier relevé ambre).",
+      "importance": 1,
+      "sources": [
+        {
+          "name": "EMCOR Q3 2026 earnings — 8-K SEC, 29 octobre 2026"
+        },
+        {
+          "name": "247wallst.com — EMCOR Q3 2026 record revenue $5.54B, 29/10"
+        }
+      ]
+    },
+    {
+      "id": "glpa-q3-2026-record",
+      "date": "2026-10-29",
+      "category": "entreprises",
+      "title": "Société Générale T3 : bénéfice record €1,9Md, ROTE 13 %",
+      "summary": "Société Générale a publié un bénéfice net record de €1,888Md au T3 2026, en hausse de 24% sur un an. Le ROTE trimestriel atteint 13,0%, au-dessus de l'objectif 2026 de 11%. Le ratio CET1 est de 13,4% et le coût du risque de 28 bps. Les neuf premiers mois 2026 : RN €5,4Md (+17,3%).",
+      "why": "GLE.PA représente ~3% du book IA. Le ROTE 13% valide la thèse bancaire (NIM expansion + contrôle des coûts) et montre une génération de capital au-dessus du plan.",
+      "impact": [
+        {
+          "target": "GLE.PA",
+          "kind": "ticker",
+          "direction": "positif",
+          "held": true
+        },
+        {
+          "target": "Financials - Banking EU",
+          "kind": "secteur",
+          "direction": "positif",
+          "held": false
+        }
+      ],
+      "ai_take": "Thèse CONFIRMÉE — INTACT. Prochain horizon-test Q4 ~janv.2027. Aucune action ce soir.",
+      "importance": 1,
+      "sources": [
+        {
+          "name": "Société Générale — communiqué Q3 2026, 29 octobre 2026"
+        },
+        {
+          "name": "GlobeNewswire — Societe Generale third quarter 2026 earnings"
+        }
+      ]
+    },
+    {
+      "id": "ice-q3-2026-beat",
+      "date": "2026-10-29",
+      "category": "entreprises",
+      "title": "ICE T3 : EPS $2,02, récurrent +7 %, guidances relevées",
+      "summary": "Intercontinental Exchange (ICE) a publié ses résultats T3 le 29 octobre : EPS ajusté $2,02 vs $1,96 consensus (+3%), revenus nets $2,8Md +15% YoY. Le récurrent $1,4Md +7% représente 47% du CA (au-dessus du seuil de 45%). ICE relève ses guidances : croissance récurrente Exchange +9% et FI&Data +8%. L'action a progressé +6,17% à $165,58.",
+      "why": "ICE représente ~3,35% du book IA. Le récurrent 47% CA valide le modèle d'abonnements (IRLs hypothèques, NYSE Tech, Fixed Income Data). La guidance relevée indique une accélération 2027.",
       "impact": [
         {
           "target": "ICE",
           "kind": "ticker",
-          "direction": "incertain",
-          "held": true
-        },
-        {
-          "target": "GLE.PA",
-          "kind": "ticker",
-          "direction": "incertain",
+          "direction": "positif",
           "held": true
         }
       ],
-      "ai_take": "Surveiller ICE (EPS consensus $1,42) et GLE.PA (ROTE ≥8 %). BMY optionnel si Growth Portfolio +15 % : entrée conditionnelle ~3 % du portefeuille.",
+      "ai_take": "Thèse CONFIRMÉE — INTACT. Prochain horizon-test Q4 ~janv.2027. Le cours $163,04 est légèrement hors zone d'achat initiale $128-165 — aucun impact sur la position détenue.",
+      "importance": 2,
+      "sources": [
+        {
+          "name": "Gurufocus — ICE Q3 2026 EPS $1.67 (GAAP), $2.02 (adj), 29/10"
+        },
+        {
+          "name": "Investing.com — ICE tops Q3 2026 estimates, stock jumps 6.2%"
+        }
+      ]
+    },
+    {
+      "id": "amzn-q3-2026-aws-39pct",
+      "date": "2026-10-29",
+      "category": "entreprises",
+      "title": "Amazon Q3 : AWS +39 %, capex cloud maintenu à $220Md",
+      "summary": "Amazon a publié ses résultats T3 le 29 octobre : revenus $201,9Md +12% YoY (légèrement sous le consensus de $202,3Md), AWS +39% à ~$46Md (annualisé $184Md), marge opérationnelle record 13,9%. EPS $1,89 (miss vs $1,96 dû à l'absence des gains Anthropic de T3 2025). Le capex FY26 est maintenu à $220Md, et management indique que 2027 sera « significativement plus élevé ».",
+      "why": "Amazon représente ~6,7% du book IA. Le seuil de la thèse AWS était >25% YoY — atteint à +39%. La confirmation du capex cloud 2026-2027 valide aussi les thèses EME, CEG et GVA (infrastructure data centers).",
+      "impact": [
+        {
+          "target": "AMZN",
+          "kind": "ticker",
+          "direction": "positif",
+          "held": true
+        },
+        {
+          "target": "CEG",
+          "kind": "ticker",
+          "direction": "positif",
+          "held": true
+        },
+        {
+          "target": "EME",
+          "kind": "ticker",
+          "direction": "positif",
+          "held": true
+        },
+        {
+          "target": "GVA",
+          "kind": "ticker",
+          "direction": "positif",
+          "held": true
+        }
+      ],
+      "ai_take": "Thèse AMZN CONFIRMÉE — INTACT. Capex cloud 2027 en hausse = signal positif pour le cluster data centers (EME/CEG/GVA). Entrée RTX validée vendredi (capex non-IA intact).",
       "importance": 1,
       "sources": [
         {
-          "name": "Calendriers IR ICE / SG / BMY / RMD — octobre 2026"
+          "name": "247wallst.com — Amazon Q3 2026 AWS revenue rose 39%, 29/10"
+        },
+        {
+          "name": "Gurufocus — Amazon Q3 2026 EPS $1.89, revenue $201.9B"
         }
       ]
     },

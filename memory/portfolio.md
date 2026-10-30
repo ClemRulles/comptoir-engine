@@ -8,7 +8,7 @@ Positions réelles encodées depuis Trade Republic. **NAV des positions ≈ 6 30
 |--------|-----|---------:|-------:|------------:|------------:|---------|--------|-----------------|-----------|
 | SAF.PA  | Safran                | 732,81 | 11,6 | −8,99 %  | 805,20 | cœur | À SURVEILLER | sortie si thèse MRO/aéro cassée (guide FY coupé, carnets CFM déclinants) ; **gate 🟠 W53 — 7e relevé ambre consécutif (W47→W53)** — H1 guide RELEVÉ (ROI €6.4-6.5B, LEAP +41%, spare parts +28%, marge 18.4%) ; thèse MRO intacte ; GEL renforcement ; gap ~1,6 pts NAV < 2 pts → pas de trim book IA ; ⚠️ Q3 CA non encore publié ce soir (23/10) — horizon-test actif vendredi | 2026-10-23 |
 | HO.PA   | Thales                | 723,41 | 11,5 | −10,14 % | 805,04 | cœur | À SURVEILLER | sortie si thèse défense EU se retourne (commandes/carnet guidé en baisse) ; **gate non actualisé (non-US, F-Score null)** ; thèse budgets NATO +5% La Haye intacte ; book IA sorti le 26/06 | 2026-08-21 |
-| AMZN    | Amazon                | 703,31 | 11,1 | +16,83 % | 602,00 | cœur | INTACT | sortie si croissance AWS cassée (<25% YoY) OU capex coupé >15% — **FALSIFICATEUR NON DÉCLENCHÉ ✓ (AWS +37% Q2, Amazon PPA 690MW CEG)** ; **gate 🟢 W53 (F5/9, comp +0.275 — confirmé)** ; thèse AWS intacte | 2026-10-23 |
+| AMZN    | Amazon                | 703,31 | 11,1 | +16,83 % | 602,00 | cœur | INTACT | sortie si croissance AWS cassée (<25% YoY) OU capex coupé >15% — **FALSIFICATEUR NON DÉCLENCHÉ ✓ (AWS +39% Q3 >> seuil 25%, capex FY26 $220B maintenu + 2027 encore plus élevé ✓)** ; **gate 🟢 W55 (F5/9, RSI 50,5)** ; thèse AWS intacte | 2026-10-30 |
 | NFLX    | Netflix               | 632,58 | 10,0 | −14,75 % | 742,03 | cœur | À SURVEILLER | sortie si décélération abonnés confirmée OU rupture stratégique post-Hastings ; gate non actualisé ; book IA sorti sur stop -8% (13/06) | 2026-06-19 |
 | EIMI    | MSCI Emerging Markets (ETF) | 449,46 | 7,1 | +12,09 % | 401,00 | cœur | INTACT | rebalancement ; **gate 🟢 W53 (RSI 52.4, mom +28%, comp +0.538 — confirmé)** ; T10Y ~5,08-5,15 % headwind EM surveillance maintenue ; thèse diversification intacte | 2026-10-23 |
 | AI.PA   | Air Liquide           | 436,31 | 6,9 | +8,39 %  | 402,54 | cœur | À SURVEILLER | sortie si ROIC/volumes se dégradent durablement (<8% ROIC) ; **gate 🟠 W53 (RSI 71, mom +7%, cov 39% — flip 🟢→🟠 W53, 1er relevé ambre)** ; thèse compounder intacte, ROIC H1 +10.2% ✓ ; GEL renforcement activé ; excédent vs cap 5% NAV < friction → pas de trim | 2026-10-23 |
@@ -19,7 +19,7 @@ Positions réelles encodées depuis Trade Republic. **NAV des positions ≈ 6 30
 | SGO.PA  | Compagnie de Saint-Gobain | 294,06 | 4,7 | −16,57 % | 352,46 | cœur | À SURVEILLER | sortie si cycle construction se retourne durablement ; gate 🔴 last known (12/06) — T1 −2,3 % organique, construction neuve US faible | 2026-06-19 |
 | SAP     | SAP                   | 238,15 | 3,8 | −40,61 % | 401,00 | cœur | À SURVEILLER | sortie si guidance FY2026 coupée ; cloud +19%, backlog +20% — thèse cloud RISE intacte ; gate 🔴 last known (12/06) | 2026-06-19 |
 | NOVOB   | Novo-Nordisk (B)      | 234,11 | 3,7 | −22,26 % | 301,15 | cœur | À SURVEILLER | sortie si pipeline concurrent écrase la part de marché ; **Q2 résultats passés : Wegovy US −22% CER (transition formulaire), international +37%, guidance FY relevée (0% → −6% vs −12%/−4%) ; EMA approuve Wegovy pill 7.2mg** ; adoption Medicare Q3 pas encore publiée → surveiller Q3 données CMS | 2026-08-21 |
-| MSTR    | MicroStrategy (A)     | 200,39 | 3,2 | −50,15 % | 402,00 | tactique | SORTIE | prime NAV effondrée, thèse cassée — **⚠️⚠️⚠️ SIGNAL GROUPE : VENDRE (confirmé 19/06 — PAS ENCORE EXÉCUTÉ depuis 17 SEMAINES). Urgence maximale : 17 semaines sur une thèse morte = anomalie de gouvernance critique. Agir en priorité absolue.** | 2026-10-09 |
+| MSTR    | MicroStrategy (A)     | 200,39 | 3,2 | −50,15 % | 402,00 | tactique | SORTIE | prime NAV effondrée, thèse cassée — **⚠️⚠️⚠️ SIGNAL GROUPE : VENDRE (confirmé 19/06 — PAS ENCORE EXÉCUTÉ depuis 19 SEMAINES). Urgence maximale : 19 semaines sur une thèse morte = anomalie de gouvernance critique. Agir en priorité absolue.** | 2026-10-30 |
 | RMS.PA  | Hermès                | 145,18 | 2,3 | −28,06 % | 201,81 | cœur | À SURVEILLER | sortie si pricing power cassé durablement ; premiums resale Birkin/Kelly en baisse ; expo Moyen-Orient ; gate 🔴 last known (12/06) | 2026-06-19 |
 
 **Total seed : 6 309,28 € investis · 15 positions · cash ≈ 0 €** (les apports membres alimentent le cash, cf. interface).
@@ -30,7 +30,7 @@ Positions réelles encodées depuis Trade Republic. **NAV des positions ≈ 6 30
 
 ## SORTIE — MSTR (MicroStrategy) · signal confirmé 2026-06-19
 
-Règle de sortie touchée : la prime sur NAV bitcoin s'est effondrée. F-Score Piotroski 3/9 (drapeau dur §H), EPS surprise −149 % (mai 2026), momentum −51 %, composite gate −0,620. La thèse « proxy bitcoin à prime » est cassée : BTC en chute et prime de holding disparaît simultanément. **⚠️⚠️⚠️ Signal groupe : VENDRE — signalé le 12/06, confirmé le 19/06. PAS ENCORE EXÉCUTÉ — 17 SEMAINES (09/10). Urgence maximale. La discipline de sortie du groupe est en question : 17 semaines sur une thèse morte est une anomalie de gouvernance critique. Agir en priorité absolue.**
+Règle de sortie touchée : la prime sur NAV bitcoin s'est effondrée. F-Score Piotroski 3/9 (drapeau dur §H), EPS surprise −149 % (mai 2026), momentum −51 %, composite gate −0,620. La thèse « proxy bitcoin à prime » est cassée : BTC en chute et prime de holding disparaît simultanément. **⚠️⚠️⚠️ Signal groupe : VENDRE — signalé le 12/06, confirmé le 19/06. PAS ENCORE EXÉCUTÉ — 19 SEMAINES (30/10). Urgence maximale. La discipline de sortie du groupe est en question : 19 semaines sur une thèse morte est une anomalie de gouvernance critique. Agir en priorité absolue.**
 
 ---
 
@@ -147,6 +147,59 @@ Aucune — 0 déclencheur §H armé :
 | CEG | 🟢 F6/9 +0.281 | RSI 70.7 court-terme élevé (≠ signal de vente §H) — Grok W43 HIT ✓ | Cours $285,07 vs entry $252,49 (+12,9%). RSI 70.7 = rally court-terme (N'EST PAS un déclencheur §H). Mom −22% 12M mais gate 🟢. §G gouverne. Grok ceg-hormuz-nuclear-w43 HIT (+10,1% depuis W43). Amazon PPA 690MW ✓. Q3 ~oct 2026 = horizon-test. |
 | CB | 🟢 F6/9 +0.383 | Q3 résultats ~20-21/10 : horizon-test imminent | Cours $343,78 vs entry $339,42 (+1,3% USD). RSI 37.6 sain. Q3 ~20-21/10 : combined ratio ≤95% + NII guidance = falsificateurs actifs. FOMC 27-28/10 hike = bénéficiaire NIM. |
 | MSCI | 🟢 F7/9 +0.587 | Q3 résultats ~octobre : rétention ≥93% | Cours $561,67 vs entry $535,40 (+4,9%). F7/9, RSI 53.7 sain. Mom −1.2% légèrement négatif 12M. Q3 = horizon-test rétention ≥93%. Seuil réexamen $401 très loin. |
+
+---
+
+## Alertes book IA — 2026-10-30 (Doctor W55)
+
+Régime **SURCHAUFFE override MAINTENUE** (FOMC 28/10 HOLD 3,75-4,00 % confirmé vote 10-2 — CPI 3,7 % YoY, T10Y ~5 %, hike-déc. narrative renforcée ; signals.js RISK-ON SAIN = FRED lag, mémoire prime) · **15 positions actives · NAV €10 189 · cash €1 197 (11,75 % NAV — dans bande 5-15 % ✓)** · gates W55 (30/10) : 🟢11 🟠4 (SAF.PA 9e🟠 / AI 🟠RSI74,5 / CEG 2e🟠 / EME 1er🟠) 🔴0.
+
+### Sorties exécutées — 2026-10-30
+
+Aucune — 0 déclencheur §H armé :
+- Gate 🔴 fondamental : 0 position (11/15 🟢, 4/15 🟠 — 🟠 seul ≠ déclencheur §H).
+- F-Score ≤3 ou earnings quality rouge : 0 (AZZ/CRM/GVA/ICE/MSCI F7/9 ; CB/CEG/EME F6/9 ; AMZN F5/9 — tous sains).
+- Stop prix franchi sur TACTIQUE : 0 (toutes CŒUR — §H : seuil réexamen = −25 % entry_price, loin pour toutes).
+- Garde-fou drawdown : drawdown −1,27 % (seuil guard −10 %) → NON déclenché.
+- Verdict Opus SORTIR non exécuté : 0.
+
+### Résultats horizon-tests confirmés ce soir
+
+| Ticker | Date Q3 | Falsificateur | Verdict |
+|--------|---------|---------------|---------|
+| AMZN | 29/10 | AWS growth <25 % → **+39 % ✓** ; capex coupé >15 % → **$220B maintenu + 2027 encore plus élevé ✓** | **THÈSE CONFIRMÉE** |
+| ICE | 29/10 | Récurrent <45 % → **47 % CA ✓** ; EPS adj $2,02 > $1,96 consensus ✓ ; guidances relevées ✓ | **THÈSE CONFIRMÉE** |
+| GLE.PA | 29/10 | ROTE <8 % → **ROTE Q3 13 % (record, cible 11 %) ✓** ; RN +24 % YoY, CET1 13,4 % ✓ | **THÈSE CONFIRMÉE** |
+| EME | 29/10 | Marge MEP <8 % → **12,1 % ✓** ; RPO coupé ≥15 % → **+47 % à $18,57Md ✓** ; EPS adj $9,60 >> $8,33 ✓ | **THÈSE CONFIRMÉE (stock −10 % = réaction de marché, pas falsificateur)** |
+
+### Actions vendredi 31/10 (à noter pour le Brief)
+
+- **HII ACHETER** (conditionnel confirmé) : Q3 segment margin 7,4 % ≥ 6,0 % ✓, FCF FY26 $500-600M réaffirmé ✓, contrats $32,4B armés ✓. Zone achat $250-295 (vérifier cours vendredi). Financer par trim cluster (CEG ou EME per convictions.md). Cœur 76 % > max 75 % → trim obligatoire préalable.
+- **BMY BLANC** : Growth Portfolio Q3 +12 % < +15 % condition → pas d'entrée. Prochain test Q4.
+- **RTX** : Capex AMZN confirmé $220B + 2027 en hausse = cluster capex-IA positif. Entrée RTX ~4 % NAV valide vendredi (vérifier zone ~$135-155).
+- **Crypto dimanche 01/11** : FOMC HOLD ✓, F&G 30 (Fear) → fenêtre. Palier 1 ~€251 (BTC ~€151 + ETH ~€25) per market-regime W54.
+
+### À SURVEILLER — Doctor W55
+
+| Ticker | Gate | Alerte | Détail |
+|--------|------|--------|--------|
+| SAF.PA | 🟠 RSI22,3 | ⚠️ **9e relevé 🟠 consécutif (W47→W55)** — GEL renforcement | Position 2,0929 × €279 ≈ €584 = 5,73 % NAV. Gap 0,73 pts < 2 pts requis → pas de trim. Thèse MRO/LEAP intacte (CA Q3 +14,7 %, aftermarket +17 % — jurisprudence 2T). Seuil réexamen €234 très loin. Saisine mercredi W56. |
+| CEG | 🟠 RSI35,6 | ⚠️ **2e relevé 🟠 consécutif (W54+W55) — saisine mercredi W56 obligatoire** | Position 2,465 × €236,5 ≈ €583 = 5,72 % NAV. Gap 0,72 pts < 2 pts requis → pas de trim. Q3 résultats 09/11 = horizon-test (guidance nucléaire, FCF). Mom −31 % = signal prix, pas thèse. |
+| AI | 🟠 RSI74,5 | RSI suracheté — GEL renforcement | Position 3,079 × €177,4 ≈ €546 = 5,36 % NAV. RSI 74,5 suracheté. §H verrou : RSI suracheté ≠ motif de vente. Thèse compounder ROIC H1 +10,2 % intacte. |
+| EME | 🟠 RSI22,9 | **1er relevé 🟠 post-Q3 (RSI survendu −10 % réaction marché)** — GEL renforcement | Position 1,09 × €616 ≈ €672 = 6,59 % NAV. RSI 22,9 = survendu extrême. Falsificateurs non déclenchés (marge 12,1 % ✓, RPO $18,57Md ✓). Thèse renforcée. GEL renforcement (1er🟠). |
+
+### Horizon-tests imminents
+
+- **~05/11/2026 GVA Q3** — adj EBITDA marge ≥12,25 %, rev +25 %+, backlog ≥$7,4Md. **Falsificateur décisif.**
+- **09/11/2026 CEG Q3** — guidance nucléaire maintenue, surcoûts Crane Nuclear.
+- **~janv. 2027 MSCI Q4** — ARR organic subscription : 2e trimestre sous +9 % → sortie (1T grâce actif).
+
+### Groupe — signaux (Doctor ne vend pas, signale)
+
+- **MSTR : ⚠️⚠️⚠️ VENDRE — 19 semaines sans exécution (depuis 19/06). Urgence critique absolue.**
+- **AMZN groupe** : Q3 AWS +39 % ✓ — thèse CONFIRMÉE. INTACT. Vérifié 30/10.
+- **BNP.PA groupe** : FOMC HOLD = NIM structurel intact. Q3 BNP.PA non confirmé ce soir (publication ~30/10, source non trouvée — vérifier vendredi).
+- **SAF.PA groupe** : Gate 🟠 (9e consécutif), cours €279. Thèse intacte (Q3 CA +14,7 %). GEL renforcement.
 
 ### Catalyseurs imminents (impact book IA)
 

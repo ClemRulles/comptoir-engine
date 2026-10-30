@@ -409,6 +409,23 @@
       "source": {
         "name": "Investopedia — Book-to-Bill Ratio ; glossaire aéronautique-défense"
       }
+    },
+    {
+      "date": "2026-11-01",
+      "theme": "nos-lignes",
+      "level": "moyen",
+      "question": "EMCOR (EME) publie un RPO de 18,57 Mds$ en hausse de +47 % au T3 2026. Que mesure le RPO ?",
+      "choices": [
+        "Les revenus futurs déjà contractualisés mais pas encore facturés",
+        "Le bénéfice opérationnel récurrent net de charges exceptionnelles",
+        "Le ratio cours/bénéfices ajusté de la croissance",
+        "La part des revenus provenant de contrats publics"
+      ],
+      "answer": 0,
+      "explanation": "Le RPO (Remaining Performance Obligation) = commandes signées contractuellement mais pas encore exécutées ni facturées. Pour EME, 18,57 Mds$ = plusieurs trimestres de revenus quasi-certains. +47 % YoY témoigne d'une accélération de la demande en data centers, réseaux électriques et industriel.",
+      "source": {
+        "name": "EMCOR — résultats Q3 2026, 29 octobre 2026 (RPO $18,57B +47 % YoY, rev $5,54B +28,8 %)"
+      }
     }
   ]
 }
